@@ -1,96 +1,46 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { getTeamMembers, getCompanyValues, getMilestones } from '@/lib/contentful';
 
-const values = [
-  {
-    title: 'Science First',
-    description: 'Every ingredient is selected based on peer-reviewed clinical evidence. We review hundreds of studies so you don\'t have to.',
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <circle cx="14" cy="14" r="6" stroke="currentColor" strokeWidth="1.4"/>
-        <path d="M14 6V4M14 24V22M6 14H4M24 14H22M8.34 8.34L6.93 6.93M21.07 21.07L19.66 19.66M8.34 19.66L6.93 21.07M21.07 6.93L19.66 8.34" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
-      </svg>
-    ),
-  },
-  {
-    title: 'Radical Transparency',
-    description: 'No proprietary blends. No hidden fillers. Every dose, every ingredient, every source — disclosed on the label.',
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <path d="M14 5L16.8 10.4L23 11.3L18.5 15.7L19.6 22L14 19L8.4 22L9.5 15.7L5 11.3L11.2 10.4L14 5Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/>
-      </svg>
-    ),
-  },
-  {
-    title: 'Calm Over Crash',
-    description: 'We reject stimulant dependency. Flow is designed for sustainable clarity — energy that lifts, never spikes.',
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <path d="M6 14H9L11 9L14 19L17 12L19 14H22" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    ),
-  },
-  {
-    title: 'Long-Term Thinking',
-    description: 'Our formula isn\'t built for a quick buzz. It\'s built for compound cognitive gains over weeks, months, and years.',
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <path d="M14 6V14M14 14C14 14 10 11 7 13M14 14C14 14 18 11 21 13M14 14V22" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    ),
-  },
-  {
-    title: 'Swiss Precision',
-    description: 'Formulated and produced in Switzerland under strict GMP standards. Because where it\'s made matters as much as what\'s in it.',
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <rect x="6" y="6" width="16" height="16" rx="2" stroke="currentColor" strokeWidth="1.4"/>
-        <path d="M14 10V18M10 14H18" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
-      </svg>
-    ),
-  },
-  {
-    title: 'For the Focused Few',
-    description: 'We don\'t make products for everyone. We make them for people who take their mind seriously — and are willing to invest in it.',
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <circle cx="14" cy="11" r="4" stroke="currentColor" strokeWidth="1.4"/>
-        <path d="M7 23C7 19.134 10.134 16 14 16C17.866 16 21 19.134 21 23" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
-      </svg>
-    ),
-  },
+const icons = [
+  (
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <circle cx="14" cy="14" r="6" stroke="currentColor" strokeWidth="1.4"/>
+      <path d="M14 6V4M14 24V22M6 14H4M24 14H22M8.34 8.34L6.93 6.93M21.07 21.07L19.66 19.66M8.34 19.66L6.93 21.07M21.07 6.93L19.66 8.34" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+    </svg>
+  ),
+  (
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <path d="M14 5L16.8 10.4L23 11.3L18.5 15.7L19.6 22L14 19L8.4 22L9.5 15.7L5 11.3L11.2 10.4L14 5Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/>
+    </svg>
+  ),
+  (
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <path d="M6 14H9L11 9L14 19L17 12L19 14H22" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  (
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <path d="M14 6V14M14 14C14 14 10 11 7 13M14 14C14 14 18 11 21 13M14 14V22" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  (
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <rect x="6" y="6" width="16" height="16" rx="2" stroke="currentColor" strokeWidth="1.4"/>
+      <path d="M14 10V18M10 14H18" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+    </svg>
+  ),
+  (
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <circle cx="14" cy="11" r="4" stroke="currentColor" strokeWidth="1.4"/>
+      <path d="M7 23C7 19.134 10.134 16 14 16C17.866 16 21 19.134 21 23" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+    </svg>
+  ),
 ];
 
-const team = [
-  {
-    name: 'Marc Dubois',
-    role: 'Co-founder & Formulator',
-    bio: 'Former neuroscience researcher at EPFL. Spent a decade studying the relationship between stress, neuroplasticity, and performance before founding Flow.',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=85&auto=format&fit=crop&crop=face',
-  },
-  {
-    name: 'Sophie Wenger',
-    role: 'Co-founder & CEO',
-    bio: 'Background in functional medicine and clinical nutrition. Drove the mission to make evidence-based supplementation accessible without the noise.',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=85&auto=format&fit=crop&crop=face',
-  },
-  {
-    name: 'Dr. Lena Fischer',
-    role: 'Head of Research',
-    bio: 'Clinical pharmacologist with 15 years of experience reviewing safety and efficacy data. Every ingredient in Flow has passed her desk twice.',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=85&auto=format&fit=crop&crop=face',
-  },
-];
-
-const milestones = [
-  { year: '2022', label: 'Founded in Geneva', description: 'Flow Health was born out of a personal frustration with the supplement market.' },
-  { year: '2023', label: 'Research phase', description: 'Over 18 months formulating with researchers, doctors, and practitioners across Switzerland.' },
-  { year: '2024', label: 'Swiss GMP certification', description: 'Production partner certified under ISO 22000 and Swiss GMP — among the strictest in Europe.' },
-  { year: '2025', label: 'First formula launched', description: 'Flow launched to a waitlist of over 2,000 early adopters. Sold out in week one.' },
-  { year: '2026', label: 'Expanding internationally', description: 'Now shipping to 12 countries. Reformulations and new products in development.' },
-];
-
-export default function WhoWeArePage() {
+export default async function WhoWeArePage() {
+  const [teamData, valuesData, milestonesData] = await Promise.all([getTeamMembers(), getCompanyValues(), getMilestones()]);
+  const values = valuesData.map((v, i) => ({ ...v, icon: icons[i] }));
   return (
     <main>
 
@@ -192,11 +142,11 @@ export default function WhoWeArePage() {
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">Meet the team.</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {team.map((member) => (
+            {teamData.map((member) => (
               <div key={member.name} className="space-y-4">
                 <div className="relative aspect-square rounded-2xl overflow-hidden bg-[#ECEEED]">
                   <Image
-                    src={member.image}
+                    src={member.imageUrl}
                     alt={member.name}
                     fill
                     className="object-cover"
@@ -222,7 +172,7 @@ export default function WhoWeArePage() {
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">How we got here.</h2>
           </div>
           <div className="relative pl-6 border-l border-[var(--color-border)] space-y-10">
-            {milestones.map((m) => (
+            {milestonesData.map((m) => (
               <div key={m.year} className="relative">
                 <span className="absolute -left-[25px] w-3 h-3 rounded-full border-2 border-[#1A1A18] bg-white top-1" />
                 <p className="text-xs uppercase tracking-[0.1em] font-semibold text-[hsla(var(--color-secondary)/0.45)] mb-1">{m.year}</p>

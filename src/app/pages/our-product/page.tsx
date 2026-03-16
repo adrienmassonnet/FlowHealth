@@ -1,62 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { getIngredients } from '@/lib/contentful';
 
 const highlights = [
   { value: '13', unit: 'Active ingredients', description: 'Each chosen for clinical evidence, not marketing appeal.' },
   { value: '0', unit: 'Proprietary blends', description: 'Every dose is disclosed. No hidden fillers or trace amounts.' },
   { value: '30+', unit: 'Clinical studies', description: 'The evidence base behind our core ingredient stack.' },
   { value: 'Swiss', unit: 'GMP certified', description: 'Manufactured to pharmaceutical-grade standards in Switzerland.' },
-];
-
-const ingredients = [
-  {
-    name: 'Bacopa Monnieri',
-    form: 'Synapsa® extract',
-    dose: '300mg',
-    category: 'Memory',
-    description: 'One of the most evidence-backed nootropics for long-term memory consolidation. Standardised to 55% bacosides — the active compounds responsible for its effects.',
-    image: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=500&q=80&auto=format&fit=crop',
-  },
-  {
-    name: 'Ashwagandha',
-    form: 'KSM-66® root extract',
-    dose: '300mg',
-    category: 'Stress',
-    description: 'The most studied adaptogen for cortisol reduction and stress resilience. KSM-66® is the only extract with over 30 clinical trials behind it.',
-    image: 'https://images.unsplash.com/photo-1596078842550-f9b9bdd7bdc7?w=500&q=80&auto=format&fit=crop',
-  },
-  {
-    name: "Lion's Mane",
-    form: 'Full-spectrum fruiting body',
-    dose: '500mg',
-    category: 'Neuroplasticity',
-    description: 'Stimulates Nerve Growth Factor (NGF), supporting the growth and maintenance of neurons. Emerging evidence for mild cognitive impairment and long-term brain health.',
-    image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=500&q=80&auto=format&fit=crop',
-  },
-  {
-    name: 'L-Theanine',
-    form: 'Pharmaceutical grade',
-    dose: '200mg',
-    category: 'Focus',
-    description: 'Promotes alpha brainwave activity — the state associated with relaxed alertness. Synergises with caffeine to remove jitteriness without blunting energy.',
-    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=500&q=80&auto=format&fit=crop',
-  },
-  {
-    name: 'Rhodiola Rosea',
-    form: '3% rosavins, 1% salidroside',
-    dose: '200mg',
-    category: 'Endurance',
-    description: 'A well-researched adaptogen for mental and physical fatigue resistance. Particularly effective for sustained cognitive performance under stress.',
-    image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500&q=80&auto=format&fit=crop',
-  },
-  {
-    name: 'Magnesium Glycinate',
-    form: 'Chelated for bioavailability',
-    dose: '200mg',
-    category: 'Recovery',
-    description: 'The most bioavailable form of magnesium. Supports sleep quality, stress regulation, and synaptic function. Most people are chronically deficient.',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80&auto=format&fit=crop',
-  },
 ];
 
 const formats = [
@@ -92,7 +42,8 @@ const formats = [
   },
 ];
 
-export default function OurProductPage() {
+export default async function OurProductPage() {
+  const ingredients = await getIngredients();
   return (
     <main>
 
@@ -167,7 +118,7 @@ export default function OurProductPage() {
             {ingredients.map((ing) => (
               <div key={ing.name} className="bg-white grid grid-cols-1 md:grid-cols-[80px_1fr_auto] gap-0 items-stretch">
                 <div className="relative h-20 md:h-auto md:aspect-square overflow-hidden hidden md:block">
-                  <Image src={ing.image} alt={ing.name} fill className="object-cover" sizes="80px" />
+                  <Image src={ing.imageUrl ?? ''} alt={ing.name} fill className="object-cover" sizes="80px" />
                 </div>
                 <div className="p-6 space-y-1">
                   <div className="flex flex-wrap items-center gap-3">

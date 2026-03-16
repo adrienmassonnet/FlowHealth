@@ -1,48 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { getPhilosophyPrinciples, getPhilosophyBeliefs } from '@/lib/contentful';
 
-const principles = [
-  {
-    number: '01',
-    title: 'Science before marketing',
-    body: 'Every claim we make is backed by peer-reviewed human clinical trials. We never cite animal studies or preclinical data as proof of efficacy. If the evidence isn\'t strong enough, the ingredient doesn\'t make the formula.',
-  },
-  {
-    number: '02',
-    title: 'Dose integrity',
-    body: 'Proprietary blends exist to hide underdosing. We disclose every milligram because we dose at clinically effective levels — not at trace amounts that look good on a label. If you\'re paying for an ingredient, it should actually work.',
-  },
-  {
-    number: '03',
-    title: 'No stimulant dependency',
-    body: 'We built Flow for sustainable clarity — not a spike and crash cycle. You should be able to miss a day without consequences. Cognitive enhancement should compound over time, not create reliance.',
-  },
-  {
-    number: '04',
-    title: 'Radical transparency',
-    body: 'Every source, every form, every dose — disclosed. We will always tell you what\'s in our product, where it comes from, and why we chose it over alternatives. Hiding things is not something we are interested in.',
-  },
-  {
-    number: '05',
-    title: 'Swiss precision',
-    body: 'We manufacture in Switzerland under GMP conditions that exceed most global standards. Not because it\'s a marketing point — because where and how a supplement is made directly affects its safety, consistency, and efficacy.',
-  },
-  {
-    number: '06',
-    title: 'Long-term thinking',
-    body: 'Short-term cognitive enhancement is easy. We optimise for 6-month, 12-month, and lifetime cognitive health. That means neuroprotective compounds, not just stimulants. It means doing things the slow, right way.',
-  },
-];
-
-const beliefs = [
-  'The mind is the most important asset you have.',
-  'Most people are operating far below their cognitive potential — not from lack of effort, but from poor nutrition, chronic stress, and overstimulation.',
-  'High-quality supplementation is not a shortcut. It is infrastructure — the same way sleep, exercise, and diet are infrastructure.',
-  'Transparency is not a brand value. It is a minimum standard.',
-  'We believe in compounding — small, consistent inputs that build over months and years into something remarkable.',
-];
-
-export default function OurPhilosophyPage() {
+export default async function OurPhilosophyPage() {
+  const [principles, beliefs] = await Promise.all([getPhilosophyPrinciples(), getPhilosophyBeliefs()]);
   return (
     <main>
 
@@ -115,13 +76,13 @@ export default function OurPhilosophyPage() {
           </div>
           <ul className="space-y-5">
             {beliefs.map((b) => (
-              <li key={b.slice(0, 40)} className="flex items-start gap-4 py-5 border-b border-[var(--color-border)] last:border-0">
+              <li key={b.text.slice(0, 40)} className="flex items-start gap-4 py-5 border-b border-[var(--color-border)] last:border-0">
                 <span className="shrink-0 mt-0.5 w-6 h-6 rounded-full bg-[#1A1A18] flex items-center justify-center">
                   <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
                     <path d="M2 5l2.5 2.5 4-4" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </span>
-                <p className="text-base text-[#1A1A18] leading-relaxed font-medium">{b}</p>
+                <p className="text-base text-[#1A1A18] leading-relaxed font-medium">{b.text}</p>
               </li>
             ))}
           </ul>
