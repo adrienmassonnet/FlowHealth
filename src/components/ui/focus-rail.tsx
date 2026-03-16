@@ -31,14 +31,14 @@ function wrap(min: number, max: number, v: number) {
 }
 
 const BASE_SPRING = {
-  type: "spring",
+  type: "spring" as const,
   stiffness: 300,
   damping: 30,
   mass: 1,
 };
 
 const TAP_SPRING = {
-  type: "spring",
+  type: "spring" as const,
   stiffness: 450,
   damping: 18,
   mass: 1,
@@ -182,9 +182,13 @@ export function FocusRail({
                   opacity,
                   filter: `blur(${blur}px) brightness(${brightness})`,
                 }}
-                transition={(val) => {
-                  if (val === "scale") return TAP_SPRING;
-                  return BASE_SPRING;
+                transition={{
+                  x: BASE_SPRING,
+                  z: BASE_SPRING,
+                  scale: TAP_SPRING,
+                  rotateY: BASE_SPRING,
+                  opacity: BASE_SPRING,
+                  filter: BASE_SPRING,
                 }}
                 style={{ transformStyle: "preserve-3d" }}
                 onClick={() => {
