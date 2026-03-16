@@ -1,10 +1,17 @@
 import { createStorefrontApiClient } from '@shopify/storefront-api-client';
 
-export const shopifyClient = createStorefrontApiClient({
-  storeDomain: process.env.SHOPIFY_STORE_DOMAIN!,
-  apiVersion: '2025-04',
-  publicAccessToken: process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN!,
-});
+let _client: ReturnType<typeof createStorefrontApiClient> | undefined;
+
+function shopifyClient() {
+  if (!_client) {
+    _client = createStorefrontApiClient({
+      storeDomain: process.env.SHOPIFY_STORE_DOMAIN!,
+      apiVersion: '2025-04',
+      publicAccessToken: process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN!,
+    });
+  }
+  return _client;
+}
 
 // Types
 export interface Product {
@@ -72,7 +79,7 @@ export async function getProducts(): Promise<Product[]> {
     }
   `;
 
-  const { data, errors } = await shopifyClient.request(query);
+  const { data, errors } = await shopifyClient().request(query);
   if (errors) throw new Error(errors.message);
   return data.products.edges.map((e: { node: Product }) => e.node);
 }
@@ -116,7 +123,7 @@ export async function getProduct(handle: string): Promise<Product | null> {
     }
   `;
 
-  const { data, errors } = await shopifyClient.request(query, { variables: { handle } });
+  const { data, errors } = await shopifyClient().request(query, { variables: { handle } });
   if (errors) throw new Error(errors.message);
   return data.productByHandle;
 }
@@ -134,7 +141,7 @@ export async function createCheckout(variantId: string, quantity: number): Promi
     }
   `;
 
-  const { data, errors } = await shopifyClient.request(mutation, {
+  const { data, errors } = await shopifyClient().request(mutation, {
     variables: { variantId, quantity },
   });
   if (errors) throw new Error(errors.message);
