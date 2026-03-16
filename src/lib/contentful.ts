@@ -64,6 +64,38 @@ export interface FaqItem {
   order: number;
 }
 
+export interface HomepageContent {
+  heroTagline: string;
+  heroHeading: string;
+  missionHeading: string;
+  vennHeading: string;
+  resultsHeading: string;
+  resultsSubheading: string;
+  bottomMissionEyebrow: string;
+  bottomMissionHeading: string;
+}
+
+export interface HomepageFeatureCard {
+  title: string;
+  body: string;
+  imageUrl: string;
+  order: number;
+}
+
+export interface ResultsTimelineStep {
+  period: string;
+  title: string;
+  bullets: string;
+  order: number;
+}
+
+export interface Testimonial {
+  quote: string;
+  authorName: string;
+  authorRole: string;
+  order: number;
+}
+
 export async function getPhilosophyPrinciples(): Promise<PhilosophyPrinciple[]> {
   const res = await client().getEntries({
     content_type: 'philosophyPrinciple',
@@ -87,8 +119,14 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
     content_type: 'teamMember',
     order: ['fields.order'],
     limit: 100,
+    include: 2,
   });
-  return res.items.map((item: { fields: TeamMember }) => item.fields as TeamMember);
+  return res.items.map((item: any) => ({
+    ...item.fields,
+    imageUrl: item.fields.image?.fields?.file?.url
+      ? `https:${item.fields.image.fields.file.url}`
+      : (item.fields.imageUrl ?? ''),
+  }));
 }
 
 export async function getCompanyValues(): Promise<CompanyValue[]> {
@@ -114,8 +152,14 @@ export async function getIngredients(): Promise<Ingredient[]> {
     content_type: 'ingredient',
     order: ['fields.order'],
     limit: 100,
+    include: 2,
   });
-  return res.items.map((item: { fields: Ingredient }) => item.fields as Ingredient);
+  return res.items.map((item: any) => ({
+    ...item.fields,
+    imageUrl: item.fields.image?.fields?.file?.url
+      ? `https:${item.fields.image.fields.file.url}`
+      : item.fields.imageUrl,
+  }));
 }
 
 export async function getFaqItems(): Promise<FaqItem[]> {
@@ -125,4 +169,45 @@ export async function getFaqItems(): Promise<FaqItem[]> {
     limit: 200,
   });
   return res.items.map((item: { fields: FaqItem }) => item.fields as FaqItem);
+}
+
+export async function getHomepageContent(): Promise<HomepageContent> {
+  const res = await client().getEntries({
+    content_type: 'homepageContent',
+    limit: 1,
+  });
+  return res.items[0].fields as HomepageContent;
+}
+
+export async function getHomepageFeatureCards(): Promise<HomepageFeatureCard[]> {
+  const res = await client().getEntries({
+    content_type: 'homepageFeatureCard',
+    order: ['fields.order'],
+    limit: 10,
+    include: 2,
+  });
+  return res.items.map((item: any) => ({
+    ...item.fields,
+    imageUrl: item.fields.image?.fields?.file?.url
+      ? `https:${item.fields.image.fields.file.url}`
+      : (item.fields.imageUrl ?? ''),
+  }));
+}
+
+export async function getResultsTimelineSteps(): Promise<ResultsTimelineStep[]> {
+  const res = await client().getEntries({
+    content_type: 'resultsTimelineStep',
+    order: ['fields.order'],
+    limit: 10,
+  });
+  return res.items.map((item: { fields: ResultsTimelineStep }) => item.fields as ResultsTimelineStep);
+}
+
+export async function getTestimonials(): Promise<Testimonial[]> {
+  const res = await client().getEntries({
+    content_type: 'testimonial',
+    order: ['fields.order'],
+    limit: 20,
+  });
+  return res.items.map((item: { fields: Testimonial }) => item.fields as Testimonial);
 }

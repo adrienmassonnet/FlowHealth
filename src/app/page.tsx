@@ -4,11 +4,24 @@ import { getProducts } from '@/lib/shopify';
 import HealthBenefits from '@/app/components/HealthBenefits';
 import ComparisonTable from '@/app/components/ComparisonTable';
 import { FocusRail, type FocusRailItem } from '@/components/ui/focus-rail';
+import {
+  getHomepageContent,
+  getHomepageFeatureCards,
+  getResultsTimelineSteps,
+  getTestimonials,
+} from '@/lib/contentful';
 
 export default async function HomePage() {
-  const products = await getProducts();
+  const [products, cms, featureCards, timelineSteps, testimonials] = await Promise.all([
+    getProducts(),
+    getHomepageContent(),
+    getHomepageFeatureCards(),
+    getResultsTimelineSteps(),
+    getTestimonials(),
+  ]);
   const featured = products[0];
   const featuredImage = featured?.images.edges[0]?.node;
+  const testimonial = testimonials[0];
 
   const blogPosts: { title: string; href: string; img: string | null; alt: string }[] = [
     {
@@ -53,10 +66,10 @@ export default async function HomePage() {
         <div className="max-w-[1360px] mx-auto px-6 pb-16 pt-24 w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-end">
           <div className="space-y-6">
             <p className="text-xs tracking-[0.14em] uppercase text-[hsla(var(--color-secondary)/1)]">
-              Win your morning, win your day
+              {cms.heroTagline}
             </p>
             <h1 className="text-5xl md:text-6xl font-semibold leading-[1.05] tracking-[-0.02em]">
-              Effortlessly optimal
+              {cms.heroHeading}
             </h1>
             <div className="pt-2">
               <Link
@@ -94,31 +107,15 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-white/30" />
         <div className="relative z-10 w-full max-w-[1360px] mx-auto px-6 pt-24 pb-16 text-center">
           <h2 className="text-4xl md:text-5xl font-semibold leading-tight tracking-[-0.02em]">
-            Flow is on a mission to fight over stimulation. Our supplement promotes homeostasis: the body&apos;s ability to find its equilibrium and reaches prime health and performance state.
+            {cms.missionHeading}
           </h2>
         </div>
         <div className="relative z-10 w-full max-w-[1360px] mx-auto px-6 pb-24">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            {[
-              {
-                image: 'https://flow-health-2.myshopify.com/cdn/shop/files/ritual.png?v=1765176160&width=1080',
-                title: 'Empowered by stable energy',
-                body: 'Flow gently restores harmony – delivering steady, calm energy that keeps distractions, fatigue, and overwhelm at bay.',
-              },
-              {
-                image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80',
-                title: 'Unlock your full potential',
-                body: "Flow's ingredients help you tap into deep focus, effortless creativity, and crystal-clear thinking – so you can perform at your peak every day.",
-              },
-              {
-                image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1200&q=80',
-                title: 'Your daily inner peace ritual',
-                body: 'Begin each day with purpose and power. Flow sets the stage for a productive, fulfilling day.',
-              },
-            ].map((card) => (
+            {featureCards.map((card) => (
               <div key={card.title} className="group relative rounded-2xl overflow-hidden min-h-[360px] flex flex-col justify-between">
                 <Image
-                  src={card.image}
+                  src={card.imageUrl}
                   alt={card.title}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -253,7 +250,7 @@ export default async function HomePage() {
           {/* Right: heading */}
           <div>
             <h2 className="text-4xl md:text-5xl font-semibold leading-tight tracking-[-0.03em] text-[#1A1A18]">
-              Taking care of your health should not be a chore but an enjoyable experience
+              {cms.vennHeading}
             </h2>
           </div>
 
@@ -267,29 +264,24 @@ export default async function HomePage() {
       <section className="bg-white">
         <div className="max-w-[1360px] mx-auto px-6 py-20">
           <div className="mb-16 space-y-4 max-w-2xl">
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">Benefits beyond focus</h2>
-            <p className="text-base text-[hsla(var(--color-secondary)/1)] leading-relaxed">Beyond its short term felt focus, Flow has been conceived to help build better habits and routine on the medium term as well as support long term cerebral and bodily health.</p>
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">{cms.resultsHeading}</h2>
+            <p className="text-base text-[hsla(var(--color-secondary)/1)] leading-relaxed">{cms.resultsSubheading}</p>
           </div>
           {/* Horizontal timeline */}
           <div className="relative">
             {/* Connecting line — sits at the vertical center of the dots (11.5px from top) */}
             <div className="hidden md:block absolute top-[11px] left-[11px] right-0 h-px bg-[var(--color-border)]" />
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              {[
-                { week: 'Days 1–7', title: 'Clarity, From Day One', bullets: ['Reduced brain fog within 15–30 min', 'Sustained focus without the crash', 'Calmer response to stress'] },
-                { week: 'Weeks 2–3', title: 'Deeper, Sharper Focus', bullets: ['Extended concentration windows', 'Reduced mental fatigue by mid-afternoon', 'Improved calm under pressure'] },
-                { week: 'Month 1–2', title: 'Memory & Learning', bullets: ['Faster information recall', 'Better retention under cognitive load', 'Improved pattern recognition'] },
-                { week: 'Month 3+', title: 'Long-term Brain Health', bullets: ['Neuroprotective compound build-up', 'Sustained performance baseline', 'Improved sleep quality and recovery'] },
-              ].map((step) => (
-                <div key={step.week} className="relative">
+              {timelineSteps.map((step) => (
+                <div key={step.period} className="relative">
                   <div className="w-[23px] h-[23px] rounded-full border-2 border-[hsla(var(--color-accent)/1)] bg-[#F8F8F8] flex items-center justify-center mb-5">
                     <div className="w-2 h-2 rounded-full bg-[hsla(var(--color-accent)/1)]" />
                   </div>
                   <div className="space-y-2">
-                    <span className="inline-block text-xs font-semibold tracking-[0.08em] uppercase border border-[hsla(var(--color-accent)/1)] px-3 py-1">{step.week}</span>
+                    <span className="inline-block text-xs font-semibold tracking-[0.08em] uppercase border border-[hsla(var(--color-accent)/1)] px-3 py-1">{step.period}</span>
                     <p className="text-lg font-semibold tracking-[-0.01em]">{step.title}</p>
                     <ul className="space-y-1">
-                      {step.bullets.map((b) => (
+                      {step.bullets.split('\n').map((b) => (
                         <li key={b} className="text-base text-[hsla(var(--color-secondary)/1)] flex items-start gap-2">
                           <span className="mt-1.5 w-1 h-1 rounded-full bg-[hsla(var(--color-secondary)/0.5)] shrink-0" />
                           {b}
@@ -370,11 +362,11 @@ export default async function HomePage() {
         <div className="max-w-2xl mx-auto px-6 text-center space-y-8">
           <p className="text-xs tracking-[0.14em] uppercase text-[hsla(var(--color-secondary)/1)]">Testimonials</p>
           <blockquote className="text-2xl md:text-3xl font-semibold leading-snug tracking-[-0.02em]">
-            &ldquo;Flow changed how I approach my mornings. After three weeks, my focus is sharper and I feel noticeably calmer under pressure. It&apos;s become non-negotiable for me.&rdquo;
+            &ldquo;{testimonial?.quote}&rdquo;
           </blockquote>
           <div>
-            <p className="text-base font-medium">Sarah K.</p>
-            <p className="text-xs text-[hsla(var(--color-secondary)/1)] mt-1">Flow customer</p>
+            <p className="text-base font-medium">{testimonial?.authorName}</p>
+            <p className="text-xs text-[hsla(var(--color-secondary)/1)] mt-1">{testimonial?.authorRole}</p>
           </div>
         </div>
       </section>
@@ -386,10 +378,10 @@ export default async function HomePage() {
       >
         <div className="max-w-3xl mx-auto px-6 text-center space-y-6">
           <p className="text-xs tracking-[0.14em] uppercase text-[hsla(var(--color-secondary)/1)]">
-            On a Mission to Inner Peace
+            {cms.bottomMissionEyebrow}
           </p>
           <h2 className="text-4xl md:text-5xl font-semibold leading-tight tracking-[-0.02em]">
-            At Flow, we are science-based with humans at heart. Our goal is to revitalise people
+            {cms.bottomMissionHeading}
           </h2>
           <Link
             href={featured ? `/products/${featured.handle}` : '/'}

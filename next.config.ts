@@ -27,6 +27,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "assets.embeddables.com",
       },
+      {
+        protocol: "https",
+        hostname: "images.ctfassets.net",
+      },
     ],
   },
 };
