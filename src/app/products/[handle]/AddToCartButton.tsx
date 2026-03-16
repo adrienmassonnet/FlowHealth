@@ -25,7 +25,7 @@ export default function AddToCartButton({ variantId }: { variantId: string }) {
     <button
       onClick={handleCheckout}
       disabled={loading}
-      className="w-full bg-black text-white py-4 rounded-xl font-semibold text-lg hover:bg-gray-800 transition disabled:opacity-50"
+      className="w-full bg-[hsla(var(--color-accent)/1)] text-white text-xs tracking-[0.12em] uppercase py-4 rounded-full hover:bg-[hsla(var(--color-secondary)/1)] transition-colors disabled:opacity-40"
     >
       {loading ? 'Redirecting...' : 'Buy Now'}
     </button>

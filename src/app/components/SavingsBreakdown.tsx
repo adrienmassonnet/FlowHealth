@@ -1,0 +1,70 @@
+const supplements = [
+  { name: 'Nootropic Stack (Zynamite®, Alpha-GPC)', price: 45 },
+  { name: 'Adaptogens (Ashwagandha, Rhodiola, Ginseng)', price: 50 },
+  { name: 'Lion\'s Mane Mushroom Extract', price: 35 },
+  { name: 'L-Theanine & Caffeine', price: 20 },
+  { name: 'Bacopa Monnieri', price: 25 },
+  { name: 'Electrolytes Complex', price: 30 },
+  { name: 'Magnesium Glycinate', price: 20 },
+  { name: 'Prebiotics & Probiotics', price: 40 },
+];
+
+const traditionalTotal = supplements.reduce((sum, s) => sum + s.price, 0);
+const flowPrice = 79;
+const savings = traditionalTotal - flowPrice;
+
+export default function SavingsBreakdown() {
+  return (
+    <section className="max-w-[1360px] mx-auto px-6 py-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
+
+        {/* Left — heading + savings badge */}
+        <div className="flex flex-col gap-8">
+          <div className="space-y-2">
+            <p className="text-xs tracking-[0.14em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">Save Money</p>
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
+              One bottle replaces<br />8 daily supplements.
+            </h2>
+            <p className="text-base text-[hsla(var(--color-secondary)/0.65)] max-w-sm leading-relaxed mt-3">
+              The average person spends over CHF {traditionalTotal} every month on individual supplements. Flow consolidates everything into one bottle — without compromise.
+            </p>
+          </div>
+
+          {/* Savings badge */}
+          <div className="inline-flex flex-col items-center justify-center w-48 h-48 rounded-full bg-[#1A1A18] text-white text-center p-6 self-start">
+            <span className="text-[10px] uppercase tracking-[0.14em] text-white/50 font-medium mb-1">Monthly savings</span>
+            <span className="text-4xl font-semibold tracking-[-0.03em] leading-none">CHF {savings}</span>
+            <span className="text-xs text-white/50 mt-2 leading-snug">switching to Flow</span>
+          </div>
+        </div>
+
+        {/* Right — breakdown list */}
+        <div>
+          <p className="text-xs uppercase tracking-[0.12em] text-[hsla(var(--color-secondary)/0.4)] font-medium mb-4">Monthly breakdown</p>
+
+          <div className="divide-y divide-[var(--color-border)]">
+            {supplements.map((s) => (
+              <div key={s.name} className="flex items-center justify-between gap-4 py-3.5">
+                <span className="text-sm text-[hsla(var(--color-secondary)/0.75)]">{s.name}</span>
+                <span className="text-sm font-medium text-[#1A1A18] shrink-0">CHF {s.price}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Totals */}
+          <div className="mt-1 pt-4 border-t-2 border-[#1A1A18] space-y-2">
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-sm text-[hsla(var(--color-secondary)/0.55)] line-through">Traditional supplements</span>
+              <span className="text-sm text-[hsla(var(--color-secondary)/0.55)] line-through shrink-0">CHF {traditionalTotal}</span>
+            </div>
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-base font-semibold text-[#1A1A18]">Flow — one daily bottle</span>
+              <span className="text-base font-semibold text-[#1A1A18] shrink-0">CHF {flowPrice}</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}
