@@ -299,8 +299,9 @@ export default function Header() {
               className="fixed top-0 left-0 bottom-0 z-50 w-72 bg-white flex flex-col md:hidden shadow-2xl"
             >
               <div className="flex items-center justify-between px-6 h-16 border-b border-[var(--color-border)]">
-                <Link href="/" onClick={() => setMobileOpen(false)} className="font-semibold tracking-[0.12em] uppercase text-sm">
-                  Flow Health
+                <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2.5" aria-label="Flow Health">
+                  <img src="/flow-logomark.svg" alt="" width={22} height={22} className="w-[22px] h-[22px]" />
+                  <img src="/flow-wordmark.svg" alt="Flow" width={60} height={24} className="h-6 w-auto" />
                 </Link>
                 <button onClick={() => setMobileOpen(false)} className="p-2 -mr-2 text-[#1A1A18]" aria-label="Close menu">
                   <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -383,9 +384,17 @@ export default function Header() {
               <Link
                 href="/"
                 onClick={() => setActiveMenu(null)}
-                className="font-semibold tracking-[0.12em] uppercase text-sm"
+                className="shrink-0 text-[#1E1854]"
+                aria-label="Flow Health"
               >
-                Flow Health
+                <img
+                  src="/flow-wordmark.svg"
+                  alt="Flow"
+                  width={72}
+                  height={28}
+                  className="h-7 w-auto"
+                  style={{ color: '#1E1854' }}
+                />
               </Link>
 
               {/* Nav */}
