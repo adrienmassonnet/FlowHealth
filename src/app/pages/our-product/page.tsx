@@ -118,7 +118,7 @@ export default async function OurProductPage() {
             {ingredients.map((ing) => (
               <div key={ing.name} className="bg-white grid grid-cols-1 md:grid-cols-[80px_1fr_auto] gap-0 items-stretch">
                 <div className="relative h-20 md:h-auto md:aspect-square overflow-hidden hidden md:block">
-                  <Image src={ing.imageUrl ?? ''} alt={ing.name} fill className="object-cover" sizes="80px" />
+                  <Image src={ing.imageUrl ?? ''} alt={ing.imageAlt || ing.name} fill className="object-cover" sizes="80px" />
                 </div>
                 <div className="p-6 space-y-1">
                   <div className="flex flex-wrap items-center gap-3">

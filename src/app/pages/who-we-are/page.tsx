@@ -147,7 +147,7 @@ export default async function WhoWeArePage() {
                 <div className="relative aspect-square rounded-2xl overflow-hidden bg-[#ECEEED]">
                   <Image
                     src={member.imageUrl}
-                    alt={member.name}
+                    alt={member.imageAlt || member.name}
                     fill
                     className="object-cover"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"

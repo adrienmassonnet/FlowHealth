@@ -116,7 +116,7 @@ export default async function HomePage() {
               <div key={card.title} className="group relative rounded-2xl overflow-hidden min-h-[360px] flex flex-col justify-between">
                 <Image
                   src={card.imageUrl}
-                  alt={card.title}
+                  alt={card.imageAlt || card.title}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 33vw"

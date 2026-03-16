@@ -31,6 +31,7 @@ export interface TeamMember {
   role: string;
   bio: string;
   imageUrl: string;
+  imageAlt: string;
   order: number;
 }
 
@@ -54,6 +55,7 @@ export interface Ingredient {
   category: string;
   description: string;
   imageUrl?: string;
+  imageAlt?: string;
   order: number;
 }
 
@@ -79,6 +81,7 @@ export interface HomepageFeatureCard {
   title: string;
   body: string;
   imageUrl: string;
+  imageAlt: string;
   order: number;
 }
 
@@ -126,6 +129,7 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
     imageUrl: item.fields.image?.fields?.file?.url
       ? `https:${item.fields.image.fields.file.url}`
       : (item.fields.imageUrl ?? ''),
+    imageAlt: item.fields.image?.fields?.description || item.fields.image?.fields?.title || item.fields.name,
   }));
 }
 
@@ -159,6 +163,7 @@ export async function getIngredients(): Promise<Ingredient[]> {
     imageUrl: item.fields.image?.fields?.file?.url
       ? `https:${item.fields.image.fields.file.url}`
       : item.fields.imageUrl,
+    imageAlt: item.fields.image?.fields?.description || item.fields.image?.fields?.title || item.fields.name,
   }));
 }
 
@@ -191,6 +196,7 @@ export async function getHomepageFeatureCards(): Promise<HomepageFeatureCard[]> 
     imageUrl: item.fields.image?.fields?.file?.url
       ? `https:${item.fields.image.fields.file.url}`
       : (item.fields.imageUrl ?? ''),
+    imageAlt: item.fields.image?.fields?.description || item.fields.image?.fields?.title || item.fields.title,
   }));
 }
 
