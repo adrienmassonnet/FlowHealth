@@ -18,6 +18,74 @@
 - Social proof (reviews, testimonials) should be integrated naturally, not bolted on
 - Performance: optimize images, minimize JS, target fast LCP on mobile
 
+---
+
+## Brand Identity & Design Philosophy
+
+This section defines the emotional and aesthetic language of Flow. Every visual decision — layout, motion, colour, type, copy — should be tested against these principles before being built.
+
+### The Core Idea: Presence, Not Promise
+
+Flow is not about a future version of you. It is about this moment — sharpened. The site should feel like stepping into a state of focus, not a sales funnel. Where most supplement brands sell aspiration ("become who you want to be"), Flow sells **readiness** ("you are already capable — this removes what's in the way").
+
+This distinction must run through every headline, every transition, every piece of imagery. No future-tense promises. Present-tense reality.
+
+### The Five Design Pillars
+
+**1. The Now**
+Design choices should feel immediate and grounded, not futuristic. Avoid sci-fi aesthetics, neon, high-contrast tech UI, or anything that signals "tomorrow". Prefer organic textures, natural light, warm neutrals, and materials that feel touchable. The product exists in the real world, in a real morning, at a real desk.
+
+**2. The Subtle Transcendent**
+There is something quietly extraordinary about a state of deep focus — a stillness that borders on the spiritual. This should surface as a *note*, not a theme. Concretely: soft halos of light, barely-there gradients that suggest depth rather than surface, motion that breathes rather than bounces, occasional use of circular or radial forms (without being overtly symbolic). Never crystals, never Om symbols, never New Age language — but a sense that something significant is quietly happening.
+
+**3. Humble Confidence**
+The brand is self-assured but never loud. Think of a skilled craftsperson who does not need to explain their work. Typography should be refined but not show-offy. Whitespace is used generously — silence is not emptiness, it is room to breathe. Avoid superlatives in copy. Let the ingredients speak; let the design whisper.
+
+**4. Calm in Motion**
+Movement on the site should feel like a slow exhale, not a performance. Use motion to signal *life*, not to impress. Specific patterns to use:
+- **Blur transitions**: elements softly coming into focus as they enter the viewport (not a hard fade-in)
+- **Subtle parallax**: backgrounds moving at a slightly different rate to foreground text, creating gentle depth
+- **Slow, long easing curves**: transitions should decelerate gracefully (ease-out, long duration ~600–900ms) rather than snap
+- **No aggressive hover effects**: scale and opacity changes should be small and slow
+The visual metaphor is depth of field on a camera — the subject is sharp, the world around it softly blurs.
+
+**5. Premium but Reachable**
+The target person is a driven, self-aware individual who takes their performance seriously — but they are not the C-suite elite. They run, they read, they meditate, they cook. They value quality but are suspicious of status signalling. The design should feel like Arc'teryx or Aesop, not Rolex or Supreme: functional premium, not decorative luxury. No gold, no marble textures, no aggressive exclusivity signals. Instead: exceptional material quality, considered layout, nothing wasted.
+
+### Colour Direction
+
+The palette should evoke natural light and organic calm, not clinical whiteness or futuristic darkness.
+- **Dominant**: warm off-whites, soft greens, stone, mist — surfaces that feel like morning light
+- **Accent**: a single grounding dark (near-black, warm-toned, like `#1A1A18`) used sparingly for weight
+- **Avoid**: cold blues, bright primaries, neon, heavy black-and-white contrast as a style statement
+- Gradients should feel atmospheric — sky, fog, water — never decorative
+
+### Typography Direction
+
+- Typefaces should feel **considered but not designed** — the text should serve the idea, not advertise the font choice
+- Use weight contrast (semibold heading + regular body) rather than size contrast alone
+- Tracking (letter-spacing) should be tight on display text (−0.02em to −0.03em) — it signals confidence and density
+- Body text should be generous in line-height (1.6–1.75) — it signals calm and care
+- Avoid all-caps shouting; use small-caps or tracked uppercase only for quiet labels and eyebrows
+
+### Motion & Interaction Reference
+
+When implementing animations, the emotional target is: **slow breath, not heartbeat**.
+- Easing: `cubic-bezier(0.25, 0.1, 0.1, 1)` or similar long decelerations
+- Duration: 500–900ms for entrance animations, 200–300ms for micro-interactions
+- Blur: `backdrop-filter: blur()` and CSS filter blur are encouraged as depth signals
+- Avoid: bounces, spring animations with high stiffness, instant state changes
+
+### What to Avoid
+
+- Anything that looks like a standard Shopify theme or generic D2C brand
+- Aggressive social proof ("10,000 customers!") — trust is built through transparency, not volume
+- Overly clinical or pharmaceutical aesthetics — this is a lifestyle product, not a medicine
+- Dark mode as a style statement — darkness should be used purposefully (hero moments, contrast), not as a brand identity
+- Complexity for its own sake — every element must earn its place
+
+---
+
 ## Project Overview
 
 **Flow Health** is a headless e-commerce storefront built on Shopify. It uses Shopify as the backend (inventory, payments, checkout) and Next.js as the frontend.
