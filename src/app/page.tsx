@@ -60,21 +60,21 @@ export default async function HomePage() {
     <main>
       {/* Hero */}
       <section
-        className="relative overflow-hidden min-h-[70vh] flex items-end"
-        style={{ background: 'linear-gradient(180deg, #E0E6E8 0%, #F8F8F8 100%)' }}
+        className="relative overflow-hidden min-h-[80vh] flex items-end"
+        style={{ background: 'linear-gradient(160deg, #E8E3DA 0%, #F7F4EF 100%)' }}
       >
-        <div className="max-w-[1360px] mx-auto px-6 pb-16 pt-24 w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-end">
-          <div className="space-y-6">
-            <p className="text-xs tracking-[0.14em] uppercase text-[hsla(var(--color-secondary)/1)]">
+        <div className="max-w-[1360px] mx-auto px-6 pb-20 pt-28 w-full grid grid-cols-1 md:grid-cols-2 gap-16 items-end">
+          <div className="space-y-7">
+            <p className="text-[11px] tracking-[0.18em] uppercase text-[hsla(var(--color-secondary)/0.55)] font-medium">
               {cms.heroTagline}
             </p>
-            <h1 className="text-5xl md:text-6xl font-semibold leading-[1.05] tracking-[-0.02em]">
+            <h1 className="text-5xl md:text-[4.2rem] font-semibold leading-[1.04] tracking-[-0.03em] text-[#1A1A18]">
               {cms.heroHeading}
             </h1>
-            <div className="pt-2">
+            <div className="pt-1">
               <Link
                 href="/products/flow"
-                className="inline-flex items-center justify-center rounded-full bg-[#1A1A18] text-white text-xs tracking-[0.08em] uppercase font-semibold px-7 py-3.5 hover:bg-[hsla(var(--color-accent)/1)] transition-colors"
+                className="inline-flex items-center justify-center rounded-full bg-[#1A1A18] text-white text-[11px] tracking-[0.12em] uppercase font-semibold px-8 py-4 hover:opacity-80 transition-opacity duration-500"
               >
                 Shop Flow
               </Link>
@@ -104,27 +104,27 @@ export default async function HomePage() {
           className="object-cover"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-white/30" />
-        <div className="relative z-10 w-full max-w-[1360px] mx-auto px-6 pt-24 pb-16 text-center">
-          <h2 className="text-4xl md:text-5xl font-semibold leading-tight tracking-[-0.02em]">
+        <div className="absolute inset-0 bg-[#F7F4EF]/60" />
+        <div className="relative z-10 w-full max-w-[860px] mx-auto px-6 pt-28 pb-20 text-center">
+          <h2 className="text-4xl md:text-5xl font-semibold leading-[1.2] tracking-[-0.03em] text-[#1A1A18]">
             {cms.missionHeading}
           </h2>
         </div>
         <div className="relative z-10 w-full max-w-[1360px] mx-auto px-6 pb-24">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {featureCards.map((card) => (
-              <div key={card.title} className="group relative rounded-2xl overflow-hidden min-h-[360px] flex flex-col justify-between">
+              <div key={card.title} className="group relative rounded-2xl overflow-hidden min-h-[400px] flex flex-col justify-end">
                 <Image
                   src={card.imageUrl}
                   alt={card.imageAlt || card.title}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/30 group-hover:from-black/98 group-hover:via-black/70 transition-all duration-500" />
-                <div className="relative z-10 p-7">
-                  <h3 className="text-2xl font-semibold text-white leading-snug drop-shadow-sm">{card.title}</h3>
-                  <p className="text-sm text-white/80 leading-[1.65] drop-shadow-sm mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 max-h-0 group-hover:max-h-40 overflow-hidden" style={{ transitionProperty: 'opacity, max-height', transitionDuration: '300ms' }}>{card.body}</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent transition-all duration-700" />
+                <div className="relative z-10 p-7 space-y-2">
+                  <h3 className="text-xl font-semibold text-white leading-snug tracking-[-0.01em]">{card.title}</h3>
+                  <p className="text-sm text-white/65 leading-relaxed">{card.body}</p>
                 </div>
               </div>
             ))}
@@ -134,7 +134,7 @@ export default async function HomePage() {
 
       {/* Featured product card */}
       {featured && (
-        <section className="py-20" style={{ background: 'linear-gradient(180deg, #E0E6E8 0%, #F8F8F8 100%)' }}>
+        <section className="py-24" style={{ background: 'linear-gradient(180deg, #E8E3DA 0%, #F7F4EF 100%)' }}>
           <div className="max-w-[1360px] mx-auto px-6">
             <div className="w-full bg-[#1A1A18] rounded-3xl overflow-hidden flex flex-col md:flex-row md:min-h-[580px]">
               {/* Image */}
@@ -189,7 +189,7 @@ export default async function HomePage() {
 
 
       {/* Venn diagram section */}
-      <section className="py-24 bg-white">
+      <section className="py-28 bg-[#F7F4EF]">
         <div className="max-w-[1360px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
 
           {/* Left: Venn diagram — image fills full column, circles centered within */}
@@ -258,10 +258,10 @@ export default async function HomePage() {
       </section>
 
 
-      <div className="bg-[#F8F8F8]"><HealthBenefits /></div>
+      <div className="bg-[#EFECE5]"><HealthBenefits /></div>
 
       {/* Results timeline */}
-      <section className="bg-white">
+      <section className="bg-[#F7F4EF]">
         <div className="max-w-[1360px] mx-auto px-6 py-20">
           <div className="mb-16 space-y-4 max-w-2xl">
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">{cms.resultsHeading}</h2>
@@ -297,7 +297,7 @@ export default async function HomePage() {
       </section>
 
       {/* Dive Deeper — card launcher */}
-      <section className="bg-[#F8F8F8]">
+      <section className="bg-[#EFECE5]">
         <div className="max-w-[1360px] mx-auto px-6 py-20">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
@@ -358,34 +358,34 @@ export default async function HomePage() {
       />
 
       {/* Testimonial */}
-      <section className="bg-[#ECEEED] py-20">
-        <div className="max-w-2xl mx-auto px-6 text-center space-y-8">
-          <p className="text-xs tracking-[0.14em] uppercase text-[hsla(var(--color-secondary)/1)]">Testimonials</p>
-          <blockquote className="text-2xl md:text-3xl font-semibold leading-snug tracking-[-0.02em]">
+      <section className="bg-[#1A1A18] py-28">
+        <div className="max-w-2xl mx-auto px-6 text-center space-y-10">
+          <p className="text-[11px] tracking-[0.18em] uppercase text-white/30 font-medium">Testimonials</p>
+          <blockquote className="text-2xl md:text-3xl font-semibold leading-[1.4] tracking-[-0.02em] text-white/90">
             &ldquo;{testimonial?.quote}&rdquo;
           </blockquote>
           <div>
-            <p className="text-base font-medium">{testimonial?.authorName}</p>
-            <p className="text-xs text-[hsla(var(--color-secondary)/1)] mt-1">{testimonial?.authorRole}</p>
+            <p className="text-sm font-medium text-white/70">{testimonial?.authorName}</p>
+            <p className="text-xs text-white/35 mt-1 tracking-[0.06em]">{testimonial?.authorRole}</p>
           </div>
         </div>
       </section>
 
       {/* Mission */}
       <section
-        className="py-28"
-        style={{ background: 'linear-gradient(180deg, #E0E6E8 16%, #F8F8F8 100%)' }}
+        className="py-36"
+        style={{ background: 'linear-gradient(180deg, #E8E3DA 0%, #F7F4EF 100%)' }}
       >
-        <div className="max-w-3xl mx-auto px-6 text-center space-y-6">
-          <p className="text-xs tracking-[0.14em] uppercase text-[hsla(var(--color-secondary)/1)]">
+        <div className="max-w-2xl mx-auto px-6 text-center space-y-7">
+          <p className="text-[11px] tracking-[0.18em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">
             {cms.bottomMissionEyebrow}
           </p>
-          <h2 className="text-4xl md:text-5xl font-semibold leading-tight tracking-[-0.02em]">
+          <h2 className="text-4xl md:text-5xl font-semibold leading-[1.15] tracking-[-0.03em] text-[#1A1A18]">
             {cms.bottomMissionHeading}
           </h2>
           <Link
             href={featured ? `/products/${featured.handle}` : '/'}
-            className="inline-block bg-[hsla(var(--color-accent)/1)] text-white text-xs tracking-[0.1em] uppercase px-8 py-3 hover:bg-[hsla(var(--color-secondary)/1)] transition-colors mt-4"
+            className="inline-flex items-center justify-center rounded-full bg-[#1A1A18] text-white text-[11px] tracking-[0.12em] uppercase font-semibold px-8 py-4 hover:opacity-80 transition-opacity duration-500 mt-2"
           >
             Discover Flow
           </Link>
