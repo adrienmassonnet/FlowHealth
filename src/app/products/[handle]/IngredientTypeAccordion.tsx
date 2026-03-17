@@ -41,9 +41,9 @@ export default function IngredientTypeAccordion() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="max-w-[1360px] mx-auto px-6 py-16">
+    <section className="max-w-[1200px] mx-auto px-6 py-16">
       <div className="mb-10 space-y-2">
-        <p className="text-xs tracking-[0.14em] uppercase text-[hsla(var(--color-secondary)/1)]">Formula Breakdown</p>
+        <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/1)]">Formula Breakdown</p>
         <h2 className="text-3xl font-semibold tracking-[-0.02em]">Ingredient Type</h2>
       </div>
       <div className="divide-y divide-[var(--color-border)] border-t border-[var(--color-border)]">
@@ -55,7 +55,7 @@ export default function IngredientTypeAccordion() {
             >
               <div className="flex items-center gap-4">
                 {cat.image && (
-                  <div className="relative w-10 h-10 rounded-full overflow-hidden shrink-0 bg-[#E8EBEA]">
+                  <div className="relative w-10 h-10 rounded-full overflow-hidden shrink-0 bg-[#1E18540F]">
                     <Image src={cat.image} alt={cat.type} fill className="object-cover" />
                   </div>
                 )}
@@ -76,7 +76,7 @@ export default function IngredientTypeAccordion() {
             >
               <ul className="pb-5 space-y-1 pl-14">
                 {cat.ingredients.map((ing) => (
-                  <li key={ing} className="text-base text-[hsla(var(--color-secondary)/1)] flex items-center gap-2">
+                  <li key={ing} className="text-sm text-[hsla(var(--color-secondary)/1)] flex items-center gap-2">
                     <span className="w-1 h-1 rounded-full bg-[hsla(var(--color-secondary)/0.5)] shrink-0" />
                     {ing}
                   </li>

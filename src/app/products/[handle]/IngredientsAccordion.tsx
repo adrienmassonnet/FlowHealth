@@ -131,7 +131,7 @@ function FlipCard({ name, tagline, description, image }: { name: string; tagline
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
           </div>
           <div className="p-4 bg-white">
-            <p className="text-sm font-semibold text-[#1A1A18] leading-snug">{name}</p>
+            <p className="text-sm font-semibold text-[#1E1854] leading-snug">{name}</p>
             <p className="text-xs text-[hsla(var(--color-secondary)/0.55)] mt-1 leading-snug">{tagline}</p>
           </div>
           <div className="px-4 pb-3 flex items-center gap-1 bg-white">
@@ -144,7 +144,7 @@ function FlipCard({ name, tagline, description, image }: { name: string; tagline
 
         {/* Back */}
         <div
-          className="absolute inset-0 rounded-2xl bg-[#1A1A18] p-5 flex flex-col justify-between"
+          className="absolute inset-0 rounded-2xl bg-[#1E1854] p-5 flex flex-col justify-between"
           style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
         >
           <div>
@@ -176,11 +176,11 @@ export default function IngredientsAccordion() {
   const hasMore = filtered.length > initialCount;
 
   return (
-    <section className="max-w-[1360px] mx-auto px-6 py-20">
+    <section className="max-w-[1200px] mx-auto px-6 py-20">
       <div className="mb-8 space-y-2">
-        <p className="text-xs tracking-[0.14em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">Transparent Formula</p>
+        <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">Transparent Formula</p>
         <h2 className="text-3xl font-semibold tracking-[-0.02em]">Get to Know the Ingredients</h2>
-        <p className="text-base text-[hsla(var(--color-secondary)/0.7)] max-w-md">Our formula is made of premium, quality ingredients selected for their efficacy. Tap any card to learn more.</p>
+        <p className="text-sm text-[hsla(var(--color-secondary)/0.7)] max-w-md">Our formula is made of premium, quality ingredients selected for their efficacy. Tap any card to learn more.</p>
       </div>
 
       {/* Category tabs */}
@@ -192,8 +192,8 @@ export default function IngredientsAccordion() {
             className={cn(
               'relative overflow-hidden whitespace-nowrap rounded-full border px-4 py-1.5 text-xs tracking-[0.08em] uppercase font-medium transition-colors duration-300',
               selectedCategory === key
-                ? 'border-[#1A1A18] text-white'
-                : 'border-[var(--color-border)] text-[hsla(var(--color-secondary)/0.7)] hover:text-[#1A1A18] hover:border-[#1A1A18]'
+                ? 'border-[#1E1854] text-white'
+                : 'border-[var(--color-border)] text-[hsla(var(--color-secondary)/0.7)] hover:text-[#1E1854] hover:border-[#1E1854]'
             )}
           >
             <span className="relative z-10">{label}</span>
@@ -204,7 +204,7 @@ export default function IngredientsAccordion() {
                   animate={{ y: '0%' }}
                   exit={{ y: '100%' }}
                   transition={{ duration: 0.4, ease: 'backIn' }}
-                  className="absolute inset-0 z-0 bg-[#1A1A18]"
+                  className="absolute inset-0 z-0 bg-[#1E1854]"
                 />
               )}
             </AnimatePresence>
@@ -239,7 +239,7 @@ export default function IngredientsAccordion() {
         <div className="mt-8 flex justify-center">
           <button
             onClick={() => setExpanded((e) => !e)}
-            className="border border-[var(--color-border)] rounded-full px-6 py-2.5 text-sm font-medium text-[#1A1A18] hover:bg-[#F8F8F8] transition-colors"
+            className="border border-[var(--color-border)] rounded-full px-6 py-2.5 text-sm font-medium text-[#1E1854] hover:bg-[#1E185408] transition-colors"
           >
             {expanded ? 'View Less' : `View All ${filtered.length} Ingredients`}
           </button>

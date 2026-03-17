@@ -44,7 +44,7 @@ export default function FaqAccordion() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="max-w-[1360px] mx-auto px-6 py-20">
+    <section className="max-w-[1200px] mx-auto px-6 py-20">
       <div className="mb-10">
         <h2 className="text-base font-semibold tracking-[-0.01em]">FAQ</h2>
       </div>
@@ -72,7 +72,7 @@ export default function FaqAccordion() {
               className="overflow-hidden transition-all duration-300 ease-out"
               style={{ maxHeight: open === i ? '300px' : '0px' }}
             >
-              <p className="pb-5 text-base text-[hsla(var(--color-secondary)/1)] leading-relaxed pl-14">
+              <p className="pb-5 text-sm text-[hsla(var(--color-secondary)/1)] leading-relaxed pl-14">
                 {item.content}
               </p>
             </div>

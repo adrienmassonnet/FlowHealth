@@ -213,8 +213,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   return (
     <main>
       {/* Hero */}
-      <section className="max-w-[1360px] mx-auto px-6 pt-8 pb-2">
-        <div className="relative w-full aspect-[21/9] min-h-[260px] max-h-[480px] overflow-hidden rounded-2xl bg-[#1A1A18]">
+      <section className="max-w-[1200px] mx-auto px-6 pt-8 pb-2">
+        <div className="relative w-full aspect-[21/9] min-h-[260px] max-h-[480px] overflow-hidden rounded-2xl bg-[#1E1854]">
           <Image
             src={post.image}
             alt={post.title}
@@ -223,7 +223,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             priority
             sizes="(max-width: 1360px) 100vw, 1360px"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A18] via-[#1A1A18]/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1E1854] via-[#1E1854]/40 to-transparent" />
         </div>
       </section>
 
@@ -232,11 +232,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs text-[hsla(var(--color-secondary)/0.45)] mb-8">
-          <Link href="/" className="hover:text-[#1A1A18] transition-colors">Home</Link>
+          <Link href="/" className="hover:text-[#1E1854] transition-colors">Home</Link>
           <span>/</span>
-          <Link href="/pages/blog-posts" className="hover:text-[#1A1A18] transition-colors">Blog</Link>
+          <Link href="/pages/blog-posts" className="hover:text-[#1E1854] transition-colors">Blog</Link>
           <span>/</span>
-          <span className="text-[#1A1A18] truncate max-w-[200px]">{post.title}</span>
+          <span className="text-[#1E1854] truncate max-w-[200px]">{post.title}</span>
         </nav>
 
         {/* Meta */}
@@ -250,7 +250,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </div>
 
         {/* Title */}
-        <h1 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight text-[#1A1A18] mb-6">
+        <h1 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight text-[#1E1854] mb-6">
           {post.title}
         </h1>
 
@@ -259,15 +259,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </p>
 
         {/* Content */}
-        <div className="space-y-6 text-base text-[hsla(var(--color-secondary)/0.85)] leading-[1.8]">
+        <div className="space-y-6 text-sm text-[hsla(var(--color-secondary)/0.85)] leading-[1.8]">
           {post.content.map((block, i) => {
             if (block.type === 'h2') return (
-              <h2 key={i} className="text-2xl font-semibold text-[#1A1A18] tracking-[-0.02em] mt-10 mb-2">
+              <h2 key={i} className="text-2xl font-semibold text-[#1E1854] tracking-[-0.02em] mt-10 mb-2">
                 {block.text}
               </h2>
             );
             if (block.type === 'h3') return (
-              <h3 key={i} className="text-base font-semibold text-[#1A1A18] tracking-[-0.01em] mt-6 mb-1">
+              <h3 key={i} className="text-base font-semibold text-[#1E1854] tracking-[-0.01em] mt-6 mb-1">
                 {block.text}
               </h3>
             );
@@ -289,7 +289,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <div className="mt-16 pt-10 border-t border-[var(--color-border)]">
           <Link
             href="/pages/blog-posts"
-            className="inline-flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium text-[hsla(var(--color-secondary)/0.6)] hover:text-[#1A1A18] transition-colors"
+            className="inline-flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium text-[hsla(var(--color-secondary)/0.6)] hover:text-[#1E1854] transition-colors"
           >
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M9 3L5 7L9 11" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
@@ -301,7 +301,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       {/* More posts */}
       {otherPosts.length > 0 && (
-        <section className="max-w-[1360px] mx-auto px-6 pb-24">
+        <section className="max-w-[1200px] mx-auto px-6 pb-24">
           <div className="border-t border-[var(--color-border)] pt-16">
             <h2 className="text-xl font-semibold tracking-[-0.02em] mb-8">More articles</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -311,7 +311,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   href={`/pages/blog-posts/${p.slug}`}
                   className="group flex flex-col bg-white border border-[var(--color-border)] rounded-2xl overflow-hidden hover:border-[hsla(var(--color-secondary)/0.3)] transition-colors"
                 >
-                  <div className="relative aspect-[16/10] overflow-hidden bg-[#F0F0EE]">
+                  <div className="relative aspect-[16/10] overflow-hidden bg-[#1E18540A]">
                     <Image
                       src={p.image}
                       alt={p.title}
@@ -322,7 +322,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   </div>
                   <div className="p-5 space-y-2">
                     <p className="text-xs text-[hsla(var(--color-secondary)/0.45)]">{p.date} · {p.readTime}</p>
-                    <h3 className="text-sm font-semibold text-[#1A1A18] leading-snug group-hover:text-[hsla(var(--color-accent)/1)] transition-colors line-clamp-2">
+                    <h3 className="text-sm font-semibold text-[#1E1854] leading-snug group-hover:text-[hsla(var(--color-accent)/1)] transition-colors line-clamp-2">
                       {p.title}
                     </h3>
                     <div className="flex flex-wrap gap-1.5 pt-1">

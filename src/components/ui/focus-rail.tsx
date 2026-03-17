@@ -101,21 +101,21 @@ export function FocusRail({
         "relative w-full overflow-hidden outline-none select-none border-t border-[var(--color-border)]",
         className
       )}
-      style={{ background: "linear-gradient(180deg, #E0E6E8 0%, #F8F8F8 100%)" }}
+      style={{ background: "linear-gradient(180deg, #1E185412 0%, #1E185408 100%)" }}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
       tabIndex={0}
       onKeyDown={onKeyDown}
     >
-      <div className="max-w-[1360px] mx-auto px-6 py-20 md:py-28">
+      <div className="max-w-[1200px] mx-auto px-6 py-20">
 
         {/* Section header */}
         {heading && (
           <div className="mb-16 space-y-3">
-            <p className="text-xs tracking-[0.14em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">
+            <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">
               From the blog
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] leading-[1.05] text-[#1A1A18]">
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-[1.05] text-[#1E1854]">
               {heading}
             </h2>
           </div>
@@ -127,7 +127,7 @@ export function FocusRail({
           <button
             onClick={handlePrev}
             aria-label="Previous"
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-30 flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border)] bg-white/90 backdrop-blur-sm shadow-sm text-[hsla(var(--color-secondary)/0.6)] transition hover:bg-white hover:text-[#1A1A18] active:scale-95"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-30 flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border)] bg-white/90 backdrop-blur-sm shadow-sm text-[hsla(var(--color-secondary)/0.6)] transition hover:bg-white hover:text-[#1E1854] active:scale-95"
           >
             <ChevronLeft className="h-4 w-4" />
           </button>
@@ -135,7 +135,7 @@ export function FocusRail({
           <button
             onClick={handleNext}
             aria-label="Next"
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-30 flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border)] bg-white/90 backdrop-blur-sm shadow-sm text-[hsla(var(--color-secondary)/0.6)] transition hover:bg-white hover:text-[#1A1A18] active:scale-95"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-30 flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border)] bg-white/90 backdrop-blur-sm shadow-sm text-[hsla(var(--color-secondary)/0.6)] transition hover:bg-white hover:text-[#1E1854] active:scale-95"
           >
             <ChevronRight className="h-4 w-4" />
           </button>
@@ -170,8 +170,8 @@ export function FocusRail({
               <motion.div
                 key={absIndex}
                 className={cn(
-                  "absolute aspect-[3/4] w-[220px] md:w-[260px] rounded-2xl overflow-hidden border border-[var(--color-border)] bg-[#F0F2F1]",
-                  isCenter ? "z-20 shadow-[0_8px_40px_rgba(26,26,24,0.12)]" : "z-10 shadow-sm"
+                  "absolute aspect-[3/4] w-[220px] md:w-[260px] rounded-2xl overflow-hidden border border-[var(--color-border)] bg-[#1E18540A]",
+                  isCenter ? "z-20 shadow-[0_8px_40px_rgba(30,24,84,0.12)]" : "z-10 shadow-sm"
                 )}
                 initial={false}
                 animate={{
@@ -222,7 +222,7 @@ export function FocusRail({
                   <span className={cn(
                     "block rounded-full transition-all duration-300",
                     isActive
-                      ? "w-5 h-1.5 bg-[#1A1A18]"
+                      ? "w-5 h-1.5 bg-[#1E1854]"
                       : "w-1.5 h-1.5 bg-[hsla(var(--color-secondary)/0.25)] hover:bg-[hsla(var(--color-secondary)/0.45)]"
                   )} />
                 </button>
@@ -249,7 +249,7 @@ export function FocusRail({
                     {activeItem.meta}
                   </span>
                 )}
-                <h3 className="text-xl md:text-2xl font-semibold tracking-[-0.02em] leading-snug text-[#1A1A18] max-w-md">
+                <h3 className="text-xl md:text-2xl font-semibold tracking-[-0.02em] leading-snug text-[#1E1854] max-w-md">
                   {activeItem.title}
                 </h3>
                 {activeItem.description && (
@@ -265,10 +265,10 @@ export function FocusRail({
           <div className="flex items-center gap-3 shrink-0">
             {/* Read article pill */}
             {activeItem.href && (
-              <div className="rounded-full border border-[#1A1A18] bg-white/80 backdrop-blur-sm px-4 py-2.5">
+              <div className="rounded-full border border-[#1E1854] bg-white/80 backdrop-blur-sm px-4 py-2.5">
                 <Link
                   href={activeItem.href}
-                  className="text-xs font-medium text-[#1A1A18] whitespace-nowrap"
+                  className="text-xs font-medium text-[#1E1854] whitespace-nowrap"
                 >
                   Read this article
                 </Link>
@@ -277,7 +277,7 @@ export function FocusRail({
 
             <Link
               href="/pages/blog-posts"
-              className="group/link flex items-center gap-2 rounded-full bg-[#1A1A18] px-5 py-3 text-sm font-semibold text-white transition-all hover:bg-[#2a2a28] active:scale-95"
+              className="group/link flex items-center gap-2 rounded-full bg-[#1E1854] px-5 py-3 text-sm font-semibold text-white transition-all hover:bg-[#1E1854]/80 active:scale-95"
             >
               Discover our blogs
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />

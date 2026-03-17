@@ -22,13 +22,13 @@ export default async function FaqPage({ searchParams }: { searchParams: Promise<
     <main>
       {/* Hero */}
       <section className="bg-white">
-        <div className="max-w-[1360px] mx-auto px-6 py-20 md:py-24">
+        <div className="max-w-[1200px] mx-auto px-6 py-20 md:py-24">
           <div className="max-w-2xl">
-            <p className="text-xs tracking-[0.14em] uppercase text-[hsla(var(--color-secondary)/0.5)] mb-4 font-medium">Support</p>
-            <h1 className="text-5xl md:text-6xl font-semibold tracking-[-0.03em] leading-[1.0] mb-5">
+            <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] mb-4 font-medium">Support</p>
+            <h1 className="text-4xl md:text-5xl font-semibold tracking-[-0.03em] leading-[1.0] mb-5">
               Frequently asked<br />questions
             </h1>
-            <p className="text-base text-[hsla(var(--color-secondary)/1)] leading-[1.7]">
+            <p className="text-sm text-[hsla(var(--color-secondary)/1)] leading-[1.7]">
               Everything you need to know about Flow.{' '}
               <Link href="/pages/contact" className="underline underline-offset-2 hover:text-[hsla(var(--color-accent)/1)] transition-colors">
                 Contact us
@@ -40,8 +40,8 @@ export default async function FaqPage({ searchParams }: { searchParams: Promise<
       </section>
 
       {/* FAQ tabs component */}
-      <section className="bg-[#F8F8F8]">
-        <div className="max-w-[1360px] mx-auto px-6 py-16 md:py-24">
+      <section className="bg-[#1E185408]">
+        <div className="max-w-[1200px] mx-auto px-6 py-16 md:py-24">
         <FAQ
           title="Got questions?"
           subtitle="We have answers"
@@ -53,17 +53,17 @@ export default async function FaqPage({ searchParams }: { searchParams: Promise<
       </section>
 
       {/* Product CTA */}
-      <section className="bg-[#1A1A18]">
-        <div className="max-w-[1360px] mx-auto px-6 py-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <section className="bg-[#1E1854]">
+        <div className="max-w-[1200px] mx-auto px-6 py-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
-            <p className="text-xs tracking-[0.14em] uppercase text-white/40 font-medium mb-3">Ready to try Flow?</p>
+            <p className="text-xs tracking-[0.16em] uppercase text-white/40 font-medium mb-3">Ready to try Flow?</p>
             <p className="text-2xl md:text-3xl font-semibold tracking-[-0.02em] text-white max-w-lg leading-snug">
               13 actives. One daily formula. 30-day guarantee.
             </p>
           </div>
           <Link
             href="/products/flow"
-            className="shrink-0 inline-flex items-center gap-2 bg-white text-[#1A1A18] text-xs tracking-[0.1em] uppercase font-semibold px-7 py-4 rounded-full hover:bg-[hsla(var(--color-accent)/1)] hover:text-white transition-colors"
+            className="shrink-0 inline-flex items-center gap-2 bg-white text-[#1E1854] text-xs tracking-[0.1em] uppercase font-semibold px-7 py-4 rounded-full hover:bg-[hsla(var(--color-accent)/1)] hover:text-white transition-colors"
           >
             Shop Flow
           </Link>
@@ -72,15 +72,15 @@ export default async function FaqPage({ searchParams }: { searchParams: Promise<
 
       {/* Bottom CTA */}
       <section className="bg-white">
-        <div className="max-w-[1360px] mx-auto px-6 pb-16">
-          <div className="bg-[#F8F8F8] rounded-2xl px-8 md:px-12 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="max-w-[1200px] mx-auto px-6 pb-16">
+          <div className="bg-[#1E185408] rounded-2xl px-8 md:px-12 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
               <p className="text-base font-semibold tracking-[-0.01em] mb-1">Still have questions?</p>
-              <p className="text-base text-[hsla(var(--color-secondary)/1)]">Our team typically responds within one business day.</p>
+              <p className="text-sm text-[hsla(var(--color-secondary)/1)]">Our team typically responds within one business day.</p>
             </div>
             <Link
               href="/pages/contact"
-              className="shrink-0 inline-flex items-center gap-2 bg-[#1A1A18] text-white text-xs tracking-[0.1em] uppercase font-semibold px-6 py-3.5 rounded-full hover:bg-[hsla(var(--color-accent)/1)] transition-colors"
+              className="shrink-0 inline-flex items-center gap-2 bg-[#1E1854] text-white text-xs tracking-[0.1em] uppercase font-semibold px-6 py-3.5 rounded-full hover:bg-[hsla(var(--color-accent)/1)] transition-colors"
             >
               Contact us
             </Link>

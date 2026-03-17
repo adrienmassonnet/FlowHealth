@@ -147,12 +147,12 @@ const sections = [
 
 export default function IngredientsPage() {
   return (
-    <main className="max-w-[1360px] mx-auto px-6 py-24 space-y-24">
+    <main className="max-w-[1200px] mx-auto px-6 py-24 space-y-24">
 
       <div className="space-y-3 max-w-2xl">
-        <p className="text-xs tracking-[0.14em] uppercase text-[hsla(var(--color-secondary)/1)]">Transparent Formula</p>
-        <h1 className="text-4xl font-semibold tracking-[-0.02em]">Ingredients</h1>
-        <p className="text-base text-[hsla(var(--color-secondary)/1)] leading-relaxed">
+        <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/1)]">Transparent Formula</p>
+        <h1 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">Ingredients</h1>
+        <p className="text-sm text-[hsla(var(--color-secondary)/1)] leading-relaxed">
           Every ingredient in Flow is selected for its clinical evidence, bioavailability, and synergy with the full formula. No fillers, no proprietary blends — just full doses of what works.
         </p>
       </div>
@@ -162,11 +162,11 @@ export default function IngredientsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           {/* Left: heading */}
           <div className="p-10 md:p-14 flex flex-col justify-center border-b md:border-b-0 md:border-r border-[var(--color-border)]">
-            <p className="text-xs tracking-[0.14em] uppercase text-[hsla(var(--color-secondary)/0.5)] mb-4 font-medium">Our approach</p>
+            <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] mb-4 font-medium">Our approach</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight mb-4">
               Three axes of wellbeing
             </h2>
-            <p className="text-base text-[hsla(var(--color-secondary)/1)] leading-relaxed">
+            <p className="text-sm text-[hsla(var(--color-secondary)/1)] leading-relaxed">
               Every ingredient in Flow was chosen for its contribution to at least one of three interconnected systems. Together, they address the whole person — not just a single symptom.
             </p>
           </div>
@@ -242,7 +242,7 @@ export default function IngredientsPage() {
         <div key={section.category} className="space-y-8">
           <div className="border-b border-[var(--color-border)] pb-5 space-y-1">
             <h2 className="text-xl font-semibold tracking-[-0.01em]">{section.category}</h2>
-            <p className="text-base text-[hsla(var(--color-secondary)/1)] leading-relaxed">{section.description}</p>
+            <p className="text-sm text-[hsla(var(--color-secondary)/1)] leading-relaxed">{section.description}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -277,15 +277,15 @@ export default function IngredientsPage() {
       ))}
 
       {/* Product CTA */}
-      <div className="bg-[#1A1A18] rounded-3xl px-10 py-14 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+      <div className="bg-[#1E1854] rounded-3xl px-10 py-14 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
         <div>
-          <p className="text-xs tracking-[0.14em] uppercase text-white/40 font-medium mb-3">Experience the full formula</p>
+          <p className="text-xs tracking-[0.16em] uppercase text-white/40 font-medium mb-3">Experience the full formula</p>
           <h2 className="text-2xl md:text-3xl font-semibold tracking-[-0.02em] text-white max-w-md leading-snug">
             Every ingredient above, precisely dosed in one daily formula.
           </h2>
         </div>
         <div className="flex flex-col sm:flex-row gap-3 shrink-0">
-          <Link href="/products/flow" className="inline-flex items-center justify-center bg-white text-[#1A1A18] text-xs tracking-[0.1em] uppercase font-semibold px-7 py-4 rounded-full hover:bg-[hsla(var(--color-accent)/1)] hover:text-white transition-colors">
+          <Link href="/products/flow" className="inline-flex items-center justify-center bg-white text-[#1E1854] text-xs tracking-[0.1em] uppercase font-semibold px-7 py-4 rounded-full hover:bg-[hsla(var(--color-accent)/1)] hover:text-white transition-colors">
             Shop Flow
           </Link>
           <Link href="/pages/our-product" className="inline-flex items-center justify-center border border-white/30 text-white text-xs tracking-[0.1em] uppercase font-medium px-7 py-4 rounded-full hover:border-white/60 transition-colors">

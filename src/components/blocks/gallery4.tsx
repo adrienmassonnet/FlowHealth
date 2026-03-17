@@ -43,10 +43,10 @@ const Gallery4 = ({
 
   return (
     <section className="py-24">
-      <div className="max-w-[1360px] mx-auto px-6">
+      <div className="max-w-[1200px] mx-auto px-6">
         <div className="mb-10 flex items-end justify-between">
           <div className="space-y-2">
-            <p className="text-xs tracking-[0.14em] uppercase text-[hsla(var(--color-secondary)/1)]">
+            <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/1)]">
               From the Journal
             </p>
             <h2 className="text-2xl font-semibold tracking-[-0.02em]">{title}</h2>
@@ -84,7 +84,7 @@ const Gallery4 = ({
             {items.map((item) => (
               <CarouselItem key={item.id} className="max-w-[300px] pl-[16px] lg:max-w-[340px]">
                 <a href={item.href} target="_blank" rel="noopener noreferrer" className="group block">
-                  <div className="relative overflow-hidden aspect-[3/4] bg-[#E8EBEA] mb-4">
+                  <div className="relative overflow-hidden aspect-[3/4] bg-[#1E18540F] mb-4">
                     <img
                       src={item.image}
                       alt={item.title}

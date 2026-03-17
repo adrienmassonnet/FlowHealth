@@ -48,7 +48,7 @@ export default async function OurProductPage() {
     <main>
 
       {/* Hero */}
-      <section className="relative min-h-[60vh] flex items-end bg-[#1A1A18] overflow-hidden">
+      <section className="relative min-h-[60vh] flex items-end bg-[#1E1854] overflow-hidden">
         <Image
           src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1800&q=85&auto=format&fit=crop"
           alt="Our product"
@@ -56,13 +56,13 @@ export default async function OurProductPage() {
           className="object-cover opacity-35"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A18] via-[#1A1A18]/50 to-transparent" />
-        <div className="relative z-10 max-w-[1360px] mx-auto px-6 pb-20 md:pb-28">
-          <p className="text-xs tracking-[0.14em] uppercase text-white/40 font-medium mb-4">About Flow</p>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1E1854] via-[#1E1854]/50 to-transparent" />
+        <div className="relative z-10 max-w-[1200px] mx-auto px-6 pb-20 md:pb-28">
+          <p className="text-xs tracking-[0.16em] uppercase text-white/40 font-medium mb-4">About Flow</p>
           <h1 className="text-4xl md:text-6xl font-semibold tracking-[-0.03em] text-white leading-tight max-w-2xl">
             One formula.<br />Nothing hidden.
           </h1>
-          <p className="mt-6 text-base text-white/60 max-w-md leading-relaxed">
+          <p className="mt-6 text-sm text-white/60 max-w-md leading-relaxed">
             Flow is a complete daily cognitive supplement built around clinically dosed, peer-reviewed ingredients. Every milligram is on the label for a reason.
           </p>
         </div>
@@ -70,11 +70,11 @@ export default async function OurProductPage() {
 
       {/* Key numbers */}
       <section className="bg-white py-8">
-        <div className="max-w-[1360px] mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[var(--color-border)] bg-[#F8F8F8] rounded-2xl overflow-hidden">
+        <div className="max-w-[1200px] mx-auto px-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[var(--color-border)] bg-[#1E185408] rounded-2xl overflow-hidden">
           {highlights.map((h) => (
             <div key={h.unit} className="py-10 px-6 text-center space-y-1">
-              <p className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] text-[#1A1A18]">{h.value}</p>
+              <p className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] text-[#1E1854]">{h.value}</p>
               <p className="text-xs uppercase tracking-[0.1em] text-[hsla(var(--color-secondary)/0.5)] font-medium">{h.unit}</p>
               <p className="text-xs text-[hsla(var(--color-secondary)/0.5)] leading-snug hidden md:block">{h.description}</p>
             </div>
@@ -84,13 +84,13 @@ export default async function OurProductPage() {
       </section>
 
       {/* Formula overview */}
-      <section className="max-w-[1360px] mx-auto px-6 py-20 md:py-28 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <section className="max-w-[1200px] mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         <div className="space-y-6">
-          <p className="text-xs tracking-[0.14em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">The Formula</p>
+          <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">The Formula</p>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
             Built for the long game.
           </h2>
-          <div className="space-y-4 text-base text-[hsla(var(--color-secondary)/0.75)] leading-relaxed">
+          <div className="space-y-4 text-sm text-[hsla(var(--color-secondary)/0.75)] leading-relaxed">
             <p>Most cognitive supplements are designed around one or two hero ingredients padded out with cheap fillers. Flow is built differently — every ingredient earns its place through clinical evidence, not marketing.</p>
             <p>The formula targets five domains simultaneously: memory consolidation, stress resilience, neuroplasticity, focused attention, and sleep quality. These systems are deeply interconnected — optimising all five compounds over time.</p>
             <p>You won&apos;t notice a spike on day one. You will notice that six weeks in, tasks feel easier, stress feels lighter, and focus feels more available on demand.</p>
@@ -108,10 +108,10 @@ export default async function OurProductPage() {
       </section>
 
       {/* Ingredients */}
-      <section className="bg-[#F8F8F8]">
-        <div className="max-w-[1360px] mx-auto px-6 py-20">
+      <section className="bg-[#1E185408]">
+        <div className="max-w-[1200px] mx-auto px-6 py-20">
           <div className="mb-12 space-y-2">
-            <p className="text-xs tracking-[0.14em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">Key Ingredients</p>
+            <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">Key Ingredients</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">What&apos;s inside Flow.</h2>
           </div>
           <div className="space-y-px border border-[var(--color-border)] rounded-2xl overflow-hidden">
@@ -122,7 +122,7 @@ export default async function OurProductPage() {
                 </div>
                 <div className="p-6 space-y-1">
                   <div className="flex flex-wrap items-center gap-3">
-                    <h3 className="text-base font-semibold text-[#1A1A18] tracking-[-0.01em]">{ing.name}</h3>
+                    <h3 className="text-base font-semibold text-[#1E1854] tracking-[-0.01em]">{ing.name}</h3>
                     <span className="text-[10px] uppercase tracking-[0.08em] border border-[var(--color-border)] px-2.5 py-0.5 rounded-full text-[hsla(var(--color-secondary)/0.5)] font-medium">{ing.category}</span>
                   </div>
                   <p className="text-xs text-[hsla(var(--color-secondary)/0.45)]">{ing.form}</p>
@@ -130,7 +130,7 @@ export default async function OurProductPage() {
                 </div>
                 <div className="flex items-center px-6 border-t md:border-t-0 md:border-l border-[var(--color-border)]">
                   <div className="text-right">
-                    <p className="text-xl font-semibold text-[#1A1A18] tracking-[-0.02em]">{ing.dose}</p>
+                    <p className="text-xl font-semibold text-[#1E1854] tracking-[-0.02em]">{ing.dose}</p>
                     <p className="text-xs text-[hsla(var(--color-secondary)/0.4)] uppercase tracking-[0.06em]">per serving</p>
                   </div>
                 </div>
@@ -144,16 +144,16 @@ export default async function OurProductPage() {
       </section>
 
       {/* Format */}
-      <section className="max-w-[1360px] mx-auto px-6 py-20">
+      <section className="max-w-[1200px] mx-auto px-6 py-20">
         <div className="mb-12 space-y-2">
-          <p className="text-xs tracking-[0.14em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">The Details</p>
+          <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">The Details</p>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">Made right, from start to finish.</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {formats.map((f) => (
-            <div key={f.title} className="space-y-4 p-8 bg-[#F8F8F8] rounded-2xl border border-[var(--color-border)]">
-              <span className="text-[#1A1A18]">{f.icon}</span>
-              <h3 className="text-lg font-semibold text-[#1A1A18]">{f.title}</h3>
+            <div key={f.title} className="space-y-4 p-8 bg-[#1E185408] rounded-2xl border border-[var(--color-border)]">
+              <span className="text-[#1E1854]">{f.icon}</span>
+              <h3 className="text-lg font-semibold text-[#1E1854]">{f.title}</h3>
               <p className="text-sm text-[hsla(var(--color-secondary)/0.65)] leading-relaxed">{f.description}</p>
             </div>
           ))}
@@ -161,14 +161,14 @@ export default async function OurProductPage() {
       </section>
 
       {/* Promise */}
-      <section className="bg-[#F8F8F8]">
-        <div className="max-w-[1360px] mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <section className="bg-[#1E185408]">
+        <div className="max-w-[1200px] mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div className="space-y-4">
-            <p className="text-xs tracking-[0.14em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">Our Promise</p>
+            <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">Our Promise</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
               Nothing hidden.<br />Nothing compromised.
             </h2>
-            <p className="text-base text-[hsla(var(--color-secondary)/0.65)] leading-relaxed max-w-sm">
+            <p className="text-sm text-[hsla(var(--color-secondary)/0.65)] leading-relaxed max-w-sm">
               We&apos;re here for the long haul, committed to supporting your journey toward a calmer mind, deeper focus, and a more fulfilling life.
             </p>
           </div>
@@ -182,12 +182,12 @@ export default async function OurProductPage() {
               'Honest communication — always',
             ].map((p) => (
               <li key={p} className="flex items-start gap-3">
-                <span className="mt-0.5 shrink-0 w-5 h-5 rounded-full bg-[#1A1A18] flex items-center justify-center">
+                <span className="mt-0.5 shrink-0 w-5 h-5 rounded-full bg-[#1E1854] flex items-center justify-center">
                   <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
                     <path d="M2 5l2.5 2.5 4-4" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </span>
-                <span className="text-sm text-[#1A1A18] leading-snug font-medium">{p}</span>
+                <span className="text-sm text-[#1E1854] leading-snug font-medium">{p}</span>
               </li>
             ))}
           </ul>
@@ -195,16 +195,16 @@ export default async function OurProductPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#1A1A18] py-20">
+      <section className="bg-[#1E1854] py-20">
         <div className="max-w-[720px] mx-auto px-6 text-center space-y-6">
           <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] text-white leading-tight">
             Ready to experience it?
           </h2>
-          <p className="text-base text-white/60 leading-relaxed">
+          <p className="text-sm text-white/60 leading-relaxed">
             Try Flow for 30 days. If you don&apos;t notice a meaningful difference, we&apos;ll refund you. No questions asked.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/products/flow" className="inline-flex items-center gap-2 bg-white text-[#1A1A18] text-xs tracking-[0.1em] uppercase font-semibold px-8 py-4 rounded-full hover:bg-[hsla(var(--color-accent)/1)] hover:text-white transition-colors">
+            <Link href="/products/flow" className="inline-flex items-center gap-2 bg-white text-[#1E1854] text-xs tracking-[0.1em] uppercase font-semibold px-8 py-4 rounded-full hover:bg-[hsla(var(--color-accent)/1)] hover:text-white transition-colors">
               Shop Flow
             </Link>
             <Link href="/pages/ingredients" className="inline-flex items-center gap-2 border border-white/30 text-white text-xs tracking-[0.1em] uppercase font-medium px-8 py-4 rounded-full hover:border-white/60 transition-colors">
@@ -215,7 +215,7 @@ export default async function OurProductPage() {
       </section>
 
       {/* Nav links */}
-      <section className="max-w-[1360px] mx-auto px-6 py-20">
+      <section className="max-w-[1200px] mx-auto px-6 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
             { label: 'Who We Are', description: 'The team and story behind Flow Health.', href: '/pages/who-we-are', image: 'https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=700&q=80&auto=format&fit=crop' },

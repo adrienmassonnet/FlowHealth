@@ -31,12 +31,12 @@ export default function BlogPostsClient({ posts }: { posts: Post[] }) {
     : posts.filter((p) => p.category === activeCategory);
 
   return (
-    <section className="max-w-[1360px] mx-auto px-6 pb-24">
+    <section className="max-w-[1200px] mx-auto px-6 pb-24">
       {/* Header row */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
         <div className="space-y-2">
           <h2 className="text-3xl font-semibold tracking-[-0.02em]">Latest blogs</h2>
-          <p className="text-base text-[hsla(var(--color-secondary)/0.55)] max-w-sm">
+          <p className="text-sm text-[hsla(var(--color-secondary)/0.55)] max-w-sm">
             Get the most recent updates about cognitive health, ingredients, and focus science.
           </p>
         </div>
@@ -49,8 +49,8 @@ export default function BlogPostsClient({ posts }: { posts: Post[] }) {
               onClick={() => setActiveCategory(cat.key)}
               className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium tracking-[0.04em] border transition-colors ${
                 activeCategory === cat.key
-                  ? 'bg-[#1A1A18] text-white border-[#1A1A18]'
-                  : 'bg-white text-[#1A1A18] border-[var(--color-border)] hover:border-[hsla(var(--color-secondary)/0.4)]'
+                  ? 'bg-[#1E1854] text-white border-[#1E1854]'
+                  : 'bg-white text-[#1E1854] border-[var(--color-border)] hover:border-[hsla(var(--color-secondary)/0.4)]'
               }`}
             >
               <span className={`w-1.5 h-1.5 rounded-full ${activeCategory === cat.key ? 'bg-white' : 'bg-[hsla(var(--color-secondary)/0.25)]'}`} />
@@ -62,7 +62,7 @@ export default function BlogPostsClient({ posts }: { posts: Post[] }) {
 
       {/* Cards grid */}
       {filtered.length === 0 ? (
-        <p className="text-base text-[hsla(var(--color-secondary)/0.5)] py-12 text-center">No posts in this category yet.</p>
+        <p className="text-sm text-[hsla(var(--color-secondary)/0.5)] py-12 text-center">No posts in this category yet.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {filtered.map((post) => (
@@ -71,7 +71,7 @@ export default function BlogPostsClient({ posts }: { posts: Post[] }) {
               href={`/pages/blog-posts/${post.slug}`}
               className="group flex flex-col bg-white border border-[var(--color-border)] rounded-2xl overflow-hidden hover:border-[hsla(var(--color-secondary)/0.3)] transition-colors"
             >
-              <div className="relative aspect-[16/10] overflow-hidden bg-[#F0F0EE]">
+              <div className="relative aspect-[16/10] overflow-hidden bg-[#1E18540A]">
                 <Image
                   src={post.image}
                   alt={post.title}
@@ -86,7 +86,7 @@ export default function BlogPostsClient({ posts }: { posts: Post[] }) {
                   <span>·</span>
                   <span>{post.readTime}</span>
                 </div>
-                <h3 className="text-base font-semibold text-[#1A1A18] leading-snug group-hover:text-[hsla(var(--color-accent)/1)] transition-colors">
+                <h3 className="text-base font-semibold text-[#1E1854] leading-snug group-hover:text-[hsla(var(--color-accent)/1)] transition-colors">
                   {post.title}
                 </h3>
                 <p className="text-sm text-[hsla(var(--color-secondary)/0.6)] leading-relaxed flex-1">

@@ -55,8 +55,8 @@ The target person is a driven, self-aware individual who takes their performance
 ### Colour Direction
 
 The palette should evoke natural light and organic calm, not clinical whiteness or futuristic darkness.
+- **Primary brand colour**: `#1E1854` — a deep indigo-navy. This is the main colour for all text, buttons, dark containers, icons, and interactive elements. Use it wherever you would use black.
 - **Dominant**: warm off-whites, soft greens, stone, mist — surfaces that feel like morning light
-- **Accent**: a single grounding dark (near-black, warm-toned, like `#1A1A18`) used sparingly for weight
 - **Avoid**: cold blues, bright primaries, neon, heavy black-and-white contrast as a style statement
 - Gradients should feel atmospheric — sky, fog, water — never decorative
 

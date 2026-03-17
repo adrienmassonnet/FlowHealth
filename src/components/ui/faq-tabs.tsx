@@ -42,10 +42,10 @@ export const FAQ = ({
 
 const FAQHeader = ({ title, subtitle }: { title: string; subtitle: string }) => (
   <div className="relative z-10 flex flex-col items-center justify-center mb-10">
-    <span className="mb-4 text-xs tracking-[0.14em] uppercase font-medium text-[hsla(var(--color-secondary)/0.5)]">
+    <span className="mb-4 text-xs tracking-[0.16em] uppercase font-medium text-[hsla(var(--color-secondary)/0.5)]">
       {subtitle}
     </span>
-    <h2 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] leading-[1.0] text-[#1A1A18]">
+    <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-[1.0] text-[#1E1854]">
       {title}
     </h2>
     <span className="absolute -top-[350px] left-[50%] z-0 h-[500px] w-[600px] -translate-x-[50%] rounded-full bg-[hsla(var(--color-accent)/0.04)] blur-3xl pointer-events-none" />
@@ -69,8 +69,8 @@ const FAQTabs = ({
         className={cn(
           'relative overflow-hidden whitespace-nowrap rounded-full border px-4 py-1.5 text-xs tracking-[0.08em] uppercase font-medium transition-colors duration-300',
           selected === key
-            ? 'border-[#1A1A18] text-white'
-            : 'border-[var(--color-border)] text-[hsla(var(--color-secondary)/0.7)] hover:text-[#1A1A18] hover:border-[#1A1A18]'
+            ? 'border-[#1E1854] text-white'
+            : 'border-[var(--color-border)] text-[hsla(var(--color-secondary)/0.7)] hover:text-[#1E1854] hover:border-[#1E1854]'
         )}
       >
         <span className="relative z-10">{label}</span>
@@ -81,7 +81,7 @@ const FAQTabs = ({
               animate={{ y: '0%' }}
               exit={{ y: '100%' }}
               transition={{ duration: 0.4, ease: 'backIn' }}
-              className="absolute inset-0 z-0 bg-[#1A1A18]"
+              className="absolute inset-0 z-0 bg-[#1E1854]"
             />
           )}
         </AnimatePresence>
@@ -129,7 +129,7 @@ const FAQItem = ({ question, answer }: FAQItem) => {
       >
         <span className={cn(
           'text-base font-medium tracking-[-0.01em] transition-colors',
-          isOpen ? 'text-[#1A1A18]' : 'text-[hsla(var(--color-secondary)/0.8)] group-hover:text-[#1A1A18]'
+          isOpen ? 'text-[#1E1854]' : 'text-[hsla(var(--color-secondary)/0.8)] group-hover:text-[#1E1854]'
         )}>
           {question}
         </span>
@@ -138,10 +138,10 @@ const FAQItem = ({ question, answer }: FAQItem) => {
           transition={{ duration: 0.2 }}
           className={cn(
             'shrink-0 mt-0.5 w-5 h-5 rounded-full border flex items-center justify-center transition-colors',
-            isOpen ? 'bg-[#1A1A18] border-[#1A1A18]' : 'border-[var(--color-border)] group-hover:border-[#1A1A18]'
+            isOpen ? 'bg-[#1E1854] border-[#1E1854]' : 'border-[var(--color-border)] group-hover:border-[#1E1854]'
           )}
         >
-          <Plus className={cn('w-3 h-3', isOpen ? 'text-white' : 'text-[#1A1A18]')} />
+          <Plus className={cn('w-3 h-3', isOpen ? 'text-white' : 'text-[#1E1854]')} />
         </motion.span>
       </button>
       <motion.div
@@ -150,7 +150,7 @@ const FAQItem = ({ question, answer }: FAQItem) => {
         transition={{ duration: 0.3, ease: 'easeInOut' }}
         className="overflow-hidden pr-10"
       >
-        <p className="text-base text-[hsla(var(--color-secondary)/1)] leading-[1.7]">{answer}</p>
+        <p className="text-sm text-[hsla(var(--color-secondary)/1)] leading-[1.7]">{answer}</p>
       </motion.div>
     </motion.div>
   );

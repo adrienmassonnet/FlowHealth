@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --color-accent: 30 6% 11%;
-  --color-surface-from: #E8E3DA;
-  --color-surface-to: #F7F4EF;
-  --color-primary: 30 6% 11%;
-  --color-secondary: 30 5% 35%;
-  --color-contrast: #D8D4CE;
-  --color-border: #DDD9D2;
+  --color-accent: 246 55% 21%;
+  --color-surface-from: #1E185414;
+  --color-surface-to: #1E18540A;
+  --color-primary: 246 55% 21%;
+  --color-secondary: 246 20% 35%;
+  --color-contrast: #1E185426;
+  --color-border: #1E185420;
 }
 
 @theme inline {
@@ -23,7 +23,7 @@ html {
 }
 
 body {
-  background: #F7F4EF;
+  background: #1E18540A;
   color: hsla(var(--color-accent) / 1);
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;

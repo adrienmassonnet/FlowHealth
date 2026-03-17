@@ -43,7 +43,7 @@ export function FeatureCarousel({ steps, interval = 7000 }: FeatureCarouselProps
               onClick={() => setStep(i)}
               className={`group w-full text-left px-4 py-4 border-l-2 transition-all duration-300 ${
                 isActive
-                  ? 'border-[hsla(var(--color-accent)/1)] text-[#1A1A18]'
+                  ? 'border-[hsla(var(--color-accent)/1)] text-[#1E1854]'
                   : 'border-[var(--color-border)] text-[hsla(var(--color-secondary)/0.5)] hover:text-[hsla(var(--color-secondary)/0.9)] hover:border-[hsla(var(--color-secondary)/0.3)]'
               }`}
             >
@@ -56,7 +56,7 @@ export function FeatureCarousel({ steps, interval = 7000 }: FeatureCarouselProps
       </nav>
 
       {/* Right: card */}
-      <div className="relative overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[#F8F8F8] min-h-[420px]">
+      <div className="relative overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[#1E185408] min-h-[420px]">
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
@@ -69,7 +69,7 @@ export function FeatureCarousel({ steps, interval = 7000 }: FeatureCarouselProps
             {/* Text content */}
             <div className="flex flex-col justify-center p-10 md:w-[52%] gap-5">
               <motion.p
-                className="text-xs font-semibold uppercase tracking-[0.14em] text-[hsla(var(--color-accent)/1)]"
+                className="text-xs font-semibold uppercase tracking-[0.16em] text-[hsla(var(--color-accent)/1)]"
                 initial={{ opacity: 0, x: -12 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.06, duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
@@ -77,7 +77,7 @@ export function FeatureCarousel({ steps, interval = 7000 }: FeatureCarouselProps
                 {active.label}
               </motion.p>
               <motion.h3
-                className="text-3xl md:text-[2.5rem] font-bold tracking-[-0.03em] text-[#1A1A18] leading-[1.1]"
+                className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] text-[#1E1854] leading-[1.1]"
                 initial={{ opacity: 0, x: -12 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1, duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
@@ -107,7 +107,7 @@ export function FeatureCarousel({ steps, interval = 7000 }: FeatureCarouselProps
                 className="absolute inset-0 w-full h-full object-cover"
               />
               {/* Subtle fade on left edge to blend with card */}
-              <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#F8F8F8] to-transparent" />
+              <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#1E1854/3] to-transparent" />
             </motion.div>
           </motion.div>
         </AnimatePresence>

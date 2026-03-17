@@ -128,7 +128,7 @@ function LanguageSelector({ muted }: { muted?: boolean }) {
         onClick={() => setOpen((o) => !o)}
         className={`flex items-center gap-1 text-xs tracking-[0.08em] uppercase transition-colors ${
           muted
-            ? 'text-[hsla(var(--color-secondary)/0.6)] hover:text-[#1A1A18]'
+            ? 'text-[hsla(var(--color-secondary)/0.6)] hover:text-[#1E1854]'
             : 'text-[hsla(var(--color-secondary)/1)] hover:text-[hsla(var(--color-accent)/1)]'
         }`}
       >
@@ -162,8 +162,8 @@ function LanguageSelector({ muted }: { muted?: boolean }) {
                 onClick={() => { setSelected(lang.code); setOpen(false); }}
                 className={`w-full flex items-center justify-between px-3 py-2 text-xs transition-colors ${
                   selected === lang.code
-                    ? 'bg-[#1A1A18] text-white'
-                    : 'text-[#1A1A18] hover:bg-[#F8F8F8]'
+                    ? 'bg-[#1E1854] text-white'
+                    : 'text-[#1E1854] hover:bg-[#1E185408]'
                 }`}
               >
                 <span>{lang.label}</span>
@@ -199,8 +199,8 @@ function NavButton({ label, open }: { label: string; open: boolean }) {
     <button
       className={`relative flex items-center gap-1.5 text-xs tracking-[0.08em] uppercase px-3 py-1.5 rounded-full transition-all duration-200 ${
         open
-          ? 'bg-[#1A1A18] text-white'
-          : 'text-[hsla(var(--color-secondary)/1)] hover:bg-[#1A1A18]/[0.07]'
+          ? 'bg-[#1E1854] text-white'
+          : 'text-[hsla(var(--color-secondary)/1)] hover:bg-[#1E1854]/[0.07]'
       }`}
     >
       {label}
@@ -300,10 +300,10 @@ export default function Header() {
             >
               <div className="flex items-center justify-between px-6 h-16 border-b border-[var(--color-border)]">
                 <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2.5" aria-label="Flow Health">
-                  <img src="/flow-logomark.svg" alt="" width={22} height={22} className="w-[22px] h-[22px]" />
-                  <img src="/flow-wordmark.svg" alt="Flow" width={60} height={24} className="h-6 w-auto" />
+                  <img src="/flow-logomark.svg?v=2" alt="" width={20} height={20} className="w-5 h-5" />
+                  <img src="/flow-wordmark.svg?v=2" alt="Flow" width={51} height={20} className="h-5 w-auto" />
                 </Link>
-                <button onClick={() => setMobileOpen(false)} className="p-2 -mr-2 text-[#1A1A18]" aria-label="Close menu">
+                <button onClick={() => setMobileOpen(false)} className="p-2 -mr-2 text-[#1E1854]" aria-label="Close menu">
                   <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                     <path d="M3 3l12 12M15 3L3 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                   </svg>
@@ -315,7 +315,7 @@ export default function Header() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className="flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium text-[#1A1A18] hover:bg-[#F8F8F8] transition-colors"
+                    className="flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium text-[#1E1854] hover:bg-[#1E185408] transition-colors"
                   >
                     {link.label}
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -328,7 +328,7 @@ export default function Header() {
                 <Link
                   href="/products/flow"
                   onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-center w-full py-3.5 rounded-full bg-[#1A1A18] text-white text-xs tracking-[0.08em] uppercase font-semibold hover:bg-[hsla(var(--color-accent)/1)] transition-colors"
+                  className="flex items-center justify-center w-full py-3.5 rounded-full bg-[#1E1854] text-white text-xs tracking-[0.08em] uppercase font-semibold hover:bg-[hsla(var(--color-accent)/1)] transition-colors"
                 >
                   Get Flow
                 </Link>
@@ -354,14 +354,14 @@ export default function Header() {
           <motion.div
             animate={{ opacity: scrolled ? 0 : 1 }}
             transition={{ duration: 0.4, ease: easeOut }}
-            className="absolute inset-0 border-b border-[var(--color-border)] bg-[#F8F8F8]/90 backdrop-blur-sm pointer-events-none"
+            className="absolute inset-0 border-b border-[var(--color-border)] bg-white/90 backdrop-blur-md pointer-events-none"
           />
 
-          <div className="max-w-[1360px] mx-auto px-6">
+          <div className="max-w-[1200px] mx-auto px-6">
             <div className="h-14 flex items-center justify-between gap-3">
               {/* Hamburger button — mobile only */}
               <button
-                className="md:hidden p-2 -ml-2 text-[#1A1A18]"
+                className="md:hidden p-2 -ml-2 text-[#1E1854]"
                 aria-label="Open menu"
                 onClick={() => setMobileOpen(true)}
               >
@@ -384,17 +384,11 @@ export default function Header() {
               <Link
                 href="/"
                 onClick={() => setActiveMenu(null)}
-                className="shrink-0 text-[#1E1854]"
+                className="shrink-0 flex items-center gap-2"
                 aria-label="Flow Health"
               >
-                <img
-                  src="/flow-wordmark.svg"
-                  alt="Flow"
-                  width={72}
-                  height={28}
-                  className="h-7 w-auto"
-                  style={{ color: '#1E1854' }}
-                />
+                <img src="/flow-logomark.svg?v=2" alt="" width={20} height={20} className="w-5 h-5" />
+                <img src="/flow-wordmark.svg?v=2" alt="Flow" width={51} height={20} className="h-5 w-auto" />
               </Link>
 
               {/* Nav */}
@@ -422,13 +416,13 @@ export default function Header() {
                               <Link
                                 href={link.href}
                                 onClick={() => setActiveMenu(null)}
-                                className="group flex items-center gap-4 px-3 py-3.5 rounded-xl hover:bg-[#F8F8F8] transition-colors"
+                                className="group flex items-center gap-4 px-3 py-3.5 rounded-xl hover:bg-[#1E185408] transition-colors"
                               >
-                                <span className="shrink-0 w-9 h-9 rounded-xl bg-[#F0F0EE] flex items-center justify-center text-[#1A1A18] group-hover:bg-[#1A1A18] group-hover:text-white transition-colors">
+                                <span className="shrink-0 w-9 h-9 rounded-xl bg-[#1E18540A] flex items-center justify-center text-[#1E1854] group-hover:bg-[#1E1854] group-hover:text-white transition-colors">
                                   {link.icon}
                                 </span>
                                 <div className="flex-1 min-w-0">
-                                  <p className="text-sm font-semibold text-[#1A1A18] group-hover:text-[hsla(var(--color-accent)/1)] transition-colors">{link.label}</p>
+                                  <p className="text-sm font-semibold text-[#1E1854] group-hover:text-[hsla(var(--color-accent)/1)] transition-colors">{link.label}</p>
                                   <p className="text-xs text-[hsla(var(--color-secondary)/0.5)] leading-snug mt-0.5">{link.description}</p>
                                 </div>
                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity text-[hsla(var(--color-accent)/1)]">
@@ -478,14 +472,14 @@ export default function Header() {
                               <Link
                                 href={`/pages/blog-posts/${post.slug}`}
                                 onClick={() => setActiveMenu(null)}
-                                className="group flex items-center gap-4 px-3 py-3 rounded-xl hover:bg-[#F8F8F8] transition-colors"
+                                className="group flex items-center gap-4 px-3 py-3 rounded-xl hover:bg-[#1E185408] transition-colors"
                               >
-                                <div className="relative shrink-0 w-14 h-14 rounded-lg overflow-hidden bg-[#F0F0EE]">
+                                <div className="relative shrink-0 w-14 h-14 rounded-lg overflow-hidden bg-[#1E18540A]">
                                   <Image src={post.image} alt={post.title} fill className="object-cover" sizes="56px" />
                                 </div>
                                 <div className="flex-1 min-w-0">
                                   <p className="text-[10px] uppercase tracking-[0.08em] font-medium text-[hsla(var(--color-secondary)/0.45)] mb-0.5">{post.tag} · {post.readTime}</p>
-                                  <p className="text-sm font-medium text-[#1A1A18] leading-snug line-clamp-2 group-hover:text-[hsla(var(--color-accent)/1)] transition-colors">
+                                  <p className="text-sm font-medium text-[#1E1854] leading-snug line-clamp-2 group-hover:text-[hsla(var(--color-accent)/1)] transition-colors">
                                     {post.title}
                                   </p>
                                 </div>
@@ -502,7 +496,7 @@ export default function Header() {
                           <Link
                             href="/pages/blog-posts"
                             onClick={() => setActiveMenu(null)}
-                            className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-[var(--color-border)] text-xs tracking-[0.08em] uppercase font-medium text-[#1A1A18] hover:bg-[#1A1A18] hover:text-white hover:border-[#1A1A18] transition-colors"
+                            className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-[var(--color-border)] text-xs tracking-[0.08em] uppercase font-medium text-[#1E1854] hover:bg-[#1E1854] hover:text-white hover:border-[#1E1854] transition-colors"
                           >
                             View all articles
                           </Link>
@@ -517,7 +511,7 @@ export default function Header() {
                 <Link
                   href="/products/flow"
                   onClick={() => setActiveMenu(null)}
-                  className="text-xs tracking-[0.08em] uppercase font-medium bg-[#1A1A18] text-white px-4 py-1.5 rounded-full hover:bg-[hsla(var(--color-accent)/1)] transition-colors"
+                  className="text-xs tracking-[0.08em] uppercase font-medium bg-[#1E1854] text-white px-4 py-1.5 rounded-full hover:bg-[hsla(var(--color-accent)/1)] transition-colors"
                 >
                   Get Flow
                 </Link>

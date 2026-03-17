@@ -20,8 +20,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="pt-[88px]">
           {children}
 
-        <footer className="bg-[#1A1A18] text-white/50 mt-0">
-          <div className="max-w-[1360px] mx-auto px-6 py-16 grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16">
+        <footer className="bg-[#1E1854] text-white/50 mt-0">
+          <div className="max-w-[1200px] mx-auto px-6 py-16 grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16">
 
             {/* About Flow */}
             <div className="space-y-4">
@@ -44,7 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <ul className="space-y-3 text-xs">
                 {[
                   { label: 'Refer a friend', href: '/pages/contact' },
-                  { label: 'Reviews', href: '/products/flow' },
+                  { label: 'Reviews', href: '/pages/reviews' },
                 ].map((l) => (
                   <li key={l.label}><Link href={l.href} className="hover:text-white transition-colors">{l.label}</Link></li>
                 ))}
@@ -90,7 +90,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
 
           {/* Bottom bar */}
-          <div className="max-w-[1360px] mx-auto px-6 py-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="max-w-[1200px] mx-auto px-6 py-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-xs">Copyright © 2026 <Link href="/" className="hover:text-white transition-colors">Flow Health</Link></p>
             {/* PayPal icon */}
             <svg viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg" width="38" height="24" aria-label="PayPal" className="opacity-50">

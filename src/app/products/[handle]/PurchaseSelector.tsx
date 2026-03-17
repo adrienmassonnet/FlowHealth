@@ -26,7 +26,7 @@ export default function PurchaseSelector({ price, currencyCode, discountPercent 
         }`}
       >
         {/* Discount badge */}
-        <span className="absolute top-3 right-3 bg-[#1A1A18] text-white text-[10px] tracking-[0.1em] uppercase font-semibold px-2 py-1 rounded-md">
+        <span className="absolute top-3 right-3 bg-[#1E1854] text-white text-[10px] tracking-[0.1em] uppercase font-semibold px-2 py-1 rounded-md">
           {discountPercent}% OFF
         </span>
 
