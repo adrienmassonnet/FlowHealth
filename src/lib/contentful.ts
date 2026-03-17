@@ -69,12 +69,34 @@ export interface FaqItem {
 export interface HomepageContent {
   heroTagline: string;
   heroHeading: string;
+  heroImageUrl: string;
   missionHeading: string;
   vennHeading: string;
+  vennBackgroundImageUrl: string;
   resultsHeading: string;
   resultsSubheading: string;
   bottomMissionEyebrow: string;
   bottomMissionHeading: string;
+  ingredientsSectionLabel: string;
+  ingredientsHeading: string;
+  healthBenefitsSectionLabel: string;
+  healthBenefitsHeading: string;
+}
+
+export interface HealthBenefit {
+  number: string;
+  label: string;
+  title: string;
+  ingredients: string;
+  description: string;
+  imageUrl: string;
+  order: number;
+}
+
+export interface FeaturedIngredient {
+  name: string;
+  imageUrl: string;
+  homepageOrder: number;
 }
 
 export interface HomepageFeatureCard {
@@ -180,8 +202,16 @@ export async function getHomepageContent(): Promise<HomepageContent> {
   const res = await client().getEntries({
     content_type: 'homepageContent',
     limit: 1,
+    include: 2,
   });
-  return res.items[0].fields as HomepageContent;
+  const item = res.items[0] as any;
+  const heroImageUrl = item.fields.heroImage?.fields?.file?.url
+    ? `https:${item.fields.heroImage.fields.file.url}`
+    : '';
+  const vennBackgroundImageUrl = item.fields.vennBackgroundImage?.fields?.file?.url
+    ? `https:${item.fields.vennBackgroundImage.fields.file.url}`
+    : '';
+  return { ...item.fields, heroImageUrl, vennBackgroundImageUrl } as HomepageContent;
 }
 
 export async function getHomepageFeatureCards(): Promise<HomepageFeatureCard[]> {
@@ -207,6 +237,45 @@ export async function getResultsTimelineSteps(): Promise<ResultsTimelineStep[]> 
     limit: 10,
   });
   return res.items.map((item: { fields: ResultsTimelineStep }) => item.fields as ResultsTimelineStep);
+}
+
+export async function getFeaturedIngredients(): Promise<FeaturedIngredient[]> {
+  const res = await client().getEntries({
+    content_type: 'ingredient',
+    'fields.featuredOnHomepage': true,
+    order: ['fields.homepageOrder'],
+    limit: 10,
+    include: 2,
+  });
+  return (res.items as any[])
+    .map((item) => ({
+      name: item.fields.name as string,
+      imageUrl: item.fields.image?.fields?.file?.url
+        ? `https:${item.fields.image.fields.file.url}`
+        : (item.fields.imageUrl ?? ''),
+      homepageOrder: item.fields.homepageOrder ?? 0,
+    }))
+    .sort((a, b) => a.homepageOrder - b.homepageOrder);
+}
+
+export async function getHealthBenefits(): Promise<HealthBenefit[]> {
+  const res = await client().getEntries({
+    content_type: 'healthBenefit',
+    order: ['fields.order'],
+    limit: 20,
+    include: 2,
+  });
+  return (res.items as any[]).map((item) => ({
+    number: item.fields.number as string,
+    label: item.fields.label as string,
+    title: item.fields.title as string,
+    ingredients: item.fields.ingredients as string,
+    description: item.fields.description as string,
+    imageUrl: item.fields.image?.fields?.file?.url
+      ? `https:${item.fields.image.fields.file.url}`
+      : '',
+    order: item.fields.order as number,
+  }));
 }
 
 export async function getTestimonials(): Promise<Testimonial[]> {

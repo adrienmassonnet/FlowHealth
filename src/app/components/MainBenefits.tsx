@@ -5,12 +5,12 @@ import Image from 'next/image';
 
 const mainBenefits = [
   {
-    label: 'Protects Long-Term Brain Health',
-    description: 'Carefully chosen antioxidants nourish your brain daily. Bacopa Monnieri and Lion\'s Mane support cognitive vitality and healthy function as you pursue your goals over time.',
-    ingredients: 'Bacopa Monnieri · Lion\'s Mane · Blueberry Extract',
-    image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=900&q=85&auto=format&fit=crop',
+    label: 'Clean, Steady Energy',
+    description: 'Flow delivers calm, sustained vitality without jitters or crashes. B-vitamins and natural caffeine sources support healthy energy metabolism, keeping you alert from morning to evening.',
+    ingredients: 'B-Vitamins Complex · Natural Caffeine · CoQ10',
+    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=900&q=85&auto=format&fit=crop',
     span: 'md:col-span-3',
-    height: 'min-h-[300px]',
+    height: 'min-h-[280px]',
   },
   {
     label: 'Resilience to Stress',
@@ -18,47 +18,47 @@ const mainBenefits = [
     ingredients: 'Ashwagandha KSM-66® · Rhodiola Rosea · Magnesium',
     image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=85&auto=format&fit=crop',
     span: 'md:col-span-3',
-    height: 'min-h-[300px]',
+    height: 'min-h-[280px]',
   },
   {
     label: 'Enhances Mood & Motivation',
     description: 'Support natural dopamine pathways and healthy hormonal balance for a stable, positive outlook. L-Tyrosine and Mucuna Pruriens help lift mood gently throughout the day.',
     ingredients: 'L-Tyrosine · Mucuna Pruriens · Rhodiola Rosea',
     image: 'https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=900&q=85&auto=format&fit=crop',
-    span: 'md:col-span-2',
-    height: 'min-h-[260px]',
+    span: 'md:col-span-3',
+    height: 'min-h-[280px]',
   },
   {
     label: 'Boosts Cognitive Clarity',
     description: 'Clear away brain fog with nutrients that enhance neural communication. Lion\'s Mane and Alpha-GPC promote crisp, quick thinking and better decision-making.',
     ingredients: 'Lion\'s Mane · Alpha-GPC · Zynamite®',
     image: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=900&q=85&auto=format&fit=crop',
-    span: 'md:col-span-2',
-    height: 'min-h-[260px]',
+    span: 'md:col-span-3',
+    height: 'min-h-[280px]',
   },
   {
     label: 'Promotes Deep Calm & Recovery',
     description: 'Flow supports your body\'s natural recovery processes. Magnesium and L-Theanine help you bounce back from mental exertion and prepare for deeper, more restorative sleep.',
     ingredients: 'Magnesium · L-Theanine · Ashwagandha KSM-66®',
     image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=900&q=85&auto=format&fit=crop',
-    span: 'md:col-span-2',
-    height: 'min-h-[260px]',
+    span: 'md:col-span-4',
+    height: 'min-h-[280px]',
   },
   {
-    label: 'Clean, Steady Energy',
-    description: 'Flow delivers calm, sustained vitality without jitters or crashes. B-vitamins and natural caffeine sources support healthy energy metabolism, keeping you alert from morning to evening.',
-    ingredients: 'B-Vitamins Complex · Natural Caffeine · CoQ10',
-    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=900&q=85&auto=format&fit=crop',
-    span: 'md:col-span-3',
-    height: 'min-h-[300px]',
+    label: 'Protects Long-Term Brain Health',
+    description: 'Carefully chosen antioxidants nourish your brain daily. Bacopa Monnieri and Lion\'s Mane support cognitive vitality and healthy function as you pursue your goals over time.',
+    ingredients: 'Bacopa Monnieri · Lion\'s Mane · Blueberry Extract',
+    image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=900&q=85&auto=format&fit=crop',
+    span: 'md:col-span-4',
+    height: 'min-h-[280px]',
   },
   {
     label: 'Freedom from Cravings & Unease',
     description: 'Quiet restless cravings and physical discomfort that pull your attention away. Mucuna Pruriens and Magnesium support dopamine balance and relaxation, helping you stay centered and free from distractions.',
     ingredients: 'Mucuna Pruriens · Magnesium · L-Theanine',
     image: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=900&q=85&auto=format&fit=crop',
-    span: 'md:col-span-3',
-    height: 'min-h-[300px]',
+    span: 'md:col-span-4',
+    height: 'min-h-[280px]',
   },
 ];
 
@@ -66,12 +66,12 @@ export default function MainBenefits() {
   const [flipped, setFlipped] = useState<string | null>(null);
 
   return (
-    <section className="max-w-[1360px] mx-auto px-6 py-20">
-      <div className="mb-10 space-y-1">
-        <p className="text-xs tracking-[0.14em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">Why Flow</p>
+    <section className="max-w-[1200px] mx-auto px-6 pt-4 pb-16">
+      <div className="mb-8 space-y-1">
+        <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">Why Flow</p>
         <h2 className="text-3xl font-semibold tracking-[-0.02em]">Main benefits</h2>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-3">
         {mainBenefits.map((b) => {
           const isFlipped = flipped === b.label;
           return (
@@ -90,10 +90,10 @@ export default function MainBenefits() {
                     src={b.image}
                     alt={b.label}
                     fill
-                    className="object-cover brightness-110 saturate-[1.4] contrast-[1.05]"
+                    className="object-cover brightness-[0.98] saturate-[1.1]"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/25 to-black/5" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-5">
                     <h3 className="text-lg font-semibold text-white leading-snug drop-shadow-sm pr-10">{b.label}</h3>
                   </div>
@@ -106,7 +106,7 @@ export default function MainBenefits() {
                 </div>
 
                 {/* Back face */}
-                <div className="absolute inset-0 rounded-2xl overflow-hidden [backface-visibility:hidden] [transform:rotateY(180deg)] bg-[#1A1A18] flex flex-col p-5">
+                <div className="absolute inset-0 rounded-2xl overflow-hidden [backface-visibility:hidden] [transform:rotateY(180deg)] bg-[#1E1854] flex flex-col p-5">
                   <div className="flex justify-end shrink-0 mb-3">
                     <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center">
                       <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
@@ -116,7 +116,7 @@ export default function MainBenefits() {
                   </div>
                   <div className="overflow-y-auto flex-1 space-y-3 pr-1">
                     <h3 className="text-lg font-semibold text-white leading-snug">{b.label}</h3>
-                    <p className="text-base text-white/75 leading-relaxed">{b.description}</p>
+                    <p className="text-sm text-white/75 leading-relaxed">{b.description}</p>
                     <div className="flex items-center gap-2 pt-1">
                       <span className="block w-4 h-px bg-white/25 shrink-0" />
                       <span className="text-xs uppercase tracking-[0.1em] text-white/40">{b.ingredients}</span>

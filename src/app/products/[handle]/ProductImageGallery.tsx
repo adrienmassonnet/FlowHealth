@@ -15,14 +15,13 @@ export default function ProductImageGallery({ images, title }: { images: Gallery
     <div className="space-y-3">
       <div
         className="relative aspect-square overflow-hidden"
-        style={{ background: 'linear-gradient(180deg, #E0E6E8 16%, #F8F8F8 100%)' }}
       >
         {images[active] && (
           <Image
             src={images[active].url}
             alt={images[active].altText ?? title}
             fill
-            className="object-contain p-10 transition-opacity duration-300"
+            className="object-contain p-4 transition-opacity duration-300"
             priority
           />
         )}
@@ -38,7 +37,7 @@ export default function ProductImageGallery({ images, title }: { images: Gallery
                   ? 'ring-1 ring-[hsla(var(--color-accent)/1)]'
                   : 'opacity-50 hover:opacity-80'
               }`}
-              style={{ background: '#E8EBEA' }}
+              style={{ background: 'transparent' }}
             >
               <Image
                 src={img.url}

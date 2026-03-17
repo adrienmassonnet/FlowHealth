@@ -33,29 +33,17 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
 
   return (
     <main>
-      {/* Breadcrumb */}
-      <div className="max-w-[1360px] mx-auto px-6 py-4">
-        <nav className="flex items-center gap-2 text-xs text-[hsla(var(--color-secondary)/1)]">
-          <Link href="/" className="hover:text-[hsla(var(--color-accent)/1)] transition-colors">Shop</Link>
-          <span>/</span>
-          <span>{product.title}</span>
-        </nav>
-      </div>
-
       {/* Product hero */}
-      <div className="max-w-[1360px] mx-auto px-6 pb-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-start">
+      <div className="pb-20 max-w-[1200px] mx-auto pl-3 pr-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 md:gap-y-0 items-start">
           <ProductImageGallery images={images} title={product.title} />
 
-          <div className="sticky top-20 space-y-7">
+          <div className="sticky top-20 space-y-7 pl-6 pr-0 md:pl-8 lg:pl-12 pt-12">
             <div className="space-y-2">
-              <p className="text-xs tracking-[0.14em] uppercase text-[hsla(var(--color-secondary)/1)]">
-                Liquid Supplement · Ready to Drink
-              </p>
               <h1 className="text-3xl font-semibold tracking-[-0.02em] leading-tight">{product.title}</h1>
               <p className="text-xl font-medium mt-2">
                 {parseFloat(firstVariant.price.amount).toFixed(2)}{' '}
-                <span className="text-base text-[hsla(var(--color-secondary)/1)] font-normal">{firstVariant.price.currencyCode}</span>
+                <span className="text-sm text-[hsla(var(--color-secondary)/1)] font-normal">{firstVariant.price.currencyCode}</span>
               </p>
             </div>
 
@@ -72,7 +60,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
               </div>
             )}
 
-            <p className="text-base text-[hsla(var(--color-secondary)/1)] leading-relaxed">{shortDesc}</p>
+            <p className="text-sm text-[hsla(var(--color-secondary)/1)] leading-relaxed">{shortDesc}</p>
 
             <PurchaseSelector
               price={parseFloat(firstVariant.price.amount)}
@@ -117,7 +105,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
                   ),
                 },
               ].map((item) => (
-                <div key={item.title} className="bg-[#F8F8F8] px-3 py-4 flex flex-col items-center gap-2 text-center">
+                <div key={item.title} className="bg-[#1E185408] px-3 py-4 flex flex-col items-center gap-2 text-center">
                   <span className="text-[hsla(var(--color-secondary)/1)]">{item.icon}</span>
                   <p className="text-xs font-semibold tracking-[-0.01em] leading-tight">{item.title}</p>
                   <p className="text-xs text-[hsla(var(--color-secondary)/0.7)] leading-snug">{item.text}</p>
@@ -136,35 +124,12 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
 
       <TakeFlowSteps />
 
-      {/* Consistency is Key callout */}
-      <div className="max-w-[1360px] mx-auto px-6 pb-16">
-        <div className="border border-[var(--color-border)] bg-[#F8F8F8] rounded-2xl py-12 px-8 flex flex-col items-center text-center gap-5">
-          {/* Hexagon icon */}
-          <div className="w-16 h-16 flex items-center justify-center" style={{
-            clipPath: 'polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%)',
-            background: 'hsla(var(--color-accent)/1)',
-          }}>
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-              <path d="M13 3L5 14h7l-1 7 8-11h-7l1-7z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
-          <div className="space-y-3 max-w-lg">
-            <p className="text-sm font-semibold tracking-[0.14em] uppercase text-[hsla(var(--color-accent)/1)]">
-              Consistency is key
-            </p>
-            <p className="text-base text-[hsla(var(--color-secondary)/0.75)] leading-relaxed">
-              Most users report noticeable improvements in focus and energy within the first week, with comprehensive benefits developing over 4–8 weeks of daily use.
-            </p>
-          </div>
-        </div>
-      </div>
-
       <HealthCenter />
 
       <IngredientsAccordion />
 
       {/* Our selection process */}
-      <section className="max-w-[1360px] mx-auto px-6 py-20">
+      <section className="max-w-[1200px] mx-auto px-6 py-20">
         <div className="relative rounded-3xl overflow-hidden h-[560px]">
           <Image
             src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=1400&q=85&auto=format&fit=crop"
@@ -177,7 +142,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
           <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/15 to-black/25" />
           <div className="absolute inset-0 flex flex-col justify-between p-8 md:p-12 pt-12 md:pt-16">
             {/* Headline */}
-            <h2 className="text-4xl md:text-5xl font-semibold text-white max-w-xl leading-[1.1] drop-shadow-sm">
+            <h2 className="text-3xl md:text-4xl font-semibold text-white max-w-xl leading-[1.1] drop-shadow-sm">
               Our rigorous ingredient selection process.
             </h2>
             {/* Bottom frosted panel */}
@@ -244,9 +209,9 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
 
       {/* Related products */}
       {relatedProducts.length > 0 && (
-        <section className="max-w-[1360px] mx-auto px-6 py-20">
+        <section className="max-w-[1200px] mx-auto px-6 py-20">
           <div className="text-center mb-12 space-y-2">
-            <p className="text-xs tracking-[0.14em] uppercase text-[hsla(var(--color-secondary)/1)]">Our Range</p>
+            <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/1)]">Our Range</p>
             <h2 className="text-3xl font-semibold tracking-[-0.02em]">Our Unique Formulas</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-[var(--color-border)]">
@@ -254,9 +219,9 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
               const img = p.images.edges[0]?.node;
               const price = p.priceRange.minVariantPrice;
               return (
-                <Link key={p.id} href={`/products/${p.handle}`} className="group bg-[#F8F8F8] p-6 hover:bg-[#F0F2F1] transition-colors text-center">
+                <Link key={p.id} href={`/products/${p.handle}`} className="group bg-[#1E185408] p-6 hover:bg-[#1E18540A] transition-colors text-center">
                   {img && (
-                    <div className="relative aspect-square mb-4 bg-[#E8EBEA]">
+                    <div className="relative aspect-square mb-4 bg-[#1E18540F]">
                       <Image src={img.url} alt={img.altText ?? p.title} fill className="object-contain p-6 group-hover:scale-105 transition-transform duration-500" />
                     </div>
                   )}
@@ -273,10 +238,10 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
       )}
 
       {/* Still got questions? */}
-      <section className="bg-[#F8F8F8] py-20">
-        <div className="max-w-[1360px] mx-auto px-6 text-center space-y-6">
+      <section className="bg-[#1E185408] py-20">
+        <div className="max-w-[1200px] mx-auto px-6 text-center space-y-6">
           <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">Still got questions?</h2>
-          <p className="text-base text-[hsla(var(--color-secondary)/1)]">Please select where you need support.</p>
+          <p className="text-sm text-[hsla(var(--color-secondary)/1)]">Please select where you need support.</p>
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
             {([
               { key: 'product', label: 'Product & Formula' },
@@ -288,7 +253,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
               <Link
                 key={key}
                 href={`/pages/faq?category=${key}`}
-                className="whitespace-nowrap rounded-full border border-[var(--color-border)] px-5 py-2 text-xs tracking-[0.08em] uppercase font-medium text-[hsla(var(--color-secondary)/0.8)] hover:border-[#1A1A18] hover:text-[#1A1A18] transition-colors duration-200"
+                className="whitespace-nowrap rounded-full border border-[var(--color-border)] px-5 py-2 text-xs tracking-[0.08em] uppercase font-medium text-[hsla(var(--color-secondary)/0.8)] hover:border-[#1E1854] hover:text-[#1E1854] transition-colors duration-200"
               >
                 {label}
               </Link>
@@ -298,7 +263,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
       </section>
 
       {/* Sticky mobile CTA */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-[#F8F8F8]/95 backdrop-blur-sm border-t border-[var(--color-border)] p-4">
+      <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-[#1E185408]/95 backdrop-blur-sm border-t border-[var(--color-border)] p-4">
         <AddToCartButton variantId={firstVariant.id} />
       </div>
     </main>

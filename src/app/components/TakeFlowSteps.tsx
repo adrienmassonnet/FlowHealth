@@ -27,21 +27,21 @@ export default function TakeFlowSteps() {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="border-t border-[var(--color-border)]">
-      <div className="max-w-[1360px] mx-auto px-6 py-20 md:py-28">
+    <section>
+      <div className="max-w-[1200px] mx-auto px-6 py-20">
         <div className="flex flex-col md:flex-row items-start gap-16 md:gap-20">
 
           {/* Left: text */}
           <div className="w-full md:w-[42%] shrink-0 space-y-6 md:pt-4">
             <div className="space-y-3">
-              <p className="text-xs tracking-[0.14em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">
+              <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">
                 How to consume Flow
               </p>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-[-0.03em] leading-[1.05]">
+              <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-[1.05]">
                 Put yourself in the best predisposition
               </h2>
             </div>
-            <p className="text-base text-[hsla(var(--color-secondary)/0.75)] leading-relaxed max-w-sm">
+            <p className="text-sm text-[hsla(var(--color-secondary)/0.75)] leading-relaxed max-w-sm">
               One bottle, once a day. Flow fits seamlessly into your routine — no mixing, no measuring, no waiting.
             </p>
 
@@ -53,8 +53,8 @@ export default function TakeFlowSteps() {
                   onClick={() => setActive(i)}
                   className={`w-full text-left flex items-center gap-4 py-3 px-4 rounded-xl transition-all duration-300 ${
                     active === i
-                      ? 'bg-[#F0F2F1]'
-                      : 'hover:bg-[#F8F8F8]'
+                      ? 'bg-[#1E18540A]'
+                      : 'hover:bg-[#1E185408]'
                   }`}
                 >
                   <span className={`text-xs font-semibold tabular-nums tracking-[0.06em] transition-colors ${
@@ -64,7 +64,7 @@ export default function TakeFlowSteps() {
                   </span>
                   <div className="flex-1 min-w-0">
                     <p className={`text-sm font-semibold transition-colors leading-snug ${
-                      active === i ? 'text-[#1A1A18]' : 'text-[hsla(var(--color-secondary)/0.55)]'
+                      active === i ? 'text-[#1E1854]' : 'text-[hsla(var(--color-secondary)/0.55)]'
                     }`}>
                       {step.title}
                     </p>

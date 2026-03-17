@@ -146,13 +146,13 @@ export default function HealthCenter() {
   const [nutritionOpen, setNutritionOpen] = useState(false);
 
   return (
-    <section className="max-w-[1360px] mx-auto px-6 py-20">
+    <section className="max-w-[1200px] mx-auto px-6 py-20">
       <div className="mb-10 space-y-2">
-        <p className="text-xs tracking-[0.14em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">
+        <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">
           Purity & Transparency
         </p>
         <h2 className="text-3xl font-semibold tracking-[-0.02em]">What&apos;s in Flow. What isn&apos;t.</h2>
-        <p className="text-base text-[hsla(var(--color-secondary)/1)] max-w-md leading-relaxed">
+        <p className="text-sm text-[hsla(var(--color-secondary)/1)] max-w-md leading-relaxed">
           Every ingredient is disclosed. Every claim is verified. No hidden fillers, no corner-cutting — just a formula you can trust.
         </p>
       </div>
@@ -160,9 +160,9 @@ export default function HealthCenter() {
       <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-4 items-start">
 
         {/* LEFT — Calories highlight + nutrition sheet link */}
-        <div className="bg-[#F8F8F8] rounded-2xl overflow-hidden">
+        <div className="rounded-2xl overflow-hidden">
           <div className="flex flex-col items-center justify-center py-10 px-6">
-            <div className="w-44 h-44 rounded-full bg-[#1A1A18] flex flex-col items-center justify-center gap-1">
+            <div className="w-44 h-44 rounded-full bg-[#1E1854] flex flex-col items-center justify-center gap-1">
               <p className="text-5xl font-semibold text-white tracking-[-0.03em] leading-none">25</p>
               <p className="text-xs font-medium text-white/70 tracking-[0.04em]">kcal per serving</p>
               <button
@@ -189,14 +189,14 @@ export default function HealthCenter() {
               <div className="flex items-center justify-between px-6 py-5 border-b border-[var(--color-border)] shrink-0">
                 <div>
                   <p className="text-xs uppercase tracking-[0.1em] text-[hsla(var(--color-secondary)/0.45)] font-medium">Flow Health</p>
-                  <h3 className="text-lg font-semibold text-[#1A1A18] tracking-[-0.01em] mt-0.5">Full Nutrition Sheet</h3>
+                  <h3 className="text-lg font-semibold text-[#1E1854] tracking-[-0.01em] mt-0.5">Full Nutrition Sheet</h3>
                 </div>
                 <button
                   onClick={() => setNutritionOpen(false)}
-                  className="w-8 h-8 rounded-full bg-[#F8F8F8] flex items-center justify-center hover:bg-[#ECEEED] transition-colors shrink-0"
+                  className="w-8 h-8 rounded-full bg-[#1E185408] flex items-center justify-center hover:bg-[#1E18540D] transition-colors shrink-0"
                 >
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <path d="M2 2L10 10M10 2L2 10" stroke="#1A1A18" strokeWidth="1.5" strokeLinecap="round"/>
+                    <path d="M2 2L10 10M10 2L2 10" stroke="#1E1854" strokeWidth="1.5" strokeLinecap="round"/>
                   </svg>
                 </button>
               </div>
@@ -211,9 +211,9 @@ export default function HealthCenter() {
                       key={row.label}
                       className={`flex items-center justify-between py-2.5 border-b border-[var(--color-border)] ${row.indent ? 'pl-5' : ''}`}
                     >
-                      <span className={`text-sm ${row.indent ? 'text-[hsla(var(--color-secondary)/0.55)]' : 'text-[#1A1A18] font-medium'}`}>{row.label}</span>
+                      <span className={`text-sm ${row.indent ? 'text-[hsla(var(--color-secondary)/0.55)]' : 'text-[#1E1854] font-medium'}`}>{row.label}</span>
                       <div className="flex items-center gap-6">
-                        <span className="text-sm text-[#1A1A18]">{row.value}</span>
+                        <span className="text-sm text-[#1E1854]">{row.value}</span>
                         {row.daily
                           ? <span className="text-xs text-[hsla(var(--color-secondary)/0.4)] w-8 text-right">{row.daily}*</span>
                           : <span className="w-8" />
@@ -229,8 +229,8 @@ export default function HealthCenter() {
                   <p className="text-xs uppercase tracking-[0.1em] font-semibold text-[hsla(var(--color-secondary)/0.45)] mb-3">Active Ingredient Dosages</p>
                   {actives.map((a) => (
                     <div key={a.name} className="flex items-center justify-between py-2.5 border-b border-[var(--color-border)]">
-                      <span className="text-sm text-[#1A1A18]">{a.name}</span>
-                      <span className="text-sm font-semibold text-[#1A1A18] shrink-0 ml-6">{a.dose}</span>
+                      <span className="text-sm text-[#1E1854]">{a.name}</span>
+                      <span className="text-sm font-semibold text-[#1E1854] shrink-0 ml-6">{a.dose}</span>
                     </div>
                   ))}
                   <p className="text-[10px] text-[hsla(var(--color-secondary)/0.4)] mt-3 leading-relaxed">Swiss GMP · Vegan · Gluten-free · No artificial colours · Third-party tested for purity and potency.</p>
@@ -241,17 +241,17 @@ export default function HealthCenter() {
         )}
 
         {/* RIGHT — Purity badges (6 columns = 2 rows) */}
-        <div className="bg-[#F8F8F8] border border-[var(--color-border)] rounded-2xl overflow-hidden">
+        <div className="border border-[var(--color-border)] rounded-2xl overflow-hidden">
           <div className="grid grid-cols-3 sm:grid-cols-6 gap-px bg-[var(--color-border)]">
             {badges.map((badge) => (
               <div
                 key={badge.label}
-                className="bg-[#F8F8F8] flex flex-col items-center justify-center gap-3 px-3 py-6 text-center"
+                className="bg-white flex flex-col items-center justify-center gap-3 px-3 py-6 text-center"
               >
-                <span className={badge.absent ? 'text-[hsla(var(--color-secondary)/0.35)]' : 'text-[#1A1A18]'}>
+                <span className={badge.absent ? 'text-[hsla(var(--color-secondary)/0.35)]' : 'text-[#1E1854]'}>
                   {badge.icon}
                 </span>
-                <p className={`text-xs leading-snug font-medium ${badge.absent ? 'text-[hsla(var(--color-secondary)/0.4)]' : 'text-[#1A1A18]'}`}>
+                <p className={`text-xs leading-snug font-medium ${badge.absent ? 'text-[hsla(var(--color-secondary)/0.4)]' : 'text-[#1E1854]'}`}>
                   {badge.label}
                 </p>
               </div>
