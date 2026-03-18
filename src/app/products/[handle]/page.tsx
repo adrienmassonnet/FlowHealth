@@ -70,7 +70,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
             <AddToCartButton variantId={firstVariant.id} />
 
             {/* Service pillars */}
-            <div className="grid grid-cols-3 gap-px bg-[var(--color-border)] border border-[var(--color-border)] rounded-xl overflow-hidden">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-[var(--color-border)] border border-[var(--color-border)] rounded-xl overflow-hidden">
               {[
                 {
                   title: 'Same Day Dispatch',

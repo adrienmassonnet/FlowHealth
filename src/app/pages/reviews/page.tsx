@@ -49,7 +49,7 @@ export default async function ReviewsPage() {
       {/* Stats bar */}
       <section className="bg-[#1E18540A] border-b border-[var(--color-border)]">
         <div className="max-w-[1200px] mx-auto px-6 py-10">
-          <div className="grid grid-cols-3 gap-6 md:gap-0 md:flex md:items-center md:divide-x md:divide-[var(--color-border)]">
+          <div className="grid grid-cols-3 gap-3 sm:gap-6 md:gap-0 md:flex md:items-center md:divide-x md:divide-[var(--color-border)]">
             {stats.map((s) => (
               <div key={s.label} className="md:px-10 first:pl-0 last:pr-0 text-center md:text-left">
                 <p className="text-2xl md:text-3xl font-semibold tracking-[-0.03em] text-[#1E1854]">{s.value}</p>
@@ -68,7 +68,7 @@ export default async function ReviewsPage() {
               No reviews yet — check back soon.
             </p>
           ) : (
-            <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 space-y-5">
+            <div className="columns-1 sm:columns-2 lg:columns-3 gap-3 sm:gap-5 space-y-3 sm:space-y-5">
               {testimonials.map((t, i) => (
                 <div
                   key={i}

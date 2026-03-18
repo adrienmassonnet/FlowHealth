@@ -15,14 +15,14 @@ const savings = traditionalTotal - flowPrice;
 
 export default function SavingsBreakdown() {
   return (
-    <section className="max-w-[1200px] mx-auto px-6 py-20">
+    <section className="max-w-[1200px] mx-auto px-6 py-12 md:py-20">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
 
         {/* Left — heading + savings badge */}
         <div className="flex flex-col gap-8">
           <div className="space-y-2">
             <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">Save Money</p>
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
               One bottle replaces<br />8 daily supplements.
             </h2>
             <p className="text-sm text-[hsla(var(--color-secondary)/0.65)] max-w-sm leading-relaxed mt-3">
@@ -31,7 +31,7 @@ export default function SavingsBreakdown() {
           </div>
 
           {/* Savings badge */}
-          <div className="inline-flex flex-col items-center justify-center w-48 h-48 rounded-full bg-[#1E1854] text-white text-center p-6 self-start">
+          <div className="inline-flex flex-col items-center justify-center w-40 h-40 md:w-48 md:h-48 rounded-full bg-[#1E1854] text-white text-center p-6 self-start">
             <span className="text-[10px] uppercase tracking-[0.16em] text-white/50 font-medium mb-1">Monthly savings</span>
             <span className="text-4xl font-semibold tracking-[-0.03em] leading-none">CHF {savings}</span>
             <span className="text-xs text-white/50 mt-2 leading-snug">switching to Flow</span>

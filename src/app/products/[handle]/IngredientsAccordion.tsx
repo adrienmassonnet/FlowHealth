@@ -176,10 +176,10 @@ export default function IngredientsAccordion() {
   const hasMore = filtered.length > initialCount;
 
   return (
-    <section className="max-w-[1200px] mx-auto px-6 py-20">
+    <section className="max-w-[1200px] mx-auto px-6 py-12 md:py-20">
       <div className="mb-8 space-y-2">
         <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">Transparent Formula</p>
-        <h2 className="text-3xl font-semibold tracking-[-0.02em]">Get to Know the Ingredients</h2>
+        <h2 className="text-2xl sm:text-3xl font-semibold tracking-[-0.02em]">Get to Know the Ingredients</h2>
         <p className="text-sm text-[hsla(var(--color-secondary)/0.7)] max-w-md">Our formula is made of premium, quality ingredients selected for their efficacy. Tap any card to learn more.</p>
       </div>
 
@@ -190,7 +190,7 @@ export default function IngredientsAccordion() {
             key={key}
             onClick={() => { setSelectedCategory(key); setExpanded(false); }}
             className={cn(
-              'relative overflow-hidden whitespace-nowrap rounded-full border px-4 py-1.5 text-xs tracking-[0.08em] uppercase font-medium transition-colors duration-300',
+              'relative overflow-hidden whitespace-nowrap rounded-full border px-4 py-2.5 text-xs tracking-[0.08em] uppercase font-medium transition-colors duration-300',
               selectedCategory === key
                 ? 'border-[#1E1854] text-white'
                 : 'border-[var(--color-border)] text-[hsla(var(--color-secondary)/0.7)] hover:text-[#1E1854] hover:border-[#1E1854]'

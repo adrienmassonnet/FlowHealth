@@ -71,7 +71,7 @@ export default async function OurProductPage() {
       {/* Key numbers */}
       <section className="bg-white py-8">
         <div className="max-w-[1200px] mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[var(--color-border)] bg-[#1E185408] rounded-2xl overflow-hidden">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 sm:divide-x divide-[var(--color-border)] bg-[#1E185408] rounded-2xl overflow-hidden">
           {highlights.map((h) => (
             <div key={h.unit} className="py-10 px-6 text-center space-y-1">
               <p className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] text-[#1E1854]">{h.value}</p>

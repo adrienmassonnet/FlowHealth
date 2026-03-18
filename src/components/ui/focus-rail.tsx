@@ -107,7 +107,7 @@ export function FocusRail({
       tabIndex={0}
       onKeyDown={onKeyDown}
     >
-      <div className="max-w-[1200px] mx-auto px-6 py-20">
+      <div className="max-w-[1200px] mx-auto px-6 py-12 md:py-20">
 
         {/* Section header */}
         {heading && (
@@ -115,7 +115,7 @@ export function FocusRail({
             <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">
               From the blog
             </p>
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-[1.05] text-[#1E1854]">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-[1.05] text-[#1E1854]">
               {heading}
             </h2>
           </div>
@@ -127,7 +127,7 @@ export function FocusRail({
           <button
             onClick={handlePrev}
             aria-label="Previous"
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-30 flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border)] bg-white/90 backdrop-blur-sm shadow-sm text-[hsla(var(--color-secondary)/0.6)] transition hover:bg-white hover:text-[#1E1854] active:scale-95"
+            className="absolute left-2 sm:left-0 top-1/2 -translate-y-1/2 z-30 flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border)] bg-white/90 backdrop-blur-sm shadow-sm text-[hsla(var(--color-secondary)/0.6)] transition hover:bg-white hover:text-[#1E1854] active:scale-95"
           >
             <ChevronLeft className="h-4 w-4" />
           </button>
@@ -135,7 +135,7 @@ export function FocusRail({
           <button
             onClick={handleNext}
             aria-label="Next"
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-30 flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border)] bg-white/90 backdrop-blur-sm shadow-sm text-[hsla(var(--color-secondary)/0.6)] transition hover:bg-white hover:text-[#1E1854] active:scale-95"
+            className="absolute right-2 sm:right-0 top-1/2 -translate-y-1/2 z-30 flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border)] bg-white/90 backdrop-blur-sm shadow-sm text-[hsla(var(--color-secondary)/0.6)] transition hover:bg-white hover:text-[#1E1854] active:scale-95"
           >
             <ChevronRight className="h-4 w-4" />
           </button>
@@ -170,7 +170,7 @@ export function FocusRail({
               <motion.div
                 key={absIndex}
                 className={cn(
-                  "absolute aspect-[3/4] w-[220px] md:w-[260px] rounded-2xl overflow-hidden border border-[var(--color-border)] bg-[#1E18540A]",
+                  "absolute aspect-[3/4] w-[180px] sm:w-[220px] md:w-[260px] rounded-2xl overflow-hidden border border-[var(--color-border)] bg-[#1E18540A]",
                   isCenter ? "z-20 shadow-[0_8px_40px_rgba(30,24,84,0.12)]" : "z-10 shadow-sm"
                 )}
                 initial={false}
