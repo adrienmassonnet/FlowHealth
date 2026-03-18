@@ -147,11 +147,11 @@ const sections = [
 
 export default function IngredientsPage() {
   return (
-    <main className="max-w-[1200px] mx-auto px-6 py-24 space-y-24">
+    <main className="max-w-[1200px] mx-auto px-6 py-14 md:py-24 space-y-16 md:space-y-24">
 
       <div className="space-y-3 max-w-2xl">
         <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/1)]">Transparent Formula</p>
-        <h1 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">Ingredients</h1>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em]">Ingredients</h1>
         <p className="text-sm text-[hsla(var(--color-secondary)/1)] leading-relaxed">
           Every ingredient in Flow is selected for its clinical evidence, bioavailability, and synergy with the full formula. No fillers, no proprietary blends — just full doses of what works.
         </p>
@@ -163,7 +163,7 @@ export default function IngredientsPage() {
           {/* Left: heading */}
           <div className="p-10 md:p-14 flex flex-col justify-center border-b md:border-b-0 md:border-r border-[var(--color-border)]">
             <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] mb-4 font-medium">Our approach</p>
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight mb-4">
               Three axes of wellbeing
             </h2>
             <p className="text-sm text-[hsla(var(--color-secondary)/1)] leading-relaxed">

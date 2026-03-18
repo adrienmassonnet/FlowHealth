@@ -34,11 +34,11 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
   return (
     <main>
       {/* Product hero */}
-      <div className="pb-20 max-w-[1200px] mx-auto pl-3 pr-6">
+      <div className="pb-12 md:pb-20 max-w-[1200px] mx-auto pl-3 pr-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 md:gap-y-0 items-start">
           <ProductImageGallery images={images} title={product.title} />
 
-          <div className="sticky top-20 space-y-7 pl-6 pr-0 md:pl-8 lg:pl-12 pt-12">
+          <div className="md:sticky md:top-20 space-y-7 pl-6 pr-0 md:pl-8 lg:pl-12 pt-8 md:pt-12">
             <div className="space-y-2">
               <h1 className="text-3xl font-semibold tracking-[-0.02em] leading-tight">{product.title}</h1>
               <p className="text-xl font-medium mt-2">
@@ -52,7 +52,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
                 <p className="text-xs tracking-[0.1em] uppercase text-[hsla(var(--color-secondary)/1)]">Flavour</p>
                 <div className="flex flex-wrap gap-2">
                   {variants.map((v) => (
-                    <button key={v.id} className="border border-[var(--color-border)] px-4 py-2 text-xs tracking-wide hover:border-[hsla(var(--color-accent)/1)] transition-colors">
+                    <button key={v.id} className="border border-[var(--color-border)] px-4 py-2.5 text-xs min-h-[44px] tracking-wide hover:border-[hsla(var(--color-accent)/1)] transition-colors">
                       {v.title}
                     </button>
                   ))}

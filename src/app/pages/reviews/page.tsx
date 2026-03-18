@@ -36,7 +36,7 @@ export default async function ReviewsPage() {
             <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium mb-4">
               Reviews
             </p>
-            <h1 className="text-4xl md:text-5xl font-semibold tracking-[-0.03em] leading-[1.0] mb-5">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-[-0.03em] leading-[1.0] mb-5">
               What people say<br />about Flow
             </h1>
             <p className="text-sm text-[hsla(var(--color-secondary)/0.75)] leading-[1.7] max-w-md">

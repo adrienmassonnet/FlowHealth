@@ -49,7 +49,7 @@ export default function ComparisonTable() {
         {/* Header */}
         <div className="mb-12 space-y-4 max-w-xl">
           <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">Why Flow</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight text-[#1E1854]">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight text-[#1E1854]">
             How Flow compares
           </h2>
         </div>
@@ -57,8 +57,8 @@ export default function ComparisonTable() {
         {/* Table */}
         <div className="rounded-2xl overflow-hidden border border-[#1E1854]/20 bg-[#1E1854]">
 
-          {/* Column headers */}
-          <div className="grid grid-cols-[1fr_140px_260px]">
+          {/* Column headers — hidden on mobile, shown on md+ */}
+          <div className="hidden md:grid grid-cols-[1fr_140px_260px]">
             <div className="px-6 py-4 border-b border-white/10">
               <p className="text-[11px] tracking-[0.12em] uppercase font-medium text-white/30"></p>
             </div>
@@ -74,17 +74,37 @@ export default function ComparisonTable() {
           {rows.map((row, i) => (
             <div
               key={row.feature}
-              className={`grid grid-cols-[1fr_140px_260px]${i > 0 ? ' border-t border-white/10' : ''}`}
+              className={`${i > 0 ? 'border-t border-white/10' : ''}`}
             >
-              <div className="px-6 py-5 flex items-center">
+              {/* Desktop row */}
+              <div className="hidden md:grid grid-cols-[1fr_140px_260px]">
+                <div className="px-6 py-5 flex items-center">
+                  <p className="text-sm text-white/80 leading-relaxed">{row.feature}</p>
+                </div>
+                <div className="px-4 py-5 flex items-center justify-center border-l border-white/10 bg-white/10">
+                  <CheckIcon />
+                </div>
+                <div className="px-4 py-5 flex flex-col items-center justify-center gap-2 border-l border-white/10">
+                  <CrossIcon />
+                  <p className="text-xs text-white/60 text-center leading-snug">{row.others}</p>
+                </div>
+              </div>
+              {/* Mobile row — stacked */}
+              <div className="md:hidden px-5 py-5 space-y-3">
                 <p className="text-sm text-white/80 leading-relaxed">{row.feature}</p>
-              </div>
-              <div className="px-4 py-5 flex items-center justify-center border-l border-white/10 bg-white/10">
-                <CheckIcon />
-              </div>
-              <div className="px-4 py-5 flex flex-col items-center justify-center gap-2 border-l border-white/10">
-                <CrossIcon />
-                <p className="text-xs text-white/60 text-center leading-snug">{row.others}</p>
+                <div className="flex gap-4">
+                  <div className="flex items-center gap-2 flex-1 bg-white/10 rounded-lg px-3 py-2">
+                    <CheckIcon />
+                    <span className="text-[11px] uppercase tracking-[0.08em] font-semibold text-white">Flow</span>
+                  </div>
+                  <div className="flex flex-col items-start gap-1 flex-1 rounded-lg px-3 py-2">
+                    <div className="flex items-center gap-2">
+                      <CrossIcon />
+                      <span className="text-[11px] uppercase tracking-[0.08em] font-medium text-white/50">Others</span>
+                    </div>
+                    <p className="text-[11px] text-white/45 leading-snug">{row.others}</p>
+                  </div>
+                </div>
               </div>
             </div>
           ))}

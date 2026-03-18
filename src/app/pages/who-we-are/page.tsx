@@ -56,7 +56,7 @@ export default async function WhoWeArePage() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#1E1854] via-[#1E1854]/50 to-transparent" />
         <div className="relative z-10 max-w-[1200px] mx-auto px-6 pb-20 md:pb-28">
           <p className="text-xs tracking-[0.16em] uppercase text-white/40 font-medium mb-4">About Flow</p>
-          <h1 className="text-4xl md:text-6xl font-semibold tracking-[-0.03em] text-white leading-tight max-w-2xl">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-semibold tracking-[-0.03em] text-white leading-tight max-w-2xl">
             A small team.<br />An uncompromising standard.
           </h1>
           <p className="mt-6 text-sm text-white/60 max-w-md leading-relaxed">
@@ -67,7 +67,7 @@ export default async function WhoWeArePage() {
 
       {/* Origin story */}
       <section className="bg-[#1E1854] py-20">
-        <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
           <div className="relative aspect-[4/3] rounded-2xl overflow-hidden order-last md:order-first">
             <Image
               src="https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=900&q=85&auto=format&fit=crop"
@@ -92,7 +92,7 @@ export default async function WhoWeArePage() {
       </section>
 
       {/* Story intro */}
-      <section className="max-w-[1200px] mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <section className="max-w-[1200px] mx-auto px-6 py-12 md:py-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
         <div className="space-y-6">
           <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">Our Story</p>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">

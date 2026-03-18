@@ -75,18 +75,18 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#1E1854]/80 via-[#1E1854]/30 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#1E1854]/60 via-transparent to-transparent" />
 
-        <div className="relative z-10 max-w-[1200px] mx-auto px-6 pb-20 pt-28 w-full">
-          <div className="max-w-lg space-y-7">
+        <div className="relative z-10 max-w-[1200px] mx-auto px-6 pb-14 pt-20 md:pb-20 md:pt-28 w-full">
+          <div className="max-w-lg space-y-5 md:space-y-7">
             <p className="text-[11px] tracking-[0.16em] uppercase text-white/50 font-medium">
               {cms.heroTagline}
             </p>
-            <h1 className="text-5xl md:text-[4.2rem] font-semibold leading-[1.04] tracking-[-0.03em] text-white">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl md:text-[4.2rem] font-semibold leading-[1.04] tracking-[-0.03em] text-white">
               {cms.heroHeading}
             </h1>
             <div className="pt-1">
               <Link
                 href="/products/flow"
-                className="inline-flex items-center justify-center rounded-full bg-white text-[#1E1854] text-[11px] tracking-[0.12em] uppercase font-semibold px-8 py-4 hover:opacity-90 transition-opacity duration-500"
+                className="inline-flex items-center justify-center rounded-full bg-white text-[#1E1854] text-[11px] tracking-[0.12em] uppercase font-semibold px-7 py-3.5 md:px-8 md:py-4 hover:opacity-90 transition-opacity duration-500"
               >
                 Shop Flow
               </Link>
@@ -99,12 +99,12 @@ export default async function HomePage() {
       {featured && (
         <section className="py-24" style={{ background: 'linear-gradient(180deg, #1E185414 0%, #1E18540A 100%)' }}>
           <div className="max-w-[1200px] mx-auto px-6 space-y-12">
-            <h2 className="text-3xl md:text-4xl font-semibold leading-[1.2] tracking-[-0.03em] text-[#1E1854] max-w-[860px] mx-auto text-center">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.2] tracking-[-0.03em] text-[#1E1854] max-w-[860px] mx-auto text-center">
               {cms.missionHeading}
             </h2>
             <div className="max-w-[860px] mx-auto w-full bg-[#1E1854] rounded-3xl overflow-hidden flex flex-col md:flex-row md:min-h-[420px]">
               {/* Image */}
-              <div className="md:w-[40%] shrink-0 aspect-square md:aspect-auto flex self-stretch pl-10 pt-10 pr-0 pb-10">
+              <div className="md:w-[40%] shrink-0 aspect-square md:aspect-auto flex self-stretch pl-5 pt-5 pr-0 pb-5 md:pl-10 md:pt-10 md:pb-10">
                 {featuredImage && (
                   <div className="relative w-full h-full">
                     <Image
@@ -236,7 +236,7 @@ export default async function HomePage() {
         <div className="max-w-[1200px] mx-auto px-6 py-20">
           <div className="mb-10 space-y-4 max-w-2xl">
             <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">Timeline</p>
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">{cms.resultsHeading}</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">{cms.resultsHeading}</h2>
             <p className="text-sm text-[hsla(var(--color-secondary)/0.7)] leading-relaxed">{cms.resultsSubheading}</p>
           </div>
           <div className="bg-[#1E18540D] rounded-2xl px-6 md:px-10 py-10">
@@ -267,7 +267,7 @@ export default async function HomePage() {
       </section>
 
       {/* Venn diagram section */}
-      <section className="relative overflow-hidden py-20">
+      <section className="relative overflow-hidden py-16 md:py-20">
         <Image
           src={cms.vennBackgroundImageUrl || '/venn-bg.png'}
           alt="Flow Health formula"
@@ -276,10 +276,27 @@ export default async function HomePage() {
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-[#1E1854]/78" />
-        <div className="relative z-10 max-w-[1200px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <div className="relative z-10 max-w-[1200px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+
+          {/* Right: eyebrow + heading — shown first on mobile */}
+          <div className="space-y-5 md:hidden">
+            <p className="text-xs tracking-[0.16em] uppercase text-white/35 font-medium">The formula</p>
+            <h2 className="text-2xl sm:text-3xl font-semibold leading-tight tracking-[-0.03em] text-white">
+              {cms.vennHeading}
+            </h2>
+            <Link
+              href="/products/flow"
+              className="inline-flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium text-white/45 hover:text-white transition-colors duration-200"
+            >
+              Read more about our product
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2.5 6H9.5M6.5 3L9.5 6L6.5 9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </Link>
+          </div>
 
           {/* Left: Venn SVG — white circles on dark bg, overlaps visible via additive fill */}
-          <svg viewBox="0 0 535 510" className="w-full" style={{ fontFamily: 'inherit' }}>
+          <svg viewBox="0 0 535 510" className="w-full max-w-xs mx-auto md:max-w-full" style={{ fontFamily: 'inherit' }}>
             <circle cx="160" cy="155" r="150" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.18)" strokeWidth="1.5" />
             <circle cx="380" cy="155" r="150" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.18)" strokeWidth="1.5" />
             <circle cx="270" cy="346" r="150" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.18)" strokeWidth="1.5" />
@@ -300,8 +317,8 @@ export default async function HomePage() {
             </text>
           </svg>
 
-          {/* Right: eyebrow + heading */}
-          <div className="space-y-5">
+          {/* Right: eyebrow + heading — desktop only (mobile version rendered above) */}
+          <div className="hidden md:block space-y-5">
             <p className="text-xs tracking-[0.16em] uppercase text-white/35 font-medium">The formula</p>
             <h2 className="text-3xl md:text-4xl font-semibold leading-tight tracking-[-0.03em] text-white">
               {cms.vennHeading}

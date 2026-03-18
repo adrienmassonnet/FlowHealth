@@ -19,7 +19,7 @@ export default async function OurPhilosophyPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#1E1854] via-[#1E1854]/50 to-transparent" />
         <div className="relative z-10 max-w-[1200px] mx-auto px-6 pb-20 md:pb-28">
           <p className="text-xs tracking-[0.16em] uppercase text-white/40 font-medium mb-4">About Flow</p>
-          <h1 className="text-4xl md:text-6xl font-semibold tracking-[-0.03em] text-white leading-tight max-w-2xl">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-semibold tracking-[-0.03em] text-white leading-tight max-w-2xl">
             Built for minds that refuse to settle.
           </h1>
           <p className="mt-6 text-sm text-white/60 max-w-md leading-relaxed">
@@ -30,7 +30,7 @@ export default async function OurPhilosophyPage() {
 
       {/* Mission */}
       <section className="bg-white">
-        <div className="max-w-[1200px] mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <div className="max-w-[1200px] mx-auto px-6 py-12 md:py-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
           <div className="space-y-6">
             <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">Our Mission</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
@@ -55,7 +55,7 @@ export default async function OurPhilosophyPage() {
 
       {/* What we believe */}
       <section className="bg-[#1E185408]">
-        <div className="max-w-[1200px] mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+        <div className="max-w-[1200px] mx-auto px-6 py-12 md:py-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
           <div className="space-y-6 md:sticky md:top-28">
             <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">What We Believe</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
@@ -110,7 +110,7 @@ export default async function OurPhilosophyPage() {
 
       {/* The standard we hold ourselves to */}
       <section className="bg-white">
-        <div className="max-w-[1200px] mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <div className="max-w-[1200px] mx-auto px-6 py-12 md:py-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
           <div className="relative aspect-[4/3] rounded-2xl overflow-hidden order-last md:order-first">
             <Image
               src="https://images.unsplash.com/photo-1596078842550-f9b9bdd7bdc7?w=900&q=85&auto=format&fit=crop"

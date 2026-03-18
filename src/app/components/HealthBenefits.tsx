@@ -68,7 +68,7 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
         <p className="text-[11px] tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.45)] font-medium">
           {sectionLabel || 'Health Benefits'}
         </p>
-        <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
           {heading || 'Everything your body needs.\nNothing it doesn\'t.'}
         </h2>
       </div>
@@ -85,7 +85,7 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
                 key={s.number}
                 onClick={() => setActive(i)}
                 className={`
-                  relative flex flex-col items-center justify-center gap-2 px-2 py-3.5 text-center
+                  relative flex flex-col items-center justify-center gap-2 px-2 py-4 text-center
                   rounded-xl transition-all duration-300 w-full
                   ${i === benefits.length - 1 && benefits.length % 2 !== 0 ? 'col-span-2' : ''}
                   ${isActive

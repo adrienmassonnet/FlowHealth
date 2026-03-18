@@ -32,13 +32,13 @@ export default function PurchaseSelector({ price, currencyCode, discountPercent 
 
         <div className="flex items-start gap-3">
           {/* Radio */}
-          <span className={`mt-0.5 shrink-0 w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors ${
+          <span className={`mt-0.5 shrink-0 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
             selected === 'subscribe'
               ? 'border-[hsla(var(--color-accent)/1)]'
               : 'border-[var(--color-border)]'
           }`}>
             {selected === 'subscribe' && (
-              <span className="w-2 h-2 rounded-full bg-[hsla(var(--color-accent)/1)]" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[hsla(var(--color-accent)/1)]" />
             )}
           </span>
 
@@ -68,13 +68,13 @@ export default function PurchaseSelector({ price, currencyCode, discountPercent 
       >
         <div className="flex items-start gap-3">
           {/* Radio */}
-          <span className={`mt-0.5 shrink-0 w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors ${
+          <span className={`mt-0.5 shrink-0 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
             selected === 'once'
               ? 'border-[hsla(var(--color-accent)/1)]'
               : 'border-[var(--color-border)]'
           }`}>
             {selected === 'once' && (
-              <span className="w-2 h-2 rounded-full bg-[hsla(var(--color-accent)/1)]" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[hsla(var(--color-accent)/1)]" />
             )}
           </span>
 

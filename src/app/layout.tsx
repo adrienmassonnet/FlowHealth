@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
 
         <footer className="bg-[#1E1854] text-white/50 mt-0">
-          <div className="max-w-[1200px] mx-auto px-6 py-16 grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16">
+          <div className="max-w-[1200px] mx-auto px-6 py-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16">
 
             {/* About Flow */}
             <div className="space-y-4">
@@ -68,7 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
 
             {/* Newsletter */}
-            <div className="col-span-2 md:col-span-1 space-y-4">
+            <div className="sm:col-span-2 md:col-span-1 space-y-4">
               <p className="text-white text-xs font-semibold tracking-[0.12em] uppercase">Newsletter</p>
               <form className="flex items-center border-b border-white/20 pb-px focus-within:border-white/50 transition-colors">
                 <input

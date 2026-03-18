@@ -45,7 +45,7 @@ const FAQHeader = ({ title, subtitle }: { title: string; subtitle: string }) => 
     <span className="mb-4 text-xs tracking-[0.16em] uppercase font-medium text-[hsla(var(--color-secondary)/0.5)]">
       {subtitle}
     </span>
-    <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-[1.0] text-[#1E1854]">
+    <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-[1.0] text-[#1E1854]">
       {title}
     </h2>
     <span className="absolute -top-[350px] left-[50%] z-0 h-[500px] w-[600px] -translate-x-[50%] rounded-full bg-[hsla(var(--color-accent)/0.04)] blur-3xl pointer-events-none" />
@@ -67,7 +67,7 @@ const FAQTabs = ({
         key={key}
         onClick={() => setSelected(key)}
         className={cn(
-          'relative overflow-hidden whitespace-nowrap rounded-full border px-4 py-1.5 text-xs tracking-[0.08em] uppercase font-medium transition-colors duration-300',
+          'relative overflow-hidden whitespace-nowrap rounded-full border px-4 py-2.5 text-xs tracking-[0.08em] uppercase font-medium transition-colors duration-300',
           selected === key
             ? 'border-[#1E1854] text-white'
             : 'border-[var(--color-border)] text-[hsla(var(--color-secondary)/0.7)] hover:text-[#1E1854] hover:border-[#1E1854]'

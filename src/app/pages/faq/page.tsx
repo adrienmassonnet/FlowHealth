@@ -25,7 +25,7 @@ export default async function FaqPage({ searchParams }: { searchParams: Promise<
         <div className="max-w-[1200px] mx-auto px-6 py-20 md:py-24">
           <div className="max-w-2xl">
             <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] mb-4 font-medium">Support</p>
-            <h1 className="text-4xl md:text-5xl font-semibold tracking-[-0.03em] leading-[1.0] mb-5">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-[-0.03em] leading-[1.0] mb-5">
               Frequently asked<br />questions
             </h1>
             <p className="text-sm text-[hsla(var(--color-secondary)/1)] leading-[1.7]">
