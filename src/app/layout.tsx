@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
-import { Outfit, Funnel_Display } from "next/font/google";
+import { Outfit } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 import Header from "@/app/components/Header";
 
 const outfit = Outfit({ subsets: ["latin"] });
-const funnelDisplay = Funnel_Display({
-  subsets: ["latin"],
-  variable: "--font-funnel-display",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "Flow Health",
@@ -19,7 +14,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${outfit.className} ${funnelDisplay.variable} antialiased`} suppressHydrationWarning>
+      <body className={`${outfit.className} antialiased`} suppressHydrationWarning>
         <Header />
         {/* Offset for fixed header (announcement bar ~32px + nav ~56px) */}
         <div className="pt-[88px]">

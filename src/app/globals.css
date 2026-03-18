@@ -12,12 +12,6 @@
 
 @theme inline {
   --font-sans: var(--font-outfit);
-  --font-display: var(--font-funnel-display);
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-funnel-display), system-ui, sans-serif;
-  text-transform: uppercase;
 }
 
 html {
