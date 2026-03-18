@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import { Inter } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 import Header from "@/app/components/Header";
 
-const outfit = Outfit({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
   title: "Flow Health",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${outfit.className} antialiased`} suppressHydrationWarning>
+      <body className={`${inter.variable} antialiased`} suppressHydrationWarning>
         <Header />
         {/* Offset for fixed header (announcement bar ~32px + nav ~56px) */}
         <div className="pt-[88px]">
