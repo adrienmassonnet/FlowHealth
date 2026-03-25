@@ -1,25 +1,4 @@
-const rows = [
-  {
-    feature: 'Clinically-studied formula with 8 active ingredients at full doses',
-    others: 'Underdosed or proprietary blends',
-  },
-  {
-    feature: 'One formula replaces 4–6 separate supplements',
-    others: 'Multiple products required',
-  },
-  {
-    feature: 'Ready-to-drink — no pills, no mixing, no measuring',
-    others: 'Multiple capsules or powders spread across the day',
-  },
-  {
-    feature: 'Each ingredient backed by peer-reviewed research',
-    others: 'Rarely cited',
-  },
-  {
-    feature: 'Swiss-made, third-party tested for purity & safety',
-    others: 'Rarely disclosed',
-  },
-];
+import { getComparisonRows } from '@/lib/contentful';
 
 function CheckIcon() {
   return (
@@ -41,7 +20,9 @@ function CrossIcon() {
   );
 }
 
-export default function ComparisonTable() {
+export default async function ComparisonTable() {
+  const rows = await getComparisonRows();
+
   return (
     <section className="bg-white border-y border-[var(--color-border)]">
       <div className="max-w-[1200px] mx-auto px-6 py-20">
@@ -73,7 +54,7 @@ export default function ComparisonTable() {
           {/* Rows */}
           {rows.map((row, i) => (
             <div
-              key={row.feature}
+              key={row.order}
               className={`${i > 0 ? 'border-t border-white/10' : ''}`}
             >
               {/* Desktop row */}
@@ -86,7 +67,7 @@ export default function ComparisonTable() {
                 </div>
                 <div className="px-4 py-5 flex flex-col items-center justify-center gap-2 border-l border-white/10">
                   <CrossIcon />
-                  <p className="text-xs text-white/60 text-center leading-snug">{row.others}</p>
+                  <p className="text-xs text-white/60 text-center leading-snug">{row.othersLabel}</p>
                 </div>
               </div>
               {/* Mobile row — stacked */}
@@ -102,7 +83,7 @@ export default function ComparisonTable() {
                       <CrossIcon />
                       <span className="text-[11px] uppercase tracking-[0.08em] font-medium text-white/50">Others</span>
                     </div>
-                    <p className="text-[11px] text-white/45 leading-snug">{row.others}</p>
+                    <p className="text-[11px] text-white/45 leading-snug">{row.othersLabel}</p>
                   </div>
                 </div>
               </div>

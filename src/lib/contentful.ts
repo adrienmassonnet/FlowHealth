@@ -286,3 +286,91 @@ export async function getTestimonials(): Promise<Testimonial[]> {
   });
   return res.items.map((item: { fields: Testimonial }) => item.fields as Testimonial);
 }
+
+// ─── Blog Posts ───────────────────────────────────────────────────────────────
+
+export interface BlogPost {
+  title: string;
+  slug: string;
+  excerpt: string;
+  coverImageUrl: string;
+  category: string;
+  tags: string[];
+  publishedDate: string;
+  readTime: string;
+  featured: boolean;
+  order: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  body: any; // Contentful Rich Text document
+}
+
+export async function getBlogPosts(): Promise<BlogPost[]> {
+  const res = await client().getEntries({
+    content_type: 'blogPost',
+    order: ['fields.order'],
+    limit: 50,
+  });
+  return res.items.map((item: { fields: BlogPost }) => item.fields as BlogPost);
+}
+
+export async function getBlogPost(slug: string): Promise<BlogPost | null> {
+  const res = await client().getEntries({
+    content_type: 'blogPost',
+    'fields.slug': slug,
+    limit: 1,
+  });
+  if (res.items.length === 0) return null;
+  return res.items[0].fields as BlogPost;
+}
+
+// ─── Comparison Rows ──────────────────────────────────────────────────────────
+
+export interface ComparisonRow {
+  feature: string;
+  othersLabel: string;
+  order: number;
+}
+
+export async function getComparisonRows(): Promise<ComparisonRow[]> {
+  const res = await client().getEntries({
+    content_type: 'comparisonRow',
+    order: ['fields.order'],
+    limit: 20,
+  });
+  return res.items.map((item: { fields: ComparisonRow }) => item.fields as ComparisonRow);
+}
+
+// ─── Savings Supplements ─────────────────────────────────────────────────────
+
+export interface SavingsSupplement {
+  name: string;
+  monthlyPriceCHF: number;
+  order: number;
+}
+
+export async function getSavingsSupplements(): Promise<SavingsSupplement[]> {
+  const res = await client().getEntries({
+    content_type: 'savingsSupplement',
+    order: ['fields.order'],
+    limit: 20,
+  });
+  return res.items.map((item: { fields: SavingsSupplement }) => item.fields as SavingsSupplement);
+}
+
+// ─── Product Highlights ───────────────────────────────────────────────────────
+
+export interface ProductHighlight {
+  value: string;
+  unit: string;
+  description: string;
+  order: number;
+}
+
+export async function getProductHighlights(): Promise<ProductHighlight[]> {
+  const res = await client().getEntries({
+    content_type: 'productHighlight',
+    order: ['fields.order'],
+    limit: 10,
+  });
+  return res.items.map((item: { fields: ProductHighlight }) => item.fields as ProductHighlight);
+}

@@ -1,19 +1,12 @@
-const supplements = [
-  { name: 'Nootropic Stack (Zynamite®, Alpha-GPC)', price: 45 },
-  { name: 'Adaptogens (Ashwagandha, Rhodiola, Ginseng)', price: 50 },
-  { name: 'Lion\'s Mane Mushroom Extract', price: 35 },
-  { name: 'L-Theanine & Caffeine', price: 20 },
-  { name: 'Bacopa Monnieri', price: 25 },
-  { name: 'Electrolytes Complex', price: 30 },
-  { name: 'Magnesium Glycinate', price: 20 },
-  { name: 'Prebiotics & Probiotics', price: 40 },
-];
+import { getSavingsSupplements } from '@/lib/contentful';
 
-const traditionalTotal = supplements.reduce((sum, s) => sum + s.price, 0);
 const flowPrice = 79;
-const savings = traditionalTotal - flowPrice;
 
-export default function SavingsBreakdown() {
+export default async function SavingsBreakdown() {
+  const supplements = await getSavingsSupplements();
+  const traditionalTotal = supplements.reduce((sum, s) => sum + s.monthlyPriceCHF, 0);
+  const savings = traditionalTotal - flowPrice;
+
   return (
     <section className="max-w-[1200px] mx-auto px-6 py-12 md:py-20">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
@@ -23,7 +16,7 @@ export default function SavingsBreakdown() {
           <div className="space-y-2">
             <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">Save Money</p>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
-              One bottle replaces<br />8 daily supplements.
+              One bottle replaces<br />{supplements.length} daily supplements.
             </h2>
             <p className="text-sm text-[hsla(var(--color-secondary)/0.65)] max-w-sm leading-relaxed mt-3">
               The average person spends over CHF {traditionalTotal} every month on individual supplements. Flow consolidates everything into one bottle — without compromise.
@@ -46,7 +39,7 @@ export default function SavingsBreakdown() {
             {supplements.map((s) => (
               <div key={s.name} className="flex items-center justify-between gap-4 py-3.5">
                 <span className="text-sm text-[hsla(var(--color-secondary)/0.75)]">{s.name}</span>
-                <span className="text-sm font-medium text-[#1E1854] shrink-0">CHF {s.price}</span>
+                <span className="text-sm font-medium text-[#1E1854] shrink-0">CHF {s.monthlyPriceCHF}</span>
               </div>
             ))}
           </div>

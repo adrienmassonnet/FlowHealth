@@ -1,13 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { getIngredients } from '@/lib/contentful';
-
-const highlights = [
-  { value: '13', unit: 'Active ingredients', description: 'Each chosen for clinical evidence, not marketing appeal.' },
-  { value: '0', unit: 'Proprietary blends', description: 'Every dose is disclosed. No hidden fillers or trace amounts.' },
-  { value: '30+', unit: 'Clinical studies', description: 'The evidence base behind our core ingredient stack.' },
-  { value: 'Swiss', unit: 'GMP certified', description: 'Manufactured to pharmaceutical-grade standards in Switzerland.' },
-];
+import { getIngredients, getProductHighlights } from '@/lib/contentful';
 
 const formats = [
   {
@@ -43,7 +36,7 @@ const formats = [
 ];
 
 export default async function OurProductPage() {
-  const ingredients = await getIngredients();
+  const [ingredients, highlights] = await Promise.all([getIngredients(), getProductHighlights()]);
   return (
     <main>
 
