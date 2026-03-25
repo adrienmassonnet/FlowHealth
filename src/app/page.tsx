@@ -61,7 +61,7 @@ export default async function HomePage() {
   return (
     <main>
       {/* Hero */}
-      <section className="relative overflow-hidden min-h-[90vh] flex items-end">
+      <section className="relative overflow-hidden min-h-screen flex items-end">
         {/* Background lifestyle image — sourced from Contentful */}
         <Image
           src={cms.heroImageUrl || '/hero-lifestyle.png'}
