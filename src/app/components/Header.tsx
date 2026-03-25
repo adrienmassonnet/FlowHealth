@@ -224,16 +224,13 @@ const mobileNavLinks = [
 ];
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
+  const scrolled = true;
   const [activeMenu, setActiveMenu] = useState<ActiveMenu>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 72);
-      setActiveMenu(null);
-    };
+    const onScroll = () => setActiveMenu(null);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
