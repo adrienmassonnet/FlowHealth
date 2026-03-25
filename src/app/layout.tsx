@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${outfit.className} antialiased`} suppressHydrationWarning>
         <Header />
         {/* Offset for fixed header (announcement bar ~32px + nav ~56px) */}
-        <div className="pt-[88px]">
+        <div>
           {children}
 
         <footer className="bg-[#1E1854] text-white/50 mt-0">
