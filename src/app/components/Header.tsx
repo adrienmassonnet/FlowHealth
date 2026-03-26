@@ -246,6 +246,16 @@ export default function Header() {
     return () => document.removeEventListener('mousedown', handleClick);
   }, []);
 
+
+  // Lock body scroll when mobile drawer is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileOpen]);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   function openMenu(menu: ActiveMenu) {
@@ -284,7 +294,7 @@ export default function Header() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm md:hidden"
+              className="fixed inset-0 z-[60] bg-black/30 backdrop-blur-sm md:hidden"
               onClick={() => setMobileOpen(false)}
             />
             <motion.div
@@ -293,7 +303,7 @@ export default function Header() {
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed top-0 left-0 bottom-0 z-50 w-72 bg-white flex flex-col md:hidden shadow-2xl"
+              className="fixed top-0 left-0 bottom-0 z-[70] w-72 bg-white flex flex-col md:hidden shadow-2xl"
             >
               <div className="flex items-center justify-between px-6 h-16 border-b border-[var(--color-border)]">
                 <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2.5" aria-label="Flow Health">
