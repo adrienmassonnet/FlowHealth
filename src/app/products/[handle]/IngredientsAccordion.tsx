@@ -222,14 +222,15 @@ export default function IngredientsAccordion() {
           transition={{ duration: 0.2 }}
           className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"
         >
-          {visible.map((ing) => (
-            <FlipCard
-              key={ing.name}
-              name={ing.name}
-              tagline={ing.tagline}
-              description={ing.description}
-              image={ing.image}
-            />
+          {visible.map((ing, i) => (
+            <div key={ing.name} className={i >= 6 && !expanded ? 'hidden sm:block' : ''}>
+              <FlipCard
+                name={ing.name}
+                tagline={ing.tagline}
+                description={ing.description}
+                image={ing.image}
+              />
+            </div>
           ))}
         </motion.div>
       </AnimatePresence>

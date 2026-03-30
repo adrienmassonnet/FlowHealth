@@ -3,7 +3,7 @@ import { Outfit } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 import Header from "@/app/components/Header";
-
+import ScrollManager from "@/app/components/ScrollManager";
 const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -15,6 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${outfit.className} antialiased`} suppressHydrationWarning>
+        <ScrollManager />
         <Header />
         {/* Offset for fixed header (announcement bar ~32px + nav ~56px) */}
         <div>

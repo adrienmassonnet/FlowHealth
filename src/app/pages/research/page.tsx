@@ -1,6 +1,6 @@
 export default function ResearchPage() {
   return (
-    <main className="max-w-4xl mx-auto px-6 py-14 md:py-24 space-y-12 md:space-y-16">
+    <main className="max-w-4xl mx-auto px-6 pt-20 pb-14 md:pb-24 space-y-12 md:space-y-16">
 
       <div className="space-y-3">
         <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/1)]">Science-backed</p>

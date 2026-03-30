@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { getIngredients, getProductHighlights } from '@/lib/contentful';
+import IngredientCard from './IngredientCard';
 
 const formats = [
   {
@@ -41,7 +42,7 @@ export default async function OurProductPage() {
     <main>
 
       {/* Hero */}
-      <section className="relative min-h-[60vh] flex items-end bg-[#1E1854] overflow-hidden">
+      <section className="relative min-h-[60vh] flex items-end bg-[#1E1854] overflow-hidden pt-20">
         <Image
           src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1800&q=85&auto=format&fit=crop"
           alt="Our product"
@@ -107,30 +108,21 @@ export default async function OurProductPage() {
             <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">Key Ingredients</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">What&apos;s inside Flow.</h2>
           </div>
-          <div className="space-y-px border border-[var(--color-border)] rounded-2xl overflow-hidden">
-            {ingredients.map((ing) => (
-              <div key={ing.name} className="bg-white grid grid-cols-1 md:grid-cols-[80px_1fr_auto] gap-0 items-stretch">
-                <div className="relative h-20 md:h-auto md:aspect-square overflow-hidden hidden md:block">
-                  <Image src={ing.imageUrl ?? ''} alt={ing.imageAlt || ing.name} fill className="object-cover" sizes="80px" />
-                </div>
-                <div className="p-6 space-y-1">
-                  <div className="flex flex-wrap items-center gap-3">
-                    <h3 className="text-base font-semibold text-[#1E1854] tracking-[-0.01em]">{ing.name}</h3>
-                    <span className="text-[10px] uppercase tracking-[0.08em] border border-[var(--color-border)] px-2.5 py-0.5 rounded-full text-[hsla(var(--color-secondary)/0.5)] font-medium">{ing.category}</span>
-                  </div>
-                  <p className="text-xs text-[hsla(var(--color-secondary)/0.45)]">{ing.form}</p>
-                  <p className="text-sm text-[hsla(var(--color-secondary)/0.65)] leading-relaxed pt-1">{ing.description}</p>
-                </div>
-                <div className="flex items-center px-6 border-t md:border-t-0 md:border-l border-[var(--color-border)]">
-                  <div className="text-right">
-                    <p className="text-xl font-semibold text-[#1E1854] tracking-[-0.02em]">{ing.dose}</p>
-                    <p className="text-xs text-[hsla(var(--color-secondary)/0.4)] uppercase tracking-[0.06em]">per serving</p>
-                  </div>
-                </div>
-              </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {ingredients.map((ing, i) => (
+              <IngredientCard
+                key={`${ing.name}-${i}`}
+                name={ing.name}
+                form={ing.form ?? ''}
+                category={ing.category ?? ''}
+                description={ing.description ?? ''}
+                dose={ing.dose ?? ''}
+                imageUrl={ing.imageUrl}
+                imageAlt={ing.imageAlt}
+              />
             ))}
           </div>
-          <p className="mt-4 text-xs text-[hsla(var(--color-secondary)/0.4)] text-center">
+          <p className="mt-8 text-xs text-[hsla(var(--color-secondary)/0.4)] text-center">
             + 6 additional supporting ingredients including Alpha-GPC, B-complex vitamins, and Black Pepper extract for bioavailability.
           </p>
         </div>

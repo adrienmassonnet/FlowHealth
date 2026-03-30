@@ -31,7 +31,7 @@ export default async function ReviewsPage() {
     <main>
       {/* Hero */}
       <section className="bg-white border-b border-[var(--color-border)]">
-        <div className="max-w-[1200px] mx-auto px-6 py-20 md:py-24">
+        <div className="max-w-[1200px] mx-auto px-6 pt-20 pb-20 md:pb-24">
           <div className="max-w-2xl">
             <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium mb-4">
               Reviews

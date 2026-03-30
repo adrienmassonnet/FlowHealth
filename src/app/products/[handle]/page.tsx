@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
@@ -12,9 +13,7 @@ import PurchaseSelector from './PurchaseSelector';
 import BenefitsTimeline from './BenefitsTimeline';
 import HealthCenter from './HealthCenter';
 import MainBenefits from '@/app/components/MainBenefits';
-
-
-
+import SelectionProcessSection from './SelectionProcessSection';
 
 
 export default async function ProductPage({ params }: { params: Promise<{ handle: string }> }) {
@@ -34,7 +33,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
   return (
     <main>
       {/* Product hero */}
-      <div className="pb-12 md:pb-20 max-w-[1200px] mx-auto pl-3 pr-6">
+      <div className="pt-20 pb-12 md:pb-20 max-w-[1200px] mx-auto pl-3 pr-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 md:gap-y-0 items-start">
           <ProductImageGallery images={images} title={product.title} />
 
@@ -128,84 +127,14 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
 
       <IngredientsAccordion />
 
-      {/* Our selection process */}
-      <section className="max-w-[1200px] mx-auto px-6 py-20">
-        <div className="relative rounded-3xl overflow-hidden h-[560px]">
-          <Image
-            src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=1400&q=85&auto=format&fit=crop"
-            alt="Our selection process"
-            fill
-            className="object-cover object-center"
-            sizes="(max-width: 768px) 100vw, 1360px"
-          />
-          {/* Soft overlay to keep headline legible */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/15 to-black/25" />
-          <div className="absolute inset-0 flex flex-col justify-between p-8 md:p-12 pt-12 md:pt-16">
-            {/* Headline */}
-            <h2 className="text-3xl md:text-4xl font-semibold text-white max-w-xl leading-[1.1] drop-shadow-sm">
-              Our rigorous ingredient selection process.
-            </h2>
-            {/* Bottom frosted panel */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 bg-black/40 backdrop-blur-md rounded-2xl p-8">
-              {[
-                {
-                  title: 'Peer-Reviewed Evidence',
-                  description: 'Every ingredient is backed by human clinical trials — not animal studies or in-vitro data.',
-                  icon: (
-                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="18" cy="18" r="8" stroke="white" strokeWidth="1.5"/>
-                      <path d="M18 10V10.5M18 25.5V26M10 18H10.5M25.5 18H26M12.4 12.4L12.75 12.75M23.25 23.25L23.6 23.6M12.4 23.6L12.75 23.25M23.25 12.75L23.6 12.4" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-                    </svg>
-                  ),
-                },
-                {
-                  title: 'Clinical Dosing',
-                  description: 'We dose at proven therapeutic levels — no pixie-dusting or proprietary blends hiding underdoses.',
-                  icon: (
-                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect x="13" y="5" width="10" height="26" rx="5" stroke="white" strokeWidth="1.5"/>
-                      <line x1="13" y1="18" x2="23" y2="18" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-                      <line x1="16" y1="12" x2="20" y2="12" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-                    </svg>
-                  ),
-                },
-                {
-                  title: 'Bioavailable Forms',
-                  description: 'We select the most bioavailable form of each compound — the exact form used in the clinical research.',
-                  icon: (
-                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M18 6 C18 6 10 14 10 22 C10 27.5 13.6 31 18 31 C22.4 31 26 27.5 26 22 C26 14 18 6 18 6Z" stroke="white" strokeWidth="1.5" strokeLinejoin="round"/>
-                      <line x1="18" y1="19" x2="18" y2="31" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-                      <line x1="14" y1="23" x2="18" y2="19" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-                    </svg>
-                  ),
-                },
-                {
-                  title: 'Swiss GMP Manufacturing',
-                  description: 'Produced under pharmaceutical-grade Swiss GMP conditions — every batch tested for purity and potency.',
-                  icon: (
-                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect x="9" y="5" width="18" height="26" rx="2" stroke="white" strokeWidth="1.5"/>
-                      <line x1="13" y1="13" x2="23" y2="13" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-                      <line x1="13" y1="19" x2="23" y2="19" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-                      <line x1="13" y1="25" x2="19" y2="25" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-                    </svg>
-                  ),
-                },
-              ].map((item) => (
-                <div key={item.title}>
-                  {item.icon}
-                  <h3 className="text-sm font-semibold text-white mt-4 mb-2 leading-snug">{item.title}</h3>
-                  <p className="text-sm text-white/70 leading-relaxed">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <SelectionProcessSection />
 
-      <ComparisonTable />
-      <SavingsBreakdown />
+      <Suspense>
+        <ComparisonTable />
+      </Suspense>
+      <Suspense>
+        <SavingsBreakdown />
+      </Suspense>
 
       {/* Related products */}
       {relatedProducts.length > 0 && (
@@ -262,10 +191,6 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
         </div>
       </section>
 
-      {/* Sticky mobile CTA */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-[#1E185408]/95 backdrop-blur-sm border-t border-[var(--color-border)] p-4">
-        <AddToCartButton variantId={firstVariant.id} />
-      </div>
     </main>
   );
 }

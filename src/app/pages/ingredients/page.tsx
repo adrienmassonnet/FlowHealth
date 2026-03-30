@@ -147,7 +147,7 @@ const sections = [
 
 export default function IngredientsPage() {
   return (
-    <main className="max-w-[1200px] mx-auto px-6 py-14 md:py-24 space-y-16 md:space-y-24">
+    <main className="max-w-[1200px] mx-auto px-6 pt-20 pb-14 md:pb-24 space-y-16 md:space-y-24">
 
       <div className="space-y-3 max-w-2xl">
         <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/1)]">Transparent Formula</p>

@@ -44,6 +44,7 @@ export default function ProductImageGallery({ images, title }: { images: Gallery
                 alt={img.altText ?? title}
                 fill
                 className="object-contain p-2"
+                loading="lazy"
               />
             </button>
           ))}

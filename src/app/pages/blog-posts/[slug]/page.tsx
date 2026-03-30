@@ -92,7 +92,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   return (
     <main>
       {/* Hero */}
-      <section className="max-w-[1200px] mx-auto px-6 pt-8 pb-2">
+      <section className="max-w-[1200px] mx-auto px-6 pt-20 pb-2">
         <div className="relative w-full aspect-[21/9] min-h-[260px] max-h-[480px] overflow-hidden rounded-2xl bg-[#1E1854]">
           <Image
             src={post.coverImageUrl}

@@ -121,33 +121,27 @@ export function FocusRail({
           </div>
         )}
 
-        {/* Draggable Rail — wrapped for arrow overlay */}
+        {/* Draggable Rail */}
         <div className="relative">
-          {/* Left arrow */}
-          <button
-            onClick={handlePrev}
-            aria-label="Previous"
-            className="absolute left-2 sm:left-0 top-1/2 -translate-y-1/2 z-30 flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border)] bg-white/90 backdrop-blur-sm shadow-sm text-[hsla(var(--color-secondary)/0.6)] transition hover:bg-white hover:text-[#1E1854] active:scale-95"
-          >
-            <ChevronLeft className="h-4 w-4" />
-          </button>
-          {/* Right arrow */}
-          <button
-            onClick={handleNext}
-            aria-label="Next"
-            className="absolute right-2 sm:right-0 top-1/2 -translate-y-1/2 z-30 flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border)] bg-white/90 backdrop-blur-sm shadow-sm text-[hsla(var(--color-secondary)/0.6)] transition hover:bg-white hover:text-[#1E1854] active:scale-95"
-          >
-            <ChevronRight className="h-4 w-4" />
-          </button>
 
         <motion.div
-          className="relative mx-auto flex h-[380px] w-full items-center justify-center cursor-grab active:cursor-grabbing overflow-visible"
+          className="relative mx-auto flex w-full items-start justify-center cursor-grab active:cursor-grabbing overflow-visible"
           style={{ perspective: "1200px" }}
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={0.2}
           onDragEnd={onDragEnd}
         >
+          {/* Invisible spacer — gives the container natural height that adapts to title length */}
+          <div className="invisible pointer-events-none flex flex-col w-[220px] sm:w-[270px] md:w-[320px]" aria-hidden>
+            <div className="h-[400px] sm:h-[460px] md:h-[520px]" />
+            <div className="pt-3 px-1">
+              <p className="text-base font-semibold tracking-[-0.02em] leading-snug">
+                {activeItem.title}
+              </p>
+            </div>
+          </div>
+
           {visibleIndices.map((offset) => {
             const absIndex = active + offset;
             const index = wrap(0, count, absIndex);
@@ -158,7 +152,7 @@ export function FocusRail({
             const isCenter = offset === 0;
             const dist = Math.abs(offset);
 
-            const xOffset = offset * 300;
+            const xOffset = offset * 340;
             const zOffset = -dist * 140;
             const scale = isCenter ? 1 : 0.84;
             const rotateY = offset * -18;
@@ -170,8 +164,8 @@ export function FocusRail({
               <motion.div
                 key={absIndex}
                 className={cn(
-                  "absolute aspect-[3/4] w-[180px] sm:w-[220px] md:w-[260px] rounded-2xl overflow-hidden border border-[var(--color-border)] bg-[#1E18540A]",
-                  isCenter ? "z-20 shadow-[0_8px_40px_rgba(30,24,84,0.12)]" : "z-10 shadow-sm"
+                  "absolute flex flex-col w-[220px] sm:w-[270px] md:w-[320px]",
+                  isCenter ? "z-20" : "z-10"
                 )}
                 initial={false}
                 animate={{
@@ -195,94 +189,92 @@ export function FocusRail({
                   if (offset !== 0) setActive((p) => p + offset);
                 }}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={item.imageSrc}
-                  alt={item.title}
-                  className="h-full w-full object-cover pointer-events-none"
-                />
-                {/* Subtle top sheen */}
-                <div className="absolute inset-0 bg-gradient-to-b from-white/8 to-transparent pointer-events-none" />
+                {/* Image */}
+                <div className={cn(
+                  "relative w-full rounded-2xl overflow-hidden border border-[var(--color-border)] bg-[#1E18540A]",
+                  "h-[400px] sm:h-[460px] md:h-[520px]",
+                  isCenter ? "shadow-[0_8px_40px_rgba(30,24,84,0.12)]" : "shadow-sm"
+                )}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={item.imageSrc}
+                    alt={item.title}
+                    className="h-full w-full object-cover pointer-events-none"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-white/8 to-transparent pointer-events-none" />
+                </div>
+
+                {/* Title below image */}
+                <div className="pt-3 px-1 w-[220px] sm:w-[270px] md:w-[320px]">
+                  <p className="text-base font-semibold tracking-[-0.02em] leading-snug text-[#1E1854]">
+                    {item.title}
+                  </p>
+                </div>
               </motion.div>
             );
           })}
         </motion.div>
 
-          {/* Dot indicators */}
-          <div className="mt-6 flex items-center justify-center gap-2">
-            {items.map((_, i) => {
-              const isActive = i === wrap(0, count, active);
-              return (
-                <button
-                  key={i}
-                  onClick={() => setActive(i)}
-                  aria-label={`Go to article ${i + 1}`}
-                  className="transition-all duration-300"
-                >
-                  <span className={cn(
-                    "block rounded-full transition-all duration-300",
-                    isActive
-                      ? "w-5 h-1.5 bg-[#1E1854]"
-                      : "w-1.5 h-1.5 bg-[hsla(var(--color-secondary)/0.25)] hover:bg-[hsla(var(--color-secondary)/0.45)]"
-                  )} />
-                </button>
-              );
-            })}
+          {/* Dot indicators + arrows */}
+          <div className="mt-1 flex items-center justify-center gap-3">
+            <button
+              onClick={handlePrev}
+              aria-label="Previous"
+              className="flex h-7 w-7 items-center justify-center rounded-full border border-[#1E1854]/18 text-[#1E1854]/45 transition-colors duration-200 hover:border-[#1E1854]/40 hover:text-[#1E1854] active:scale-95"
+            >
+              <ChevronLeft className="h-3.5 w-3.5" />
+            </button>
+
+            <div className="flex items-center gap-2">
+              {items.map((_, i) => {
+                const isActive = i === wrap(0, count, active);
+                return (
+                  <button
+                    key={i}
+                    onClick={() => setActive(i)}
+                    aria-label={`Go to article ${i + 1}`}
+                    className="transition-all duration-300"
+                  >
+                    <span className={cn(
+                      "block rounded-full transition-all duration-300",
+                      isActive
+                        ? "w-5 h-1.5 bg-[#1E1854]"
+                        : "w-1.5 h-1.5 bg-[hsla(var(--color-secondary)/0.25)] hover:bg-[hsla(var(--color-secondary)/0.45)]"
+                    )} />
+                  </button>
+                );
+              })}
+            </div>
+
+            <button
+              onClick={handleNext}
+              aria-label="Next"
+              className="flex h-7 w-7 items-center justify-center rounded-full border border-[#1E1854]/18 text-[#1E1854]/45 transition-colors duration-200 hover:border-[#1E1854]/40 hover:text-[#1E1854] active:scale-95"
+            >
+              <ChevronRight className="h-3.5 w-3.5" />
+            </button>
           </div>
         </div>
 
-        {/* Info & Controls */}
-        <div className="mt-14 flex flex-col items-center justify-between gap-6 md:flex-row">
-          {/* Active item info */}
-          <div className="flex flex-1 flex-col items-center text-center md:items-start md:text-left min-h-[5rem] justify-center">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeItem.id}
-                initial={{ opacity: 0, y: 8, filter: "blur(4px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: -8, filter: "blur(4px)" }}
-                transition={{ duration: 0.25 }}
-                className="space-y-2"
+        {/* Controls */}
+        <div className="mt-10 flex items-center justify-center gap-3">
+          {activeItem.href && (
+            <div className="rounded-full border border-[#1E1854] bg-white/80 backdrop-blur-sm px-4 py-2.5">
+              <Link
+                href={activeItem.href}
+                className="text-xs font-medium text-[#1E1854] whitespace-nowrap"
               >
-                {activeItem.meta && (
-                  <span className="text-xs font-medium uppercase tracking-[0.12em] text-[hsla(var(--color-secondary)/0.5)]">
-                    {activeItem.meta}
-                  </span>
-                )}
-                <h3 className="text-xl md:text-2xl font-semibold tracking-[-0.02em] leading-snug text-[#1E1854] max-w-md">
-                  {activeItem.title}
-                </h3>
-                {activeItem.description && (
-                  <p className="text-sm text-[hsla(var(--color-secondary)/0.65)] max-w-sm leading-relaxed">
-                    {activeItem.description}
-                  </p>
-                )}
-              </motion.div>
-            </AnimatePresence>
-          </div>
+                Read this article
+              </Link>
+            </div>
+          )}
 
-          {/* Nav + CTA */}
-          <div className="flex items-center gap-3 shrink-0">
-            {/* Read article pill */}
-            {activeItem.href && (
-              <div className="rounded-full border border-[#1E1854] bg-white/80 backdrop-blur-sm px-4 py-2.5">
-                <Link
-                  href={activeItem.href}
-                  className="text-xs font-medium text-[#1E1854] whitespace-nowrap"
-                >
-                  Read this article
-                </Link>
-              </div>
-            )}
-
-            <Link
-              href="/pages/blog-posts"
-              className="group/link flex items-center gap-2 rounded-full bg-[#1E1854] px-5 py-3 text-sm font-semibold text-white transition-all hover:bg-[#1E1854]/80 active:scale-95"
-            >
-              Discover our blogs
-              <ArrowUpRight className="h-4 w-4 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
-            </Link>
-          </div>
+          <Link
+            href="/pages/blog-posts"
+            className="rounded-full bg-[#1E1854] px-5 py-3 text-sm font-semibold text-white transition-all hover:bg-[#1E1854]/80 active:scale-95 whitespace-nowrap"
+          >
+            Discover our blogs
+          </Link>
         </div>
       </div>
     </div>

@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 const steps = [
@@ -43,35 +42,43 @@ export default function BenefitsTimeline() {
         </h2>
       </div>
 
-      {/* Dark blue container behind the timeline */}
-      <div className="bg-[#1E1854] rounded-2xl px-6 md:px-10 py-8">
-        <div className="relative">
-          {/* Vertical timeline line */}
-          <div className="absolute left-[10px] top-3 bottom-3 w-px bg-white/10" />
+      <div className="bg-[#1E18540D] rounded-2xl px-6 md:px-10 py-10">
 
+        {/* Mobile: vertical layout matching homepage style */}
+        <div className="md:hidden flex flex-col">
+          {steps.map((step, i) => (
+            <div key={step.week} className={`relative${i < steps.length - 1 ? ' pb-6' : ''}`}>
+              {/* Connecting line */}
+              {i < steps.length - 1 && (
+                <div className="absolute left-[15px] top-[26px] bottom-0 w-px bg-[#1E1854]/15" />
+              )}
+              {/* Pill with dot */}
+              <span className="inline-flex items-center gap-1.5 text-xs font-medium tracking-[0.06em] uppercase bg-[#1E1854]/[0.08] text-[#1E1854]/55 px-3 py-1 rounded-full">
+                <span className="w-1.5 h-1.5 rounded-full bg-[hsla(var(--color-accent)/1)] shrink-0" />
+                {step.week}
+              </span>
+              {/* Content */}
+              <div className="mt-2 pl-6">
+                <p className="text-base font-semibold tracking-[-0.01em] mb-1.5 text-[#1E1854]">{step.title}</p>
+                <p className="text-sm text-[hsla(var(--color-secondary)/0.75)] leading-relaxed">{step.summary}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop: expandable accordion */}
+        <div className="hidden md:block relative">
+          <div className="absolute left-[10px] top-3 bottom-3 w-px bg-[#1E1854]/10" />
           <div className="space-y-0">
             {steps.map((step, i) => (
               <div key={step.week} className="relative pl-10">
                 {/* Dot */}
                 <div className="absolute left-0 top-[22px] w-[21px] h-[21px] flex items-center justify-center">
-                  <AnimatePresence>
-                    {openIndex === i && (
-                      <motion.span
-                        key="fill"
-                        className="absolute rounded-full bg-white/10 pointer-events-none"
-                        style={{ left: '50%', top: '50%', x: '-50%', y: '-50%' }}
-                        initial={{ width: 21, height: 21 }}
-                        animate={{ width: 40, height: 40 }}
-                        exit={{ width: 21, height: 21 }}
-                        transition={{ duration: 0.4, ease: 'easeOut' }}
-                      />
-                    )}
-                  </AnimatePresence>
                   <div className={cn(
                     'relative w-[9px] h-[9px] rounded-full transition-all duration-300',
                     openIndex === i
-                      ? 'bg-white shadow-[0_0_0_3px_rgba(255,255,255,0.18)]'
-                      : 'bg-white/25'
+                      ? 'bg-[hsla(var(--color-accent)/1)] shadow-[0_0_0_3px_hsla(var(--color-accent)/0.18)]'
+                      : 'bg-[#1E1854]/20'
                   )} />
                 </div>
 
@@ -83,8 +90,8 @@ export default function BenefitsTimeline() {
                   <span className={cn(
                     'shrink-0 text-xs font-medium tracking-[0.06em] uppercase px-3 py-1 mt-0.5 rounded-full transition-colors duration-200',
                     openIndex === i
-                      ? 'bg-white/20 text-white'
-                      : 'bg-white/[0.08] text-white/40'
+                      ? 'bg-[#1E1854]/15 text-[#1E1854]'
+                      : 'bg-[#1E1854]/[0.06] text-[#1E1854]/45'
                   )}>
                     {step.week}
                   </span>
@@ -92,12 +99,12 @@ export default function BenefitsTimeline() {
                   <div className="flex-1 min-w-0">
                     <p className={cn(
                       'text-base font-semibold tracking-[-0.01em] transition-colors duration-200',
-                      openIndex === i ? 'text-white' : 'text-white/60 group-hover:text-white'
+                      openIndex === i ? 'text-[#1E1854]' : 'text-[#1E1854]/55 group-hover:text-[#1E1854]'
                     )}>
                       {step.title}
                     </p>
                     {openIndex !== i && (
-                      <p className="text-sm text-white/35 mt-1 leading-relaxed line-clamp-1">
+                      <p className="text-sm text-[#1E1854]/35 mt-1 leading-relaxed line-clamp-1">
                         {step.summary}
                       </p>
                     )}
@@ -105,7 +112,7 @@ export default function BenefitsTimeline() {
 
                   {/* Chevron */}
                   <span className={cn(
-                    'shrink-0 mt-1 transition-transform duration-300 text-white/30',
+                    'shrink-0 mt-1 transition-transform duration-300 text-[#1E1854]/30',
                     openIndex === i ? 'rotate-180' : ''
                   )}>
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -114,7 +121,6 @@ export default function BenefitsTimeline() {
                   </span>
                 </button>
 
-                {/* CSS grid-template-rows trick: smoothest expand, no JS layout measurement */}
                 <div
                   className="grid"
                   style={{
@@ -131,15 +137,14 @@ export default function BenefitsTimeline() {
                         transitionDelay: openIndex === i ? '100ms' : '0ms',
                       }}
                     >
-                      {/* Invisible spacer */}
                       <span className="shrink-0 invisible text-xs font-medium tracking-[0.06em] uppercase px-3 py-1 rounded-full">
                         {step.week}
                       </span>
                       <div className="flex-1">
-                        <p className="text-sm text-white/70 mb-3 leading-relaxed font-medium">
+                        <p className="text-sm text-[#1E1854]/70 mb-3 leading-relaxed font-medium">
                           {step.summary}
                         </p>
-                        <p className="text-sm text-white/55 leading-[1.75]">
+                        <p className="text-sm text-[#1E1854]/55 leading-[1.75]">
                           {step.detail}
                         </p>
                       </div>
@@ -150,9 +155,10 @@ export default function BenefitsTimeline() {
             ))}
           </div>
         </div>
+
       </div>
 
-      {/* Consistency is Key callout */}
+      {/* Consistency callout */}
       <div className="mt-12 max-w-2xl mx-auto w-full border border-[var(--color-border)] bg-[#1E185408] rounded-2xl py-10 px-8 flex flex-col items-center text-center gap-4">
         <div className="w-14 h-14 flex items-center justify-center" style={{
           clipPath: 'polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%)',

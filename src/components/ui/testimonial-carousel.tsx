@@ -106,11 +106,11 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
             transition={TRANSITION}
             className="text-center px-2"
           >
-            <p className="text-[44px] leading-none text-white/12 font-serif select-none mb-1">&ldquo;</p>
-            <blockquote className="text-base font-medium text-white/80 leading-[1.75] mb-6">{t.quote}</blockquote>
-            <span className="block w-5 h-px bg-white/20 mx-auto mb-3" />
-            <p className="text-sm font-semibold text-white/75">{t.authorName}</p>
-            <p className="text-xs text-white/35 tracking-[0.04em] mt-1">{t.authorRole}</p>
+            <p className="text-[44px] leading-none text-[#1E1854]/10 font-serif select-none mb-1">&ldquo;</p>
+            <blockquote className="text-base font-medium text-[#1E1854]/80 leading-[1.75] mb-6">{t.quote}</blockquote>
+            <span className="block w-5 h-px bg-[#1E1854]/20 mx-auto mb-3" />
+            <p className="text-sm font-semibold text-[#1E1854]/75">{t.authorName}</p>
+            <p className="text-xs text-[#1E1854]/45 tracking-[0.04em] mt-1">{t.authorRole}</p>
           </motion.div>
         </AnimatePresence>
       </div>
@@ -121,9 +121,9 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
           <button
             onClick={prev}
             aria-label="Previous testimonial"
-            className="w-10 h-10 rounded-full bg-white/8 border border-white/10 flex items-center justify-center hover:bg-white/14 transition-colors duration-200"
+            className="w-10 h-10 rounded-full bg-[#1E1854]/[0.06] border border-[#1E1854]/10 flex items-center justify-center hover:bg-[#1E1854]/10 transition-colors duration-200"
           >
-            <ChevronLeft className="w-4 h-4 text-white/60" />
+            <ChevronLeft className="w-4 h-4 text-[#1E1854]/50" />
           </button>
 
           <div className="flex items-center gap-2">
@@ -135,8 +135,8 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
                 className={cn(
                   'rounded-full transition-all duration-400',
                   i === current
-                    ? 'w-5 h-[7px] bg-white/70'
-                    : 'w-[7px] h-[7px] bg-white/22 hover:bg-white/38'
+                    ? 'w-5 h-[7px] bg-[#1E1854]/60'
+                    : 'w-[7px] h-[7px] bg-[#1E1854]/20 hover:bg-[#1E1854]/35'
                 )}
               />
             ))}
@@ -145,15 +145,15 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
           <button
             onClick={next}
             aria-label="Next testimonial"
-            className="w-10 h-10 rounded-full bg-white/8 border border-white/10 flex items-center justify-center hover:bg-white/14 transition-colors duration-200"
+            className="w-10 h-10 rounded-full bg-[#1E1854]/[0.06] border border-[#1E1854]/10 flex items-center justify-center hover:bg-[#1E1854]/10 transition-colors duration-200"
           >
-            <ChevronRight className="w-4 h-4 text-white/60" />
+            <ChevronRight className="w-4 h-4 text-[#1E1854]/50" />
           </button>
         </div>
 
         <Link
           href="/pages/reviews"
-          className="text-xs tracking-[0.1em] uppercase text-white/35 hover:text-white/60 transition-colors duration-300"
+          className="text-xs tracking-[0.1em] uppercase text-[#1E1854]/35 hover:text-[#1E1854]/60 transition-colors duration-300"
         >
           Read all reviews →
         </Link>

@@ -49,6 +49,19 @@ export interface Product {
 }
 
 // Queries
+export async function getFirstProductHandle(): Promise<string | null> {
+  const query = `
+    query GetFirstProduct {
+      products(first: 1) {
+        edges { node { handle } }
+      }
+    }
+  `;
+  const { data, errors } = await shopifyClient().request(query);
+  if (errors) return null;
+  return data.products.edges[0]?.node.handle ?? null;
+}
+
 export async function getProducts(): Promise<Product[]> {
   const query = `
     query GetProducts {

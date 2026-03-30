@@ -109,7 +109,7 @@ const backdropVariants = {
 
 // ─── LanguageSelector ────────────────────────────────────────────────────────
 
-function LanguageSelector({ muted }: { muted?: boolean }) {
+function LanguageSelector({ muted, compact }: { muted?: boolean; compact?: boolean }) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState('EN');
   const ref = useRef<HTMLDivElement>(null);
@@ -137,14 +137,16 @@ function LanguageSelector({ muted }: { muted?: boolean }) {
           <path d="M8 1.5C8 1.5 5.5 4 5.5 8C5.5 12 8 14.5 8 14.5M8 1.5C8 1.5 10.5 4 10.5 8C10.5 12 8 14.5 8 14.5M1.5 8H14.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
         </svg>
         {selected}
-        <motion.svg
-          width="8" height="8" viewBox="0 0 8 8" fill="none"
-          animate={{ rotate: open ? 180 : 0 }}
-          transition={{ duration: 0.2 }}
-          className="shrink-0"
-        >
-          <path d="M1.5 3L4 5.5L6.5 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-        </motion.svg>
+        {!compact && (
+          <motion.svg
+            width="8" height="8" viewBox="0 0 8 8" fill="none"
+            animate={{ rotate: open ? 180 : 0 }}
+            transition={{ duration: 0.2 }}
+            className="shrink-0"
+          >
+            <path d="M1.5 3L4 5.5L6.5 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+          </motion.svg>
+        )}
       </button>
 
       <AnimatePresence>
@@ -214,15 +216,27 @@ function NavButton({ label, open }: { label: string; open: boolean }) {
 type ActiveMenu = 'about' | 'learn' | null;
 
 export default function Header() {
-  const scrolled = true;
+  const [scrolled, setScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [activeMenu, setActiveMenu] = useState<ActiveMenu>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setActiveMenu(null);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 10);
+      setActiveMenu(null);
+    };
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
   }, []);
 
   // Close desktop dropdowns on outside click
@@ -306,6 +320,17 @@ export default function Header() {
                     <path d="M3 3l12 12M15 3L3 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                   </svg>
                 </button>
+              </div>
+
+              {/* Get Flow CTA — top of drawer */}
+              <div className="px-4 pt-4 pb-3 shrink-0">
+                <Link
+                  href="/products/flow"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center justify-center w-full py-3.5 rounded-full bg-[#1E1854] text-white text-xs tracking-[0.08em] uppercase font-semibold hover:bg-[hsla(var(--color-accent)/1)] transition-colors"
+                >
+                  Get Flow
+                </Link>
               </div>
 
               {/* Drawer nav — sections mirroring desktop dropdowns */}
@@ -393,52 +418,23 @@ export default function Header() {
                 </div>
               </nav>
 
-              {/* Drawer footer CTA */}
-              <div className="px-4 pb-8 pt-4 border-t border-[var(--color-border)] shrink-0">
-                <Link
-                  href="/products/flow"
-                  onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-center w-full py-3.5 rounded-full bg-[#1E1854] text-white text-xs tracking-[0.08em] uppercase font-semibold hover:bg-[hsla(var(--color-accent)/1)] transition-colors"
-                >
-                  Shop
-                </Link>
-              </div>
             </motion.div>
           </>
         )}
       </AnimatePresence>
 
-      <header className="fixed top-0 left-0 right-0 z-50">
-        {/* Announcement bar */}
-        <motion.div
-          animate={scrolled ? { maxHeight: 0, opacity: 0, paddingTop: 0, paddingBottom: 0 } : { maxHeight: 40, opacity: 1, paddingTop: '0.5rem', paddingBottom: '0.5rem' }}
-          transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-          className="bg-[hsla(var(--color-accent)/1)] text-white text-center text-xs tracking-[0.1em] px-4 overflow-hidden"
-        >
-          Free shipping on orders over CHF 60 · 30-day satisfaction guarantee
-        </motion.div>
-
+      <header className="fixed top-2 left-0 right-0 z-50">
         {/* Nav wrapper */}
         <div className="relative">
-          {/* Full-width bar background — fades out when scrolled */}
-          <motion.div
-            animate={{ opacity: scrolled ? 0 : 1 }}
-            transition={{ duration: 0.4, ease: easeOut }}
-            className="absolute inset-0 border-b border-[var(--color-border)] bg-white/90 backdrop-blur-md pointer-events-none"
-          />
 
           <div className="max-w-[1200px] mx-auto px-6">
             <div className="h-14 flex items-center justify-between gap-3">
 
               {/* Main pill — hamburger lives inside on mobile */}
               <motion.div
-                animate={scrolled
-                  ? { borderRadius: 9999, paddingLeft: 20, paddingRight: 20, backgroundColor: 'rgba(255,255,255,0.75)', boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }
-                  : { borderRadius: 0, paddingLeft: 0, paddingRight: 0, backgroundColor: 'rgba(255,255,255,0)', boxShadow: '0 0 0 rgba(0,0,0,0)' }
-                }
+                animate={{ borderRadius: 9999, paddingLeft: 20, paddingRight: 20, backgroundColor: 'rgba(255,255,255,0.75)', boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}
                 transition={{ duration: 0.5, ease: easeOut }}
-                className="flex-1 md:flex-none flex items-center gap-3 md:gap-5 border border-white/0 backdrop-blur-xl h-10"
-                style={{ borderColor: scrolled ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0)' }}
+                className="md:flex-none flex items-center gap-3 md:gap-5 border border-white/30 backdrop-blur-xl h-10"
               >
                 {/* Hamburger — mobile only, inside the pill */}
                 <button
@@ -455,11 +451,11 @@ export default function Header() {
                 <Link
                   href="/"
                   onClick={() => setActiveMenu(null)}
-                  className="shrink-0 flex items-center gap-2"
+                  className="shrink-0 hidden md:flex items-center gap-2"
                   aria-label="Flow Health"
                 >
-                  <img src="/flow-logomark.svg?v=2" alt="" width={20} height={20} className="w-5 h-5" />
-                  <img src="/flow-wordmark.svg?v=2" alt="Flow" width={51} height={20} className="h-5 w-auto" />
+                  <img src="/flow-logomark.svg?v=2" alt="" width={20} height={20} className="hidden md:block w-5 h-5" />
+                  <img src="/flow-wordmark.svg?v=2" alt="Flow" width={51} height={20} className="hidden md:block h-5 w-auto" />
                 </Link>
 
                 {/* Desktop nav dropdowns */}
@@ -573,25 +569,39 @@ export default function Header() {
                   </div>
                 </nav>
 
-                {/* Shop CTA — always in the pill */}
+                {/* Get Flow CTA — always in the pill */}
                 <Link
                   href="/products/flow"
                   onClick={() => setActiveMenu(null)}
-                  className="ml-auto md:ml-0 text-xs tracking-[0.08em] uppercase font-medium bg-[#1E1854] text-white px-4 py-1.5 rounded-full hover:bg-[hsla(var(--color-accent)/1)] transition-colors shrink-0"
+                  className="md:ml-0 flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium bg-[#1E1854] text-white px-4 py-1.5 rounded-full hover:bg-[hsla(var(--color-accent)/1)] transition-colors shrink-0"
                 >
-                  Shop
+                  <img src="/flow-logomark.svg?v=2" alt="" width={14} height={14} className="md:hidden w-3.5 h-3.5 [filter:brightness(0)_invert(1)]" />
+                  Get Flow
                 </Link>
+
               </motion.div>
+
+              {/* Language selector — mobile only, hidden when scrolled */}
+              <AnimatePresence>
+                {!scrolled && (
+                  <motion.span
+                    key="mobile-lang"
+                    initial={{ opacity: 0, scale: 0.85 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.85 }}
+                    transition={{ duration: 0.25, ease: easeOut }}
+                    className="md:hidden shrink-0 h-10 px-3 flex items-center justify-center rounded-full bg-white/75 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-white/30"
+                  >
+                    <LanguageSelector muted={false} compact />
+                  </motion.span>
+                )}
+              </AnimatePresence>
 
               {/* Right side: language — desktop only */}
               <motion.div
-                animate={scrolled
-                  ? { borderRadius: 9999, paddingLeft: 16, paddingRight: 16, backgroundColor: 'rgba(255,255,255,0.75)', boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }
-                  : { borderRadius: 0, paddingLeft: 0, paddingRight: 0, backgroundColor: 'rgba(255,255,255,0)', boxShadow: '0 0 0 rgba(0,0,0,0)' }
-                }
+                animate={{ borderRadius: 9999, paddingLeft: 16, paddingRight: 16, backgroundColor: 'rgba(255,255,255,0.75)', boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}
                 transition={{ duration: 0.5, ease: easeOut }}
-                className="hidden md:flex items-center border border-white/0 backdrop-blur-xl h-10"
-                style={{ borderColor: scrolled ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0)' }}
+                className="hidden md:flex items-center border border-white/30 backdrop-blur-xl h-10"
               >
                 <LanguageSelector muted={scrolled} />
               </motion.div>

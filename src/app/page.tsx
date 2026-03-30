@@ -75,7 +75,7 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#1E1854]/80 via-[#1E1854]/30 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#1E1854]/60 via-transparent to-transparent" />
 
-        <div className="relative z-10 max-w-[1200px] mx-auto px-6 pb-14 pt-20 md:pb-20 md:pt-28 w-full">
+        <div className="relative z-10 max-w-[1200px] mx-auto px-6 pb-14 pt-20 md:pb-20 md:pt-24 w-full">
           <div className="max-w-lg space-y-5 md:space-y-7">
             <p className="text-[11px] tracking-[0.16em] uppercase text-white/50 font-medium">
               {cms.heroTagline}
@@ -240,9 +240,40 @@ export default async function HomePage() {
             <p className="text-sm text-[hsla(var(--color-secondary)/0.7)] leading-relaxed">{cms.resultsSubheading}</p>
           </div>
           <div className="bg-[#1E18540D] rounded-2xl px-6 md:px-10 py-10">
-            <div className="relative">
-              <div className="hidden md:block absolute top-[4px] left-[4px] right-0 h-px bg-[#1E1854]/12" />
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+
+            {/* Mobile: vertical layout with dot-in-pill + connecting lines */}
+            <div className="md:hidden flex flex-col">
+              {timelineSteps.map((step, i) => (
+                <div key={step.period} className={`relative${i < timelineSteps.length - 1 ? ' pb-6' : ''}`}>
+                  {/* Connecting line — from dot downward through content */}
+                  {i < timelineSteps.length - 1 && (
+                    <div className="absolute left-[15px] top-[26px] bottom-0 w-px bg-[#1E1854]/15" />
+                  )}
+                  {/* Pill with dot */}
+                  <span className="inline-flex items-center gap-1.5 text-xs font-medium tracking-[0.06em] uppercase bg-[#1E1854]/[0.08] text-[#1E1854]/55 px-3 py-1 rounded-full">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[hsla(var(--color-accent)/1)] shrink-0" />
+                    {step.period}
+                  </span>
+                  {/* Content — indented past the line */}
+                  <div className="mt-2 pl-6">
+                    <p className="text-base font-semibold tracking-[-0.01em] mb-2">{step.title}</p>
+                    <ul className="space-y-1.5">
+                      {step.bullets.split('\n').map((b) => (
+                        <li key={b} className="text-sm text-[hsla(var(--color-secondary)/0.75)] flex items-start gap-2">
+                          <span className="mt-1.5 w-1 h-1 rounded-full bg-[#1E1854]/20 shrink-0" />
+                          {b}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Desktop: 4-column grid with horizontal line */}
+            <div className="hidden md:block relative">
+              <div className="absolute top-[4px] left-[4px] right-0 h-px bg-[#1E1854]/12" />
+              <div className="grid grid-cols-4 gap-8">
                 {timelineSteps.map((step) => (
                   <div key={step.period} className="relative">
                     <div className="w-[10px] h-[10px] rounded-full bg-[hsla(var(--color-accent)/1)] shadow-[0_0_0_3px_hsla(var(--color-accent)/0.18)] mb-6" />
@@ -262,6 +293,7 @@ export default async function HomePage() {
                 ))}
               </div>
             </div>
+
           </div>
         </div>
       </section>
@@ -351,6 +383,28 @@ export default async function HomePage() {
             <p className="text-2xl md:text-[1.7rem] font-semibold tracking-[-0.02em] leading-[1.35] text-[#1E1854]">
               {cms.ingredientsHeading}
             </p>
+
+            {/* Mobile-only ingredient grid */}
+            <div className="md:hidden grid grid-cols-2 gap-3">
+              {featuredIngredients.map((ing) => (
+                <div key={ing.name} className="relative rounded-2xl overflow-hidden aspect-[4/3]">
+                  {ing.imageUrl && (
+                    <Image
+                      src={ing.imageUrl}
+                      alt={ing.name}
+                      fill
+                      className="object-cover"
+                      sizes="50vw"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                  <p className="absolute bottom-0 left-0 right-0 px-3 py-2.5 text-xs font-semibold text-white tracking-[-0.01em]">
+                    {ing.name}
+                  </p>
+                </div>
+              ))}
+            </div>
+
             <Link
               href="/pages/ingredients"
               className="inline-flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium text-[#1E1854]/45 hover:text-[#1E1854] transition-colors duration-200"
@@ -362,8 +416,8 @@ export default async function HomePage() {
             </Link>
           </div>
 
-          {/* Right — ingredient image grid */}
-          <div className="flex-1">
+          {/* Right — ingredient image grid (desktop only) */}
+          <div className="hidden md:block flex-1">
             <div className="grid grid-cols-2 gap-3">
               {featuredIngredients.map((ing) => (
                 <div key={ing.name} className="relative rounded-2xl overflow-hidden aspect-[4/3]">
@@ -373,7 +427,7 @@ export default async function HomePage() {
                       alt={ing.name}
                       fill
                       className="object-cover"
-                      sizes="(max-width: 768px) 50vw, 25vw"
+                      sizes="25vw"
                     />
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
@@ -403,9 +457,9 @@ export default async function HomePage() {
       />
 
       {/* Testimonial */}
-      <section className="bg-[#1E1854] py-20">
+      <section className="bg-[#F7F4EF] py-20 border-t border-[var(--color-border)]">
         <div className="max-w-[1200px] mx-auto px-6">
-          <p className="text-[11px] tracking-[0.16em] uppercase text-white/30 font-medium text-center mb-14">Testimonials</p>
+          <p className="text-[11px] tracking-[0.16em] uppercase text-[#1E1854]/30 font-medium text-center mb-14">Testimonials</p>
           <TestimonialCarousel testimonials={testimonials} />
         </div>
       </section>

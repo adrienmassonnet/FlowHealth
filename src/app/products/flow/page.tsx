@@ -1,11 +1,7 @@
 import { redirect } from 'next/navigation';
-import { getProducts } from '@/lib/shopify';
+import { getFirstProductHandle } from '@/lib/shopify';
 
 export default async function FlowRedirectPage() {
-  const products = await getProducts();
-  const first = products[0];
-  if (first) {
-    redirect(`/products/${first.handle}`);
-  }
-  redirect('/');
+  const handle = await getFirstProductHandle();
+  redirect(handle ? `/products/${handle}` : '/');
 }

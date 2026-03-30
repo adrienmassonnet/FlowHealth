@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 const steps = [
   {
@@ -101,11 +102,13 @@ export default function TakeFlowSteps() {
                   }}
                 >
                   {/* Image */}
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={step.image}
                     alt={step.title}
-                    className="absolute inset-0 w-full h-full object-cover"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 0px, 50vw"
+                    loading={i === 0 ? 'eager' : 'lazy'}
                   />
                 </div>
               );

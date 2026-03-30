@@ -13,7 +13,7 @@ export default async function BlogPostsPage() {
   return (
     <main>
       {/* Featured post */}
-      <section className="max-w-[1200px] mx-auto px-6 pt-12 pb-16">
+      <section className="max-w-[1200px] mx-auto px-6 pt-20 pb-16">
         <Link
           href={`/pages/blog-posts/${featured.slug}`}
           className="group grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-[#1E185408] rounded-2xl overflow-hidden border border-[var(--color-border)] hover:border-[hsla(var(--color-secondary)/0.3)] transition-colors"
