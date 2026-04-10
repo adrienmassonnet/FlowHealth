@@ -75,7 +75,7 @@ const AccordionPanel = ({
               : 'opacity-100 duration-300 delay-[200ms]'
           } transition-opacity ease-in-out`}
         >
-          <span className="text-white text-[11px] font-semibold tracking-[0.1em] uppercase whitespace-nowrap -rotate-90">
+          <span className="text-white text-xs font-semibold tracking-[0.1em] uppercase whitespace-nowrap -rotate-90">
             {item.title}
           </span>
         </div>

@@ -83,7 +83,7 @@ export default async function ReviewsPage() {
                     <div>
                       <p className="text-xs font-semibold text-[#1E1854] tracking-[-0.01em]">{t.authorName}</p>
                       {t.authorRole && (
-                        <p className="text-[11px] text-[hsla(var(--color-secondary)/0.45)] mt-0.5 tracking-[0.03em]">
+                        <p className="text-xs text-[hsla(var(--color-secondary)/0.45)] mt-0.5 tracking-[0.03em]">
                           {t.authorRole}
                         </p>
                       )}

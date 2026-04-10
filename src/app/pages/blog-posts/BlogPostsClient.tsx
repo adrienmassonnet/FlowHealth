@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -24,7 +25,12 @@ type Post = {
 };
 
 export default function BlogPostsClient({ posts }: { posts: Post[] }) {
-  const [activeCategory, setActiveCategory] = useState('all');
+  const searchParams = useSearchParams();
+  const validKeys = categories.map((c) => c.key);
+  const paramCategory = searchParams.get('category') ?? 'all';
+  const [activeCategory, setActiveCategory] = useState(
+    validKeys.includes(paramCategory) ? paramCategory : 'all'
+  );
 
   const filtered = activeCategory === 'all'
     ? posts
@@ -94,7 +100,7 @@ export default function BlogPostsClient({ posts }: { posts: Post[] }) {
                 </p>
                 <div className="flex flex-wrap gap-1.5 pt-1">
                   {post.tags.map((tag) => (
-                    <span key={tag} className="text-[10px] uppercase tracking-[0.08em] border border-[var(--color-border)] px-2.5 py-0.5 rounded-full text-[hsla(var(--color-secondary)/0.5)] font-medium">
+                    <span key={tag} className="text-xs uppercase tracking-[0.08em] border border-[var(--color-border)] px-2.5 py-0.5 rounded-full text-[hsla(var(--color-secondary)/0.5)] font-medium">
                       {tag}
                     </span>
                   ))}

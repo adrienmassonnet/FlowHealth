@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { trackEvent } from '@/lib/clarity';
 
 const categories = [
   {
@@ -41,6 +42,7 @@ export default function ContactPage() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    trackEvent('contact_form_submit');
     setSubmitted(true);
   }
 
@@ -66,14 +68,14 @@ export default function ContactPage() {
             {/* Contact links + categories — third on mobile, below heading on desktop */}
             <div className="order-3 md:col-start-1 md:row-start-2">
               <div className="space-y-2 mb-8">
-                <a href="mailto:hello@flowhealth.com" className="flex items-center gap-2 text-sm text-[#1E1854] font-medium hover:text-[hsla(var(--color-accent)/1)] transition-colors">
+                <a href="mailto:hello@flowhealth.com" onClick={() => trackEvent('contact_email_click')} className="flex items-center gap-2 text-sm text-[#1E1854] font-medium hover:text-[hsla(var(--color-accent)/1)] transition-colors">
                   <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                     <rect x="2" y="3.5" width="12" height="9" rx="1.5" stroke="currentColor" strokeWidth="1.2"/>
                     <path d="M2 6l6 4 6-4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
                   </svg>
                   hello@flowhealth.com
                 </a>
-                <a href="tel:+41000000000" className="flex items-center gap-2 text-sm text-[#1E1854] font-medium hover:text-[hsla(var(--color-accent)/1)] transition-colors">
+                <a href="tel:+41000000000" onClick={() => trackEvent('contact_phone_click')} className="flex items-center gap-2 text-sm text-[#1E1854] font-medium hover:text-[hsla(var(--color-accent)/1)] transition-colors">
                   <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                     <path d="M3 2.5h2.5l1 3L5 7s1 3 4 4l1.5-1.5 3 1V13c0 .5-.5 1-1 1C5.5 14 2 8.5 2 3.5c0-.5.5-1 1-1z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/>
                   </svg>
@@ -170,17 +172,17 @@ export default function ContactPage() {
                         placeholder="Tell us what's on your mind…"
                         className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-[var(--color-border)] bg-[#1E18540A] text-[#1E1854] placeholder:text-[#1E1854]/25 focus:outline-none focus:border-[#1E1854]/40 focus:bg-white transition-colors resize-none"
                       />
-                      <p className="text-right text-[10px] text-[#1E1854]/25">{formData.message.length}/500</p>
+                      <p className="text-right text-xs text-[#1E1854]/25">{formData.message.length}/500</p>
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full py-3.5 rounded-xl bg-[#1E1854] text-white text-xs tracking-[0.08em] uppercase font-semibold hover:bg-[hsla(var(--color-accent)/1)] transition-colors"
+                      className="btn-cta w-full py-3.5 rounded-xl text-white text-xs tracking-[0.08em] uppercase font-semibold"
                     >
                       Send message
                     </button>
 
-                    <p className="text-center text-[10px] text-[hsla(var(--color-secondary)/0.4)] leading-relaxed">
+                    <p className="text-center text-xs text-[hsla(var(--color-secondary)/0.4)] leading-relaxed">
                       By contacting us, you agree to our{' '}
                       <a href="/pages/terms-and-conditions" className="underline hover:text-[#1E1854] transition-colors">Terms of Service</a>
                       {' '}and{' '}

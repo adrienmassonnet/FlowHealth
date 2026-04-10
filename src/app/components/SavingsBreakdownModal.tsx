@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { trackEvent } from '@/lib/clarity';
 
 type Supplement = { name: string; monthlyPriceCHF: number };
 
@@ -20,7 +21,7 @@ export default function SavingsBreakdownModal({
   return (
     <>
       <button
-        onClick={() => setOpen(true)}
+        onClick={() => { setOpen(true); trackEvent('product_page_savings_breakdown_open'); }}
         className="inline-flex items-center gap-1.5 text-xs font-medium text-[hsla(var(--color-accent)/1)] tracking-[0.04em] hover:opacity-75 transition-opacity"
       >
         See full breakdown
@@ -72,7 +73,7 @@ export default function SavingsBreakdownModal({
                 <span className="text-sm text-[hsla(var(--color-secondary)/0.45)] line-through shrink-0">CHF {traditionalTotal}</span>
               </div>
               <div className="flex items-center justify-between gap-4">
-                <span className="text-base font-semibold text-[#1E1854]">Flow — one daily bottle</span>
+                <span className="text-base font-semibold text-[#1E1854]">Flow — 30 sachets · monthly</span>
                 <span className="text-base font-semibold text-[#1E1854] shrink-0">CHF {flowPrice}</span>
               </div>
               <p className="text-xs text-[hsla(var(--color-secondary)/0.5)] pt-1">You save CHF {savings} every month.</p>

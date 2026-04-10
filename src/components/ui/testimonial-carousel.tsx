@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { Testimonial } from '@/lib/contentful';
+import { trackEvent } from '@/lib/clarity';
 
 // Static portrait images paired with testimonials (Contentful testimonials have no imageUrl)
 const IMAGES = [
@@ -153,6 +154,7 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
 
         <Link
           href="/pages/reviews"
+          onClick={() => trackEvent('homepage_reviews_read_all')}
           className="text-xs tracking-[0.1em] uppercase text-[#1E1854]/35 hover:text-[#1E1854]/60 transition-colors duration-300"
         >
           Read all reviews →

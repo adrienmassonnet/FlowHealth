@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import Link from "next/link";
+import Script from "next/script";
 import "./globals.css";
 import Header from "@/app/components/Header";
 import ScrollManager from "@/app/components/ScrollManager";
@@ -14,6 +15,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <Script id="clarity-init" strategy="afterInteractive">{`
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window,document,"clarity","script","w3zpn726v1");
+        `}</Script>
+      </head>
       <body className={`${outfit.className} antialiased`} suppressHydrationWarning>
         <ScrollManager />
         <Header />
@@ -21,7 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div>
           {children}
 
-        <footer className="bg-[#1E1854] text-white/50 mt-0">
+        <footer className="footer-gradient text-white/50 mt-0">
           <div className="max-w-[1200px] mx-auto px-6 py-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16">
 
             {/* About Flow */}

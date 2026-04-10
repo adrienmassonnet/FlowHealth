@@ -121,7 +121,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         {/* Meta */}
         <div className="flex flex-wrap items-center gap-3 mb-6">
           {(post.tags ?? []).map((tag) => (
-            <span key={tag} className="text-[10px] uppercase tracking-[0.1em] border border-[var(--color-border)] px-3 py-1 rounded-full text-[hsla(var(--color-secondary)/0.55)] font-medium">
+            <span key={tag} className="text-xs uppercase tracking-[0.1em] border border-[var(--color-border)] px-3 py-1 rounded-full text-[hsla(var(--color-secondary)/0.55)] font-medium">
               {tag}
             </span>
           ))}
@@ -182,7 +182,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                     </h3>
                     <div className="flex flex-wrap gap-1.5 pt-1">
                       {(p.tags ?? []).map((tag) => (
-                        <span key={tag} className="text-[10px] uppercase tracking-[0.08em] border border-[var(--color-border)] px-2 py-0.5 rounded-full text-[hsla(var(--color-secondary)/0.5)] font-medium">
+                        <span key={tag} className="text-xs uppercase tracking-[0.08em] border border-[var(--color-border)] px-2 py-0.5 rounded-full text-[hsla(var(--color-secondary)/0.5)] font-medium">
                           {tag}
                         </span>
                       ))}

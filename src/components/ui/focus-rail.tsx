@@ -5,6 +5,7 @@ import { motion, AnimatePresence, PanInfo } from "framer-motion";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { trackEvent } from "@/lib/clarity";
 
 export type FocusRailItem = {
   id: string | number;
@@ -262,6 +263,7 @@ export function FocusRail({
             <div className="rounded-full border border-[#1E1854] bg-white/80 backdrop-blur-sm px-4 py-2.5">
               <Link
                 href={activeItem.href}
+                onClick={() => trackEvent('homepage_blog_read_article')}
                 className="text-xs font-medium text-[#1E1854] whitespace-nowrap"
               >
                 Read this article
@@ -271,6 +273,7 @@ export function FocusRail({
 
           <Link
             href="/pages/blog-posts"
+            onClick={() => trackEvent('homepage_blog_discover_all')}
             className="rounded-full bg-[#1E1854] px-5 py-3 text-sm font-semibold text-white transition-all hover:bg-[#1E1854]/80 active:scale-95 whitespace-nowrap"
           >
             Discover our blogs

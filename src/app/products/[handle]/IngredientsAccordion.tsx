@@ -4,92 +4,20 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
-
 const ingredients = [
-  {
-    name: 'Zynamite®',
-    category: 'plant-extracts',
-    tagline: 'Clean focus without the crash',
-    description: 'A breakthrough mango leaf extract that inhibits COMT to naturally prolong dopamine and noradrenaline. Clinically shown to improve attention 11–16% within 60 minutes without the stimulant side effects of caffeine.',
-    image: 'https://images.unsplash.com/photo-1518310952931-b1de897abd40?w=500&q=80&auto=format&fit=crop',
-  },
-  {
-    name: 'L-Theanine & Caffeine',
-    category: 'amino-acids',
-    tagline: 'Smooth, jitter-free alertness',
-    description: 'A synergistic duo that delivers smooth, jitter-free alertness. L-theanine moderates caffeine\'s stimulatory effects, promoting alpha brainwave activity for calm, focused awareness without the crash.',
-    image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=500&q=80&auto=format&fit=crop',
-  },
-  {
-    name: 'Rhodiola Rosea',
-    category: 'adaptogens',
-    tagline: 'Combat fatigue, build resilience',
-    description: 'An adaptogenic herb that combats fatigue and supports stress resilience. Rhodiola helps the body adapt to physical and mental demands, reducing the perception of effort during challenging tasks.',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80&auto=format&fit=crop',
-  },
-  {
-    name: 'Panax Ginseng',
-    category: 'adaptogens',
-    tagline: 'Cognitive function & stamina',
-    description: 'A renowned adaptogen that supports cognitive function and physical stamina. Panax ginseng modulates the HPA axis and cortisol response, helping maintain balance under sustained stress.',
-    image: 'https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=500&q=80&auto=format&fit=crop',
-  },
-  {
-    name: 'Ashwagandha KSM-66®',
-    category: 'adaptogens',
-    tagline: 'Calm, grounded, balanced',
-    description: 'A clinically-studied adaptogen that reduces cortisol levels and supports healthy hormonal balance. Promotes a calm, grounded state while supporting thyroid and adrenal health.',
-    image: 'https://images.unsplash.com/photo-1596078842550-f9b9bdd7bdc7?w=500&q=80&auto=format&fit=crop',
-  },
-  {
-    name: 'Lion\'s Mane Mushroom',
-    category: 'plant-extracts',
-    tagline: 'Neuroplasticity & memory',
-    description: 'A medicinal mushroom that stimulates NGF (Nerve Growth Factor), supporting the formation of new neural connections. Studied for its role in improving memory, cognitive speed, and long-term brain health.',
-    image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=500&q=80&auto=format&fit=crop',
-  },
-  {
-    name: 'Electrolytes',
-    category: 'minerals',
-    tagline: 'Hydration & nerve signalling',
-    description: 'A precise blend of sodium, potassium, and magnesium that supports optimal hydration, nerve signalling, and muscle function — ensuring your body and mind operate at full capacity.',
-    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=500&q=80&auto=format&fit=crop',
-  },
-  {
-    name: 'Prebiotics & Probiotics',
-    category: 'gut-health',
-    tagline: 'Gut-brain axis support',
-    description: 'A dual-action gut-brain axis support system. Prebiotics feed beneficial bacteria while probiotics replenish them, supporting mood, immunity, and serotonin production.',
-    image: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=500&q=80&auto=format&fit=crop',
-  },
-  {
-    name: 'Bacopa Monnieri',
-    category: 'plant-extracts',
-    tagline: 'Memory & learning support',
-    description: 'An Ayurvedic herb used for centuries to enhance memory and cognitive performance. Bacopa modulates acetylcholine and serotonin pathways, with clinical studies showing improved recall after 8–12 weeks.',
-    image: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=500&q=80&auto=format&fit=crop',
-  },
-  {
-    name: 'Alpha-GPC',
-    category: 'amino-acids',
-    tagline: 'Acetylcholine precursor',
-    description: 'A highly bioavailable choline source that crosses the blood-brain barrier to boost acetylcholine levels — the neurotransmitter central to memory, focus, and learning. Popular with athletes and nootropic users.',
-    image: 'https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=500&q=80&auto=format&fit=crop',
-  },
-  {
-    name: 'Magnesium Glycinate',
-    category: 'minerals',
-    tagline: 'Calm, sleep & recovery',
-    description: 'The most bioavailable form of magnesium, chelated with glycine for superior absorption. Supports over 300 enzymatic reactions, deep sleep, muscle relaxation, and healthy cortisol rhythms.',
-    image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500&q=80&auto=format&fit=crop',
-  },
-  {
-    name: 'Green Tea Catechins',
-    category: 'plant-extracts',
-    tagline: 'Antioxidant & mitochondrial health',
-    description: 'Powerful antioxidants that support cellular energy production and cardiovascular health. EGCG from green tea protects neurons and supports healthy mitochondrial function for sustained vitality.',
-    image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500&q=80&auto=format&fit=crop',
-  },
+  { name: 'Zynamite® (Mango Leaf Extract)', category: 'plant-extracts', tagline: '300 mg', description: 'Delivers fast-acting mental clarity, improves reaction time, and reduces mental fatigue without affecting heart rate or blood pressure.', image: '/mangifera.png' },
+  { name: 'Green Tea Extract', category: 'plant-extracts', tagline: '250 mg', description: 'Provides smooth, jitter-free energy and sustained attention when paired with L-theanine.', image: '/green-tea.png' },
+  { name: "Lion's Mane Mushroom", category: 'plant-extracts', tagline: '250 mg', description: 'Supports nerve health, mental clarity, and long-term cognitive vitality.', image: '/lions-mane.png' },
+  { name: 'Hibiscus Extract', category: 'plant-extracts', tagline: '1,750 mg', description: 'Offers gentle antioxidant support and may help maintain calm mental performance while supporting healthy blood flow.', image: '/hibiscus.png' },
+  { name: 'Rooibos Extract', category: 'plant-extracts', tagline: '625 mg', description: 'Provides antioxidant protection and may help reduce feelings of everyday stress while supporting overall calm.', image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=500&q=80&auto=format&fit=crop' },
+  { name: "Saffr'Active® (Saffron Extract)", category: 'adaptogens', tagline: '50 mg', description: 'Gently lifts mood, reduces everyday tension, and supports emotional balance.', image: '/saffran.png' },
+  { name: 'Ginseng Panax', category: 'adaptogens', tagline: '200 mg', description: 'Helps combat mental fatigue and supports working memory and overall cognitive performance.', image: 'https://images.unsplash.com/photo-1544991875-5dc1b05f607d?w=500&q=80&auto=format&fit=crop' },
+  { name: 'Betaine (Trimethylglycine)', category: 'amino-acids', tagline: '500 mg', description: 'Supports healthy methylation and helps maintain balanced homocysteine levels for brain chemistry and energy metabolism.', image: 'https://images.unsplash.com/photo-1593280405106-e438ebe93f5e?w=500&q=80&auto=format&fit=crop' },
+  { name: 'Magnesium Citrate', category: 'minerals', tagline: '680 mg', description: 'Promotes relaxation, helps ease tension, and supports healthy stress response and sleep quality.', image: 'https://images.unsplash.com/photo-1550572017-edd951b55104?w=500&q=80&auto=format&fit=crop' },
+  { name: 'Sodium Citrate', category: 'minerals', tagline: '400 mg', description: 'Supports proper hydration, fluid balance, and smooth nutrient absorption for steady energy and mental clarity.', image: '/sodium-citrate.png' },
+  { name: 'Zinc', category: 'minerals', tagline: '7 mg', description: 'Supports healthy neurotransmitter function, immune balance, and cognitive processes.', image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=500&q=80&auto=format&fit=crop' },
+  { name: 'B-Vitamins (B1, B3, B6, B12)', category: 'vitamins', tagline: '2.875 mg', description: 'Support energy metabolism, neurotransmitter production, and overall mental performance.', image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=500&q=80&auto=format&fit=crop' },
+  { name: 'Inulin', category: 'gut-health', tagline: '1,345 mg', description: 'Nourishes beneficial gut bacteria, supporting the gut-brain connection that influences mood and cognitive flexibility.', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80&auto=format&fit=crop' },
 ];
 
 const categories: Record<string, string> = {
@@ -98,6 +26,7 @@ const categories: Record<string, string> = {
   'amino-acids': 'Amino Acids',
   'plant-extracts': 'Plant Extracts',
   minerals: 'Minerals',
+  vitamins: 'Vitamins',
   'gut-health': 'Gut Health',
 };
 
@@ -129,16 +58,15 @@ function FlipCard({ name, tagline, description, image }: { name: string; tagline
           <div className="relative aspect-[4/3] w-full">
             <Image src={image} alt={name} fill className="object-cover" sizes="(max-width: 768px) 50vw, 25vw" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+            <div className="absolute bottom-3 right-3 w-6 h-6 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+              <svg width="9" height="9" viewBox="0 0 10 10" fill="none">
+                <path d="M2 5h6M5 2l3 3-3 3" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
           </div>
-          <div className="p-4 bg-white">
+          <div className="p-4 pb-3 bg-white">
             <p className="text-sm font-semibold text-[#1E1854] leading-snug">{name}</p>
-            <p className="text-xs text-[hsla(var(--color-secondary)/0.55)] mt-1 leading-snug">{tagline}</p>
-          </div>
-          <div className="px-4 pb-3 flex items-center gap-1 bg-white">
-            <span className="text-[10px] uppercase tracking-[0.1em] text-[hsla(var(--color-accent)/1)] font-medium">Learn more</span>
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" className="text-[hsla(var(--color-accent)/1)]">
-              <path d="M2 5h6M5 2l3 3-3 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+            <p className="text-xs text-[hsla(var(--color-secondary)/0.45)] mt-0.5 leading-snug">{tagline}</p>
           </div>
         </div>
 
@@ -149,14 +77,14 @@ function FlipCard({ name, tagline, description, image }: { name: string; tagline
         >
           <div>
             <p className="text-sm font-semibold text-white mb-3 leading-snug">{name}</p>
-            <p className="text-xs text-white/65 leading-relaxed">{description}</p>
+            <p className="text-sm text-white/65 leading-relaxed">{description}</p>
           </div>
           <div className="flex items-center gap-1.5 mt-4">
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="text-white/40">
               <circle cx="6" cy="6" r="5" stroke="currentColor" strokeWidth="1"/>
               <path d="M3.5 6l2 2 3-3" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            <span className="text-[10px] text-white/40 uppercase tracking-[0.1em]">Clinically Dosed</span>
+            <span className="text-xs text-white/40 uppercase tracking-[0.1em]">Clinically Dosed</span>
           </div>
         </div>
       </div>
@@ -204,7 +132,8 @@ export default function IngredientsAccordion() {
                   animate={{ y: '0%' }}
                   exit={{ y: '100%' }}
                   transition={{ duration: 0.4, ease: 'backIn' }}
-                  className="absolute inset-0 z-0 bg-[#1E1854]"
+                  className="absolute inset-0 z-0"
+                  style={{ background: 'linear-gradient(135deg, #3B38B8 0%, #1E1854 100%)' }}
                 />
               )}
             </AnimatePresence>

@@ -1,36 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { cn } from '@/lib/utils';
+import type { ResultsTimelineStep } from '@/lib/contentful';
 
-const steps = [
-  {
-    week: 'Day 1',
-    title: 'A calm wave of focus',
-    summary: 'Within 60 minutes of your first bottle, you\'ll notice a subtle but clear shift — sharper thoughts, reduced mental noise.',
-    detail: 'Zynamite® and L-Theanine begin working within the first hour. Expect a clean, jitter-free alertness that feels different from coffee: no spike, no racing heart. Your mind settles into a productive rhythm while staying relaxed. Most people describe it as "finally feeling in control of their thoughts."',
-  },
-  {
-    week: 'Week 1–2',
-    title: 'Steadier energy, better mornings',
-    summary: 'The afternoon slump starts to fade. Mornings feel less groggy. Your energy curve becomes noticeably smoother across the day.',
-    detail: 'As B-vitamins and electrolytes build up in your system, your body\'s energy metabolism becomes more efficient. You\'ll find it easier to start tasks without procrastination. Sleep quality often improves in the first two weeks too — Magnesium and L-Theanine support deeper, more restorative rest, so you wake up actually refreshed.',
-  },
-  {
-    week: 'Week 3–4',
-    title: 'Stress rolls off you differently',
-    summary: 'Stressful situations feel more manageable. You react less and respond more. Colleagues or family may notice before you do.',
-    detail: 'Ashwagandha KSM-66® and Rhodiola Rosea take about 3–4 weeks to meaningfully modulate your cortisol response. By now, your HPA axis is better regulated — your body doesn\'t over-react to everyday stressors. You\'ll notice a more grounded baseline: less irritability, more patience, and a greater sense of emotional stability even in demanding moments.',
-  },
-  {
-    week: 'Month 2+',
-    title: 'Sharpness that compounds',
-    summary: 'Long-term neuroplasticity support kicks in. Your capacity for sustained deep work improves and you feel more mentally resilient overall.',
-    detail: 'Lion\'s Mane mushroom and Bacopa Monnieri work on longer timescales, supporting the growth of new neural connections and protecting existing ones. After two months of consistent use, many people report noticeably improved memory recall, faster problem-solving, and a greater capacity for creative thinking. This is the compound interest of daily supplementation.',
-  },
-];
-
-export default function BenefitsTimeline() {
+export default function BenefitsTimeline({ steps }: { steps: ResultsTimelineStep[] }) {
+  const mapped = steps.map((s) => {
+    const bullets = s.bullets.split('\n').map((b) => b.trim()).filter(Boolean);
+    return { week: s.period, title: s.title, summary: bullets[0] ?? '', detail: bullets.slice(1).join(' ') };
+  });
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
@@ -42,85 +19,39 @@ export default function BenefitsTimeline() {
         </h2>
       </div>
 
-      <div className="bg-[#1E18540D] rounded-2xl px-6 md:px-10 py-10">
-
-        {/* Mobile: vertical layout matching homepage style */}
-        <div className="md:hidden flex flex-col">
-          {steps.map((step, i) => (
-            <div key={step.week} className={`relative${i < steps.length - 1 ? ' pb-6' : ''}`}>
-              {/* Connecting line */}
-              {i < steps.length - 1 && (
-                <div className="absolute left-[15px] top-[26px] bottom-0 w-px bg-[#1E1854]/15" />
+      <div className="bg-white rounded-2xl px-6 md:px-10 py-10 shadow-[0_2px_16px_rgba(30,24,84,0.07)] border border-[#1E1854]/[0.06]">
+        <div className="flex flex-col">
+          {mapped.map((step, i) => (
+            <div key={step.week} className={`relative${i < mapped.length - 1 ? ' pb-8' : ''}`}>
+              {/* Connecting line — same as homepage */}
+              {i < mapped.length - 1 && (
+                <div className="absolute left-[16px] top-[14px] bottom-0 w-px bg-[#1E1854]/12" />
               )}
-              {/* Pill with dot */}
-              <span className="inline-flex items-center gap-1.5 text-xs font-medium tracking-[0.06em] uppercase bg-[#1E1854]/[0.08] text-[#1E1854]/55 px-3 py-1 rounded-full">
-                <span className="w-1.5 h-1.5 rounded-full bg-[hsla(var(--color-accent)/1)] shrink-0" />
-                {step.week}
-              </span>
-              {/* Content */}
-              <div className="mt-2 pl-6">
-                <p className="text-base font-semibold tracking-[-0.01em] mb-1.5 text-[#1E1854]">{step.title}</p>
-                <p className="text-sm text-[hsla(var(--color-secondary)/0.75)] leading-relaxed">{step.summary}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Desktop: expandable accordion */}
-        <div className="hidden md:block relative">
-          <div className="absolute left-[10px] top-3 bottom-3 w-px bg-[#1E1854]/10" />
-          <div className="space-y-0">
-            {steps.map((step, i) => (
-              <div key={step.week} className="relative pl-10">
-                {/* Dot */}
-                <div className="absolute left-0 top-[22px] w-[21px] h-[21px] flex items-center justify-center">
-                  <div className={cn(
-                    'relative w-[9px] h-[9px] rounded-full transition-all duration-300',
-                    openIndex === i
-                      ? 'bg-[hsla(var(--color-accent)/1)] shadow-[0_0_0_3px_hsla(var(--color-accent)/0.18)]'
-                      : 'bg-[#1E1854]/20'
-                  )} />
-                </div>
-
+              {/* Pill row */}
+              <div className="flex items-center justify-between gap-4">
+                <span className="relative shrink-0 inline-flex items-center gap-1.5 text-xs font-medium tracking-[0.06em] uppercase bg-gradient-to-r from-[#3B38B8] to-[#1E1854] text-white px-3 py-1 rounded-full shadow-[0_2px_8px_rgba(59,56,184,0.35)]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/60 shrink-0" />
+                  {step.week}
+                </span>
                 <button
                   onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                  className="w-full flex items-start gap-5 py-5 text-left group"
+                  className={`shrink-0 text-[#1E1854]/30 transition-transform duration-300 ${openIndex === i ? 'rotate-180' : ''}`}
                 >
-                  {/* Week pill */}
-                  <span className={cn(
-                    'shrink-0 text-xs font-medium tracking-[0.06em] uppercase px-3 py-1 mt-0.5 rounded-full transition-colors duration-200',
-                    openIndex === i
-                      ? 'bg-[#1E1854]/15 text-[#1E1854]'
-                      : 'bg-[#1E1854]/[0.06] text-[#1E1854]/45'
-                  )}>
-                    {step.week}
-                  </span>
-
-                  <div className="flex-1 min-w-0">
-                    <p className={cn(
-                      'text-base font-semibold tracking-[-0.01em] transition-colors duration-200',
-                      openIndex === i ? 'text-[#1E1854]' : 'text-[#1E1854]/55 group-hover:text-[#1E1854]'
-                    )}>
-                      {step.title}
-                    </p>
-                    {openIndex !== i && (
-                      <p className="text-sm text-[#1E1854]/35 mt-1 leading-relaxed line-clamp-1">
-                        {step.summary}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Chevron */}
-                  <span className={cn(
-                    'shrink-0 mt-1 transition-transform duration-300 text-[#1E1854]/30',
-                    openIndex === i ? 'rotate-180' : ''
-                  )}>
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                      <path d="M3 5L7 9L11 5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </span>
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M3 5L7 9L11 5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
                 </button>
-
+              </div>
+              {/* Title */}
+              <button
+                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                className="w-full text-left mt-2 pl-6"
+              >
+                <p className="text-base font-semibold tracking-[-0.01em] text-[#1E1854]">{step.title}</p>
+              </button>
+              {/* Content — indented past the connecting line */}
+              <div className="pl-6 pt-2">
+                <p className="text-sm font-medium text-[hsla(var(--color-secondary)/0.65)] leading-relaxed">{step.summary}</p>
                 <div
                   className="grid"
                   style={{
@@ -129,51 +60,45 @@ export default function BenefitsTimeline() {
                   }}
                 >
                   <div className="overflow-hidden min-h-0">
-                    <div
-                      className="flex gap-5 pb-6 pr-8 md:pr-12"
+                    <p
+                      className="text-sm text-[hsla(var(--color-secondary)/0.45)] leading-[1.75] pt-1.5 pr-6"
                       style={{
                         opacity: openIndex === i ? 1 : 0,
                         transition: 'opacity 300ms ease-out',
                         transitionDelay: openIndex === i ? '100ms' : '0ms',
                       }}
                     >
-                      <span className="shrink-0 invisible text-xs font-medium tracking-[0.06em] uppercase px-3 py-1 rounded-full">
-                        {step.week}
-                      </span>
-                      <div className="flex-1">
-                        <p className="text-sm text-[#1E1854]/70 mb-3 leading-relaxed font-medium">
-                          {step.summary}
-                        </p>
-                        <p className="text-sm text-[#1E1854]/55 leading-[1.75]">
-                          {step.detail}
-                        </p>
-                      </div>
-                    </div>
+                      {step.detail}
+                    </p>
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-
       </div>
 
       {/* Consistency callout */}
-      <div className="mt-12 max-w-2xl mx-auto w-full border border-[var(--color-border)] bg-[#1E185408] rounded-2xl py-10 px-8 flex flex-col items-center text-center gap-4">
-        <div className="w-14 h-14 flex items-center justify-center" style={{
-          clipPath: 'polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%)',
-          background: 'hsla(var(--color-accent)/1)',
-        }}>
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <path d="M13 3L5 14h7l-1 7 8-11h-7l1-7z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+      <div className="mt-12 max-w-2xl mx-auto w-full rounded-2xl bg-white border border-[#3B38B8]/20 shadow-[0_0_0_1px_rgba(59,56,184,0.08),0_8px_48px_rgba(59,56,184,0.18)] px-8 py-10 flex flex-col items-center text-center gap-5" style={{ boxShadow: '0 0 0 1px rgba(59,56,184,0.08), 0 8px 48px rgba(59,56,184,0.18), 0 0 80px rgba(59,56,184,0.10)' }}>
+        {/* Logomark with gradient circle */}
+        <div className="relative w-14 h-14 flex items-center justify-center">
+          <div className="absolute inset-0 rounded-full" style={{ background: 'linear-gradient(135deg, #3B38B8 0%, #1E1854 100%)' }} />
+          <div className="relative w-7 h-7">
+            <svg viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M320 138.76V160H160V0H181.24C190.26 72.36 247.64 129.74 320 138.76Z" fill="white"/>
+              <path d="M160 160V320H138.76C129.74 247.64 72.36 190.26 0 181.24V160H160Z" fill="white"/>
+            </svg>
+          </div>
         </div>
-        <div className="space-y-2 max-w-lg">
+        <div className="space-y-2.5 max-w-lg">
           <p className="text-sm font-semibold tracking-[0.16em] uppercase text-[hsla(var(--color-accent)/1)]">
             Consistency is key
           </p>
-          <p className="text-sm text-[hsla(var(--color-secondary)/0.75)] leading-relaxed">
-            Most users report noticeable improvements in focus and energy within the first week, with comprehensive benefits developing over 4–8 weeks of daily use.
+          <p className="text-sm text-[hsla(var(--color-secondary)/0.75)] leading-[1.75]">
+            Fast-acting compounds deliver noticeable clarity and calm from day one.
+          </p>
+          <p className="text-sm text-[hsla(var(--color-secondary)/0.75)] leading-[1.75]">
+            Deeper benefits — improved memory, cortisol regulation, and lasting neuroplastic changes — build progressively over 4–8 weeks of daily use.
           </p>
         </div>
       </div>

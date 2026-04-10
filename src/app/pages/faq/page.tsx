@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { FAQ } from '@/components/ui/faq-tabs';
 import { getFaqItems } from '@/lib/contentful';
+import { PRODUCT_META } from '@/lib/product-meta';
 
 const categories = {
   product: 'Product & Formula',
@@ -58,7 +59,7 @@ export default async function FaqPage({ searchParams }: { searchParams: Promise<
           <div>
             <p className="text-xs tracking-[0.16em] uppercase text-white/40 font-medium mb-3">Ready to try Flow?</p>
             <p className="text-2xl md:text-3xl font-semibold tracking-[-0.02em] text-white max-w-lg leading-snug">
-              13 actives. One daily formula. 30-day guarantee.
+              {PRODUCT_META.activeIngredients} actives. One daily formula. {PRODUCT_META.returnDays}-day guarantee.
             </p>
           </div>
           <Link
@@ -80,7 +81,7 @@ export default async function FaqPage({ searchParams }: { searchParams: Promise<
             </div>
             <Link
               href="/pages/contact"
-              className="shrink-0 inline-flex items-center gap-2 bg-[#1E1854] text-white text-xs tracking-[0.1em] uppercase font-semibold px-6 py-3.5 rounded-full hover:bg-[hsla(var(--color-accent)/1)] transition-colors"
+              className="btn-cta shrink-0 inline-flex items-center gap-2 text-white text-xs tracking-[0.1em] uppercase font-semibold px-6 py-3.5 rounded-full"
             >
               Contact us
             </Link>

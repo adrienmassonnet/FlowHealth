@@ -155,6 +155,76 @@ Set in `.env.local` (not committed).
 - `/products/[handle]` → product detail (uses `notFound()` for missing handles)
 - `/api/checkout` → checkout POST endpoint
 
+## Content & Copy Changes
+
+**Rule: All copy and text changes must be made in Contentful, not in the codebase.**
+
+When asked to change any text, heading, body copy, or label:
+1. Identify which Contentful content type and field holds that text
+2. Instruct the user to update it in Contentful (or use the Contentful Management API to do it programmatically)
+3. Never hardcode the new text directly in a `.tsx` file if it belongs in Contentful
+
+### Change history / audit trail
+Contentful has **built-in version history** on every entry. In Contentful → open any entry → click the clock icon (top right) to see all previous versions with timestamps. No extra setup needed.
+
+### What is already in Contentful
+| Content type | What it covers |
+|---|---|
+| `homepageContent` | Hero tagline, headings, section labels, background images |
+| `healthBenefit` | All benefit cards (number, label, title, description, image) |
+| `resultsTimelineStep` | Timeline steps (period, title, bullets) |
+| `testimonial` | All testimonial quotes and author info |
+| `ingredient` | All ingredient cards (name, dose, form, category, description, image) |
+| `productHighlight` | Product stat cards (value, unit, description) |
+| `comparisonRow` | Comparison table rows |
+| `savingsSupplement` | Savings breakdown supplements and prices |
+| `philosophyPrinciple` | Philosophy numbered principles |
+| `philosophyBelief` | Philosophy belief statements |
+| `teamMember` | Team bios, roles, images |
+| `companyValue` | Company values |
+| `milestone` | Company timeline milestones |
+| `faqItem` | All FAQ questions and answers |
+| `blogPost` | All blog post content (title, body rich text, cover image) |
+| `homepageFeatureCard` | Homepage feature cards (title, body, image) |
+
+### What is still hardcoded (needs Contentful migration)
+These areas still have copy in `.tsx` files. When changes are requested to these, flag it and create the appropriate Contentful content type first:
+- **`MainBenefits.tsx`** — ~~migrated to Contentful~~ now reads from `healthBenefit` content type
+- **`TakeFlowSteps.tsx`** — 3 usage step cards + section heading/body
+- **`pages/our-product/page.tsx`** — Hero copy, "The Formula" section, "Our Promise" bullets, CTA copy
+- **`pages/who-we-are/page.tsx`** — Origin story paragraphs, section headings
+- **`products/[handle]/page.tsx`** — Service pillars (dispatch/delivery/returns), FAQ category labels
+- **`page.tsx` (homepage)** — Blog posts array (hardcoded, not from Contentful), philosophy quote, benefit card labels
+
+---
+
+## Analytics & Event Tracking
+
+Microsoft Clarity is integrated for behaviour analytics. Project ID: `w3zpn726v1`.
+
+**Rule: Every new button or CTA added to the site must fire a Clarity event.**
+
+Use the shared helper from `src/lib/clarity.ts`:
+```ts
+import { trackEvent } from '@/lib/clarity';
+trackEvent('event_name');
+```
+
+### Naming convention
+`{page}_{element_description}` — all lowercase, underscores, no spaces.
+
+Examples:
+- `homepage_hero_shop_flow`
+- `product_page_buy_now`
+- `header_get_flow_desktop`
+- `contact_form_submit`
+
+### Server vs client components
+- **Client components** (`'use client'`): call `trackEvent()` directly in the `onClick` handler.
+- **Server components** (pages): wrap `<Link>` with `<TrackedLink clarityEvent="..." />` from `src/app/components/TrackedLink.tsx`.
+
+---
+
 ## Commands
 
 ```bash

@@ -30,7 +30,7 @@ export default function IngredientCard({ name, form, category, description, dose
             <h3 className="text-base font-semibold text-[#1E1854] tracking-[-0.01em] leading-snug">{name}</h3>
             <p className="text-xs text-[hsla(var(--color-secondary)/0.45)] mt-0.5">{form}</p>
           </div>
-          <span className="text-[10px] uppercase tracking-[0.08em] border border-[var(--color-border)] px-2.5 py-0.5 rounded-full text-[hsla(var(--color-secondary)/0.5)] font-medium shrink-0">{category}</span>
+          <span className="text-xs uppercase tracking-[0.08em] border border-[var(--color-border)] px-2.5 py-0.5 rounded-full text-[hsla(var(--color-secondary)/0.5)] font-medium shrink-0">{category}</span>
         </div>
 
         {open && (

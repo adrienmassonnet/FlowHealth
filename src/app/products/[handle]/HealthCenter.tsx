@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { PRODUCT_META } from '@/lib/product-meta';
 
 const badges = [
   {
@@ -88,30 +89,11 @@ const badges = [
     ),
   },
   {
-    label: 'Low Sugar',
+    label: 'No Sugar',
     icon: (
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M9 19C9 19 10 14 14 14C18 14 19 19 19 19" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
         <circle cx="14" cy="10" r="3" stroke="currentColor" strokeWidth="1.4"/>
-      </svg>
-    ),
-  },
-  {
-    label: 'No Stimulant Crash',
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M6 14H9L11 9L14 19L17 12L19 14H22" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    ),
-    absent: true,
-  },
-  {
-    label: 'No Jitters',
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M9 20L19 8" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
-        <path d="M9 8L19 20" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
-        <circle cx="14" cy="14" r="8" stroke="currentColor" strokeWidth="1.4"/>
       </svg>
     ),
     absent: true,
@@ -119,27 +101,27 @@ const badges = [
 ];
 
 const macros = [
-  { label: 'Total Fat', value: '0 g', daily: '0%' },
-  { label: 'Total Carbohydrate', value: '5 g', daily: '2%' },
-  { label: 'of which Sugars', value: '2 g', daily: null, indent: true },
-  { label: 'Protein', value: '1 g', daily: null },
-  { label: 'Salt (Sodium)', value: '50 mg', daily: '2%' },
+  { label: 'Total Fat', value: `${PRODUCT_META.nutrition.fatG} g`, daily: '0%' },
+  { label: 'Total Carbohydrate', value: `${PRODUCT_META.nutrition.carbsG} g`, daily: '2%' },
+  { label: 'of which Sugars', value: `${PRODUCT_META.nutrition.sugarsG} g`, daily: null, indent: true },
+  { label: 'Protein', value: `${PRODUCT_META.nutrition.proteinG} g`, daily: null },
+  { label: 'Salt (Sodium)', value: `${PRODUCT_META.nutrition.saltMg} mg`, daily: '2%' },
 ];
 
 const actives = [
-  { name: 'Zynamite® (Mango Leaf Extract)', dose: '200 mg' },
-  { name: 'Ashwagandha KSM-66® Root Extract', dose: '300 mg' },
-  { name: "Lion's Mane Mushroom (fruiting body)", dose: '500 mg' },
-  { name: 'Bacopa Monnieri (Synapsa®)', dose: '300 mg' },
-  { name: 'Rhodiola Rosea (3% rosavins)', dose: '200 mg' },
-  { name: 'Alpha-GPC', dose: '150 mg' },
-  { name: 'Panax Ginseng Root Extract', dose: '150 mg' },
-  { name: 'Magnesium Glycinate', dose: '200 mg' },
-  { name: 'L-Theanine', dose: '200 mg' },
-  { name: 'Natural Caffeine', dose: '80 mg' },
-  { name: 'Green Tea Catechins (EGCG)', dose: '150 mg' },
-  { name: 'Electrolyte Blend (Na, K, Mg)', dose: '350 mg' },
-  { name: 'Prebiotic & Probiotic Complex', dose: '5B CFU' },
+  { name: 'Zynamite® (Mango Leaf Extract)', dose: '300 mg' },
+  { name: 'Green Tea Extract', dose: '250 mg' },
+  { name: "Lion's Mane Mushroom", dose: '250 mg' },
+  { name: 'Hibiscus Extract', dose: '1,750 mg' },
+  { name: 'Rooibos Extract', dose: '625 mg' },
+  { name: "Saffr'Active® (Saffron Extract)", dose: '50 mg' },
+  { name: 'Ginseng Panax', dose: '200 mg' },
+  { name: 'Betaine (Trimethylglycine)', dose: '500 mg' },
+  { name: 'Magnesium Citrate', dose: '680 mg' },
+  { name: 'Sodium Citrate', dose: '400 mg' },
+  { name: 'Zinc', dose: '7 mg' },
+  { name: 'B-Vitamins (B1, B3, B6, B12)', dose: '2.875 mg' },
+  { name: 'Inulin', dose: '1,345 mg' },
 ];
 
 export default function HealthCenter() {
@@ -160,18 +142,22 @@ export default function HealthCenter() {
       <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-4 items-start">
 
         {/* LEFT — Calories highlight + nutrition sheet link */}
-        <div className="rounded-2xl overflow-hidden">
-          <div className="flex flex-col items-center justify-center py-10 px-6">
-            <div className="w-44 h-44 rounded-full bg-[#1E1854] flex flex-col items-center justify-center gap-1">
-              <p className="text-5xl font-semibold text-white tracking-[-0.03em] leading-none">25</p>
-              <p className="text-xs font-medium text-white/70 tracking-[0.04em]">kcal per serving</p>
-              <button
-                onClick={() => setNutritionOpen(true)}
-                className="mt-2 text-[10px] text-white/50 underline underline-offset-2 hover:text-white/80 transition-colors tracking-[0.02em]"
-              >
-                full nutritional sheet
-              </button>
-            </div>
+        <div className="flex flex-col items-center justify-center py-4">
+          <div
+            className="w-44 h-44 rounded-full flex flex-col items-center justify-center gap-1"
+            style={{
+              background: 'linear-gradient(135deg, #3B38B8 0%, #1E1854 100%)',
+              boxShadow: '0 8px 48px rgba(59,56,184,0.4), 0 0 0 1px rgba(59,56,184,0.12), 0 0 80px rgba(59,56,184,0.15)',
+            }}
+          >
+            <p className="text-5xl font-semibold text-white tracking-[-0.03em] leading-none">{PRODUCT_META.caloriesKcal}</p>
+            <p className="text-xs font-medium text-white/70 tracking-[0.04em]">kcal per serving</p>
+            <button
+              onClick={() => setNutritionOpen(true)}
+              className="mt-2 text-xs text-white/50 underline underline-offset-2 hover:text-white/80 transition-colors tracking-[0.02em]"
+            >
+              full nutritional sheet
+            </button>
           </div>
         </div>
 
@@ -221,7 +207,7 @@ export default function HealthCenter() {
                       </div>
                     </div>
                   ))}
-                  <p className="text-[10px] text-[hsla(var(--color-secondary)/0.4)] mt-3 leading-relaxed">* Reference intake of an average adult (8400 kJ / 2000 kcal).</p>
+                  <p className="text-xs text-[hsla(var(--color-secondary)/0.4)] mt-3 leading-relaxed">* Reference intake of an average adult (8400 kJ / 2000 kcal).</p>
                 </div>
 
                 {/* Actives */}
@@ -233,29 +219,42 @@ export default function HealthCenter() {
                       <span className="text-sm font-semibold text-[#1E1854] shrink-0 ml-6">{a.dose}</span>
                     </div>
                   ))}
-                  <p className="text-[10px] text-[hsla(var(--color-secondary)/0.4)] mt-3 leading-relaxed">Swiss GMP · Vegan · Gluten-free · No artificial colours · Third-party tested for purity and potency.</p>
+                  <p className="text-xs text-[hsla(var(--color-secondary)/0.4)] mt-3 leading-relaxed">Swiss GMP · Vegan · Gluten-free · No artificial colours · Third-party tested for purity and potency.</p>
                 </div>
               </div>
             </div>
           </div>
         )}
 
-        {/* RIGHT — Purity badges (6 columns = 2 rows) */}
-        <div className="border border-[var(--color-border)] rounded-2xl overflow-hidden">
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-px bg-[var(--color-border)]">
-            {badges.map((badge) => (
-              <div
-                key={badge.label}
-                className="bg-white flex flex-col items-center justify-center gap-3 px-3 py-6 text-center"
-              >
-                <span className={badge.absent ? 'text-[hsla(var(--color-secondary)/0.35)]' : 'text-[#1E1854]'}>
-                  {badge.icon}
-                </span>
-                <p className={`text-xs leading-snug font-medium ${badge.absent ? 'text-[hsla(var(--color-secondary)/0.4)]' : 'text-[#1E1854]'}`}>
-                  {badge.label}
-                </p>
-              </div>
-            ))}
+        {/* RIGHT — Purity badges split into two groups */}
+        <div className="border border-[var(--color-border)] rounded-2xl overflow-hidden shadow-[0_2px_16px_rgba(30,24,84,0.07)] flex flex-col">
+          {/* Group 1: What it contains */}
+          <div>
+            <div className="px-4 py-2.5 border-b border-[var(--color-border)] bg-[#1E18540A]">
+              <p className="text-xs font-semibold tracking-[0.1em] uppercase text-[#1E1854]">What it contains</p>
+            </div>
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-px bg-[var(--color-border)]">
+              {badges.filter((b) => !b.absent).map((badge) => (
+                <div key={badge.label} className="bg-white flex flex-col items-center justify-center gap-2.5 px-3 py-5 text-center">
+                  <span className="text-[#1E1854]">{badge.icon}</span>
+                  <p className="text-xs leading-snug font-medium text-[#1E1854]">{badge.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Group 2: What it doesn't contain */}
+          <div>
+            <div className="px-4 py-2.5 border-y border-[var(--color-border)] bg-[#1E18540A]">
+              <p className="text-xs font-semibold tracking-[0.1em] uppercase text-[hsla(var(--color-secondary)/0.45)]">What it doesn&apos;t contain</p>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-[var(--color-border)]">
+              {badges.filter((b) => b.absent).map((badge) => (
+                <div key={badge.label} className="bg-white flex flex-col items-center justify-center gap-2.5 px-3 py-5 text-center">
+                  <span className="text-[hsla(var(--color-secondary)/0.35)]">{badge.icon}</span>
+                  <p className="text-xs leading-snug font-medium text-[hsla(var(--color-secondary)/0.4)]">{badge.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 

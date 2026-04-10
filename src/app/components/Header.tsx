@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { trackEvent } from '@/lib/clarity';
 
 // ─── Data ───────────────────────────────────────────────────────────────────
 
@@ -169,7 +170,7 @@ function LanguageSelector({ muted, compact }: { muted?: boolean; compact?: boole
                 }`}
               >
                 <span>{lang.label}</span>
-                <span className={`font-mono text-[10px] ${selected === lang.code ? 'text-white/50' : 'text-[hsla(var(--color-secondary)/0.4)]'}`}>{lang.code}</span>
+                <span className={`font-mono text-xs ${selected === lang.code ? 'text-white/50' : 'text-[hsla(var(--color-secondary)/0.4)]'}`}>{lang.code}</span>
               </button>
             ))}
           </motion.div>
@@ -326,8 +327,8 @@ export default function Header() {
               <div className="px-4 pt-4 pb-3 shrink-0">
                 <Link
                   href="/products/flow"
-                  onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-center w-full py-3.5 rounded-full bg-[#1E1854] text-white text-xs tracking-[0.08em] uppercase font-semibold hover:bg-[hsla(var(--color-accent)/1)] transition-colors"
+                  onClick={() => { setMobileOpen(false); trackEvent('header_get_flow_mobile'); }}
+                  className="btn-cta flex items-center justify-center w-full py-3.5 rounded-full text-white text-xs tracking-[0.08em] uppercase font-semibold"
                 >
                   Get Flow
                 </Link>
@@ -338,7 +339,7 @@ export default function Header() {
 
                 {/* About Flow section */}
                 <div className="px-3 mb-5">
-                  <p className="text-[10px] uppercase tracking-[0.14em] font-semibold text-[hsla(var(--color-secondary)/0.4)] px-3 mb-2">About Flow</p>
+                  <p className="text-xs uppercase tracking-[0.14em] font-semibold text-[hsla(var(--color-secondary)/0.4)] px-3 mb-2">About Flow</p>
                   <div className="space-y-0.5">
                     {aboutLinks.map((link) => (
                       <Link
@@ -365,11 +366,11 @@ export default function Header() {
                 {/* Learn section */}
                 <div className="px-3 mb-5">
                   <div className="flex items-center justify-between px-3 mb-2">
-                    <p className="text-[10px] uppercase tracking-[0.14em] font-semibold text-[hsla(var(--color-secondary)/0.4)]">Learn</p>
+                    <p className="text-xs uppercase tracking-[0.14em] font-semibold text-[hsla(var(--color-secondary)/0.4)]">Learn</p>
                     <Link
                       href="/pages/blog-posts"
                       onClick={() => setMobileOpen(false)}
-                      className="text-[10px] uppercase tracking-[0.1em] font-semibold text-[hsla(var(--color-accent)/1)] hover:opacity-70 transition-opacity"
+                      className="text-xs uppercase tracking-[0.1em] font-semibold text-[hsla(var(--color-accent)/1)] hover:opacity-70 transition-opacity"
                     >
                       See all
                     </Link>
@@ -386,7 +387,7 @@ export default function Header() {
                           <Image src={post.image} alt={post.title} fill className="object-cover" sizes="40px" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-[10px] uppercase tracking-[0.06em] text-[hsla(var(--color-secondary)/0.4)] mb-0.5">{post.tag} · {post.readTime}</p>
+                          <p className="text-xs uppercase tracking-[0.06em] text-[hsla(var(--color-secondary)/0.4)] mb-0.5">{post.tag} · {post.readTime}</p>
                           <p className="text-sm font-medium text-[#1E1854] leading-snug line-clamp-1 group-hover:text-[hsla(var(--color-accent)/1)] transition-colors">{post.title}</p>
                         </div>
                       </Link>
@@ -450,7 +451,7 @@ export default function Header() {
                 {/* Logo */}
                 <Link
                   href="/"
-                  onClick={() => setActiveMenu(null)}
+                  onClick={() => { setActiveMenu(null); trackEvent('header_logo_click'); }}
                   className="shrink-0 hidden md:flex items-center gap-2"
                   aria-label="Flow Health"
                 >
@@ -462,7 +463,7 @@ export default function Header() {
                 <nav ref={navRef} className="hidden md:flex items-center gap-2 relative">
 
                   {/* About Flow dropdown */}
-                  <div className="relative" onMouseEnter={() => openMenu('about')} onMouseLeave={scheduleClose}>
+                  <div className="relative" onMouseEnter={() => { openMenu('about'); trackEvent('header_menu_about_flow'); }} onMouseLeave={scheduleClose}>
                     <NavButton label="About Flow" open={activeMenu === 'about'} />
                     <AnimatePresence>
                       {activeMenu === 'about' && (
@@ -475,7 +476,7 @@ export default function Header() {
                           className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-72 rounded-2xl border border-[var(--color-border)] bg-white shadow-[0_8px_40px_rgba(0,0,0,0.12)] overflow-hidden z-50"
                         >
                           <div className="px-4 pt-4 pb-2">
-                            <p className="text-[10px] uppercase tracking-[0.12em] font-semibold text-[hsla(var(--color-secondary)/0.45)]">About Flow</p>
+                            <p className="text-xs uppercase tracking-[0.12em] font-semibold text-[hsla(var(--color-secondary)/0.45)]">About Flow</p>
                           </div>
                           <motion.div className="p-2 space-y-0.5" variants={listVariants} initial="hidden" animate="visible">
                             {aboutLinks.map((link) => (
@@ -505,7 +506,7 @@ export default function Header() {
                   </div>
 
                   {/* Learn dropdown */}
-                  <div className="relative" onMouseEnter={() => openMenu('learn')} onMouseLeave={scheduleClose}>
+                  <div className="relative" onMouseEnter={() => { openMenu('learn'); trackEvent('header_menu_learn'); }} onMouseLeave={scheduleClose}>
                     <NavButton label="Learn" open={activeMenu === 'learn'} />
                     <AnimatePresence>
                       {activeMenu === 'learn' && (
@@ -518,11 +519,11 @@ export default function Header() {
                           className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-[520px] rounded-2xl border border-[var(--color-border)] bg-white shadow-[0_8px_40px_rgba(0,0,0,0.12)] overflow-hidden z-50"
                         >
                           <div className="flex items-center justify-between px-5 pt-4 pb-3 border-b border-[var(--color-border)]">
-                            <p className="text-[10px] uppercase tracking-[0.12em] font-semibold text-[hsla(var(--color-secondary)/0.45)]">Latest articles</p>
+                            <p className="text-xs uppercase tracking-[0.12em] font-semibold text-[hsla(var(--color-secondary)/0.45)]">Latest articles</p>
                             <Link
                               href="/pages/blog-posts"
                               onClick={() => setActiveMenu(null)}
-                              className="flex items-center gap-1 text-[10px] uppercase tracking-[0.1em] font-semibold text-[hsla(var(--color-accent)/1)] hover:opacity-70 transition-opacity"
+                              className="flex items-center gap-1 text-xs uppercase tracking-[0.1em] font-semibold text-[hsla(var(--color-accent)/1)] hover:opacity-70 transition-opacity"
                             >
                               See all
                               <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
@@ -542,7 +543,7 @@ export default function Header() {
                                     <Image src={post.image} alt={post.title} fill className="object-cover" sizes="56px" />
                                   </div>
                                   <div className="flex-1 min-w-0">
-                                    <p className="text-[10px] uppercase tracking-[0.08em] font-medium text-[hsla(var(--color-secondary)/0.45)] mb-0.5">{post.tag} · {post.readTime}</p>
+                                    <p className="text-xs uppercase tracking-[0.08em] font-medium text-[hsla(var(--color-secondary)/0.45)] mb-0.5">{post.tag} · {post.readTime}</p>
                                     <p className="text-sm font-medium text-[#1E1854] leading-snug line-clamp-2 group-hover:text-[hsla(var(--color-accent)/1)] transition-colors">
                                       {post.title}
                                     </p>
@@ -572,8 +573,8 @@ export default function Header() {
                 {/* Get Flow CTA — always in the pill */}
                 <Link
                   href="/products/flow"
-                  onClick={() => setActiveMenu(null)}
-                  className="md:ml-0 flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium bg-[#1E1854] text-white px-4 py-1.5 rounded-full hover:bg-[hsla(var(--color-accent)/1)] transition-colors shrink-0"
+                  onClick={() => { setActiveMenu(null); trackEvent('header_get_flow_desktop'); }}
+                  className="btn-cta md:ml-0 flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium text-white px-4 py-1.5 rounded-full shrink-0"
                 >
                   <img src="/flow-logomark.svg?v=2" alt="" width={14} height={14} className="md:hidden w-3.5 h-3.5 [filter:brightness(0)_invert(1)]" />
                   Get Flow

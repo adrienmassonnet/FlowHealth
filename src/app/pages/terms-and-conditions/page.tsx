@@ -1,3 +1,5 @@
+import { PRODUCT_META } from '@/lib/product-meta';
+
 export default function TermsAndConditionsPage() {
   return (
     <main className="max-w-4xl mx-auto px-6 pt-20 pb-24 space-y-12">
@@ -122,9 +124,9 @@ export default function TermsAndConditionsPage() {
 
       {/* Section 8 */}
       <div className="space-y-4">
-        <h2 className="text-lg font-semibold tracking-[-0.01em]">8. 30-Day Money-Back Guarantee</h2>
+        <h2 className="text-lg font-semibold tracking-[-0.01em]">8. {PRODUCT_META.returnDays}-Day Money-Back Guarantee</h2>
         <ul className="space-y-2 text-sm text-[hsla(var(--color-secondary)/1)] leading-relaxed list-disc list-inside">
-          <li>You may return unopened and unused products within 30 days of delivery for a full refund (excluding shipping costs).</li>
+          <li>You may return unopened and unused products within {PRODUCT_META.returnDays} days of delivery for a full refund (excluding shipping costs).</li>
           <li>Opened products are only eligible if defective or damaged.</li>
           <li>Return shipping costs are paid by the customer (except for faulty items).</li>
           <li>Refunds are issued within 10 business days of receiving the return.</li>
@@ -143,7 +145,7 @@ export default function TermsAndConditionsPage() {
             </a>{' '}
             before the 14 days expire.
           </li>
-          <li>Our voluntary 30-day money-back guarantee (above) replaces and extends this right.</li>
+          <li>Our voluntary {PRODUCT_META.returnDays}-day money-back guarantee (above) replaces and extends this right.</li>
         </ul>
       </div>
 

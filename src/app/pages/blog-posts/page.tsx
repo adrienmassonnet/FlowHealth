@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { Suspense } from 'react';
 import BlogPostsClient from './BlogPostsClient';
 import { getBlogPosts } from '@/lib/contentful';
 
@@ -51,16 +52,18 @@ export default async function BlogPostsPage() {
         </Link>
       </section>
 
-      <BlogPostsClient posts={posts.map((p) => ({
-        slug: p.slug,
-        category: p.category,
-        title: p.title,
-        excerpt: p.excerpt,
-        tags: p.tags ?? [],
-        image: p.coverImageUrl,
-        date: p.publishedDate,
-        readTime: p.readTime,
-      }))} />
+      <Suspense>
+        <BlogPostsClient posts={posts.map((p) => ({
+          slug: p.slug,
+          category: p.category,
+          title: p.title,
+          excerpt: p.excerpt,
+          tags: p.tags ?? [],
+          image: p.coverImageUrl,
+          date: p.publishedDate,
+          readTime: p.readTime,
+        }))} />
+      </Suspense>
 
       {/* Product cross-link */}
       <section className="max-w-[1200px] mx-auto px-6 pb-24">
@@ -72,7 +75,7 @@ export default async function BlogPostsPage() {
             </p>
           </div>
           <div className="flex gap-3 shrink-0">
-            <Link href="/products/flow" className="inline-flex items-center justify-center bg-[#1E1854] text-white text-xs tracking-[0.1em] uppercase font-semibold px-6 py-3.5 rounded-full hover:bg-[hsla(var(--color-accent)/1)] transition-colors">
+            <Link href="/products/flow" className="btn-cta inline-flex items-center justify-center text-white text-xs tracking-[0.1em] uppercase font-semibold px-6 py-3.5 rounded-full">
               Shop Flow
             </Link>
             <Link href="/pages/our-product" className="inline-flex items-center justify-center border border-[#1E1854]/20 text-[#1E1854] text-xs tracking-[0.1em] uppercase font-medium px-6 py-3.5 rounded-full hover:border-[#1E1854]/40 transition-colors">

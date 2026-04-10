@@ -1,43 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { getIngredients, getProductHighlights } from '@/lib/contentful';
-import IngredientCard from './IngredientCard';
-
-const formats = [
-  {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <rect x="9" y="5" width="10" height="18" rx="3" stroke="currentColor" strokeWidth="1.4"/>
-        <path d="M12 9h4M12 13h4M12 17h2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
-      </svg>
-    ),
-    title: 'Capsule form',
-    description: 'Delayed-release vegetarian capsules for optimal absorption. No fillers, no anti-caking agents, no unnecessary additives.',
-  },
-  {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <path d="M7 14C7 10.134 10.134 7 14 7C17.866 7 21 10.134 21 14" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
-        <path d="M7 14v5a2 2 0 002 2h10a2 2 0 002-2v-5" stroke="currentColor" strokeWidth="1.4"/>
-        <path d="M14 14v4M11 17l3-3 3 3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    ),
-    title: '30-day supply',
-    description: 'Two capsules daily with your morning meal. Designed for consistent daily use — benefits compound over 4–12 weeks.',
-  },
-  {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <path d="M14 5L16.8 10.4L23 11.3L18.5 15.7L19.6 22L14 19L8.4 22L9.5 15.7L5 11.3L11.2 10.4L14 5Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/>
-      </svg>
-    ),
-    title: 'Third-party tested',
-    description: 'Every batch is independently tested for purity, potency, and contaminants before it leaves the facility.',
-  },
-];
+import { getProductHighlights } from '@/lib/contentful';
+import TrackedLink from '@/app/components/TrackedLink';
+import { PRODUCT_META } from '@/lib/product-meta';
+import ProductTopics from './ProductTopics';
 
 export default async function OurProductPage() {
-  const [ingredients, highlights] = await Promise.all([getIngredients(), getProductHighlights()]);
+  const highlights = await getProductHighlights();
   return (
     <main>
 
@@ -77,107 +46,8 @@ export default async function OurProductPage() {
         </div>
       </section>
 
-      {/* Formula overview */}
-      <section className="max-w-[1200px] mx-auto px-6 py-12 md:py-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
-        <div className="space-y-6">
-          <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">The Formula</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
-            Built for the long game.
-          </h2>
-          <div className="space-y-4 text-sm text-[hsla(var(--color-secondary)/0.75)] leading-relaxed">
-            <p>Most cognitive supplements are designed around one or two hero ingredients padded out with cheap fillers. Flow is built differently — every ingredient earns its place through clinical evidence, not marketing.</p>
-            <p>The formula targets five domains simultaneously: memory consolidation, stress resilience, neuroplasticity, focused attention, and sleep quality. These systems are deeply interconnected — optimising all five compounds over time.</p>
-            <p>You won&apos;t notice a spike on day one. You will notice that six weeks in, tasks feel easier, stress feels lighter, and focus feels more available on demand.</p>
-          </div>
-        </div>
-        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
-          <Image
-            src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=900&q=85&auto=format&fit=crop"
-            alt="Formula"
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
-        </div>
-      </section>
-
-      {/* Ingredients */}
-      <section className="bg-[#1E185408]">
-        <div className="max-w-[1200px] mx-auto px-6 py-20">
-          <div className="mb-12 space-y-2">
-            <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">Key Ingredients</p>
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">What&apos;s inside Flow.</h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {ingredients.map((ing, i) => (
-              <IngredientCard
-                key={`${ing.name}-${i}`}
-                name={ing.name}
-                form={ing.form ?? ''}
-                category={ing.category ?? ''}
-                description={ing.description ?? ''}
-                dose={ing.dose ?? ''}
-                imageUrl={ing.imageUrl}
-                imageAlt={ing.imageAlt}
-              />
-            ))}
-          </div>
-          <p className="mt-8 text-xs text-[hsla(var(--color-secondary)/0.4)] text-center">
-            + 6 additional supporting ingredients including Alpha-GPC, B-complex vitamins, and Black Pepper extract for bioavailability.
-          </p>
-        </div>
-      </section>
-
-      {/* Format */}
-      <section className="max-w-[1200px] mx-auto px-6 py-20">
-        <div className="mb-12 space-y-2">
-          <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">The Details</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">Made right, from start to finish.</h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {formats.map((f) => (
-            <div key={f.title} className="space-y-4 p-8 bg-[#1E185408] rounded-2xl border border-[var(--color-border)]">
-              <span className="text-[#1E1854]">{f.icon}</span>
-              <h3 className="text-lg font-semibold text-[#1E1854]">{f.title}</h3>
-              <p className="text-sm text-[hsla(var(--color-secondary)/0.65)] leading-relaxed">{f.description}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Promise */}
-      <section className="bg-[#1E185408]">
-        <div className="max-w-[1200px] mx-auto px-6 py-12 md:py-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
-          <div className="space-y-4">
-            <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">Our Promise</p>
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
-              Nothing hidden.<br />Nothing compromised.
-            </h2>
-            <p className="text-sm text-[hsla(var(--color-secondary)/0.65)] leading-relaxed max-w-sm">
-              We&apos;re here for the long haul, committed to supporting your journey toward a calmer mind, deeper focus, and a more fulfilling life.
-            </p>
-          </div>
-          <ul className="space-y-4">
-            {[
-              'Clean, natural ingredients you can trust',
-              'No artificial stimulants or hidden additives',
-              'Clinically dosed — no pixie-dusting',
-              'Third-party tested for purity and potency',
-              'Sustainable packaging and responsible sourcing',
-              'Honest communication — always',
-            ].map((p) => (
-              <li key={p} className="flex items-start gap-3">
-                <span className="mt-0.5 shrink-0 w-5 h-5 rounded-full bg-[#1E1854] flex items-center justify-center">
-                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                    <path d="M2 5l2.5 2.5 4-4" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </span>
-                <span className="text-sm text-[#1E1854] leading-snug font-medium">{p}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      {/* Tabbed topics */}
+      <ProductTopics />
 
       {/* CTA */}
       <section className="bg-[#1E1854] py-20">
@@ -186,15 +56,15 @@ export default async function OurProductPage() {
             Ready to experience it?
           </h2>
           <p className="text-sm text-white/60 leading-relaxed">
-            Try Flow for 30 days. If you don&apos;t notice a meaningful difference, we&apos;ll refund you. No questions asked.
+            Try Flow for {PRODUCT_META.returnDays} days. If you don&apos;t notice a meaningful difference, we&apos;ll refund you. No questions asked.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/products/flow" className="inline-flex items-center gap-2 bg-white text-[#1E1854] text-xs tracking-[0.1em] uppercase font-semibold px-8 py-4 rounded-full hover:bg-[hsla(var(--color-accent)/1)] hover:text-white transition-colors">
+            <TrackedLink href="/products/flow" clarityEvent="our_product_cta_shop_flow" className="inline-flex items-center gap-2 bg-white text-[#1E1854] text-xs tracking-[0.1em] uppercase font-semibold px-8 py-4 rounded-full hover:bg-[hsla(var(--color-accent)/1)] hover:text-white transition-colors">
               Shop Flow
-            </Link>
-            <Link href="/pages/ingredients" className="inline-flex items-center gap-2 border border-white/30 text-white text-xs tracking-[0.1em] uppercase font-medium px-8 py-4 rounded-full hover:border-white/60 transition-colors">
+            </TrackedLink>
+            <TrackedLink href="/pages/ingredients" clarityEvent="our_product_cta_ingredients" className="inline-flex items-center gap-2 border border-white/30 text-white text-xs tracking-[0.1em] uppercase font-medium px-8 py-4 rounded-full hover:border-white/60 transition-colors">
               Full ingredients list
-            </Link>
+            </TrackedLink>
           </div>
         </div>
       </section>

@@ -52,7 +52,7 @@ export default function SelectionProcessSection() {
     <section className="py-20">
 
       {/* Mobile: image with cards overlaid at the bottom */}
-      <div className="md:hidden mx-6 relative rounded-2xl overflow-hidden" style={{ minHeight: '500px' }}>
+      <div className="md:hidden mx-4 relative rounded-2xl overflow-hidden" style={{ minHeight: '580px' }}>
         <Image
           src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&q=80&auto=format&fit=crop"
           alt="Our selection process"
@@ -87,8 +87,8 @@ export default function SelectionProcessSection() {
       </div>
 
       {/* Desktop: all text visible, no flip */}
-      <div className="hidden md:block max-w-[1200px] mx-auto px-6">
-        <div className="relative rounded-3xl overflow-hidden h-[560px]">
+      <div className="hidden md:block">
+        <div className="relative overflow-hidden h-[680px]">
           <Image
             src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=1400&q=85&auto=format&fit=crop"
             alt="Our selection process"
@@ -98,10 +98,13 @@ export default function SelectionProcessSection() {
             loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/15 to-black/25" />
-          <div className="absolute inset-0 flex flex-col justify-between p-12 pt-16">
-            <h2 className="text-4xl font-semibold text-white max-w-xl leading-[1.1] drop-shadow-sm">
-              Our rigorous ingredient selection process.
-            </h2>
+          <div className="absolute inset-0 flex flex-col justify-between">
+            <div className="max-w-[1200px] mx-auto w-full px-12 pt-16">
+              <h2 className="text-4xl font-semibold text-white max-w-xl leading-[1.1] drop-shadow-sm">
+                Our rigorous ingredient selection process.
+              </h2>
+            </div>
+            <div className="max-w-[1200px] mx-auto w-full px-12 pb-12">
             <div className="grid grid-cols-4 gap-6 bg-black/40 backdrop-blur-md rounded-2xl p-8">
               {pillars.map((p) => (
                 <div key={p.title} className="flex flex-col gap-3">
@@ -110,6 +113,7 @@ export default function SelectionProcessSection() {
                   <p className="text-xs text-white/70 leading-relaxed">{p.description}</p>
                 </div>
               ))}
+            </div>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { PRODUCT_META } from '@/lib/product-meta';
 
 const faqItems = [
   {
@@ -14,7 +15,7 @@ const faqItems = [
         <path d="m32 34.742-8.584 8.929-20.449-11.676 7.033-8.484zm22-11.496 7 8.742-20.324 11.743-8.676-8.989z" />
       </svg>
     ),
-    content: 'Free shipping on orders over CHF 50. Orders are dispatched within 1–2 business days from our Swiss warehouse. Standard delivery takes 3–5 business days within Switzerland and 5–10 business days internationally.',
+    content: `Free shipping on orders over CHF ${PRODUCT_META.freeShippingThresholdCHF}. Orders are dispatched within 1–2 business days from our Swiss warehouse. Standard delivery takes 3–5 business days within Switzerland and 5–10 business days internationally.`,
   },
   {
     title: 'Delivery details',
@@ -25,7 +26,7 @@ const faqItems = [
         <path d="m24.8 44a6.9 6.9 0 0 1 -6.2 5c-2.7 0-4.2-2.2-3.4-5a6.9 6.9 0 0 1 6.2-5c2.6 0 4.2 2.2 3.4 5zm24 0a6.9 6.9 0 0 1 -6.2 5c-2.7 0-4.2-2.2-3.4-5a6.9 6.9 0 0 1 6.2-5c2.6 0 4.2 2.2 3.4 5z" />
       </svg>
     ),
-    content: 'We offer free delivery on all orders over CHF 50. For orders under CHF 50, a flat shipping fee of CHF 5 applies. All deliveries are tracked and you will receive a confirmation email with your tracking number once your order has been dispatched.',
+    content: `We offer free delivery on all orders over CHF ${PRODUCT_META.freeShippingThresholdCHF}. For orders under CHF ${PRODUCT_META.freeShippingThresholdCHF}, a flat shipping fee of CHF 5 applies. All deliveries are tracked and you will receive a confirmation email with your tracking number once your order has been dispatched.`,
   },
   {
     title: 'Returns details',
@@ -36,7 +37,7 @@ const faqItems = [
         <path d="m33.961 34.261 10.039 7.739m-12-30v17" />
       </svg>
     ),
-    content: '30-day satisfaction guarantee — if you are not completely satisfied with your purchase, contact us within 30 days for a full refund. No questions asked. Returned products must be unused and in their original packaging.',
+    content: `${PRODUCT_META.returnDays}-day satisfaction guarantee — if you are not completely satisfied with your purchase, contact us within ${PRODUCT_META.returnDays} days for a full refund. No questions asked. Returned products must be unused and in their original packaging.`,
   },
 ];
 
