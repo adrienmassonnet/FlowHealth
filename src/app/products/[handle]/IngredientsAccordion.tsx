@@ -4,21 +4,9 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
-const ingredients = [
-  { name: 'Zynamite® (Mango Leaf Extract)', category: 'plant-extracts', tagline: '300 mg', description: 'Delivers fast-acting mental clarity, improves reaction time, and reduces mental fatigue without affecting heart rate or blood pressure.', image: '/mangifera.png' },
-  { name: 'Green Tea Extract', category: 'plant-extracts', tagline: '250 mg', description: 'Provides smooth, jitter-free energy and sustained attention when paired with L-theanine.', image: '/green-tea.png' },
-  { name: "Lion's Mane Mushroom", category: 'plant-extracts', tagline: '250 mg', description: 'Supports nerve health, mental clarity, and long-term cognitive vitality.', image: '/lions-mane.png' },
-  { name: 'Hibiscus Extract', category: 'plant-extracts', tagline: '1,750 mg', description: 'Offers gentle antioxidant support and may help maintain calm mental performance while supporting healthy blood flow.', image: '/hibiscus.png' },
-  { name: 'Rooibos Extract', category: 'plant-extracts', tagline: '625 mg', description: 'Provides antioxidant protection and may help reduce feelings of everyday stress while supporting overall calm.', image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=500&q=80&auto=format&fit=crop' },
-  { name: "Saffr'Active® (Saffron Extract)", category: 'adaptogens', tagline: '50 mg', description: 'Gently lifts mood, reduces everyday tension, and supports emotional balance.', image: '/saffran.png' },
-  { name: 'Ginseng Panax', category: 'adaptogens', tagline: '200 mg', description: 'Helps combat mental fatigue and supports working memory and overall cognitive performance.', image: 'https://images.unsplash.com/photo-1544991875-5dc1b05f607d?w=500&q=80&auto=format&fit=crop' },
-  { name: 'Betaine (Trimethylglycine)', category: 'amino-acids', tagline: '500 mg', description: 'Supports healthy methylation and helps maintain balanced homocysteine levels for brain chemistry and energy metabolism.', image: 'https://images.unsplash.com/photo-1593280405106-e438ebe93f5e?w=500&q=80&auto=format&fit=crop' },
-  { name: 'Magnesium Citrate', category: 'minerals', tagline: '680 mg', description: 'Promotes relaxation, helps ease tension, and supports healthy stress response and sleep quality.', image: 'https://images.unsplash.com/photo-1550572017-edd951b55104?w=500&q=80&auto=format&fit=crop' },
-  { name: 'Sodium Citrate', category: 'minerals', tagline: '400 mg', description: 'Supports proper hydration, fluid balance, and smooth nutrient absorption for steady energy and mental clarity.', image: '/sodium-citrate.png' },
-  { name: 'Zinc', category: 'minerals', tagline: '7 mg', description: 'Supports healthy neurotransmitter function, immune balance, and cognitive processes.', image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=500&q=80&auto=format&fit=crop' },
-  { name: 'B-Vitamins (B1, B3, B6, B12)', category: 'vitamins', tagline: '2.875 mg', description: 'Support energy metabolism, neurotransmitter production, and overall mental performance.', image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=500&q=80&auto=format&fit=crop' },
-  { name: 'Inulin', category: 'gut-health', tagline: '1,345 mg', description: 'Nourishes beneficial gut bacteria, supporting the gut-brain connection that influences mood and cognitive flexibility.', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80&auto=format&fit=crop' },
-];
+import type { Ingredient } from '@/lib/contentful';
+
+type IngredientCard = { name: string; category: string; tagline: string; description: string; image: string };
 
 const categories: Record<string, string> = {
   all: 'All',
@@ -92,12 +80,19 @@ function FlipCard({ name, tagline, description, image }: { name: string; tagline
   );
 }
 
-export default function IngredientsAccordion() {
+export default function IngredientsAccordion({ ingredients }: { ingredients: Ingredient[] }) {
+  const cards: IngredientCard[] = ingredients.map((ing) => ({
+    name: ing.name,
+    category: ing.category,
+    tagline: ing.dose,
+    description: ing.description,
+    image: ing.imageUrl ?? '',
+  }));
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [expanded, setExpanded] = useState(false);
   const filtered = selectedCategory === 'all'
-    ? ingredients
-    : ingredients.filter((i) => i.category === selectedCategory);
+    ? cards
+    : cards.filter((i) => i.category === selectedCategory);
 
   const initialCount = INITIAL_ROWS * COLS;
   const visible = expanded ? filtered : filtered.slice(0, initialCount);

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getProduct, getProducts } from '@/lib/shopify';
-import { getHealthBenefits, getResultsTimelineSteps } from '@/lib/contentful';
+import { getHealthBenefits, getResultsTimelineSteps, getIngredients } from '@/lib/contentful';
 import { PRODUCT_META } from '@/lib/product-meta';
 import AddToCartButton from './AddToCartButton';
 import ProductImageGallery from './ProductImageGallery';
@@ -20,7 +20,7 @@ import SelectionProcessSection from './SelectionProcessSection';
 
 export default async function ProductPage({ params }: { params: Promise<{ handle: string }> }) {
   const { handle } = await params;
-  const [product, allProducts, healthBenefits, timelineSteps] = await Promise.all([getProduct(handle), getProducts(), getHealthBenefits(), getResultsTimelineSteps()]);
+  const [product, allProducts, healthBenefits, timelineSteps, ingredients] = await Promise.all([getProduct(handle), getProducts(), getHealthBenefits(), getResultsTimelineSteps(), getIngredients()]);
 
   if (!product) notFound();
 
@@ -132,7 +132,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
 
       <HealthCenter />
 
-      <IngredientsAccordion />
+      <IngredientsAccordion ingredients={ingredients} />
 
       <SelectionProcessSection />
 

@@ -4,11 +4,11 @@
 // contentful.ts falls back to the static content-data.ts arrays automatically.
 //
 // Sheet ID:  process.env.GOOGLE_SHEET_ID
-// Re-fetches every hour (ISR). Force a refresh: redeploy or call revalidatePath.
+// Re-fetches every 60 seconds. Changes in the Sheet appear within 1 minute.
 
 const SHEET_ID   = process.env.GOOGLE_SHEET_ID;
 const API_KEY    = process.env.GOOGLE_SHEETS_API_KEY;
-const REVALIDATE = 3600; // seconds
+const REVALIDATE = 60; // seconds
 
 type Row = Record<string, string>;
 
@@ -32,22 +32,25 @@ async function fetchTab(tab: string): Promise<Row[]> {
 }
 
 // ─── Ingredients ─────────────────────────────────────────────────────────────
-// Tab: Ingredients | Columns: name, dose, category, benefit, science, image, Active
+// Tab: Ingredients | Columns: name, dose mg, category, benefit, science, image, Active
 
 export async function getSheetsIngredients() {
   const rows = await fetchTab('Ingredients');
   if (!rows.length) return null;
-  return rows.map((r, i) => ({
-    name:        r.name,
-    form:        '',
-    dose:        r.dose,
-    category:    r.category,
-    description: r.benefit,
-    science:     r.science,
-    imageUrl:    r.image,
-    imageAlt:    r.name,
-    order:       i + 1,
-  }));
+  return rows.map((r, i) => {
+    const doseMg = r['dose mg'];
+    return {
+      name:        r.name,
+      form:        '',
+      dose:        doseMg ? `${doseMg} mg` : '',
+      category:    r.category,
+      description: r.benefit,
+      science:     r.science,
+      imageUrl:    r.image,
+      imageAlt:    r.name,
+      order:       i + 1,
+    };
+  });
 }
 
 // ─── Savings supplements ─────────────────────────────────────────────────────
