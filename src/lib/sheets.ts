@@ -47,7 +47,7 @@ export async function getSheetsIngredients() {
       description: r.benefit,
       science:     r.science,
       imageUrl:    r.image,
-      imageAlt:    r.name,
+      imageAlt:    r.imageAlt || r.name,
       order:       i + 1,
     };
   });
