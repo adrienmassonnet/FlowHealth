@@ -113,8 +113,32 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   const otherPosts = allPosts.filter((p) => p.slug !== slug).slice(0, 3);
 
+  const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.flow-health.ch';
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt,
+    image: post.coverImageUrl,
+    datePublished: post.publishedDate,
+    author: { '@type': 'Organization', name: 'Flow Health', url: SITE_URL },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Flow Health',
+      logo: { '@type': 'ImageObject', url: `${SITE_URL}/og-image.png` },
+    },
+    url: `${SITE_URL}/pages/blog-posts/${post.slug}`,
+    keywords: post.tags?.join(', '),
+    articleSection: post.category,
+    inLanguage: 'en',
+  };
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       {/* Hero */}
       <section className="max-w-[1200px] mx-auto px-6 pt-20 pb-2">
         <div className="relative w-full aspect-[21/9] min-h-[260px] max-h-[480px] overflow-hidden rounded-2xl bg-[#1E1854]">

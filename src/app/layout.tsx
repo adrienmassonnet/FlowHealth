@@ -42,10 +42,32 @@ export const metadata: Metadata = {
   alternates: { canonical: SITE_URL },
 };
 
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Flow Health',
+  url: SITE_URL,
+  logo: `${SITE_URL}/og-image.png`,
+  description: 'Swiss cognitive supplement brand. Flow is a daily liquid nootropic with 13 clinically-dosed active ingredients for focus, mood, and long-term brain health.',
+  foundingDate: '2022',
+  foundingLocation: { '@type': 'Place', name: 'Geneva, Switzerland' },
+  contactPoint: { '@type': 'ContactPoint', email: 'hello@flowhealth.com', contactType: 'customer support' },
+  sameAs: [],
+  brand: {
+    '@type': 'Brand',
+    name: 'Flow Health',
+    description: 'Premium Swiss cognitive supplement — caffeine-free, fully transparent formula.',
+  },
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <Script id="clarity-init" strategy="afterInteractive">{`
           (function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};

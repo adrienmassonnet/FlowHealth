@@ -23,6 +23,17 @@ const categories = {
 export default async function FaqPage({ searchParams }: { searchParams: Promise<{ category?: string }> }) {
   const { category } = await searchParams;
   const [faqItems, meta] = await Promise.all([getFaqItems(), getProductMeta()]);
+
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  };
+
   const faqData = faqItems.reduce((acc, item) => {
     if (!acc[item.category]) acc[item.category] = [];
     acc[item.category].push({ question: item.question, answer: item.answer });
@@ -30,6 +41,10 @@ export default async function FaqPage({ searchParams }: { searchParams: Promise<
   }, {} as Record<string, { question: string; answer: string }[]>);
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       {/* Hero */}
       <section className="bg-white">
         <div className="max-w-[1200px] mx-auto px-6 py-20 md:py-24">
