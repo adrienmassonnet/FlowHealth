@@ -289,15 +289,14 @@ export default function IngredientsExplorer({
                 {section.visibleIngredients.map((ing) => (
                   <div key={ing.name} className="group rounded-xl border border-[#1E1854]/[0.07] flex flex-col bg-white shadow-sm shadow-[#1E1854]/[0.04] hover:shadow-xl hover:shadow-[#1E1854]/[0.10] hover:-translate-y-0.5 transition-all duration-500 p-4 gap-4">
                     <div className="flex flex-row gap-3 items-start">
-                      <div className="relative w-24 h-24 shrink-0 rounded-xl overflow-hidden ring-1 ring-[#1E1854]/[0.08]">
+                      <div className="relative w-24 h-24 shrink-0 rounded-xl overflow-hidden ring-1 ring-[#1E1854]/[0.08] bg-gradient-to-br from-[#f5f5fc] to-[#eeeef8]">
                         <Image
                           src={ing.image}
                           alt={ing.name}
                           fill
-                          className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                          className="object-contain p-2 transition-transform duration-700 group-hover:scale-[1.04]"
                           sizes="96px"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-[#1E1854]/10" />
                       </div>
                       <div className="flex flex-col gap-2 flex-1 min-w-0 pt-0.5">
                         <h3 className="text-base font-semibold tracking-[-0.02em] leading-snug text-[#1E1854]">{ing.name}</h3>

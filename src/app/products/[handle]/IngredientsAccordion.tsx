@@ -43,9 +43,9 @@ function FlipCard({ name, tagline, description, image }: { name: string; tagline
           className="rounded-2xl overflow-hidden border border-[var(--color-border)]"
           style={{ backfaceVisibility: 'hidden' }}
         >
-          <div className="relative aspect-[4/3] w-full">
-            <Image src={image} alt={name} fill className="object-cover" sizes="(max-width: 768px) 50vw, 25vw" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+          <div className="relative aspect-[4/3] w-full bg-gradient-to-br from-[#f5f5fc] to-[#eeeef8]">
+            <Image src={image} alt={name} fill className="object-contain p-4" sizes="(max-width: 768px) 50vw, 25vw" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
             <div className="absolute bottom-3 right-3 w-6 h-6 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
               <svg width="9" height="9" viewBox="0 0 10 10" fill="none">
                 <path d="M2 5h6M5 2l3 3-3 3" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
