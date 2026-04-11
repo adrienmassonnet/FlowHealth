@@ -36,7 +36,7 @@ export default function MainBenefits({ benefits }: { benefits: HealthBenefit[] }
                   {b.imageUrl && (
                     <Image
                       src={b.imageUrl}
-                      alt={b.label}
+                      alt={b.imageAlt || b.label}
                       fill
                       className="object-cover brightness-[0.98] saturate-[1.1]"
                       sizes="(max-width: 768px) 100vw, 33vw"

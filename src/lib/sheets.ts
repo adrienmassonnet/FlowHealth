@@ -81,6 +81,7 @@ export async function getSheetsHealthBenefits() {
     ingredients: r.key_ingredients,
     description: r.description,
     imageUrl:    r.image ?? '',
+    imageAlt:    r.imageAlt || r.label,
     order:       i + 1,
   }));
 }
