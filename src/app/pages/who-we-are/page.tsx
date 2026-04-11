@@ -1,6 +1,16 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getTeamMembers, getCompanyValues, getMilestones } from '@/lib/contentful';
+
+export const metadata: Metadata = {
+  title: 'Who We Are',
+  description: 'Meet the team behind Flow — a neuroscientist, a clinical nutritionist, and a pharmacologist united by one goal: evidence-based cognitive performance for everyday people.',
+  openGraph: {
+    title: 'Who We Are — The Team Behind Flow Health',
+    description: 'Meet the team behind Flow — a neuroscientist, a clinical nutritionist, and a pharmacologist united by one goal: evidence-based cognitive performance for everyday people.',
+  },
+};
 
 const icons = [
   (

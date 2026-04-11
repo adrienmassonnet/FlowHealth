@@ -1,8 +1,18 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import BlogPostsClient from './BlogPostsClient';
 import { getBlogPosts } from '@/lib/contentful';
+
+export const metadata: Metadata = {
+  title: 'Journal',
+  description: 'Articles on cognitive performance, ingredient science, and the research behind Flow. Evidence-based insights for a sharper mind.',
+  openGraph: {
+    title: 'Flow Journal — Cognitive Performance Articles',
+    description: 'Articles on cognitive performance, ingredient science, and the research behind Flow. Evidence-based insights for a sharper mind.',
+  },
+};
 
 export default async function BlogPostsPage() {
   const allPosts = await getBlogPosts();

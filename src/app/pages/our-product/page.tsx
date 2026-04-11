@@ -1,6 +1,16 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getProductHighlights } from '@/lib/contentful';
+
+export const metadata: Metadata = {
+  title: 'Our Product',
+  description: 'Flow is a daily cognitive supplement with 13 clinically-dosed active ingredients — zero fillers, no caffeine, no added sugar. Formulated in Switzerland for deep focus and lasting mental clarity.',
+  openGraph: {
+    title: 'Flow — Our Cognitive Performance Formula',
+    description: 'Flow is a daily cognitive supplement with 13 clinically-dosed active ingredients — zero fillers, no caffeine, no added sugar. Formulated in Switzerland for deep focus and lasting mental clarity.',
+  },
+};
 import TrackedLink from '@/app/components/TrackedLink';
 import { PRODUCT_META } from '@/lib/product-meta';
 import ProductTopics from './ProductTopics';

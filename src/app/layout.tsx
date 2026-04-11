@@ -7,9 +7,39 @@ import Header from "@/app/components/Header";
 import ScrollManager from "@/app/components/ScrollManager";
 const outfit = Outfit({ subsets: ["latin"] });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.flow-health.ch';
+
 export const metadata: Metadata = {
-  title: "Flow Health",
-  description: "Stable Energy for Deep Focus — Premium Swiss functional beverage",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'Flow Health — Stable Energy for Deep Focus',
+    template: '%s | Flow Health',
+  },
+  description: 'Flow is a premium Swiss cognitive supplement — 13 clinically-dosed active ingredients for sustained focus, balanced mood, and long-term brain health. No caffeine, no sugar, no fillers.',
+  keywords: ['cognitive supplement', 'nootropic', 'focus supplement', 'Swiss supplement', "lion's mane", 'saffron extract', 'mental clarity', 'brain health'],
+  authors: [{ name: 'Flow Health' }],
+  creator: 'Flow Health',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: SITE_URL,
+    siteName: 'Flow Health',
+    title: 'Flow Health — Stable Energy for Deep Focus',
+    description: 'Flow is a premium Swiss cognitive supplement — 13 clinically-dosed active ingredients for sustained focus, balanced mood, and long-term brain health.',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Flow Health — Cognitive Performance Formula' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Flow Health — Stable Energy for Deep Focus',
+    description: 'Flow is a premium Swiss cognitive supplement — 13 clinically-dosed active ingredients for sustained focus, balanced mood, and long-term brain health.',
+    images: ['/og-image.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1 },
+  },
+  alternates: { canonical: SITE_URL },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

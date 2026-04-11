@@ -1,6 +1,16 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { FAQ } from '@/components/ui/faq-tabs';
 import { getFaqItems, getProductMeta } from '@/lib/contentful';
+
+export const metadata: Metadata = {
+  title: 'FAQ',
+  description: 'Answers to common questions about Flow — product formula, usage & dosage, shipping, returns, and safety.',
+  openGraph: {
+    title: 'Flow FAQ — Frequently Asked Questions',
+    description: 'Answers to common questions about Flow — product formula, usage & dosage, shipping, returns, and safety.',
+  },
+};
 
 const categories = {
   product: 'Product & Formula',

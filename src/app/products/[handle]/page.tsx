@@ -2,9 +2,38 @@ import { Suspense } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 import { getProduct, getProducts } from '@/lib/shopify';
 import { getHealthBenefits, getResultsTimelineSteps, getIngredients, getProductMeta } from '@/lib/contentful';
 import { PRODUCT_META } from '@/lib/product-meta';
+
+export async function generateMetadata({ params }: { params: Promise<{ handle: string }> }): Promise<Metadata> {
+  const { handle } = await params;
+  const product = await getProduct(handle);
+  if (!product) return {};
+  const image = product.images.edges[0]?.node;
+  const price = product.variants.edges[0]?.node.price;
+  return {
+    title: product.title,
+    description: product.description.slice(0, 155),
+    openGraph: {
+      title: `${product.title} | Flow Health`,
+      description: product.description.slice(0, 155),
+      images: image ? [{ url: image.url, alt: image.altText ?? product.title }] : [],
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${product.title} | Flow Health`,
+      description: product.description.slice(0, 155),
+      images: image ? [image.url] : [],
+    },
+    other: {
+      'product:price:amount': price?.amount ?? '',
+      'product:price:currency': price?.currencyCode ?? 'CHF',
+    },
+  };
+}
 import AddToCartButton from './AddToCartButton';
 import ProductImageGallery from './ProductImageGallery';
 import IngredientsAccordion from './IngredientsAccordion';
@@ -32,8 +61,25 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
     ? product.description.slice(0, 220) + '…'
     : product.description;
 
+  const productJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.title,
+    description: product.description,
+    image: images.map((i) => i.url),
+    brand: { '@type': 'Brand', name: 'Flow Health' },
+    offers: {
+      '@type': 'Offer',
+      price: firstVariant.price.amount,
+      priceCurrency: firstVariant.price.currencyCode,
+      availability: 'https://schema.org/InStock',
+      url: `https://www.flow-health.ch/products/${handle}`,
+    },
+  };
+
   return (
     <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
       {/* Product hero */}
       <div className="pt-20 pb-12 md:pb-20 max-w-[1200px] mx-auto pl-3 pr-6 relative overflow-hidden">
         {/* Ambient glow */}

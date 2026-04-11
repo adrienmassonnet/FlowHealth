@@ -1,6 +1,16 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getPhilosophyPrinciples, getPhilosophyBeliefs } from '@/lib/contentful';
+
+export const metadata: Metadata = {
+  title: 'Our Philosophy',
+  description: 'Flow is built on one belief: cognitive performance should be earned through science, not marketing. Read the principles that guide every formulation decision we make.',
+  openGraph: {
+    title: 'Our Philosophy — The Principles Behind Flow',
+    description: 'Flow is built on one belief: cognitive performance should be earned through science, not marketing. Read the principles that guide every formulation decision we make.',
+  },
+};
 import { getProduct } from '@/lib/shopify';
 import PhilosophyScroll from './PhilosophyScroll';
 

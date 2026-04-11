@@ -1,7 +1,31 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getBlogPost, getBlogPosts } from '@/lib/contentful';
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getBlogPost(slug);
+  if (!post) return {};
+  const description = post.excerpt ?? post.title;
+  return {
+    title: post.title,
+    description: description.slice(0, 155),
+    openGraph: {
+      title: post.title,
+      description: description.slice(0, 155),
+      type: 'article',
+      images: post.coverImageUrl ? [{ url: post.coverImageUrl, alt: post.title }] : [],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: description.slice(0, 155),
+      images: post.coverImageUrl ? [post.coverImageUrl] : [],
+    },
+  };
+}
 
 // ─── Rich Text renderer (no external package needed) ─────────────────────────
 
