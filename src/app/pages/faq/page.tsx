@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { FAQ } from '@/components/ui/faq-tabs';
-import { getFaqItems } from '@/lib/contentful';
-import { PRODUCT_META } from '@/lib/product-meta';
+import { getFaqItems, getProductMeta } from '@/lib/contentful';
 
 const categories = {
   product: 'Product & Formula',
@@ -13,7 +12,7 @@ const categories = {
 
 export default async function FaqPage({ searchParams }: { searchParams: Promise<{ category?: string }> }) {
   const { category } = await searchParams;
-  const faqItems = await getFaqItems();
+  const [faqItems, meta] = await Promise.all([getFaqItems(), getProductMeta()]);
   const faqData = faqItems.reduce((acc, item) => {
     if (!acc[item.category]) acc[item.category] = [];
     acc[item.category].push({ question: item.question, answer: item.answer });
@@ -59,7 +58,7 @@ export default async function FaqPage({ searchParams }: { searchParams: Promise<
           <div>
             <p className="text-xs tracking-[0.16em] uppercase text-white/40 font-medium mb-3">Ready to try Flow?</p>
             <p className="text-2xl md:text-3xl font-semibold tracking-[-0.02em] text-white max-w-lg leading-snug">
-              {PRODUCT_META.activeIngredients} actives. One daily formula. {PRODUCT_META.returnDays}-day guarantee.
+              {meta.activeIngredients} actives. One daily formula. {meta.returnDays}-day guarantee.
             </p>
           </div>
           <Link

@@ -1,11 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import { PRODUCT_META } from '@/lib/product-meta';
 import Link from 'next/link';
 import IngredientsExplorer from '@/app/components/IngredientsExplorer';
 
-export default function IngredientsClient({ productImageUrl }: { productImageUrl?: string }) {
+export default function IngredientsClient({ productImageUrl, activeIngredients, totalFormulaWeightG, caloriesKcal }: { productImageUrl?: string; activeIngredients: number; totalFormulaWeightG: number; caloriesKcal: number }) {
   return (
     <main className="max-w-[1200px] mx-auto px-6 pb-14 md:pb-24">
 
@@ -24,10 +23,10 @@ export default function IngredientsClient({ productImageUrl }: { productImageUrl
             {/* Specs */}
             <div className="flex flex-wrap gap-2 mt-2">
               {[
-                { value: String(PRODUCT_META.activeIngredients), label: 'Active ingredients' },
-                { value: `${PRODUCT_META.totalFormulaWeightG}g`, label: 'Per serving' },
+                { value: String(activeIngredients), label: 'Active ingredients' },
+                { value: `${totalFormulaWeightG}g`, label: 'Per serving' },
                 { value: '0', label: 'Fillers or blends' },
-                { value: `${PRODUCT_META.caloriesKcal} kcal`, label: 'Per serving' },
+                { value: `${caloriesKcal} kcal`, label: 'Per serving' },
                 { value: 'Vegan', label: 'Certified' },
                 { value: 'No added sugar', label: 'Formula' },
                 { value: 'Caffeine-free', label: 'Formula' },

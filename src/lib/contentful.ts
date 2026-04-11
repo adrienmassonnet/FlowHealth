@@ -31,7 +31,10 @@ import {
   getSheetsProductHighlights,
   getSheetsFaqItems,
   getSheetsTestimonials,
+  getSheetsProductMeta,
 } from './sheets';
+
+import { PRODUCT_META } from './product-meta';
 
 export type {
   PhilosophyPrinciple,
@@ -62,8 +65,46 @@ export async function getHomepageContent()      { return homepageContentData; }
 export async function getHomepageFeatureCards() { return homepageFeatureCards; }
 
 // ─── Sheets → content-data fallback ──────────────────────────────────────────
+const INGREDIENT_IMAGES: Record<string, string> = {
+  'zynamite':        '/ingredients/mangifera.png',
+  'mango leaf':      '/ingredients/mangifera.png',
+  'mangifera':       '/ingredients/mangifera.png',
+  'green tea':       '/ingredients/green-tea.png',
+  "lion's mane":     '/ingredients/lions-mane.png',
+  'lions mane':      '/ingredients/lions-mane.png',
+  'ginseng':         '/ingredients/ginseng-panax.png',
+  "saffr'active":    '/ingredients/saffran.png',
+  'saffron':         '/ingredients/saffran.png',
+  'hibiscus':        '/ingredients/hibiscus.png',
+  'rooibos':         '/ingredients/rooibos.png',
+  'inulin':          '/ingredients/inulin.png',
+  'betaine':         '/ingredients/tmg.png',
+  'trimethylglycine':'/ingredients/tmg.png',
+  'tmg':             '/ingredients/tmg.png',
+  'magnesium':       '/ingredients/magnesium.png',
+  'sodium citrate':  '/ingredients/sodium-citrate.png',
+  'zinc':            '/ingredients/zinc.png',
+  'vitamin b':       '/ingredients/vitamin-b.png',
+  'b-vitamin':       '/ingredients/vitamin-b.png',
+  'pomegranate':     '/ingredients/pomegranate.png',
+};
+
+function resolveIngredientImage(name: string, imageUrl?: string): string {
+  if (imageUrl) return imageUrl;
+  const key = name.toLowerCase();
+  for (const [pattern, path] of Object.entries(INGREDIENT_IMAGES)) {
+    if (key.includes(pattern)) return path;
+  }
+  return '';
+}
+
 export async function getIngredients() {
-  return (await getSheetsIngredients()) ?? ingredients;
+  const sheetsData = await getSheetsIngredients();
+  if (!sheetsData) return ingredients;
+  return sheetsData.map((ing) => ({
+    ...ing,
+    imageUrl: resolveIngredientImage(ing.name, ing.imageUrl),
+  }));
 }
 
 export async function getSavingsSupplements() {
@@ -71,7 +112,13 @@ export async function getSavingsSupplements() {
 }
 
 export async function getHealthBenefits() {
-  return (await getSheetsHealthBenefits()) ?? healthBenefits;
+  const sheetsData = await getSheetsHealthBenefits();
+  if (!sheetsData) return healthBenefits;
+  // Merge: if Sheets row has no image, fall back to the local image for that benefit
+  return sheetsData.map((row) => {
+    const fallback = healthBenefits.find((h) => h.label === row.label);
+    return { ...row, imageUrl: row.imageUrl || fallback?.imageUrl || '' };
+  });
 }
 
 export async function getResultsTimelineSteps() {
@@ -97,11 +144,28 @@ export async function getTestimonials() {
 // ─── Featured ingredients (homepage strip) ────────────────────────────────────
 export async function getFeaturedIngredients() {
   return [
-    { name: 'Zynamite®',      imageUrl: '/mangifera.png',      homepageOrder: 1 },
-    { name: "Saffr'Active®",  imageUrl: '/saffran.png',         homepageOrder: 2 },
-    { name: 'Sodium Citrate', imageUrl: '/sodium-citrate.png',  homepageOrder: 3 },
-    { name: "Lion's Mane",    imageUrl: '/lions-mane.png',      homepageOrder: 4 },
+    { name: 'Zynamite®',      imageUrl: '/ingredients/mangifera.png',      homepageOrder: 1 },
+    { name: "Saffr'Active®",  imageUrl: '/ingredients/saffran.png',         homepageOrder: 2 },
+    { name: 'Sodium Citrate', imageUrl: '/ingredients/sodium-citrate.png',  homepageOrder: 3 },
+    { name: "Lion's Mane",    imageUrl: '/ingredients/lions-mane.png',      homepageOrder: 4 },
   ];
+}
+
+// ─── Product meta (dynamic from Sheets, fallback to product-meta.ts) ─────────
+export async function getProductMeta() {
+  const raw = await getSheetsProductMeta();
+  const priceSingleCHF = raw?.price_single_CHF ? parseFloat(raw.price_single_CHF) : PRODUCT_META.priceSingleCHF;
+  const servingsPerBox = raw?.servings_per_box ? parseInt(raw.servings_per_box) : PRODUCT_META.servingsPerBox;
+  return {
+    priceSingleCHF,
+    servingsPerBox,
+    pricePerServingSingleCHF: Math.round((priceSingleCHF / servingsPerBox) * 100) / 100,
+    activeIngredients: raw?.active_ingredients ? parseInt(raw.active_ingredients) : PRODUCT_META.activeIngredients,
+    caloriesKcal: raw?.calories_kcal ? parseFloat(raw.calories_kcal) : PRODUCT_META.caloriesKcal,
+    totalFormulaWeightG: raw?.total_formula_weight_g ? parseFloat(raw.total_formula_weight_g) : PRODUCT_META.totalFormulaWeightG,
+    returnDays: PRODUCT_META.returnDays,
+    freeShippingThresholdCHF: PRODUCT_META.freeShippingThresholdCHF,
+  };
 }
 
 // ─── Blog ─────────────────────────────────────────────────────────────────────

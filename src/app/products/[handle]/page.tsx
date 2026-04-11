@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getProduct, getProducts } from '@/lib/shopify';
-import { getHealthBenefits, getResultsTimelineSteps, getIngredients } from '@/lib/contentful';
+import { getHealthBenefits, getResultsTimelineSteps, getIngredients, getProductMeta } from '@/lib/contentful';
 import { PRODUCT_META } from '@/lib/product-meta';
 import AddToCartButton from './AddToCartButton';
 import ProductImageGallery from './ProductImageGallery';
@@ -20,7 +20,7 @@ import SelectionProcessSection from './SelectionProcessSection';
 
 export default async function ProductPage({ params }: { params: Promise<{ handle: string }> }) {
   const { handle } = await params;
-  const [product, allProducts, healthBenefits, timelineSteps, ingredients] = await Promise.all([getProduct(handle), getProducts(), getHealthBenefits(), getResultsTimelineSteps(), getIngredients()]);
+  const [product, allProducts, healthBenefits, timelineSteps, ingredients, meta] = await Promise.all([getProduct(handle), getProducts(), getHealthBenefits(), getResultsTimelineSteps(), getIngredients(), getProductMeta()]);
 
   if (!product) notFound();
 
@@ -45,10 +45,6 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
             <div className="space-y-2">
               <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Cognitive Performance Formula</p>
               <h1 className="text-3xl font-semibold tracking-[-0.02em] leading-tight">{product.title}</h1>
-              <p className="text-xl font-medium mt-2">
-                {parseFloat(firstVariant.price.amount).toFixed(2)}{' '}
-                <span className="text-sm text-[hsla(var(--color-secondary)/1)] font-normal">{firstVariant.price.currencyCode}</span>
-              </p>
             </div>
 
             {variants.length > 1 && (
@@ -124,21 +120,22 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
         </div>
       </div>
 
+      <Suspense>
+        <ComparisonTable />
+      </Suspense>
+
       <MainBenefits benefits={healthBenefits} />
 
       <BenefitsTimeline steps={timelineSteps} />
 
       <TakeFlowSteps />
 
-      <HealthCenter />
+      <HealthCenter caloriesKcal={meta.caloriesKcal} />
 
       <IngredientsAccordion ingredients={ingredients} />
 
       <SelectionProcessSection />
 
-      <Suspense>
-        <ComparisonTable />
-      </Suspense>
       <Suspense>
         <SavingsBreakdown />
       </Suspense>

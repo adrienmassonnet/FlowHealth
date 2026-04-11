@@ -198,6 +198,75 @@ These areas still have copy in `.tsx` files. When changes are requested to these
 
 ---
 
+## Google Sheets Integration
+
+The site uses Google Sheets as a live content backend. Changes in Sheets appear on the site within 60 seconds (ISR revalidation).
+
+### Architecture
+
+```
+Google Sheets tab → sheets.ts fetch function → contentful.ts routing function → page/component
+```
+
+The routing layer in `src/lib/contentful.ts` always tries Sheets first, then falls back to the static arrays in `src/lib/content-data.ts`. This means the site works even with no Sheets connection.
+
+### Sheets → Code mapping
+
+| Google Sheets tab | `sheets.ts` function | `contentful.ts` export |
+|---|---|---|
+| `Ingredients` | `getSheetsIngredients()` | `getIngredients()` |
+| `health_benefits` | `getSheetsHealthBenefits()` | `getHealthBenefits()` |
+| `Results Timeline` | `getSheetsResultsTimeline()` | `getResultsTimelineSteps()` |
+| `Comparison table` | `getSheetsComparisonRows()` | `getComparisonRows()` |
+| `Savings breakdown` | `getSheetsSavingsSupplements()` | `getSavingsSupplements()` |
+| `Meta` | `getSheetsProductMeta()` | `getProductMeta()` |
+
+### Product meta fields (Meta tab)
+
+The `Meta` tab controls key product numbers that appear across many pages. Field names in Sheets must match exactly:
+
+| Sheets field name | What it controls | Default fallback |
+|---|---|---|
+| `price_single_CHF` | Product price everywhere | 58.50 |
+| `active_ingredients` | Ingredient count labels | 13 |
+| `calories_kcal` | Calorie display (HealthCenter, homepage) | 24 |
+| `total_formula_weight_g` | Formula weight display | 6.36 |
+| `servings_per_box` | Sachet count in savings breakdown | 30 |
+
+**Rule: When adding a new section or piece of text that references a product number or fact, always fetch it from `getProductMeta()` rather than hardcoding or importing from `PRODUCT_META`.**
+
+Pattern for server components:
+```ts
+// In a page.tsx (server component)
+import { getProductMeta } from '@/lib/contentful';
+const meta = await getProductMeta();
+// Pass to client components as props, use inline in server components
+```
+
+Pattern for client components — they cannot call `getProductMeta()` directly. The parent server component must fetch and pass values as props:
+```ts
+// Server component parent
+const meta = await getProductMeta();
+return <MyClientComponent activeIngredients={meta.activeIngredients} />;
+
+// Client component
+export default function MyClientComponent({ activeIngredients }: { activeIngredients: number }) { ... }
+```
+
+### Dynamic text placeholders
+
+In Sheets text fields (e.g. the Comparison table tab), you can embed `{active_ingredients}` and it will be replaced server-side with the live value from the Meta tab. The `ComparisonTable` component handles this interpolation. Add more placeholders to the `interpolate()` function in `ComparisonTable.tsx` as needed.
+
+### Adding a new Sheets-backed section
+
+1. Add a new tab in Google Sheets with appropriate column headers
+2. Add a `getSheetsXxx()` fetch function in `src/lib/sheets.ts` following the existing pattern
+3. Add a `getXxx()` routing function in `src/lib/contentful.ts` with the static fallback
+4. Add the static fallback data in `src/lib/content-data.ts`
+5. Call `getXxx()` in the relevant page server component and pass data to the component
+
+---
+
 ## Analytics & Event Tracking
 
 Microsoft Clarity is integrated for behaviour analytics. Project ID: `w3zpn726v1`.

@@ -1,7 +1,9 @@
 'use client';
 
-import { useState } from 'react';
 import { PRODUCT_META } from '@/lib/product-meta';
+
+import { useState } from 'react';
+
 
 const badges = [
   {
@@ -124,7 +126,7 @@ const actives = [
   { name: 'Inulin', dose: '1,345 mg' },
 ];
 
-export default function HealthCenter() {
+export default function HealthCenter({ caloriesKcal }: { caloriesKcal: number }) {
   const [nutritionOpen, setNutritionOpen] = useState(false);
 
   return (
@@ -150,7 +152,7 @@ export default function HealthCenter() {
               boxShadow: '0 8px 48px rgba(59,56,184,0.4), 0 0 0 1px rgba(59,56,184,0.12), 0 0 80px rgba(59,56,184,0.15)',
             }}
           >
-            <p className="text-5xl font-semibold text-white tracking-[-0.03em] leading-none">{PRODUCT_META.caloriesKcal}</p>
+            <p className="text-5xl font-semibold text-white tracking-[-0.03em] leading-none">{caloriesKcal}</p>
             <p className="text-xs font-medium text-white/70 tracking-[0.04em]">kcal per serving</p>
             <button
               onClick={() => setNutritionOpen(true)}

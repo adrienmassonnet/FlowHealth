@@ -69,7 +69,7 @@ export async function getSheetsSavingsSupplements() {
 }
 
 // ─── Health benefits ─────────────────────────────────────────────────────────
-// Tab: health_benefits | Columns: number, label, key_ingredients, description
+// Tab: health_benefits | Columns: number, label, key_ingredients, description, image
 
 export async function getSheetsHealthBenefits() {
   const rows = await fetchTab('health_benefits');
@@ -80,7 +80,7 @@ export async function getSheetsHealthBenefits() {
     title:       r.label,
     ingredients: r.key_ingredients,
     description: r.description,
-    imageUrl:    '',
+    imageUrl:    r.image ?? '',
     order:       i + 1,
   }));
 }

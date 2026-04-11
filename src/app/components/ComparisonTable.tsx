@@ -1,5 +1,9 @@
 import Image from 'next/image';
-import { getComparisonRows } from '@/lib/contentful';
+import { getComparisonRows, getProductMeta } from '@/lib/contentful';
+
+function interpolate(text: string, meta: { activeIngredients: number }) {
+  return text.replace(/\{active_ingredients\}/g, String(meta.activeIngredients));
+}
 
 function CrossIcon() {
   return (
@@ -12,7 +16,7 @@ function CrossIcon() {
 }
 
 export default async function ComparisonTable() {
-  const rows = await getComparisonRows();
+  const [rows, meta] = await Promise.all([getComparisonRows(), getProductMeta()]);
 
   return (
     <section className="bg-white border-y border-[var(--color-border)]">
@@ -56,7 +60,7 @@ export default async function ComparisonTable() {
                     <p className="text-xs tracking-[0.10em] uppercase font-semibold text-[#1E1854]/35">
                       {row.topic?.[0]}
                     </p>
-                    <p className="text-sm text-[#1E1854]/80 leading-relaxed">{row.feature}</p>
+                    <p className="text-sm text-[#1E1854]/80 leading-relaxed">{interpolate(row.feature, meta)}</p>
                   </div>
 
                   {/* Others — cross + label */}

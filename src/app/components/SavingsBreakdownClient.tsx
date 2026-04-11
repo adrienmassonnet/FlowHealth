@@ -1,5 +1,4 @@
 'use client';
-import { PRODUCT_META } from '@/lib/product-meta';
 
 import { useState } from 'react';
 import { trackEvent } from '@/lib/clarity';
@@ -12,12 +11,18 @@ export default function SavingsBreakdownClient({
   traditionalTotal,
   savings,
   savingsRounded,
+  pricePerServing,
+  activeIngredients,
+  servingsPerBox,
 }: {
   supplements: Supplement[];
   flowPrice: number;
   traditionalTotal: number;
   savings: number;
   savingsRounded: number;
+  pricePerServing: number;
+  activeIngredients: number;
+  servingsPerBox: number;
 }) {
   const [open, setOpen] = useState(false);
 
@@ -37,7 +42,7 @@ export default function SavingsBreakdownClient({
             One formula replaces {supplements.length} daily supplements,<br />at the cost of one energy drink.
           </h2>
           <p className="text-sm text-[hsla(var(--color-secondary)/0.65)] max-w-sm leading-relaxed pt-1">
-            At CHF {PRODUCT_META.pricePerServingSingleCHF} per sachet — the same price as a Red Bull — Flow delivers {PRODUCT_META.activeIngredients} clinically dosed active ingredients. Buying the same stack individually costs CHF {traditionalTotal}/month at Swiss retailers.
+            At CHF {pricePerServing} per sachet — the same price as a Red Bull — Flow delivers {activeIngredients} clinically dosed active ingredients. Buying the same stack individually costs CHF {traditionalTotal}/month at Swiss retailers.
           </p>
         </div>
 
@@ -105,7 +110,7 @@ export default function SavingsBreakdownClient({
                 <span className="text-sm text-[hsla(var(--color-secondary)/0.45)] line-through shrink-0">CHF {traditionalTotal}</span>
               </div>
               <div className="flex items-center justify-between gap-4">
-                <span className="text-base font-semibold text-[#1E1854]">Flow — {PRODUCT_META.servingsPerBox} sachets · monthly</span>
+                <span className="text-base font-semibold text-[#1E1854]">Flow — {servingsPerBox} sachets · monthly</span>
                 <span className="text-base font-semibold text-[#1E1854] shrink-0">CHF {flowPrice}</span>
               </div>
               <p className="text-xs text-[hsla(var(--color-secondary)/0.5)] pt-1">You save CHF {savings} every month.</p>

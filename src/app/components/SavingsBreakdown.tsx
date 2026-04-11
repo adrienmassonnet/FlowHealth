@@ -1,11 +1,9 @@
-import { getSavingsSupplements } from '@/lib/contentful';
-import { PRODUCT_META } from '@/lib/product-meta';
+import { getSavingsSupplements, getProductMeta } from '@/lib/contentful';
 import SavingsBreakdownClient from './SavingsBreakdownClient';
 
-const flowPrice = PRODUCT_META.priceSingleCHF;
-
 export default async function SavingsBreakdown() {
-  const supplements = await getSavingsSupplements();
+  const [supplements, meta] = await Promise.all([getSavingsSupplements(), getProductMeta()]);
+  const flowPrice = meta.priceSingleCHF;
   const traditionalTotal = Math.round(supplements.reduce((sum, s) => sum + s.monthlyPriceCHF, 0) * 100) / 100;
   const savings = Math.round((traditionalTotal - flowPrice) * 100) / 100;
   const savingsRounded = Math.round(savings);
@@ -17,6 +15,9 @@ export default async function SavingsBreakdown() {
       traditionalTotal={traditionalTotal}
       savings={savings}
       savingsRounded={savingsRounded}
+      pricePerServing={meta.pricePerServingSingleCHF}
+      activeIngredients={meta.activeIngredients}
+      servingsPerBox={meta.servingsPerBox}
     />
   );
 }

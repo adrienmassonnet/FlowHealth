@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { PRODUCT_META } from '@/lib/product-meta';
 import { getProducts } from '@/lib/shopify';
 import TrackedLink from '@/app/components/TrackedLink';
 import HealthBenefits from '@/app/components/HealthBenefits';
@@ -13,16 +12,18 @@ import {
   getTestimonials,
   getFeaturedIngredients,
   getHealthBenefits,
+  getProductMeta,
 } from '@/lib/contentful';
 
 export default async function HomePage() {
-  const [products, cms, timelineSteps, testimonials, featuredIngredients, healthBenefits] = await Promise.all([
+  const [products, cms, timelineSteps, testimonials, featuredIngredients, healthBenefits, meta] = await Promise.all([
     getProducts(),
     getHomepageContent(),
     getResultsTimelineSteps(),
     getTestimonials(),
     getFeaturedIngredients(),
     getHealthBenefits(),
+    getProductMeta(),
   ]);
   const featured = products[0];
   const featuredImage = featured?.images.edges[0]?.node;
@@ -155,9 +156,9 @@ export default async function HomePage() {
                 {/* Middle: attribute rows with dividers */}
                 <ul className="divide-y divide-[#1E1854]/8 bg-[#1E18540A] rounded-2xl px-4 shadow-[0_1px_6px_rgba(30,24,84,0.06)] border border-[#1E1854]/[0.05]">
                   {[
-                    { label: 'Formula', value: `${PRODUCT_META.activeIngredients} clinically-dosed ingredients` },
-                    { label: 'Format', value: `${PRODUCT_META.totalFormulaWeightG} g active ingredients in a daily sachet` },
-                    { label: 'Calories', value: `${PRODUCT_META.caloriesKcal} kcal per sachet — no sugar` },
+                    { label: 'Formula', value: `${meta.activeIngredients} clinically-dosed ingredients` },
+                    { label: 'Format', value: `${meta.totalFormulaWeightG} g active ingredients in a daily sachet` },
+                    { label: 'Calories', value: `${meta.caloriesKcal} kcal per sachet — no sugar` },
                     { label: 'Energy', value: 'Stimulant-free, no crash, no dependency' },
                     { label: 'Testing', value: 'Third-party tested for purity & potency' },
                   ].map(({ label, value }) => (
@@ -228,7 +229,7 @@ export default async function HomePage() {
               clarityEvent="homepage_ingredients_see_all"
               className="inline-flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium text-[#1E1854]/45 hover:text-[#1E1854] transition-colors duration-200"
             >
-              {`See all ${PRODUCT_META.activeIngredients} ingredients`}
+              {`See all ${meta.activeIngredients} ingredients`}
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <path d="M2.5 6H9.5M6.5 3L9.5 6L6.5 9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
@@ -384,7 +385,7 @@ export default async function HomePage() {
 
             <text textAnchor="middle" fontSize="30" fontWeight="600" fill="rgba(255,255,255,0.88)" letterSpacing="-0.6">
               <tspan x="270" y="348">One sachet,</tspan>
-              <tspan x="270" dy="36">{`${PRODUCT_META.activeIngredients} ingredients`}</tspan>
+              <tspan x="270" dy="36">{`${meta.activeIngredients} ingredients`}</tspan>
             </text>
           </svg>
 
