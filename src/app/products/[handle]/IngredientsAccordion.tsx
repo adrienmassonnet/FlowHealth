@@ -43,8 +43,8 @@ function FlipCard({ name, tagline, description, image }: { name: string; tagline
           className="rounded-2xl overflow-hidden border border-[var(--color-border)]"
           style={{ backfaceVisibility: 'hidden' }}
         >
-          <div className="relative aspect-[4/3] w-full">
-            <Image src={image} alt={name} fill className="object-cover" sizes="(max-width: 768px) 50vw, 25vw" />
+          <div className="relative aspect-[4/3] w-full bg-[#f5f5fc]">
+            {image && (image.startsWith('/') || image.startsWith('http')) && <Image src={image} alt={name} fill className="object-cover" sizes="(max-width: 768px) 50vw, 25vw" />}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
             <div className="absolute bottom-3 right-3 w-6 h-6 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
               <svg width="9" height="9" viewBox="0 0 10 10" fill="none">
