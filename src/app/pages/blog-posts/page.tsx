@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import BlogPostsClient from './BlogPostsClient';
-import { getBlogPosts } from '@/lib/contentful';
+import { getBlogPosts } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Journal',
@@ -79,14 +79,14 @@ export default async function BlogPostsPage() {
       <section className="max-w-[1200px] mx-auto px-6 pb-24">
         <div className="bg-[#1E18540A] rounded-2xl px-8 md:px-12 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border border-[var(--color-border)]">
           <div>
-            <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium mb-2">From the lab to your shelf</p>
+            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent mb-2">From the lab to your shelf</p>
             <p className="text-xl font-semibold tracking-[-0.02em] text-[#1E1854] max-w-md leading-snug">
               Ready to put the science into practice? Flow is built around every ingredient we write about.
             </p>
           </div>
           <div className="flex gap-3 shrink-0">
             <Link href="/products/flow" className="btn-cta inline-flex items-center justify-center text-white text-xs tracking-[0.1em] uppercase font-semibold px-6 py-3.5 rounded-full">
-              Shop Flow
+              Get Flow
             </Link>
             <Link href="/pages/our-product" className="inline-flex items-center justify-center border border-[#1E1854]/20 text-[#1E1854] text-xs tracking-[0.1em] uppercase font-medium px-6 py-3.5 rounded-full hover:border-[#1E1854]/40 transition-colors">
               The Formula

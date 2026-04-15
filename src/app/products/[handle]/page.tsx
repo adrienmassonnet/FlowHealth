@@ -4,8 +4,8 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getProduct, getProducts } from '@/lib/shopify';
-import { getHealthBenefits, getResultsTimelineSteps, getIngredients, getProductMeta } from '@/lib/contentful';
-import { PRODUCT_META } from '@/lib/product-meta';
+import { getHealthBenefits, getResultsTimelineSteps, getIngredients, getProductMeta } from '@/lib/content';
+import { servicePillars, faqCategories } from '@/lib/content-data';
 
 export async function generateMetadata({ params }: { params: Promise<{ handle: string }> }): Promise<Metadata> {
   const { handle } = await params;
@@ -34,7 +34,6 @@ export async function generateMetadata({ params }: { params: Promise<{ handle: s
     },
   };
 }
-import AddToCartButton from './AddToCartButton';
 import ProductImageGallery from './ProductImageGallery';
 import IngredientsAccordion from './IngredientsAccordion';
 import TakeFlowSteps from '@/app/components/TakeFlowSteps';
@@ -87,7 +86,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 md:gap-y-0 items-start">
           <ProductImageGallery images={images} title={product.title} />
 
-          <div className="md:sticky md:top-20 space-y-7 pl-6 pr-0 md:pl-8 lg:pl-12 pt-8 md:pt-12">
+          <div className="space-y-7 pl-6 pr-0 md:pl-8 lg:pl-12 pt-8 md:pt-12">
             <div className="space-y-2">
               <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Cognitive Performance Formula</p>
               <h1 className="text-3xl font-semibold tracking-[-0.02em] leading-tight">{product.title}</h1>
@@ -109,66 +108,36 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
             <p className="text-sm text-[hsla(var(--color-secondary)/1)] leading-relaxed">{shortDesc}</p>
 
             <PurchaseSelector
+              variantId={firstVariant.id}
               price={parseFloat(firstVariant.price.amount)}
               currencyCode={firstVariant.price.currencyCode}
             />
 
-            <AddToCartButton variantId={firstVariant.id} />
-
             {/* Service pillars */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-[var(--color-border)] border border-[var(--color-border)] rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(30,24,84,0.08)]">
-              {[
-                {
-                  title: 'Same Day Dispatch',
-                  text: `Orders before ${PRODUCT_META.dispatchCutoffHour} dispatched same day.`,
-                  icon: (
-                    <svg height="18" viewBox="0 0 64 64" width="18" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10">
-                      <path d="m57.7 16.5a30 30 0 1 1 -14.3-12.2" />
-                      <path d="m32 12c0 4.2 6 1.7 6 6s-4.6 7.3-8 5-7.9-3.5-11.9 2.1-1.3 12 1.5 11.9 5.5-2.8 6.7.6 1.5 3.4 2.8 4.2 1.3 2.2.9 4.1 2 8 4 8 3.8-.8 4-4 2.6-3.3 3.8-4.2-.9-4.3 1.3-6.5 6.6-6.2 2.8-7.2-3.5-1.8-4-3.4-2-3.2 1-3.3a11.9 11.9 0 0 0 8.7-3.6c2.5-2.6 3.8-5.2 6.1-5.2a25.6 25.6 0 0 0 -6.5-7.5 30 30 0 0 0 -7.8-4.7c-6.7 3.2-11.4 3.5-11.4 7.7z" />
-                    </svg>
-                  ),
-                },
-                {
-                  title: 'Free Delivery',
-                  text: `Free ${PRODUCT_META.deliveryDays}-day tracked delivery over CHF ${PRODUCT_META.freeShippingThresholdCHF}.`,
-                  icon: (
-                    <svg height="18" viewBox="0 0 64 64" width="18" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10">
-                      <path d="m17 15h26c2.3 0 2.1 1.6 1.7 3.1s-3.7 14.9-3.7 14.9h10.1l4-2 3.9 2v8c0 1.3-.5 2-2 2h-8m-40 0h6.6m9.4 0h14.6" />
-                      <path d="m43.6 23h5.4l6.1 8m-24.1-8h-22m18 8h-22" />
-                      <path d="m24.8 44a6.9 6.9 0 0 1 -6.2 5c-2.7 0-4.2-2.2-3.4-5a6.9 6.9 0 0 1 6.2-5c2.6 0 4.2 2.2 3.4 5zm24 0a6.9 6.9 0 0 1 -6.2 5c-2.7 0-4.2-2.2-3.4-5a6.9 6.9 0 0 1 6.2-5c2.6 0 4.2 2.2 3.4 5z" />
-                    </svg>
-                  ),
-                },
-                {
-                  title: `${PRODUCT_META.returnDays}-Day Returns`,
-                  text: `Free returns within ${PRODUCT_META.returnDays} days of shipping.`,
-                  icon: (
-                    <svg height="18" viewBox="0 0 64 64" width="18" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10">
-                      <path d="m54 6v10h-10m-12 43a27 27 0 1 1 21.751-43m-8.766 39.678a26.819 26.819 0 0 1 -6.985 2.653m15.751-10.331a27.159 27.159 0 0 1 -4.711 4.945m8.751-12.932a26.821 26.821 0 0 1 -1.58 3.952" />
-                      <circle cx="32" cy="32" r="3" />
-                      <path d="m33.961 34.261 10.039 7.739m-12-30v17" />
-                    </svg>
-                  ),
-                },
-              ].map((item) => (
-                <div key={item.title} className="bg-white px-3 py-5 flex flex-col items-center gap-2.5 text-center">
-                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#3B38B8]/15 to-[#1E1854]/8 flex items-center justify-center shrink-0">
-                    <span className="text-[#3B38B8]">{item.icon}</span>
-                  </div>
-                  <p className="text-xs font-semibold tracking-[-0.01em] leading-tight">{item.title}</p>
-                  <p className="text-xs text-[hsla(var(--color-secondary)/0.7)] leading-snug">{item.text}</p>
+            {(() => {
+              const pillarIcons = [
+                <svg key="dispatch" height="18" viewBox="0 0 64 64" width="18" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10"><path d="m57.7 16.5a30 30 0 1 1 -14.3-12.2" /><path d="m32 12c0 4.2 6 1.7 6 6s-4.6 7.3-8 5-7.9-3.5-11.9 2.1-1.3 12 1.5 11.9 5.5-2.8 6.7.6 1.5 3.4 2.8 4.2 1.3 2.2.9 4.1 2 8 4 8 3.8-.8 4-4 2.6-3.3 3.8-4.2-.9-4.3 1.3-6.5 6.6-6.2 2.8-7.2-3.5-1.8-4-3.4-2-3.2 1-3.3a11.9 11.9 0 0 0 8.7-3.6c2.5-2.6 3.8-5.2 6.1-5.2a25.6 25.6 0 0 0 -6.5-7.5 30 30 0 0 0 -7.8-4.7c-6.7 3.2-11.4 3.5-11.4 7.7z" /></svg>,
+                <svg key="delivery" height="18" viewBox="0 0 64 64" width="18" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10"><path d="m17 15h26c2.3 0 2.1 1.6 1.7 3.1s-3.7 14.9-3.7 14.9h10.1l4-2 3.9 2v8c0 1.3-.5 2-2 2h-8m-40 0h6.6m9.4 0h14.6" /><path d="m43.6 23h5.4l6.1 8m-24.1-8h-22m18 8h-22" /><path d="m24.8 44a6.9 6.9 0 0 1 -6.2 5c-2.7 0-4.2-2.2-3.4-5a6.9 6.9 0 0 1 6.2-5c2.6 0 4.2 2.2 3.4 5zm24 0a6.9 6.9 0 0 1 -6.2 5c-2.7 0-4.2-2.2-3.4-5a6.9 6.9 0 0 1 6.2-5c2.6 0 4.2 2.2 3.4 5z" /></svg>,
+                <svg key="returns" height="18" viewBox="0 0 64 64" width="18" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10"><path d="m54 6v10h-10m-12 43a27 27 0 1 1 21.751-43m-8.766 39.678a26.819 26.819 0 0 1 -6.985 2.653m15.751-10.331a27.159 27.159 0 0 1 -4.711 4.945m8.751-12.932a26.821 26.821 0 0 1 -1.58 3.952" /><circle cx="32" cy="32" r="3" /><path d="m33.961 34.261 10.039 7.739m-12-30v17" /></svg>,
+              ];
+              return (
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-[var(--color-border)] border border-[var(--color-border)] rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(30,24,84,0.08)]">
+                  {servicePillars.map((item, i) => (
+                    <div key={item.title} className="bg-white px-3 py-5 flex flex-col items-center gap-2.5 text-center">
+                      <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#3B38B8]/15 to-[#1E1854]/8 flex items-center justify-center shrink-0">
+                        <span className="text-[#3B38B8]">{pillarIcons[i]}</span>
+                      </div>
+                      <p className="text-xs font-semibold tracking-[-0.01em] leading-tight">{item.title}</p>
+                      <p className="text-xs text-[hsla(var(--color-secondary)/0.7)] leading-snug">{item.text}</p>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-
+              );
+            })()}
 
           </div>
         </div>
       </div>
-
-      <Suspense>
-        <ComparisonTable />
-      </Suspense>
 
       <MainBenefits benefits={healthBenefits} />
 
@@ -180,10 +149,14 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
 
       <IngredientsAccordion ingredients={ingredients} />
 
+      <Suspense>
+        <SavingsBreakdown />
+      </Suspense>
+
       <SelectionProcessSection />
 
       <Suspense>
-        <SavingsBreakdown />
+        <ComparisonTable />
       </Suspense>
 
       {/* Related products */}
@@ -207,7 +180,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
                   <p className="text-base font-medium">{p.title}</p>
                   <p className="text-xs text-[hsla(var(--color-secondary)/0.7)] mt-1">{parseFloat(price.amount).toFixed(2)} {price.currencyCode}</p>
                   <div className="mt-4 text-xs tracking-[0.08em] uppercase btn-cta text-white px-5 py-2.5 rounded-full inline-block">
-                    Shop Now
+                    Get Flow
                   </div>
                 </Link>
               );
@@ -226,13 +199,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
           <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">Still got questions?</h2>
           <p className="text-sm text-[hsla(var(--color-secondary)/0.7)]">Please select where you need support.</p>
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-            {([
-              { key: 'product', label: 'Product & Formula' },
-              { key: 'usage', label: 'Usage & Dosage' },
-              { key: 'shipping', label: 'Shipping & Orders' },
-              { key: 'returns', label: 'Returns & Refunds' },
-              { key: 'safety', label: 'Safety & Health' },
-            ] as const).map(({ key, label }) => (
+            {Object.entries(faqCategories).map(([key, label]) => (
               <Link
                 key={key}
                 href={`/pages/faq?category=${key}`}

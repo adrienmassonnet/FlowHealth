@@ -124,7 +124,7 @@ export default function ProductTopics() {
           {active === 'formula' && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
               <div className="space-y-6">
-                <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">The Formula</p>
+                <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">The Formula</p>
                 <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
                   Built for the long game.
                 </h2>
@@ -149,7 +149,7 @@ export default function ProductTopics() {
           {active === 'quality' && (
             <div>
               <div className="mb-10 space-y-2">
-                <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">The Details</p>
+                <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">The Details</p>
                 <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">Made right, from start to finish.</h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -167,7 +167,7 @@ export default function ProductTopics() {
           {active === 'promise' && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
               <div className="space-y-4">
-                <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">Our Promise</p>
+                <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Our Promise</p>
                 <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
                   Nothing hidden.<br />Nothing compromised.
                 </h2>

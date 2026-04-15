@@ -43,7 +43,7 @@ export default function IngredientTypeAccordion() {
   return (
     <section className="max-w-[1200px] mx-auto px-6 py-16">
       <div className="mb-10 space-y-2">
-        <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/1)]">Formula Breakdown</p>
+        <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Formula Breakdown</p>
         <h2 className="text-3xl font-semibold tracking-[-0.02em]">Ingredient Type</h2>
       </div>
       <div className="divide-y divide-[var(--color-border)] border-t border-[var(--color-border)]">
@@ -62,7 +62,7 @@ export default function IngredientTypeAccordion() {
                 <span className="text-base font-medium tracking-[-0.01em]">{cat.type}</span>
               </div>
               <span
-                className="text-[hsla(var(--color-secondary)/1)] transition-transform duration-300 shrink-0"
+                className="font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent transition-transform duration-300 shrink-0"
                 style={{ transform: open === i ? 'rotate(45deg)' : 'rotate(0deg)' }}
               >
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -76,7 +76,7 @@ export default function IngredientTypeAccordion() {
             >
               <ul className="pb-5 space-y-1 pl-14">
                 {cat.ingredients.map((ing) => (
-                  <li key={ing} className="text-sm text-[hsla(var(--color-secondary)/1)] flex items-center gap-2">
+                  <li key={ing} className="text-sm font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent flex items-center gap-2">
                     <span className="w-1 h-1 rounded-full bg-[hsla(var(--color-secondary)/0.5)] shrink-0" />
                     {ing}
                   </li>

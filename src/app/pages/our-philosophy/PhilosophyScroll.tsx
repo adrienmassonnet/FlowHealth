@@ -167,7 +167,7 @@ export default function PhilosophyScroll() {
           >
             <div className="flex-1 max-w-[1200px] w-full mx-auto px-6 pt-8 pb-10 flex flex-col min-h-0">
               <div className="mb-5 flex items-end justify-between shrink-0">
-                <p className="text-xs tracking-[0.16em] uppercase text-[#1E1854]/40 font-medium">Our Pillars</p>
+                <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Our Pillars</p>
                 <div className="flex items-center gap-1.5 text-[#1E1854]/35">
                   <span className="text-xs tracking-[0.1em] uppercase">Scroll to explore</span>
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-bounce">
@@ -208,7 +208,7 @@ export default function PhilosophyScroll() {
           >
             {/* Mini cards row */}
             <div className="max-w-[1200px] w-full mx-auto px-6 pt-8 pb-5 shrink-0">
-              <p className="text-xs tracking-[0.16em] uppercase text-[#1E1854]/40 font-medium mb-5">Our Pillars</p>
+              <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent mb-5">Our Pillars</p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {points.map((p, i) => (
                   <div
@@ -266,7 +266,7 @@ export default function PhilosophyScroll() {
                   className={`space-y-5 ${isEven ? 'md:order-last' : 'md:order-first'}`}
                 >
                   <p
-                    className={`${enterClass} text-xs tracking-[0.16em] uppercase text-[#1E1854]/40 font-medium`}
+                    className={`${enterClass} text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent`}
                     style={{ animationDelay: '0ms' }}
                   >{point.label}</p>
                   <h2

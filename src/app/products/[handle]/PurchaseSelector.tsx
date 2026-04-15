@@ -2,15 +2,18 @@
 
 import { useState } from 'react';
 import { trackEvent } from '@/lib/clarity';
+import PreLaunchModal from '@/app/components/PreLaunchModal';
 
 interface PurchaseSelectorProps {
+  variantId: string;
   price: number;
   currencyCode: string;
   discountPercent?: number;
 }
 
-export default function PurchaseSelector({ price, currencyCode, discountPercent = 10 }: PurchaseSelectorProps) {
+export default function PurchaseSelector({ price, currencyCode, discountPercent = 10 }: Omit<PurchaseSelectorProps, 'variantId'> & { variantId: string }) {
   const [selected, setSelected] = useState<'subscribe' | 'once'>('subscribe');
+  const [modalOpen, setModalOpen] = useState(false);
 
   const discountedPrice = (price * (1 - discountPercent / 100)).toFixed(2);
   const fullPrice = price.toFixed(2);
@@ -18,8 +21,17 @@ export default function PurchaseSelector({ price, currencyCode, discountPercent 
   const isSubscribe = selected === 'subscribe';
   const isOnce = selected === 'once';
 
+  const displayPrice = isSubscribe ? discountedPrice : fullPrice;
+
+  function handleCheckout() {
+    trackEvent(isSubscribe ? 'product_page_buy_subscribe' : 'product_page_buy_once');
+    setModalOpen(true);
+  }
+
   return (
-    <div className="space-y-2">
+    <>
+    <PreLaunchModal open={modalOpen} onClose={() => setModalOpen(false)} />
+    <div className="space-y-3">
       {/* Subscribe card */}
       <button
         onClick={() => { setSelected('subscribe'); trackEvent('product_page_select_subscribe'); }}
@@ -61,38 +73,43 @@ export default function PurchaseSelector({ price, currencyCode, discountPercent 
         </div>
       </button>
 
-      {/* One-time card */}
+      {/* One-time purchase — row button */}
       <button
         onClick={() => { setSelected('once'); trackEvent('product_page_select_one_time'); }}
-        className={`w-full text-left rounded-xl border-2 p-4 transition-all duration-300 ${
+        className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl border-2 transition-all duration-200 group ${
           isOnce
-            ? 'card-selected'
-            : 'border-[var(--color-border)] hover:border-[hsla(var(--color-accent)/0.4)]'
+            ? 'border-[#1E1854] bg-[#1E1854]/5'
+            : 'border-[var(--color-border)] hover:border-[#1E1854]/40 hover:bg-[#1E1854]/3'
         }`}
       >
-        <div className="flex items-start gap-3">
-          {/* Radio */}
-          <span className={`mt-0.5 shrink-0 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
-            isOnce ? 'border-white' : 'border-[var(--color-border)]'
-          }`}>
-            {isOnce && <span className="w-2.5 h-2.5 rounded-full bg-white" />}
-          </span>
+        {/* Radio */}
+        <span className={`shrink-0 w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors ${
+          isOnce ? 'border-[#1E1854]' : 'border-[var(--color-border)] group-hover:border-[#1E1854]/50'
+        }`}>
+          {isOnce && <span className="w-2 h-2 rounded-full bg-[#1E1854]" />}
+        </span>
 
-          <div className="flex-1 min-w-0">
-            <p className={`text-sm font-semibold tracking-[-0.01em] ${isOnce ? 'text-white' : ''}`}>
-              One Time Purchase
-            </p>
-            <div className="mt-1.5 flex items-baseline gap-2">
-              <span className={`text-xl font-semibold tracking-[-0.02em] ${isOnce ? 'text-white' : ''}`}>
-                {fullPrice} <span className={`text-sm font-normal ${isOnce ? 'text-white/60' : 'text-[hsla(var(--color-secondary)/1)]'}`}>{currencyCode}</span>
-              </span>
-            </div>
-            <p className={`text-xs mt-1.5 ${isOnce ? 'text-white/65' : 'text-[hsla(var(--color-secondary)/0.7)]'}`}>
-              One time delivery
-            </p>
-          </div>
-        </div>
+        <span className={`text-sm transition-colors ${
+          isOnce ? 'font-semibold text-[#1E1854]' : 'text-[hsla(var(--color-secondary)/0.8)]'
+        }`}>
+          One-time purchase
+        </span>
+
+        <span className={`ml-auto text-sm tabular-nums transition-colors ${
+          isOnce ? 'font-semibold text-[#1E1854]' : 'text-[hsla(var(--color-secondary)/0.7)]'
+        }`}>
+          {fullPrice} <span className="font-normal text-xs">{currencyCode}</span>
+        </span>
+      </button>
+
+      {/* CTA */}
+      <button
+        onClick={handleCheckout}
+        className="btn-cta w-full text-white font-semibold text-sm tracking-[0.06em] uppercase py-4 rounded-full transition-all duration-300"
+      >
+        {`Buy Now — ${displayPrice} ${currencyCode}`}
       </button>
     </div>
+    </>
   );
 }

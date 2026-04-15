@@ -2,7 +2,7 @@
 
 > Centralised reference for all user-facing copy. Use this document to review and improve copywriting across the site.
 >
-> **Sources:** `Hardcoded` = in code · `CMS` = Contentful · `Shopify` = Storefront API
+> **Sources:** `Hardcoded` = in `.tsx` file · `content-data.ts` = static fallback in `src/lib/content-data.ts` · `Sheets` = live from Google Sheets (60s ISR) · `Shopify` = Storefront API
 
 ---
 
@@ -71,8 +71,8 @@
 ### Hero Section
 | Element | Current Copy | Source |
 |---|---|---|
-| Tagline | *(from CMS)* | CMS |
-| Heading | *(from CMS)* | CMS |
+| Tagline | *(from getHomepageContent())* | Sheets |
+| Heading | *(from getHomepageContent())* | Sheets |
 | CTA button | `Shop Flow` | Hardcoded |
 
 ### Mission / Philosophy Strip
@@ -100,21 +100,21 @@
 ### Health Benefits Section
 | Element | Current Copy | Source |
 |---|---|---|
-| Section label | *(from CMS, default: `Health Benefits`)* | CMS |
-| Heading | *(from CMS, default: `Everything your body needs.\nNothing it doesn't.`)* | CMS |
+| Section label | *(from getHomepageContent(), default: `Health Benefits`)* | Sheets |
+| Heading | *(from getHomepageContent(), default: `Everything your body needs.\nNothing it doesn't.`)* | Sheets |
 
 ### Results Timeline
 | Element | Current Copy | Source |
 |---|---|---|
 | Section label | `Timeline` | Hardcoded |
-| Heading | *(from CMS)* | CMS |
-| Subheading | *(from CMS)* | CMS |
+| Heading | *(from getHomepageContent())* | Sheets |
+| Subheading | *(from getHomepageContent())* | Sheets |
 
 ### Venn Diagram Section
 | Element | Current Copy | Source |
 |---|---|---|
 | Section label | `The formula` | Hardcoded |
-| Heading | *(from CMS)* | CMS |
+| Heading | *(from getHomepageContent())* | Sheets |
 | Link | `Read more about our product` | Hardcoded |
 | Circle 1 | `A pleasant taste` | Hardcoded |
 | Circle 2 | `Convenient daily packet` | Hardcoded |
@@ -123,8 +123,8 @@
 ### Key Ingredients Section
 | Element | Current Copy | Source |
 |---|---|---|
-| Section label | *(from CMS, default: `our ingredients`)* | CMS |
-| Heading | *(from CMS)* | CMS |
+| Section label | *(from getHomepageContent(), default: `our ingredients`)* | Sheets |
+| Heading | *(from getHomepageContent())* | Sheets |
 | Link | `See all 13 ingredients` | Hardcoded |
 
 ### Comparison Table
@@ -308,14 +308,14 @@
 | Label | `What We Believe` | Hardcoded |
 | Heading | `Conviction, not aspiration.` | Hardcoded |
 | Intro | `These are not values we wrote for a brand deck. They are the beliefs that drove three years of research before we launched a single product.` | Hardcoded |
-| Beliefs | *(from CMS)* | CMS |
+| Beliefs | *(from getPhilosophyBeliefs())* | content-data.ts |
 
 ### Six Principles
 | Element | Current Copy | Source |
 |---|---|---|
 | Label | `Non-Negotiables` | Hardcoded |
 | Heading | `Our six principles.` | Hardcoded |
-| Principles | *(from CMS)* | CMS |
+| Principles | *(from getPhilosophyPrinciples())* | content-data.ts |
 
 ### The Standard
 | Element | Current Copy | Source |
@@ -417,10 +417,10 @@
 |---|---|---|
 | Team label | `The People Behind Flow` | Hardcoded |
 | Team heading | `Meet the team.` | Hardcoded |
-| Team members | *(from CMS)* | CMS |
+| Team members | *(from getTeamMembers())* | content-data.ts |
 | Timeline label | `Our Journey` | Hardcoded |
 | Timeline heading | `How we got here.` | Hardcoded |
-| Milestones | *(from CMS)* | CMS |
+| Milestones | *(from getMilestones())* | content-data.ts |
 
 ---
 
@@ -474,7 +474,7 @@
 | Title | `Got questions?` | Hardcoded |
 | Subtitle | `We have answers` | Hardcoded |
 | Categories | `Product & Formula`, `Usage & Dosage`, `Shipping & Orders`, `Returns & Refunds`, `Safety & Health` | Hardcoded |
-| Q&A items | *(from CMS)* | CMS |
+| Q&A items | *(from getFaqItems())* | content-data.ts |
 
 ### CTAs
 | Element | Current Copy | Source |
@@ -591,4 +591,4 @@
 
 ---
 
-*Last updated: March 2026*
+*Last updated: April 2026*

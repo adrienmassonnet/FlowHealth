@@ -100,7 +100,7 @@ export default function BlogPostsClient({ posts }: { posts: Post[] }) {
                 </p>
                 <div className="flex flex-wrap gap-1.5 pt-1">
                   {post.tags.map((tag) => (
-                    <span key={tag} className="text-xs uppercase tracking-[0.08em] border border-[var(--color-border)] px-2.5 py-0.5 rounded-full text-[hsla(var(--color-secondary)/0.5)] font-medium">
+                    <span key={tag} className="text-xs uppercase tracking-[0.08em] border border-[var(--color-border)] px-2.5 py-0.5 rounded-full font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">
                       {tag}
                     </span>
                   ))}

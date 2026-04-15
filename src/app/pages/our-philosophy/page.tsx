@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getPhilosophyPrinciples, getPhilosophyBeliefs } from '@/lib/contentful';
+import { getPhilosophyPrinciples, getPhilosophyBeliefs } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Our Philosophy',
@@ -49,7 +49,7 @@ export default async function OurPhilosophyPage() {
         <div className="max-w-[1200px] mx-auto px-6 py-16 md:py-24">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
             <div className="space-y-6 md:sticky md:top-28">
-              <p className="text-xs tracking-[0.16em] uppercase text-[#1E1854]/40 font-medium">What We Believe</p>
+              <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">What We Believe</p>
               <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
                 Conviction,<br />not aspiration.
               </h2>
@@ -84,7 +84,7 @@ export default async function OurPhilosophyPage() {
       <section className="bg-white border-t border-[#1E1854]/[0.06]">
         <div className="max-w-[1200px] mx-auto px-6 py-16 md:py-24">
           <div className="mb-12 space-y-2">
-            <p className="text-xs tracking-[0.16em] uppercase text-[#1E1854]/40 font-medium">Non-Negotiables</p>
+            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Non-Negotiables</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">Our six principles.</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -112,7 +112,7 @@ export default async function OurPhilosophyPage() {
             />
           </div>
           <div className="space-y-6">
-            <p className="text-xs tracking-[0.16em] uppercase text-[#1E1854]/40 font-medium">The Standard</p>
+            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">The Standard</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
               If we wouldn&apos;t take it ourselves,<br />we don&apos;t sell it.
             </h2>
@@ -140,7 +140,7 @@ export default async function OurPhilosophyPage() {
               href="/products/flow"
               className="shrink-0 inline-flex items-center gap-2 bg-white text-[#1E1854] text-xs tracking-[0.1em] uppercase font-semibold px-7 py-4 rounded-full hover:bg-[hsla(var(--color-accent)/1)] hover:text-white transition-colors"
             >
-              Shop Flow
+              Get Flow
             </Link>
           </div>
         </div>
@@ -151,7 +151,7 @@ export default async function OurPhilosophyPage() {
         <div className="space-y-5">
           <h2 className="text-2xl font-semibold tracking-[-0.02em]">Continue your research</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Shop Flow CTA card */}
+            {/* Get Flow CTA card */}
             <div className="relative rounded-2xl overflow-hidden h-[320px] flex flex-col justify-end p-7 gap-4">
               <Image src={productImageUrl || '/hero-lifestyle.png'} alt="Flow product" fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1E1854]/85 via-[#1E1854]/30 to-transparent" />
@@ -160,7 +160,7 @@ export default async function OurPhilosophyPage() {
                   Every ingredient above, in one daily formula.
                 </h3>
                 <Link href="/products/flow" className="self-start inline-flex items-center justify-center bg-white text-[#1E1854] text-xs tracking-[0.1em] uppercase font-semibold px-5 py-3 rounded-full hover:bg-[hsla(var(--color-accent)/1)] hover:text-white transition-colors">
-                  Shop Flow
+                  Get Flow
                 </Link>
               </div>
             </div>

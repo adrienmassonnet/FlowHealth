@@ -94,6 +94,7 @@ body {
   animation: hbFadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+
 .btn-cta {
   background: linear-gradient(135deg, #3B38B8 0%, #1E1854 50%, #3B38B8 100%);
   background-size: 200% 200%;

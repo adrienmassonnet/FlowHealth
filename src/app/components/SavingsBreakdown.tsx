@@ -1,9 +1,9 @@
-import { getSavingsSupplements, getProductMeta } from '@/lib/contentful';
+import { getSavingsSupplements, getProductMeta } from '@/lib/content';
 import SavingsBreakdownClient from './SavingsBreakdownClient';
 
 export default async function SavingsBreakdown() {
   const [supplements, meta] = await Promise.all([getSavingsSupplements(), getProductMeta()]);
-  const flowPrice = meta.priceSingleCHF;
+  const flowPrice = meta.priceSubscriptionCHF;
   const traditionalTotal = Math.round(supplements.reduce((sum, s) => sum + s.monthlyPriceCHF, 0) * 100) / 100;
   const savings = Math.round((traditionalTotal - flowPrice) * 100) / 100;
   const savingsRounded = Math.round(savings);

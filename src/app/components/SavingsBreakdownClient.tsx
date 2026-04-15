@@ -37,7 +37,7 @@ export default function SavingsBreakdownClient({
 
         {/* Heading */}
         <div className="flex-1 space-y-2">
-          <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">Save Money</p>
+          <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Save Money</p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
             One formula replaces {supplements.length} daily supplements,<br />at the cost of one energy drink.
           </h2>
@@ -110,7 +110,7 @@ export default function SavingsBreakdownClient({
                 <span className="text-sm text-[hsla(var(--color-secondary)/0.45)] line-through shrink-0">CHF {traditionalTotal}</span>
               </div>
               <div className="flex items-center justify-between gap-4">
-                <span className="text-base font-semibold text-[#1E1854]">Flow — {servingsPerBox} sachets · monthly</span>
+                <span className="text-base font-semibold text-[#1E1854]">Flow — {servingsPerBox} sachets · subscription</span>
                 <span className="text-base font-semibold text-[#1E1854] shrink-0">CHF {flowPrice}</span>
               </div>
               <p className="text-xs text-[hsla(var(--color-secondary)/0.5)] pt-1">You save CHF {savings} every month.</p>

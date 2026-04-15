@@ -56,7 +56,7 @@ export default function ContactPage() {
 
             {/* Heading + description — first on all screens */}
             <div className="order-1 md:col-start-1 md:row-start-1">
-              <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium mb-3">Get in touch</p>
+              <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent mb-3">Get in touch</p>
               <h1 className="text-3xl md:text-5xl font-semibold tracking-[-0.02em] leading-tight text-[#1E1854] mb-4">
                 Contact Us
               </h1>

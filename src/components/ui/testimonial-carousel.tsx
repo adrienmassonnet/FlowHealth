@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import type { Testimonial } from '@/lib/contentful';
+import type { Testimonial } from '@/lib/content';
 import { trackEvent } from '@/lib/clarity';
 
 // Static portrait images paired with testimonials (Contentful testimonials have no imageUrl)

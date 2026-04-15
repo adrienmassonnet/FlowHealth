@@ -132,7 +132,7 @@ export default function HealthCenter({ caloriesKcal }: { caloriesKcal: number })
   return (
     <section className="max-w-[1200px] mx-auto px-6 py-20">
       <div className="mb-10 space-y-2">
-        <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">
+        <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">
           Purity & Transparency
         </p>
         <h2 className="text-3xl font-semibold tracking-[-0.02em]">What&apos;s in Flow. What isn&apos;t.</h2>

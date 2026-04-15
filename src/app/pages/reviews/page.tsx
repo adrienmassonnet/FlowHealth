@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getTestimonials } from '@/lib/contentful';
+import { getTestimonials } from '@/lib/content';
 
 // Star icon rendered inline — no extra dependency
 function Stars() {
@@ -33,7 +33,7 @@ export default async function ReviewsPage() {
       <section className="bg-white border-b border-[var(--color-border)]">
         <div className="max-w-[1200px] mx-auto px-6 pt-20 pb-20 md:pb-24">
           <div className="max-w-2xl">
-            <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium mb-4">
+            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent mb-4">
               Reviews
             </p>
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-[-0.03em] leading-[1.0] mb-5">
@@ -111,7 +111,7 @@ export default async function ReviewsPage() {
             href="/products/flow"
             className="shrink-0 inline-flex items-center gap-2 bg-white text-[#1E1854] text-xs tracking-[0.1em] uppercase font-semibold px-7 py-4 rounded-full hover:bg-[hsla(var(--color-accent)/1)] hover:text-white transition-colors"
           >
-            Shop Flow
+            Get Flow
           </Link>
         </div>
       </section>

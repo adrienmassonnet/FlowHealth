@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getBlogPost, getBlogPosts } from '@/lib/contentful';
+import { getBlogPost, getBlogPosts } from '@/lib/content';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -230,7 +230,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                     </h3>
                     <div className="flex flex-wrap gap-1.5 pt-1">
                       {(p.tags ?? []).map((tag) => (
-                        <span key={tag} className="text-xs uppercase tracking-[0.08em] border border-[var(--color-border)] px-2 py-0.5 rounded-full text-[hsla(var(--color-secondary)/0.5)] font-medium">
+                        <span key={tag} className="text-xs uppercase tracking-[0.08em] border border-[var(--color-border)] px-2 py-0.5 rounded-full font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">
                           {tag}
                         </span>
                       ))}

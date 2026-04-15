@@ -59,13 +59,6 @@ const latestPosts = [
     image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&q=80&auto=format&fit=crop',
   },
   {
-    slug: 'ashwagandha-stress',
-    title: 'Ashwagandha KSM-66®: The Most Clinically Studied Adaptogen',
-    readTime: '5 min read',
-    tag: 'Ingredients',
-    image: 'https://images.unsplash.com/photo-1596078842550-f9b9bdd7bdc7?w=400&q=80&auto=format&fit=crop',
-  },
-  {
     slug: 'lions-mane-brain',
     title: "Lion's Mane and Neuroplasticity: What the Research Says",
     readTime: '8 min read',
@@ -203,7 +196,7 @@ function NavButton({ label, open }: { label: string; open: boolean }) {
       className={`relative flex items-center gap-1.5 text-xs tracking-[0.08em] uppercase px-3 py-1.5 rounded-full transition-all duration-200 ${
         open
           ? 'bg-[#1E1854] text-white'
-          : 'text-[hsla(var(--color-secondary)/1)] hover:bg-[#1E1854]/[0.07]'
+          : 'text-[hsla(var(--color-secondary)/1)] hover:text-[#3B38B8] hover:bg-[#3B38B8]/[0.08]'
       }`}
     >
       {label}
@@ -431,13 +424,15 @@ export default function Header() {
           <div className="max-w-[1200px] mx-auto px-6">
             <div className="h-14 flex items-center justify-between gap-3">
 
-              {/* Main pill — hamburger lives inside on mobile */}
+              {/* Main pill */}
               <motion.div
-                animate={{ borderRadius: 9999, paddingLeft: 20, paddingRight: 20, backgroundColor: 'rgba(255,255,255,0.75)', boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}
-                transition={{ duration: 0.5, ease: easeOut }}
-                className="md:flex-none flex items-center gap-3 md:gap-5 border border-white/30 backdrop-blur-xl h-10"
+                initial={{ opacity: 0, y: -8, filter: 'blur(6px)' }}
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                transition={{ duration: 0.9, ease: easeOut }}
+                className="md:flex-none flex items-center gap-3 md:gap-5 border border-white/30 backdrop-blur-xl h-10 rounded-full px-5"
+                style={{ backgroundColor: 'rgba(255,255,255,0.75)', boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}
               >
-                {/* Hamburger — mobile only, inside the pill */}
+                {/* Hamburger — mobile only */}
                 <button
                   className="md:hidden p-1 -ml-1 text-[#1E1854] shrink-0"
                   aria-label="Open menu"
@@ -448,7 +443,7 @@ export default function Header() {
                   </svg>
                 </button>
 
-                {/* Logo */}
+                {/* Logo — desktop only, always visible as anchor */}
                 <Link
                   href="/"
                   onClick={() => { setActiveMenu(null); trackEvent('header_logo_click'); }}
@@ -462,115 +457,115 @@ export default function Header() {
                 {/* Desktop nav dropdowns */}
                 <nav ref={navRef} className="hidden md:flex items-center gap-2 relative">
 
-                  {/* About Flow dropdown */}
-                  <div className="relative" onMouseEnter={() => { openMenu('about'); trackEvent('header_menu_about_flow'); }} onMouseLeave={scheduleClose}>
-                    <NavButton label="About Flow" open={activeMenu === 'about'} />
-                    <AnimatePresence>
-                      {activeMenu === 'about' && (
-                        <motion.div
-                          key="about-panel"
-                          variants={panelVariants}
-                          initial="hidden"
-                          animate="visible"
-                          exit="exit"
-                          className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-72 rounded-2xl border border-[var(--color-border)] bg-white shadow-[0_8px_40px_rgba(0,0,0,0.12)] overflow-hidden z-50"
-                        >
-                          <div className="px-4 pt-4 pb-2">
-                            <p className="text-xs uppercase tracking-[0.12em] font-semibold text-[hsla(var(--color-secondary)/0.45)]">About Flow</p>
-                          </div>
-                          <motion.div className="p-2 space-y-0.5" variants={listVariants} initial="hidden" animate="visible">
-                            {aboutLinks.map((link) => (
-                              <motion.div key={link.href} variants={itemVariants}>
-                                <Link
-                                  href={link.href}
-                                  onClick={() => setActiveMenu(null)}
-                                  className="group flex items-center gap-4 px-3 py-3.5 rounded-xl hover:bg-[#1E185408] transition-colors"
-                                >
-                                  <span className="shrink-0 w-9 h-9 rounded-xl bg-[#1E18540A] flex items-center justify-center text-[#1E1854] group-hover:bg-[#1E1854] group-hover:text-white transition-colors">
-                                    {link.icon}
-                                  </span>
-                                  <div className="flex-1 min-w-0">
-                                    <p className="text-sm font-semibold text-[#1E1854] group-hover:text-[hsla(var(--color-accent)/1)] transition-colors">{link.label}</p>
-                                    <p className="text-xs text-[hsla(var(--color-secondary)/0.5)] leading-snug mt-0.5">{link.description}</p>
-                                  </div>
-                                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity text-[hsla(var(--color-accent)/1)]">
-                                    <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
-                                  </svg>
-                                </Link>
-                              </motion.div>
-                            ))}
+                    {/* About Flow dropdown */}
+                    <div className="relative" onMouseEnter={() => { openMenu('about'); trackEvent('header_menu_about_flow'); }} onMouseLeave={scheduleClose}>
+                      <NavButton label="About Flow" open={activeMenu === 'about'} />
+                      <AnimatePresence>
+                        {activeMenu === 'about' && (
+                          <motion.div
+                            key="about-panel"
+                            variants={panelVariants}
+                            initial="hidden"
+                            animate="visible"
+                            exit="exit"
+                            className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-72 rounded-2xl border border-[var(--color-border)] bg-white shadow-[0_8px_40px_rgba(0,0,0,0.12)] overflow-hidden z-50"
+                          >
+                            <div className="px-4 pt-4 pb-2">
+                              <p className="text-xs uppercase tracking-[0.12em] font-semibold text-[hsla(var(--color-secondary)/0.45)]">About Flow</p>
+                            </div>
+                            <motion.div className="p-2 space-y-0.5" variants={listVariants} initial="hidden" animate="visible">
+                              {aboutLinks.map((link) => (
+                                <motion.div key={link.href} variants={itemVariants}>
+                                  <Link
+                                    href={link.href}
+                                    onClick={() => setActiveMenu(null)}
+                                    className="group flex items-center gap-4 px-3 py-3.5 rounded-xl hover:bg-[#1E185408] transition-colors"
+                                  >
+                                    <span className="shrink-0 w-9 h-9 rounded-xl bg-[#1E18540A] flex items-center justify-center text-[#1E1854] group-hover:bg-[#1E1854] group-hover:text-white transition-colors">
+                                      {link.icon}
+                                    </span>
+                                    <div className="flex-1 min-w-0">
+                                      <p className="text-sm font-semibold text-[#1E1854] group-hover:text-[hsla(var(--color-accent)/1)] transition-colors">{link.label}</p>
+                                      <p className="text-xs text-[hsla(var(--color-secondary)/0.5)] leading-snug mt-0.5">{link.description}</p>
+                                    </div>
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity text-[hsla(var(--color-accent)/1)]">
+                                      <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
+                                  </Link>
+                                </motion.div>
+                              ))}
+                            </motion.div>
                           </motion.div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
+                        )}
+                      </AnimatePresence>
+                    </div>
 
-                  {/* Learn dropdown */}
-                  <div className="relative" onMouseEnter={() => { openMenu('learn'); trackEvent('header_menu_learn'); }} onMouseLeave={scheduleClose}>
-                    <NavButton label="Learn" open={activeMenu === 'learn'} />
-                    <AnimatePresence>
-                      {activeMenu === 'learn' && (
-                        <motion.div
-                          key="learn-panel"
-                          variants={panelVariants}
-                          initial="hidden"
-                          animate="visible"
-                          exit="exit"
-                          className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-[520px] rounded-2xl border border-[var(--color-border)] bg-white shadow-[0_8px_40px_rgba(0,0,0,0.12)] overflow-hidden z-50"
-                        >
-                          <div className="flex items-center justify-between px-5 pt-4 pb-3 border-b border-[var(--color-border)]">
-                            <p className="text-xs uppercase tracking-[0.12em] font-semibold text-[hsla(var(--color-secondary)/0.45)]">Latest articles</p>
-                            <Link
-                              href="/pages/blog-posts"
-                              onClick={() => setActiveMenu(null)}
-                              className="flex items-center gap-1 text-xs uppercase tracking-[0.1em] font-semibold text-[hsla(var(--color-accent)/1)] hover:opacity-70 transition-opacity"
-                            >
-                              See all
-                              <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                                <path d="M2 5h6M5.5 2.5L8 5l-2.5 2.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-                              </svg>
-                            </Link>
-                          </div>
-                          <motion.div className="p-3 space-y-1" variants={listVariants} initial="hidden" animate="visible">
-                            {latestPosts.map((post) => (
-                              <motion.div key={post.slug} variants={itemVariants}>
-                                <Link
-                                  href={`/pages/blog-posts/${post.slug}`}
-                                  onClick={() => setActiveMenu(null)}
-                                  className="group flex items-center gap-4 px-3 py-3 rounded-xl hover:bg-[#1E185408] transition-colors"
-                                >
-                                  <div className="relative shrink-0 w-14 h-14 rounded-lg overflow-hidden bg-[#1E18540A]">
-                                    <Image src={post.image} alt={post.title} fill className="object-cover" sizes="56px" />
-                                  </div>
-                                  <div className="flex-1 min-w-0">
-                                    <p className="text-xs uppercase tracking-[0.08em] font-medium text-[hsla(var(--color-secondary)/0.45)] mb-0.5">{post.tag} · {post.readTime}</p>
-                                    <p className="text-sm font-medium text-[#1E1854] leading-snug line-clamp-2 group-hover:text-[hsla(var(--color-accent)/1)] transition-colors">
-                                      {post.title}
-                                    </p>
-                                  </div>
-                                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity text-[hsla(var(--color-accent)/1)]">
-                                    <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
-                                  </svg>
-                                </Link>
-                              </motion.div>
-                            ))}
+                    {/* Learn dropdown */}
+                    <div className="relative" onMouseEnter={() => { openMenu('learn'); trackEvent('header_menu_learn'); }} onMouseLeave={scheduleClose}>
+                      <NavButton label="Learn" open={activeMenu === 'learn'} />
+                      <AnimatePresence>
+                        {activeMenu === 'learn' && (
+                          <motion.div
+                            key="learn-panel"
+                            variants={panelVariants}
+                            initial="hidden"
+                            animate="visible"
+                            exit="exit"
+                            className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-[520px] rounded-2xl border border-[var(--color-border)] bg-white shadow-[0_8px_40px_rgba(0,0,0,0.12)] overflow-hidden z-50"
+                          >
+                            <div className="flex items-center justify-between px-5 pt-4 pb-3 border-b border-[var(--color-border)]">
+                              <p className="text-xs uppercase tracking-[0.12em] font-semibold text-[hsla(var(--color-secondary)/0.45)]">Latest articles</p>
+                              <Link
+                                href="/pages/blog-posts"
+                                onClick={() => setActiveMenu(null)}
+                                className="flex items-center gap-1 text-xs uppercase tracking-[0.1em] font-semibold text-[hsla(var(--color-accent)/1)] hover:opacity-70 transition-opacity"
+                              >
+                                See all
+                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                                  <path d="M2 5h6M5.5 2.5L8 5l-2.5 2.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                              </Link>
+                            </div>
+                            <motion.div className="p-3 space-y-1" variants={listVariants} initial="hidden" animate="visible">
+                              {latestPosts.map((post) => (
+                                <motion.div key={post.slug} variants={itemVariants}>
+                                  <Link
+                                    href={`/pages/blog-posts/${post.slug}`}
+                                    onClick={() => setActiveMenu(null)}
+                                    className="group flex items-center gap-4 px-3 py-3 rounded-xl hover:bg-[#1E185408] transition-colors"
+                                  >
+                                    <div className="relative shrink-0 w-14 h-14 rounded-lg overflow-hidden bg-[#1E18540A]">
+                                      <Image src={post.image} alt={post.title} fill className="object-cover" sizes="56px" />
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                      <p className="text-xs uppercase tracking-[0.08em] font-medium text-[hsla(var(--color-secondary)/0.45)] mb-0.5">{post.tag} · {post.readTime}</p>
+                                      <p className="text-sm font-medium text-[#1E1854] leading-snug line-clamp-2 group-hover:text-[hsla(var(--color-accent)/1)] transition-colors">
+                                        {post.title}
+                                      </p>
+                                    </div>
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity text-[hsla(var(--color-accent)/1)]">
+                                      <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
+                                  </Link>
+                                </motion.div>
+                              ))}
+                            </motion.div>
+                            <div className="px-5 pb-4 pt-1">
+                              <Link
+                                href="/pages/blog-posts"
+                                onClick={() => setActiveMenu(null)}
+                                className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-[var(--color-border)] text-xs tracking-[0.08em] uppercase font-medium text-[#1E1854] hover:bg-[#1E1854] hover:text-white hover:border-[#1E1854] transition-colors"
+                              >
+                                View all articles
+                              </Link>
+                            </div>
                           </motion.div>
-                          <div className="px-5 pb-4 pt-1">
-                            <Link
-                              href="/pages/blog-posts"
-                              onClick={() => setActiveMenu(null)}
-                              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-[var(--color-border)] text-xs tracking-[0.08em] uppercase font-medium text-[#1E1854] hover:bg-[#1E1854] hover:text-white hover:border-[#1E1854] transition-colors"
-                            >
-                              View all articles
-                            </Link>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
+                        )}
+                      </AnimatePresence>
+                    </div>
                 </nav>
 
-                {/* Get Flow CTA — always in the pill */}
+                {/* Get Flow CTA */}
                 <Link
                   href="/products/flow"
                   onClick={() => { setActiveMenu(null); trackEvent('header_get_flow_desktop'); }}
@@ -600,9 +595,11 @@ export default function Header() {
 
               {/* Right side: language — desktop only */}
               <motion.div
-                animate={{ borderRadius: 9999, paddingLeft: 16, paddingRight: 16, backgroundColor: 'rgba(255,255,255,0.75)', boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}
-                transition={{ duration: 0.5, ease: easeOut }}
-                className="hidden md:flex items-center border border-white/30 backdrop-blur-xl h-10"
+                initial={{ opacity: 0, y: -8, filter: 'blur(6px)' }}
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                transition={{ duration: 0.9, ease: easeOut, delay: 0.08 }}
+                className="hidden md:flex items-center border border-white/30 backdrop-blur-xl h-10 rounded-full px-4"
+                style={{ backgroundColor: 'rgba(255,255,255,0.75)', boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}
               >
                 <LanguageSelector muted={scrolled} />
               </motion.div>

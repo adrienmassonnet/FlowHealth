@@ -1,10 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion, useInView } from 'framer-motion';
 import { trackEvent } from '@/lib/clarity';
-import type { HealthBenefit } from '@/lib/contentful';
+import type { HealthBenefit } from '@/lib/content';
+
+const ease = [0.25, 0.1, 0.1, 1] as const;
 
 interface Props {
   benefits: HealthBenefit[];
@@ -15,14 +18,16 @@ interface Props {
 export default function HealthBenefits({ benefits, sectionLabel, heading }: Props) {
   const [active, setActive] = useState(0);
   const step = benefits[active];
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-8% 0px' });
 
   if (!step) return null;
 
   return (
-    <section className="max-w-[1200px] mx-auto px-6 py-14">
+    <section ref={ref} className="max-w-[1200px] mx-auto px-6 py-14">
       {/* Header */}
       <div className="mb-8 space-y-1.5">
-        <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.45)] font-medium">
+        <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">
           {sectionLabel || 'Health Benefits'}
         </p>
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
@@ -33,13 +38,21 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
       <div className="grid grid-cols-1 md:grid-cols-[320px_1fr] gap-6 items-stretch">
 
         {/* Left — benefit selector */}
-        <div className="grid grid-cols-2 gap-2">
+        <motion.div
+          className="grid grid-cols-2 gap-2"
+          initial={{ opacity: 0, x: -24 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.8, ease }}
+        >
           {benefits.map((s, i) => {
             const isActive = active === i;
             return (
-              <button
+              <motion.button
                 key={s.number}
                 onClick={() => setActive(i)}
+                initial={{ opacity: 0, y: 16 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.1 + i * 0.07, ease }}
                 className={`
                   relative flex flex-col items-center justify-center gap-2 px-3 py-4 text-center
                   rounded-xl w-full overflow-hidden
@@ -63,13 +76,18 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
                 }`}>
                   {s.label}
                 </span>
-              </button>
+              </motion.button>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Right — detail image panel */}
-        <div className="relative rounded-2xl overflow-hidden min-h-[428px] md:min-h-[446px]">
+        <motion.div
+          className="relative rounded-2xl overflow-hidden min-h-[428px] md:min-h-[446px]"
+          initial={{ opacity: 0, scale: 0.94 }}
+          animate={inView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.9, delay: 0.12, ease }}
+        >
 
           {/* All images stacked — crossfade via opacity transition */}
           {benefits.map((b, i) =>
@@ -87,7 +105,7 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
             ) : null
           )}
 
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
           {/* Article icon */}
           {step.blogSlug && (
@@ -113,21 +131,14 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
             className="absolute inset-0 flex flex-col justify-end p-7 md:p-9"
             style={{ animation: 'hbFadeUp 0.5s cubic-bezier(0.25, 0.1, 0.1, 1) forwards' }}
           >
-            <h3 className="text-2xl md:text-2xl font-semibold text-white tracking-[-0.02em] leading-snug mb-2">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-white tracking-[-0.02em] leading-snug mb-2">
               {step.title}
             </h3>
-            <p className="text-sm text-white/90 leading-relaxed mb-5 max-w-[420px]">
+            <p className="text-sm text-white/90 leading-relaxed mb-5">
               {step.description}
             </p>
-            <div className="flex flex-wrap gap-2">
-              {step.ingredients.split(',').map((ing) => (
-                <span key={ing} className="text-xs font-medium tracking-[0.04em] bg-white/15 backdrop-blur-sm text-white px-3 py-1 rounded-full">
-                  {ing.trim()}
-                </span>
-              ))}
-            </div>
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>

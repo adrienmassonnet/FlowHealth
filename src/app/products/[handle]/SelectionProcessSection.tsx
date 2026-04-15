@@ -88,13 +88,14 @@ export default function SelectionProcessSection() {
 
       {/* Desktop: all text visible, no flip */}
       <div className="hidden md:block">
-        <div className="relative overflow-hidden h-[680px]">
+        <div className="max-w-[1200px] mx-auto px-6">
+        <div className="relative overflow-hidden h-[680px] rounded-2xl">
           <Image
             src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=1400&q=85&auto=format&fit=crop"
             alt="Our selection process"
             fill
             className="object-cover object-center"
-            sizes="1360px"
+            sizes="1200px"
             loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/15 to-black/25" />
@@ -116,6 +117,7 @@ export default function SelectionProcessSection() {
             </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
 

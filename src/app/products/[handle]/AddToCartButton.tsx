@@ -30,7 +30,7 @@ export default function AddToCartButton({ variantId }: { variantId: string }) {
       disabled={loading}
       className="btn-cta w-full text-white text-xs tracking-[0.12em] uppercase py-4 rounded-full disabled:opacity-40"
     >
-      {loading ? 'Redirecting...' : 'Buy Now'}
+      {loading ? 'Redirecting...' : 'Get Flow'}
     </button>
   );
 }

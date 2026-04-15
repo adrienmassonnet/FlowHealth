@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getProductHighlights } from '@/lib/contentful';
+import { getProductMeta } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Our Product',
@@ -16,45 +16,59 @@ import { PRODUCT_META } from '@/lib/product-meta';
 import ProductTopics from './ProductTopics';
 
 export default async function OurProductPage() {
-  const highlights = await getProductHighlights();
+  const meta = await getProductMeta();
   return (
     <main>
 
       {/* Hero */}
-      <section className="relative min-h-[60vh] flex items-end bg-[#1E1854] overflow-hidden pt-20">
-        <Image
-          src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1800&q=85&auto=format&fit=crop"
-          alt="Our product"
-          fill
-          className="object-cover opacity-35"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1E1854] via-[#1E1854]/50 to-transparent" />
-        <div className="relative z-10 max-w-[1200px] mx-auto px-6 pb-20 md:pb-28">
-          <p className="text-xs tracking-[0.16em] uppercase text-white/40 font-medium mb-4">About Flow</p>
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-semibold tracking-[-0.03em] text-white leading-tight max-w-2xl">
-            One formula.<br />Nothing hidden.
-          </h1>
-          <p className="mt-6 text-sm text-white/60 max-w-md leading-relaxed">
-            Flow is a complete daily cognitive supplement built around clinically dosed, peer-reviewed ingredients. Every milligram is on the label for a reason.
-          </p>
+      <section className="max-w-[1200px] mx-auto px-6">
+        <div className="pt-20 pb-14 md:pb-20">
+          <div className="space-y-8">
+            {/* Top row: text + image */}
+            <div className="flex flex-col md:flex-row md:items-stretch gap-10 md:gap-16">
+              {/* Text */}
+              <div className="flex-1 space-y-6">
+                <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">About Flow</p>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] leading-tight">
+                  One formula.<br className="hidden sm:block" /> Nothing hidden.
+                </h1>
+                <p className="text-base text-[hsla(var(--color-secondary)/0.65)] leading-relaxed">
+                  Flow is a complete daily cognitive supplement built around clinically dosed, peer-reviewed ingredients. Every milligram is on the label for a reason.
+                </p>
+              </div>
+              {/* Hero image */}
+              <div className="relative w-full md:w-[420px] min-h-[260px] md:min-h-0 rounded-2xl overflow-hidden shrink-0">
+                <Image
+                  src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=900&q=85&auto=format&fit=crop"
+                  alt="Natural ingredients laid out on a clean surface"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 420px"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1E1854]/30 via-transparent to-transparent" />
+              </div>
+            </div>
+            {/* Specs — full width below */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2">
+              {[
+                { value: String(meta.activeIngredients), label: 'Active ingredients' },
+                { value: `${meta.totalFormulaWeightG}g`, label: 'Per serving' },
+                { value: `${meta.caloriesKcal} kcal`, label: 'Per serving' },
+                { value: 'Vegan', label: 'Certified' },
+                { value: 'No added sugar', label: 'Formula' },
+                { value: 'Caffeine-free', label: 'Formula' },
+              ].map((spec, i) => (
+                <div key={i} className="bg-gradient-to-br from-[#1E1854] to-[#2d2a7a] rounded-xl px-4 py-3">
+                  <p className="text-lg font-semibold tracking-[-0.02em] text-white">{spec.value}</p>
+                  <p className="text-xs tracking-[0.08em] uppercase text-white/50 mt-1">{spec.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Key numbers */}
-      <section className="bg-white py-8">
-        <div className="max-w-[1200px] mx-auto px-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 sm:divide-x divide-[var(--color-border)] bg-[#1E185408] rounded-2xl overflow-hidden">
-          {highlights.map((h) => (
-            <div key={h.unit} className="py-10 px-6 text-center space-y-1">
-              <p className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] text-[#1E1854]">{h.value}</p>
-              <p className="text-xs uppercase tracking-[0.1em] text-[hsla(var(--color-secondary)/0.5)] font-medium">{h.unit}</p>
-              <p className="text-xs text-[hsla(var(--color-secondary)/0.5)] leading-snug hidden md:block">{h.description}</p>
-            </div>
-          ))}
-        </div>
-        </div>
-      </section>
 
       {/* Tabbed topics */}
       <ProductTopics />
@@ -70,9 +84,9 @@ export default async function OurProductPage() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <TrackedLink href="/products/flow" clarityEvent="our_product_cta_shop_flow" className="inline-flex items-center gap-2 bg-white text-[#1E1854] text-xs tracking-[0.1em] uppercase font-semibold px-8 py-4 rounded-full hover:bg-[hsla(var(--color-accent)/1)] hover:text-white transition-colors">
-              Shop Flow
+              Get Flow
             </TrackedLink>
-            <TrackedLink href="/pages/ingredients" clarityEvent="our_product_cta_ingredients" className="inline-flex items-center gap-2 border border-white/30 text-white text-xs tracking-[0.1em] uppercase font-medium px-8 py-4 rounded-full hover:border-white/60 transition-colors">
+            <TrackedLink href="/pages/our-product" clarityEvent="our_product_cta_ingredients" className="inline-flex items-center gap-2 border border-white/30 text-white text-xs tracking-[0.1em] uppercase font-medium px-8 py-4 rounded-full hover:border-white/60 transition-colors">
               Full ingredients list
             </TrackedLink>
           </div>

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import type { Ingredient } from '@/lib/contentful';
+import type { Ingredient } from '@/lib/content';
 
 type IngredientCard = { name: string; category: string; tagline: string; description: string; image: string };
 
@@ -19,16 +19,14 @@ const categories: Record<string, string> = {
 };
 
 const INITIAL_ROWS = 2;
-const COLS = 4;
+const COLS = 3;
 
-function FlipCard({ name, tagline, description, image }: { name: string; tagline: string; description: string; image: string }) {
-  const [flipped, setFlipped] = useState(false);
-
+function FlipCard({ name, tagline, description, image, flipped, onFlip }: { name: string; tagline: string; description: string; image: string; flipped: boolean; onFlip: () => void }) {
   return (
     <div
       className="cursor-pointer"
       style={{ perspective: '1000px' }}
-      onClick={() => setFlipped((f) => !f)}
+      onClick={onFlip}
     >
       <div
         style={{
@@ -44,36 +42,31 @@ function FlipCard({ name, tagline, description, image }: { name: string; tagline
           style={{ backfaceVisibility: 'hidden' }}
         >
           <div className="relative aspect-[4/3] w-full bg-[#f5f5fc]">
-            {image && (image.startsWith('/') || image.startsWith('http')) && <Image src={image} alt={name} fill className="object-cover" sizes="(max-width: 768px) 50vw, 25vw" />}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-            <div className="absolute bottom-3 right-3 w-6 h-6 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-              <svg width="9" height="9" viewBox="0 0 10 10" fill="none">
-                <path d="M2 5h6M5 2l3 3-3 3" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+            {image && (image.startsWith('/') || image.startsWith('http')) && <Image src={image} alt={name} fill className="object-cover" sizes="(max-width: 768px) 50vw, 33vw" unoptimized={!image.startsWith('/')} />}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-4">
+              <p className="text-base font-semibold text-white leading-snug">{name}</p>
+            </div>
+            <div className="absolute top-3 right-3 w-5 h-5 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center border border-white/20">
+              <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+                <path d="M4 1v6M1 4h6" stroke="white" strokeWidth="1.3" strokeLinecap="round"/>
               </svg>
             </div>
-          </div>
-          <div className="p-4 pb-3 bg-white">
-            <p className="text-sm font-semibold text-[#1E1854] leading-snug">{name}</p>
-            <p className="text-xs text-[hsla(var(--color-secondary)/0.45)] mt-0.5 leading-snug">{tagline}</p>
           </div>
         </div>
 
         {/* Back */}
         <div
-          className="absolute inset-0 rounded-2xl bg-[#1E1854] p-5 flex flex-col justify-between"
+          className="absolute inset-0 rounded-2xl bg-[#1E1854] p-5 flex flex-col gap-3"
           style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
         >
-          <div>
-            <p className="text-sm font-semibold text-white mb-3 leading-snug">{name}</p>
-            <p className="text-sm text-white/65 leading-relaxed">{description}</p>
-          </div>
-          <div className="flex items-center gap-1.5 mt-4">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="text-white/40">
-              <circle cx="6" cy="6" r="5" stroke="currentColor" strokeWidth="1"/>
-              <path d="M3.5 6l2 2 3-3" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            <span className="text-xs text-white/40 uppercase tracking-[0.1em]">Clinically Dosed</span>
-          </div>
+          <p className="text-sm font-semibold text-white leading-snug">{name}</p>
+          {tagline && (
+            <span className="self-start text-xs tracking-[0.08em] uppercase font-semibold bg-white/15 text-white px-2.5 py-1 rounded-full border border-white/20">
+              {tagline}
+            </span>
+          )}
+          <p className="text-sm text-white/65 leading-relaxed">{description}</p>
         </div>
       </div>
     </div>
@@ -90,6 +83,7 @@ export default function IngredientsAccordion({ ingredients }: { ingredients: Ing
   }));
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [expanded, setExpanded] = useState(false);
+  const [flippedCard, setFlippedCard] = useState<string | null>(null);
   const filtered = selectedCategory === 'all'
     ? cards
     : cards.filter((i) => i.category === selectedCategory);
@@ -101,7 +95,7 @@ export default function IngredientsAccordion({ ingredients }: { ingredients: Ing
   return (
     <section className="max-w-[1200px] mx-auto px-6 py-12 md:py-20">
       <div className="mb-8 space-y-2">
-        <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">Transparent Formula</p>
+        <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Transparent Formula</p>
         <h2 className="text-2xl sm:text-3xl font-semibold tracking-[-0.02em]">Get to Know the Ingredients</h2>
         <p className="text-sm text-[hsla(var(--color-secondary)/0.7)] max-w-md">Our formula is made of premium, quality ingredients selected for their efficacy. Tap any card to learn more.</p>
       </div>
@@ -111,7 +105,7 @@ export default function IngredientsAccordion({ ingredients }: { ingredients: Ing
         {Object.entries(categories).map(([key, label]) => (
           <button
             key={key}
-            onClick={() => { setSelectedCategory(key); setExpanded(false); }}
+            onClick={() => { setSelectedCategory(key); setExpanded(false); setFlippedCard(null); }}
             className={cn(
               'relative overflow-hidden whitespace-nowrap rounded-full border px-4 py-2.5 text-xs tracking-[0.08em] uppercase font-medium transition-colors duration-300',
               selectedCategory === key
@@ -144,7 +138,7 @@ export default function IngredientsAccordion({ ingredients }: { ingredients: Ing
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 10 }}
           transition={{ duration: 0.2 }}
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"
+          className="grid grid-cols-2 sm:grid-cols-3 gap-4"
         >
           {visible.map((ing, i) => (
             <div key={ing.name} className={i >= 6 && !expanded ? 'hidden sm:block' : ''}>
@@ -153,6 +147,8 @@ export default function IngredientsAccordion({ ingredients }: { ingredients: Ing
                 tagline={ing.tagline}
                 description={ing.description}
                 image={ing.image}
+                flipped={flippedCard === ing.name}
+                onFlip={() => setFlippedCard(flippedCard === ing.name ? null : ing.name)}
               />
             </div>
           ))}

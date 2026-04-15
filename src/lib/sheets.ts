@@ -1,7 +1,7 @@
 // ─── Google Sheets integration ───────────────────────────────────────────────
 // Fetches content from the Flow Google Sheet.
 // When GOOGLE_SHEETS_API_KEY is not set, every function returns null and
-// contentful.ts falls back to the static content-data.ts arrays automatically.
+// content.ts falls back to the static content-data.ts arrays automatically.
 //
 // Sheet ID:  process.env.GOOGLE_SHEET_ID
 // Re-fetches every 60 seconds. Changes in the Sheet appear within 1 minute.
@@ -60,7 +60,7 @@ export async function getSheetsSavingsSupplements() {
   const rows = await fetchTab('Savings breakdown');
   if (!rows.length) return null;
   return rows
-    .filter((r) => r.supplement && !isNaN(Number(r.monthly_price_CHF)))
+    .filter((r) => r.supplement?.trim() && Number(r.monthly_price_CHF) > 0)
     .map((r, i) => ({
       name:            r.supplement,
       monthlyPriceCHF: Number(r.monthly_price_CHF),

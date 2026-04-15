@@ -90,7 +90,8 @@ const INGREDIENT_IMAGES: Record<string, string> = {
 };
 
 function resolveIngredientImage(name: string, imageUrl?: string): string {
-  if (imageUrl) return imageUrl;
+  const trimmed = imageUrl?.trim();
+  if (trimmed && (trimmed.startsWith('http') || trimmed.startsWith('/'))) return trimmed;
   const key = name.toLowerCase();
   for (const [pattern, path] of Object.entries(INGREDIENT_IMAGES)) {
     if (key.includes(pattern)) return path;
@@ -108,17 +109,19 @@ export async function getIngredients() {
 }
 
 export async function getSavingsSupplements() {
-  return (await getSheetsSavingsSupplements()) ?? savingsSupplements;
+  return savingsSupplements;
 }
 
 export async function getHealthBenefits() {
   const sheetsData = await getSheetsHealthBenefits();
   if (!sheetsData) return healthBenefits;
   // Merge: if Sheets row has no image, fall back to the local image for that benefit
-  return sheetsData.map((row) => {
-    const fallback = healthBenefits.find((h) => h.label === row.label);
-    return { ...row, imageUrl: row.imageUrl || fallback?.imageUrl || '' };
-  });
+  return sheetsData
+    .filter((row) => row.label?.trim())
+    .map((row) => {
+      const fallback = healthBenefits.find((h) => h.label === row.label);
+      return { ...row, imageUrl: row.imageUrl || fallback?.imageUrl || '' };
+    });
 }
 
 export async function getResultsTimelineSteps() {
@@ -155,9 +158,11 @@ export async function getFeaturedIngredients() {
 export async function getProductMeta() {
   const raw = await getSheetsProductMeta();
   const priceSingleCHF = raw?.price_single_CHF ? parseFloat(raw.price_single_CHF) : PRODUCT_META.priceSingleCHF;
+  const priceSubscriptionCHF = raw?.price_subscription_CHF ? parseFloat(raw.price_subscription_CHF) : (PRODUCT_META.priceSubscriptionCHF ?? priceSingleCHF);
   const servingsPerBox = raw?.servings_per_box ? parseInt(raw.servings_per_box) : PRODUCT_META.servingsPerBox;
   return {
     priceSingleCHF,
+    priceSubscriptionCHF,
     servingsPerBox,
     pricePerServingSingleCHF: Math.round((priceSingleCHF / servingsPerBox) * 100) / 100,
     activeIngredients: raw?.active_ingredients ? parseInt(raw.active_ingredients) : PRODUCT_META.activeIngredients,

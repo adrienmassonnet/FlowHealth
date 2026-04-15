@@ -2,8 +2,21 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import TrackedLink from '@/app/components/TrackedLink';
 import { trackEvent } from '@/lib/clarity';
+
+const ease = [0.25, 0.1, 0.1, 1] as const;
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 28, scale: 0.96 },
+  visible: (delay: number) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.75, delay, ease },
+  }),
+};
 
 const posts = [
   {
@@ -56,10 +69,18 @@ export default function BlogBento() {
     <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-2 md:min-h-[560px] gap-4">
 
       {/* Post 0 — tall left, row-span-2 */}
+      <motion.div
+        className="md:col-span-4 md:row-span-2"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-6% 0px' }}
+        custom={0}
+        variants={cardVariants}
+      >
       <TrackedLink
         href={posts[0].href}
         clarityEvent="homepage_blog_post_1"
-        className="md:col-span-4 md:row-span-2 relative rounded-3xl overflow-hidden min-h-[300px] md:min-h-0 group shadow-[0_8px_32px_rgba(30,24,84,0.12)]"
+        className="relative rounded-3xl overflow-hidden min-h-[300px] md:min-h-full block group shadow-[0_8px_32px_rgba(30,24,84,0.12)]"
       >
         <Image
           src={posts[0].img}
@@ -84,12 +105,21 @@ export default function BlogBento() {
           </span>
         </div>
       </TrackedLink>
+      </motion.div>
 
       {/* Post 1 — image card, top center */}
+      <motion.div
+        className="md:col-span-5"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-6% 0px' }}
+        custom={0.1}
+        variants={cardVariants}
+      >
       <TrackedLink
         href={posts[1].href}
         clarityEvent="homepage_blog_post_2"
-        className="md:col-span-5 relative rounded-3xl overflow-hidden min-h-[220px] md:min-h-0 group shadow-[0_8px_32px_rgba(30,24,84,0.12)]"
+        className="relative rounded-3xl overflow-hidden min-h-[220px] md:min-h-full block group shadow-[0_8px_32px_rgba(30,24,84,0.12)]"
       >
         <Image
           src={posts[1].img}
@@ -106,12 +136,21 @@ export default function BlogBento() {
           <h3 className="text-base font-semibold text-white leading-snug tracking-[-0.01em]">{posts[1].title}</h3>
         </div>
       </TrackedLink>
+      </motion.div>
 
       {/* Post 4 — small image, top right */}
+      <motion.div
+        className="md:col-span-3"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-6% 0px' }}
+        custom={0.2}
+        variants={cardVariants}
+      >
       <TrackedLink
         href={posts[4].href}
         clarityEvent="homepage_blog_post_5"
-        className="md:col-span-3 relative rounded-3xl overflow-hidden min-h-[220px] md:min-h-0 group shadow-[0_4px_20px_rgba(30,24,84,0.10)]"
+        className="relative rounded-3xl overflow-hidden min-h-[220px] md:min-h-full block group shadow-[0_4px_20px_rgba(30,24,84,0.10)]"
       >
         <Image
           src={posts[4].img}
@@ -128,12 +167,21 @@ export default function BlogBento() {
           <h3 className="text-sm font-semibold text-white leading-snug tracking-[-0.01em]">{posts[4].title}</h3>
         </div>
       </TrackedLink>
+      </motion.div>
 
       {/* Post 2 — small image, bottom center-left */}
+      <motion.div
+        className="md:col-span-3"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-6% 0px' }}
+        custom={0.1}
+        variants={cardVariants}
+      >
       <TrackedLink
         href={posts[2].href}
         clarityEvent="homepage_blog_post_3"
-        className="md:col-span-3 relative rounded-3xl overflow-hidden min-h-[220px] md:min-h-0 group shadow-[0_4px_20px_rgba(30,24,84,0.10)]"
+        className="relative rounded-3xl overflow-hidden min-h-[220px] md:min-h-full block group shadow-[0_4px_20px_rgba(30,24,84,0.10)]"
       >
         <Image
           src={posts[2].img}
@@ -150,9 +198,18 @@ export default function BlogBento() {
           <h3 className="text-sm font-semibold text-white leading-snug tracking-[-0.01em]">{posts[2].title}</h3>
         </div>
       </TrackedLink>
+      </motion.div>
 
       {/* Topics card — bottom right */}
-      <div className="md:col-span-5 bg-white rounded-3xl p-5 flex flex-col gap-4 border border-[#1E1854]/[0.07] shadow-[0_4px_20px_rgba(30,24,84,0.07)]">
+      <motion.div
+        className="md:col-span-5"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-6% 0px' }}
+        custom={0.2}
+        variants={cardVariants}
+      >
+      <div className="bg-white rounded-3xl p-5 flex flex-col gap-4 border border-[#1E1854]/[0.07] shadow-[0_4px_20px_rgba(30,24,84,0.07)] h-full">
         <p className="text-xs tracking-[0.14em] uppercase text-[#1E1854]/35 font-medium">
           Browse by topic
         </p>
@@ -171,6 +228,7 @@ export default function BlogBento() {
           ))}
         </div>
       </div>
+      </motion.div>
 
     </div>
   );

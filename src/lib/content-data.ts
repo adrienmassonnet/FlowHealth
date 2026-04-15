@@ -1,5 +1,4 @@
-// AUTO-GENERATED from Contentful CDA — do not edit manually
-// Generated: 2026-04-09
+// Static content fallback — edit here when not managed via Google Sheets
 
 export interface PhilosophyPrinciple { number: string; title: string; body: string; }
 export interface PhilosophyBelief { text: string; order: number; }
@@ -74,28 +73,28 @@ export const ingredients: Ingredient[] = [
 
 export const faqItems: FaqItem[] = [
   { question: `Is Flow safe for daily long-term use?`, answer: `Yes. All ingredients in Flow are dosed within safe, well-studied ranges for daily use. The formula is designed as a daily morning supplement, and clinical evidence supports the long-term safety of all actives. We recommend a one-week break every three months as good practice.`, category: `safety`, order: 1 },
-  { question: `What is your return policy?`, answer: `We offer a 30-day satisfaction guarantee. If you are not satisfied with your order for any reason, you may return unopened products within 30 days of receipt for a full refund. Opened bottles cannot be returned for hygiene reasons, but we review these cases individually.`, category: `returns`, order: 1 },
-  { question: `Which countries do you ship to?`, answer: `We currently ship to Switzerland, the European Union, the United Kingdom, and the United States. For a full list of destinations and associated costs, please visit our Shipping Policy page.`, category: `shipping`, order: 1 },
-  { question: `How should I take Flow?`, answer: `Shake gently, then drink the entire 60 ml bottle. You can take it straight or mix it with water or a cold beverage. For best results, take it on an empty stomach in the morning.`, category: `usage`, order: 1 },
-  { question: `What is Flow?`, answer: `Flow is a premium liquid nootropic supplement formulated to support sustained mental clarity, focus, and energy without the crash. Each bottle contains a precisely dosed blend of adaptogens, amino acids, functional mushrooms, vitamins, and plant extracts — delivered in a bioavailable liquid format for faster absorption.`, category: `product`, order: 1 },
+  { question: `What is your return policy?`, answer: `We offer a 30-day satisfaction guarantee. If you are not satisfied with your order for any reason, you may return unopened boxes within 30 days of shipping for a full refund. Opened sachets cannot be returned for hygiene reasons, but we review these cases individually.`, category: `returns`, order: 1 },
+  { question: `Which countries do you ship to?`, answer: `We ship worldwide from Switzerland. This includes Switzerland, Liechtenstein, the EU/EEA, the United Kingdom, the USA, Canada, and many other countries. For a full list of destinations and shipping costs, please visit our Shipping Policy page.`, category: `shipping`, order: 1 },
+  { question: `How should I take Flow?`, answer: `Pour one sachet into 400–500 ml of cold water and stir gently until fully dissolved, then drink. For best results, take it on an empty stomach in the morning.`, category: `usage`, order: 1 },
+  { question: `What is Flow?`, answer: `Flow is a premium daily nootropic supplement formulated to support sustained mental clarity, focus, and energy without the crash. Each sachet contains a precisely dosed blend of plant extracts, adaptogens, functional mushrooms, minerals, and vitamins — dissolved in water for fast, effective absorption.`, category: `product`, order: 1 },
   { question: `Are there any known side effects?`, answer: `Flow is well-tolerated by the vast majority of users. In rare cases, some individuals may experience mild digestive sensitivity during the first few days of use. This typically resolves as the body adjusts. If you experience any adverse reactions, discontinue use and consult a healthcare professional.`, category: `safety`, order: 2 },
-  { question: `How do I start a return?`, answer: `Email hello@flowhealth.com with your order number and reason for return. Our team will respond within 1 business day with instructions. Return shipping costs are covered by Flow Health for defective or incorrect items.`, category: `returns`, order: 2 },
-  { question: `How long does delivery take?`, answer: `Swiss orders are typically delivered within 1–3 business days. EU and UK orders take 3–7 business days. US orders take 7–14 business days. All orders placed before 12:00 noon on a business day are dispatched the same day.`, category: `shipping`, order: 2 },
+  { question: `How do I start a return?`, answer: `Email sales_support@flowhealth.ch with your order number and reason for return. Our team will respond within 1 business day with instructions. Return shipping costs are covered by Flow Health for defective or incorrect items.`, category: `returns`, order: 2 },
+  { question: `How long does delivery take?`, answer: `Swiss orders typically arrive within 2–4 business days. Germany, Austria and France take 4–6 business days; the rest of the EU/EEA 5–9 business days. UK orders take 5–8 business days, and USA/Canada 9–14 business days. Orders placed before 13:00 CET on a business day are dispatched the same day.`, category: `shipping`, order: 2 },
   { question: `When is the best time to take Flow?`, answer: `We recommend taking Flow first thing in the morning, approximately 15–30 minutes before you begin work or your most demanding mental tasks. Morning intake aligns with your body's natural cortisol peak, amplifying the formula's effects on alertness and focus.`, category: `usage`, order: 2 },
-  { question: `What makes Flow different from other supplements?`, answer: `Most supplements come in capsule or powder form, which can take 45–60 minutes to absorb. Flow uses a liquid delivery system that reaches your bloodstream in as little as 15 minutes. We combine 13 clinically studied actives in one bottle, removing the need to manage multiple pills throughout the day.`, category: `product`, order: 2 },
+  { question: `What makes Flow different from other supplements?`, answer: `Most supplements come in capsule form, which can take 45–60 minutes to absorb. Flow is a water-dissolved sachet formula with 13 clinically studied actives in one daily serving, replacing multiple separate supplements and removing the need to manage a stack of pills throughout the day.`, category: `product`, order: 2 },
   { question: `Who should not take Flow?`, answer: `Flow is not recommended for individuals under 18, pregnant or breastfeeding women, or those with known sensitivities to any listed ingredients. If you have a pre-existing medical condition or take prescription medication, please consult your doctor before use.`, category: `safety`, order: 3 },
   { question: `When will I receive my refund?`, answer: `Once we receive and inspect your return, refunds are processed within 3–5 business days. The funds will appear on your original payment method within 5–10 business days depending on your bank.`, category: `returns`, order: 3 },
   { question: `How do I track my order?`, answer: `Once your order ships, you will receive a confirmation email with a tracking number and a link to the carrier's tracking page. If you haven't received this within 24 hours of ordering, please check your spam folder or contact us.`, category: `shipping`, order: 3 },
-  { question: `Can I take more than one bottle per day?`, answer: `Flow is designed as a once-daily supplement. We do not recommend exceeding one bottle per day. If you have specific health goals that require a higher intake, please speak with a healthcare professional.`, category: `usage`, order: 3 },
-  { question: `What are the key ingredients?`, answer: `Flow contains Ashwagandha KSM-66®, Lion's Mane mushroom, L-Theanine, Alpha-GPC, Rhodiola Rosea, Bacopa Monnieri, Vitamins B6 & B12, and Zinc. Every ingredient is transparently dosed — no proprietary blends, no hidden fillers.`, category: `product`, order: 3 },
-  { question: `Does Flow contain stimulants or controlled substances?`, answer: `No. Flow contains no caffeine, no stimulants, and no controlled or banned substances. It is safe for competitive athletes and complies with WADA guidelines. All ingredients are naturally sourced and transparently disclosed.`, category: `safety`, order: 4 },
-  { question: `What if my order arrives damaged or incorrect?`, answer: `We're sorry to hear that. Please contact us at hello@flowhealth.com within 48 hours of delivery with your order number and a photo of the issue. We will arrange a replacement or refund promptly.`, category: `shipping`, order: 4 },
-  { question: `How long until I feel the effects?`, answer: `The liquid format means most people notice increased alertness and clarity within 15–30 minutes. Full cognitive benefits from adaptogenic ingredients like Ashwagandha and Bacopa Monnieri build over 4–6 weeks of consistent daily use.`, category: `usage`, order: 4 },
+  { question: `Can I take more than one sachet per day?`, answer: `Flow is designed as a once-daily supplement. We do not recommend exceeding one sachet per day. If you have specific health goals that require a higher intake, please speak with a healthcare professional.`, category: `usage`, order: 3 },
+  { question: `What are the key ingredients?`, answer: `Flow contains Zynamite® (Mango Leaf Extract), Green Tea Extract, Lion's Mane Mushroom, Hibiscus Extract, Rooibos Extract, Saffr'Active® (Saffron Extract), Ginseng Panax, Betaine (TMG), Magnesium Citrate, Sodium Citrate, Zinc, B-Vitamins (B1, B3, B6, B12), and Inulin. Every ingredient is transparently dosed — no proprietary blends, no hidden fillers.`, category: `product`, order: 3 },
+  { question: `Does Flow contain stimulants or controlled substances?`, answer: `Flow contains no synthetic stimulants and no controlled or banned substances. It does include Green Tea Extract, which provides a natural source of caffeine (similar in amount to a light cup of tea). There are no artificial stimulants, and all ingredients are naturally sourced and transparently disclosed.`, category: `safety`, order: 4 },
+  { question: `What if my order arrives damaged or incorrect?`, answer: `We're sorry to hear that. Please contact us at sales_support@flowhealth.ch within 48 hours of delivery with your order number and a photo of the issue. We will arrange a replacement or refund promptly.`, category: `shipping`, order: 4 },
+  { question: `How long until I feel the effects?`, answer: `Most people notice reduced brain fog and increased alertness within 15–45 minutes of their first serving. Full cognitive benefits from adaptogenic and neuroprotective ingredients build over 4–6 weeks of consistent daily use.`, category: `usage`, order: 4 },
   { question: `Is Flow suitable for vegans?`, answer: `Yes. Flow is 100% vegan and free from animal-derived ingredients. It is also gluten-free and contains no artificial colours, sweeteners, or preservatives.`, category: `product`, order: 4 },
-  { question: `Can I take Flow with coffee or other caffeine sources?`, answer: `Yes. Flow does not contain caffeine, so it pairs well with your morning coffee or tea. The L-Theanine in the formula may even help smooth out any jitteriness from caffeine, promoting calm alertness.`, category: `usage`, order: 5 },
+  { question: `Can I take Flow with coffee or other caffeine sources?`, answer: `Yes, for most people. Flow contains Green Tea Extract which provides a moderate amount of natural caffeine (roughly equivalent to a light cup of tea). Combined with a morning coffee, total caffeine intake will be moderate. If you are sensitive to caffeine, you may prefer to take Flow on its own.`, category: `usage`, order: 5 },
   { question: `Are there any allergens?`, answer: `Flow is manufactured in a facility that processes tree nuts and soy. If you have severe allergies, please consult your healthcare provider before use. The formula itself does not contain gluten, dairy, eggs, or shellfish.`, category: `product`, order: 5 },
   { question: `Is it safe to take Flow alongside other supplements or medications?`, answer: `Flow is generally well-tolerated alongside common supplements. However, if you are taking prescription medication — particularly for blood pressure, anxiety, or mood — we recommend consulting your doctor before adding Flow to your routine.`, category: `usage`, order: 6 },
-  { question: `What does Flow taste like?`, answer: `Flow has a clean, lightly botanical taste — mildly sweet with herbal notes from Ashwagandha and Rhodiola. Most people take it straight from the bottle or mixed with a small glass of water.`, category: `product`, order: 6 }
+  { question: `What does Flow taste like?`, answer: `Flow has a fresh, lightly fruity taste from natural pomegranate flavouring, with subtle herbal notes. It is gently sweetened with stevia — no bitter aftertaste, no sugar. Most people mix it with 400–500 ml of cold water as part of their morning routine.`, category: `product`, order: 6 }
 ];
 
 export const homepageContent: HomepageContent = {
@@ -123,7 +122,7 @@ export const homepageFeatureCards: HomepageFeatureCard[] = [
 ];
 
 export const resultsTimelineSteps: ResultsTimelineStep[] = [
-  { period: `Days 1–7`, title: `Clarity From Day One`, bullets: `Brain fog eases within 15–45 minutes
+  { period: `Days 1–7`, title: `Immediate brain clarity and stable energy`, bullets: `Brain fog eases within 15–45 minutes
 Calm, jitter-free energy appears quickly
 Steady focus without afternoon crashes
 Calmer mood and gentler stress response`, order: 1 },
@@ -191,3 +190,61 @@ export const productHighlights: ProductHighlight[] = [
   { value: `30+`, unit: `Clinical studies`, description: `The evidence base behind our core ingredient stack.`, order: 3 },
   { value: `Swiss`, unit: `GMP certified`, description: `Manufactured to pharmaceutical-grade standards in Switzerland.`, order: 4 }
 ];
+
+// ─── How to take Flow steps ───────────────────────────────────────────────────
+export interface TakeFlowStep { number: string; title: string; body: string | string[]; image: string; }
+export const takeFlowSteps: TakeFlowStep[] = [
+  {
+    number: '01',
+    title: 'Simple Daily Ritual',
+    body: [
+      'Pour one sachet into 400–500 ml of water',
+      'Stir gently until fully dissolved',
+      'Drink slowly and mindfully',
+      'Repeat every day',
+    ],
+    image: '/zen-place-consume.png',
+  },
+  {
+    number: '02',
+    title: 'Your Morning Routine',
+    body: 'Take Flow first thing in the morning. The early hours offer a clean slate with peak dopamine sensitivity and minimal distractions, delivering full calm energy and focus that lasts all day.',
+    image: '/sunrise-consume.png',
+  },
+  {
+    number: '03',
+    title: 'Pair with Meaningful Moments',
+    body: 'Link your Flow moment to an activity you enjoy and that helps you grow — journaling, a short walk, deep work or creative time. It becomes the emblem of your commitment to personal growth.',
+    image: '/confident-girl-consume.png',
+  },
+];
+
+// ─── Morning ritual / philosophy cards ───────────────────────────────────────
+export interface MorningRitualCardItem { title: string; description: string; }
+export const morningRitualCards: MorningRitualCardItem[] = [
+  { title: 'Win Your Morning, Win Your Day', description: 'The way you begin shapes everything that follows. A calm, intentional morning sets the tone for clarity, focus, and presence — because the first hour quietly determines the quality of the entire day.' },
+  { title: 'What Goes Up Must Come Down', description: 'Artificial spikes always crash. Flow rejects the rollercoaster of stimulants and supports the natural, sustainable rhythm your body and mind were designed for.' },
+  { title: 'Do It Light, Do It Right', description: 'Gentle consistency beats forceful effort. When you approach your day and your rituals with lightness, you create space for real flow — because sustainable excellence is born from ease, not force.' },
+  { title: 'Energy Can Only Be Transferred', description: 'You cannot create more energy — you can only move it wisely. Flow helps you transfer energy from stress and distraction into calm focus, creativity, and presence instead of letting it leak away.' },
+  { title: 'Work in the Shadows', description: 'The most important growth happens quietly, unseen. Real progress is made in private rituals and inner work, not in the spotlight. Flow honours the silent, steady effort that truly transforms you.' },
+  { title: 'The Journey Is the Dream', description: 'The destination is never the point — the daily practice is. Every mindful morning with Flow is already the life you\'re building: presence, growth, and fulfillment are found in the process itself.' },
+  { title: 'Read Your Own Story', description: 'Stop scrolling someone else\'s highlight reel. Your attention is sacred. Flow reminds you to stay inside your own life, writing your story with intention instead of comparing it to others.' },
+  { title: 'Focus Is Transcendence', description: 'Deep focus is more than productivity — it is a state of being. When the mind becomes still and fully present, you rise above noise, ego, and distraction into something clearer, freer, and more alive.' },
+];
+
+// ─── Service pillars (product page) ──────────────────────────────────────────
+export interface ServicePillar { title: string; text: string; }
+export const servicePillars: ServicePillar[] = [
+  { title: 'Same Day Dispatch', text: 'Orders before 4pm dispatched same day.' },
+  { title: 'Free Delivery', text: 'Free 2-day tracked delivery over CHF 50.' },
+  { title: '30-Day Returns', text: 'Free returns within 30 days of shipping.' },
+];
+
+// ─── FAQ categories (shared across product page + FAQ page) ──────────────────
+export const faqCategories: Record<string, string> = {
+  product: 'Product & Formula',
+  usage: 'Usage & Dosage',
+  shipping: 'Shipping & Orders',
+  returns: 'Returns & Refunds',
+  safety: 'Safety & Health',
+};

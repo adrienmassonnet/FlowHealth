@@ -3,9 +3,9 @@ export default function ResearchPage() {
     <main className="max-w-4xl mx-auto px-6 pt-20 pb-14 md:pb-24 space-y-12 md:space-y-16">
 
       <div className="space-y-3">
-        <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/1)]">Science-backed</p>
+        <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Science-backed</p>
         <h1 className="text-4xl font-semibold tracking-[-0.02em]">Research</h1>
-        <p className="text-sm text-[hsla(var(--color-secondary)/1)] leading-relaxed max-w-xl">
+        <p className="text-sm font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent leading-relaxed max-w-xl">
           Every claim we make is backed by peer-reviewed clinical evidence. Below is the research foundation behind Flow&apos;s formula and delivery technology.
         </p>
       </div>
@@ -14,7 +14,7 @@ export default function ResearchPage() {
       <div className="space-y-6">
         <div className="border-b border-[var(--color-border)] pb-4 space-y-1">
           <h2 className="text-xl font-semibold tracking-[-0.01em]">Liquid Delivery Technology</h2>
-          <p className="text-sm text-[hsla(var(--color-secondary)/1)] leading-relaxed">
+          <p className="text-sm font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent leading-relaxed">
             Why a drink outperforms capsules and powders on bioavailability and onset speed.
           </p>
         </div>
@@ -26,8 +26,8 @@ export default function ResearchPage() {
           ].map((item) => (
             <div key={item.label} className="bg-[#1E185408] p-6 space-y-2">
               <p className="text-2xl font-semibold tracking-[-0.02em]">{item.stat}</p>
-              <p className="text-xs tracking-[0.1em] uppercase font-semibold text-[hsla(var(--color-secondary)/1)]">{item.label}</p>
-              <p className="text-sm text-[hsla(var(--color-secondary)/1)] leading-relaxed">{item.detail}</p>
+              <p className="text-xs tracking-[0.1em] uppercase font-semibold font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">{item.label}</p>
+              <p className="text-sm font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent leading-relaxed">{item.detail}</p>
             </div>
           ))}
         </div>
@@ -73,7 +73,7 @@ export default function ResearchPage() {
           ].map((study) => (
             <div key={study.ingredient} className="bg-[#1E185408] p-6 space-y-2">
               <p className="text-base font-semibold tracking-[-0.01em]">{study.ingredient}</p>
-              <p className="text-sm text-[hsla(var(--color-secondary)/1)] leading-relaxed">{study.finding}</p>
+              <p className="text-sm font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent leading-relaxed">{study.finding}</p>
               <p className="text-xs text-[hsla(var(--color-secondary)/0.6)] italic">{study.journal}</p>
             </div>
           ))}
@@ -82,7 +82,7 @@ export default function ResearchPage() {
 
       {/* Disclaimer */}
       <div className="border-t border-[var(--color-border)] pt-8">
-        <p className="text-xs text-[hsla(var(--color-secondary)/1)] leading-relaxed">
+        <p className="text-xs font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent leading-relaxed">
           The studies cited above are published peer-reviewed research on the individual ingredients used in Flow at their respective doses. These statements have not been evaluated by Swissmedic, the EMA, or the FDA. Flow is a food supplement, not a medicine, and is not intended to diagnose, treat, cure, or prevent any disease.
         </p>
       </div>

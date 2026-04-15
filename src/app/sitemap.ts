@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { getProducts } from '@/lib/shopify';
-import { getBlogPosts } from '@/lib/contentful';
+import { getBlogPosts } from '@/lib/content';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.flow-health.ch';
 
@@ -9,7 +9,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: SITE_URL, lastModified: new Date(), changeFrequency: 'weekly', priority: 1.0 },
-    { url: `${SITE_URL}/pages/ingredients`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${SITE_URL}/pages/our-product`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${SITE_URL}/pages/who-we-are`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${SITE_URL}/pages/our-philosophy`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },

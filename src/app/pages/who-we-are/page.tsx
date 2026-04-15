@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getTeamMembers, getCompanyValues, getMilestones } from '@/lib/contentful';
+import { getTeamMembers, getCompanyValues, getMilestones } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Who We Are',
@@ -104,7 +104,7 @@ export default async function WhoWeArePage() {
       {/* Story intro */}
       <section className="max-w-[1200px] mx-auto px-6 py-12 md:py-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
         <div className="space-y-6">
-          <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">Our Story</p>
+          <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Our Story</p>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
             Built by people who needed it first.
           </h2>
@@ -129,7 +129,7 @@ export default async function WhoWeArePage() {
       <section className="bg-white">
         <div className="max-w-[1200px] mx-auto px-6 py-20">
           <div className="mb-12 space-y-2">
-            <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">What We Stand For</p>
+            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">What We Stand For</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">Our principles.</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-[var(--color-border)] border border-[var(--color-border)] rounded-2xl overflow-hidden">
@@ -148,7 +148,7 @@ export default async function WhoWeArePage() {
       <section className="bg-[#1E185408]">
         <div className="max-w-[1200px] mx-auto px-6 py-20">
           <div className="mb-12 space-y-2">
-            <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">The People Behind Flow</p>
+            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">The People Behind Flow</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">Meet the team.</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
@@ -165,7 +165,7 @@ export default async function WhoWeArePage() {
                 </div>
                 <div>
                   <p className="text-lg font-semibold text-[#1E1854] tracking-[-0.01em]">{member.name}</p>
-                  <p className="text-xs uppercase tracking-[0.08em] text-[hsla(var(--color-secondary)/0.5)] font-medium mt-0.5">{member.role}</p>
+                  <p className="text-xs uppercase tracking-[0.08em] font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent mt-0.5">{member.role}</p>
                   <p className="mt-3 text-sm text-[hsla(var(--color-secondary)/0.7)] leading-relaxed">{member.bio}</p>
                 </div>
               </div>
@@ -178,7 +178,7 @@ export default async function WhoWeArePage() {
       <section className="bg-[#1E185408]">
         <div className="max-w-[1200px] mx-auto px-6 py-20">
           <div className="mb-12 space-y-2">
-            <p className="text-xs tracking-[0.16em] uppercase text-[hsla(var(--color-secondary)/0.5)] font-medium">Our Journey</p>
+            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Our Journey</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">How we got here.</h2>
           </div>
           <div className="relative pl-6 border-l border-[var(--color-border)] space-y-10">
