@@ -58,7 +58,7 @@ export default function PurchaseSelector({ price, currencyCode, discountPercent 
 
           <div className="flex-1 min-w-0 pr-10">
             <p className={`text-sm font-semibold tracking-[-0.01em] ${isSubscribe ? 'text-white' : ''}`}>
-              Subscribe &amp; Save
+              Subscribe
             </p>
             <div className="mt-1.5 flex items-baseline gap-2">
               <span className={`text-xl font-semibold tracking-[-0.02em] ${isSubscribe ? 'text-white' : ''}`}>

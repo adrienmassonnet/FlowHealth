@@ -48,7 +48,7 @@ export default function TakeFlowSteps() {
                     <div
                       className="overflow-hidden"
                       style={{
-                        maxHeight: active === i ? '120px' : '0px',
+                        maxHeight: active === i ? '300px' : '0px',
                         opacity: active === i ? 1 : 0,
                         transition: 'max-height 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease',
                       }}

@@ -77,7 +77,7 @@ export default function MainBenefits({ benefits }: { benefits: HealthBenefit[] }
                   </Link>
                 )}
                 <h3 className="text-sm font-semibold text-white leading-snug mb-2">{b.label}</h3>
-                <p className="text-xs text-white/80 leading-relaxed">{b.description}</p>
+                <p className="text-xs text-white/80 leading-relaxed line-clamp-5">{b.description}</p>
               </div>
             </div>
           );

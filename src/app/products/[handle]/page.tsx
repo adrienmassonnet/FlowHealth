@@ -83,11 +83,17 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
       <div className="pt-20 pb-12 md:pb-20 max-w-[1200px] mx-auto pl-3 pr-6 relative overflow-hidden">
         {/* Ambient glow */}
         <div className="absolute top-0 right-0 w-[700px] h-[700px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(ellipse at 70% 20%, rgba(59,56,184,0.08) 0%, transparent 65%)' }} />
+        {/* Mobile-only title — shown above gallery */}
+        <div className="md:hidden space-y-2 pb-4 pl-3 pr-6">
+          <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Cognitive Performance Formula</p>
+          <h1 className="text-3xl font-semibold tracking-[-0.02em] leading-tight">{product.title}</h1>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 md:gap-y-0 items-start">
           <ProductImageGallery images={images} title={product.title} />
 
           <div className="space-y-7 pl-6 pr-0 md:pl-8 lg:pl-12 pt-8 md:pt-12">
-            <div className="space-y-2">
+            <div className="hidden md:block space-y-2">
               <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Cognitive Performance Formula</p>
               <h1 className="text-3xl font-semibold tracking-[-0.02em] leading-tight">{product.title}</h1>
             </div>

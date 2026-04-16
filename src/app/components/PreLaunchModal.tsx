@@ -55,7 +55,7 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-4"
       role="dialog"
       aria-modal="true"
       aria-label="Pre-launch registration"
@@ -67,7 +67,7 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
       />
 
       {/* Panel */}
-      <div className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden">
+      <div className="relative w-full sm:max-w-md bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-hidden">
 
         {/* Close */}
         <button
