@@ -3,7 +3,6 @@
 import { useRef } from 'react';
 import Image from 'next/image';
 import { motion, useInView } from 'framer-motion';
-import TrackedLink from '@/app/components/TrackedLink';
 import VennSVG from '@/app/components/VennSVG';
 
 const ease = [0.25, 0.1, 0.1, 1] as const;
@@ -47,16 +46,6 @@ export default function VennCard({ vennBackgroundImageUrl, vennHeading, activeIn
           <h2 className="text-2xl sm:text-3xl font-semibold leading-tight tracking-[-0.03em] text-white">
             {vennHeading}
           </h2>
-          <TrackedLink
-            href="/pages/our-product"
-            clarityEvent="homepage_venn_read_more_product"
-            className="inline-flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium text-white/45 hover:text-white transition-colors duration-200"
-          >
-            Read more about our product
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M2.5 6H9.5M6.5 3L9.5 6L6.5 9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </TrackedLink>
         </motion.div>
 
         {/* Venn SVG — driven by shared inView trigger */}
@@ -73,16 +62,6 @@ export default function VennCard({ vennBackgroundImageUrl, vennHeading, activeIn
           <h2 className="text-3xl md:text-4xl font-semibold leading-tight tracking-[-0.03em] text-white">
             {vennHeading}
           </h2>
-          <TrackedLink
-            href="/pages/our-product"
-            clarityEvent="homepage_formula_read_more_product"
-            className="inline-flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium text-white/45 hover:text-white transition-colors duration-200"
-          >
-            Read more about our product
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M2.5 6H9.5M6.5 3L9.5 6L6.5 9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </TrackedLink>
         </motion.div>
 
       </div>

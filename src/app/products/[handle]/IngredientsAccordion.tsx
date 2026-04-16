@@ -21,52 +21,26 @@ const categories: Record<string, string> = {
 const INITIAL_ROWS = 2;
 const COLS = 3;
 
-function FlipCard({ name, tagline, description, image, flipped, onFlip }: { name: string; tagline: string; description: string; image: string; flipped: boolean; onFlip: () => void }) {
+function IngredientCardTile({ name, image, onClick }: { name: string; image: string; onClick: () => void }) {
   return (
     <div
-      className="cursor-pointer"
-      style={{ perspective: '1000px' }}
-      onClick={onFlip}
+      className="cursor-pointer rounded-2xl overflow-hidden border border-[var(--color-border)] group"
+      onClick={onClick}
     >
-      <div
-        style={{
-          transformStyle: 'preserve-3d',
-          transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-          transition: 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)',
-          position: 'relative',
-        }}
-      >
-        {/* Front */}
-        <div
-          className="rounded-2xl overflow-hidden border border-[var(--color-border)]"
-          style={{ backfaceVisibility: 'hidden' }}
-        >
-          <div className="relative aspect-[4/3] w-full bg-[#f5f5fc]">
-            {image && (image.startsWith('/') || image.startsWith('http')) && <Image src={image} alt={name} fill className="object-cover" sizes="(max-width: 768px) 50vw, 33vw" unoptimized={!image.startsWith('/')} />}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-4">
-              <p className="text-base font-semibold text-white leading-snug">{name}</p>
-            </div>
-            <div className="absolute top-3 right-3 w-5 h-5 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center border border-white/20">
-              <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                <path d="M4 1v6M1 4h6" stroke="white" strokeWidth="1.3" strokeLinecap="round"/>
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        {/* Back */}
-        <div
-          className="absolute inset-0 rounded-2xl bg-[#1E1854] p-5 flex flex-col gap-3"
-          style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
-        >
+      <div className="relative aspect-[4/3] w-full bg-[#f5f5fc]">
+        {image && (image.startsWith('/') || image.startsWith('http')) && (
+          <Image
+            src={image}
+            alt={name}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            sizes="(max-width: 768px) 50vw, 33vw"
+            unoptimized={!image.startsWith('/')}
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 p-3">
           <p className="text-sm font-semibold text-white leading-snug">{name}</p>
-          {tagline && (
-            <span className="self-start text-xs tracking-[0.08em] uppercase font-semibold bg-white/15 text-white px-2.5 py-1 rounded-full border border-white/20">
-              {tagline}
-            </span>
-          )}
-          <p className="text-sm text-white/65 leading-relaxed">{description}</p>
         </div>
       </div>
     </div>
@@ -83,7 +57,8 @@ export default function IngredientsAccordion({ ingredients }: { ingredients: Ing
   }));
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [expanded, setExpanded] = useState(false);
-  const [flippedCard, setFlippedCard] = useState<string | null>(null);
+  const [activeCard, setActiveCard] = useState<IngredientCard | null>(null);
+
   const filtered = selectedCategory === 'all'
     ? cards
     : cards.filter((i) => i.category === selectedCategory);
@@ -100,14 +75,14 @@ export default function IngredientsAccordion({ ingredients }: { ingredients: Ing
         <p className="text-sm text-[hsla(var(--color-secondary)/0.7)] max-w-md">Our formula is made of premium, quality ingredients selected for their efficacy. Tap any card to learn more.</p>
       </div>
 
-      {/* Category tabs */}
-      <div className="flex flex-wrap gap-2 mb-8">
+      {/* Category tabs — horizontal scroll on mobile, wrap on desktop */}
+      <div className="flex flex-nowrap gap-2 mb-8 overflow-x-auto pb-1 md:flex-wrap md:overflow-x-visible">
         {Object.entries(categories).map(([key, label]) => (
           <button
             key={key}
-            onClick={() => { setSelectedCategory(key); setExpanded(false); setFlippedCard(null); }}
+            onClick={() => { setSelectedCategory(key); setExpanded(false); setActiveCard(null); }}
             className={cn(
-              'relative overflow-hidden whitespace-nowrap rounded-full border px-4 py-2.5 text-xs tracking-[0.08em] uppercase font-medium transition-colors duration-300',
+              'relative overflow-hidden whitespace-nowrap rounded-full border px-4 py-2.5 text-xs tracking-[0.08em] uppercase font-medium transition-colors duration-300 shrink-0',
               selectedCategory === key
                 ? 'border-[#1E1854] text-white'
                 : 'border-[var(--color-border)] text-[hsla(var(--color-secondary)/0.7)] hover:text-[#1E1854] hover:border-[#1E1854]'
@@ -130,7 +105,7 @@ export default function IngredientsAccordion({ ingredients }: { ingredients: Ing
         ))}
       </div>
 
-      {/* Flip card grid */}
+      {/* Card grid */}
       <AnimatePresence mode="wait">
         <motion.div
           key={selectedCategory}
@@ -142,13 +117,10 @@ export default function IngredientsAccordion({ ingredients }: { ingredients: Ing
         >
           {visible.map((ing, i) => (
             <div key={ing.name} className={i >= 6 && !expanded ? 'hidden sm:block' : ''}>
-              <FlipCard
+              <IngredientCardTile
                 name={ing.name}
-                tagline={ing.tagline}
-                description={ing.description}
                 image={ing.image}
-                flipped={flippedCard === ing.name}
-                onFlip={() => setFlippedCard(flippedCard === ing.name ? null : ing.name)}
+                onClick={() => setActiveCard(ing)}
               />
             </div>
           ))}
@@ -167,6 +139,66 @@ export default function IngredientsAccordion({ ingredients }: { ingredients: Ing
         </div>
       )}
 
+      {/* Ingredient modal */}
+      <AnimatePresence>
+      {activeCard && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center"
+          onClick={() => setActiveCard(null)}
+        >
+          <div className="absolute inset-0 bg-[#1E1854]/60 backdrop-blur-sm" />
+          <motion.div
+            initial={{ y: '100%' }}
+            animate={{ y: 0 }}
+            exit={{ y: '100%' }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            className="relative w-full sm:max-w-md bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col max-h-[90vh] overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Image */}
+            {activeCard.image && (
+              <div className="relative w-full h-44 shrink-0">
+                <Image
+                  src={activeCard.image}
+                  alt={activeCard.name}
+                  fill
+                  className="object-cover"
+                  sizes="448px"
+                  unoptimized={!activeCard.image.startsWith('/')}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/90" />
+              </div>
+            )}
+
+            {/* Close */}
+            <button
+              onClick={() => setActiveCard(null)}
+              aria-label="Close"
+              className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-sm text-[#1E1854]/50 hover:text-[#1E1854] hover:bg-white transition-colors duration-200"
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M11 3L3 11M3 3l8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+              </svg>
+            </button>
+
+            {/* Content */}
+            <div className="px-7 pt-4 pb-8 overflow-y-auto">
+              <h3 className="text-xl font-semibold text-[#1E1854] tracking-[-0.02em] leading-snug mb-1">{activeCard.name}</h3>
+              {activeCard.tagline && (
+                <span className="inline-block text-xs tracking-[0.08em] uppercase font-semibold bg-[#1E1854]/8 text-[#1E1854]/60 px-2.5 py-1 rounded-full mb-3">
+                  {activeCard.tagline}
+                </span>
+              )}
+              <p className="text-sm text-[#1E1854]/65 leading-relaxed">{activeCard.description}</p>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+      </AnimatePresence>
     </section>
   );
 }

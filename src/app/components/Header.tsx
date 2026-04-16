@@ -346,7 +346,6 @@ export default function Header() {
                         </span>
                         <div className="flex-1 min-w-0">
                           <p className="text-sm font-medium text-[#1E1854]">{link.label}</p>
-                          <p className="text-xs text-[hsla(var(--color-secondary)/0.45)] leading-snug">{link.description}</p>
                         </div>
                       </Link>
                     ))}
@@ -380,8 +379,7 @@ export default function Header() {
                           <Image src={post.image} alt={post.title} fill className="object-cover" sizes="40px" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-xs uppercase tracking-[0.06em] text-[hsla(var(--color-secondary)/0.4)] mb-0.5">{post.tag} · {post.readTime}</p>
-                          <p className="text-sm font-medium text-[#1E1854] leading-snug line-clamp-1 group-hover:text-[hsla(var(--color-accent)/1)] transition-colors">{post.title}</p>
+                          <p className="text-sm font-medium text-[#1E1854] leading-snug line-clamp-2 group-hover:text-[hsla(var(--color-accent)/1)] transition-colors">{post.title}</p>
                         </div>
                       </Link>
                     ))}

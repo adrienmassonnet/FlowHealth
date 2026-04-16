@@ -136,11 +136,61 @@ export default function PhilosophyScroll() {
       });
     };
 
+    // Touch handling for mobile
+    let touchStartY = 0;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!outerRef.current) return;
+      const scrolled = getScrolled();
+      const maxScrolled = outerRef.current.offsetHeight - window.innerHeight;
+      const isStuck = scrolled >= -4 && scrolled <= maxScrolled + 4;
+      if (!isStuck) return;
+
+      const cur = activeIndexRef.current;
+      const deltaY = touchStartY - e.touches[0].clientY;
+      const down = deltaY > 0;
+
+      // At boundaries let native scroll pass through
+      if (down && cur >= points.length - 1) return;
+      if (!down && cur <= -1) return;
+
+      e.preventDefault();
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      if (!outerRef.current) return;
+      const scrolled = getScrolled();
+      const maxScrolled = outerRef.current.offsetHeight - window.innerHeight;
+      const isStuck = scrolled >= -4 && scrolled <= maxScrolled + 4;
+      if (!isStuck) return;
+
+      const endY = e.changedTouches[0].clientY;
+      const delta = touchStartY - endY;
+      if (Math.abs(delta) < 40) return;
+
+      const down = delta > 0;
+      const cur = activeIndexRef.current;
+      if (down && cur >= points.length - 1) return;
+      if (!down && cur <= -1) return;
+
+      goTo(down ? cur + 1 : cur - 1, down ? 'forward' : 'backward');
+    };
+
     window.addEventListener('wheel', handleWheel, { passive: false });
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
     return () => {
       window.removeEventListener('wheel', handleWheel);
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', handleTouchEnd);
     };
   }, [goTo]);
 
@@ -207,13 +257,13 @@ export default function PhilosophyScroll() {
             }}
           >
             {/* Mini cards row */}
-            <div className="max-w-[1200px] w-full mx-auto px-6 pt-8 pb-5 shrink-0">
-              <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent mb-5">Our Pillars</p>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="max-w-[1200px] w-full mx-auto px-4 md:px-6 pt-4 md:pt-8 pb-3 md:pb-5 shrink-0">
+              <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent mb-3 md:mb-5">Our Pillars</p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
                 {points.map((p, i) => (
                   <div
                     key={p.number}
-                    className={`rounded-xl border p-4 transition-all duration-500 ${
+                    className={`rounded-xl border p-2.5 md:p-4 transition-all duration-500 ${
                       i === activeIndex
                         ? 'card-selected shadow-lg shadow-[#1E1854]/20'
                         : i < activeIndex
@@ -221,10 +271,10 @@ export default function PhilosophyScroll() {
                         : 'border-[#1E1854]/[0.07] bg-white opacity-50'
                     }`}
                   >
-                    <p className={`text-xs font-mono tracking-[0.12em] mb-2 ${
+                    <p className={`text-xs font-mono tracking-[0.12em] mb-1 md:mb-2 ${
                       i === activeIndex ? 'text-white/50' : 'text-[#1E1854]/25'
                     }`}>{p.number}</p>
-                    <p className={`text-sm font-semibold tracking-[-0.01em] leading-snug ${
+                    <p className={`text-xs md:text-sm font-semibold tracking-[-0.01em] leading-snug ${
                       i === activeIndex ? 'text-white' : 'text-[#1E1854]'
                     }`}>{p.label}</p>
                   </div>
@@ -233,11 +283,11 @@ export default function PhilosophyScroll() {
             </div>
 
             {/* Unfolded content */}
-            <div className="flex-1 max-w-[1200px] w-full mx-auto px-6 pb-10 min-h-0">
-              <div className="h-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14 items-center">
+            <div className="flex-1 max-w-[1200px] w-full mx-auto px-4 md:px-6 pb-4 md:pb-10 min-h-0">
+              <div className="h-full grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-14 items-center">
 
                 {/* Image — directional crossfade with scale + blur */}
-                <div className={`relative rounded-2xl overflow-hidden h-[36vh] md:h-full ring-1 ring-[#1E1854]/[0.08] shadow-xl shadow-[#1E1854]/[0.08] ${
+                <div className={`relative rounded-2xl overflow-hidden h-[22vh] md:h-full ring-1 ring-[#1E1854]/[0.08] shadow-xl shadow-[#1E1854]/[0.08] ${
                   isEven ? 'md:order-first' : 'md:order-last'
                 }`}>
                   {points.map((p, i) => {
@@ -263,14 +313,14 @@ export default function PhilosophyScroll() {
                 {/* Text — staggered directional blur-slide animation */}
                 <div
                   key={`${activeIndex}-${direction}`}
-                  className={`space-y-5 ${isEven ? 'md:order-last' : 'md:order-first'}`}
+                  className={`space-y-3 md:space-y-5 ${isEven ? 'md:order-last' : 'md:order-first'}`}
                 >
                   <p
                     className={`${enterClass} text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent`}
                     style={{ animationDelay: '0ms' }}
                   >{point.label}</p>
                   <h2
-                    className={`${enterClass} text-3xl md:text-[2.4rem] font-semibold tracking-[-0.03em] leading-tight text-[#1E1854]`}
+                    className={`${enterClass} text-2xl md:text-[2.4rem] font-semibold tracking-[-0.03em] leading-tight text-[#1E1854]`}
                     style={{ animationDelay: '80ms' }}
                   >
                     {point.heading}

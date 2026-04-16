@@ -47,13 +47,13 @@ export default function SavingsBreakdownClient({
         </div>
 
         {/* Savings badge + inline breakdown */}
-        <div className="flex flex-col items-start sm:items-center gap-5 shrink-0 w-full sm:w-auto">
+        <div className="flex flex-col items-center gap-5 shrink-0 w-full sm:w-auto">
 
           {/* Circle badge — gradient, hover scale, click opens modal */}
           <button
             onClick={openModal}
             aria-label="Open savings breakdown"
-            className="self-start sm:self-auto inline-flex flex-col items-center justify-center w-40 h-40 md:w-48 md:h-48 rounded-full bg-gradient-to-br from-[#1E1854] via-[#2a2770] to-[#312e8a] text-white text-center p-6 shadow-lg shadow-[#1E1854]/25 cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.1,1)] hover:scale-[1.06] hover:shadow-2xl hover:shadow-[#1E1854]/40"
+            className="inline-flex flex-col items-center justify-center w-40 h-40 md:w-48 md:h-48 rounded-full bg-gradient-to-br from-[#1E1854] via-[#2a2770] to-[#312e8a] text-white text-center p-6 shadow-lg shadow-[#1E1854]/25 cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.1,1)] hover:scale-[1.06] hover:shadow-2xl hover:shadow-[#1E1854]/40"
           >
             <span className="text-xs uppercase tracking-[0.16em] text-white/50 font-medium mb-1">Monthly savings</span>
             <span className="text-4xl font-semibold tracking-[-0.03em] leading-none">CHF {savingsRounded}</span>
@@ -77,26 +77,28 @@ export default function SavingsBreakdownClient({
       {/* Modal */}
       {open && (
         <div
-          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4 sm:p-6"
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center"
           onClick={() => setOpen(false)}
         >
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+          <div className="absolute inset-0 bg-[#1E1854]/60 backdrop-blur-sm" />
           <div
-            className="relative w-full max-w-sm bg-white rounded-2xl shadow-xl overflow-hidden"
+            className="relative w-full sm:max-w-sm bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col max-h-[85vh] overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between px-6 py-5 border-b border-[var(--color-border)]">
+            {/* Header */}
+            <div className="flex items-center justify-between px-6 py-5 border-b border-[var(--color-border)] shrink-0">
               <p className="text-sm font-semibold text-[#1E1854]">Monthly breakdown</p>
               <button
                 onClick={() => setOpen(false)}
-                className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-[#1E18540A] transition-colors text-[#1E1854]/40"
+                className="w-8 h-8 flex items-center justify-center rounded-full bg-[#1E18540A] hover:bg-[#1E185415] transition-colors text-[#1E1854]/50 hover:text-[#1E1854]"
               >
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <path d="M1.5 1.5l9 9M10.5 1.5l-9 9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M11 3L3 11M3 3l8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
               </button>
             </div>
-            <div className="px-6 divide-y divide-[var(--color-border)]">
+            {/* Scrollable list */}
+            <div className="overflow-y-auto flex-1 px-6 divide-y divide-[var(--color-border)]">
               {supplements.map((s) => (
                 <div key={s.name} className="flex items-center justify-between gap-4 py-3.5">
                   <span className="text-sm text-[hsla(var(--color-secondary)/0.75)]">{s.name}</span>
@@ -104,7 +106,8 @@ export default function SavingsBreakdownClient({
                 </div>
               ))}
             </div>
-            <div className="px-6 pt-1 pb-6 border-t-2 border-[#1E1854] mt-1 space-y-2">
+            {/* Totals — sticky at bottom */}
+            <div className="px-6 pt-1 pb-7 border-t-2 border-[#1E1854] shrink-0 space-y-2">
               <div className="flex items-center justify-between gap-4 pt-3">
                 <span className="text-sm text-[hsla(var(--color-secondary)/0.45)] line-through">Traditional supplements</span>
                 <span className="text-sm text-[hsla(var(--color-secondary)/0.45)] line-through shrink-0">CHF {traditionalTotal}</span>

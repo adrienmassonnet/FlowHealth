@@ -64,7 +64,7 @@ export default function MorningRitualCard() {
       transition={{ duration: 0.85, ease }}
     >
       <div
-        className={`bg-white rounded-2xl border border-[#1E1854]/[0.07] px-7 py-9 flex flex-col gap-6 shadow-[0_4px_32px_rgba(30,24,84,0.09)] h-[280px] md:h-auto md:min-h-[220px] justify-between overflow-hidden ${animClass}`}
+        className={`bg-white rounded-2xl border border-[#1E1854]/[0.07] px-7 py-9 flex flex-col gap-6 shadow-[0_4px_32px_rgba(30,24,84,0.09)] md:min-h-[220px] justify-between ${animClass}`}
         style={diceVars as React.CSSProperties}
       >
         <span className="text-[#1E1854]/45">{card.icon}</span>

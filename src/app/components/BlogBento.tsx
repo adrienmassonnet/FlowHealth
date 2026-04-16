@@ -94,15 +94,9 @@ export default function BlogBento() {
           Focus
         </span>
         <div className="absolute bottom-0 left-0 right-0 p-6">
-          <h3 className="text-xl font-semibold text-white leading-snug tracking-[-0.02em] mb-3">
+          <h3 className="text-base md:text-xl font-semibold text-white leading-snug tracking-[-0.02em]">
             {posts[0].title}
           </h3>
-          <span className="inline-flex items-center gap-1.5 text-xs tracking-[0.08em] uppercase font-medium text-white/50">
-            Read article
-            <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
-              <path d="M2.5 6H9.5M6.5 3L9.5 6L6.5 9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </span>
         </div>
       </TrackedLink>
       </motion.div>
@@ -133,7 +127,7 @@ export default function BlogBento() {
           Nootropics
         </span>
         <div className="absolute bottom-0 left-0 right-0 p-5">
-          <h3 className="text-base font-semibold text-white leading-snug tracking-[-0.01em]">{posts[1].title}</h3>
+          <h3 className="text-base font-semibold text-white leading-snug tracking-[-0.01em] md:text-base">{posts[1].title}</h3>
         </div>
       </TrackedLink>
       </motion.div>
@@ -164,7 +158,7 @@ export default function BlogBento() {
           Brain
         </span>
         <div className="absolute bottom-0 left-0 right-0 p-4">
-          <h3 className="text-sm font-semibold text-white leading-snug tracking-[-0.01em]">{posts[4].title}</h3>
+          <h3 className="text-base font-semibold text-white leading-snug tracking-[-0.01em]">{posts[4].title}</h3>
         </div>
       </TrackedLink>
       </motion.div>
@@ -195,7 +189,7 @@ export default function BlogBento() {
           Lifestyle
         </span>
         <div className="absolute bottom-0 left-0 right-0 p-4">
-          <h3 className="text-sm font-semibold text-white leading-snug tracking-[-0.01em]">{posts[2].title}</h3>
+          <h3 className="text-base font-semibold text-white leading-snug tracking-[-0.01em]">{posts[2].title}</h3>
         </div>
       </TrackedLink>
       </motion.div>

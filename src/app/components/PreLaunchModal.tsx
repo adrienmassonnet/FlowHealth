@@ -81,7 +81,7 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
         </button>
 
         {/* Hero image */}
-        <div className="relative w-full h-48 overflow-hidden">
+        <div className="relative w-full h-28 overflow-hidden">
           <Image
             src="/sunrise-consume.png"
             alt="Start your morning with Flow"
@@ -93,7 +93,7 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/90" />
         </div>
 
-        <div className="px-8 pt-4 pb-8">
+        <div className="px-8 pt-4 pb-8" style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}>
           {status === 'success' ? (
             <div className="text-center py-4">
               <div className="w-12 h-12 rounded-full bg-[#1E1854]/8 flex items-center justify-center mx-auto mb-5">

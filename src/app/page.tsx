@@ -130,6 +130,15 @@ export default async function HomePage() {
             </div>
 
             <div className="w-full flex flex-col md:flex-row gap-10 md:gap-14 items-stretch">
+
+              {/* Mobile-only: title above image */}
+              <div className="md:hidden space-y-1.5">
+                <p className="text-xs tracking-[0.14em] uppercase text-[#1E1854]/35 font-medium">Daily powdered supplement</p>
+                <h3 className="text-2xl font-semibold tracking-[-0.03em] text-[#1E1854] leading-tight">
+                  {featured.title}
+                </h3>
+              </div>
+
               {/* Image — portrait ratio, editorial feel */}
               {featuredImage && (
                 <ScrollReveal variant="scale" duration={1.4} className="md:w-[52%] shrink-0 w-full aspect-[4/3] md:aspect-auto relative">
@@ -146,10 +155,10 @@ export default async function HomePage() {
               {/* Content */}
               <div className="flex-1 flex flex-col justify-between py-2 gap-5">
 
-                {/* Top: name + tagline */}
-                <div className="space-y-1.5">
+                {/* Desktop-only: name + tagline */}
+                <div className="hidden md:block space-y-1.5">
                   <p className="text-xs tracking-[0.14em] uppercase text-[#1E1854]/35 font-medium">Daily powdered supplement</p>
-                  <h3 className="text-2xl md:text-3xl font-semibold tracking-[-0.03em] text-[#1E1854] leading-tight">
+                  <h3 className="text-3xl font-semibold tracking-[-0.03em] text-[#1E1854] leading-tight">
                     {featured.title}
                   </h3>
                 </div>
