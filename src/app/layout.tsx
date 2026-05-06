@@ -40,6 +40,7 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1 },
   },
   alternates: { canonical: SITE_URL },
+  verification: { google: 'Ea1HmnhxhBKchqQouW49XFw45z0Tu-XZdbYq7FES8q8' },
 };
 
 const organizationJsonLd = {
