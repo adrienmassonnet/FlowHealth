@@ -76,6 +76,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           gtag('js', new Date());
           gtag('config', 'G-F1B6SHB752');
         `}</Script>
+        <Script id="gtm-init" strategy="afterInteractive">{`
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-N3CRPDLV');
+        `}</Script>
         <Script id="clarity-init" strategy="afterInteractive">{`
           (function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -85,6 +92,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         `}</Script>
       </head>
       <body className={`${outfit.className} antialiased`} suppressHydrationWarning>
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N3CRPDLV" height="0" width="0" style={{display:'none',visibility:'hidden'}}></iframe></noscript>
         <ScrollManager />
         <Header />
         {/* Offset for fixed header (announcement bar ~32px + nav ~56px) */}
