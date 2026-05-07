@@ -1,77 +1,113 @@
 'use client';
 
 import { useState } from 'react';
-import { trackEvent } from '@/lib/clarity';
+
+const ALTERNATIVES = [
+  'a single Red Bull at the kiosk',
+  'a small espresso at your local café',
+  'a pack of chewing gum',
+  'a newspaper at the kiosk',
+  'a banana from the supermarket',
+  'a ride with public transit',
+];
 
 type Supplement = { name: string; monthlyPriceCHF: number };
+type ComparisonRow = { order: number; topic?: string[]; feature: string };
 
 export default function SavingsBreakdownClient({
   supplements,
   flowPrice,
   traditionalTotal,
   savings,
-  savingsRounded,
+  servingsPerBox,
   pricePerServing,
   activeIngredients,
-  servingsPerBox,
+  comparisonRows,
 }: {
   supplements: Supplement[];
   flowPrice: number;
   traditionalTotal: number;
   savings: number;
-  savingsRounded: number;
+  servingsPerBox: number;
   pricePerServing: number;
   activeIngredients: number;
-  servingsPerBox: number;
+  comparisonRows: ComparisonRow[];
 }) {
   const [open, setOpen] = useState(false);
+  const [altIndex, setAltIndex] = useState(0);
 
-  const openModal = () => {
-    setOpen(true);
-    trackEvent('product_page_savings_breakdown_open');
-  };
+  const flipAlternative = () => setAltIndex((i) => (i + 1) % ALTERNATIVES.length);
 
   return (
-    <section className="max-w-[1200px] mx-auto px-6 py-12 md:py-20">
-      <div className="flex flex-col sm:flex-row gap-10 sm:gap-16 items-start">
+    <section className="max-w-[1200px] mx-auto px-6 pt-4 pb-20 md:pt-8">
+      {/* Section title — full width, same level as other section titles */}
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight mb-5 md:mb-7">
+        Flow stacks up to its competition.
+      </h2>
 
-        {/* Heading */}
-        <div className="flex-1 space-y-2">
-          <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Save Money</p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
-            One formula replaces {supplements.length} daily supplements,<br />at the cost of one energy drink.
-          </h2>
-          <p className="text-sm text-[hsla(var(--color-secondary)/0.65)] max-w-sm leading-relaxed pt-1">
-            At CHF {pricePerServing} per sachet — the same price as a Red Bull — Flow delivers {activeIngredients} clinically dosed active ingredients. Buying the same stack individually costs CHF {traditionalTotal}/month at Swiss retailers.
-          </p>
-        </div>
+      {/* How Flow compares — compact cards */}
+      <div className="mt-10 md:mt-12">
+<div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3">
 
-        {/* Savings badge + inline breakdown */}
-        <div className="flex flex-col items-center gap-5 shrink-0 w-full sm:w-auto">
-
-          {/* Circle badge — gradient, hover scale, click opens modal */}
-          <button
-            onClick={openModal}
-            aria-label="Open savings breakdown"
-            className="inline-flex flex-col items-center justify-center w-40 h-40 md:w-48 md:h-48 rounded-full bg-gradient-to-br from-[#1E1854] via-[#2a2770] to-[#312e8a] text-white text-center p-6 shadow-lg shadow-[#1E1854]/25 cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.1,1)] hover:scale-[1.06] hover:shadow-2xl hover:shadow-[#1E1854]/40"
+          {/* Price card — spans 2 cols to fit more content */}
+          <div
+            className="sm:col-span-2 rounded-xl px-5 py-5 flex flex-col gap-4"
+            style={{ background: '#F4F4FB', border: '1px solid rgba(30,24,84,0.08)' }}
           >
-            <span className="text-xs uppercase tracking-[0.16em] text-white/50 font-medium mb-1">Monthly savings</span>
-            <span className="text-4xl font-semibold tracking-[-0.03em] leading-none">CHF {savingsRounded}</span>
-            <span className="text-xs text-white/50 mt-2 leading-snug">switching to Flow</span>
-          </button>
+            <div>
+              <p className="text-xs font-semibold tracking-[0.1em] uppercase text-[#1E1854]/35 mb-2">Price</p>
+              <p className="text-xs text-[#1E1854] leading-relaxed">
+                For all {activeIngredients} ingredients in Flow you would have paid{' '}
+                <span className="font-semibold">CHF {traditionalTotal}/month</span> buying them separately.
+              </p>
+              <button
+                onClick={() => setOpen(true)}
+                className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-[#1E1854]/40 hover:text-[#1E1854] transition-colors duration-200"
+              >
+                See full breakdown
+                <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
+                  <path d="M2 4.5h5M4.5 2l2.5 2.5-2.5 2.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+            </div>
 
-          {/* Link CTA — below circle on all breakpoints */}
-          <button
-            onClick={openModal}
-            className="inline-flex items-center gap-1.5 text-xs font-medium text-[hsla(var(--color-accent)/1)] tracking-[0.04em] hover:opacity-75 transition-opacity"
-          >
-            See full breakdown
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-              <path d="M2 5h6M5 2l3 3-3 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
+            <hr className="border-[#1E1854]/10" />
+
+            <div className="flex flex-col gap-3">
+              <p className="text-xs text-[#1E1854]/50 leading-snug">
+                At CHF {pricePerServing} per day you could also get
+              </p>
+              <p className="text-xs font-semibold text-[#1E1854] leading-snug">
+                {ALTERNATIVES[altIndex]}
+              </p>
+              <button
+                onClick={flipAlternative}
+                className="self-start inline-flex items-center gap-1.5 text-xs font-medium text-[#1E1854]/50 hover:text-[#1E1854] transition-colors duration-200"
+              >
+                What else could I buy
+                <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                  <path d="M9.5 2.5A4.5 4.5 0 1 0 10 5.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M8 1l1.5 1.5L8 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          {comparisonRows
+            .filter((row) => !['science', 'quality'].includes((row.topic?.[0] ?? '').toLowerCase()))
+            .map((row) => (
+              <div
+                key={row.order}
+                className="rounded-xl px-4 py-3.5 flex flex-col gap-1.5"
+                style={{ background: '#F4F4FB', border: '1px solid rgba(30,24,84,0.08)' }}
+              >
+                {row.topic?.[0] && (
+                  <p className="text-xs font-semibold tracking-[0.1em] uppercase text-[#1E1854]/35">{row.topic[0]}</p>
+                )}
+                <p className="text-xs text-[#1E1854] leading-snug">{row.feature}</p>
+              </div>
+            ))}
         </div>
-
       </div>
 
       {/* Modal */}

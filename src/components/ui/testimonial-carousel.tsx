@@ -5,9 +5,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import type { Testimonial } from '@/lib/content';
 import { trackEvent } from '@/lib/clarity';
+import { CarouselDots } from '@/components/ui/carousel-dots';
 
 // Static portrait images paired with testimonials (Contentful testimonials have no imageUrl)
 const IMAGES = [
@@ -66,7 +66,7 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
               transition={TRANSITION}
             >
               <p className="text-[52px] leading-none text-[#1E1854]/10 font-serif select-none -mt-2 mb-1">&ldquo;</p>
-              <blockquote className="text-base font-medium text-[#1E1854]/80 leading-[1.75] tracking-[-0.01em] mb-8">
+              <blockquote className="text-base font-medium text-[#1E1854]/75 leading-[1.75] tracking-[-0.01em] mb-8">
                 {t.quote}
               </blockquote>
               <div className="flex items-center gap-3">
@@ -81,23 +81,8 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
         </div>
       </div>
 
-      {/* Mobile: portrait above, text below */}
+      {/* Mobile: compact card */}
       <div className="md:hidden">
-        <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden mb-7">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={imageUrl}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={TRANSITION}
-              className="absolute inset-0"
-            >
-              <Image src={imageUrl} alt={t.authorName} fill className="object-cover" sizes="100vw" />
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
         <AnimatePresence mode="wait">
           <motion.div
             key={t.authorName}
@@ -105,19 +90,25 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={TRANSITION}
-            className="text-center px-2"
+            className="bg-white border border-[var(--color-border)] rounded-2xl px-6 py-6 text-center"
           >
-            <p className="text-[44px] leading-none text-[#1E1854]/10 font-serif select-none mb-1">&ldquo;</p>
-            <blockquote className="text-base font-medium text-[#1E1854]/80 leading-[1.75] mb-6">{t.quote}</blockquote>
-            <span className="block w-5 h-px bg-[#1E1854]/20 mx-auto mb-3" />
-            <p className="text-sm font-semibold text-[#1E1854]/75">{t.authorName}</p>
-            <p className="text-xs text-[#1E1854]/45 tracking-[0.04em] mt-1">{t.authorRole}</p>
+            <p className="text-[28px] leading-none text-[#1E1854]/10 font-serif select-none mb-1">&ldquo;</p>
+            <blockquote className="text-sm font-medium text-[#1E1854]/75 leading-[1.7] mb-5">{t.quote}</blockquote>
+            <div className="flex items-center justify-center gap-3 mb-1">
+              <div className="relative w-9 h-9 rounded-full overflow-hidden shrink-0">
+                <Image src={imageUrl} alt={t.authorName} fill className="object-cover" sizes="36px" />
+              </div>
+              <div className="text-left">
+                <p className="text-xs font-semibold text-[#1E1854]">{t.authorName}</p>
+                {t.authorRole && <p className="text-xs text-[#1E1854]/45 tracking-[0.03em] mt-0.5">{t.authorRole}</p>}
+              </div>
+            </div>
           </motion.div>
         </AnimatePresence>
       </div>
 
       {/* Navigation */}
-      <div className="flex flex-col items-center gap-6 mt-10">
+      <div className="flex flex-col items-center gap-4 md:gap-6 mt-5 md:mt-10">
         <div className="flex items-center gap-5">
           <button
             onClick={prev}
@@ -127,21 +118,12 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
             <ChevronLeft className="w-4 h-4 text-[#1E1854]/50" />
           </button>
 
-          <div className="flex items-center gap-2">
-            {testimonials.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrent(i)}
-                aria-label={`Go to testimonial ${i + 1}`}
-                className={cn(
-                  'rounded-full transition-all duration-400',
-                  i === current
-                    ? 'w-5 h-[7px] bg-[#1E1854]/60'
-                    : 'w-[7px] h-[7px] bg-[#1E1854]/20 hover:bg-[#1E1854]/35'
-                )}
-              />
-            ))}
-          </div>
+          <CarouselDots
+            count={testimonials.length}
+            current={current}
+            onDotClick={setCurrent}
+            variant="dark"
+          />
 
           <button
             onClick={next}

@@ -120,7 +120,11 @@ export async function getHealthBenefits() {
     .filter((row) => row.label?.trim())
     .map((row) => {
       const fallback = healthBenefits.find((h) => h.label === row.label);
-      return { ...row, imageUrl: row.imageUrl || fallback?.imageUrl || '' };
+      return {
+        ...row,
+        imageUrl:    row.imageUrl    || fallback?.imageUrl    || '',
+        description: row.description || fallback?.description || '',
+      };
     });
 }
 
@@ -147,10 +151,34 @@ export async function getTestimonials() {
 // ─── Featured ingredients (homepage strip) ────────────────────────────────────
 export async function getFeaturedIngredients() {
   return [
-    { name: 'Zynamite®',      imageUrl: '/ingredients/mangifera.png',      homepageOrder: 1 },
-    { name: "Saffr'Active®",  imageUrl: '/ingredients/saffran.png',         homepageOrder: 2 },
-    { name: 'Sodium Citrate', imageUrl: '/ingredients/sodium-citrate.png',  homepageOrder: 3 },
-    { name: "Lion's Mane",    imageUrl: '/ingredients/lions-mane.png',      homepageOrder: 4 },
+    {
+      name: 'Zynamite®',
+      imageUrl: '/ingredients/mangifera.png',
+      homepageOrder: 1,
+      benefit: 'Jitter-free sustained focus.',
+      blogSlug: 'zynamite-focus',
+    },
+    {
+      name: "Saffr'Active®",
+      imageUrl: '/ingredients/saffran.png',
+      homepageOrder: 2,
+      benefit: 'Balanced mood and clarity.',
+      blogSlug: 'saffron-mood-clarity',
+    },
+    {
+      name: 'TMG',
+      imageUrl: '/ingredients/tmg.png',
+      homepageOrder: 3,
+      benefit: 'Augmented brain and cellular energy.',
+      blogSlug: 'tmg-brain-energy',
+    },
+    {
+      name: "Lion's Mane",
+      imageUrl: '/ingredients/lions-mane.png',
+      homepageOrder: 4,
+      benefit: 'Neuroprotection and gut-brain support.',
+      blogSlug: 'lions-mane-brain',
+    },
   ];
 }
 

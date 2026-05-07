@@ -24,10 +24,10 @@ type Row = {
 
 export default function ComparisonTableClient({ interpolatedRows }: { interpolatedRows: Row[] }) {
   return (
-    <section className="relative overflow-hidden bg-white border-t border-[#1E1854]/8">
+    <section className="relative overflow-hidden bg-white">
 
 
-      <div className="relative max-w-[1200px] mx-auto px-6 py-16 md:py-24">
+      <div className="relative max-w-[1200px] mx-auto px-6 pt-8 pb-16">
 
         {/* Header */}
         <motion.div
@@ -35,16 +35,15 @@ export default function ComparisonTableClient({ interpolatedRows }: { interpolat
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-8% 0px' }}
           transition={{ duration: 0.9, ease }}
-          className="mb-12 md:mb-14 space-y-3"
+          className="mb-5 md:mb-7 space-y-3"
         >
-          <p className="text-xs tracking-[0.18em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Why Flow</p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-tight text-[#1E1854]">
             How Flow compares
           </h2>
         </motion.div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {interpolatedRows.map((row, i) => (
             <motion.div
               key={row.order}
@@ -62,14 +61,14 @@ export default function ComparisonTableClient({ interpolatedRows }: { interpolat
             >
 
               {/* Flow section */}
-              <div className="px-6 py-6 flex flex-col gap-4 flex-1">
+              <div className="px-4 py-4 flex flex-col gap-2.5 flex-1">
                 {row.topic?.[0] && (
                   <div className="flex items-center gap-2">
                     <Image
                       src="/flow-logomark.svg"
                       alt="Flow"
-                      width={16}
-                      height={16}
+                      width={14}
+                      height={14}
                       className="shrink-0 opacity-35"
                     />
                     <p className="text-xs tracking-[0.14em] uppercase font-semibold text-[#1E1854]/35">
@@ -77,12 +76,12 @@ export default function ComparisonTableClient({ interpolatedRows }: { interpolat
                     </p>
                   </div>
                 )}
-                <p className="text-base text-[#1E1854] leading-relaxed font-semibold">{row.feature}</p>
+                <p className="text-sm text-[#1E1854] leading-snug font-semibold">{row.feature}</p>
               </div>
 
 
               {/* Others section */}
-              <div className="px-6 py-4 flex items-center gap-3">
+              <div className="px-4 py-3 flex items-center gap-2.5">
                 <CrossIcon />
                 <div>
                   <p className="text-xs tracking-[0.12em] uppercase font-semibold text-[#1E1854]/35 mb-0.5">Others</p>

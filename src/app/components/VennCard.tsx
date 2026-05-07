@@ -42,7 +42,6 @@ export default function VennCard({ vennBackgroundImageUrl, vennHeading, activeIn
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.85, ease }}
         >
-          <p className="text-xs tracking-[0.16em] uppercase text-white/35 font-medium">The formula</p>
           <h2 className="text-2xl sm:text-3xl font-semibold leading-tight tracking-[-0.03em] text-white">
             {vennHeading}
           </h2>
@@ -58,7 +57,6 @@ export default function VennCard({ vennBackgroundImageUrl, vennHeading, activeIn
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.85, ease }}
         >
-          <p className="text-xs tracking-[0.16em] uppercase text-white/35 font-medium">The formula</p>
           <h2 className="text-3xl md:text-4xl font-semibold leading-tight tracking-[-0.03em] text-white">
             {vennHeading}
           </h2>

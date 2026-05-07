@@ -1,5 +1,11 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getTestimonials } from '@/lib/content';
+
+export const metadata: Metadata = {
+  title: 'Reviews',
+  description: 'See what Flow customers say. Over 200 verified reviews — 4.9 average rating, 94% would recommend.',
+};
 
 // Star icon rendered inline — no extra dependency
 function Stars() {
@@ -31,12 +37,12 @@ export default async function ReviewsPage() {
     <main>
       {/* Hero */}
       <section className="bg-white border-b border-[var(--color-border)]">
-        <div className="max-w-[1200px] mx-auto px-6 pt-20 pb-20 md:pb-24">
+        <div className="max-w-[1200px] mx-auto px-6 pt-12 pb-10 md:pt-20 md:pb-24">
           <div className="max-w-2xl">
             <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent mb-4">
               Reviews
             </p>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-[-0.03em] leading-[1.0] mb-5">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-[-0.03em] leading-[1.0] mb-3 md:mb-5">
               What people say<br />about Flow
             </h1>
             <p className="text-sm text-[hsla(var(--color-secondary)/0.75)] leading-[1.7] max-w-md">
@@ -48,7 +54,7 @@ export default async function ReviewsPage() {
 
       {/* Stats bar */}
       <section className="bg-[#1E18540A] border-b border-[var(--color-border)]">
-        <div className="max-w-[1200px] mx-auto px-6 py-10">
+        <div className="max-w-[1200px] mx-auto px-6 py-5 md:py-10">
           <div className="grid grid-cols-3 gap-3 sm:gap-6 md:gap-0 md:flex md:items-center md:divide-x md:divide-[var(--color-border)]">
             {stats.map((s) => (
               <div key={s.label} className="md:px-10 first:pl-0 last:pr-0 text-center md:text-left">
@@ -62,7 +68,7 @@ export default async function ReviewsPage() {
 
       {/* Reviews grid */}
       <section className="bg-[#1E185408]">
-        <div className="max-w-[1200px] mx-auto px-6 py-16 md:py-20">
+        <div className="max-w-[1200px] mx-auto px-4 py-8 md:px-6 md:py-20">
           {testimonials.length === 0 ? (
             <p className="text-sm text-[hsla(var(--color-secondary)/0.5)] text-center py-12">
               No reviews yet — check back soon.
@@ -72,10 +78,10 @@ export default async function ReviewsPage() {
               {testimonials.map((t, i) => (
                 <div
                   key={i}
-                  className="break-inside-avoid bg-white rounded-2xl border border-[var(--color-border)] px-7 py-7 space-y-4"
+                  className="break-inside-avoid bg-white rounded-2xl border border-[var(--color-border)] px-5 py-5 space-y-3 md:px-7 md:py-7 md:space-y-4"
                 >
                   <Stars />
-                  <blockquote className="text-sm text-[#1E1854]/80 leading-[1.75] font-medium">
+                  <blockquote className="text-sm text-[#1E1854]/75 leading-[1.75] font-medium">
                     &ldquo;{t.quote}&rdquo;
                   </blockquote>
                   <div className="flex items-center gap-3 pt-1">

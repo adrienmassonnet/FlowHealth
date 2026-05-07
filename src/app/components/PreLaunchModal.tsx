@@ -102,7 +102,7 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
                 </svg>
               </div>
               <h2 className="text-xl font-semibold text-[#1E1854] tracking-[-0.02em] mb-2">You're on the list</h2>
-              <p className="text-sm text-[#1E1854]/60 leading-relaxed">
+              <p className="text-sm text-[#1E1854]/65 leading-relaxed">
                 We'll be in touch the moment Flow is ready — expect early access, the launch date, and a little something extra for those who believed in us first.
               </p>
               <button
@@ -117,7 +117,7 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
               <h2 className="text-2xl font-semibold text-[#1E1854] tracking-[-0.02em] leading-tight mb-2">
                 Flow isn't available yet
               </h2>
-              <p className="text-sm text-[#1E1854]/60 leading-relaxed mb-6">
+              <p className="text-sm text-[#1E1854]/65 leading-relaxed mb-6">
                 Drop your email and we'll let you know the moment it launches, with early access and everything worth knowing.
               </p>
 

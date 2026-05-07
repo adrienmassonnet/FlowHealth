@@ -8,6 +8,18 @@
   --color-secondary: 246 20% 25%;
   --color-contrast: #1E185426;
   --color-border: #1E185420;
+
+  /* Text opacity scale — use these for all body/label text on white backgrounds */
+  --text-body: rgba(30, 24, 84, 0.75);      /* body paragraphs, quotes */
+  --text-secondary: rgba(30, 24, 84, 0.65); /* descriptions, secondary info */
+  --text-muted: rgba(30, 24, 84, 0.55);     /* labels, supporting text, fine print */
+
+  /* Shadow scale — use these instead of inline shadow-[...] values */
+  --shadow-subtle:   0 1px 6px rgba(30, 24, 84, 0.06);   /* barely raised */
+  --shadow-card:     0 2px 16px rgba(30, 24, 84, 0.07);  /* standard card */
+  --shadow-elevated: 0 4px 24px rgba(30, 24, 84, 0.11);  /* hover / dropdown */
+  --shadow-floating: 0 8px 32px rgba(30, 24, 84, 0.15);  /* modals / sticky CTA */
+  --shadow-glow:     0 0 80px rgba(59, 56, 184, 0.20);   /* accent glow */
 }
 
 @theme inline {

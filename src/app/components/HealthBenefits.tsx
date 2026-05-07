@@ -24,7 +24,7 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
   if (!step) return null;
 
   return (
-    <section ref={ref} className="max-w-[1200px] mx-auto px-6 py-14">
+    <section ref={ref} className="max-w-[1200px] mx-auto px-6 py-16">
       {/* Header */}
       <div className="mb-8 space-y-1.5">
         <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">
@@ -40,9 +40,9 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
         {/* Left — benefit selector */}
         <motion.div
           className="grid grid-cols-2 gap-2"
-          initial={{ opacity: 0, x: -24 }}
-          animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.8, ease }}
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6, ease }}
         >
           {benefits.map((s, i) => {
             const isActive = active === i;
@@ -50,9 +50,9 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
               <motion.button
                 key={s.number}
                 onClick={() => setActive(i)}
-                initial={{ opacity: 0, y: 16 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.1 + i * 0.07, ease }}
+                initial={{ opacity: 0 }}
+                animate={inView ? { opacity: 1 } : {}}
+                transition={{ duration: 0.4, delay: 0.05 + i * 0.04, ease }}
                 className={`
                   relative flex flex-col items-center justify-center gap-2 px-3 py-4 text-center
                   rounded-xl w-full overflow-hidden
@@ -84,9 +84,9 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
         {/* Right — detail image panel */}
         <motion.div
           className="relative rounded-2xl overflow-hidden min-h-[428px] md:min-h-[446px]"
-          initial={{ opacity: 0, scale: 0.94 }}
-          animate={inView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.9, delay: 0.12, ease }}
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.1, ease }}
         >
 
           {/* All images stacked — crossfade via opacity transition */}
@@ -97,7 +97,8 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
                 src={b.imageUrl}
                 alt={b.title}
                 fill
-                className={`object-cover transition-opacity duration-700 ease-in-out ${
+                loading={i === 0 ? 'eager' : 'lazy'}
+                className={`object-cover transition-opacity duration-500 ease-in-out ${
                   i === active ? 'opacity-100' : 'opacity-0'
                 }`}
                 sizes="(max-width: 768px) 100vw, 60vw"

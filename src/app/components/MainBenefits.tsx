@@ -11,16 +11,15 @@ export default function MainBenefits({ benefits }: { benefits: HealthBenefit[] }
   const [modal, setModal] = useState<HealthBenefit | null>(null);
 
   return (
-    <section className="max-w-[1200px] mx-auto px-6 pt-4 pb-16">
-      <div className="mb-8 space-y-1">
-        <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Why Flow</p>
+    <section className="max-w-[1200px] mx-auto px-8 pt-4 pb-20 md:pt-8">
+      <div className="mb-5 space-y-1">
         <h2 className="text-3xl font-semibold tracking-[-0.02em]">Main benefits</h2>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pb-4">
         {benefits.map((b) => (
           <div
             key={b.label}
-            className="relative rounded-2xl overflow-hidden cursor-pointer group h-[240px] md:h-[290px] bg-[#1E1854]"
+            className="relative rounded-2xl overflow-hidden cursor-pointer group h-[180px] md:h-[clamp(180px,22vh,280px)] bg-[#1E1854]"
             onClick={() => { setModal(b); trackEvent('product_page_benefit_card_open'); }}
           >
             {b.imageUrl ? (
@@ -46,7 +45,7 @@ export default function MainBenefits({ benefits }: { benefits: HealthBenefit[] }
       <AnimatePresence>
       {modal && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center"
+          className="fixed inset-0 z-50 sm:flex sm:items-center sm:justify-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -55,16 +54,16 @@ export default function MainBenefits({ benefits }: { benefits: HealthBenefit[] }
         >
           <div className="absolute inset-0 bg-[#1E1854]/60 backdrop-blur-sm" />
           <motion.div
-            className="relative w-full sm:max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
-            initial={{ y: 48, opacity: 0, scale: 0.97 }}
-            animate={{ y: 0, opacity: 1, scale: 1 }}
-            exit={{ y: 32, opacity: 0, scale: 0.97 }}
-            transition={{ duration: 0.38, ease: [0.25, 0.1, 0.1, 1] }}
+            className="absolute bottom-0 left-0 right-0 sm:relative sm:bottom-auto sm:left-auto sm:right-auto sm:w-full sm:max-w-md bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col max-h-[90svh]"
+            initial={{ y: '100%' }}
+            animate={{ y: 0 }}
+            exit={{ y: '100%' }}
+            transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Image */}
             {modal.imageUrl && (
-              <div className="relative w-full h-44 shrink-0 overflow-hidden">
+              <div className="relative w-full h-28 sm:h-40 shrink-0 overflow-hidden rounded-t-3xl">
                 <Image
                   src={modal.imageUrl}
                   alt={modal.imageAlt || modal.label}
@@ -80,7 +79,7 @@ export default function MainBenefits({ benefits }: { benefits: HealthBenefit[] }
             <button
               onClick={() => setModal(null)}
               aria-label="Close"
-              className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-sm text-[#1E1854]/50 hover:text-[#1E1854] hover:bg-white transition-colors duration-200"
+              className="absolute top-3 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-sm text-[#1E1854]/50 hover:text-[#1E1854] hover:bg-white transition-colors duration-200"
             >
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <path d="M11 3L3 11M3 3l8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
@@ -88,7 +87,7 @@ export default function MainBenefits({ benefits }: { benefits: HealthBenefit[] }
             </button>
 
             {/* Content */}
-            <div className="px-7 pt-4 pb-8 overflow-y-auto">
+            <div className="flex-1 px-7 pt-4 overflow-y-auto" style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}>
               <h3 className="text-xl font-semibold text-[#1E1854] tracking-[-0.02em] leading-snug mb-3">{modal.label}</h3>
               <p className="text-sm text-[#1E1854]/65 leading-relaxed">{modal.description}</p>
               {modal.blogSlug && (

@@ -40,17 +40,19 @@ export default function ResultsTimeline({ steps }: { steps: ResultsTimelineStep[
             <div className="mt-3 pl-6">
               <p className="text-base font-semibold tracking-[-0.01em]">{step.title}</p>
               <div
-                className="overflow-hidden transition-all duration-500"
-                style={{ maxHeight: expanded ? '400px' : '0px', opacity: expanded ? 1 : 0 }}
+                className="grid transition-[grid-template-rows,opacity] duration-500"
+                style={{ gridTemplateRows: expanded ? '1fr' : '0fr', opacity: expanded ? 1 : 0 }}
               >
-                <ul className="space-y-1.5 mt-3">
-                  {step.bullets.split('\n').filter(Boolean).map((b) => (
-                    <li key={b} className="text-sm text-[hsla(var(--color-secondary)/0.75)] flex items-start gap-2">
-                      <span className="mt-1.5 w-1 h-1 rounded-full bg-[#1E1854]/20 shrink-0" />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
+                <div className="overflow-hidden">
+                  <ul className="space-y-1.5 mt-3">
+                    {step.bullets.split('\n').filter(Boolean).map((b) => (
+                      <li key={b} className="text-sm text-[hsla(var(--color-secondary)/0.75)] flex items-start gap-2">
+                        <span className="mt-1.5 w-1 h-1 rounded-full bg-[#1E1854]/20 shrink-0" />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -77,17 +79,19 @@ export default function ResultsTimeline({ steps }: { steps: ResultsTimelineStep[
               </span>
               <p className="text-base font-semibold tracking-[-0.01em] leading-snug">{step.title}</p>
               <div
-                className="overflow-hidden transition-all duration-500"
-                style={{ maxHeight: expanded ? '400px' : '0px', opacity: expanded ? 1 : 0 }}
+                className="grid transition-[grid-template-rows,opacity] duration-500"
+                style={{ gridTemplateRows: expanded ? '1fr' : '0fr', opacity: expanded ? 1 : 0 }}
               >
-                <ul className="space-y-1.5">
-                  {step.bullets.split('\n').filter(Boolean).map((b) => (
-                    <li key={b} className="text-sm text-[hsla(var(--color-secondary)/0.75)] flex items-start gap-2">
-                      <span className="mt-1.5 w-1 h-1 rounded-full bg-[#1E1854]/20 shrink-0" />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
+                <div className="overflow-hidden">
+                  <ul className="space-y-1.5">
+                    {step.bullets.split('\n').filter(Boolean).map((b) => (
+                      <li key={b} className="text-sm text-[hsla(var(--color-secondary)/0.75)] flex items-start gap-2">
+                        <span className="mt-1.5 w-1 h-1 rounded-full bg-[#1E1854]/20 shrink-0" />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </motion.div>
           ))}

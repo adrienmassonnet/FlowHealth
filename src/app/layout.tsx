@@ -5,17 +5,23 @@ import Script from "next/script";
 import "./globals.css";
 import Header from "@/app/components/Header";
 import ScrollManager from "@/app/components/ScrollManager";
-const outfit = Outfit({ subsets: ["latin"] });
+const outfit = Outfit({ subsets: ["latin"], display: "swap", preload: true });
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.flow-health.ch';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/flow-logomark.svg',
+  },
   title: {
     default: 'Flow Health — Stable Energy for Deep Focus',
     template: '%s | Flow Health',
   },
-  description: 'Flow is a premium Swiss cognitive supplement — 13 clinically-dosed active ingredients for sustained focus, balanced mood, and long-term brain health. No caffeine, no sugar, no fillers.',
+  description: 'Flow is a premium Swiss cognitive supplement — 16 clinically-dosed active ingredients for sustained focus, balanced mood, and long-term brain health. No caffeine, no sugar, no fillers.',
   keywords: ['cognitive supplement', 'nootropic', 'focus supplement', 'Swiss supplement', "lion's mane", 'saffron extract', 'mental clarity', 'brain health'],
   authors: [{ name: 'Flow Health' }],
   creator: 'Flow Health',
@@ -25,14 +31,12 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: 'Flow Health',
     title: 'Flow Health — Stable Energy for Deep Focus',
-    description: 'Flow is a premium Swiss cognitive supplement — 13 clinically-dosed active ingredients for sustained focus, balanced mood, and long-term brain health.',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Flow Health — Cognitive Performance Formula' }],
+    description: 'Flow is a premium Swiss cognitive supplement — 16 clinically-dosed active ingredients for sustained focus, balanced mood, and long-term brain health.',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Flow Health — Stable Energy for Deep Focus',
-    description: 'Flow is a premium Swiss cognitive supplement — 13 clinically-dosed active ingredients for sustained focus, balanced mood, and long-term brain health.',
-    images: ['/og-image.png'],
+    description: 'Flow is a premium Swiss cognitive supplement — 16 clinically-dosed active ingredients for sustained focus, balanced mood, and long-term brain health.',
   },
   robots: {
     index: true,
@@ -48,8 +52,8 @@ const organizationJsonLd = {
   '@type': 'Organization',
   name: 'Flow Health',
   url: SITE_URL,
-  logo: `${SITE_URL}/og-image.png`,
-  description: 'Swiss cognitive supplement brand. Flow is a daily liquid nootropic with 13 clinically-dosed active ingredients for focus, mood, and long-term brain health.',
+  logo: `${SITE_URL}/favicon.svg`,
+  description: 'Swiss cognitive supplement brand. Flow is a daily liquid nootropic with 16 clinically-dosed active ingredients for focus, mood, and long-term brain health.',
   foundingDate: '2022',
   foundingLocation: { '@type': 'Place', name: 'Geneva, Switzerland' },
   contactPoint: { '@type': 'ContactPoint', email: 'hello@flowhealth.com', contactType: 'customer support' },
@@ -63,8 +67,11 @@ const organizationJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-pt-16">
       <head>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Prevent browser scroll restoration before JS hydrates */}
+        <script dangerouslySetInnerHTML={{ __html: 'history.scrollRestoration = "manual"' }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
@@ -95,11 +102,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N3CRPDLV" height="0" width="0" style={{display:'none',visibility:'hidden'}}></iframe></noscript>
         <ScrollManager />
         <Header />
-        {/* Offset for fixed header (announcement bar ~32px + nav ~56px) */}
-        <div>
-          {children}
-
-        <footer className="footer-gradient text-white/50 mt-0">
+        {children}
+        <footer className="footer-gradient text-white/50 mt-12">
           <div className="max-w-[1200px] mx-auto px-6 py-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16">
 
             {/* About Flow */}
@@ -136,6 +140,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <ul className="space-y-3 text-xs">
                 {[
                   { label: 'FAQ', href: '/pages/faq' },
+                  { label: 'Manage subscription', href: '/pages/subscription' },
                   { label: 'Shipping policy', href: '/pages/shipping-policy' },
                   { label: 'Contact us', href: '/pages/contact' },
                   { label: 'Privacy policy', href: '/pages/privacy-policy' },
@@ -181,7 +186,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </svg>
           </div>
         </footer>
-        </div>
       </body>
     </html>
   );

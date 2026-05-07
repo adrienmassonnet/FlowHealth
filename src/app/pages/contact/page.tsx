@@ -121,7 +121,7 @@ export default function ContactPage() {
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="grid grid-cols-2 gap-3">
                       <div className="space-y-1.5">
-                        <label className="text-xs font-medium text-[#1E1854]/60 tracking-[0.04em]">First name</label>
+                        <label className="text-xs font-medium text-[#1E1854]/55 tracking-[0.04em]">First name</label>
                         <input
                           type="text"
                           required
@@ -132,7 +132,7 @@ export default function ContactPage() {
                         />
                       </div>
                       <div className="space-y-1.5">
-                        <label className="text-xs font-medium text-[#1E1854]/60 tracking-[0.04em]">Last name</label>
+                        <label className="text-xs font-medium text-[#1E1854]/55 tracking-[0.04em]">Last name</label>
                         <input
                           type="text"
                           required
@@ -145,7 +145,7 @@ export default function ContactPage() {
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-xs font-medium text-[#1E1854]/60 tracking-[0.04em]">Your email</label>
+                      <label className="text-xs font-medium text-[#1E1854]/55 tracking-[0.04em]">Your email</label>
                       <div className="relative">
                         <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#1E1854]/30">
                           <rect x="2" y="3.5" width="12" height="9" rx="1.5" stroke="currentColor" strokeWidth="1.2"/>
@@ -163,7 +163,7 @@ export default function ContactPage() {
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-xs font-medium text-[#1E1854]/60 tracking-[0.04em]">How can we help?</label>
+                      <label className="text-xs font-medium text-[#1E1854]/55 tracking-[0.04em]">How can we help?</label>
                       <textarea
                         required
                         rows={4}

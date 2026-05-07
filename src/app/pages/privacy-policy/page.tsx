@@ -1,3 +1,10 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy',
+  description: 'How Flow Health collects, uses, and protects your personal data. Read our full privacy policy.',
+};
+
 export default function PrivacyPolicyPage() {
   return (
     <main className="max-w-4xl mx-auto px-6 pt-20 pb-24 space-y-12">

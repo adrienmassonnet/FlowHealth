@@ -53,12 +53,12 @@ export default function PurchaseSelector({ price, currencyCode, discountPercent 
           <span className={`mt-0.5 shrink-0 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
             isSubscribe ? 'border-white' : 'border-[var(--color-border)]'
           }`}>
-            {isSubscribe && <span className="w-2.5 h-2.5 rounded-full bg-white" />}
+            {isSubscribe && <span className="block w-2.5 h-2.5 rounded-full bg-white" />}
           </span>
 
           <div className="flex-1 min-w-0 pr-10">
             <p className={`text-sm font-semibold tracking-[-0.01em] ${isSubscribe ? 'text-white' : ''}`}>
-              Subscribe
+              Monthly delivery
             </p>
             <div className="mt-1.5 flex items-baseline gap-2">
               <span className={`text-xl font-semibold tracking-[-0.02em] ${isSubscribe ? 'text-white' : ''}`}>
@@ -67,7 +67,7 @@ export default function PurchaseSelector({ price, currencyCode, discountPercent 
               <span className={`text-sm line-through ${isSubscribe ? 'text-white/40' : 'text-[hsla(var(--color-secondary)/0.6)]'}`}>{fullPrice}</span>
             </div>
             <p className={`text-xs mt-1.5 leading-relaxed ${isSubscribe ? 'text-white/65' : 'text-[hsla(var(--color-secondary)/0.7)]'}`}>
-              Flow delivered every month &middot; Cancel anytime, zero hassle
+              Cancel any time after the second month with zero hassle.
             </p>
           </div>
         </div>

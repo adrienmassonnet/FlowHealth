@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createStorefrontApiClient } from '@shopify/storefront-api-client';
+import { Resend } from 'resend';
+import { prelaunchConfirmationEmail } from '@/lib/email-templates';
+import { subscribeToKlaviyoList, trackKlaviyoEvent } from '@/lib/klaviyo';
 
 function shopifyClient() {
   return createStorefrontApiClient({
@@ -55,6 +58,37 @@ export async function POST(req: NextRequest) {
     if (fatalErrors.length > 0) {
       console.error('[prelaunch] customerCreate errors', fatalErrors);
       return NextResponse.json({ error: 'Could not register email' }, { status: 422 });
+    }
+
+    // Subscribe to Klaviyo pre-launch list
+    const klaviyoKey = process.env.KLAVIYO_PRIVATE_API_KEY;
+    const klaviyoListId = process.env.KLAVIYO_PRELAUNCH_LIST_ID;
+    if (klaviyoKey && klaviyoListId) {
+      try {
+        await Promise.all([
+          subscribeToKlaviyoList(email, klaviyoListId, notifyPromos ?? true),
+          trackKlaviyoEvent(email, 'Pre-Launch Signup', { notifyPromos: notifyPromos ?? true }),
+        ]);
+      } catch (klaviyoErr) {
+        console.error('[prelaunch] Klaviyo error', klaviyoErr);
+      }
+    }
+
+    // Send confirmation email via Resend
+    const resendKey = process.env.RESEND_API_KEY;
+    if (resendKey && !resendKey.startsWith('re_REPLACE')) {
+      try {
+        const resend = new Resend(resendKey);
+        const from = process.env.RESEND_FROM_EMAIL ?? 'Flow <hello@flowhealth.com>';
+        const { subject, html, text } = prelaunchConfirmationEmail(email);
+        const { error: sendError } = await resend.emails.send({ from, to: email, subject, html, text });
+        if (sendError) {
+          console.error('[prelaunch] Resend send error', sendError);
+        }
+      } catch (sendErr) {
+        // Non-fatal: email sending failure should not block the signup response
+        console.error('[prelaunch] Resend exception', sendErr);
+      }
     }
 
     return NextResponse.json({ ok: true });

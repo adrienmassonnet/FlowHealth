@@ -1,4 +1,10 @@
+import type { Metadata } from 'next';
 import { PRODUCT_META } from '@/lib/product-meta';
+
+export const metadata: Metadata = {
+  title: 'Terms & Conditions',
+  description: 'Flow Health terms and conditions — your rights, our obligations, and how orders, subscriptions, and returns are governed.',
+};
 
 export default function TermsAndConditionsPage() {
   return (

@@ -1,3 +1,10 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Shipping Policy',
+  description: 'Flow ships worldwide from Switzerland with fast, tracked, and climate-controlled logistics. View delivery times, costs, and customs information.',
+};
+
 export default function ShippingPolicyPage() {
   return (
     <main className="max-w-4xl mx-auto px-6 pt-20 pb-24 space-y-12">

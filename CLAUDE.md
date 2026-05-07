@@ -77,7 +77,7 @@ Single-product supplement brand. Every decision must serve one goal: convert a v
 - `@/` path alias for all imports
 - `cdn.shopify.com` images whitelisted in `next.config.ts`
 - Prices: `parseFloat(amount).toFixed(2)`
-- Font: Geist only (via `next/font/google`)
+- Font: Outfit only (via `next/font/google`)
 
 ### Commands
 ```bash

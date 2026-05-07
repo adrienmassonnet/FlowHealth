@@ -2,6 +2,9 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
+
+const ease = [0.25, 0.1, 0.1, 1] as const;
 
 interface GalleryImage {
   url: string;
@@ -14,7 +17,12 @@ export default function ProductImageGallery({ images, title }: { images: Gallery
   const thumbnails = images.filter((_, i) => i !== active);
 
   return (
-    <div className="space-y-3">
+    <motion.div
+      className="space-y-3"
+      initial={{ opacity: 0, scale: 0.96 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.8, ease }}
+    >
       {/* Main image */}
       <div className="relative aspect-square overflow-hidden rounded-2xl bg-[#F6F5FA]">
         {images[active] && (
@@ -51,6 +59,6 @@ export default function ProductImageGallery({ images, title }: { images: Gallery
           })}
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }

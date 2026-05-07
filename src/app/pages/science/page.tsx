@@ -1,3 +1,10 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Science',
+  description: 'The science behind Flow — how 16 clinically-dosed ingredients work together to support focus, mood, and long-term brain health.',
+};
+
 export default function SciencePage() {
   return (
     <main className="max-w-[1200px] mx-auto px-6 py-24">

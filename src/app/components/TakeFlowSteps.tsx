@@ -9,21 +9,16 @@ export default function TakeFlowSteps() {
 
   return (
     <section>
-      <div className="max-w-[1200px] mx-auto px-6 py-20">
+      <div className="max-w-[1200px] mx-auto px-6 pt-4 pb-20 md:pt-8">
+        <h2 className="text-3xl font-semibold tracking-[-0.03em] leading-[1.05] mb-7">
+          The right setup unlocks all the benefits.
+        </h2>
         <div className="flex flex-col md:flex-row items-stretch gap-16 md:gap-20">
 
           {/* Left: text */}
-          <div className="w-full md:w-[42%] shrink-0 space-y-6 md:pt-4">
-            <div className="space-y-3">
-              <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">
-                How to consume Flow
-              </p>
-              <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-[1.05]">
-                The Right Predisposition Unlocks Maximum Benefits
-              </h2>
-            </div>
+          <div className="w-full md:w-[42%] shrink-0 space-y-6">
             {/* Step cards */}
-            <div className="space-y-3 pt-2">
+            <div className="space-y-3">
               {steps.map((step, i) => (
                 <button
                   key={i}
@@ -35,40 +30,35 @@ export default function TakeFlowSteps() {
                   }`}
                 >
                   <div className="flex items-start gap-4 px-5 py-4">
-                    <span className={`text-xs font-semibold tabular-nums tracking-[0.06em] mt-[3px] shrink-0 transition-colors ${
-                      active === i ? 'text-[hsla(var(--color-accent)/1)]' : 'text-[hsla(var(--color-secondary)/0.35)]'
-                    }`}>
-                      {step.number}
-                    </span>
                     <div className="flex-1 min-w-0">
-                      <p className={`text-base font-semibold transition-colors leading-snug ${
-                        active === i ? 'text-[#1E1854]' : 'text-[hsla(var(--color-secondary)/0.55)]'
-                      }`}>
+                      <p className="text-base font-semibold leading-snug text-[#1E1854]">
                         {step.title}
                       </p>
                       <div
-                        className="overflow-hidden"
+                        className="grid"
                         style={{
-                          maxHeight: active === i ? '300px' : '0px',
+                          gridTemplateRows: active === i ? '1fr' : '0fr',
                           opacity: active === i ? 1 : 0,
-                          transition: 'max-height 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease',
+                          transition: 'grid-template-rows 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease',
                         }}
                       >
+                      <div className="overflow-hidden">
                         {Array.isArray(step.body) ? (
-                          <ul className="mt-2 space-y-1">
-                            {step.body.map((line) => (
-                              <li key={line} className="text-sm text-[hsla(var(--color-secondary)/0.65)] leading-relaxed flex items-baseline gap-2">
-                                <span className="relative top-[-1px] w-1 h-1 rounded-full bg-[hsla(var(--color-secondary)/0.3)] shrink-0 inline-block" />
+                          <ol className="mt-2 space-y-1">
+                            {step.body.map((line, idx) => (
+                              <li key={line} className="text-sm text-[hsla(var(--color-secondary)/0.75)] leading-relaxed flex items-baseline gap-2">
+                                <span className="text-xs font-semibold tabular-nums text-[hsla(var(--color-accent)/0.7)] shrink-0">{idx + 1}.</span>
                                 {line}
                               </li>
                             ))}
-                          </ul>
+                          </ol>
                         ) : (
-                          <p className="text-sm text-[hsla(var(--color-secondary)/0.65)] leading-relaxed mt-2">
+                          <p className="text-sm text-[hsla(var(--color-secondary)/0.75)] leading-relaxed mt-2">
                             {step.body}
                           </p>
                         )}
                       </div>
+                    </div>
                     </div>
                   </div>
                 </button>
@@ -77,7 +67,7 @@ export default function TakeFlowSteps() {
           </div>
 
           {/* Right: image accordion */}
-          <div className="w-full md:flex-1 hidden md:flex items-stretch gap-3 min-h-[480px]">
+          <div className="w-full md:flex-1 hidden md:flex items-stretch gap-3">
             {steps.map((step, i) => {
               const isActive = active === i;
               return (

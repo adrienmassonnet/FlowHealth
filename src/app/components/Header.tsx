@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { trackEvent } from '@/lib/clarity';
@@ -39,30 +38,6 @@ const aboutLinks = [
   },
 ];
 
-const latestPosts = [
-  {
-    slug: 'nootropics-explained',
-    title: 'Nootropics Explained: What They Are and How They Actually Work',
-    readTime: '7 min read',
-    tag: 'Science',
-    image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&q=80&auto=format&fit=crop',
-  },
-  {
-    slug: 'lions-mane-brain',
-    title: "Lion's Mane and Neuroplasticity: What the Research Says",
-    readTime: '8 min read',
-    tag: 'Science',
-    image: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&q=80&auto=format&fit=crop',
-  },
-  {
-    slug: 'morning-ritual',
-    title: 'Building a Morning Ritual That Actually Sticks',
-    readTime: '6 min read',
-    tag: 'Lifestyle',
-    image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&q=80&auto=format&fit=crop',
-  },
-];
-
 // ─── Animation variants ──────────────────────────────────────────────────────
 
 const easeOut: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -92,7 +67,7 @@ const backdropVariants = {
 
 // ─── LanguageSelector ────────────────────────────────────────────────────────
 
-function LanguageSelector({ muted, compact }: { muted?: boolean; compact?: boolean }) {
+function LanguageSelector({ muted }: { muted?: boolean }) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState('EN');
   const ref = useRef<HTMLDivElement>(null);
@@ -119,17 +94,6 @@ function LanguageSelector({ muted, compact }: { muted?: boolean; compact?: boole
           <circle cx="8" cy="8" r="6.5" stroke="currentColor" strokeWidth="1.2"/>
           <path d="M8 1.5C8 1.5 5.5 4 5.5 8C5.5 12 8 14.5 8 14.5M8 1.5C8 1.5 10.5 4 10.5 8C10.5 12 8 14.5 8 14.5M1.5 8H14.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
         </svg>
-        {selected}
-        {!compact && (
-          <motion.svg
-            width="8" height="8" viewBox="0 0 8 8" fill="none"
-            animate={{ rotate: open ? 180 : 0 }}
-            transition={{ duration: 0.2 }}
-            className="shrink-0"
-          >
-            <path d="M1.5 3L4 5.5L6.5 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-          </motion.svg>
-        )}
       </button>
 
       <AnimatePresence>
@@ -184,8 +148,8 @@ function NavButton({ label, open }: { label: string; open: boolean }) {
     <button
       className={`relative flex items-center gap-1.5 text-xs tracking-[0.08em] uppercase px-3 py-1.5 rounded-full transition-all duration-200 ${
         open
-          ? 'bg-[#1E1854] text-white'
-          : 'text-[hsla(var(--color-secondary)/1)] hover:text-[#3B38B8] hover:bg-[#3B38B8]/[0.08]'
+          ? 'bg-[#E8E8FF] text-[#1E1854]'
+          : 'text-[hsla(var(--color-secondary)/1)] hover:text-[#3B38B8] hover:bg-[#E8E8FF]'
       }`}
     >
       {label}
@@ -196,11 +160,10 @@ function NavButton({ label, open }: { label: string; open: boolean }) {
 
 // ─── Header ──────────────────────────────────────────────────────────────────
 
-type ActiveMenu = 'about' | 'learn' | null;
+type ActiveMenu = 'about' | null;
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const [activeMenu, setActiveMenu] = useState<ActiveMenu>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
@@ -217,17 +180,6 @@ export default function Header() {
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => { window.removeEventListener('scroll', onScroll); cancelAnimationFrame(rafId); };
-  }, []);
-
-  useEffect(() => {
-    let timer: ReturnType<typeof setTimeout>;
-    const check = () => {
-      clearTimeout(timer);
-      timer = setTimeout(() => setIsMobile(window.innerWidth < 768), 150);
-    };
-    setIsMobile(window.innerWidth < 768);
-    window.addEventListener('resize', check);
-    return () => { window.removeEventListener('resize', check); clearTimeout(timer); };
   }, []);
 
   // Close desktop dropdowns on outside click
@@ -261,6 +213,11 @@ export default function Header() {
   function scheduleClose() {
     closeTimer.current = setTimeout(() => setActiveMenu(null), 120);
   }
+
+  const pillStyle = {
+    backgroundColor: 'rgba(255,255,255,0.75)',
+    boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
+  };
 
   return (
     <>
@@ -313,23 +270,23 @@ export default function Header() {
                 </button>
               </div>
 
-              {/* Get Flow CTA — top of drawer */}
+              {/* Shop CTA — top of drawer */}
               <div className="px-4 pt-4 pb-3 shrink-0">
                 <Link
                   href="/products/flow"
                   onClick={() => { setMobileOpen(false); trackEvent('header_get_flow_mobile'); }}
                   className="btn-cta flex items-center justify-center w-full py-3.5 rounded-full text-white text-xs tracking-[0.08em] uppercase font-semibold"
                 >
-                  Get Flow
+                  Shop
                 </Link>
               </div>
 
-              {/* Drawer nav — sections mirroring desktop dropdowns */}
+              {/* Drawer nav */}
               <nav className="flex-1 overflow-y-auto py-5">
 
-                {/* About Flow section */}
+                {/* For the Seekers section */}
                 <div className="px-3 mb-5">
-                  <p className="text-xs uppercase tracking-[0.14em] font-semibold text-[hsla(var(--color-secondary)/0.4)] px-3 mb-2">About Flow</p>
+                  <p className="text-xs uppercase tracking-[0.14em] font-semibold text-[hsla(var(--color-secondary)/0.4)] px-3 mb-2">For the Seekers</p>
                   <div className="space-y-0.5">
                     {aboutLinks.map((link) => (
                       <Link
@@ -346,40 +303,20 @@ export default function Header() {
                         </div>
                       </Link>
                     ))}
-                  </div>
-                </div>
-
-                {/* Divider */}
-                <div className="mx-3 mb-5 border-t border-[var(--color-border)]" />
-
-                {/* Learn section */}
-                <div className="px-3 mb-5">
-                  <div className="flex items-center justify-between px-3 mb-2">
-                    <p className="text-xs uppercase tracking-[0.14em] font-semibold text-[hsla(var(--color-secondary)/0.4)]">Learn</p>
                     <Link
                       href="/pages/blog-posts"
                       onClick={() => setMobileOpen(false)}
-                      className="text-xs uppercase tracking-[0.1em] font-semibold text-[hsla(var(--color-accent)/1)] hover:opacity-70 transition-opacity"
+                      className="group flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-[#1E185408] transition-colors"
                     >
-                      See all
+                      <span className="shrink-0 w-8 h-8 rounded-lg bg-[#1E18540A] flex items-center justify-center text-[#1E1854]/60 group-hover:bg-[#1E1854] group-hover:text-white transition-colors">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                          <path d="M4 5h12M4 8h8M4 11h10M4 14h6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+                        </svg>
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium text-[#1E1854]">Our Articles</p>
+                      </div>
                     </Link>
-                  </div>
-                  <div className="space-y-0.5">
-                    {latestPosts.slice(0, 3).map((post) => (
-                      <Link
-                        key={post.slug}
-                        href={`/pages/blog-posts/${post.slug}`}
-                        onClick={() => setMobileOpen(false)}
-                        className="group flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-[#1E185408] transition-colors"
-                      >
-                        <div className="relative shrink-0 w-10 h-10 rounded-lg overflow-hidden bg-[#1E18540A]">
-                          <Image src={post.image} alt={post.title} fill className="object-cover" sizes="40px" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium text-[#1E1854] leading-snug line-clamp-2 group-hover:text-[hsla(var(--color-accent)/1)] transition-colors">{post.title}</p>
-                        </div>
-                      </Link>
-                    ))}
                   </div>
                 </div>
 
@@ -387,23 +324,14 @@ export default function Header() {
                 <div className="mx-3 mb-4 border-t border-[var(--color-border)]" />
 
                 {/* Utility links */}
-                <div className="px-3 space-y-0.5">
-                  {[
-                    { href: '/pages/faq', label: 'FAQ' },
-                    { href: '/pages/contact', label: 'Contact' },
-                  ].map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      onClick={() => setMobileOpen(false)}
-                      className="flex items-center justify-between px-3 py-3 rounded-xl text-sm font-medium text-[#1E1854] hover:bg-[#1E185408] transition-colors"
-                    >
-                      {link.label}
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                        <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </Link>
-                  ))}
+                <div className="px-6">
+                  <Link
+                    href="/pages/faq"
+                    onClick={() => setMobileOpen(false)}
+                    className="inline-flex items-center px-4 py-1.5 rounded-full border border-[var(--color-border)] text-xs tracking-[0.08em] uppercase font-medium text-[#1E1854] hover:bg-[#1E185408] transition-colors"
+                  >
+                    FAQ
+                  </Link>
                 </div>
               </nav>
 
@@ -413,9 +341,7 @@ export default function Header() {
       </AnimatePresence>
 
       <header className="fixed top-2 left-0 right-0 z-50">
-        {/* Nav wrapper */}
         <div className="relative">
-
           <div className="max-w-[1200px] mx-auto px-6">
             <div className="h-14 flex items-center justify-between gap-3">
 
@@ -424,12 +350,12 @@ export default function Header() {
                 initial={{ opacity: 0, y: -8, filter: 'blur(6px)' }}
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 transition={{ duration: 0.9, ease: easeOut }}
-                className="md:flex-none flex items-center gap-3 md:gap-5 border border-white/30 backdrop-blur-xl h-10 rounded-full px-5"
-                style={{ backgroundColor: 'rgba(255,255,255,0.75)', boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}
+                className="md:flex-none flex items-center justify-center gap-3 md:gap-5 border border-white/30 backdrop-blur-xl h-10 w-10 md:w-auto rounded-full px-0 md:px-5"
+                style={pillStyle}
               >
                 {/* Hamburger — mobile only */}
                 <button
-                  className="md:hidden p-1 -ml-1 text-[#1E1854] shrink-0"
+                  className="md:hidden p-1 text-[#1E1854] shrink-0"
                   aria-label="Open menu"
                   onClick={() => setMobileOpen(true)}
                 >
@@ -438,7 +364,7 @@ export default function Header() {
                   </svg>
                 </button>
 
-                {/* Logo — desktop only, always visible as anchor */}
+                {/* Logo — desktop only */}
                 <Link
                   href="/"
                   onClick={() => { setActiveMenu(null); trackEvent('header_logo_click'); }}
@@ -451,10 +377,8 @@ export default function Header() {
 
                 {/* Desktop nav dropdowns */}
                 <nav ref={navRef} className="hidden md:flex items-center gap-2 relative">
-
-                    {/* About Flow dropdown */}
                     <div className="relative" onMouseEnter={() => { openMenu('about'); trackEvent('header_menu_about_flow'); }} onMouseLeave={scheduleClose}>
-                      <NavButton label="About Flow" open={activeMenu === 'about'} />
+                      <NavButton label="For the Seekers" open={activeMenu === 'about'} />
                       <AnimatePresence>
                         {activeMenu === 'about' && (
                           <motion.div
@@ -463,111 +387,59 @@ export default function Header() {
                             initial="hidden"
                             animate="visible"
                             exit="exit"
-                            className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-72 rounded-2xl border border-[var(--color-border)] bg-white shadow-[0_8px_40px_rgba(0,0,0,0.12)] overflow-hidden z-50"
+                            className="absolute left-1/2 -translate-x-1/2 top-full mt-3 w-[280px] rounded-2xl overflow-hidden z-50 bg-white"
+                            style={{
+                              border: '1px solid rgba(30,24,84,0.08)',
+                              boxShadow: '0 1px 0 rgba(255,255,255,0.9) inset, 0 20px 48px rgba(30,24,84,0.11)',
+                            }}
                           >
-                            <div className="px-4 pt-4 pb-2">
-                              <p className="text-xs uppercase tracking-[0.12em] font-semibold text-[hsla(var(--color-secondary)/0.45)]">About Flow</p>
-                            </div>
                             <motion.div className="p-2 space-y-0.5" variants={listVariants} initial="hidden" animate="visible">
                               {aboutLinks.map((link) => (
                                 <motion.div key={link.href} variants={itemVariants}>
                                   <Link
                                     href={link.href}
                                     onClick={() => setActiveMenu(null)}
-                                    className="group flex items-center gap-4 px-3 py-3.5 rounded-xl hover:bg-[#1E185408] transition-colors"
+                                    className="group flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-[#E8E8FF] transition-colors duration-150"
                                   >
-                                    <span className="shrink-0 w-9 h-9 rounded-xl bg-[#1E18540A] flex items-center justify-center text-[#1E1854] group-hover:bg-[#1E1854] group-hover:text-white transition-colors">
+                                    <span className="shrink-0 w-8 h-8 rounded-lg bg-[#1E1854]/[0.06] flex items-center justify-center text-[#1E1854]/60 group-hover:bg-[#1E1854] group-hover:text-white transition-colors duration-200">
                                       {link.icon}
                                     </span>
                                     <div className="flex-1 min-w-0">
-                                      <p className="text-sm font-semibold text-[#1E1854] group-hover:text-[hsla(var(--color-accent)/1)] transition-colors">{link.label}</p>
-                                      <p className="text-xs text-[hsla(var(--color-secondary)/0.5)] leading-snug mt-0.5">{link.description}</p>
+                                      <p className="text-sm font-semibold text-[#1E1854] leading-snug">{link.label}</p>
                                     </div>
-                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity text-[hsla(var(--color-accent)/1)]">
-                                      <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
-                                    </svg>
                                   </Link>
                                 </motion.div>
                               ))}
-                            </motion.div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-
-                    {/* Learn dropdown */}
-                    <div className="relative" onMouseEnter={() => { openMenu('learn'); trackEvent('header_menu_learn'); }} onMouseLeave={scheduleClose}>
-                      <NavButton label="Learn" open={activeMenu === 'learn'} />
-                      <AnimatePresence>
-                        {activeMenu === 'learn' && (
-                          <motion.div
-                            key="learn-panel"
-                            variants={panelVariants}
-                            initial="hidden"
-                            animate="visible"
-                            exit="exit"
-                            className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-[520px] rounded-2xl border border-[var(--color-border)] bg-white shadow-[0_8px_40px_rgba(0,0,0,0.12)] overflow-hidden z-50"
-                          >
-                            <div className="flex items-center justify-between px-5 pt-4 pb-3 border-b border-[var(--color-border)]">
-                              <p className="text-xs uppercase tracking-[0.12em] font-semibold text-[hsla(var(--color-secondary)/0.45)]">Latest articles</p>
-                              <Link
-                                href="/pages/blog-posts"
-                                onClick={() => setActiveMenu(null)}
-                                className="flex items-center gap-1 text-xs uppercase tracking-[0.1em] font-semibold text-[hsla(var(--color-accent)/1)] hover:opacity-70 transition-opacity"
-                              >
-                                See all
-                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                                  <path d="M2 5h6M5.5 2.5L8 5l-2.5 2.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
-                              </Link>
-                            </div>
-                            <motion.div className="p-3 space-y-1" variants={listVariants} initial="hidden" animate="visible">
-                              {latestPosts.map((post) => (
-                                <motion.div key={post.slug} variants={itemVariants}>
-                                  <Link
-                                    href={`/pages/blog-posts/${post.slug}`}
-                                    onClick={() => setActiveMenu(null)}
-                                    className="group flex items-center gap-4 px-3 py-3 rounded-xl hover:bg-[#1E185408] transition-colors"
-                                  >
-                                    <div className="relative shrink-0 w-14 h-14 rounded-lg overflow-hidden bg-[#1E18540A]">
-                                      <Image src={post.image} alt={post.title} fill className="object-cover" sizes="56px" />
-                                    </div>
-                                    <div className="flex-1 min-w-0">
-                                      <p className="text-xs uppercase tracking-[0.08em] font-medium text-[hsla(var(--color-secondary)/0.45)] mb-0.5">{post.tag} · {post.readTime}</p>
-                                      <p className="text-sm font-medium text-[#1E1854] leading-snug line-clamp-2 group-hover:text-[hsla(var(--color-accent)/1)] transition-colors">
-                                        {post.title}
-                                      </p>
-                                    </div>
-                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity text-[hsla(var(--color-accent)/1)]">
-                                      <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                              <motion.div variants={itemVariants}>
+                                <Link
+                                  href="/pages/blog-posts"
+                                  onClick={() => setActiveMenu(null)}
+                                  className="group flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-[#E8E8FF] transition-colors duration-150"
+                                >
+                                  <span className="shrink-0 w-8 h-8 rounded-lg bg-[#1E1854]/[0.06] flex items-center justify-center text-[#1E1854]/60 group-hover:bg-[#1E1854] group-hover:text-white transition-colors duration-200">
+                                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                                      <path d="M4 5h12M4 8h8M4 11h10M4 14h6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
                                     </svg>
-                                  </Link>
-                                </motion.div>
-                              ))}
+                                  </span>
+                                  <div className="flex-1 min-w-0">
+                                    <p className="text-sm font-semibold text-[#1E1854] leading-snug">Our Articles</p>
+                                  </div>
+                                </Link>
+                              </motion.div>
                             </motion.div>
-                            <div className="px-5 pb-4 pt-1">
-                              <Link
-                                href="/pages/blog-posts"
-                                onClick={() => setActiveMenu(null)}
-                                className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-[var(--color-border)] text-xs tracking-[0.08em] uppercase font-medium text-[#1E1854] hover:bg-[#1E1854] hover:text-white hover:border-[#1E1854] transition-colors"
-                              >
-                                View all articles
-                              </Link>
-                            </div>
                           </motion.div>
                         )}
                       </AnimatePresence>
                     </div>
                 </nav>
 
-                {/* Get Flow CTA */}
+                {/* Shop CTA */}
                 <Link
                   href="/products/flow"
                   onClick={() => { setActiveMenu(null); trackEvent('header_get_flow_desktop'); }}
-                  className="btn-cta md:ml-0 flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium text-white px-4 py-1.5 rounded-full shrink-0"
+                  className="btn-cta md:ml-0 hidden md:flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium text-white px-4 py-1.5 rounded-full shrink-0"
                 >
-                  <img src="/flow-logomark.svg?v=2" alt="" width={14} height={14} className="md:hidden w-3.5 h-3.5 [filter:brightness(0)_invert(1)]" />
-                  Get Flow
+                  Shop
                 </Link>
 
               </motion.div>
@@ -581,9 +453,10 @@ export default function Header() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.85 }}
                     transition={{ duration: 0.25, ease: easeOut }}
-                    className="md:hidden shrink-0 h-10 px-3 flex items-center justify-center rounded-full bg-white/75 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-white/30"
+                    className="md:hidden shrink-0 w-10 h-10 flex items-center justify-center rounded-full border border-white/30 backdrop-blur-xl"
+                    style={pillStyle}
                   >
-                    <LanguageSelector muted={false} compact />
+                    <LanguageSelector muted={false} />
                   </motion.span>
                 )}
               </AnimatePresence>
@@ -594,7 +467,7 @@ export default function Header() {
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 transition={{ duration: 0.9, ease: easeOut, delay: 0.08 }}
                 className="hidden md:flex items-center border border-white/30 backdrop-blur-xl h-10 rounded-full px-4"
-                style={{ backgroundColor: 'rgba(255,255,255,0.75)', boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}
+                style={pillStyle}
               >
                 <LanguageSelector muted={scrolled} />
               </motion.div>

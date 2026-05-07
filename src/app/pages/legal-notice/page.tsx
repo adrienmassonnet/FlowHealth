@@ -1,3 +1,10 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Legal Notice',
+  description: 'Legal notice and Impressum for Flow Health — company information as required under Swiss and EU law.',
+};
+
 export default function LegalNoticePage() {
   return (
     <main className="max-w-4xl mx-auto px-6 pt-20 pb-24 space-y-10">

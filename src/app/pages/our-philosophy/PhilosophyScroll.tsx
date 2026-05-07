@@ -34,10 +34,108 @@ const points = [
   },
 ];
 
-// -1 = closed, 0–3 = open point index
-const TOTAL_STATES = points.length + 1; // closed + 4 open
+const TOTAL_STATES = points.length + 1;
 
-export default function PhilosophyScroll() {
+// ── Mobile version: tap-to-expand, no scroll manipulation ──────────────────
+function PhilosophyMobile() {
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const [direction, setDirection] = useState<'forward' | 'backward'>('forward');
+
+  const isOpen = activeIndex >= 0;
+  const point = activeIndex >= 0 ? points[activeIndex] : points[0];
+  const enterClass = direction === 'forward' ? 'philosophy-enter-forward' : 'philosophy-enter-backward';
+
+  const select = (i: number) => {
+    const dir = i > activeIndex ? 'forward' : 'backward';
+    setDirection(dir);
+    setActiveIndex(i === activeIndex ? -1 : i);
+  };
+
+  return (
+    <section className="border-t border-[#1E1854]/[0.06] bg-[#F8F8FC]">
+      <div className="max-w-[1200px] mx-auto px-4 pt-6 pb-8">
+        <div className="mb-4 flex items-end justify-between">
+          <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Our Pillars</p>
+          {!isOpen && (
+            <div className="flex items-center gap-1.5 text-[#1E1854]/35">
+              <span className="text-xs tracking-[0.1em] uppercase">Tap to explore</span>
+            </div>
+          )}
+        </div>
+
+        {/* Step cards grid — compact image tiles */}
+        <div className="grid grid-cols-2 gap-2 mb-5">
+          {points.map((p, i) => (
+            <button
+              key={p.number}
+              onClick={() => select(i)}
+              className={`relative rounded-xl overflow-hidden group transition-all duration-300 h-[22vw] min-h-[80px] ${
+                i === activeIndex ? 'ring-2 ring-[#3B38B8]/60 shadow-lg shadow-[#1E1854]/20' : ''
+              }`}
+            >
+              <Image
+                src={p.image}
+                alt={p.label}
+                fill
+                className="object-cover transition-transform duration-500 group-active:scale-[1.03]"
+                sizes="50vw"
+              />
+              <div className={`absolute inset-0 transition-colors duration-300 ${
+                i === activeIndex
+                  ? 'bg-gradient-to-t from-[#1E1854]/90 via-[#1E1854]/50 to-[#3B38B8]/20'
+                  : 'bg-gradient-to-t from-[#1E1854]/80 via-[#1E1854]/20 to-transparent'
+              }`} />
+              <div className="absolute bottom-0 left-0 right-0 p-2.5 space-y-0.5">
+                <p className="text-[10px] font-mono tracking-[0.12em] text-white/45">{p.number}</p>
+                <p className="text-xs font-semibold text-white tracking-[-0.01em] leading-tight">{p.label}</p>
+              </div>
+            </button>
+          ))}
+        </div>
+
+        {/* Expanded content */}
+        {isOpen && (
+          <div className="space-y-4">
+            {/* Image */}
+            <div className="relative rounded-2xl overflow-hidden ring-1 ring-[#1E1854]/[0.08] shadow-xl shadow-[#1E1854]/[0.08]" style={{ height: '48vw', minHeight: 160 }}>
+              {points.map((p, i) => (
+                <div
+                  key={p.number}
+                  className="absolute inset-0"
+                  style={{
+                    opacity: i === activeIndex ? 1 : 0,
+                    transition: 'opacity 0.6s cubic-bezier(0.16,1,0.3,1)',
+                  }}
+                >
+                  <Image src={p.image} alt={p.heading} fill className="object-cover" sizes="100vw" priority={i === 0} />
+                </div>
+              ))}
+            </div>
+
+            {/* Text */}
+            <div key={`${activeIndex}-${direction}`} className="space-y-2 pb-2">
+              <p
+                className={`${enterClass} text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent`}
+                style={{ animationDelay: '0ms' }}
+              >{point.label}</p>
+              <h2
+                className={`${enterClass} text-2xl font-semibold tracking-[-0.03em] leading-tight text-[#1E1854]`}
+                style={{ animationDelay: '60ms' }}
+              >{point.heading}</h2>
+              <p
+                className={`${enterClass} text-sm text-[hsla(var(--color-secondary)/0.7)] leading-relaxed`}
+                style={{ animationDelay: '120ms' }}
+              >{point.description}</p>
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+// ── Desktop version: scroll-driven sticky animation ────────────────────────
+function PhilosophyDesktop() {
   const outerRef = useRef<HTMLDivElement>(null);
   const activeIndexRef = useRef(-1);
   const cooldownRef = useRef(false);
@@ -57,7 +155,6 @@ export default function PhilosophyScroll() {
     setDirection(dir);
     setActiveIndex(newIndex);
 
-    // Keep scroll position in sync: -1 → step 0, 0 → step 1, … 3 → step 4
     const outer = outerRef.current;
     const outerTop = outer.getBoundingClientRect().top + window.scrollY;
     const stepSize = (outer.offsetHeight - window.innerHeight) / TOTAL_STATES;
@@ -73,32 +170,27 @@ export default function PhilosophyScroll() {
   }, []);
 
   useEffect(() => {
-    // Compute how far window.scrollY is into the outer spacer div
     const getScrolled = () => {
       if (!outerRef.current) return -1;
-      return outerRef.current.getBoundingClientRect().top * -1; // positive once section scrolls past viewport top
+      return outerRef.current.getBoundingClientRect().top * -1;
     };
 
     const handleWheel = (e: WheelEvent) => {
       if (!outerRef.current) return;
       const scrolled = getScrolled();
       const maxScrolled = outerRef.current.offsetHeight - window.innerHeight;
-      // In the sticky zone when we've scrolled into (but not past) the outer spacer
       const isStuck = scrolled >= -4 && scrolled <= maxScrolled + 4;
       if (!isStuck) return;
 
       const down = e.deltaY > 0;
       const cur = activeIndexRef.current;
 
-      // At boundaries: release scroll to pass through naturally
       if (down && cur >= points.length - 1) return;
       if (!down && cur <= -1) return;
 
-      // Block ALL native scroll while inside the section
       e.preventDefault();
 
       if (cooldownRef.current) {
-        // Drain accumulator during cooldown so residual momentum can't queue next step
         deltaAccumRef.current = 0;
         return;
       }
@@ -110,7 +202,6 @@ export default function PhilosophyScroll() {
       goTo(down ? cur + 1 : cur - 1, down ? 'forward' : 'backward');
     };
 
-    // Touch / mobile fallback — disabled while section is stuck (wheel owns it)
     let ticking = false;
     const handleScroll = () => {
       if (programmaticScrollRef.current || cooldownRef.current || !outerRef.current) return;
@@ -121,11 +212,10 @@ export default function PhilosophyScroll() {
         if (!outerRef.current || programmaticScrollRef.current) return;
         const scrolled = getScrolled();
         const total = outerRef.current.offsetHeight - window.innerHeight;
-        if (scrolled >= -4 && scrolled <= total + 4) return; // stuck — wheel owns it
+        if (scrolled >= -4 && scrolled <= total + 4) return;
         if (total <= 0) return;
         const progress = Math.max(0, Math.min(0.9999, scrolled / total));
         let newIndex = Math.min(points.length - 1, Math.floor(progress * TOTAL_STATES) - 1);
-        // Scroll handler can only go backward to closed state; forward from closed requires a wheel event
         if (newIndex > -1 && activeIndexRef.current === -1) return;
         if (newIndex !== activeIndexRef.current) {
           const dir = newIndex > activeIndexRef.current ? 'forward' : 'backward';
@@ -136,76 +226,24 @@ export default function PhilosophyScroll() {
       });
     };
 
-    // Touch handling for mobile
-    let touchStartY = 0;
-
-    const handleTouchStart = (e: TouchEvent) => {
-      touchStartY = e.touches[0].clientY;
-    };
-
-    const handleTouchMove = (e: TouchEvent) => {
-      if (!outerRef.current) return;
-      const scrolled = getScrolled();
-      const maxScrolled = outerRef.current.offsetHeight - window.innerHeight;
-      const isStuck = scrolled >= -4 && scrolled <= maxScrolled + 4;
-      if (!isStuck) return;
-
-      const cur = activeIndexRef.current;
-      const deltaY = touchStartY - e.touches[0].clientY;
-      const down = deltaY > 0;
-
-      // At boundaries let native scroll pass through
-      if (down && cur >= points.length - 1) return;
-      if (!down && cur <= -1) return;
-
-      e.preventDefault();
-    };
-
-    const handleTouchEnd = (e: TouchEvent) => {
-      if (!outerRef.current) return;
-      const scrolled = getScrolled();
-      const maxScrolled = outerRef.current.offsetHeight - window.innerHeight;
-      const isStuck = scrolled >= -4 && scrolled <= maxScrolled + 4;
-      if (!isStuck) return;
-
-      const endY = e.changedTouches[0].clientY;
-      const delta = touchStartY - endY;
-      if (Math.abs(delta) < 40) return;
-
-      const down = delta > 0;
-      const cur = activeIndexRef.current;
-      if (down && cur >= points.length - 1) return;
-      if (!down && cur <= -1) return;
-
-      goTo(down ? cur + 1 : cur - 1, down ? 'forward' : 'backward');
-    };
-
     window.addEventListener('wheel', handleWheel, { passive: false });
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('touchstart', handleTouchStart, { passive: true });
-    window.addEventListener('touchmove', handleTouchMove, { passive: false });
-    window.addEventListener('touchend', handleTouchEnd, { passive: true });
     return () => {
       window.removeEventListener('wheel', handleWheel);
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('touchstart', handleTouchStart);
-      window.removeEventListener('touchmove', handleTouchMove);
-      window.removeEventListener('touchend', handleTouchEnd);
     };
   }, [goTo]);
 
   const isOpen = activeIndex >= 0;
-  const isEven = activeIndex % 2 === 0;
   const point = activeIndex >= 0 ? points[activeIndex] : points[0];
   const enterClass = direction === 'forward' ? 'philosophy-enter-forward' : 'philosophy-enter-backward';
 
   return (
     <section className="border-t border-[#1E1854]/[0.06]">
-      {/* Outer spacer: closed + 4 open + 1 exit buffer = 600vh */}
       <div ref={outerRef} style={{ height: `${(points.length + 2) * 100}vh` }} className="relative">
         <div className="sticky top-0 h-screen overflow-hidden bg-[#F8F8FC]">
 
-          {/* ── CLOSED STATE ── 4 tall image cards */}
+          {/* ── CLOSED STATE ── */}
           <div
             className="absolute inset-0 flex flex-col"
             style={{
@@ -225,7 +263,7 @@ export default function PhilosophyScroll() {
                   </svg>
                 </div>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div className="grid grid-cols-4 gap-3">
                 {points.map((p) => (
                   <div key={p.number} className="relative rounded-2xl overflow-hidden group h-[42vh]">
                     <Image
@@ -233,7 +271,7 @@ export default function PhilosophyScroll() {
                       alt={p.label}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                      sizes="(max-width: 768px) 50vw, 25vw"
+                      sizes="25vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1E1854]/85 via-[#1E1854]/20 to-transparent" />
                     <div className="absolute bottom-0 left-0 right-0 p-6 space-y-1">
@@ -246,7 +284,7 @@ export default function PhilosophyScroll() {
             </div>
           </div>
 
-          {/* ── OPEN STATE ── mini-cards nav + full content */}
+          {/* ── OPEN STATE ── */}
           <div
             className="absolute inset-0 flex flex-col"
             style={{
@@ -256,14 +294,13 @@ export default function PhilosophyScroll() {
               pointerEvents: isOpen ? 'auto' : 'none',
             }}
           >
-            {/* Mini cards row */}
-            <div className="max-w-[1200px] w-full mx-auto px-4 md:px-6 pt-4 md:pt-8 pb-3 md:pb-5 shrink-0">
-              <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent mb-3 md:mb-5">Our Pillars</p>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
+            <div className="max-w-[1200px] w-full mx-auto px-6 pt-8 pb-5 shrink-0">
+              <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent mb-5">Our Pillars</p>
+              <div className="grid grid-cols-4 gap-3">
                 {points.map((p, i) => (
                   <div
                     key={p.number}
-                    className={`rounded-xl border p-2.5 md:p-4 transition-all duration-500 ${
+                    className={`rounded-xl border p-4 transition-all duration-500 ${
                       i === activeIndex
                         ? 'card-selected shadow-lg shadow-[#1E1854]/20'
                         : i < activeIndex
@@ -271,10 +308,10 @@ export default function PhilosophyScroll() {
                         : 'border-[#1E1854]/[0.07] bg-white opacity-50'
                     }`}
                   >
-                    <p className={`text-xs font-mono tracking-[0.12em] mb-1 md:mb-2 ${
+                    <p className={`text-xs font-mono tracking-[0.12em] mb-2 ${
                       i === activeIndex ? 'text-white/50' : 'text-[#1E1854]/25'
                     }`}>{p.number}</p>
-                    <p className={`text-xs md:text-sm font-semibold tracking-[-0.01em] leading-snug ${
+                    <p className={`text-sm font-semibold tracking-[-0.01em] leading-snug ${
                       i === activeIndex ? 'text-white' : 'text-[#1E1854]'
                     }`}>{p.label}</p>
                   </div>
@@ -282,14 +319,10 @@ export default function PhilosophyScroll() {
               </div>
             </div>
 
-            {/* Unfolded content */}
-            <div className="flex-1 max-w-[1200px] w-full mx-auto px-4 md:px-6 pb-4 md:pb-10 min-h-0">
-              <div className="h-full grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-14 items-center">
+            <div className="flex-1 max-w-[1200px] w-full mx-auto px-6 pb-10 min-h-0">
+              <div className="h-full grid grid-cols-2 gap-14 items-center">
 
-                {/* Image — directional crossfade with scale + blur */}
-                <div className={`relative rounded-2xl overflow-hidden h-[22vh] md:h-full ring-1 ring-[#1E1854]/[0.08] shadow-xl shadow-[#1E1854]/[0.08] ${
-                  isEven ? 'md:order-first' : 'md:order-last'
-                }`}>
+                <div className="relative rounded-2xl overflow-hidden h-full ring-1 ring-[#1E1854]/[0.08] shadow-xl shadow-[#1E1854]/[0.08]">
                   {points.map((p, i) => {
                     const isActive = i === activeIndex;
                     const isPast = i < activeIndex;
@@ -304,33 +337,25 @@ export default function PhilosophyScroll() {
                           transition: 'opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1), filter 0.9s cubic-bezier(0.16,1,0.3,1)',
                         }}
                       >
-                        <Image src={p.image} alt={p.heading} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" priority={i === 0} />
+                        <Image src={p.image} alt={p.heading} fill className="object-cover" sizes="50vw" priority={i === 0} />
                       </div>
                     );
                   })}
                 </div>
 
-                {/* Text — staggered directional blur-slide animation */}
-                <div
-                  key={`${activeIndex}-${direction}`}
-                  className={`space-y-3 md:space-y-5 ${isEven ? 'md:order-last' : 'md:order-first'}`}
-                >
+                <div key={`${activeIndex}-${direction}`} className="space-y-5">
                   <p
                     className={`${enterClass} text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent`}
                     style={{ animationDelay: '0ms' }}
                   >{point.label}</p>
                   <h2
-                    className={`${enterClass} text-2xl md:text-[2.4rem] font-semibold tracking-[-0.03em] leading-tight text-[#1E1854]`}
+                    className={`${enterClass} text-[2.4rem] font-semibold tracking-[-0.03em] leading-tight text-[#1E1854]`}
                     style={{ animationDelay: '80ms' }}
-                  >
-                    {point.heading}
-                  </h2>
+                  >{point.heading}</h2>
                   <p
                     className={`${enterClass} text-sm text-[hsla(var(--color-secondary)/0.7)] leading-relaxed max-w-md`}
                     style={{ animationDelay: '160ms' }}
-                  >
-                    {point.description}
-                  </p>
+                  >{point.description}</p>
                 </div>
 
               </div>
@@ -341,4 +366,18 @@ export default function PhilosophyScroll() {
       </div>
     </section>
   );
+}
+
+// ── Root: render mobile or desktop based on screen width ──────────────────
+export default function PhilosophyScroll() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  return isMobile ? <PhilosophyMobile /> : <PhilosophyDesktop />;
 }

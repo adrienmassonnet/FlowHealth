@@ -63,7 +63,7 @@ export default function SelectionProcessSection() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-black/80" />
         <div className="absolute inset-0 flex flex-col justify-between p-5 pb-5">
-          <h2 className="text-2xl font-semibold text-white leading-[1.1]">
+          <h2 className="text-3xl font-semibold text-white leading-[1.1]">
             Our rigorous ingredient<br />selection process.
           </h2>
           <div
@@ -101,7 +101,7 @@ export default function SelectionProcessSection() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/15 to-black/25" />
           <div className="absolute inset-0 flex flex-col justify-between">
             <div className="max-w-[1200px] mx-auto w-full px-12 pt-16">
-              <h2 className="text-4xl font-semibold text-white max-w-xl leading-[1.1] drop-shadow-sm">
+              <h2 className="text-3xl font-semibold text-white max-w-xl leading-[1.1] drop-shadow-sm">
                 Our rigorous ingredient selection process.
               </h2>
             </div>

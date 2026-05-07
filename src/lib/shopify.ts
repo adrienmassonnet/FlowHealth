@@ -57,9 +57,13 @@ export async function getFirstProductHandle(): Promise<string | null> {
       }
     }
   `;
-  const { data, errors } = await shopifyClient().request(query);
-  if (errors) return null;
-  return data.products.edges[0]?.node.handle ?? null;
+  try {
+    const { data, errors } = await shopifyClient().request(query);
+    if (errors) return null;
+    return data.products.edges[0]?.node.handle ?? null;
+  } catch {
+    return null;
+  }
 }
 
 export async function getProducts(): Promise<Product[]> {
@@ -92,9 +96,13 @@ export async function getProducts(): Promise<Product[]> {
     }
   `;
 
-  const { data, errors } = await shopifyClient().request(query);
-  if (errors) throw new Error(errors.message);
-  return data.products.edges.map((e: { node: Product }) => e.node);
+  try {
+    const { data, errors } = await shopifyClient().request(query);
+    if (errors) return [];
+    return data.products.edges.map((e: { node: Product }) => e.node);
+  } catch {
+    return [];
+  }
 }
 
 export async function getProduct(handle: string): Promise<Product | null> {

@@ -1,17 +1,20 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
 export default function ScrollManager() {
-  useEffect(() => {
-    history.scrollRestoration = 'manual';
-  }, []);
-
   const pathname = usePathname();
 
+  // Fire before paint — handles most navigation cases
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [pathname]);
+
+  // Fire after the task queue — overrides any scroll Next.js router applies after effects
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const id = setTimeout(() => window.scrollTo({ top: 0, behavior: 'instant' }), 0);
+    return () => clearTimeout(id);
   }, [pathname]);
 
   return null;

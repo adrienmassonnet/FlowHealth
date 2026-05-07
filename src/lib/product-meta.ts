@@ -13,8 +13,8 @@ export const PRODUCT_META = {
   },
 
   // Formula
-  activeIngredients: 13,   // excludes flavour/taste ingredients (Pomegranate, Stevia)
-  totalIngredients: 15,    // full list including flavour/taste
+  activeIngredients: 16,   // excludes flavour/taste ingredients (Pomegranate, Stevia)
+  totalIngredients: 18,    // full list including flavour/taste
   totalFormulaWeightG: 6.36, // sum of active ingredient doses (excl. taste), in grams
   caloriesKcal: 24,          // 5g carbs × 4 + 1g protein × 4
 

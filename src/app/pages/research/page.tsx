@@ -1,3 +1,10 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Research',
+  description: 'Every claim we make is backed by peer-reviewed clinical evidence. Explore the research foundation behind Flow\'s formula and liquid delivery technology.',
+};
+
 export default function ResearchPage() {
   return (
     <main className="max-w-4xl mx-auto px-6 pt-20 pb-14 md:pb-24 space-y-12 md:space-y-16">
