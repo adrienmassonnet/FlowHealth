@@ -83,7 +83,7 @@ export default async function OurProductPage() {
             Try Flow for {PRODUCT_META.returnDays} days. If you don&apos;t notice a meaningful difference, we&apos;ll refund you. No questions asked.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <TrackedLink href="/products/flow" clarityEvent="our_product_cta_shop_flow" className="inline-flex items-center gap-2 bg-white text-[#1E1854] text-xs tracking-[0.1em] uppercase font-semibold px-8 py-4 rounded-full hover:bg-[hsla(var(--color-accent)/1)] hover:text-white transition-colors">
+            <TrackedLink href="/products/rooibos-hibiscus-pomegranate" clarityEvent="our_product_cta_shop_flow" className="inline-flex items-center gap-2 bg-white text-[#1E1854] text-xs tracking-[0.1em] uppercase font-semibold px-8 py-4 rounded-full hover:bg-[hsla(var(--color-accent)/1)] hover:text-white transition-colors">
               Get Flow
             </TrackedLink>
             <TrackedLink href="/pages/our-product" clarityEvent="our_product_cta_ingredients" className="inline-flex items-center gap-2 border border-white/30 text-white text-xs tracking-[0.1em] uppercase font-medium px-8 py-4 rounded-full hover:border-white/60 transition-colors">

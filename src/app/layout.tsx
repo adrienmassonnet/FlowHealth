@@ -112,7 +112,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <ul className="space-y-3 text-xs">
                 {[
                   { label: 'Our Philosophy', href: '/pages/our-philosophy' },
-                  { label: 'Science', href: '/pages/science' },
+                  { label: 'Who We Are', href: '/pages/who-we-are' },
+                  { label: 'Our Product', href: '/pages/our-product' },
+                  { label: 'Research', href: '/pages/research' },
                   { label: 'Legal notice', href: '/pages/legal-notice' },
                   { label: 'Blogs', href: '/pages/blog-posts' },
                 ].map((l) => (
@@ -126,7 +128,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <p className="text-white text-xs font-semibold tracking-[0.12em] uppercase">Community</p>
               <ul className="space-y-3 text-xs">
                 {[
-                  { label: 'Refer a friend', href: '/pages/contact' },
                   { label: 'Reviews', href: '/pages/reviews' },
                 ].map((l) => (
                   <li key={l.label}><Link href={l.href} className="hover:text-white transition-colors">{l.label}</Link></li>

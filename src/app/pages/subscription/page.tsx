@@ -411,7 +411,7 @@ function SubscriptionPageInner() {
               description="Your subscription has been cancelled. No further payments will be taken. We're sorry to see you go — feel free to reorder whenever you're ready."
             >
               <a
-                href="/products/flow"
+                href="/products/rooibos-hibiscus-pomegranate"
                 onClick={() => trackEvent('subscription_cancelled_reorder')}
                 className="btn-cta w-full py-3.5 rounded-xl text-white text-xs tracking-[0.08em] uppercase font-semibold text-center block"
               >

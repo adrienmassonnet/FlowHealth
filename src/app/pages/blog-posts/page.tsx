@@ -85,7 +85,7 @@ export default async function BlogPostsPage() {
             </p>
           </div>
           <div className="flex gap-3 shrink-0">
-            <Link href="/products/flow" className="btn-cta inline-flex items-center justify-center text-white text-xs tracking-[0.1em] uppercase font-semibold px-6 py-3.5 rounded-full">
+            <Link href="/products/rooibos-hibiscus-pomegranate" className="btn-cta inline-flex items-center justify-center text-white text-xs tracking-[0.1em] uppercase font-semibold px-6 py-3.5 rounded-full">
               Get Flow
             </Link>
             <Link href="/pages/our-product" className="inline-flex items-center justify-center border border-[#1E1854]/20 text-[#1E1854] text-xs tracking-[0.1em] uppercase font-medium px-6 py-3.5 rounded-full hover:border-[#1E1854]/40 transition-colors">

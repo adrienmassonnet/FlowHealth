@@ -114,7 +114,7 @@ export default async function ReviewsPage() {
             </p>
           </div>
           <Link
-            href="/products/flow"
+            href="/products/rooibos-hibiscus-pomegranate"
             className="shrink-0 inline-flex items-center gap-2 bg-white text-[#1E1854] text-xs tracking-[0.1em] uppercase font-semibold px-7 py-4 rounded-full hover:bg-[hsla(var(--color-accent)/1)] hover:text-white transition-colors"
           >
             Get Flow

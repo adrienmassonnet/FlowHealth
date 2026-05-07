@@ -273,7 +273,7 @@ export default function Header() {
               {/* Shop CTA — top of drawer */}
               <div className="px-4 pt-4 pb-3 shrink-0">
                 <Link
-                  href="/products/flow"
+                  href="/products/rooibos-hibiscus-pomegranate"
                   onClick={() => { setMobileOpen(false); trackEvent('header_get_flow_mobile'); }}
                   className="btn-cta flex items-center justify-center w-full py-3.5 rounded-full text-white text-xs tracking-[0.08em] uppercase font-semibold"
                 >
@@ -435,7 +435,7 @@ export default function Header() {
 
                 {/* Shop CTA */}
                 <Link
-                  href="/products/flow"
+                  href="/products/rooibos-hibiscus-pomegranate"
                   onClick={() => { setActiveMenu(null); trackEvent('header_get_flow_desktop'); }}
                   className="btn-cta md:ml-0 hidden md:flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium text-white px-4 py-1.5 rounded-full shrink-0"
                 >

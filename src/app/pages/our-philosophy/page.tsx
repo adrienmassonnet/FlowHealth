@@ -106,7 +106,7 @@ export default async function OurPhilosophyPage() {
                 <h3 className="text-lg font-semibold tracking-[-0.02em] text-white leading-snug">
                   Every ingredient above, in one daily formula.
                 </h3>
-                <Link href="/products/flow" className="self-start inline-flex items-center justify-center bg-white text-[#1E1854] text-xs tracking-[0.1em] uppercase font-semibold px-5 py-3 rounded-full hover:bg-[hsla(var(--color-accent)/1)] hover:text-white transition-colors">
+                <Link href="/products/rooibos-hibiscus-pomegranate" className="self-start inline-flex items-center justify-center bg-white text-[#1E1854] text-xs tracking-[0.1em] uppercase font-semibold px-5 py-3 rounded-full hover:bg-[hsla(var(--color-accent)/1)] hover:text-white transition-colors">
                   Get Flow
                 </Link>
               </div>

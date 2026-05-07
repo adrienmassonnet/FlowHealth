@@ -64,7 +64,7 @@ export default async function HomePage() {
             </HeroText>
             <HeroText delay={260} className="pt-1">
               <TrackedLink
-                href="/products/flow"
+                href="/products/rooibos-hibiscus-pomegranate"
                 clarityEvent="homepage_hero_shop_flow"
                 className="inline-flex items-center justify-center rounded-full bg-white text-[#1E1854] text-xs tracking-[0.12em] uppercase font-semibold px-7 py-3.5 md:px-8 md:py-4 hover:opacity-90 transition-opacity duration-500"
               >
