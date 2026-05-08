@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { trackEvent } from '@/lib/clarity';
+import { pixelInitiateCheckout } from '@/lib/pixel';
 import PreLaunchModal from '@/app/components/PreLaunchModal';
 
 interface PurchaseSelectorProps {
@@ -25,6 +26,7 @@ export default function PurchaseSelector({ price, currencyCode, discountPercent 
 
   function handleCheckout() {
     trackEvent(isSubscribe ? 'product_page_buy_subscribe' : 'product_page_buy_once');
+    pixelInitiateCheckout({ value: parseFloat(displayPrice), currency: currencyCode });
     setModalOpen(true);
   }
 

@@ -1,13 +1,23 @@
 'use client';
 
 import { useEffect } from 'react';
+import { pixelViewContent } from '@/lib/pixel';
 
-export default function ProductPageInit() {
+interface Props {
+  productName: string;
+  price: number;
+  currencyCode: string;
+}
+
+export default function ProductPageInit({ productName, price, currencyCode }: Props) {
   useEffect(() => {
-    // setTimeout(fn, 0) ensures this fires after Next.js router's own scroll management,
-    // which runs after React's effects during startTransition-based navigation.
     const id = setTimeout(() => window.scrollTo({ top: 0, behavior: 'instant' }), 0);
     return () => clearTimeout(id);
   }, []);
+
+  useEffect(() => {
+    pixelViewContent({ content_name: productName, value: price, currency: currencyCode });
+  }, [productName, price, currencyCode]);
+
   return null;
 }
