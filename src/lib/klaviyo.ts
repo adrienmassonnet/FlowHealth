@@ -1,8 +1,10 @@
-const KLAVIYO_HEADERS = {
-  'Content-Type': 'application/json',
-  'revision': '2024-02-15',
-  'Authorization': `Klaviyo-API-Key ${process.env.KLAVIYO_PRIVATE_API_KEY}`,
-};
+function klaviyoHeaders() {
+  return {
+    'Content-Type': 'application/json',
+    'revision': '2024-02-15',
+    'Authorization': `Klaviyo-API-Key ${process.env.KLAVIYO_PRIVATE_API_KEY}`,
+  };
+}
 
 export async function trackKlaviyoEvent(
   email: string,
@@ -11,7 +13,7 @@ export async function trackKlaviyoEvent(
 ) {
   await fetch('https://a.klaviyo.com/api/events/', {
     method: 'POST',
-    headers: KLAVIYO_HEADERS,
+    headers: klaviyoHeaders(),
     body: JSON.stringify({
       data: {
         type: 'event',
@@ -33,7 +35,7 @@ export async function subscribeToKlaviyoList(
 ) {
   await fetch(`https://a.klaviyo.com/api/lists/${listId}/relationships/profiles/`, {
     method: 'POST',
-    headers: KLAVIYO_HEADERS,
+    headers: klaviyoHeaders(),
     body: JSON.stringify({
       data: [
         {
