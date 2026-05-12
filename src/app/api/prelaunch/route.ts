@@ -1,31 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createStorefrontApiClient } from '@shopify/storefront-api-client';
-import { Resend } from 'resend';
-import { prelaunchConfirmationEmail } from '@/lib/email-templates';
 import { subscribeToKlaviyoList, trackKlaviyoEvent } from '@/lib/klaviyo';
-
-function shopifyClient() {
-  return createStorefrontApiClient({
-    storeDomain: process.env.SHOPIFY_STORE_DOMAIN!,
-    apiVersion: '2026-04',
-    publicAccessToken: process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN!,
-  });
-}
-
-const CREATE_CUSTOMER = `
-  mutation CreateCustomer($input: CustomerCreateInput!) {
-    customerCreate(input: $input) {
-      customer {
-        id
-        email
-      }
-      customerUserErrors {
-        code
-        message
-      }
-    }
-  }
-`;
 
 export async function POST(req: NextRequest) {
   try {
@@ -34,36 +8,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid email' }, { status: 400 });
     }
 
-    const password = crypto.randomUUID().replace(/-/g, '').slice(0, 32);
-
-    const { data, errors } = await shopifyClient().request(CREATE_CUSTOMER, {
-      variables: {
-        input: {
-          email,
-          password,
-          acceptsMarketing: notifyPromos ?? true,
-        },
-      },
-    });
-
-    if (errors) {
-      console.error('[prelaunch] Shopify request error', errors);
-      return NextResponse.json({ error: 'Internal error' }, { status: 500 });
-    }
-
-    const userErrors = data?.customerCreate?.customerUserErrors ?? [];
-    console.log('[prelaunch] Shopify userErrors', JSON.stringify(userErrors));
-    // CUSTOMER_ALREADY_EXISTS is fine — they're already in Shopify
-    const fatalErrors = userErrors.filter((e: { code: string }) => !['CUSTOMER_ALREADY_EXISTS', 'CUSTOMER_DISABLED'].includes(e.code));
-    if (fatalErrors.length > 0) {
-      console.error('[prelaunch] customerCreate errors', fatalErrors);
-      return NextResponse.json({ error: 'Could not register email' }, { status: 422 });
-    }
-
-    // Subscribe to Klaviyo pre-launch list
     const klaviyoKey = process.env.KLAVIYO_PRIVATE_API_KEY;
     const klaviyoListId = process.env.KLAVIYO_PRELAUNCH_LIST_ID;
-    console.log('[prelaunch] klaviyoListId', klaviyoListId);
     if (klaviyoKey && klaviyoListId) {
       try {
         const [subRes, eventRes] = await Promise.all([
@@ -74,23 +20,6 @@ export async function POST(req: NextRequest) {
         if (!eventRes.ok) console.error('[prelaunch] Klaviyo event failed', eventRes.status, await eventRes.text());
       } catch (klaviyoErr) {
         console.error('[prelaunch] Klaviyo error', klaviyoErr);
-      }
-    }
-
-    // Send confirmation email via Resend
-    const resendKey = process.env.RESEND_API_KEY;
-    if (resendKey && !resendKey.startsWith('re_REPLACE')) {
-      try {
-        const resend = new Resend(resendKey);
-        const from = process.env.RESEND_FROM_EMAIL ?? 'Flow <hello@flowhealth.com>';
-        const { subject, html, text } = prelaunchConfirmationEmail(email);
-        const { error: sendError } = await resend.emails.send({ from, to: email, subject, html, text });
-        if (sendError) {
-          console.error('[prelaunch] Resend send error', sendError);
-        }
-      } catch (sendErr) {
-        // Non-fatal: email sending failure should not block the signup response
-        console.error('[prelaunch] Resend exception', sendErr);
       }
     }
 
