@@ -7,7 +7,7 @@ import { subscribeToKlaviyoList, trackKlaviyoEvent } from '@/lib/klaviyo';
 function shopifyClient() {
   return createStorefrontApiClient({
     storeDomain: process.env.SHOPIFY_STORE_DOMAIN!,
-    apiVersion: '2025-04',
+    apiVersion: '2026-04',
     publicAccessToken: process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN!,
   });
 }
@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
     const userErrors = data?.customerCreate?.customerUserErrors ?? [];
     console.log('[prelaunch] Shopify userErrors', JSON.stringify(userErrors));
     // CUSTOMER_ALREADY_EXISTS is fine — they're already in Shopify
-    const fatalErrors = userErrors.filter((e: { code: string }) => e.code !== 'CUSTOMER_ALREADY_EXISTS');
+    const fatalErrors = userErrors.filter((e: { code: string }) => !['CUSTOMER_ALREADY_EXISTS', 'CUSTOMER_DISABLED'].includes(e.code));
     if (fatalErrors.length > 0) {
       console.error('[prelaunch] customerCreate errors', fatalErrors);
       return NextResponse.json({ error: 'Could not register email' }, { status: 422 });
