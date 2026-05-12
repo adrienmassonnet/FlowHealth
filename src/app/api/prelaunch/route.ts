@@ -63,6 +63,7 @@ export async function POST(req: NextRequest) {
     // Subscribe to Klaviyo pre-launch list
     const klaviyoKey = process.env.KLAVIYO_PRIVATE_API_KEY;
     const klaviyoListId = process.env.KLAVIYO_PRELAUNCH_LIST_ID;
+    console.log('[prelaunch] klaviyoListId', klaviyoListId);
     if (klaviyoKey && klaviyoListId) {
       try {
         const [subRes, eventRes] = await Promise.all([
