@@ -31,39 +31,39 @@ export async function trackKlaviyoEvent(
 export async function subscribeToKlaviyoList(
   email: string,
   listId: string,
-  acceptsMarketing: boolean
 ): Promise<Response> {
-  return fetch('https://a.klaviyo.com/api/profile-subscription-bulk-create-jobs/', {
+  // Step 1: upsert the profile and get its ID
+  const profileRes = await fetch('https://a.klaviyo.com/api/profiles/', {
     method: 'POST',
     headers: klaviyoHeaders(),
     body: JSON.stringify({
       data: {
-        type: 'profile-subscription-bulk-create-job',
-        attributes: {
-          profiles: {
-            data: [
-              {
-                type: 'profile',
-                attributes: {
-                  email,
-                  subscriptions: {
-                    email: {
-                      marketing: {
-                        consent: acceptsMarketing ? 'SUBSCRIBED' : 'UNSUBSCRIBED',
-                      },
-                    },
-                  },
-                },
-              },
-            ],
-          },
-        },
-        relationships: {
-          list: {
-            data: { type: 'list', id: listId },
-          },
-        },
+        type: 'profile',
+        attributes: { email },
       },
+    }),
+  });
+
+  let profileId: string | undefined;
+  if (profileRes.ok || profileRes.status === 409) {
+    const body = await profileRes.json();
+    // 409 means profile already exists — id is in errors[0].meta.duplicate_profile_id
+    profileId = profileRes.status === 409
+      ? body.errors?.[0]?.meta?.duplicate_profile_id
+      : body.data?.id;
+  }
+
+  if (!profileId) {
+    console.error('[prelaunch] Could not get Klaviyo profile ID', await profileRes.text());
+    return profileRes;
+  }
+
+  // Step 2: add profile to the list
+  return fetch(`https://a.klaviyo.com/api/lists/${listId}/relationships/profiles/`, {
+    method: 'POST',
+    headers: klaviyoHeaders(),
+    body: JSON.stringify({
+      data: [{ type: 'profile', id: profileId }],
     }),
   });
 }

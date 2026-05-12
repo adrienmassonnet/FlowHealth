@@ -67,7 +67,7 @@ export async function POST(req: NextRequest) {
     if (klaviyoKey && klaviyoListId) {
       try {
         const [subRes, eventRes] = await Promise.all([
-          subscribeToKlaviyoList(email, klaviyoListId, notifyPromos ?? true),
+          subscribeToKlaviyoList(email, klaviyoListId),
           trackKlaviyoEvent(email, 'Pre-Launch Signup', { notifyPromos: notifyPromos ?? true }),
         ]);
         if (!subRes.ok) console.error('[prelaunch] Klaviyo subscribe failed', subRes.status, await subRes.text());
