@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid email' }, { status: 400 });
     }
 
-    const password = crypto.randomUUID() + crypto.randomUUID();
+    const password = crypto.randomUUID().replace(/-/g, '').slice(0, 32);
 
     const { data, errors } = await shopifyClient().request(CREATE_CUSTOMER, {
       variables: {
