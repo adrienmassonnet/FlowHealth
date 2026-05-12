@@ -42,7 +42,6 @@ export async function POST(req: NextRequest) {
           email,
           password,
           acceptsMarketing: notifyPromos ?? true,
-          tags: ['prelaunch'],
         },
       },
     });
