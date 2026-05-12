@@ -64,10 +64,12 @@ export async function POST(req: NextRequest) {
     const klaviyoListId = process.env.KLAVIYO_PRELAUNCH_LIST_ID;
     if (klaviyoKey && klaviyoListId) {
       try {
-        await Promise.all([
+        const [subRes, eventRes] = await Promise.all([
           subscribeToKlaviyoList(email, klaviyoListId, notifyPromos ?? true),
           trackKlaviyoEvent(email, 'Pre-Launch Signup', { notifyPromos: notifyPromos ?? true }),
         ]);
+        if (!subRes.ok) console.error('[prelaunch] Klaviyo subscribe failed', subRes.status, await subRes.text());
+        if (!eventRes.ok) console.error('[prelaunch] Klaviyo event failed', eventRes.status, await eventRes.text());
       } catch (klaviyoErr) {
         console.error('[prelaunch] Klaviyo error', klaviyoErr);
       }

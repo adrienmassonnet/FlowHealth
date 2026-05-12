@@ -10,8 +10,8 @@ export async function trackKlaviyoEvent(
   email: string,
   eventName: string,
   properties: Record<string, unknown>
-) {
-  await fetch('https://a.klaviyo.com/api/events/', {
+): Promise<Response> {
+  return fetch('https://a.klaviyo.com/api/events/', {
     method: 'POST',
     headers: klaviyoHeaders(),
     body: JSON.stringify({
@@ -32,26 +32,38 @@ export async function subscribeToKlaviyoList(
   email: string,
   listId: string,
   acceptsMarketing: boolean
-) {
-  await fetch(`https://a.klaviyo.com/api/lists/${listId}/relationships/profiles/`, {
+): Promise<Response> {
+  return fetch('https://a.klaviyo.com/api/profile-subscription-bulk-create-jobs/', {
     method: 'POST',
     headers: klaviyoHeaders(),
     body: JSON.stringify({
-      data: [
-        {
-          type: 'profile',
-          attributes: {
-            email,
-            subscriptions: {
-              email: {
-                marketing: {
-                  consent: acceptsMarketing ? 'SUBSCRIBED' : 'UNSUBSCRIBED',
+      data: {
+        type: 'profile-subscription-bulk-create-job',
+        attributes: {
+          profiles: {
+            data: [
+              {
+                type: 'profile',
+                attributes: {
+                  email,
+                  subscriptions: {
+                    email: {
+                      marketing: {
+                        consent: acceptsMarketing ? 'SUBSCRIBED' : 'UNSUBSCRIBED',
+                      },
+                    },
+                  },
                 },
               },
-            },
+            ],
           },
         },
-      ],
+        relationships: {
+          list: {
+            data: { type: 'list', id: listId },
+          },
+        },
+      },
     }),
   });
 }
