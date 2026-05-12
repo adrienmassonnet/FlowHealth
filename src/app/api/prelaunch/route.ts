@@ -52,6 +52,7 @@ export async function POST(req: NextRequest) {
     }
 
     const userErrors = data?.customerCreate?.customerUserErrors ?? [];
+    console.log('[prelaunch] Shopify userErrors', JSON.stringify(userErrors));
     // CUSTOMER_ALREADY_EXISTS is fine — they're already in Shopify
     const fatalErrors = userErrors.filter((e: { code: string }) => e.code !== 'CUSTOMER_ALREADY_EXISTS');
     if (fatalErrors.length > 0) {
