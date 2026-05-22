@@ -113,16 +113,18 @@ export default async function HomePage() {
                     />
                   </ScrollReveal>
                   {featuredImageSecondary && (
-                    <div className="w-1/2">
-                      <Image
-                        src={featuredImageSecondary.url}
-                        alt={featuredImageSecondary.altText ?? featured.title}
-                        width={800}
-                        height={800}
-                        className="w-full h-auto object-contain block"
-                        loading="lazy"
-                        sizes="(max-width: 768px) 50vw, 26vw"
-                      />
+                    <div className="flex justify-center">
+                      <div className="w-1/2 rounded-2xl overflow-hidden">
+                        <Image
+                          src={featuredImageSecondary.url}
+                          alt={featuredImageSecondary.altText ?? featured.title}
+                          width={800}
+                          height={800}
+                          className="w-full h-auto object-contain block"
+                          loading="lazy"
+                          sizes="(max-width: 768px) 50vw, 26vw"
+                        />
+                      </div>
                     </div>
                   )}
                 </div>
