@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { trackEvent } from '@/lib/clarity';
+import { ga4SignUp } from '@/lib/ga4';
 
 interface PreLaunchModalProps {
   open: boolean;
@@ -46,6 +47,7 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
       if (!res.ok) throw new Error();
       setStatus('success');
       trackEvent('product_page_prelaunch_signup_success');
+      ga4SignUp('pre_launch_modal');
     } catch {
       setStatus('error');
     }

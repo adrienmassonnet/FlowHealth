@@ -57,10 +57,6 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
   const variants = product.variants.edges.map((e) => e.node);
   const firstVariant = variants[0];
   const relatedProducts = allProducts.filter((p) => p.handle !== handle).slice(0, 3);
-  const shortDesc = product.description.length > 220
-    ? product.description.slice(0, 220) + '…'
-    : product.description;
-
   const productJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Product',
@@ -79,12 +75,10 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
 
   return (
     <main>
-      <ProductPageInit productName={product.title} price={parseFloat(firstVariant.price.amount)} currencyCode={firstVariant.price.currencyCode} />
+      <ProductPageInit productName={product.title} price={parseFloat(firstVariant.price.amount)} currencyCode={firstVariant.price.currencyCode} productId={product.id} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
       {/* Product hero */}
       <section id="section-product" className="scroll-mt-16 pt-20 pb-12 md:pb-20 max-w-[1200px] mx-auto pl-3 pr-6 relative overflow-hidden">
-        {/* Ambient glow */}
-        <div className="absolute top-0 right-0 w-[700px] h-[700px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(ellipse at 70% 20%, rgba(59,56,184,0.08) 0%, transparent 65%)' }} />
         {/* Mobile-only title — shown above gallery */}
         <div className="md:hidden space-y-2 pb-4 pl-3 pr-6">
           <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Cognitive Performance Formula</p>
@@ -113,7 +107,23 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
               </div>
             )}
 
-            <p className="text-sm text-[hsla(var(--color-secondary)/1)] leading-relaxed">{shortDesc}</p>
+            <div className="space-y-3">
+              <p className="text-sm text-[hsla(var(--color-secondary)/1)] leading-relaxed">
+                A daily cognitive supplement in powder sachet form — mix one sachet in 400–500 ml of water. One box contains 30 sachets.
+              </p>
+              <ul className="space-y-1.5">
+                {[
+                  '16 clinically-dosed active ingredients',
+                  'No caffeine, no added sugar, no fillers',
+                  'Formulated in Switzerland',
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-sm text-[hsla(var(--color-secondary)/1)]">
+                    <span className="text-[#3B38B8] mt-0.5 shrink-0">✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
 
             <PurchaseSelector
               variantId={firstVariant.id}
@@ -192,16 +202,16 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
                   </div>
                   <div className="space-y-2">
                     <p className="text-sm md:text-base font-semibold tracking-[-0.01em]">{item.title}</p>
-                    <ul className="space-y-1.5">
+                    <ul className="space-y-4">
                       {item.lines.map((line) => {
                         const [label, detail] = line.split(' — ');
                         return (
                           <li key={line} className="text-xs md:text-sm leading-snug">
                             {detail ? (
-                              <>
+                              <span className="flex flex-col gap-0.5">
                                 <span className="font-medium text-[#1E1854]/80">{label}</span>
-                                <span className="text-[hsla(var(--color-secondary)/0.55)]"> — {detail}</span>
-                              </>
+                                <span className="text-[hsla(var(--color-secondary)/0.55)]">{detail}</span>
+                              </span>
                             ) : (
                               <span className="text-[hsla(var(--color-secondary)/0.65)]">{line}</span>
                             )}

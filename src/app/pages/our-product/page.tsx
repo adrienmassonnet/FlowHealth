@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
-import { getProductMeta } from '@/lib/content';
+import { getProductMeta, getIngredients } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Our Product',
@@ -11,18 +10,16 @@ export const metadata: Metadata = {
     description: 'Flow is a daily cognitive supplement with 13 clinically-dosed active ingredients — zero fillers, no caffeine, no added sugar. Formulated in Switzerland for deep focus and lasting mental clarity.',
   },
 };
-import TrackedLink from '@/app/components/TrackedLink';
-import { PRODUCT_META } from '@/lib/product-meta';
 import ProductTopics from './ProductTopics';
 
 export default async function OurProductPage() {
-  const meta = await getProductMeta();
+  const [meta, ingredients] = await Promise.all([getProductMeta(), getIngredients()]);
   return (
     <main>
 
       {/* Hero */}
       <section className="max-w-[1200px] mx-auto px-6">
-        <div className="pt-20 pb-14 md:pb-20">
+        <div className="pt-20 pb-8 md:pb-12">
           <div className="space-y-8">
             {/* Top row: text + image */}
             <div className="flex flex-col md:flex-row md:items-stretch gap-10 md:gap-16">
@@ -39,7 +36,7 @@ export default async function OurProductPage() {
               {/* Hero image */}
               <div className="relative w-full md:w-[420px] min-h-[260px] md:min-h-0 rounded-2xl overflow-hidden shrink-0">
                 <Image
-                  src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=900&q=85&auto=format&fit=crop"
+                  src="/our-product/our-product.png"
                   alt="Natural ingredients laid out on a clean surface"
                   fill
                   className="object-cover"
@@ -71,46 +68,7 @@ export default async function OurProductPage() {
 
 
       {/* Tabbed topics */}
-      <ProductTopics />
-
-      {/* CTA */}
-      <section className="bg-[#1E1854] py-20">
-        <div className="max-w-[720px] mx-auto px-6 text-center space-y-6">
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] text-white leading-tight">
-            Ready to experience it?
-          </h2>
-          <p className="text-sm text-white/60 leading-relaxed">
-            Try Flow for {PRODUCT_META.returnDays} days. If you don&apos;t notice a meaningful difference, we&apos;ll refund you. No questions asked.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <TrackedLink href="/products/rooibos-hibiscus-pomegranate" clarityEvent="our_product_cta_shop_flow" className="inline-flex items-center gap-2 bg-white text-[#1E1854] text-xs tracking-[0.1em] uppercase font-semibold px-8 py-4 rounded-full hover:bg-[hsla(var(--color-accent)/1)] hover:text-white transition-colors">
-              Get Flow
-            </TrackedLink>
-            <TrackedLink href="/pages/our-product" clarityEvent="our_product_cta_ingredients" className="inline-flex items-center gap-2 border border-white/30 text-white text-xs tracking-[0.1em] uppercase font-medium px-8 py-4 rounded-full hover:border-white/60 transition-colors">
-              Full ingredients list
-            </TrackedLink>
-          </div>
-        </div>
-      </section>
-
-      {/* Nav links */}
-      <section className="max-w-[1200px] mx-auto px-6 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {[
-            { label: 'Who We Are', description: 'The team and story behind Flow Health.', href: '/pages/who-we-are', image: 'https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=700&q=80&auto=format&fit=crop' },
-            { label: 'Our Philosophy', description: 'The principles that guide every decision we make.', href: '/pages/our-philosophy', image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=700&q=80&auto=format&fit=crop' },
-          ].map((card) => (
-            <Link key={card.label} href={card.href} className="group relative rounded-2xl overflow-hidden aspect-[16/7] flex items-end">
-              <Image src={card.image} alt={card.label} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 768px) 100vw, 50vw" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10" />
-              <div className="relative z-10 p-6 space-y-1">
-                <h3 className="text-lg font-semibold text-white">{card.label}</h3>
-                <p className="text-xs text-white/80 leading-snug">{card.description}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
+      <ProductTopics ingredients={ingredients} />
 
     </main>
   );

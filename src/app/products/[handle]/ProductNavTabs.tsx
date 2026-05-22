@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback, useRef } from 'react';
 import { trackEvent } from '@/lib/clarity';
+import { ga4SelectContent } from '@/lib/ga4';
 
 const TABS = [
   { id: 'section-benefits', label: 'Benefits' },
@@ -98,6 +99,7 @@ export default function ProductNavTabs() {
     fadeInSection(id);
     setActive(id);
     trackEvent(`product_tab_${id.replace('section-', '')}`);
+    ga4SelectContent('product_tab', id.replace('section-', ''));
 
     // Scroll to bring the nav wrapper into view just below the site header
     requestAnimationFrame(() => {

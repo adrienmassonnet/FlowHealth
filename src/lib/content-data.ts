@@ -171,11 +171,11 @@ export const blogPosts: BlogPost[] = [
 ];
 
 export const comparisonRows: ComparisonRow[] = [
-  { topic: ["Formula"], feature: `Clinically-studied formula with {active_ingredients} active ingredients at full doses`, othersLabel: `Underdosed or proprietary blends`, order: 1 },
-  { topic: ["Experience"], feature: `Enjoy the experience of a portable all-in-one sachet that can be consumed at all times and on the go. Instead of many pills to be consumed at home hunched over the kitchen counter.`, othersLabel: `Multiple products required`, order: 2 },
-  { topic: ["Format"], feature: `Ready-to-drink — no pills, no mixing, no measuring`, othersLabel: `Multiple capsules or powders spread across the day`, order: 3 },
-  { topic: ["Science"], feature: `Each ingredient backed by peer-reviewed research`, othersLabel: `Rarely cited`, order: 4 },
-  { topic: ["Quality"], feature: `Swiss-made, third-party tested for purity & safety`, othersLabel: `Rarely disclosed`, order: 5 }
+  { topic: ["Taste"], feature: `Naturally flavoured with pomegranate — fresh, clean, and genuinely enjoyable to drink every morning.`, othersLabel: `Chalky capsules or artificial-tasting powders`, order: 1 },
+  { topic: ["Experience"], feature: `One sachet dissolved in water. Everything you need in one go — no pills to count, no stack to manage.`, othersLabel: `Multiple products required`, order: 2 },
+  { topic: ["Transparency"], feature: `Every ingredient and every dose is on the label. No proprietary blends. No hidden fillers.`, othersLabel: `Proprietary blends that hide individual doses`, order: 3 },
+  { topic: ["Science"], feature: `Every active ingredient is backed by peer-reviewed human clinical trials at clinical doses.`, othersLabel: `Rarely cited, often underdosed`, order: 4 },
+  { topic: ["Quality"], feature: `Formulated and manufactured in Switzerland. Third-party tested for purity and potency every batch.`, othersLabel: `Rarely disclosed`, order: 5 }
 ];
 
 export const savingsSupplements: SavingsSupplement[] = [
@@ -243,16 +243,16 @@ export const morningRitualCards: MorningRitualCardItem[] = [
 export interface ServicePillar { title: string; lines: string[]; }
 export const servicePillars: ServicePillar[] = [
   { title: 'Shipment Delay', lines: [
-    'Switzerland — 2 to 3 business days.',
-    'Outside Switzerland — 5 to 9 business days.',
+    'Switzerland — 2 to 3 business days',
+    'Outside Switzerland — 5 to 9 business days',
   ]},
   { title: 'Delivery Cost', lines: [
-    'Monthly subscribers in Switzerland — free.',
-    'Single purchase in Switzerland — CHF 7.',
-    'Outside Switzerland — calculated at checkout.',
+    'Monthly subscribers in Switzerland — free',
+    'Single purchase in Switzerland — CHF 7',
+    'Outside Switzerland — calculated at checkout',
   ]},
   { title: 'Flexible Subscription', lines: [
-    'Cancel anytime after your second month.',
+    'Subscription — cancel anytime after your second month',
   ]},
 ];
 
@@ -264,3 +264,4 @@ export const faqCategories: Record<string, string> = {
   returns: 'Returns & Refunds',
   safety: 'Safety & Health',
 };
+

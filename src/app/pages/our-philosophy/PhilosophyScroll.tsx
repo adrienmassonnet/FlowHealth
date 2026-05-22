@@ -9,28 +9,28 @@ const points = [
     label: 'The Overstimulation Trap',
     heading: 'Constant noise steals your focus and peace.',
     description: 'We live bombarded by screens, stimulants, processed food, and endless notifications. The quiet struggle is real: scattered thoughts, restless energy, and the deep longing for clarity, unity, and true fulfillment feel harder to reach every day.',
-    image: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200&q=85&auto=format&fit=crop',
+    image: '/our-philosophy/overstimulation-trap.png',
   },
   {
     number: '02',
     label: 'The Silent Toll',
     heading: 'This pace is quietly breaking us.',
     description: 'What once felt like normal hustle is now fueling burnout, hormonal chaos, chronic fatigue, and rising anxiety. More people are waking up to the truth: an exhausted lifestyle cannot lead to lasting health or happiness.',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=85&auto=format&fit=crop',
+    image: '/our-philosophy/the-silent-toll.png',
   },
   {
     number: '03',
     label: 'Every Dawn Is Yours',
     heading: 'Design Your Every Morning for Success.',
     description: 'Each new day is a fresh beginning. When you start it with intention and the right ritual, calm focus, motivation, and inner connection naturally follow — because in life, everything is connected.',
-    image: 'https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=1200&q=80&auto=format&fit=crop',
+    image: '/our-philosophy/every-dawn-is-yours.png',
   },
   {
     number: '04',
     label: 'Tranquility as Fuel',
     heading: 'True productivity begins with inner calm.',
     description: 'Real growth and peak performance don\'t come from pushing harder — they come from finding peace. Tranquility restores mental health, sharpens creativity, and becomes the healthiest, most sustainable fuel for becoming your fullest self.',
-    image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1200&q=85&auto=format&fit=crop',
+    image: '/our-philosophy/tranquility-as-fuel.png',
   },
 ];
 

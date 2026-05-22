@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { trackEvent } from '@/lib/clarity';
 import { pixelInitiateCheckout } from '@/lib/pixel';
+import { ga4BeginCheckout } from '@/lib/ga4';
 import PreLaunchModal from '@/app/components/PreLaunchModal';
 
 interface PurchaseSelectorProps {
@@ -12,7 +13,7 @@ interface PurchaseSelectorProps {
   discountPercent?: number;
 }
 
-export default function PurchaseSelector({ price, currencyCode, discountPercent = 10 }: Omit<PurchaseSelectorProps, 'variantId'> & { variantId: string }) {
+export default function PurchaseSelector({ variantId, price, currencyCode, discountPercent = 10 }: PurchaseSelectorProps) {
   const [selected, setSelected] = useState<'subscribe' | 'once'>('subscribe');
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -27,6 +28,7 @@ export default function PurchaseSelector({ price, currencyCode, discountPercent 
   function handleCheckout() {
     trackEvent(isSubscribe ? 'product_page_buy_subscribe' : 'product_page_buy_once');
     pixelInitiateCheckout({ value: parseFloat(displayPrice), currency: currencyCode });
+    ga4BeginCheckout({ item_id: variantId, item_name: 'Flow', price: parseFloat(displayPrice), currency: currencyCode, item_brand: 'Flow Health', item_category: 'Supplement' });
     setModalOpen(true);
   }
 

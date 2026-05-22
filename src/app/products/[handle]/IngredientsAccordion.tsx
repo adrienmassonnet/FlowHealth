@@ -8,6 +8,28 @@ import type { Ingredient } from '@/lib/content';
 
 type IngredientCard = { name: string; category: string; tagline: string; description: string; image: string };
 
+const ingredientPillsRaw: Array<{ keywords: string[]; pills: string[] }> = [
+  { keywords: ['hibiscus'],                         pills: ['Antioxidant', 'Blood Flow', 'Calm'] },
+  { keywords: ['rooibos'],                          pills: ['Antioxidant', 'Stress Relief', 'Calm'] },
+  { keywords: ['mango', 'zynamite'],                pills: ['Focus', 'Mental Clarity', 'Anti-Fatigue'] },
+  { keywords: ['green tea'],                        pills: ['Energy', 'Attention', 'Alertness'] },
+  { keywords: ["lion's mane", 'lion mane'],         pills: ['Memory', 'Neuroplasticity', 'Brain Health'] },
+  { keywords: ['ginseng'],                          pills: ['Stamina', 'Memory', 'Anti-Fatigue'] },
+  { keywords: ['saffron', "saffr'active"],          pills: ['Mood', 'Emotional Balance', 'Serotonin'] },
+  { keywords: ['inulin'],                           pills: ['Gut-Brain Axis', 'Microbiome', 'Mood'] },
+  { keywords: ['betaine', 'trimethylglycine', 'tmg'], pills: ['Methylation', 'Energy', 'Brain Chemistry'] },
+  { keywords: ['magnesium'],                        pills: ['Relaxation', 'Sleep', 'Stress Relief'] },
+  { keywords: ['sodium citrate'],                   pills: ['Hydration', 'Electrolytes', 'Energy'] },
+  { keywords: ['zinc'],                             pills: ['Neurotransmitters', 'Immunity', 'Cognitive'] },
+  { keywords: ['vitamin b', 'b-vitamin', 'b1', 'b3', 'b6', 'b12'], pills: ['Energy', 'Dopamine', 'Serotonin'] },
+  { keywords: ['pomegranate'],                      pills: ['Natural Taste', 'Daily Ritual'] },
+];
+
+function getPills(name: string): string[] {
+  const lower = name.toLowerCase();
+  return ingredientPillsRaw.find((e) => e.keywords.some((k) => lower.includes(k)))?.pills ?? [];
+}
+
 const categories: Record<string, string> = {
   all: 'All',
   adaptogens: 'Adaptogens',
@@ -20,7 +42,7 @@ const categories: Record<string, string> = {
 
 const ITEMS_PER_PAGE = 6;
 
-function IngredientCardTile({ name, image, onClick }: { name: string; image: string; onClick: () => void }) {
+function IngredientTile({ name, image, onClick }: { name: string; image: string; onClick: () => void }) {
   return (
     <div
       className="cursor-pointer rounded-2xl overflow-hidden border border-[var(--color-border)] group"
@@ -46,7 +68,49 @@ function IngredientCardTile({ name, image, onClick }: { name: string; image: str
   );
 }
 
-export default function IngredientsAccordion({ ingredients }: { ingredients: Ingredient[] }) {
+function IngredientCardRow({ name, tagline, description, image, onClick }: { name: string; tagline: string; description: string; image: string; onClick: () => void }) {
+  return (
+    <div
+      className="cursor-pointer group rounded-xl border border-[#1E1854]/[0.07] bg-white shadow-sm shadow-[#1E1854]/[0.04] hover:shadow-xl hover:shadow-[#1E1854]/[0.10] hover:-translate-y-0.5 transition-all duration-500 overflow-hidden flex flex-col md:flex-row"
+      onClick={onClick}
+    >
+      <div className="relative w-full h-36 md:w-28 md:h-auto md:self-stretch shrink-0 overflow-hidden">
+        {image && (image.startsWith('/') || image.startsWith('http')) && (
+          <Image
+            src={image}
+            alt={name}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+            sizes="(max-width: 768px) 100vw, 112px"
+            unoptimized={!image.startsWith('/')}
+          />
+        )}
+      </div>
+      <div className="flex flex-col gap-2 p-4 flex-1 min-w-0">
+        <div className="flex items-center gap-2 flex-wrap">
+          <h3 className="text-sm font-semibold text-black tracking-[-0.01em] leading-snug">{name}</h3>
+          {tagline && (
+            <span className="text-[10px] font-semibold tracking-[0.08em] uppercase text-black/40 bg-[#1E1854]/[0.05] px-2 py-0.5 rounded-full whitespace-nowrap">
+              {tagline}
+            </span>
+          )}
+        </div>
+        {getPills(name).length > 0 && (
+          <div className="flex flex-wrap gap-1">
+            {getPills(name).map((pill: string) => (
+              <span key={pill} className="text-[10px] font-semibold tracking-[0.06em] uppercase px-2 py-0.5 rounded-full bg-gradient-to-r from-[#3B38B8]/10 to-[#1E1854]/10 text-[#3B38B8]">
+                {pill}
+              </span>
+            ))}
+          </div>
+        )}
+        <p className="text-xs text-[#1E1854]/60 leading-relaxed">{description}</p>
+      </div>
+    </div>
+  );
+}
+
+export default function IngredientsAccordion({ ingredients, variant = 'tile' }: { ingredients: Ingredient[]; variant?: 'tile' | 'card' }) {
   const cards: IngredientCard[] = ingredients.map((ing) => ({
     name: ing.name,
     category: ing.category,
@@ -115,7 +179,7 @@ export default function IngredientsAccordion({ ingredients }: { ingredients: Ing
         {/* Category sidebar — desktop only */}
         <div
           ref={categoryTabsRef}
-          className="hidden md:flex flex-col gap-1 w-40 shrink-0 sticky top-24"
+          className="hidden md:flex flex-col gap-1 w-40 shrink-0 sticky top-24 self-start"
         >
           {Object.entries(categories).map(([key, label]) => {
             const count = key === 'all' ? cards.length : cards.filter((c) => c.category === key).length;
@@ -153,18 +217,27 @@ export default function IngredientsAccordion({ ingredients }: { ingredients: Ing
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.2 }}
-              className="grid grid-cols-2 sm:grid-cols-3 gap-4"
+              className={variant === 'tile' ? 'grid grid-cols-2 sm:grid-cols-3 gap-4' : 'grid grid-cols-1 gap-3'}
             >
-              {visible.map((ing) => (
-                <IngredientCardTile
+              {visible.map((ing) => variant === 'tile' ? (
+                <IngredientTile
                   key={ing.name}
                   name={ing.name}
                   image={ing.image}
                   onClick={() => setActiveCard(ing)}
                 />
+              ) : (
+                <IngredientCardRow
+                  key={ing.name}
+                  name={ing.name}
+                  tagline={ing.tagline}
+                  description={ing.description}
+                  image={ing.image}
+                  onClick={() => setActiveCard(ing)}
+                />
               ))}
               {Array.from({ length: placeholderCount }).map((_, i) => (
-                <div key={`ph-${i}`} className="rounded-2xl aspect-[4/3] invisible" />
+                <div key={`ph-${i}`} className={variant === 'tile' ? 'rounded-2xl aspect-[4/3] invisible' : 'rounded-xl h-[88px] invisible'} />
               ))}
             </motion.div>
           </AnimatePresence>

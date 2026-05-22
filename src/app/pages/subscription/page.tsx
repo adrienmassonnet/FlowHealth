@@ -3,6 +3,7 @@
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { trackEvent } from '@/lib/clarity';
+import { ga4SubscriptionEvent } from '@/lib/ga4';
 
 type Step = 'lookup' | 'manage' | 'paused' | 'cancelled';
 
@@ -98,6 +99,7 @@ function SubscriptionPageInner() {
   async function handleLookup(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     trackEvent('subscription_lookup_submit');
+    ga4SubscriptionEvent('lookup');
     await lookupEmail(email);
   }
 
@@ -106,6 +108,7 @@ function SubscriptionPageInner() {
     setActionLoading(true);
     setActionError('');
     trackEvent('subscription_pause_confirm');
+    ga4SubscriptionEvent('pause_confirm');
     try {
       const data = await apiPost('/api/subscription/pause', { subscriptionId: sub.id, email });
       setSub(data.subscription);
@@ -123,6 +126,7 @@ function SubscriptionPageInner() {
     setActionLoading(true);
     setActionError('');
     trackEvent('subscription_cancel_confirm');
+    ga4SubscriptionEvent('cancel_confirm', cancelReason);
     try {
       const data = await apiPost('/api/subscription/cancel', { subscriptionId: sub.id, email, reason: cancelReason });
       setSub(data.subscription);
@@ -140,6 +144,7 @@ function SubscriptionPageInner() {
     setActionLoading(true);
     setActionError('');
     trackEvent('subscription_resume');
+    ga4SubscriptionEvent('resume');
     try {
       const data = await apiPost('/api/subscription/resume', { subscriptionId: sub.id, email });
       setSub(data.subscription);
@@ -262,13 +267,13 @@ function SubscriptionPageInner() {
                 {sub.status === 'active' && !confirmAction && (
                   <div className="flex flex-col sm:flex-row gap-2 pt-2 border-t border-[var(--color-border)]">
                     <button
-                      onClick={() => { trackEvent('subscription_pause_click'); setConfirmAction('pause'); setActionError(''); }}
+                      onClick={() => { trackEvent('subscription_pause_click'); ga4SubscriptionEvent('pause_click'); setConfirmAction('pause'); setActionError(''); }}
                       className="flex-1 py-2.5 rounded-xl text-xs tracking-[0.06em] uppercase font-semibold border border-[var(--color-border)] text-[#1E1854]/70 hover:border-[#1E1854]/40 hover:text-[#1E1854] transition-colors"
                     >
                       Pause subscription
                     </button>
                     <button
-                      onClick={() => { trackEvent('subscription_cancel_click'); setConfirmAction('cancel'); setActionError(''); }}
+                      onClick={() => { trackEvent('subscription_cancel_click'); ga4SubscriptionEvent('cancel_click'); setConfirmAction('cancel'); setActionError(''); }}
                       className="flex-1 py-2.5 rounded-xl text-xs tracking-[0.06em] uppercase font-semibold border border-[var(--color-border)] text-red-500/70 hover:border-red-200 hover:text-red-600 transition-colors"
                     >
                       Cancel subscription
@@ -412,7 +417,7 @@ function SubscriptionPageInner() {
             >
               <a
                 href="/products/rooibos-hibiscus-pomegranate"
-                onClick={() => trackEvent('subscription_cancelled_reorder')}
+                onClick={() => { trackEvent('subscription_cancelled_reorder'); ga4SubscriptionEvent('reorder'); }}
                 className="btn-cta w-full py-3.5 rounded-xl text-white text-xs tracking-[0.08em] uppercase font-semibold text-center block"
               >
                 Reorder Flow

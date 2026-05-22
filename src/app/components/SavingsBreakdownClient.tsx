@@ -12,7 +12,27 @@ const ALTERNATIVES = [
 ];
 
 type Supplement = { name: string; monthlyPriceCHF: number };
-type ComparisonRow = { order: number; topic?: string[]; feature: string };
+type ComparisonRow = { order: number; topic?: string[]; feature: string; othersLabel: string };
+
+function CheckIcon() {
+  return (
+    <span className="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center">
+      <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
+        <path d="M1.5 4.5l2 2 4-4" stroke="#16a34a" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    </span>
+  );
+}
+
+function CrossIcon() {
+  return (
+    <span className="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-[#1E1854]/[0.04] border border-[#1E1854]/10 flex items-center justify-center">
+      <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
+        <path d="M2.5 2.5l4 4M6.5 2.5l-4 4" stroke="#1E1854" strokeOpacity="0.3" strokeWidth="1.4" strokeLinecap="round"/>
+      </svg>
+    </span>
+  );
+}
 
 export default function SavingsBreakdownClient({
   supplements,
@@ -40,88 +60,129 @@ export default function SavingsBreakdownClient({
 
   return (
     <section className="max-w-[1200px] mx-auto px-6 pt-4 pb-20 md:pt-8">
-      {/* Section title — full width, same level as other section titles */}
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight mb-5 md:mb-7">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight mb-8 md:mb-10">
         Flow stacks up to its competition.
       </h2>
 
-      {/* How Flow compares — compact cards */}
-      <div className="mt-10 md:mt-12">
-<div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+      {/* Price card — above the table */}
+      <div
+        className="mb-4 rounded-2xl px-6 py-6 flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-10"
+        style={{ background: '#F4F4FB', border: '1px solid rgba(30,24,84,0.08)' }}
+      >
+        {/* Left: the value headline */}
+        <div className="flex-1 space-y-2">
+          <p className="text-xs font-semibold tracking-[0.1em] uppercase text-[#1E1854]/35">What you pay</p>
+          <div className="flex items-end gap-3 flex-wrap">
+            <span className="text-4xl font-semibold tracking-[-0.03em] text-[#1E1854]">CHF {flowPrice}<span className="text-base font-medium text-[#1E1854]/40 ml-1">/mo</span></span>
+          </div>
+          <p className="text-xs text-[#1E1854]/45 leading-relaxed">
+            One sachet. {activeIngredients} active ingredients. {servingsPerBox} days of supply. The same stack bought separately would run you <span className="font-semibold text-[#1E1854]/60">CHF {traditionalTotal}/mo</span>.
+          </p>
+          <div className="flex flex-col items-start gap-2 pt-1">
+            <span className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-sm font-semibold text-emerald-700">
+              CHF {savings} cheaper than buying separately
+            </span>
+            <button
+              onClick={() => setOpen(true)}
+              className="inline-flex items-center gap-1 text-xs font-medium text-[#1E1854]/40 hover:text-[#1E1854] transition-colors duration-200"
+            >
+              See full breakdown
+              <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
+                <path d="M2 4.5h5M4.5 2l2.5 2.5-2.5 2.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
 
-          {/* Price card — spans 2 cols to fit more content */}
-          <div
-            className="sm:col-span-2 rounded-xl px-5 py-5 flex flex-col gap-4"
-            style={{ background: '#F4F4FB', border: '1px solid rgba(30,24,84,0.08)' }}
+        {/* Divider */}
+        <div className="sm:w-px sm:self-stretch bg-[#1E1854]/[0.08] hidden sm:block" />
+
+        {/* Right: per-day anchor */}
+        <div className="flex flex-col gap-1.5 sm:w-52 shrink-0">
+          <p className="text-xs font-semibold tracking-[0.1em] uppercase text-[#1E1854]/35">Per day / per single sachet</p>
+          <p className="text-3xl font-semibold tracking-[-0.02em] text-[#1E1854]">CHF {pricePerServing}</p>
+          <p className="text-xs text-[#1E1854]/50">That's less than</p>
+          <p className="text-sm font-semibold text-[#1E1854]">{ALTERNATIVES[altIndex]}</p>
+          <button
+            onClick={flipAlternative}
+            className="self-start inline-flex items-center gap-1.5 text-xs font-medium text-[#1E1854]/40 hover:text-[#1E1854] transition-colors duration-200 mt-1"
           >
-            <div>
-              <p className="text-xs font-semibold tracking-[0.1em] uppercase text-[#1E1854]/35 mb-2">Price</p>
-              <p className="text-xs text-[#1E1854] leading-relaxed">
-                For all {activeIngredients} ingredients in Flow you would have paid{' '}
-                <span className="font-semibold">CHF {traditionalTotal}/month</span> buying them separately.
-              </p>
-              <button
-                onClick={() => setOpen(true)}
-                className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-[#1E1854]/40 hover:text-[#1E1854] transition-colors duration-200"
-              >
-                See full breakdown
-                <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
-                  <path d="M2 4.5h5M4.5 2l2.5 2.5-2.5 2.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
+            See another
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+              <path d="M9.5 2.5A4.5 4.5 0 1 0 10 5.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M8 1l1.5 1.5L8 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile: stacked cards */}
+      <div className="md:hidden flex flex-col gap-3">
+        {comparisonRows.map((row) => (
+          <div key={row.order} className="rounded-xl border border-[#1E1854]/[0.08] bg-white overflow-hidden">
+            <div className="px-4 py-2 bg-[#F4F4FB] border-b border-[#1E1854]/[0.06]">
+              <span className="text-xs font-semibold tracking-[0.08em] uppercase text-[#1E1854]/50">{row.topic?.[0]}</span>
             </div>
-
-            <hr className="border-[#1E1854]/10" />
-
-            <div className="flex flex-col gap-3">
-              <p className="text-xs text-[#1E1854]/50 leading-snug">
-                At CHF {pricePerServing} per day you could also get
-              </p>
-              <p className="text-xs font-semibold text-[#1E1854] leading-snug">
-                {ALTERNATIVES[altIndex]}
-              </p>
-              <button
-                onClick={flipAlternative}
-                className="self-start inline-flex items-center gap-1.5 text-xs font-medium text-[#1E1854]/50 hover:text-[#1E1854] transition-colors duration-200"
-              >
-                What else could I buy
-                <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
-                  <path d="M9.5 2.5A4.5 4.5 0 1 0 10 5.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M8 1l1.5 1.5L8 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
+            <div className="flex items-start gap-2.5 px-4 py-3 border-b border-[#1E1854]/[0.06]">
+              <CheckIcon />
+              <span className="text-xs text-[#1E1854] leading-relaxed pt-0.5">
+                {row.feature.replace(/\{active_ingredients\}/g, String(activeIngredients))}
+              </span>
+            </div>
+            <div className="flex items-start gap-2.5 px-4 py-3">
+              <CrossIcon />
+              <span className="text-xs text-[#1E1854]/45 leading-relaxed pt-0.5">{row.othersLabel}</span>
             </div>
           </div>
+        ))}
+      </div>
 
-          {comparisonRows
-            .filter((row) => !['science', 'quality'].includes((row.topic?.[0] ?? '').toLowerCase()))
-            .map((row) => (
-              <div
-                key={row.order}
-                className="rounded-xl px-4 py-3.5 flex flex-col gap-1.5"
-                style={{ background: '#F4F4FB', border: '1px solid rgba(30,24,84,0.08)' }}
-              >
-                {row.topic?.[0] && (
-                  <p className="text-xs font-semibold tracking-[0.1em] uppercase text-[#1E1854]/35">{row.topic[0]}</p>
-                )}
-                <p className="text-xs text-[#1E1854] leading-snug">{row.feature}</p>
-              </div>
-            ))}
+      {/* Desktop: table */}
+      <div className="hidden md:block rounded-2xl border border-[#1E1854]/[0.08] overflow-hidden">
+        {/* Table header */}
+        <div className="grid grid-cols-[160px_2fr_1fr] bg-[#F4F4FB] border-b border-[#1E1854]/[0.08]">
+          <div className="px-4 py-3" />
+          <div className="px-4 py-3 border-l border-[#1E1854]/[0.08] flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#3B38B8]" />
+            <span className="text-xs font-semibold tracking-[0.1em] uppercase text-[#1E1854]">Flow</span>
+          </div>
+          <div className="px-4 py-3 border-l border-[#1E1854]/[0.08] flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#1E1854]/20" />
+            <span className="text-xs font-semibold tracking-[0.1em] uppercase text-[#1E1854]/35">Others</span>
+          </div>
         </div>
+
+        {/* Table rows */}
+        {comparisonRows.map((row, i) => (
+          <div
+            key={row.order}
+            className={`grid grid-cols-[160px_2fr_1fr] ${i < comparisonRows.length - 1 ? 'border-b border-[#1E1854]/[0.06]' : ''} ${i % 2 === 1 ? 'bg-[#F4F4FB]/50' : 'bg-white'}`}
+          >
+            <div className="px-4 py-4 flex items-center">
+              <span className="text-xs font-semibold tracking-[0.08em] uppercase text-[#1E1854]/50 leading-tight break-words">{row.topic?.[0]}</span>
+            </div>
+            <div className="px-4 py-4 border-l border-[#1E1854]/[0.06] flex items-start gap-2.5">
+              <CheckIcon />
+              <span className="text-xs text-[#1E1854] leading-relaxed pt-0.5">
+                {row.feature.replace(/\{active_ingredients\}/g, String(activeIngredients))}
+              </span>
+            </div>
+            <div className="px-4 py-4 border-l border-[#1E1854]/[0.06] flex items-start gap-2.5">
+              <CrossIcon />
+              <span className="text-xs text-[#1E1854]/45 leading-relaxed pt-0.5">{row.othersLabel}</span>
+            </div>
+          </div>
+        ))}
       </div>
 
       {/* Modal */}
       {open && (
-        <div
-          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center"
-          onClick={() => setOpen(false)}
-        >
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center" onClick={() => setOpen(false)}>
           <div className="absolute inset-0 bg-[#1E1854]/60 backdrop-blur-sm" />
           <div
             className="relative w-full sm:max-w-sm bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col max-h-[85vh] overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header */}
             <div className="flex items-center justify-between px-6 py-5 border-b border-[var(--color-border)] shrink-0">
               <p className="text-sm font-semibold text-[#1E1854]">Monthly breakdown</p>
               <button
@@ -133,7 +194,6 @@ export default function SavingsBreakdownClient({
                 </svg>
               </button>
             </div>
-            {/* Scrollable list */}
             <div className="overflow-y-auto flex-1 px-6 divide-y divide-[var(--color-border)]">
               {supplements.map((s) => (
                 <div key={s.name} className="flex items-center justify-between gap-4 py-3.5">
@@ -142,7 +202,6 @@ export default function SavingsBreakdownClient({
                 </div>
               ))}
             </div>
-            {/* Totals — sticky at bottom */}
             <div className="px-6 pt-1 pb-7 border-t-2 border-[#1E1854] shrink-0 space-y-2">
               <div className="flex items-center justify-between gap-4 pt-3">
                 <span className="text-sm text-[hsla(var(--color-secondary)/0.45)] line-through">Traditional supplements</span>

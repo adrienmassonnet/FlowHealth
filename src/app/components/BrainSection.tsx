@@ -11,25 +11,25 @@ const ARTICLES = [
     category: 'Neuroscience',
     title: 'The Complete Guide to Neurotransmitters',
     slug: 'neurotransmitters-guide',
-    image: 'https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=800&q=85&auto=format&fit=crop',
+    image: '/brain-section/neurotransmitter.png',
   },
   {
     category: 'Sports & Performance',
     title: 'The Brain Behind Athletic Performance',
     slug: 'brain-athletic-performance',
-    image: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800&q=85&auto=format&fit=crop',
+    image: '/brain-section/sports-performance.png',
   },
   {
     category: 'Deep Work',
     title: 'What Focused Work Does to Your Brain',
     slug: 'focused-work-brain',
-    image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=85&auto=format&fit=crop',
+    image: '/brain-section/deepwork.png',
   },
   {
     category: 'Recovery',
     title: 'What the Brain Needs to Truly Recover',
     slug: 'brain-recovery',
-    image: 'https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=800&q=85&auto=format&fit=crop',
+    image: '/brain-section/recovery.png',
   },
 ];
 

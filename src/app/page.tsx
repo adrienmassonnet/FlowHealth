@@ -54,7 +54,7 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
 
-        <div className="relative z-10 max-w-[1200px] mx-auto px-6 pb-14 pt-20 md:pb-20 md:pt-24 w-full">
+        <div className="relative z-10 max-w-[1200px] mx-auto px-6 pb-18 pt-20 md:pb-20 md:pt-24 w-full">
           <div className="max-w-lg space-y-5 md:space-y-7">
             <HeroText delay={0}>
               <p className="text-xs tracking-[0.16em] uppercase text-white/50 font-medium">{cms.heroTagline}</p>
@@ -126,11 +126,11 @@ export default async function HomePage() {
                 {/* Middle: attribute rows with dividers */}
                 <ul className="divide-y divide-[#1E1854]/8 bg-[#1E18540A] rounded-2xl px-4 shadow-[0_1px_6px_rgba(30,24,84,0.06)] border border-[#1E1854]/[0.05]">
                   {[
+                    { label: 'Content', value: 'One box with 30 single dose sachets' },
                     { label: 'Formula', value: `${meta.activeIngredients} clinically-dosed ingredients` },
                     { label: 'Format', value: `${meta.totalFormulaWeightG} g active ingredients in a daily sachet` },
                     { label: 'Calories', value: `${meta.caloriesKcal} kcal per sachet — no sugar` },
                     { label: 'Energy', value: 'Stimulant-free, no crash, no dependency' },
-                    { label: 'Testing', value: 'Third-party tested for purity & potency' },
                   ].map(({ label, value }) => (
                     <li key={label} className="flex items-baseline gap-4 py-3">
                       <span className="text-xs tracking-[0.1em] uppercase font-semibold text-[#1E1854]/30 w-16 shrink-0">{label}</span>

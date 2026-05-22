@@ -15,11 +15,11 @@ type Ingredient = {
   functionCategory: string;
 };
 
-const allIngredients: Ingredient[] = [
+export const allIngredients: Ingredient[] = [
   {
     name: 'Hibiscus Extract',
     dose: '1,750 mg',
-    benefit: 'Offers gentle antioxidant support and may help maintain calm mental performance while supporting healthy blood flow and glucose response after meals.',
+    benefit: 'Rich in anthocyanins and polyphenols, Hibiscus sabdariffa neutralises oxidative stress in vascular tissue and supports cerebral blood flow — improving oxygen and nutrient delivery, the foundation for calm, sustained mental performance.',
     science: 'A vibrant floral extract from the calyces of Hibiscus sabdariffa, rich in anthocyanins and polyphenols. Its compounds help modulate oxidative stress and support vascular function, which can contribute to clearer thinking and steadier energy.',
     image: '/ingredients/hibiscus.png',
     imageAlt: 'Dried hibiscus sabdariffa flowers — antioxidant-rich botanical in Flow Health cognitive supplement',
@@ -29,7 +29,7 @@ const allIngredients: Ingredient[] = [
   {
     name: 'Rooibos Extract',
     dose: '625 mg',
-    benefit: 'Provides antioxidant protection and may help reduce feelings of everyday stress while supporting overall calm.',
+    benefit: 'Rooibos contains aspalathin, which modulates the HPA axis — the body\'s central stress regulation system. By reducing excess cortisol signalling, it eases the physiological tension that makes focus and calm harder to sustain under pressure.',
     science: 'A caffeine-free herbal extract from the South African rooibos plant, rich in unique polyphenols like aspalathin. Its antioxidants help neutralize free radicals and modulate oxidative stress in neural tissue, contributing to better redox balance.',
     image: '/ingredients/rooibos.png',
     imageAlt: 'South African rooibos herbal extract — caffeine-free polyphenol antioxidant in Flow Health formula',
@@ -39,7 +39,7 @@ const allIngredients: Ingredient[] = [
   {
     name: 'Zynamite® (Mango Leaf Extract)',
     dose: '300 mg',
-    benefit: 'Delivers fast-acting mental clarity, improves reaction time, and reduces mental fatigue without affecting heart rate or blood pressure.',
+    benefit: 'Standardised to 60% mangiferin, Zynamite® modulates brain alpha and beta wave activity for alert, composed focus. Clinical trials show significant improvements in reaction time and reduced mental fatigue — without caffeine\'s cardiovascular side effects.',
     science: 'A standardized extract from mango leaves (Mangifera indica), rich in mangiferin. Mangiferin modulates brain wave activity and supports efficient energy use in neurons, promoting alert yet calm performance that can last several hours.',
     image: '/ingredients/mangifera.png',
     imageAlt: 'Zynamite mango leaf extract (Mangifera indica) — clinically studied nootropic for focus and mental energy in Flow Health',
@@ -49,7 +49,7 @@ const allIngredients: Ingredient[] = [
   {
     name: 'Green Tea Extract',
     dose: '250 mg',
-    benefit: 'Provides smooth, jitter-free energy and sustained attention when paired with L-theanine.',
+    benefit: 'Natural caffeine and L-theanine promote alpha brainwave activity — the neural signature of relaxed alertness. This pairing amplifies dopamine and norepinephrine signalling to sustain focused attention without the spike-and-crash of isolated stimulants.',
     science: 'A concentrated source of natural caffeine and L-theanine from Camellia sinensis. The combination promotes alpha brain waves associated with relaxed alertness while gently increasing dopamine and norepinephrine signaling for focused energy.',
     image: '/ingredients/green-tea.png',
     imageAlt: 'Green tea extract (Camellia sinensis) with L-theanine and natural caffeine — sustained focus ingredient in Flow Health',
@@ -59,7 +59,7 @@ const allIngredients: Ingredient[] = [
   {
     name: "Lion's Mane Mushroom",
     dose: '250 mg',
-    benefit: 'Supports nerve health, mental clarity, and long-term cognitive vitality.',
+    benefit: 'Hericenones and erinacines cross the blood-brain barrier and stimulate Nerve Growth Factor (NGF) synthesis — essential for neuronal growth and maintenance. Lion\'s Mane is one of the few compounds with genuine evidence for supporting neuroplasticity and long-term cognitive resilience.',
     science: 'A medicinal mushroom (Hericium erinaceus) containing hericenones and erinacines. Its compounds stimulate nerve growth factor (NGF) production, encouraging neuroplasticity and protecting neurons from everyday wear.',
     image: '/ingredients/lions-mane.png',
     imageAlt: "Lion's mane mushroom (Hericium erinaceus) — NGF-stimulating nootropic for neuroplasticity and brain health in Flow Health",
@@ -69,7 +69,7 @@ const allIngredients: Ingredient[] = [
   {
     name: 'Ginseng Panax',
     dose: '200 mg',
-    benefit: 'Helps combat mental fatigue and supports working memory and overall cognitive performance.',
+    benefit: 'Ginsenosides modulate dopamine and acetylcholine systems — both central to working memory and sustained attention. Research shows measurable reductions in mental fatigue under cognitive load, supporting enduring performance through demanding days.',
     science: 'Root extract from Panax ginseng, standardized for ginsenosides. Ginsenosides modulate neurotransmitter systems and help regulate stress response, promoting balanced energy and mental stamina.',
     image: '/ingredients/ginseng-panax.png',
     imageAlt: 'Panax ginseng root extract standardized for ginsenosides — adaptogen for cognitive performance and mental stamina in Flow Health',
@@ -79,7 +79,7 @@ const allIngredients: Ingredient[] = [
   {
     name: "Saffr'Active® (Saffron Extract)",
     dose: '50 mg',
-    benefit: 'Gently lifts mood, reduces everyday tension, and supports emotional balance.',
+    benefit: 'Standardised to crocin and safranal, Saffr\'Active® influences serotonin reuptake and supports BDNF — critical for mood regulation and neuronal health. Clinical studies confirm meaningful improvements in mood and emotional resilience.',
     science: 'A standardized saffron extract (Crocus sativus) rich in crocin and safranal. Its bioactive compounds influence serotonin and dopamine pathways while offering antioxidant protection to brain cells.',
     image: '/ingredients/saffran.png',
     imageAlt: "Saffr'Active saffron extract (Crocus sativus) — mood-lifting serotonin and dopamine support ingredient in Flow Health",
@@ -89,7 +89,7 @@ const allIngredients: Ingredient[] = [
   {
     name: 'Inulin',
     dose: '1,345 mg',
-    benefit: 'Nourishes beneficial gut bacteria, supporting the gut-brain connection that influences mood and cognitive flexibility.',
+    benefit: 'Fermented by gut microbiota into butyrate, inulin regulates intestinal permeability and modulates the vagus nerve — a direct pathway to the brain. A healthier microbiome is linked to improved mood stability, lower neuroinflammation, and greater cognitive flexibility.',
     science: 'A naturally occurring prebiotic fiber derived from plants. Fermented by gut microbes into short-chain fatty acids, it helps regulate inflammation and neurotransmitter signaling along the gut-brain axis.',
     image: '/ingredients/inulin.png',
     imageAlt: 'Inulin prebiotic fiber — gut-brain axis support ingredient that feeds beneficial microbiome bacteria in Flow Health',
@@ -99,7 +99,7 @@ const allIngredients: Ingredient[] = [
   {
     name: 'Betaine (Trimethylglycine)',
     dose: '500 mg',
-    benefit: 'Supports healthy methylation and helps maintain balanced homocysteine levels.',
+    benefit: 'As a methyl donor, betaine converts homocysteine to methionine in the one-carbon cycle. Elevated homocysteine is linked to cognitive decline and mood disruption — making TMG\'s role in this balance directly relevant to long-term brain health.',
     science: 'A naturally occurring compound found in beets and other plants, also known as TMG. As a methyl donor, betaine assists in converting homocysteine back to methionine, supporting cellular methylation processes important for brain chemistry and energy metabolism.',
     image: '/ingredients/tmg.png',
     imageAlt: 'Betaine trimethylglycine (TMG) from beet root — methyl donor for homocysteine balance and brain chemistry in Flow Health',
@@ -109,7 +109,7 @@ const allIngredients: Ingredient[] = [
   {
     name: 'Magnesium Citrate',
     dose: '680 mg',
-    benefit: 'Promotes relaxation, helps ease tension, and supports healthy stress response and sleep quality.',
+    benefit: 'A cofactor in over 300 enzymatic reactions, magnesium governs GABA — the brain\'s primary inhibitory neurotransmitter. Low levels cause nervous system hyperexcitability: tension, poor sleep, and stress reactivity. Citrate form ensures high bioavailability.',
     science: 'A highly bioavailable form of magnesium bound to citric acid. Magnesium acts as a cofactor in over 300 enzymatic reactions, including those regulating neurotransmitters like GABA and modulating the HPA axis for calmer nervous system function.',
     image: '/ingredients/magnesium.png',
     imageAlt: 'Magnesium citrate — bioavailable magnesium for GABA regulation, relaxation, and nervous system calm in Flow Health',
@@ -119,7 +119,7 @@ const allIngredients: Ingredient[] = [
   {
     name: 'Sodium Citrate',
     dose: '400 mg',
-    benefit: 'Supports proper hydration, fluid balance, and smooth nutrient absorption, helping maintain steady energy and mental clarity throughout the day.',
+    benefit: 'Sodium citrate maintains cellular fluid balance and membrane potential — the electrochemical gradient neurons rely on to fire efficiently. Proper sodium regulation supports nutrient transport across cell membranes and the stable environment needed for consistent cognitive output.',
     science: 'A highly bioavailable form of sodium used as a gentle electrolyte. Sodium citrate provides readily available sodium ions that assist in regulating fluid levels, enhancing cellular hydration, and optimizing the transport of other key nutrients across cell membranes — creating the ideal internal environment for calm, steady energy and clear focus.',
     image: '/ingredients/sodium-citrate.png',
     imageAlt: 'Sodium citrate electrolyte — cellular hydration and nutrient absorption support for steady mental clarity in Flow Health',
@@ -129,7 +129,7 @@ const allIngredients: Ingredient[] = [
   {
     name: 'Zinc',
     dose: '7 mg',
-    benefit: 'Supports healthy neurotransmitter function, immune balance, and cognitive processes.',
+    benefit: 'Zinc modulates synaptic signalling at NMDA receptors and supports enzymes involved in dopamine synthesis and antioxidant defence. It also drives BDNF expression — critical for learning and memory consolidation. Most people are suboptimally dosed.',
     science: 'An essential trace mineral in a bioavailable form. Zinc modulates synaptic signaling (especially glutamate and GABA) and acts as a cofactor in enzymes involved in DNA synthesis and antioxidant defense in the brain.',
     image: '/ingredients/zinc.png',
     imageAlt: 'Zinc trace mineral — synaptic signaling cofactor for neurotransmitter function and cognitive health in Flow Health',
@@ -139,7 +139,7 @@ const allIngredients: Ingredient[] = [
   {
     name: 'B-Vitamins (B1, B3, B6, B12)',
     dose: '2.875 mg',
-    benefit: 'Support energy metabolism, neurotransmitter production, and overall mental performance.',
+    benefit: 'Essential cofactors for ATP production and the biosynthesis of dopamine, serotonin, and norepinephrine. B6 and B12 drive methylation and homocysteine regulation, while B3 supports NAD+ — central to cellular energy and neuronal repair.',
     science: 'Essential B-complex vitamins in active or highly bioavailable forms. These vitamins serve as cofactors in converting food into cellular energy (ATP) and in synthesizing dopamine, serotonin, and other key brain chemicals.',
     image: '/ingredients/vitamin-b.png',
     imageAlt: 'B-complex vitamins B1 B3 B6 B12 — energy metabolism cofactors for dopamine and serotonin synthesis in Flow Health',
@@ -149,7 +149,7 @@ const allIngredients: Ingredient[] = [
   {
     name: 'Pomegranate Flavour',
     dose: '125 mg',
-    benefit: 'Delivers a pleasant, subtle fruity taste that makes your daily serving enjoyable and easy to look forward to.',
+    benefit: 'Natural pomegranate flavouring makes the formula genuinely enjoyable to take. Consistency is the single most important factor in realising the compounding benefits of evidence-based supplementation — a ritual you look forward to is one you actually keep.',
     science: 'A natural flavouring derived from pomegranate. As a natural flavour, it has no direct physiological effect but improves palatability, supporting consistent daily use and turning your ritual into something you genuinely enjoy.',
     image: '/ingredients/pomegranate.png',
     imageAlt: 'Natural pomegranate flavour — clean taste ingredient for daily consistency in the Flow Health cognitive supplement sachet',
