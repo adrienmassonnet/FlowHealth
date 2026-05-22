@@ -99,18 +99,33 @@ export default async function HomePage() {
                 </h3>
               </div>
 
-              {/* Image — portrait ratio, editorial feel */}
+              {/* Images column */}
               {featuredImage && (
-                <ScrollReveal variant="scale" duration={1.4} className="md:w-[52%] shrink-0 w-full aspect-[4/3] md:aspect-auto relative">
-                  <Image
-                    src={featuredImage.url}
-                    alt={featuredImage.altText ?? featured.title}
-                    fill
-                    priority
-                    className="object-contain object-center scale-[0.88]"
-                    sizes="(max-width: 768px) 100vw, 52vw"
-                  />
-                </ScrollReveal>
+                <div className="md:w-[52%] shrink-0 w-full flex flex-col">
+                  <ScrollReveal variant="scale" duration={1.4} className="w-full aspect-[5/4] relative">
+                    <Image
+                      src={featuredImage.url}
+                      alt={featuredImage.altText ?? featured.title}
+                      fill
+                      priority
+                      className="object-contain object-center scale-[0.88]"
+                      sizes="(max-width: 768px) 100vw, 52vw"
+                    />
+                  </ScrollReveal>
+                  {featuredImageSecondary && (
+                    <div className="w-1/2">
+                      <Image
+                        src={featuredImageSecondary.url}
+                        alt={featuredImageSecondary.altText ?? featured.title}
+                        width={800}
+                        height={800}
+                        className="w-full h-auto object-contain block"
+                        loading="lazy"
+                        sizes="(max-width: 768px) 50vw, 26vw"
+                      />
+                    </div>
+                  )}
+                </div>
               )}
 
               {/* Content */}
@@ -157,21 +172,6 @@ export default async function HomePage() {
 
               </div>
             </div>
-
-            {/* Secondary product image — half width of first image, left-aligned */}
-            {featuredImageSecondary && (
-              <div className="md:w-[26%] w-1/2">
-                <Image
-                  src={featuredImageSecondary.url}
-                  alt={featuredImageSecondary.altText ?? featured.title}
-                  width={800}
-                  height={800}
-                  className="w-full h-auto object-contain block"
-                  loading="lazy"
-                  sizes="(max-width: 768px) 50vw, 26vw"
-                />
-              </div>
-            )}
 
           </div>
         </section>
