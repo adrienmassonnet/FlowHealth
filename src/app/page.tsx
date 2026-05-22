@@ -99,18 +99,31 @@ export default async function HomePage() {
                 </h3>
               </div>
 
-              {/* Image — portrait ratio, editorial feel */}
+              {/* Images column */}
               {featuredImage && (
-                <ScrollReveal variant="scale" duration={1.4} className="md:w-[52%] shrink-0 w-full aspect-[4/3] md:aspect-auto relative">
-                  <Image
-                    src={featuredImage.url}
-                    alt={featuredImage.altText ?? featured.title}
-                    fill
-                    priority
-                    className="object-contain object-center scale-[0.88]"
-                    sizes="(max-width: 768px) 100vw, 52vw"
-                  />
-                </ScrollReveal>
+                <div className="md:w-[52%] shrink-0 w-full flex flex-col">
+                  <ScrollReveal variant="scale" duration={1.4} className="w-full aspect-[4/3] md:aspect-auto relative">
+                    <Image
+                      src={featuredImage.url}
+                      alt={featuredImage.altText ?? featured.title}
+                      fill
+                      priority
+                      className="object-contain object-center scale-[0.88]"
+                      sizes="(max-width: 768px) 100vw, 52vw"
+                    />
+                  </ScrollReveal>
+                  {featuredImageSecondary && (
+                    <Image
+                      src={featuredImageSecondary.url}
+                      alt={featuredImageSecondary.altText ?? featured.title}
+                      width={800}
+                      height={800}
+                      className="w-full h-auto object-contain block"
+                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw, 52vw"
+                    />
+                  )}
+                </div>
               )}
 
               {/* Content */}
@@ -161,24 +174,7 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* Secondary product image */}
-      {featuredImageSecondary && (
-        <section className="bg-white">
-          <div className="max-w-[1200px] mx-auto px-6 pb-16">
-            <Image
-              src={featuredImageSecondary.url}
-              alt={featuredImageSecondary.altText ?? featured!.title}
-              width={1200}
-              height={800}
-              className="w-full h-auto object-contain block"
-              loading="lazy"
-              sizes="(max-width: 768px) 100vw, 1200px"
-            />
-          </div>
-        </section>
-      )}
-
-      <HealthBenefits benefits={healthBenefits} sectionLabel={cms.healthBenefitsSectionLabel} heading={cms.healthBenefitsHeading} />
+<HealthBenefits benefits={healthBenefits} sectionLabel={cms.healthBenefitsSectionLabel} heading={cms.healthBenefitsHeading} />
 
       {/* Genesis section */}
       <section className="py-20 md:py-24 bg-white">
