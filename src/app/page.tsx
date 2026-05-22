@@ -26,6 +26,7 @@ export default async function HomePage() {
   ]);
   const featured = products[0];
   const featuredImage = featured?.images.edges[0]?.node;
+  const featuredImageSecondary = featured?.images.edges[1]?.node;
 
 
   return (
@@ -156,6 +157,23 @@ export default async function HomePage() {
 
               </div>
             </div>
+          </div>
+        </section>
+      )}
+
+      {/* Secondary product image */}
+      {featuredImageSecondary && (
+        <section className="bg-white">
+          <div className="max-w-[1200px] mx-auto px-6 pb-16">
+            <Image
+              src={featuredImageSecondary.url}
+              alt={featuredImageSecondary.altText ?? featured!.title}
+              width={1200}
+              height={800}
+              className="w-full h-auto object-contain block"
+              loading="lazy"
+              sizes="(max-width: 768px) 100vw, 1200px"
+            />
           </div>
         </section>
       )}
