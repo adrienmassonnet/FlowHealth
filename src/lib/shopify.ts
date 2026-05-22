@@ -82,7 +82,7 @@ export async function getProducts(): Promise<Product[]> {
                 currencyCode
               }
             }
-            images(first: 1) {
+            images(first: 2) {
               edges {
                 node {
                   url
