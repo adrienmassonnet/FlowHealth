@@ -78,6 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
         <Script id="cookieyes" src="https://cdn-cookieyes.com/client_data/ea8c3c243a2b93e0bda9002838583a0f/script.js" strategy="beforeInteractive" />
+        <Script id="ga4-init" strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-F1B6SHB752" />
         <Script id="gtag-shim" strategy="afterInteractive">{`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -85,7 +86,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           gtag('consent', 'default', {
             analytics_storage: 'denied',
             ad_storage: 'denied',
-            wait_for_update: 500
+            ad_user_data: 'denied',
+            ad_personalization: 'denied',
+            wait_for_update: 2000
+          });
+          gtag('js', new Date());
+          gtag('config', 'G-F1B6SHB752', { send_page_view: false });
+          document.addEventListener('cookieyes_consent_update', function(e) {
+            var accepted = e.detail && e.detail.accepted ? e.detail.accepted : [];
+            if (accepted.includes('analytics')) {
+              gtag('consent', 'update', { analytics_storage: 'granted' });
+            }
+            if (accepted.includes('advertisement')) {
+              gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+            }
           });
         `}</Script>
         <Script id="gtm-init" strategy="afterInteractive">{`
@@ -94,18 +108,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','GTM-N3CRPDLV');
-        `}</Script>
-        <Script id="ga4-direct" strategy="afterInteractive">{`
-          window.addEventListener('cookieyes_consent_update', function(e) {
-            var data = e.detail;
-            if (data && data.accepted && data.accepted.includes('analytics')) {
-              gtag('consent', 'update', { analytics_storage: 'granted' });
-              gtag('config', 'G-F1B6SHB752');
-            }
-            if (data && data.accepted && data.accepted.includes('advertisement')) {
-              gtag('consent', 'update', { ad_storage: 'granted' });
-            }
-          });
         `}</Script>
       </head>
       <body className={`${outfit.className} antialiased`} suppressHydrationWarning>
