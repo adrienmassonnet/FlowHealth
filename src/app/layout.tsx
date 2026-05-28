@@ -92,12 +92,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           });
           gtag('js', new Date());
           gtag('config', 'G-F1B6SHB752', { send_page_view: false });
-          document.addEventListener('cookieyes_consent_update', function(e) {
-            var accepted = e.detail && e.detail.accepted ? e.detail.accepted : [];
-            if (accepted.includes('analytics')) {
-              gtag('consent', 'update', { analytics_storage: 'granted' });
+          window.addEventListener('cookie_consent_update', function() {
+            var dl = window.dataLayer || [];
+            var lastConsent = null;
+            for (var i = dl.length - 1; i >= 0; i--) {
+              if (dl[i][0] === 'consent' && dl[i][1] === 'update' && dl[i][2] && dl[i][2].analytics_storage) {
+                lastConsent = dl[i][2];
+                break;
+              }
             }
-            if (accepted.includes('advertisement')) {
+            if (lastConsent && lastConsent.analytics_storage === 'granted') {
+              gtag('consent', 'update', { analytics_storage: 'granted' });
+              gtag('config', 'G-F1B6SHB752');
+            }
+            if (lastConsent && lastConsent.ad_storage === 'granted') {
               gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
             }
           });
