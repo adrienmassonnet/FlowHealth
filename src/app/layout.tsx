@@ -82,6 +82,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           window.gtag = gtag;
+          gtag('consent', 'default', {
+            analytics_storage: 'denied',
+            ad_storage: 'denied',
+            wait_for_update: 500
+          });
         `}</Script>
         <Script id="gtm-init" strategy="afterInteractive">{`
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -89,6 +94,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','GTM-N3CRPDLV');
+        `}</Script>
+        <Script id="ga4-direct" strategy="afterInteractive">{`
+          window.addEventListener('cookieyes_consent_update', function(e) {
+            var data = e.detail;
+            if (data && data.accepted && data.accepted.includes('analytics')) {
+              gtag('consent', 'update', { analytics_storage: 'granted' });
+              gtag('config', 'G-F1B6SHB752');
+            }
+            if (data && data.accepted && data.accepted.includes('advertisement')) {
+              gtag('consent', 'update', { ad_storage: 'granted' });
+            }
+          });
         `}</Script>
       </head>
       <body className={`${outfit.className} antialiased`} suppressHydrationWarning>
