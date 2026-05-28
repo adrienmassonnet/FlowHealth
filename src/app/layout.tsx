@@ -77,43 +77,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
+        {/* Cookie banner — loads before everything else */}
         <Script id="cookieyes" src="https://cdn-cookieyes.com/client_data/ea8c3c243a2b93e0bda9002838583a0f/script.js" strategy="beforeInteractive" />
+        {/* GA4 — direct load, consent mode enabled so it works anonymously before consent */}
         <Script id="ga4-init" strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-F1B6SHB752" />
-        <Script id="gtag-shim" strategy="afterInteractive">{`
+        <Script id="ga4-config" strategy="afterInteractive">{`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           window.gtag = gtag;
-          gtag('consent', 'default', {
-            analytics_storage: 'denied',
-            ad_storage: 'denied',
-            ad_user_data: 'denied',
-            ad_personalization: 'denied',
-            wait_for_update: 2000
-          });
           gtag('js', new Date());
-          gtag('config', 'G-F1B6SHB752', { send_page_view: false });
-          (function() {
-            var initialized = false;
-            function checkConsent() {
-              if (initialized) return;
-              var dl = window.dataLayer || [];
-              for (var i = 0; i < dl.length; i++) {
-                var entry = dl[i];
-                if (entry[0] === 'consent' && entry[1] === 'update' && entry[2] && entry[2].analytics_storage === 'granted') {
-                  initialized = true;
-                  gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
-                  gtag('config', 'G-F1B6SHB752');
-                  return;
-                }
-              }
-            }
-            var interval = setInterval(function() {
-              checkConsent();
-              if (initialized) clearInterval(interval);
-            }, 300);
-            setTimeout(function() { clearInterval(interval); }, 30000);
-          })();
+          gtag('config', 'G-F1B6SHB752');
         `}</Script>
+        {/* GTM — for Meta Pixel and Clarity only */}
         <Script id="gtm-init" strategy="afterInteractive">{`
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
