@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Turnstile from 'react-turnstile';
 import { trackEvent } from '@/lib/clarity';
 import { ga4SignUp } from '@/lib/ga4';
 
@@ -14,6 +15,7 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
   const [email, setEmail] = useState('');
   const [notifyPromos, setNotifyPromos] = useState(true);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   // Lock body scroll when open
   useEffect(() => {
@@ -42,7 +44,7 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
       const res = await fetch('/api/prelaunch', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, notifyPromos }),
+        body: JSON.stringify({ email, notifyPromos, turnstileToken }),
       });
       if (!res.ok) throw new Error();
       setStatus('success');
@@ -157,12 +159,20 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
                   </span>
                 </label>
 
+                <Turnstile
+                  sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? '1x00000000000000000000AA'}
+                  onVerify={setTurnstileToken}
+                  onExpire={() => setTurnstileToken(null)}
+                  theme="light"
+                  className="mt-1"
+                />
+
                 {status === 'error' && (
                   <p className="text-xs text-red-500">Something went wrong — please try again.</p>
                 )}
                 <button
                   type="submit"
-                  disabled={status === 'loading'}
+                  disabled={status === 'loading' || !turnstileToken}
                   className="btn-cta w-full text-white font-semibold text-sm tracking-[0.06em] uppercase py-3.5 rounded-full disabled:opacity-40 transition-all duration-300"
                 >
                   {status === 'loading' ? 'Saving…' : 'Keep me informed'}
