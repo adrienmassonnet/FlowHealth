@@ -26,26 +26,35 @@ export default function PurchaseSelector({ variantId, price, currencyCode, disco
 
   const displayPrice = isSubscribe ? discountedPrice : fullPrice;
 
-  const ga4Item = (p: number) => ({ item_id: variantId, item_name: 'Flow', price: p, currency: currencyCode, item_brand: 'Flow Health', item_category: 'Supplement' });
+  const ga4Item = (p: number, purchaseType: 'subscribe' | 'one_time') => ({
+    item_id: variantId,
+    item_name: 'Flow',
+    price: p,
+    currency: currencyCode,
+    item_brand: 'Flow Health',
+    item_category: 'Supplement',
+    item_variant: purchaseType,
+  });
 
   function handleSelectSubscribe() {
     setSelected('subscribe');
     trackEvent('product_page_select_subscribe');
-    ga4SelectItem(ga4Item(parseFloat(discountedPrice)), 'Product Page');
+    ga4SelectItem(ga4Item(parseFloat(discountedPrice), 'subscribe'), 'subscribe');
   }
 
   function handleSelectOnce() {
     setSelected('once');
     trackEvent('product_page_select_one_time');
-    ga4SelectItem(ga4Item(parseFloat(fullPrice)), 'Product Page');
+    ga4SelectItem(ga4Item(parseFloat(fullPrice), 'one_time'), 'one_time');
   }
 
   function handleCheckout() {
     const p = parseFloat(displayPrice);
+    const purchaseType = isSubscribe ? 'subscribe' : 'one_time';
     trackEvent(isSubscribe ? 'product_page_buy_subscribe' : 'product_page_buy_once');
     pixelInitiateCheckout({ value: p, currency: currencyCode });
-    ga4AddToCart(ga4Item(p));
-    ga4BeginCheckout(ga4Item(p), isSubscribe ? 'subscribe' : 'one_time');
+    ga4AddToCart(ga4Item(p, purchaseType));
+    ga4BeginCheckout(ga4Item(p, purchaseType), purchaseType);
     setModalOpen(true);
   }
 
