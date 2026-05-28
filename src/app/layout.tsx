@@ -92,23 +92,27 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           });
           gtag('js', new Date());
           gtag('config', 'G-F1B6SHB752', { send_page_view: false });
-          window.addEventListener('cookie_consent_update', function() {
-            var dl = window.dataLayer || [];
-            var lastConsent = null;
-            for (var i = dl.length - 1; i >= 0; i--) {
-              if (dl[i][0] === 'consent' && dl[i][1] === 'update' && dl[i][2] && dl[i][2].analytics_storage) {
-                lastConsent = dl[i][2];
-                break;
+          (function() {
+            var initialized = false;
+            function checkConsent() {
+              if (initialized) return;
+              var dl = window.dataLayer || [];
+              for (var i = 0; i < dl.length; i++) {
+                var entry = dl[i];
+                if (entry[0] === 'consent' && entry[1] === 'update' && entry[2] && entry[2].analytics_storage === 'granted') {
+                  initialized = true;
+                  gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+                  gtag('config', 'G-F1B6SHB752');
+                  return;
+                }
               }
             }
-            if (lastConsent && lastConsent.analytics_storage === 'granted') {
-              gtag('consent', 'update', { analytics_storage: 'granted' });
-              gtag('config', 'G-F1B6SHB752');
-            }
-            if (lastConsent && lastConsent.ad_storage === 'granted') {
-              gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
-            }
-          });
+            var interval = setInterval(function() {
+              checkConsent();
+              if (initialized) clearInterval(interval);
+            }, 300);
+            setTimeout(function() { clearInterval(interval); }, 30000);
+          })();
         `}</Script>
         <Script id="gtm-init" strategy="afterInteractive">{`
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
