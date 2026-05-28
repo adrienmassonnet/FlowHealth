@@ -77,6 +77,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
+        <Script id="cookieyes" src="https://cdn-cookieyes.com/client_data/ea8c3c243a2b93e0bda9002838583a0f/script.js" strategy="beforeInteractive" />
         <Script id="gtag-shim" strategy="afterInteractive">{`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
