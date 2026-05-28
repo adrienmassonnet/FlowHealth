@@ -27,7 +27,7 @@ export default function AddToCartButton({ variantId, productName = 'Flow', price
       });
       const { url } = await res.json();
       trackEvent('product_page_checkout_redirected');
-      ga4BeginCheckout(item);
+      ga4BeginCheckout(item, 'one_time');
       window.location.href = url;
     } catch (e) {
       console.error(e);
