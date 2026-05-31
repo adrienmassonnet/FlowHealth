@@ -1,12 +1,6 @@
 import { getSubscriptionByEmail } from '@/lib/shopify-subscriptions';
-import { apiRateLimit, getIp } from '@/lib/rate-limit';
 
 export async function POST(req: Request) {
-  const { success } = await apiRateLimit.limit(getIp(req));
-  if (!success) {
-    return Response.json({ error: 'Too many requests' }, { status: 429 });
-  }
-
   try {
     const { email } = await req.json();
     if (!email) return Response.json({ error: 'Email is required.' }, { status: 400 });

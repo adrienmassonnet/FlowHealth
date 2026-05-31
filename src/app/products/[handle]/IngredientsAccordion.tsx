@@ -42,7 +42,7 @@ const categories: Record<string, string> = {
 
 const ITEMS_PER_PAGE = 6;
 
-function IngredientTile({ name, dose, image, onClick }: { name: string; dose: string; image: string; onClick: () => void }) {
+function IngredientTile({ name, image, onClick }: { name: string; image: string; onClick: () => void }) {
   return (
     <div
       className="cursor-pointer rounded-2xl overflow-hidden border border-[var(--color-border)] group"
@@ -62,9 +62,6 @@ function IngredientTile({ name, dose, image, onClick }: { name: string; dose: st
         <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-3">
           <p className="text-sm font-semibold text-white leading-snug">{name}</p>
-          {dose && dose !== '—' && (
-            <p className="text-xs font-semibold text-white/75 mt-0.5 tracking-wide">{dose}</p>
-          )}
         </div>
       </div>
     </div>
@@ -226,7 +223,6 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile' }: 
                 <IngredientTile
                   key={ing.name}
                   name={ing.name}
-                  dose={ing.tagline}
                   image={ing.image}
                   onClick={() => setActiveCard(ing)}
                 />

@@ -121,14 +121,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     description: post.excerpt,
     image: post.coverImageUrl,
     datePublished: post.publishedDate,
-    dateModified: post.publishedDate,
     author: { '@type': 'Organization', name: 'Flow Health', url: SITE_URL },
     publisher: {
       '@type': 'Organization',
       name: 'Flow Health',
       logo: { '@type': 'ImageObject', url: `${SITE_URL}/og-image.png` },
     },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/pages/blog-posts/${post.slug}` },
     url: `${SITE_URL}/pages/blog-posts/${post.slug}`,
     keywords: post.tags?.join(', '),
     articleSection: post.category,
@@ -190,25 +188,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         {/* Body (Rich Text) */}
         {post.body && <RichTextNode node={post.body} />}
 
-        {/* Product CTA */}
-        <div className="mt-16 rounded-2xl bg-gradient-to-br from-[#3B38B8]/8 to-[#1E1854]/5 border border-[#1E1854]/10 p-8 text-center space-y-4">
-          <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Try Flow</p>
-          <h2 className="text-xl font-semibold tracking-[-0.02em] text-[#1E1854] leading-snug">
-            Put the science to work for you
-          </h2>
-          <p className="text-sm text-[#1E1854]/60 leading-relaxed max-w-sm mx-auto">
-            16 clinically-dosed active ingredients. No caffeine, no sugar, no fillers. Formulated in Switzerland.
-          </p>
-          <Link
-            href="/products/flow"
-            className="inline-block btn-cta text-white font-semibold text-sm tracking-[0.06em] uppercase px-8 py-3.5 rounded-full transition-all duration-300"
-          >
-            Get Flow
-          </Link>
-        </div>
-
         {/* Back link */}
-        <div className="mt-10 pt-10 border-t border-[var(--color-border)]">
+        <div className="mt-16 pt-10 border-t border-[var(--color-border)]">
           <Link
             href="/pages/blog-posts"
             className="inline-flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium text-[hsla(var(--color-secondary)/0.6)] hover:text-[#1E1854] transition-colors"

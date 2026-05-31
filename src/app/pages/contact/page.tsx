@@ -37,12 +37,12 @@ const categories = [
 ];
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({ firstName: '', lastName: '', email: '', category: '', message: '' });
+  const [formData, setFormData] = useState({ firstName: '', lastName: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    trackEvent(`contact_form_submit_${formData.category || 'uncategorized'}`);
+    trackEvent('contact_form_submit');
     setSubmitted(true);
   }
 
@@ -160,27 +160,6 @@ export default function ContactPage() {
                           className="w-full pl-9 pr-3.5 py-2.5 text-sm rounded-xl border border-[var(--color-border)] bg-[#1E18540A] text-[#1E1854] placeholder:text-[#1E1854]/25 focus:outline-none focus:border-[#1E1854]/40 focus:bg-white transition-colors"
                         />
                       </div>
-                    </div>
-
-                    <div className="space-y-1.5">
-                      <label className="text-xs font-medium text-[#1E1854]/55 tracking-[0.04em]">Request type</label>
-                      <select
-                        required
-                        value={formData.category}
-                        onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                        className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-[var(--color-border)] bg-[#1E18540A] text-[#1E1854] focus:outline-none focus:border-[#1E1854]/40 focus:bg-white transition-colors appearance-none cursor-pointer"
-                      >
-                        <option value="" disabled>Select a category…</option>
-                        <option value="order-status">Order Status &amp; Tracking</option>
-                        <option value="subscription-mgmt">Subscription Management</option>
-                        <option value="product-experience">Product Experience</option>
-                        <option value="product-complaint">Product Complaint</option>
-                        <option value="returns-refunds">Returns &amp; Refunds</option>
-                        <option value="billing">Billing &amp; Payment</option>
-                        <option value="waitlist-preorder">Waitlist &amp; Pre-order</option>
-                        <option value="press-media">Press &amp; Media</option>
-                        <option value="general-enquiry">General Enquiry</option>
-                      </select>
                     </div>
 
                     <div className="space-y-1.5">

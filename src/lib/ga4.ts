@@ -48,11 +48,10 @@ export function ga4AddToCart(item: GA4Item) {
   });
 }
 
-export function ga4BeginCheckout(item: GA4Item, purchaseType: 'subscribe' | 'one_time') {
+export function ga4BeginCheckout(item: GA4Item) {
   gtag('event', 'begin_checkout', {
     currency: item.currency,
     value: item.price,
-    purchase_type: purchaseType,
     items: [{ ...item, quantity: 1 }],
   });
 }

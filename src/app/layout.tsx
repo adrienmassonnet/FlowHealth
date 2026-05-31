@@ -5,7 +5,6 @@ import Script from "next/script";
 import "./globals.css";
 import Header from "@/app/components/Header";
 import ScrollManager from "@/app/components/ScrollManager";
-import ExitIntentModal from "@/app/components/ExitIntentModal";
 const outfit = Outfit({ subsets: ["latin"], display: "swap", preload: true });
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.flow-health.ch';
@@ -77,18 +76,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
-        {/* Cookie banner — loads before everything else */}
-        <Script id="cookieyes" src="https://cdn-cookieyes.com/client_data/ea8c3c243a2b93e0bda9002838583a0f/script.js" strategy="beforeInteractive" />
-        {/* GA4 — direct load, consent mode enabled so it works anonymously before consent */}
-        <Script id="ga4-init" strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-F1B6SHB752" />
-        <Script id="ga4-config" strategy="afterInteractive">{`
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-F1B6SHB752" strategy="afterInteractive" />
+        <Script id="gtag-init" strategy="afterInteractive">{`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
-          window.gtag = gtag;
           gtag('js', new Date());
           gtag('config', 'G-F1B6SHB752');
         `}</Script>
-        {/* GTM — for Meta Pixel and Clarity only */}
         <Script id="gtm-init" strategy="afterInteractive">{`
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -96,12 +90,31 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','GTM-N3CRPDLV');
         `}</Script>
+        <Script id="meta-pixel" strategy="afterInteractive">{`
+          !function(f,b,e,v,n,t,s)
+          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)}(window, document,'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init', '1449181289756992');
+          fbq('track', 'PageView');
+        `}</Script>
+        <Script id="clarity-init" strategy="afterInteractive">{`
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window,document,"clarity","script","w3zpn726v1");
+        `}</Script>
       </head>
       <body className={`${outfit.className} antialiased`} suppressHydrationWarning>
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N3CRPDLV" height="0" width="0" style={{display:'none',visibility:'hidden'}}></iframe></noscript>
+        <noscript><img height="1" width="1" style={{display:'none'}} src="https://www.facebook.com/tr?id=1449181289756992&ev=PageView&noscript=1" /></noscript>
         <ScrollManager />
         <Header />
-        <ExitIntentModal />
         {children}
         <footer className="footer-gradient text-white/50 mt-12">
           <div className="max-w-[1200px] mx-auto px-6 py-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16">

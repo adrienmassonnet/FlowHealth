@@ -1,10 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import { trackEvent } from '@/lib/clarity';
 import { pixelInitiateCheckout } from '@/lib/pixel';
-import { ga4BeginCheckout, ga4SelectItem, ga4AddToCart } from '@/lib/ga4';
+import { ga4BeginCheckout } from '@/lib/ga4';
 import PreLaunchModal from '@/app/components/PreLaunchModal';
 
 interface PurchaseSelectorProps {
@@ -26,35 +25,10 @@ export default function PurchaseSelector({ variantId, price, currencyCode, disco
 
   const displayPrice = isSubscribe ? discountedPrice : fullPrice;
 
-  const ga4Item = (p: number, purchaseType: 'subscribe' | 'one_time') => ({
-    item_id: variantId,
-    item_name: 'Flow',
-    price: p,
-    currency: currencyCode,
-    item_brand: 'Flow Health',
-    item_category: 'Supplement',
-    item_variant: purchaseType,
-  });
-
-  function handleSelectSubscribe() {
-    setSelected('subscribe');
-    trackEvent('product_page_select_subscribe');
-    ga4SelectItem(ga4Item(parseFloat(discountedPrice), 'subscribe'), 'subscribe');
-  }
-
-  function handleSelectOnce() {
-    setSelected('once');
-    trackEvent('product_page_select_one_time');
-    ga4SelectItem(ga4Item(parseFloat(fullPrice), 'one_time'), 'one_time');
-  }
-
   function handleCheckout() {
-    const p = parseFloat(displayPrice);
-    const purchaseType = isSubscribe ? 'subscribe' : 'one_time';
     trackEvent(isSubscribe ? 'product_page_buy_subscribe' : 'product_page_buy_once');
-    pixelInitiateCheckout({ value: p, currency: currencyCode });
-    ga4AddToCart(ga4Item(p, purchaseType));
-    ga4BeginCheckout(ga4Item(p, purchaseType), purchaseType);
+    pixelInitiateCheckout({ value: parseFloat(displayPrice), currency: currencyCode });
+    ga4BeginCheckout({ item_id: variantId, item_name: 'Flow', price: parseFloat(displayPrice), currency: currencyCode, item_brand: 'Flow Health', item_category: 'Supplement' });
     setModalOpen(true);
   }
 
@@ -64,7 +38,7 @@ export default function PurchaseSelector({ variantId, price, currencyCode, disco
     <div className="space-y-3">
       {/* Subscribe card */}
       <button
-        onClick={handleSelectSubscribe}
+        onClick={() => { setSelected('subscribe'); trackEvent('product_page_select_subscribe'); }}
         className={`w-full text-left rounded-xl border-2 p-4 transition-all duration-300 relative ${
           isSubscribe
             ? 'card-selected'
@@ -97,7 +71,7 @@ export default function PurchaseSelector({ variantId, price, currencyCode, disco
               <span className={`text-sm line-through ${isSubscribe ? 'text-white/40' : 'text-[hsla(var(--color-secondary)/0.6)]'}`}>{fullPrice}</span>
             </div>
             <p className={`text-xs mt-1.5 leading-relaxed ${isSubscribe ? 'text-white/65' : 'text-[hsla(var(--color-secondary)/0.7)]'}`}>
-              Pause or cancel from month 2 — no forms, no hassle.
+              Cancel any time after the second month with zero hassle.
             </p>
           </div>
         </div>
@@ -105,7 +79,7 @@ export default function PurchaseSelector({ variantId, price, currencyCode, disco
 
       {/* One-time purchase — row button */}
       <button
-        onClick={handleSelectOnce}
+        onClick={() => { setSelected('once'); trackEvent('product_page_select_one_time'); }}
         className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl border-2 transition-all duration-200 group ${
           isOnce
             ? 'border-[#1E1854] bg-[#1E1854]/5'
@@ -139,13 +113,6 @@ export default function PurchaseSelector({ variantId, price, currencyCode, disco
       >
         {`Buy Now — ${displayPrice} ${currencyCode}`}
       </button>
-
-      <p className="text-center text-xs text-[hsla(var(--color-secondary)/0.45)]">
-        Already a subscriber?{' '}
-        <Link href="/pages/subscription" className="underline underline-offset-2 hover:text-[#1E1854] transition-colors">
-          Manage your subscription
-        </Link>
-      </p>
     </div>
     </>
   );

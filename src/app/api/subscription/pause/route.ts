@@ -1,13 +1,7 @@
 import { pauseSubscription } from '@/lib/shopify-subscriptions';
 import { trackKlaviyoEvent } from '@/lib/klaviyo';
-import { apiRateLimit, getIp } from '@/lib/rate-limit';
 
 export async function POST(req: Request) {
-  const { success } = await apiRateLimit.limit(getIp(req));
-  if (!success) {
-    return Response.json({ error: 'Too many requests' }, { status: 429 });
-  }
-
   try {
     const { subscriptionId, email } = await req.json();
     if (!subscriptionId) return Response.json({ error: 'subscriptionId is required.' }, { status: 400 });

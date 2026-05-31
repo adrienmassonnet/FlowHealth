@@ -57,8 +57,6 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
   const variants = product.variants.edges.map((e) => e.node);
   const firstVariant = variants[0];
   const relatedProducts = allProducts.filter((p) => p.handle !== handle).slice(0, 3);
-  const fullPrice = parseFloat(firstVariant.price.amount);
-  const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.flow-health.ch';
   const productJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Product',
@@ -66,26 +64,18 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
     description: product.description,
     image: images.map((i) => i.url),
     brand: { '@type': 'Brand', name: 'Flow Health' },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      reviewCount: String(testimonials.length > 0 ? Math.max(testimonials.length, 47) : 47),
-      bestRating: '5',
-      worstRating: '1',
-    },
     offers: {
       '@type': 'Offer',
       price: firstVariant.price.amount,
       priceCurrency: firstVariant.price.currencyCode,
       availability: 'https://schema.org/InStock',
-      url: `${SITE_URL}/products/${handle}`,
-      seller: { '@type': 'Organization', name: 'Flow Health' },
+      url: `https://www.flow-health.ch/products/${handle}`,
     },
   };
 
   return (
     <main>
-      <ProductPageInit productName={product.title} price={fullPrice} currencyCode={firstVariant.price.currencyCode} productId={product.id} />
+      <ProductPageInit productName={product.title} price={parseFloat(firstVariant.price.amount)} currencyCode={firstVariant.price.currencyCode} productId={product.id} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
       {/* Product hero */}
       <section id="section-product" className="scroll-mt-16 pt-20 pb-12 md:pb-20 max-w-[1200px] mx-auto pl-3 pr-6 relative overflow-hidden">
@@ -137,7 +127,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
 
             <PurchaseSelector
               variantId={firstVariant.id}
-              price={fullPrice}
+              price={parseFloat(firstVariant.price.amount)}
               currencyCode={firstVariant.price.currencyCode}
             />
 

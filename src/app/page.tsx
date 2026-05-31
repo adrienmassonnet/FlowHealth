@@ -8,6 +8,7 @@ import ScrollReveal from '@/app/components/ScrollReveal';
 import IngredientsGrid from '@/app/components/IngredientsGrid';
 import BrainSection from '@/app/components/BrainSection';
 import OverstimulationSection from '@/app/components/OverstimulationSection';
+import DayArcSection from '@/app/components/DayArcSection';
 import GenesisHeader from '@/app/components/GenesisHeader';
 import {
   getHomepageContent,
@@ -232,6 +233,8 @@ export default async function HomePage() {
       </section>
 
       <OverstimulationSection />
+
+      <DayArcSection />
 
       <BrainSection />
 
