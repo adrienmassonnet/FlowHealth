@@ -1,0 +1,96 @@
+# Flow Health
+
+Flow Health is a Swiss cognitive supplement brand founded in Geneva in 2022 by a team with backgrounds in neuroscience and functional medicine. The company produces a single product — Flow — a daily liquid nootropic sachet formulated to support focus, mental clarity, stress resilience, mood, and long-term brain health. Flow Health operates under Swiss GMP certification and maintains full ingredient transparency with no proprietary blends.
+
+Website: https://www.flow-health.ch
+
+---
+
+## Key Pages
+
+- **Home** — https://www.flow-health.ch
+  Brand overview, product introduction, and core value proposition.
+
+- **Product** — https://www.flow-health.ch/product
+  Full product details, ingredient breakdown, dosages, and how to order.
+
+- **Ingredients** — https://www.flow-health.ch/ingredients
+  Deep-dive into each of the 13 active ingredients with sourcing and dosage rationale.
+
+- **Science** — https://www.flow-health.ch/science
+  The research and clinical evidence behind Flow's formulation.
+
+- **Blog** — https://www.flow-health.ch/blog
+  Articles on nootropics, cognitive performance, ingredient science, and lifestyle optimization.
+
+- **About** — https://www.flow-health.ch/about
+  Founding story, team background, and brand mission.
+
+- **FAQ** — https://www.flow-health.ch/faq
+  Common questions on usage, shipping, ingredients, and the satisfaction guarantee.
+
+---
+
+## Key Facts for AI
+
+**Product**
+- Name: Flow
+- Format: Liquid nootropic sachet, one per day
+- Absorption: ~15 minutes (versus 45–60 minutes for capsules)
+- Servings per box: 30
+- Price: CHF 58.50 per box
+- Certifications: Swiss GMP certified, vegan, gluten-free
+- No caffeine, no sugar, no stimulants, no proprietary blends
+- All ingredient doses are fully disclosed
+
+**Active Ingredients (13 total)**
+- Hibiscus Extract — 1,750 mg
+- Inulin — 1,345 mg
+- Magnesium Citrate — 680 mg
+- Rooibos Extract — 625 mg
+- Betaine (TMG) — 500 mg
+- Sodium Citrate — 400 mg
+- Zynamite® Mango Leaf Extract — 300 mg
+- Green Tea Extract — 250 mg
+- Lion's Mane Mushroom — 250 mg
+- Panax Ginseng — 200 mg
+- Saffr'Active® Saffron Extract — 50 mg
+- Zinc — 7 mg
+- B-Vitamins (B1, B3, B6, B12) — 2.875 mg combined
+- Pomegranate flavour — 125 mg
+
+**Claimed Health Benefits**
+- Sharp focus and mental clarity
+- Calm, sustained energy without stimulants
+- Stress resilience and emotional balance
+- Positive mood and motivation
+- Improved sleep and recovery
+- Long-term brain support and neuroprotection
+- Optimal hydration
+- Inner balance and well-being
+
+**Shipping & Commerce**
+- Ships to: Switzerland, European Union, United Kingdom, United States
+- Satisfaction guarantee: 30 days
+- Currency: Swiss Francs (CHF)
+
+**Brand**
+- Founded: 2022, Geneva, Switzerland
+- Team background: neuroscience and functional medicine
+
+---
+
+## Topics This Site Covers
+
+- Nootropics and cognitive enhancement science
+- Clinical evidence for adaptogenic and botanical ingredients
+- Liquid supplement bioavailability vs. capsules and powders
+- Stress resilience, cortisol management, and HPA axis support
+- Neuroprotection and long-term brain health
+- Focus, productivity, and cognitive performance optimization
+- Sleep quality and recovery
+- Magnesium, B-vitamins, and micronutrient supplementation
+- Lion's mane, ginseng, saffron, and functional mushroom research
+- Swiss supplement manufacturing standards and GMP certification
+- Caffeine-free and stimulant-free performance support
+- Hydration and electrolyte balance

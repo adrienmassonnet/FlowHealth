@@ -1,0 +1,318 @@
+Page,Section,Element,Current Copy,Source
+Global,Site Metadata,Site title,Flow Health,Hardcoded
+Global,Site Metadata,Meta description,Stable Energy for Deep Focus — Premium Swiss functional beverage,Hardcoded
+Global,Announcement Bar,Header bar,Free shipping on orders over CHF 60 · 30-day satisfaction guarantee,Hardcoded
+Global,Navigation,About dropdown label,About Flow,Hardcoded
+Global,Navigation,About → link 1 label,Who We Are,Hardcoded
+Global,Navigation,About → link 1 description,The team and story behind Flow Health.,Hardcoded
+Global,Navigation,About → link 2 label,Our Philosophy,Hardcoded
+Global,Navigation,About → link 2 description,The principles we refuse to compromise on.,Hardcoded
+Global,Navigation,About → link 3 label,Our Product,Hardcoded
+Global,Navigation,About → link 3 description,Inside the formula — every ingredient every dose.,Hardcoded
+Global,Navigation,Mobile CTA,Get Flow,Hardcoded
+Global,Footer,Column 1 label,About Flow,Hardcoded
+Global,Footer,Column 2 label,Community,Hardcoded
+Global,Footer,Column 3 label,Support,Hardcoded
+Global,Footer,Newsletter label,Newsletter,Hardcoded
+Global,Footer,Newsletter placeholder,Enter your email,Hardcoded
+Global,Footer,Newsletter CTA,Subscribe,Hardcoded
+Global,Footer,Newsletter note,Join our newsletter. Read about our Privacy policy.,Hardcoded
+Global,Footer,Copyright,Copyright © 2026 Flow Health,Hardcoded
+Homepage,Hero,CTA button,Shop Flow,Hardcoded
+Homepage,Hero,Tagline,(from CMS),CMS
+Homepage,Hero,Heading,(from CMS),CMS
+Homepage,Mission Strip,Section label,our philosophy,Hardcoded
+Homepage,Mission Strip,Body,For those whose mind never settles and who seeks inner peace.,Hardcoded
+Homepage,Mission Strip,Link,Read more about our philosophy,Hardcoded
+Homepage,Benefit Card 1,Heading,Empowered by stable energy,Hardcoded
+Homepage,Benefit Card 1,Body,Flow gently restores harmony – delivering steady calm energy that keeps distractions fatigue and overwhelm at bay.,Hardcoded
+Homepage,Benefit Card 2,Heading,Unlock your full potential,Hardcoded
+Homepage,Benefit Card 2,Body,Flow's ingredients help you tap into deep focus effortless creativity and crystal-clear thinking – so you can perform at your peak every day.,Hardcoded
+Homepage,Benefit Card 3,Heading,Your daily inner peace ritual,Hardcoded
+Homepage,Benefit Card 3,Body,Begin each day with purpose and power. Flow sets the stage for a productive fulfilling day.,Hardcoded
+Homepage,Featured Product,Benefit copy,Promotes homeostasis fights over-stimulation and supports peak cognitive performance — naturally.,Hardcoded
+Homepage,Featured Product,Button 1,Learn More,Hardcoded
+Homepage,Featured Product,Button 2,Shop Now,Hardcoded
+Homepage,Health Benefits,Section label,(from CMS — default: Health Benefits),CMS
+Homepage,Health Benefits,Heading,(from CMS — default: Everything your body needs. Nothing it doesn't.),CMS
+Homepage,Results Timeline,Section label,Timeline,Hardcoded
+Homepage,Results Timeline,Heading,(from CMS),CMS
+Homepage,Results Timeline,Subheading,(from CMS),CMS
+Homepage,Venn Diagram,Section label,The formula,Hardcoded
+Homepage,Venn Diagram,Heading,(from CMS),CMS
+Homepage,Venn Diagram,Link,Read more about our product,Hardcoded
+Homepage,Venn Diagram,Circle 1,A pleasant taste,Hardcoded
+Homepage,Venn Diagram,Circle 2,Convenient daily packet,Hardcoded
+Homepage,Venn Diagram,Circle 3,One sachet 13 ingredients,Hardcoded
+Homepage,Key Ingredients,Section label,(from CMS — default: our ingredients),CMS
+Homepage,Key Ingredients,Heading,(from CMS),CMS
+Homepage,Key Ingredients,Link,See all 13 ingredients,Hardcoded
+Homepage,Comparison Table,Section label,Why Flow,Hardcoded
+Homepage,Comparison Table,Heading,How Flow compares,Hardcoded
+Homepage,Comparison Table,Row 1 — Flow,Clinically-studied formula with 8 active ingredients at full doses,Hardcoded
+Homepage,Comparison Table,Row 1 — Others,Underdosed or proprietary blends,Hardcoded
+Homepage,Comparison Table,Row 2 — Flow,One formula replaces 4–6 separate supplements,Hardcoded
+Homepage,Comparison Table,Row 2 — Others,Multiple products required,Hardcoded
+Homepage,Comparison Table,Row 3 — Flow,Ready-to-drink — no pills no mixing no measuring,Hardcoded
+Homepage,Comparison Table,Row 3 — Others,Multiple capsules or powders spread across the day,Hardcoded
+Homepage,Comparison Table,Row 4 — Flow,Each ingredient backed by peer-reviewed research,Hardcoded
+Homepage,Comparison Table,Row 4 — Others,Rarely cited,Hardcoded
+Homepage,Comparison Table,Row 5 — Flow,Swiss-made third-party tested for purity & safety,Hardcoded
+Homepage,Comparison Table,Row 5 — Others,Rarely disclosed,Hardcoded
+Homepage,Savings Breakdown,Section label,Save Money,Hardcoded
+Homepage,Savings Breakdown,Heading,One bottle replaces 8 daily supplements.,Hardcoded
+Homepage,Savings Breakdown,Body,The average person spends over CHF 265 every month on individual supplements. Flow consolidates everything into one bottle — without compromise.,Hardcoded
+Homepage,Savings Breakdown,Savings badge label,Monthly savings,Hardcoded
+Homepage,Savings Breakdown,Savings amount,CHF 186,Hardcoded
+Homepage,Savings Breakdown,Savings context,switching to Flow,Hardcoded
+Homepage,Savings Breakdown,Supplement 1,Nootropic Stack (Zynamite® Alpha-GPC) · CHF 45,Hardcoded
+Homepage,Savings Breakdown,Supplement 2,Adaptogens (Ashwagandha Rhodiola Ginseng) · CHF 50,Hardcoded
+Homepage,Savings Breakdown,Supplement 3,Lion's Mane Mushroom Extract · CHF 35,Hardcoded
+Homepage,Savings Breakdown,Supplement 4,L-Theanine & Caffeine · CHF 20,Hardcoded
+Homepage,Savings Breakdown,Supplement 5,Bacopa Monnieri · CHF 25,Hardcoded
+Homepage,Savings Breakdown,Supplement 6,Electrolytes Complex · CHF 30,Hardcoded
+Homepage,Savings Breakdown,Supplement 7,Magnesium Glycinate · CHF 20,Hardcoded
+Homepage,Savings Breakdown,Supplement 8,Prebiotics & Probiotics · CHF 40,Hardcoded
+Homepage,Savings Breakdown,Traditional total,CHF 265,Hardcoded
+Homepage,Savings Breakdown,Flow price,CHF 79,Hardcoded
+Homepage,Latest Articles Rail,Heading,Latest Articles,Hardcoded
+Homepage,Latest Articles Rail,Label,From the blog,Hardcoded
+Product Detail,Service Pillar 1,Heading,Same Day Dispatch,Hardcoded
+Product Detail,Service Pillar 1,Body,Orders before 4pm dispatched same day.,Hardcoded
+Product Detail,Service Pillar 2,Heading,Free Delivery,Hardcoded
+Product Detail,Service Pillar 2,Body,Free 2-day tracked delivery over CHF 50.,Hardcoded
+Product Detail,Service Pillar 3,Heading,30-Day Returns,Hardcoded
+Product Detail,Service Pillar 3,Body,Free returns within 30 days of shipping.,Hardcoded
+Product Detail,Purchase Selector,Subscribe option label,Subscribe & Save,Hardcoded
+Product Detail,Purchase Selector,Subscribe badge,10% OFF,Hardcoded
+Product Detail,Purchase Selector,Subscribe body,Flow delivered every month · Cancel anytime zero hassle,Hardcoded
+Product Detail,Purchase Selector,One-time option label,One Time Purchase,Hardcoded
+Product Detail,Purchase Selector,One-time body,One time delivery,Hardcoded
+Product Detail,Selection Criteria,Section heading,Our rigorous ingredient selection process.,Hardcoded
+Product Detail,Selection Criteria,Criterion 1 heading,Peer-Reviewed Evidence,Hardcoded
+Product Detail,Selection Criteria,Criterion 1 body,Every ingredient is backed by human clinical trials — not animal studies or in-vitro data.,Hardcoded
+Product Detail,Selection Criteria,Criterion 2 heading,Clinical Dosing,Hardcoded
+Product Detail,Selection Criteria,Criterion 2 body,We dose at proven therapeutic levels — no pixie-dusting or proprietary blends hiding underdoses.,Hardcoded
+Product Detail,Selection Criteria,Criterion 3 heading,Bioavailable Forms,Hardcoded
+Product Detail,Selection Criteria,Criterion 3 body,We select the most bioavailable form of each compound — the exact form used in the clinical research.,Hardcoded
+Product Detail,Selection Criteria,Criterion 4 heading,Swiss GMP Manufacturing,Hardcoded
+Product Detail,Selection Criteria,Criterion 4 body,Produced under pharmaceutical-grade Swiss GMP conditions — every batch tested for purity and potency.,Hardcoded
+Product Detail,Ingredient Card — Zynamite®,Tagline,Clean focus without the crash,Hardcoded
+Product Detail,Ingredient Card — Zynamite®,Description,A breakthrough mango leaf extract that inhibits COMT to naturally prolong dopamine and noradrenaline. Clinically shown to improve attention 11–16% within 60 minutes without the stimulant side effects of caffeine.,Hardcoded
+Product Detail,Ingredient Card — L-Theanine & Caffeine,Tagline,Smooth jitter-free alertness,Hardcoded
+Product Detail,Ingredient Card — L-Theanine & Caffeine,Description,A synergistic duo that delivers smooth jitter-free alertness. L-theanine moderates caffeine's stimulatory effects promoting alpha brainwave activity for calm focused awareness without the crash.,Hardcoded
+Product Detail,Ingredient Card — Rhodiola Rosea,Tagline,Combat fatigue build resilience,Hardcoded
+Product Detail,Ingredient Card — Rhodiola Rosea,Description,An adaptogenic herb that combats fatigue and supports stress resilience. Rhodiola helps the body adapt to physical and mental demands reducing the perception of effort during challenging tasks.,Hardcoded
+Product Detail,Ingredient Card — Panax Ginseng,Tagline,Cognitive function & stamina,Hardcoded
+Product Detail,Ingredient Card — Panax Ginseng,Description,A renowned adaptogen that supports cognitive function and physical stamina. Panax ginseng modulates the HPA axis and cortisol response helping maintain balance under sustained stress.,Hardcoded
+Product Detail,Ingredient Card — Ashwagandha KSM-66®,Tagline,Calm grounded balanced,Hardcoded
+Product Detail,Ingredient Card — Ashwagandha KSM-66®,Description,A clinically-studied adaptogen that reduces cortisol levels and supports healthy hormonal balance. Promotes a calm grounded state while supporting thyroid and adrenal health.,Hardcoded
+Product Detail,Ingredient Card — Lion's Mane,Tagline,Neuroplasticity & memory,Hardcoded
+Product Detail,Ingredient Card — Lion's Mane,Description,A medicinal mushroom that stimulates NGF (Nerve Growth Factor) supporting the formation of new neural connections. Studied for its role in improving memory cognitive speed and long-term brain health.,Hardcoded
+Product Detail,Ingredient Card — Electrolytes,Tagline,Hydration & nerve signalling,Hardcoded
+Product Detail,Ingredient Card — Electrolytes,Description,A precise blend of sodium potassium and magnesium that supports optimal hydration nerve signalling and muscle function — ensuring your body and mind operate at full capacity.,Hardcoded
+Product Detail,Ingredient Card — Prebiotics & Probiotics,Tagline,Gut-brain axis support,Hardcoded
+Product Detail,Ingredient Card — Prebiotics & Probiotics,Description,A dual-action gut-brain axis support system. Prebiotics feed beneficial bacteria while probiotics replenish them supporting mood immunity and serotonin production.,Hardcoded
+Product Detail,Ingredient Card — Bacopa Monnieri,Tagline,Memory & learning support,Hardcoded
+Product Detail,Ingredient Card — Bacopa Monnieri,Description,An Ayurvedic herb used for centuries to enhance memory and cognitive performance. Bacopa modulates acetylcholine and serotonin pathways with clinical studies showing improved recall after 8–12 weeks.,Hardcoded
+Product Detail,Ingredient Card — Alpha-GPC,Tagline,Acetylcholine precursor,Hardcoded
+Product Detail,Ingredient Card — Alpha-GPC,Description,A highly bioavailable choline source that crosses the blood-brain barrier to boost acetylcholine levels — the neurotransmitter central to memory focus and learning.,Hardcoded
+Product Detail,Ingredient Card — Magnesium Glycinate,Tagline,Calm sleep & recovery,Hardcoded
+Product Detail,Ingredient Card — Magnesium Glycinate,Description,The most bioavailable form of magnesium chelated with glycine for superior absorption. Supports over 300 enzymatic reactions deep sleep muscle relaxation and healthy cortisol rhythms.,Hardcoded
+Product Detail,Ingredient Card — Green Tea Catechins,Tagline,Antioxidant & mitochondrial health,Hardcoded
+Product Detail,Ingredient Card — Green Tea Catechins,Description,Powerful antioxidants that support cellular energy production and cardiovascular health. EGCG from green tea protects neurons and supports healthy mitochondrial function for sustained vitality.,Hardcoded
+Product Detail,FAQ,Shipping question answer,Free shipping on orders over CHF 50. Orders are dispatched within 1–2 business days from our Swiss warehouse. Standard delivery takes 3–5 business days within Switzerland and 5–10 business days internationally.,Hardcoded
+Product Detail,FAQ,Delivery question answer,We offer free delivery on all orders over CHF 50. For orders under CHF 50 a flat shipping fee of CHF 5 applies. All deliveries are tracked and you will receive a confirmation email with your tracking number once your order has been dispatched.,Hardcoded
+Product Detail,FAQ,Returns question answer,30-day satisfaction guarantee — if you are not completely satisfied with your purchase contact us within 30 days for a full refund. No questions asked. Returned products must be unused and in their original packaging.,Hardcoded
+Product Detail,Still Got Questions,Heading,Still got questions?,Hardcoded
+Product Detail,Still Got Questions,Subheading,Please select where you need support.,Hardcoded
+Ingredients,Hero,Label,Transparent Formula,Hardcoded
+Ingredients,Hero,Heading,Ingredients,Hardcoded
+Ingredients,Hero,Body,Every ingredient in Flow is selected for its clinical evidence bioavailability and synergy with the full formula. No fillers no proprietary blends — just full doses of what works.,Hardcoded
+Ingredients,Three Axes,Section label,Our approach,Hardcoded
+Ingredients,Three Axes,Heading,Three axes of wellbeing,Hardcoded
+Ingredients,Three Axes,Body,Every ingredient in Flow was chosen for its contribution to at least one of three interconnected systems. Together they address the whole person — not just a single symptom.,Hardcoded
+Ingredients,Three Axes,Axis 1 heading,Cognitive Function,Hardcoded
+Ingredients,Three Axes,Axis 1 body,Sharpens focus sustains mental energy and supports long-term neuroplasticity via cholinergic dopaminergic and NGF pathways.,Hardcoded
+Ingredients,Three Axes,Axis 2 heading,Mood & Hormonal Balance,Hardcoded
+Ingredients,Three Axes,Axis 2 body,Regulates cortisol supports dopamine and serotonin synthesis and builds resilience to physical and emotional stress.,Hardcoded
+Ingredients,Three Axes,Axis 3 heading,Cellular & Metabolic Health,Hardcoded
+Ingredients,Three Axes,Axis 3 body,Protects neurons from oxidative stress fuels mitochondrial efficiency and provides the co-factors every cell needs to thrive.,Hardcoded
+Ingredients,Ingredient — Ashwagandha KSM-66®,Dose,300 mg,Hardcoded
+Ingredients,Ingredient — Ashwagandha KSM-66®,Benefit,Clinically shown to reduce cortisol by up to 27% support thyroid and adrenal health and promote a calm grounded state without sedation.,Hardcoded
+Ingredients,Ingredient — Rhodiola Rosea,Dose,200 mg,Hardcoded
+Ingredients,Ingredient — Rhodiola Rosea,Benefit,Reduces the perception of effort during challenging tasks combats mental fatigue and supports sustained performance under stress.,Hardcoded
+Ingredients,Ingredient — L-Tyrosine,Dose,500 mg,Hardcoded
+Ingredients,Ingredient — L-Tyrosine,Benefit,Precursor to dopamine and noradrenaline. Supports focus and cognitive performance during high-stress or sleep-deprived conditions.,Hardcoded
+Ingredients,Ingredient — Mucuna Pruriens,Dose,200 mg,Hardcoded
+Ingredients,Ingredient — Mucuna Pruriens,Benefit,Natural source of L-DOPA a direct precursor to dopamine. Supports mood motivation and healthy stress response.,Hardcoded
+Ingredients,Ingredient — Alpha-GPC,Dose,150 mg,Hardcoded
+Ingredients,Ingredient — Alpha-GPC,Benefit,Rapidly elevates brain acetylcholine levels supporting memory formation mental clarity and neuromuscular function.,Hardcoded
+Ingredients,Ingredient — L-Theanine,Dose,200 mg,Hardcoded
+Ingredients,Ingredient — L-Theanine,Benefit,Promotes alpha brainwave activity for calm alertness. Synergises with caffeine to eliminate jitters while enhancing focus.,Hardcoded
+Ingredients,Ingredient — Lion's Mane Mushroom,Dose,500 mg,Hardcoded
+Ingredients,Ingredient — Lion's Mane Mushroom,Benefit,Stimulates Nerve Growth Factor (NGF) synthesis supporting neuroplasticity memory and long-term brain health.,Hardcoded
+Ingredients,Ingredient — Bacopa Monnieri,Dose,300 mg,Hardcoded
+Ingredients,Ingredient — Bacopa Monnieri,Benefit,Ayurvedic herb backed by clinical trials showing improvements in memory recall processing speed and anxiety reduction after 4–8 weeks.,Hardcoded
+Ingredients,Ingredient — Vitamin B1,Dose,1.1 mg,Hardcoded
+Ingredients,Ingredient — Vitamin B1,Benefit,Supports carbohydrate metabolism and nerve function.,Hardcoded
+Ingredients,Ingredient — Vitamin B3,Dose,16 mg NE,Hardcoded
+Ingredients,Ingredient — Vitamin B3,Benefit,Key role in cellular energy production (NAD+) and DNA repair.,Hardcoded
+Ingredients,Ingredient — Vitamin B6,Dose,1.4 mg,Hardcoded
+Ingredients,Ingredient — Vitamin B6,Benefit,Co-factor for serotonin dopamine and GABA synthesis.,Hardcoded
+Ingredients,Ingredient — Vitamin B12,Dose,2.5 µg,Hardcoded
+Ingredients,Ingredient — Vitamin B12,Benefit,Supports myelin sheath integrity red blood cell formation and mental energy.,Hardcoded
+Ingredients,Ingredient — Magnesium Bisglycinate,Dose,75 mg elemental,Hardcoded
+Ingredients,Ingredient — Magnesium Bisglycinate,Benefit,Highly bioavailable form of magnesium. Supports NMDA receptor function muscle relaxation sleep quality and over 300 enzymatic reactions.,Hardcoded
+Ingredients,Ingredient — Green Tea Extract (EGCG),Dose,200 mg,Hardcoded
+Ingredients,Ingredient — Green Tea Extract (EGCG),Benefit,Powerful antioxidant that protects neurons from oxidative stress supports healthy mitochondrial function and enhances fat oxidation.,Hardcoded
+Ingredients,Ingredient — Blueberry Extract,Dose,100 mg,Hardcoded
+Ingredients,Ingredient — Blueberry Extract,Benefit,Rich in anthocyanins that cross the blood-brain barrier supporting memory cerebral blood flow and neuroprotection.,Hardcoded
+Ingredients,CTA,Label,Experience the full formula,Hardcoded
+Ingredients,CTA,Heading,Every ingredient above precisely dosed in one daily formula.,Hardcoded
+Ingredients,CTA,Button 1,Shop Flow,Hardcoded
+Ingredients,CTA,Button 2,Product overview,Hardcoded
+Our Philosophy,Hero,Label,About Flow,Hardcoded
+Our Philosophy,Hero,Heading,Built for minds that refuse to settle.,Hardcoded
+Our Philosophy,Hero,Body,Flow started with a personal frustration — scattered focus overstimulation and a supplement market full of noise. We decided to build something better.,Hardcoded
+Our Philosophy,Mission,Label,Our Mission,Hardcoded
+Our Philosophy,Mission,Heading,Restore balance. Unlock clarity.,Hardcoded
+Our Philosophy,Mission,Body,At Flow we believe true performance and lasting happiness come from within — from a calm sustainable mind that lets you live with clarity purpose and joy. In a world that pushes constant hustle and overstimulation we're here to help you restore balance and unlock the quiet strength already inside you.,Hardcoded
+Our Philosophy,What We Believe,Label,What We Believe,Hardcoded
+Our Philosophy,What We Believe,Heading,Conviction not aspiration.,Hardcoded
+Our Philosophy,What We Believe,Intro,These are not values we wrote for a brand deck. They are the beliefs that drove three years of research before we launched a single product.,Hardcoded
+Our Philosophy,What We Believe,Beliefs,(from CMS),CMS
+Our Philosophy,Six Principles,Label,Non-Negotiables,Hardcoded
+Our Philosophy,Six Principles,Heading,Our six principles.,Hardcoded
+Our Philosophy,Six Principles,Principles,(from CMS),CMS
+Our Philosophy,The Standard,Label,The Standard,Hardcoded
+Our Philosophy,The Standard,Heading,If we wouldn't take it ourselves we don't sell it.,Hardcoded
+Our Philosophy,The Standard,Body,Every member of the Flow team uses the product daily. That is not a marketing claim — it is the simplest quality test we have. When the people making the product are also the people taking it the incentives align perfectly. We ask ourselves one question before every decision: would we be comfortable explaining this to a customer who holds us fully accountable? If not we don't do it.,Hardcoded
+Our Philosophy,CTA,Label,Put it into practice,Hardcoded
+Our Philosophy,CTA,Heading,The philosophy behind Flow now in one daily formula.,Hardcoded
+Our Philosophy,CTA,Button,Shop Flow,Hardcoded
+Our Product,Hero,Label,About Flow,Hardcoded
+Our Product,Hero,Heading,One formula. Nothing hidden.,Hardcoded
+Our Product,Hero,Body,Flow is a complete daily cognitive supplement built around clinically dosed peer-reviewed ingredients. Every milligram is on the label for a reason.,Hardcoded
+Our Product,Key Numbers,Stat 1 number,13,Hardcoded
+Our Product,Key Numbers,Stat 1 label,Active ingredients,Hardcoded
+Our Product,Key Numbers,Stat 1 context,Each chosen for clinical evidence not marketing appeal.,Hardcoded
+Our Product,Key Numbers,Stat 2 number,0,Hardcoded
+Our Product,Key Numbers,Stat 2 label,Proprietary blends,Hardcoded
+Our Product,Key Numbers,Stat 2 context,Every dose is disclosed. No hidden fillers or trace amounts.,Hardcoded
+Our Product,Key Numbers,Stat 3 number,30+,Hardcoded
+Our Product,Key Numbers,Stat 3 label,Clinical studies,Hardcoded
+Our Product,Key Numbers,Stat 3 context,The evidence base behind our core ingredient stack.,Hardcoded
+Our Product,Key Numbers,Stat 4 number,Swiss,Hardcoded
+Our Product,Key Numbers,Stat 4 label,GMP certified,Hardcoded
+Our Product,Key Numbers,Stat 4 context,Manufactured to pharmaceutical-grade standards in Switzerland.,Hardcoded
+Our Product,The Formula,Label,The Formula,Hardcoded
+Our Product,The Formula,Heading,Built for the long game.,Hardcoded
+Our Product,The Formula,Body,Most cognitive supplements are designed around one or two hero ingredients padded out with cheap fillers. Flow is built differently — every ingredient earns its place through clinical evidence not marketing. The formula targets five domains simultaneously: memory consolidation stress resilience neuroplasticity focused attention and sleep quality. These systems are deeply interconnected — optimising all five compounds over time. You won't notice a spike on day one. You will notice that six weeks in tasks feel easier stress feels lighter and focus feels more available on demand.,Hardcoded
+Our Product,Format Details,Label,The Details,Hardcoded
+Our Product,Format Details,Heading,Made right from start to finish.,Hardcoded
+Our Product,Format Details,Format 1 heading,Capsule form,Hardcoded
+Our Product,Format Details,Format 1 body,Delayed-release vegetarian capsules for optimal absorption. No fillers no anti-caking agents no unnecessary additives.,Hardcoded
+Our Product,Format Details,Format 2 heading,30-day supply,Hardcoded
+Our Product,Format Details,Format 2 body,Two capsules daily with your morning meal. Designed for consistent daily use — benefits compound over 4–12 weeks.,Hardcoded
+Our Product,Format Details,Format 3 heading,Third-party tested,Hardcoded
+Our Product,Format Details,Format 3 body,Every batch is independently tested for purity potency and contaminants before it leaves the facility.,Hardcoded
+Our Product,Our Promise,Label,Our Promise,Hardcoded
+Our Product,Our Promise,Heading,Nothing hidden. Nothing compromised.,Hardcoded
+Our Product,Our Promise,Body,We're here for the long haul committed to supporting your journey toward a calmer mind deeper focus and a more fulfilling life.,Hardcoded
+Our Product,Our Promise,Bullet 1,Clean natural ingredients you can trust,Hardcoded
+Our Product,Our Promise,Bullet 2,No artificial stimulants or hidden additives,Hardcoded
+Our Product,Our Promise,Bullet 3,Clinically dosed — no pixie-dusting,Hardcoded
+Our Product,Our Promise,Bullet 4,Third-party tested for purity and potency,Hardcoded
+Our Product,Our Promise,Bullet 5,Sustainable packaging and responsible sourcing,Hardcoded
+Our Product,Our Promise,Bullet 6,Honest communication — always,Hardcoded
+Our Product,CTA,Heading,Ready to experience it?,Hardcoded
+Our Product,CTA,Body,Try Flow for 30 days. If you don't notice a meaningful difference we'll refund you. No questions asked.,Hardcoded
+Our Product,CTA,Button 1,Shop Flow,Hardcoded
+Our Product,CTA,Button 2,Full ingredients list,Hardcoded
+Who We Are,Hero,Label,About Flow,Hardcoded
+Who We Are,Hero,Heading,A small team. An uncompromising standard.,Hardcoded
+Who We Are,Hero,Body,We are researchers clinicians and people who were frustrated enough to build something better. Flow is the product we couldn't find anywhere else.,Hardcoded
+Who We Are,Origin Story,Label,How We Started,Hardcoded
+Who We Are,Origin Story,Heading,A personal struggle became a product.,Hardcoded
+Who We Are,Origin Story,Body,It started with years of ADHD-like symptoms scattered focus and deep frustration with a market full of overpromising underdosing and stimulant-reliant products. After honest conversations with researchers practitioners and people facing the same challenges we spent three years formulating what we couldn't find: a clean complete clinically-dosed cognitive supplement with nothing to hide. Flow is small independent and based in Switzerland. We have no investors to please and no shortcuts to take. Every bottle reflects that.,Hardcoded
+Who We Are,Our Story,Label,Our Story,Hardcoded
+Who We Are,Our Story,Heading,Built by people who needed it first.,Hardcoded
+Who We Are,Our Story,Body,Flow started with a conversation between a neuroscientist and a nutritionist who were both dealing with the same problem: a supplement market full of proprietary blends underdosed ingredients and claims with no clinical backing. We decided to do it differently. No investors no shortcuts no compromise on ingredients. We spent three years formulating before we sold a single bottle. Today Flow is one of the most transparently dosed cognitive supplements on the market. Every ingredient every source every milligram — on the label.,Hardcoded
+Who We Are,Team,Label,The People Behind Flow,Hardcoded
+Who We Are,Team,Heading,Meet the team.,Hardcoded
+Who We Are,Team,Members,(from CMS),CMS
+Who We Are,Timeline,Label,Our Journey,Hardcoded
+Who We Are,Timeline,Heading,How we got here.,Hardcoded
+Who We Are,Timeline,Milestones,(from CMS),CMS
+Research,Hero,Label,Science-backed,Hardcoded
+Research,Hero,Heading,Research,Hardcoded
+Research,Hero,Body,Every claim we make is backed by peer-reviewed clinical evidence. Below is the research foundation behind Flow's formula and delivery technology.,Hardcoded
+Research,Delivery Technology,Heading,Liquid Delivery Technology,Hardcoded
+Research,Delivery Technology,Subheading,Why a drink outperforms capsules and powders on bioavailability and onset speed.,Hardcoded
+Research,Delivery Technology,Stat 1,~95% Absorption rate — Liquid supplements achieve near-complete absorption vs. 40–60% for standard capsules.,Hardcoded
+Research,Delivery Technology,Stat 2,15 min Onset time — Active ingredients enter the bloodstream within 15–30 minutes vs. 45–90 minutes for solid forms.,Hardcoded
+Research,Delivery Technology,Stat 3,8 actives In one bottle — A single 400ml bottle delivers a clinically dosed stack — no need to take multiple supplements.,Hardcoded
+Research,Study — Ashwagandha,Finding,300mg KSM-66 twice daily reduced cortisol by 27.9% and significantly improved scores on stress and anxiety scales after 60 days.,Hardcoded
+Research,Study — Ashwagandha,Journal,Indian Journal of Psychological Medicine 2012,Hardcoded
+Research,Study — L-Theanine + Caffeine,Finding,100mg L-theanine combined with 50mg caffeine significantly improved speed and accuracy of attention-switching tasks and reduced susceptibility to distracting information.,Hardcoded
+Research,Study — L-Theanine + Caffeine,Journal,Nutritional Neuroscience 2008,Hardcoded
+Research,Study — Lion's Mane,Finding,1000mg/day for 16 weeks significantly improved cognitive function scores in mild cognitive impairment patients vs. placebo (p < 0.05).,Hardcoded
+Research,Study — Lion's Mane,Journal,Phytotherapy Research 2009,Hardcoded
+Research,Study — Bacopa,Finding,300mg/day for 12 weeks significantly improved delayed word recall and reduced the rate of forgetting newly acquired information.,Hardcoded
+Research,Study — Bacopa,Journal,Neuropsychopharmacology 2002,Hardcoded
+Research,Study — Rhodiola,Finding,A single dose significantly improved capacity for mental work against a background of fatigue and stress in a randomised double-blind cross-over trial.,Hardcoded
+Research,Study — Rhodiola,Journal,Phytomedicine 2003,Hardcoded
+Research,Study — Magnesium,Finding,Magnesium glycinate has substantially higher bioavailability than magnesium oxide with significantly greater tissue retention after 60 days of supplementation.,Hardcoded
+Research,Study — Magnesium,Journal,Journal of the American College of Nutrition 2002,Hardcoded
+Research,Disclaimer,Text,The studies cited above are published peer-reviewed research on the individual ingredients used in Flow at their respective doses. These statements have not been evaluated by Swissmedic the EMA or the FDA. Flow is a food supplement not a medicine and is not intended to diagnose treat cure or prevent any disease.,Hardcoded
+FAQ,Hero,Label,Support,Hardcoded
+FAQ,Hero,Heading,Frequently asked questions,Hardcoded
+FAQ,Hero,Body,Everything you need to know about Flow. Contact us if you can't find what you're looking for.,Hardcoded
+FAQ,FAQ Component,Title,Got questions?,Hardcoded
+FAQ,FAQ Component,Subtitle,We have answers,Hardcoded
+FAQ,FAQ Component,Q&A items,(from CMS),CMS
+FAQ,Top CTA,Label,Ready to try Flow?,Hardcoded
+FAQ,Top CTA,Heading,13 actives. One daily formula. 30-day guarantee.,Hardcoded
+FAQ,Top CTA,Button,Shop Flow,Hardcoded
+FAQ,Bottom CTA,Heading,Still have questions?,Hardcoded
+FAQ,Bottom CTA,Body,Our team typically responds within one business day.,Hardcoded
+FAQ,Bottom CTA,Button,Contact us,Hardcoded
+Blog,Featured Post,Title,Nootropics Explained: What They Are and How They Actually Work,Hardcoded
+Blog,Featured Post,Excerpt,The word nootropic gets thrown around a lot but few people understand the mechanisms behind cognitive enhancement. We break down the science — clearly and honestly.,Hardcoded
+Blog,Article 1,Title,Ashwagandha KSM-66®: The Most Clinically Studied Adaptogen,Hardcoded
+Blog,Article 2,Title,Lion's Mane and Neuroplasticity: What the Research Says,Hardcoded
+Blog,Article 3,Title,Building a Morning Ritual That Actually Sticks,Hardcoded
+Blog,Article 4,Title,Why L-Theanine + Caffeine Is the Most Studied Nootropic Stack,Hardcoded
+Blog,Article 5,Title,Deep Work in 2026: How to Protect Your Focus in a Distracted World,Hardcoded
+Blog,Article 6,Title,Magnesium Glycinate and Sleep: The Most Underrated Recovery Tool,Hardcoded
+Blog,CTA,Label,From the lab to your shelf,Hardcoded
+Blog,CTA,Heading,Ready to put the science into practice? Flow is built around every ingredient we write about.,Hardcoded
+Blog,CTA,Button 1,Shop Flow,Hardcoded
+Blog,CTA,Button 2,The Formula,Hardcoded
+Contact,Hero,Label,Get in touch,Hardcoded
+Contact,Hero,Heading,Contact us,Hardcoded
+Shipping Policy,Hero,Label,Support,Hardcoded
+Shipping Policy,Hero,Heading,Shipping policy,Hardcoded
+Shipping Policy,Hero,Intro,We ship worldwide from Switzerland with fast tracked and climate-controlled logistics to protect the quality of your supplements.,Hardcoded
+Shipping Policy,Processing,Cutoff notice,Orders placed before 13:00 CET (Mon–Fri) are normally dispatched the same day.,Hardcoded
+Shipping Policy,Sign-off,Text,Thank you for your order! — Flow Health Team,Hardcoded
+Terms & Conditions,Hero,Label,Legal,Hardcoded
+Terms & Conditions,Hero,Heading,Terms & conditions,Hardcoded
+Terms & Conditions,Hero,Intro,Welcome to www.flowhealth.ch. These Terms and Conditions govern your use of our website and the purchase of our dietary supplement products.,Hardcoded
+Terms & Conditions,Products Note,Text,Our products are food supplements (not medicines). They are not intended to diagnose treat cure or prevent any disease.,Hardcoded
+Terms & Conditions,Guarantee,Text,You may return unopened and unused products within 30 days of delivery for a full refund (excluding shipping costs).,Hardcoded
+Terms & Conditions,Sign-off,Text,Thank you for choosing Flow Health!,Hardcoded
+Privacy Policy,Hero,Label,Legal,Hardcoded
+Privacy Policy,Hero,Heading,Privacy policy,Hardcoded
+Privacy Policy,Hero,Intro,We take your privacy very seriously. This Privacy Policy explains how Flow Health Massonnet collects uses shares and protects your personal data when you visit www.flowhealth.ch or purchase our dietary supplement products.,Hardcoded
+Privacy Policy,Rights,Response time,We will respond within 30 days.,Hardcoded
+Privacy Policy,Children,Notice,Our products and website are not intended for persons under 18. We do not knowingly collect data from children.,Hardcoded
+Privacy Policy,Sign-off,Text,Thank you for trusting us with your data. — Flow Health Team,Hardcoded
+Legal Notice,Hero,Label,Legal,Hardcoded
+Legal Notice,Hero,Heading,Legal notice / Impressum,Hardcoded
+Legal Notice,Company,Name,Flow Health Massonnet,Hardcoded
+Legal Notice,Company,Address,Chemin de Belle Combe 37 1093 Lutry Switzerland,Hardcoded
+Legal Notice,Company,Email,sales_support@flowhealth.ch,Hardcoded
+Legal Notice,Company,Phone,+41 79 354 52 78,Hardcoded
+Legal Notice,Company,Director,Adrien Massonnet,Hardcoded
