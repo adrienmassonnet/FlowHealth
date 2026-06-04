@@ -13,7 +13,7 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
 
-  distDir: '/tmp/flowhealth-next',
+  distDir: '.next',
   async headers() {
     return [{ source: '/(.*)', headers: securityHeaders }];
   },
