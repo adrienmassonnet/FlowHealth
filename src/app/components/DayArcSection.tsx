@@ -115,7 +115,7 @@ export default function DayArcSection() {
             </h2>
           </div>
           <p className="text-sm leading-[1.55]" style={{ color: 'rgba(30,24,84,0.55)' }}>
-            Flow is built for the morning window — when adenosine has cleared and cortisol peaks naturally. Most drinks overstimulate a brain that was already primed. Flow works with that biology, not against it.
+            Flow is built for the morning window — when adenosine has cleared and cortisol peaks naturally. Most drinks overstimulate that primed state. Flow works with your biology, not against it.
           </p>
         </div>
 

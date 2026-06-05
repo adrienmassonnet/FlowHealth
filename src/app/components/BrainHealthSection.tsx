@@ -38,15 +38,18 @@ type CloudWord = {
 };
 
 const W = 560;
-const H = 200;
+const H_DESKTOP = 200;
+const H_MOBILE = 320;
 
-function WordCloud({ inView }: { inView: boolean }) {
+function WordCloud({ inView, mobile }: { inView: boolean; mobile: boolean }) {
   const [words, setWords] = useState<CloudWord[]>([]);
+  const H = mobile ? H_MOBILE : H_DESKTOP;
+  const scale = mobile ? 1.4 : 1;
 
   useEffect(() => {
     cloud<CloudWord>()
       .size([W, H])
-      .words(inputWords.map(w => ({ ...w })))
+      .words(inputWords.map(w => ({ ...w, fontSize: w.fontSize * scale })))
       .padding(8)
       .rotate(() => 0)
       .font('Outfit, system-ui, sans-serif')
@@ -54,7 +57,7 @@ function WordCloud({ inView }: { inView: boolean }) {
       .fontSize((d) => d.fontSize ?? 12)
       .on('end', (laid) => setWords(laid))
       .start();
-  }, []);
+  }, [H, scale]);
 
   return (
     <div className="relative w-full select-none" style={{ height: H }}>
@@ -91,6 +94,14 @@ function WordCloud({ inView }: { inView: boolean }) {
 export default function BrainHealthSection() {
   const sectionRef = useRef(null);
   const inView = useInView(sectionRef, { once: true, margin: '-6% 0px' });
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)');
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
 
   return (
     <section
@@ -104,7 +115,7 @@ export default function BrainHealthSection() {
 
           {/* Word cloud — left */}
           <div className="w-full md:flex-1 min-w-0">
-            <WordCloud inView={inView} />
+            <WordCloud inView={inView} mobile={isMobile} />
           </div>
 
           {/* Text block — right */}
