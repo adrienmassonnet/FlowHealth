@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { trackEvent } from '@/lib/clarity';
 import { pixelInitiateCheckout } from '@/lib/pixel';
 import { ga4BeginCheckout } from '@/lib/ga4';
@@ -16,17 +16,7 @@ interface PurchaseSelectorProps {
 export default function PurchaseSelector({ variantId, price, currencyCode, discountPercent = 10 }: PurchaseSelectorProps) {
   const [selected, setSelected] = useState<'subscribe' | 'once'>('subscribe');
   const [modalOpen, setModalOpen] = useState(false);
-  const [stickyVisible, setStickyVisible] = useState(false);
   const ctaRef = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setStickyVisible(!entry.isIntersecting),
-      { threshold: 0 }
-    );
-    if (ctaRef.current) observer.observe(ctaRef.current);
-    return () => observer.disconnect();
-  }, []);
 
   const discountedPrice = (price * (1 - discountPercent / 100)).toFixed(2);
   const fullPrice = price.toFixed(2);
@@ -50,41 +40,32 @@ export default function PurchaseSelector({ variantId, price, currencyCode, disco
       {/* Subscribe card */}
       <button
         onClick={() => { setSelected('subscribe'); trackEvent('product_page_select_subscribe'); }}
-        className={`w-full text-left rounded-xl border-2 p-4 transition-all duration-300 relative ${
+        className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl border-2 transition-all duration-300 group ${
           isSubscribe
             ? 'card-selected'
             : 'border-[#1E185420] hover:border-[rgba(30,24,84,0.4)]'
         }`}
       >
-        {/* Discount badge */}
-        <span className={`absolute top-3 right-3 text-xs tracking-[0.1em] uppercase font-semibold px-2 py-1 rounded-md ${
-          isSubscribe ? 'bg-white text-[#1E1854]' : 'bg-[#1E1854] text-white'
+        {/* Radio */}
+        <span className={`shrink-0 w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors ${
+          isSubscribe ? 'border-white' : 'border-[#1E185420] group-hover:border-[#1E1854]/50'
         }`}>
-          {discountPercent}% OFF
+          {isSubscribe && <span className="block w-2 h-2 rounded-full bg-white" />}
         </span>
 
-        <div className="flex items-start gap-3">
-          {/* Radio */}
-          <span className={`mt-0.5 shrink-0 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
-            isSubscribe ? 'border-white' : 'border-[#1E185420]'
-          }`}>
-            {isSubscribe && <span className="block w-2.5 h-2.5 rounded-full bg-white" />}
-          </span>
+        <span className={`text-sm transition-colors ${
+          isSubscribe ? 'font-semibold text-white' : 'text-[rgba(30,24,84,0.8)]'
+        }`}>
+          Monthly delivery
+        </span>
 
-          <div className="flex-1 min-w-0 pr-10">
-            <p className={`text-sm font-semibold tracking-[-0.01em] ${isSubscribe ? 'text-white' : ''}`}>
-              Monthly delivery
-            </p>
-            <div className="mt-1.5 flex items-baseline gap-2">
-              <span className={`text-xl font-semibold tracking-[-0.02em] ${isSubscribe ? 'text-white' : ''}`}>
-                {discountedPrice} <span className={`text-sm font-normal ${isSubscribe ? 'text-white/60' : 'text-[rgb(30,24,84)]'}`}>{currencyCode}</span>
-              </span>
-              <span className={`text-sm line-through ${isSubscribe ? 'text-white/40' : 'text-[rgba(30,24,84,0.6)]'}`}>{fullPrice}</span>
-            </div>
-            <p className={`text-xs mt-1.5 leading-relaxed ${isSubscribe ? 'text-white/65' : 'text-[rgba(30,24,84,0.7)]'}`}>
-              Cancel any time after the second month with zero hassle.
-            </p>
-          </div>
+        <div className="ml-auto flex flex-col items-end gap-0.5">
+          <span className={`text-sm tabular-nums font-semibold ${isSubscribe ? 'text-white' : 'text-[rgba(30,24,84,0.7)]'}`}>
+            {discountedPrice} <span className="font-normal text-xs">{currencyCode}</span>
+          </span>
+          <span className={`text-xs ${isSubscribe ? 'text-white/60' : 'text-[rgba(30,24,84,0.45)]'}`}>
+            Cancel anytime after month 2
+          </span>
         </div>
       </button>
 
@@ -121,28 +102,12 @@ export default function PurchaseSelector({ variantId, price, currencyCode, disco
       <button
         ref={ctaRef}
         onClick={handleCheckout}
-        className="btn-cta w-full text-white font-semibold text-sm tracking-[0.06em] uppercase py-4 rounded-full transition-all duration-300"
+        className="btn-cta w-full rounded-full py-4 flex items-center justify-between px-6 transition-all duration-300"
       >
-        {`Buy Now — ${displayPrice} ${currencyCode}`}
+        <span className="text-white text-xs font-semibold tracking-[0.1em] uppercase">Get Flow</span>
+        <span className="text-white text-sm font-semibold tracking-[-0.01em]">{displayPrice} {currencyCode}</span>
       </button>
     </div>
-
-    {/* Sticky Buy Now bar — mobile only, appears when CTA scrolls out of view */}
-    <div
-      className={`md:hidden fixed bottom-0 left-0 right-0 z-40 transition-transform duration-300 ${
-        stickyVisible ? 'translate-y-0' : 'translate-y-full'
-      }`}
-      style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
-    >
-      <div className="bg-white/90 backdrop-blur-md border-t border-[#1E1854]/10 px-5 py-3">
-        <button
-          onClick={handleCheckout}
-          className="btn-cta w-full text-white font-semibold text-sm tracking-[0.06em] uppercase py-4 rounded-full"
-        >
-          {`Buy Now — ${displayPrice} ${currencyCode}`}
-        </button>
-      </div>
-    </div>
-    </>
+</>
   );
 }

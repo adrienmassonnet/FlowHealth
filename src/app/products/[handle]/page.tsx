@@ -88,7 +88,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 md:gap-y-0 items-start">
           <ProductImageGallery images={images} title={product.title} />
 
-          <div className="space-y-6 md:pl-8 lg:pl-12 pt-4 md:pt-12">
+          <div className="space-y-6 md:pl-8 lg:pl-12">
             <div className="hidden md:block space-y-2">
               <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Cognitive Performance Formula</p>
               <h1 className="text-2xl md:text-3xl font-semibold tracking-[-0.02em] leading-tight">{product.title}</h1>
