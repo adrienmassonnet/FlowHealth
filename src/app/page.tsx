@@ -126,7 +126,7 @@ export default async function HomePage() {
               {/* Descriptive text */}
               <p className="text-base text-[#1E1854]/65" style={{ lineHeight: '1.25' }}>
                 Flow is more than a product — it's an investment in yourself, and a step closer to your goals.<br />
-                One sachet dissolved in 400–500 ml of water, every morning. 16 clinically-dosed ingredients to sharpen focus, reduce stress, and support long-term brain health.
+                One sachet dissolved in 400–500 ml of water, every morning, to sharpen focus, reduce stress, and support long-term brain health.
               </p>
 
               {/* Spec table */}
