@@ -125,12 +125,11 @@ export default async function HomePage() {
 
               {/* Descriptive text */}
               <p className="text-base text-[#1E1854]/65" style={{ lineHeight: '1.25' }}>
-                Flow is more than a product — it's an investment in yourself, and a step closer to your goals.<br />
-                One sachet dissolved in 400–500 ml of water, every morning, to sharpen focus, reduce stress, and support long-term brain health.
+                Start each morning with one sachet. Feel sharper, stay steady, and move closer to what matters.
               </p>
 
-              {/* Spec table */}
-              <ul className="w-full rounded-2xl overflow-hidden border border-[#1E1854]/[0.07] divide-y divide-[#1E1854]/[0.07]">
+              {/* Spec bullets */}
+              <ul className="space-y-2">
                 {[
                   { label: 'Flavour', value: featured.title },
                   { label: 'Content', value: '30 single-dose sachets' },
@@ -139,9 +138,9 @@ export default async function HomePage() {
                   { label: 'Calories', value: `${meta.caloriesKcal} kcal — no sugar` },
                   { label: 'Energy', value: 'Stimulant-free, no crash' },
                 ].map(({ label, value }) => (
-                  <li key={label} className="flex items-center gap-4 px-4 py-3 bg-[#1E18540A]">
-                    <span className="text-xs font-semibold uppercase tracking-[0.08em] text-[#1E1854]/40 w-16 shrink-0">{label}</span>
-                    <span className="text-sm text-[#1E1854]/80 leading-snug">{value}</span>
+                  <li key={label} className="flex items-center gap-2 text-sm">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#1E1854]/25 shrink-0" />
+                    <span className="text-[#1E1854]/75">{value}</span>
                   </li>
                 ))}
               </ul>
