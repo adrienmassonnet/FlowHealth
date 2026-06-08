@@ -115,7 +115,7 @@ export default function DayArcSection() {
             </h2>
           </div>
           <p className="text-sm leading-[1.55]" style={{ color: 'rgba(30,24,84,0.55)' }}>
-            Flow is built for the morning window — when adenosine has cleared and cortisol peaks naturally. Most drinks overstimulate that primed state. Flow works with your biology, not against it.
+            Flow is built for the morning window — when adenosine has cleared and cortisol peaks naturally. Most drinks overstimulate a brain that was already primed. Flow works with that biology, not against it.
           </p>
         </div>
 
@@ -123,7 +123,7 @@ export default function DayArcSection() {
         <div className="md:hidden mb-5 w-full">
           {/* Toggle — mobile only, above chart */}
           <div
-            className="relative inline-flex items-center rounded-full p-[3px] mb-1 cursor-pointer overflow-hidden border border-[#1E1854]/10"
+            className="relative flex items-center rounded-full p-[3px] mb-1 cursor-pointer overflow-hidden border border-[#1E1854]/10"
             style={{ isolation: 'isolate' }}
             onClick={() => setMode(mode === 'stim' ? 'flow' : 'stim')}
             role="switch"
@@ -197,7 +197,7 @@ export default function DayArcSection() {
 
             {/* Toggle — desktop only (mobile toggle is above chart) */}
             <div
-              className="hidden md:inline-flex relative items-center self-start rounded-full p-[3px] mb-4 cursor-pointer overflow-hidden border border-[#1E1854]/10"
+              className="hidden md:flex relative items-center self-start rounded-full p-[3px] mb-4 cursor-pointer overflow-hidden border border-[#1E1854]/10"
               style={{ isolation: 'isolate' }}
               onClick={() => setMode(mode === 'stim' ? 'flow' : 'stim')}
               role="switch"
@@ -220,13 +220,13 @@ export default function DayArcSection() {
                 }}
               />
               {/* With caffeine label */}
-              <div className="relative flex-1 flex items-center justify-center px-4 py-1.5" style={{ zIndex: 2 }}>
+              <div className="relative flex items-center justify-center py-1.5" style={{ zIndex: 2, width: '120px' }}>
                 <span className="text-xs font-medium whitespace-nowrap" style={{ color: mode === 'stim' ? '#1E1854' : 'rgba(255,255,255,0.5)', transition: 'color 0.5s cubic-bezier(0.4,0,0.2,1)' }}>
                   With caffeine
                 </span>
               </div>
               {/* With Flow label */}
-              <div className="relative flex-1 flex items-center justify-center px-4 py-1.5" style={{ zIndex: 2 }}>
+              <div className="relative flex items-center justify-center py-1.5" style={{ zIndex: 2, width: '120px' }}>
                 <span className="text-xs font-medium whitespace-nowrap" style={{ color: mode === 'flow' ? '#fff' : 'rgba(30,24,84,0.4)', transition: 'color 0.5s cubic-bezier(0.4,0,0.2,1)' }}>
                   With Flow
                 </span>

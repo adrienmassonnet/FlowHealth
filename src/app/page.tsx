@@ -152,8 +152,8 @@ export default async function HomePage() {
                     { label: 'Long term', body: 'Sustained brain cell growth, deeper sleep, and reduced cortisol over time.' },
                   ].map(({ label, body }) => (
                     <div key={label} className="rounded-xl border border-[#1E1854]/[0.07] bg-[#1E18540A] px-3 py-3 flex flex-col gap-1.5">
-                      <span className="block text-sm font-semibold tracking-[-0.01em] text-[#1E1854]">{label}</span>
-                      <span className="block text-xs leading-[1.5]" style={{ color: 'rgba(30,24,84,0.55)' }}>{body}</span>
+                      <p className="text-sm font-semibold tracking-[-0.01em] text-[#1E1854] m-0">{label}</p>
+                      <p className="text-sm leading-[1.5] m-0" style={{ color: 'rgba(30,24,84,0.55)' }}>{body}</p>
                     </div>
                   ))}
                 </div>
