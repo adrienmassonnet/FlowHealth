@@ -91,70 +91,66 @@ export default async function HomePage() {
               </h2>
             </div>
 
-            {/* Images row — full width */}
-            {featuredImage && (
-              <div className="flex gap-4 w-full">
-                <ScrollReveal variant="scale" duration={1.4} className="flex-1 aspect-[4/3] relative rounded-2xl overflow-hidden">
-                  <Image
-                    src={featuredImage.url}
-                    alt={featuredImage.altText ?? featured.title}
-                    fill
-                    priority
-                    className="object-cover object-center"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </ScrollReveal>
-                {featuredImageSecondary && (
-                  <div className="flex-1 aspect-[4/3] rounded-2xl overflow-hidden bg-[#2D2B6E]">
+            {/* Two-col: images left, content right */}
+            <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-start">
+
+              {/* Left: stacked images */}
+              {featuredImage && (
+                <div className="w-full md:w-[38%] shrink-0 flex flex-col gap-3">
+                  <ScrollReveal variant="scale" duration={1.4} className="relative aspect-[4/3] rounded-2xl overflow-hidden">
                     <Image
-                      src={featuredImageSecondary.url}
-                      alt={featuredImageSecondary.altText ?? featured.title}
-                      width={800}
-                      height={600}
-                      className="w-full h-full object-cover block"
-                      loading="lazy"
+                      src={featuredImage.url}
+                      alt={featuredImage.altText ?? featured.title}
+                      fill
+                      priority
+                      className="object-cover object-center"
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
-                  </div>
-                )}
-              </div>
-            )}
+                  </ScrollReveal>
+                  {featuredImageSecondary && (
+                    <div className="relative aspect-[16/9] rounded-2xl overflow-hidden">
+                      <Image
+                        src={featuredImageSecondary.url}
+                        alt={featuredImageSecondary.altText ?? featured.title}
+                        fill
+                        className="object-cover"
+                        loading="lazy"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    </div>
+                  )}
+                </div>
+              )}
 
-            {/* Bottom row: single column */}
-            <div className="flex flex-col gap-6">
+              {/* Right: description + bullets + cards + CTA */}
+              <div className="w-full md:flex-1 flex flex-col gap-6">
 
-              {/* Descriptive text */}
-              <p className="text-base text-[#1E1854]/65" style={{ lineHeight: '1.25' }}>
-                Start each morning with one sachet. Feel sharper, stay steady, and move closer to what matters.
-              </p>
+                <p className="text-base text-[#1E1854]/65" style={{ lineHeight: '1.25' }}>
+                  Start each morning with one sachet. Feel sharper, stay steady, and move closer to what matters.
+                </p>
 
-              {/* Spec bullets */}
-              <ul className="space-y-2">
-                {[
-                  { label: 'Flavour', value: featured.title },
-                  { label: 'Content', value: '30 single-dose sachets' },
-                  { label: 'Formula', value: `${meta.activeIngredients} clinically-dosed ingredients` },
-                  { label: 'Dose', value: `${meta.totalFormulaWeightG} g actives per sachet` },
-                  { label: 'Calories', value: `${meta.caloriesKcal} kcal — no sugar` },
-                  { label: 'Energy', value: 'Stimulant-free, no crash' },
-                ].map(({ label, value }) => (
-                  <li key={label} className="flex items-center gap-2 text-sm">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#1E1854]/25 shrink-0" />
-                    <span className="text-[#1E1854]/75">{value}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* CTA column */}
-              <div className="w-full flex flex-col gap-6">
-
-                {/* Timeline cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                <ul className="space-y-2">
                   {[
-                    { period: 'Days 1–7', label: 'Short term', body: 'Clearer focus, steady energy, and reduced brain fog from the first days.' },
-                    { period: 'Weeks 2–4', label: 'Medium term', body: 'Better habits, improved mood stability and consistent daily rhythm.' },
-                    { period: 'Month 3+', label: 'Long term', body: 'Sustained brain cell growth, deeper sleep, and reduced cortisol over time.' },
-                  ].map(({ period, label, body }) => (
+                    { label: 'Flavour', value: `${featured.title} flavoured` },
+                    { label: 'Content', value: '30 single-dose sachets' },
+                    { label: 'Formula', value: `${meta.activeIngredients} clinically-dosed ingredients` },
+                    { label: 'Dose', value: `${meta.totalFormulaWeightG} g actives per sachet` },
+                    { label: 'Calories', value: `${meta.caloriesKcal} kcal — no sugar` },
+                    { label: 'Energy', value: 'Stimulant-free, no crash' },
+                  ].map(({ label, value }) => (
+                    <li key={label} className="flex items-center gap-2 text-sm">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#1E1854]/25 shrink-0" />
+                      <span className="text-[#1E1854]/75">{value}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="flex flex-col md:flex-row gap-2">
+                  {[
+                    { label: 'Short term', body: 'Clearer focus, steady energy, and reduced brain fog from the first days.' },
+                    { label: 'Medium term', body: 'Better habits, improved mood stability and consistent daily rhythm.' },
+                    { label: 'Long term', body: 'Sustained brain cell growth, deeper sleep, and reduced cortisol over time.' },
+                  ].map(({ label, body }) => (
                     <div key={label} className="rounded-xl border border-[#1E1854]/[0.07] bg-[#1E18540A] px-3 py-3 flex flex-col gap-1.5">
                       <span className="block text-sm font-semibold tracking-[-0.01em] text-[#1E1854]">{label}</span>
                       <span className="block text-xs leading-[1.5]" style={{ color: 'rgba(30,24,84,0.55)' }}>{body}</span>
