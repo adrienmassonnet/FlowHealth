@@ -113,7 +113,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   const otherPosts = allPosts.filter((p) => p.slug !== slug).slice(0, 3);
 
-  const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.flow-health.ch';
+  const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.flowhealth.ch';
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',

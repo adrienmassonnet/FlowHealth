@@ -7,7 +7,7 @@ import Header from "@/app/components/Header";
 import ScrollManager from "@/app/components/ScrollManager";
 const outfit = Outfit({ subsets: ["latin"], display: "swap", preload: true });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.flow-health.ch';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.flowhealth.ch';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -125,9 +125,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <ul className="space-y-3 text-xs">
                 {[
                   { label: 'Our Philosophy', href: '/pages/our-philosophy' },
-                  { label: 'Who We Are', href: '/pages/who-we-are' },
                   { label: 'Our Product', href: '/pages/our-product' },
-                  { label: 'Research', href: '/pages/research' },
                   { label: 'Legal notice', href: '/pages/legal-notice' },
                   { label: 'Blogs', href: '/pages/blog-posts' },
                 ].map((l) => (

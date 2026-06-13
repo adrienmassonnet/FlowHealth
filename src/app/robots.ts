@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.flow-health.ch';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.flowhealth.ch';
 
 export default function robots(): MetadataRoute.Robots {
   return {

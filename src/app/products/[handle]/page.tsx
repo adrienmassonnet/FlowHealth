@@ -69,7 +69,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
       price: firstVariant.price.amount,
       priceCurrency: firstVariant.price.currencyCode,
       availability: 'https://schema.org/InStock',
-      url: `https://www.flow-health.ch/products/${handle}`,
+      url: `https://www.flowhealth.ch/products/${handle}`,
     },
   };
 

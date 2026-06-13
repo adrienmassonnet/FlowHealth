@@ -5,6 +5,9 @@ import { useState, useEffect, useRef } from 'react';
 const STIM_COLOR = '#D97706';
 const FLOW_COLOR = '#3B38B8';
 
+const STIM_PATH = "M40,260 C100,258 150,240 180,228 C210,216 220,195 240,180 C270,158 330,148 370,145 C410,142 440,165 490,200 C530,228 550,295 580,305 C610,315 630,270 650,210 C668,158 680,195 720,215 C760,232 790,215 820,210 C848,208 865,209 880,210";
+const FLOW_PATH = "M40,260 C100,258 150,242 180,236 C220,226 270,210 320,200 C370,190 430,185 490,183 C560,181 620,186 680,196 C740,208 790,222 820,226 C848,228 865,230 880,232";
+
 const cards = [
   {
     stimLabel: 'The morning rush',
@@ -141,9 +144,9 @@ export default function DayArcSection() {
           </div>
         </div>
 
-        <div className="md:hidden mb-5 w-full">
+        <div className="md:hidden mb-5 w-full rounded-2xl overflow-hidden" style={{ background: '#F8F8FB', boxShadow: '0 2px 16px rgba(30,24,84,0.07)', padding: '16px 8px 8px' }}>
           <svg
-            viewBox="0 0 920 500"
+            viewBox="0 0 920 480"
             width="100%"
             preserveAspectRatio="xMidYMid meet"
             className="block overflow-visible"
@@ -154,36 +157,60 @@ export default function DayArcSection() {
                 <stop offset="0%" stopColor="#3B38B8" />
                 <stop offset="100%" stopColor="#1E1854" />
               </linearGradient>
-              <filter id="dayArcGFM" x="-20%" y="-60%" width="140%" height="220%">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="b" />
-                <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
-              </filter>
-              <filter id="dayArcGSM" x="-20%" y="-60%" width="140%" height="220%">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="b" />
-                <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
-              </filter>
+              <linearGradient id="stimFillM" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor={STIM_COLOR} stopOpacity="0.12" />
+                <stop offset="100%" stopColor={STIM_COLOR} stopOpacity="0" />
+              </linearGradient>
+              <linearGradient id="flowFillM" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#3B38B8" stopOpacity="0.10" />
+                <stop offset="100%" stopColor="#3B38B8" stopOpacity="0" />
+              </linearGradient>
+              <clipPath id="chartClipM">
+                <rect x="40" y="0" width="840" height="420" />
+              </clipPath>
             </defs>
-            <line x1="40" y1="420" x2="880" y2="420" stroke="#E8E7F2" strokeWidth="1.5" />
-            {[{ x: 40, label: 'Wake' }, { x: 180, label: 'Intake' }, { x: 490, label: '2–4 hrs' }, { x: 650, label: '2nd coffee' }, { x: 820, label: 'Evening' }].map(({ x, label }) => (
-              <text key={label} x={x} y="445" textAnchor="middle" fontSize="18" fill="rgba(30,24,84,0.55)" fontFamily="Inter,system-ui" fontWeight="500">{label}</text>
+
+            {/* Axis */}
+            <line x1="40" y1="410" x2="880" y2="410" stroke="rgba(30,24,84,0.08)" strokeWidth="1" />
+
+            {/* X labels */}
+            {[
+              { x: 40,  label: 'Wake'    },
+              { x: 180, label: 'Intake'  },
+              { x: 490, label: '2–4 hrs' },
+              { x: 650, label: '2nd dose' },
+              { x: 820, label: 'Evening' },
+            ].map(({ x, label }) => (
+              <text key={label} x={x} y="435" textAnchor="middle" fontSize="17" fill="rgba(30,24,84,0.45)" fontFamily="Inter,system-ui" fontWeight="500">{label}</text>
             ))}
-            <line x1="180" y1="414" x2="180" y2="422" stroke="rgba(30,24,84,0.2)" strokeWidth="1.5" />
-            <line x1="490" y1="414" x2="490" y2="422" stroke="rgba(30,24,84,0.2)" strokeWidth="1.5" />
-            <line x1="650" y1="414" x2="650" y2="422" stroke="rgba(30,24,84,0.2)" strokeWidth="1.5" />
-            <line x1="820" y1="414" x2="820" y2="422" stroke="rgba(30,24,84,0.2)" strokeWidth="1.5" />
-            <path d="M180,228 C400,240 620,258 880,270" stroke="rgba(30,24,84,0.22)" strokeWidth="2" strokeDasharray="7,5" fill="none" strokeLinecap="round" />
-            <g style={{ opacity: mode === 'stim' ? 1 : 0.08, transition: 'opacity 0.4s' }}>
-              <path d="M40,260 C100,258 150,240 180,228 C210,216 220,195 240,180 C270,158 330,148 370,145 C410,142 440,165 490,200 C530,228 550,295 580,305 C610,315 630,270 650,210 C668,158 680,195 720,215 C760,232 790,215 820,210 C848,208 865,209 880,210" stroke={STIM_COLOR} strokeWidth="12" fill="none" strokeLinecap="round" opacity="0.07" />
-              <path d="M40,260 C100,258 150,240 180,228 C210,216 220,195 240,180 C270,158 330,148 370,145 C410,142 440,165 490,200 C530,228 550,295 580,305 C610,315 630,270 650,210 C668,158 680,195 720,215 C760,232 790,215 820,210 C848,208 865,209 880,210" stroke={STIM_COLOR} strokeWidth="2.8" fill="none" strokeLinecap="round" filter="url(#dayArcGSM)" />
+
+            {/* Natural baseline */}
+            <path d="M180,228 C400,240 620,258 880,270" stroke="rgba(30,24,84,0.15)" strokeWidth="1.5" strokeDasharray="6,5" fill="none" strokeLinecap="round" />
+
+            {/* Stim area fill */}
+            <g style={{ opacity: mode === 'stim' ? 1 : 0, transition: 'opacity 0.4s' }} clipPath="url(#chartClipM)">
+              <path d={`${STIM_PATH} L880,410 L40,410 Z`} fill="url(#stimFillM)" />
             </g>
-            <g style={{ opacity: mode === 'flow' ? 1 : 0.08, transition: 'opacity 0.4s' }}>
-              <path d="M40,260 C100,258 150,242 180,236 C220,226 270,210 320,200 C370,190 430,185 490,183 C560,181 620,186 680,196 C740,208 790,222 820,226 C848,228 865,230 880,232" stroke="#3B38B8" strokeWidth="14" fill="none" strokeLinecap="round" opacity="0.06" />
-              <path d="M40,260 C100,258 150,242 180,236 C220,226 270,210 320,200 C370,190 430,185 490,183 C560,181 620,186 680,196 C740,208 790,222 820,226 C848,228 865,230 880,232" stroke="url(#dayArcFlowGradM)" strokeWidth="3" fill="none" strokeLinecap="round" filter="url(#dayArcGFM)" />
+            {/* Flow area fill */}
+            <g style={{ opacity: mode === 'flow' ? 1 : 0, transition: 'opacity 0.4s' }} clipPath="url(#chartClipM)">
+              <path d={`${FLOW_PATH} L880,410 L40,410 Z`} fill="url(#flowFillM)" />
             </g>
+
+            {/* Stim line */}
+            <g style={{ opacity: mode === 'stim' ? 1 : 0.06, transition: 'opacity 0.4s' }}>
+              <path d={STIM_PATH} stroke={STIM_COLOR} strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+            </g>
+            {/* Flow line */}
+            <g style={{ opacity: mode === 'flow' ? 1 : 0.06, transition: 'opacity 0.4s' }}>
+              <path d={FLOW_PATH} stroke="url(#dayArcFlowGradM)" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+            </g>
+
+            {/* Dots — solid center + white ring */}
             {dotPositions.map((d, i) => (
               <g key={i}>
-                <circle cx={d.cx} cy={d.cy} r="13" fill={accentColor} opacity="0.12" />
-                <circle cx={d.cx} cy={d.cy} r="6.5" fill={accentColor} />
+                <circle cx={d.cx} cy={d.cy} r="7" fill={accentColor} />
+                <circle cx={d.cx} cy={d.cy} r="4" fill="#fff" />
+                <circle cx={d.cx} cy={d.cy} r="2.5" fill={accentColor} />
               </g>
             ))}
           </svg>
@@ -288,10 +315,18 @@ export default function DayArcSection() {
             })}
           </div>
 
-          {/* Right: SVG chart — hidden on mobile, unreadable at small sizes */}
-          <div className="hidden md:block flex-1 min-w-0 w-full" style={{ height: chartHeight || undefined }}>
+          {/* Right: SVG chart — hidden on mobile */}
+          <div
+            className="hidden md:flex flex-1 min-w-0 w-full items-center justify-center rounded-2xl"
+            style={{
+              height: chartHeight || undefined,
+              background: '#F8F8FB',
+              boxShadow: '0 2px 16px rgba(30,24,84,0.07)',
+              padding: '24px 16px 16px',
+            }}
+          >
             <svg
-              viewBox="0 0 920 500"
+              viewBox="0 0 920 480"
               width="100%"
               height="100%"
               preserveAspectRatio="xMidYMid meet"
@@ -303,101 +338,76 @@ export default function DayArcSection() {
                   <stop offset="0%" stopColor="#3B38B8" />
                   <stop offset="100%" stopColor="#1E1854" />
                 </linearGradient>
-                <filter id="dayArcGF" x="-20%" y="-60%" width="140%" height="220%">
-                  <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="b" />
-                  <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-                <filter id="dayArcGS" x="-20%" y="-60%" width="140%" height="220%">
-                  <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="b" />
-                  <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
+                <linearGradient id="stimFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor={STIM_COLOR} stopOpacity="0.12" />
+                  <stop offset="100%" stopColor={STIM_COLOR} stopOpacity="0" />
+                </linearGradient>
+                <linearGradient id="flowFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#3B38B8" stopOpacity="0.10" />
+                  <stop offset="100%" stopColor="#3B38B8" stopOpacity="0" />
+                </linearGradient>
+                <clipPath id="chartClip">
+                  <rect x="40" y="0" width="840" height="410" />
+                </clipPath>
               </defs>
 
-              {/*
-                viewBox 920x500. Chart zone: y 20-400 (380px range). Baseline at y=250.
-                x-axis at y=420. Labels at y=445.
-                All original y coords (baseline=160, range 18–208 in 320px box)
-                rescaled: newY = 20 + (oldY / 320) * 380
-              */}
-
-              {/* x-axis */}
-              <line x1="40" y1="420" x2="880" y2="420" stroke="#E8E7F2" strokeWidth="1.5" />
+              {/* Axis */}
+              <line x1="40" y1="410" x2="880" y2="410" stroke="rgba(30,24,84,0.08)" strokeWidth="1" />
 
               {/* X labels */}
               {[
                 { x: 40,  label: 'Wake'    },
                 { x: 180, label: 'Intake'  },
                 { x: 490, label: '2–4 hrs' },
-                { x: 650, label: '2nd coffee' },
+                { x: 650, label: '2nd dose' },
                 { x: 820, label: 'Evening' },
               ].map(({ x, label }) => (
-                <text key={label} x={x} y="445" textAnchor="middle" fontSize="18" fill="rgba(30,24,84,0.55)" fontFamily="Inter,system-ui" fontWeight="500">
+                <text key={label} x={x} y="435" textAnchor="middle" fontSize="17" fill="rgba(30,24,84,0.45)" fontFamily="Inter,system-ui" fontWeight="500">
                   {label}
                 </text>
               ))}
-              <line x1="180" y1="414" x2="180" y2="422" stroke="rgba(30,24,84,0.2)" strokeWidth="1.5" />
-              <line x1="490" y1="414" x2="490" y2="422" stroke="rgba(30,24,84,0.2)" strokeWidth="1.5" />
-              <line x1="650" y1="414" x2="650" y2="422" stroke="rgba(30,24,84,0.2)" strokeWidth="1.5" />
-              <line x1="820" y1="414" x2="820" y2="422" stroke="rgba(30,24,84,0.2)" strokeWidth="1.5" />
 
-              {/* Legend */}
-              <g>
-                <line x1="40" y1="30" x2="72" y2="30" stroke={accentColor} strokeWidth="2.5" strokeLinecap="round" style={{ transition: 'stroke 0.4s' }} />
-                <text x="80" y="35" fontSize="16" fill="rgba(30,24,84,0.7)" fontFamily="Inter,system-ui" fontWeight="500">
-                  {mode === 'stim' ? 'With caffeine' : 'With Flow'}
-                </text>
-                <line x1="220" y1="30" x2="252" y2="30" stroke="rgba(30,24,84,0.3)" strokeWidth="2" strokeDasharray="5,4" strokeLinecap="round" />
-                <text x="260" y="35" fontSize="16" fill="rgba(30,24,84,0.5)" fontFamily="Inter,system-ui" fontWeight="500">
-                  Natural baseline
-                </text>
-              </g>
-
-              {/* Natural baseline — diagonal dashed from Intake level down to Evening */}
+              {/* Natural baseline */}
               <path
                 d="M180,228 C400,240 620,258 880,270"
-                stroke="rgba(30,24,84,0.22)"
-                strokeWidth="2"
-                strokeDasharray="7,5"
+                stroke="rgba(30,24,84,0.15)"
+                strokeWidth="1.5"
+                strokeDasharray="6,5"
                 fill="none"
                 strokeLinecap="round"
               />
 
-              {/* Stimulant line — broad peak around 370, trough at 530, second peak at 650, declining */}
-              <g style={{ opacity: mode === 'stim' ? 1 : 0.08, transition: 'opacity 0.4s' }}>
-                <path
-                  d="M40,260 C100,258 150,240 180,228 C210,216 220,195 240,180 C270,158 330,148 370,145 C410,142 440,165 490,200 C530,228 550,295 580,305 C610,315 630,270 650,210 C668,158 680,195 720,215 C760,232 790,215 820,210 C848,208 865,209 880,210"
-                  stroke={STIM_COLOR} strokeWidth="12" fill="none" strokeLinecap="round" opacity="0.07"
-                />
-                <path
-                  d="M40,260 C100,258 150,240 180,228 C210,216 220,195 240,180 C270,158 330,148 370,145 C410,142 440,165 490,200 C530,228 550,295 580,305 C610,315 630,270 650,210 C668,158 680,195 720,215 C760,232 790,215 820,210 C848,208 865,209 880,210"
-                  stroke={STIM_COLOR} strokeWidth="2.8" fill="none" strokeLinecap="round" filter="url(#dayArcGS)"
-                />
+              {/* Stim area fill */}
+              <g style={{ opacity: mode === 'stim' ? 1 : 0, transition: 'opacity 0.4s' }} clipPath="url(#chartClip)">
+                <path d={`${STIM_PATH} L880,410 L40,410 Z`} fill="url(#stimFill)" />
+              </g>
+              {/* Flow area fill */}
+              <g style={{ opacity: mode === 'flow' ? 1 : 0, transition: 'opacity 0.4s' }} clipPath="url(#chartClip)">
+                <path d={`${FLOW_PATH} L880,410 L40,410 Z`} fill="url(#flowFill)" />
               </g>
 
-              {/* Flow line — modest rise above baseline, broad gentle arc */}
-              <g style={{ opacity: mode === 'flow' ? 1 : 0.08, transition: 'opacity 0.4s' }}>
-                <path
-                  d="M40,260 C100,258 150,242 180,236 C220,226 270,210 320,200 C370,190 430,185 490,183 C560,181 620,186 680,196 C740,208 790,222 820,226 C848,228 865,230 880,232"
-                  stroke="#3B38B8" strokeWidth="14" fill="none" strokeLinecap="round" opacity="0.06"
-                />
-                <path
-                  d="M40,260 C100,258 150,242 180,236 C220,226 270,210 320,200 C370,190 430,185 490,183 C560,181 620,186 680,196 C740,208 790,222 820,226 C848,228 865,230 880,232"
-                  stroke="url(#dayArcFlowGrad)" strokeWidth="3" fill="none" strokeLinecap="round" filter="url(#dayArcGF)"
-                />
+              {/* Stim line */}
+              <g style={{ opacity: mode === 'stim' ? 1 : 0.06, transition: 'opacity 0.4s' }}>
+                <path d={STIM_PATH} stroke={STIM_COLOR} strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+              </g>
+              {/* Flow line */}
+              <g style={{ opacity: mode === 'flow' ? 1 : 0.06, transition: 'opacity 0.4s' }}>
+                <path d={FLOW_PATH} stroke="url(#dayArcFlowGrad)" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
               </g>
 
-              {/* Anchor dots — expand subtly on card hover using SVG transform */}
+              {/* Anchor dots — solid center + white ring, expand on card hover */}
               {dotPositions.map((d, i) => {
                 const hovered = hoveredCard === i;
-                const scale = hovered ? 1.5 : 1;
+                const scale = hovered ? 1.4 : 1;
                 return (
                   <g
                     key={i}
                     transform={`translate(${d.cx},${d.cy}) scale(${scale}) translate(${-d.cx},${-d.cy})`}
                     style={{ transition: 'transform 0.35s cubic-bezier(0.25,0.1,0.1,1)' }}
                   >
-                    <circle cx={d.cx} cy={d.cy} r="13" fill={accentColor} opacity={hovered ? 0.2 : 0.12} style={{ transition: 'opacity 0.35s' }} />
-                    <circle cx={d.cx} cy={d.cy} r="6.5" fill={accentColor} />
+                    <circle cx={d.cx} cy={d.cy} r="8" fill={accentColor} />
+                    <circle cx={d.cx} cy={d.cy} r="5" fill="#F8F8FB" />
+                    <circle cx={d.cx} cy={d.cy} r="3" fill={accentColor} />
                   </g>
                 );
               })}
