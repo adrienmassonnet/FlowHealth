@@ -76,6 +76,42 @@ export default function ProductNavTabs() {
     });
   }, []);
 
+  // Lock wrapper min-height to savings section once it finishes rendering
+  useEffect(() => {
+    const wrapper = document.querySelector<HTMLElement>('[data-tab-wrapper]');
+    if (!wrapper) return;
+
+    const lockHeight = () => {
+      // Temporarily show savings to measure it
+      const savingsEl = document.getElementById('section-savings');
+      if (!savingsEl) return false;
+      const wasHidden = savingsEl.style.display === 'none';
+      if (wasHidden) {
+        savingsEl.style.visibility = 'hidden';
+        savingsEl.style.display = '';
+      }
+      const h = savingsEl.offsetHeight;
+      if (wasHidden) {
+        savingsEl.style.display = 'none';
+        savingsEl.style.visibility = '';
+      }
+      if (h > 100) {
+        wrapper.style.minHeight = `${h}px`;
+        return true;
+      }
+      return false;
+    };
+
+    if (lockHeight()) return;
+
+    // Savings not ready yet (Suspense) — observe until it has real height
+    const savingsEl = document.getElementById('section-savings');
+    if (!savingsEl) return;
+    const ro = new ResizeObserver(() => { if (lockHeight()) ro.disconnect(); });
+    ro.observe(savingsEl);
+    return () => ro.disconnect();
+  }, []);
+
 
   // Scroll active pill into view — skip on initial mount so it doesn't push page down
   const isMounted = useRef(false);

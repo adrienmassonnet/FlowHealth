@@ -5,8 +5,8 @@ import { useState, useEffect, useRef } from 'react';
 const STIM_COLOR = '#D97706';
 const FLOW_COLOR = '#3B38B8';
 
-const STIM_PATH = "M40,260 C100,258 150,240 180,228 C210,216 220,195 240,180 C270,158 330,148 370,145 C410,142 440,165 490,200 C530,228 550,295 580,305 C610,315 630,270 650,210 C668,158 680,195 720,215 C760,232 790,215 820,210 C848,208 865,209 880,210";
-const FLOW_PATH = "M40,260 C100,258 150,242 180,236 C220,226 270,210 320,200 C370,190 430,185 490,183 C560,181 620,186 680,196 C740,208 790,222 820,226 C848,228 865,230 880,232";
+const STIM_PATH = "M40,290 C80,272 130,248 180,225 C210,208 240,180 270,158 C300,138 340,130 380,128 C410,127 440,145 470,172 C490,192 510,240 535,278 C555,308 575,318 600,305 C620,288 638,252 655,210 C668,176 682,158 705,170 C728,185 750,200 770,210 C790,218 810,218 835,214 C855,210 870,208 880,210";
+const FLOW_PATH = "M40,290 C80,272 130,248 180,225 C210,210 235,198 260,190 C290,181 330,174 370,170 C410,167 450,166 490,166 C530,167 565,170 600,174 C635,178 670,184 710,191 C745,197 785,207 820,216 C848,222 865,226 880,228";
 
 const cards = [
   {
@@ -29,36 +29,16 @@ const cards = [
   },
 ];
 
-/*
-  Stim path: M180,146 C232,138 250,22 290,18 C330,14 374,92 415,130
-             C444,154 462,198 490,208 C518,218 542,148 600,78
-             C628,38 652,118 680,142 C724,170 768,178 820,178
-
-  Dot 1 (spike peak):   x=290, y=18   — top of spike
-  Dot 2 (trough base):  x=490, y=208  — deepest point of U (midpoint of segment C444,154 462,198 490,208)
-  Dot 3 (evening):      x=820, y=178  — on line (already correct, y matches path endpoint)
-
-  "2nd coffee" marker at centre of U curve = x=490, y=208 is the trough bottom.
-  The re-intake starts as the line rises again, so place it at x=530, y=215 (just past trough on upswing).
-
-  Flow path: M180,146 C272,130 336,88 400,88 C524,88 588,90 650,92 C748,95 816,102 880,108
-  Dot 1: x=290, on seg M180,146→400,88. t where bezier_x=290:
-    Px(t)=(1-t)^3*180+3(1-t)^2*t*272+3(1-t)*t^2*336+t^3*400=290 -> t~0.50
-    Py(t)=(1-t)^3*146+3(1-t)^2*t*130+3(1-t)*t^2*88+t^3*88 ~ 0.125*146+0.375*130+0.375*88+0.125*88=111
-  Dot 2: x=490, on seg C400,88→880,108 (ctrl 524,88 650,92). At x=490 t≈0.19 → y≈88
-  Dot 3: x=820, on seg C650,92→880,108 (ctrl 748,95 816,102). t≈0.57 → y≈102
-*/
-// All y values rescaled from original 320-height viewBox to new 500-height viewBox (* 500/320)
 const dots = {
   stim: [
-    { cx: 370, cy: 145 },  // broad peak
-    { cx: 580, cy: 305 },  // trough
-    { cx: 820, cy: 210 },  // evening
+    { cx: 380, cy: 128 },
+    { cx: 535, cy: 278 },
+    { cx: 835, cy: 214 },
   ],
   flow: [
-    { cx: 320, cy: 200 },  // early rise
-    { cx: 490, cy: 183 },  // peak plateau
-    { cx: 820, cy: 226 },  // gentle evening decline
+    { cx: 370, cy: 170 },
+    { cx: 560, cy: 172 },
+    { cx: 790, cy: 207 },
   ],
 };
 
@@ -66,10 +46,12 @@ export default function DayArcSection() {
   const [mode, setMode] = useState<'stim' | 'flow'>('stim');
   const [visible, setVisible] = useState(false);
   const [chartHeight, setChartHeight] = useState<number>(360);
+  const [toggleHeight, setToggleHeight] = useState<number>(0);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [mobileOpen, setMobileOpen] = useState<number | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const cardColRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -85,9 +67,15 @@ export default function DayArcSection() {
   useEffect(() => {
     const el = cardColRef.current;
     if (!el) return;
-    const ro = new ResizeObserver(() => {
+    const measure = () => {
       setChartHeight(el.getBoundingClientRect().height);
-    });
+      if (toggleRef.current) {
+        // offsetHeight + mb-4 (16px) + gap-3 (12px) between toggle and first card
+        setToggleHeight(toggleRef.current.offsetHeight + 16 + 12);
+      }
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
@@ -122,9 +110,8 @@ export default function DayArcSection() {
           </p>
         </div>
 
-        {/* Mobile: toggle + chart above cards */}
+        {/* Mobile: toggle above chart */}
         <div className="md:hidden mb-5 w-full">
-          {/* Toggle — mobile only, above chart */}
           <div
             className="relative flex items-center rounded-full p-[3px] mb-1 cursor-pointer overflow-hidden border border-[#1E1854]/10"
             style={{ isolation: 'isolate' }}
@@ -144,6 +131,7 @@ export default function DayArcSection() {
           </div>
         </div>
 
+        {/* Mobile chart */}
         <div className="md:hidden mb-5 w-full rounded-2xl overflow-hidden" style={{ background: '#F8F8FB', boxShadow: '0 2px 16px rgba(30,24,84,0.07)', padding: '16px 8px 8px' }}>
           <svg
             viewBox="0 0 920 480"
@@ -178,14 +166,14 @@ export default function DayArcSection() {
               { x: 40,  label: 'Wake'    },
               { x: 180, label: 'Intake'  },
               { x: 490, label: '2–4 hrs' },
-              { x: 650, label: '2nd dose' },
+              { x: 650, label: mode === 'stim' ? '2nd dose' : '' },
               { x: 820, label: 'Evening' },
             ].map(({ x, label }) => (
               <text key={label} x={x} y="435" textAnchor="middle" fontSize="17" fill="rgba(30,24,84,0.45)" fontFamily="Inter,system-ui" fontWeight="500">{label}</text>
             ))}
 
             {/* Natural baseline */}
-            <path d="M180,228 C400,240 620,258 880,270" stroke="rgba(30,24,84,0.15)" strokeWidth="1.5" strokeDasharray="6,5" fill="none" strokeLinecap="round" />
+            <path d="M40,290 C100,268 180,235 300,205 C400,182 460,188 490,194 C520,200 545,222 565,242 C582,256 600,258 625,250 C655,238 690,218 750,215 C800,214 845,228 880,242" stroke="rgba(30,24,84,0.35)" strokeWidth="1.5" strokeDasharray="6,5" fill="none" strokeLinecap="round" />
 
             {/* Stim area fill */}
             <g style={{ opacity: mode === 'stim' ? 1 : 0, transition: 'opacity 0.4s' }} clipPath="url(#chartClipM)">
@@ -219,22 +207,20 @@ export default function DayArcSection() {
         {/* Body: cards left, chart right */}
         <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
 
-          {/* Left column: toggle + cards — wider */}
+          {/* Left column: toggle + cards */}
           <div ref={cardColRef} className="flex flex-col gap-3 md:w-[460px] shrink-0 w-full">
 
-            {/* Toggle — desktop only (mobile toggle is above chart) */}
+            {/* Toggle — desktop only */}
             <div
+              ref={toggleRef}
               className="hidden md:flex relative items-center self-start rounded-full p-[3px] mb-4 cursor-pointer overflow-hidden border border-[#1E1854]/10"
               style={{ isolation: 'isolate' }}
               onClick={() => setMode(mode === 'stim' ? 'flow' : 'stim')}
               role="switch"
               aria-checked={mode === 'flow'}
             >
-              {/* Track: off state */}
               <div className="absolute inset-0 rounded-full" style={{ background: 'rgba(30,24,84,0.08)', opacity: mode === 'stim' ? 1 : 0, transition: 'opacity 0.5s cubic-bezier(0.4,0,0.2,1)' }} />
-              {/* Track: on state */}
               <div className="absolute inset-0 rounded-full" style={{ background: 'linear-gradient(135deg,#3B38B8,#1E1854)', opacity: mode === 'flow' ? 1 : 0, transition: 'opacity 0.5s cubic-bezier(0.4,0,0.2,1)' }} />
-              {/* Sliding thumb */}
               <div
                 className="absolute top-[3px] bottom-[3px] rounded-full"
                 style={{
@@ -246,13 +232,11 @@ export default function DayArcSection() {
                   zIndex: 1,
                 }}
               />
-              {/* With caffeine label */}
               <div className="relative flex items-center justify-center py-1.5" style={{ zIndex: 2, width: '120px' }}>
                 <span className="text-xs font-medium whitespace-nowrap" style={{ color: mode === 'stim' ? '#1E1854' : 'rgba(255,255,255,0.5)', transition: 'color 0.5s cubic-bezier(0.4,0,0.2,1)' }}>
                   With caffeine
                 </span>
               </div>
-              {/* With Flow label */}
               <div className="relative flex items-center justify-center py-1.5" style={{ zIndex: 2, width: '120px' }}>
                 <span className="text-xs font-medium whitespace-nowrap" style={{ color: mode === 'flow' ? '#fff' : 'rgba(30,24,84,0.4)', transition: 'color 0.5s cubic-bezier(0.4,0,0.2,1)' }}>
                   With Flow
@@ -260,7 +244,7 @@ export default function DayArcSection() {
               </div>
             </div>
 
-            {/* Cards with number badges */}
+            {/* Cards */}
             {cards.map((c, i) => {
               const isOpen = mobileOpen === i;
               return (
@@ -283,7 +267,6 @@ export default function DayArcSection() {
                     (e.currentTarget as HTMLDivElement).style.boxShadow = '0 2px 16px rgba(30,24,84,0.06)';
                   }}
                 >
-                  {/* Badge + label + chevron */}
                   <div
                     className="flex items-center gap-2 px-4 py-3 md:px-5 md:py-4 cursor-pointer md:cursor-default"
                     onClick={() => setMobileOpen(isOpen ? null : i)}
@@ -304,7 +287,6 @@ export default function DayArcSection() {
                       <path d="M3 5l4 4 4-4" stroke="rgba(30,24,84,0.4)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </div>
-                  {/* Description — always visible on desktop, accordion on mobile */}
                   <div className={`md:block ${isOpen ? 'block' : 'hidden'}`}>
                     <p className="text-sm leading-[1.55] px-4 pb-3 md:px-5 md:pb-4 md:pt-0" style={{ color: 'rgba(30,24,84,0.55)' }}>
                       {mode === 'stim' ? c.stim : c.flow}
@@ -315,19 +297,29 @@ export default function DayArcSection() {
             })}
           </div>
 
-          {/* Right: SVG chart — hidden on mobile */}
+          {/* Right: SVG chart — desktop only */}
           <div
-            className="hidden md:flex flex-1 min-w-0 w-full items-center justify-center rounded-2xl"
+            className="hidden md:flex flex-col flex-1 min-w-0 w-full rounded-2xl"
             style={{
-              height: chartHeight || undefined,
+              marginTop: toggleHeight,
+              height: chartHeight - toggleHeight || undefined,
               background: '#F8F8FB',
               boxShadow: '0 2px 16px rgba(30,24,84,0.07)',
               padding: '24px 16px 16px',
             }}
           >
+            {/* Legend */}
+            <div className="flex items-start gap-3 px-2 mb-3">
+              <svg className="shrink-0 mt-[7px]" width="28" height="10" viewBox="0 0 28 10"><line x1="0" y1="5" x2="28" y2="5" stroke="rgba(30,24,84,0.35)" strokeWidth="1.5" strokeDasharray="6,5" strokeLinecap="round"/></svg>
+              <div className="space-y-0.5">
+                <p className="text-sm font-medium text-[#1E1854]/60">Natural cognitive baseline</p>
+                <p className="text-sm text-[#1E1854]/40">Large swings above it cause jitters and anxiety. Drops below it bring fatigue and brain fog. Staying close is what makes performance last.</p>
+              </div>
+            </div>
             <svg
               viewBox="0 0 920 480"
               width="100%"
+              className="flex-1"
               height="100%"
               preserveAspectRatio="xMidYMid meet"
               className="block overflow-visible"
@@ -359,7 +351,7 @@ export default function DayArcSection() {
                 { x: 40,  label: 'Wake'    },
                 { x: 180, label: 'Intake'  },
                 { x: 490, label: '2–4 hrs' },
-                { x: 650, label: '2nd dose' },
+                { x: 650, label: mode === 'stim' ? '2nd dose' : '' },
                 { x: 820, label: 'Evening' },
               ].map(({ x, label }) => (
                 <text key={label} x={x} y="435" textAnchor="middle" fontSize="17" fill="rgba(30,24,84,0.45)" fontFamily="Inter,system-ui" fontWeight="500">
@@ -369,8 +361,8 @@ export default function DayArcSection() {
 
               {/* Natural baseline */}
               <path
-                d="M180,228 C400,240 620,258 880,270"
-                stroke="rgba(30,24,84,0.15)"
+                d="M40,290 C100,268 180,235 300,205 C400,182 460,188 490,194 C520,200 545,222 565,242 C582,256 600,258 625,250 C655,238 690,218 750,215 C800,214 845,228 880,242"
+                stroke="rgba(30,24,84,0.35)"
                 strokeWidth="1.5"
                 strokeDasharray="6,5"
                 fill="none"
@@ -395,7 +387,7 @@ export default function DayArcSection() {
                 <path d={FLOW_PATH} stroke="url(#dayArcFlowGrad)" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
               </g>
 
-              {/* Anchor dots — solid center + white ring, expand on card hover */}
+              {/* Dots — solid center + white ring */}
               {dotPositions.map((d, i) => {
                 const hovered = hoveredCard === i;
                 const scale = hovered ? 1.4 : 1;
@@ -415,7 +407,6 @@ export default function DayArcSection() {
           </div>
 
         </div>
-
 
       </div>
     </section>

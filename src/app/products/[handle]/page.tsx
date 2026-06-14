@@ -162,7 +162,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
       </div>
 
       {/* Tab sections — wrapper holds a fixed min-height so the footer never shifts position when switching tabs */}
-      <div className="min-h-screen">
+      <div data-tab-wrapper>
 
       {/* Benefits section — visible by default; others pre-hidden to avoid flash before tab JS runs */}
       <section id="section-benefits" className="pt-2 pb-16">

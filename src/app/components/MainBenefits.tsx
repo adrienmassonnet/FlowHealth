@@ -1,25 +1,34 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useInView } from 'framer-motion';
 import { trackEvent } from '@/lib/clarity';
 import type { HealthBenefit } from '@/lib/content';
 
+const ease = [0.25, 0.1, 0.1, 1] as const;
+
 export default function MainBenefits({ benefits }: { benefits: HealthBenefit[] }) {
+  const [active, setActive] = useState(0);
   const [modal, setModal] = useState<HealthBenefit | null>(null);
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-8% 0px' });
+  const step = benefits[Math.max(0, active)];
+
+  if (!step) return null;
 
   return (
-    <section className="max-w-[1200px] mx-auto px-6 pt-4 pb-20 md:pt-8">
+    <section ref={ref} className="max-w-[1200px] mx-auto px-6 pt-4 pb-30 md:pt-8">
       <div className="mb-6 space-y-2">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-[1.08]">Main benefits</h2>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pb-4">
+
+      {/* Mobile: 2-col card grid */}
+      <div className="md:hidden grid grid-cols-2 gap-3 pb-4">
         {benefits.map((b) => (
           <div
             key={b.label}
-            className="relative rounded-2xl overflow-hidden cursor-pointer group h-[180px] md:h-[clamp(180px,22vh,280px)] bg-[#1E1854]"
+            className="relative rounded-2xl overflow-hidden cursor-pointer group h-[126px] bg-[#1E1854]"
             onClick={() => { setModal(b); trackEvent('product_page_benefit_card_open'); }}
           >
             {b.imageUrl ? (
@@ -28,7 +37,7 @@ export default function MainBenefits({ benefits }: { benefits: HealthBenefit[] }
                 alt={b.imageAlt || b.label}
                 fill
                 className="object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.25,0.1,0.1,1)] group-hover:scale-[1.04]"
-                sizes="(max-width: 768px) 50vw, 25vw"
+                sizes="50vw"
               />
             ) : (
               <div className="absolute inset-0 bg-gradient-to-br from-[#1E1854] to-[#2d2a7a]" />
@@ -41,80 +50,159 @@ export default function MainBenefits({ benefits }: { benefits: HealthBenefit[] }
         ))}
       </div>
 
-      {/* Benefit modal */}
-      <AnimatePresence>
-      {modal && (
+      {/* Desktop: selector + image panel */}
+      <div className="hidden md:grid grid-cols-[320px_1fr] gap-6 items-stretch">
+
+        {/* Left — selector */}
         <motion.div
-          className="fixed inset-0 z-50 sm:flex sm:items-center sm:justify-center"
+          className="grid grid-cols-2 gap-2"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.25 }}
-          onClick={() => setModal(null)}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6, ease }}
         >
-          <div className="absolute inset-0 bg-[#1E1854]/60 backdrop-blur-sm" />
-          <motion.div
-            className="absolute bottom-0 left-0 right-0 sm:relative sm:bottom-auto sm:left-auto sm:right-auto sm:w-full sm:max-w-md bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col max-h-[90svh]"
-            initial={{ y: '100%' }}
-            animate={{ y: 0 }}
-            exit={{ y: '100%' }}
-            transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Image */}
-            {modal.imageUrl && (
-              <div className="relative w-full h-28 sm:h-40 shrink-0 overflow-hidden rounded-t-3xl">
-                <Image
-                  src={modal.imageUrl}
-                  alt={modal.imageAlt || modal.label}
-                  fill
-                  className="object-cover object-center"
-                  sizes="448px"
+          {benefits.map((s, i) => {
+            const isActive = active === i;
+            return (
+              <motion.button
+                key={s.number}
+                onClick={() => setActive(i)}
+                initial={{ opacity: 0 }}
+                animate={inView ? { opacity: 1 } : {}}
+                transition={{ duration: 0.4, delay: 0.05 + i * 0.04, ease }}
+                className={`
+                  relative flex flex-col items-center justify-center gap-2 px-3 py-4 text-center
+                  rounded-xl w-full overflow-hidden
+                  bg-[#1E1854]/[0.05] border-2 transition-[border-color,transform,box-shadow] duration-500
+                  hover:scale-[1.02] active:scale-[0.97]
+                  ${i === benefits.length - 1 && benefits.length % 2 !== 0 ? 'col-span-2' : ''}
+                  ${isActive
+                    ? 'border-[#3B38B8]/60 shadow-[0_4px_16px_rgba(30,24,84,0.30)]'
+                    : 'border-transparent hover:border-[#1E1854]/20'
+                  }
+                `}
+              >
+                <span
+                  className={`absolute inset-0 bg-gradient-to-br from-[#3B38B8] to-[#1E1854] transition-opacity duration-500 ${
+                    isActive ? 'opacity-100' : 'opacity-0'
+                  }`}
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/90" />
+                <span className={`relative z-10 text-xs font-semibold leading-snug transition-colors duration-500 ${
+                  isActive ? 'text-white' : 'text-[#1E1854]/75'
+                }`}>
+                  {s.label}
+                </span>
+              </motion.button>
+            );
+          })}
+        </motion.div>
+
+        {/* Right — detail image panel */}
+        <motion.div
+          className="relative rounded-2xl overflow-hidden min-h-[446px]"
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.1, ease }}
+        >
+          {benefits.map((b, i) =>
+            b.imageUrl ? (
+              <Image
+                key={i}
+                src={b.imageUrl}
+                alt={b.imageAlt || b.label}
+                fill
+                loading={i === 0 ? 'eager' : 'lazy'}
+                className={`object-cover transition-opacity duration-500 ease-in-out ${
+                  i === active ? 'opacity-100' : 'opacity-0'
+                }`}
+                sizes="60vw"
+              />
+            ) : null
+          )}
+
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+          <div
+            key={active}
+            className="absolute inset-0 flex flex-col justify-end p-9"
+            style={{ animation: 'hbFadeUp 0.5s cubic-bezier(0.25, 0.1, 0.1, 1) forwards' }}
+          >
+            <h3 className="text-3xl md:text-4xl font-semibold text-white tracking-[-0.02em] leading-snug mb-1.5">
+              {step.title}
+            </h3>
+            <p className="text-sm text-white/90 leading-relaxed mb-3">
+              {step.description}
+            </p>
+            {step.ingredients && (
+              <div className="flex flex-wrap gap-1.5">
+                {step.ingredients.split(',').map((ing) => (
+                  <span key={ing} className="text-xs tracking-wide px-2.5 py-1 rounded-full bg-white/15 backdrop-blur-sm text-white/90 font-medium border border-white/20">
+                    {ing.trim()}
+                  </span>
+                ))}
               </div>
             )}
+          </div>
+        </motion.div>
 
-            {/* Close */}
-            <button
-              onClick={() => setModal(null)}
-              aria-label="Close"
-              className="absolute top-3 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-sm text-[#1E1854]/50 hover:text-[#1E1854] hover:bg-white transition-colors duration-200"
+      </div>
+
+      {/* Mobile benefit modal */}
+      <AnimatePresence>
+        {modal && (
+          <motion.div
+            className="fixed inset-0 z-50 sm:flex sm:items-center sm:justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            onClick={() => setModal(null)}
+          >
+            <div className="absolute inset-0 bg-[#1E1854]/60 backdrop-blur-sm" />
+            <motion.div
+              className="absolute bottom-0 left-0 right-0 sm:relative sm:bottom-auto sm:left-auto sm:right-auto sm:w-full sm:max-w-md bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col max-h-[90svh]"
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+              onClick={(e) => e.stopPropagation()}
             >
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M11 3L3 11M3 3l8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-              </svg>
-            </button>
-
-            {/* Content */}
-            <div className="flex-1 px-7 pt-4 overflow-y-auto" style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}>
-              <h3 className="text-xl font-semibold text-[#1E1854] tracking-[-0.02em] leading-snug mb-3">{modal.label}</h3>
-              <p className="text-sm text-[#1E1854]/65 leading-relaxed mb-4">{modal.description}</p>
-              {modal.ingredients && (
-                <div className="flex flex-wrap gap-1.5 mb-4">
-                  {modal.ingredients.split(',').map((ing) => (
-                    <span key={ing} className="text-xs tracking-wide px-2.5 py-1 rounded-full bg-[#3B38B8]/8 text-[#3B38B8] font-medium border border-[#3B38B8]/15">
-                      {ing.trim()}
-                    </span>
-                  ))}
+              {modal.imageUrl && (
+                <div className="relative w-full h-28 sm:h-40 shrink-0 overflow-hidden rounded-t-3xl">
+                  <Image
+                    src={modal.imageUrl}
+                    alt={modal.imageAlt || modal.label}
+                    fill
+                    className="object-cover object-center"
+                    sizes="448px"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/90" />
                 </div>
               )}
-              {modal.blogSlug && (
-                <Link
-                  href={`/pages/blog-posts/${modal.blogSlug}`}
-                  onClick={() => { setModal(null); trackEvent('homepage_benefit_article_link'); }}
-                  className="inline-flex items-center gap-1.5 mt-5 text-xs tracking-[0.08em] uppercase font-medium text-[#3B38B8] hover:opacity-75 transition-opacity"
-                >
-                  Read the science
-                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                    <path d="M2 5h6M5 2l3 3-3 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </Link>
-              )}
-            </div>
+              <button
+                onClick={() => setModal(null)}
+                aria-label="Close"
+                className="absolute top-3 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-sm text-[#1E1854]/50 hover:text-[#1E1854] hover:bg-white transition-colors duration-200"
+              >
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M11 3L3 11M3 3l8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
+              </button>
+              <div className="flex-1 px-7 pt-4 overflow-y-auto" style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}>
+                <h3 className="text-xl font-semibold text-[#1E1854] tracking-[-0.02em] leading-snug mb-3">{modal.label}</h3>
+                <p className="text-sm text-[#1E1854]/65 leading-relaxed mb-4">{modal.description}</p>
+                {modal.ingredients && (
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {modal.ingredients.split(',').map((ing) => (
+                      <span key={ing} className="text-xs tracking-wide px-2.5 py-1 rounded-full bg-[#3B38B8]/8 text-[#3B38B8] font-medium border border-[#3B38B8]/15">
+                        {ing.trim()}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
+        )}
       </AnimatePresence>
     </section>
   );

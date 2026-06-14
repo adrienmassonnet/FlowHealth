@@ -2,7 +2,6 @@ import Image from 'next/image';
 import { getProducts } from '@/lib/shopify';
 import TrackedLink from '@/app/components/TrackedLink';
 import { HeroText, TrustCard } from '@/app/components/HeroAnimated';
-import HealthBenefits from '@/app/components/HealthBenefits';
 import ScrollReveal from '@/app/components/ScrollReveal';
 import IngredientsGrid from '@/app/components/IngredientsGrid';
 import BrainSection from '@/app/components/BrainSection';
@@ -13,16 +12,14 @@ import NeurotransmitterSection from '@/app/components/NeurotransmitterSection';
 import {
   getHomepageContent,
   getFeaturedIngredients,
-  getHealthBenefits,
   getProductMeta,
 } from '@/lib/content';
 
 export default async function HomePage() {
-  const [products, cms, featuredIngredients, healthBenefits, meta] = await Promise.all([
+  const [products, cms, featuredIngredients, meta] = await Promise.all([
     getProducts(),
     getHomepageContent(),
     getFeaturedIngredients(),
-    getHealthBenefits(),
     getProductMeta(),
   ]);
   const featured = products[0];
@@ -79,7 +76,7 @@ export default async function HomePage() {
 
       {/* Mission + Featured product */}
       {featured && (
-        <section className="pt-12 pb-8 md:pt-24 md:pb-12 bg-white">
+        <section className="py-14 md:py-24 bg-white">
           <div className="max-w-[1200px] mx-auto px-6 space-y-8 md:space-y-12">
             {/* Section header */}
             <div className="text-center max-w-[860px] mx-auto">
@@ -134,7 +131,7 @@ export default async function HomePage() {
                     { label: 'Flavour', value: `${featured.title} flavoured` },
                     { label: 'Content', value: '30 single-dose sachets' },
                     { label: 'Formula', value: `${meta.activeIngredients} clinically-dosed ingredients` },
-                    { label: 'Dose', value: `${meta.totalFormulaWeightG} g actives per sachet` },
+                    { label: 'Dose', value: `${meta.totalFormulaWeightG} g of active ingredients per sachet` },
                     { label: 'Calories', value: `${meta.caloriesKcal} kcal — no sugar` },
                     { label: 'Energy', value: 'Stimulant-free, no crash' },
                   ].map(({ label, value }) => (
@@ -173,19 +170,21 @@ export default async function HomePage() {
         </section>
       )}
 
-      <HealthBenefits benefits={healthBenefits} sectionLabel={cms.healthBenefitsSectionLabel} heading={cms.healthBenefitsHeading} />
+      <DayArcSection />
 
       <NeurotransmitterSection />
 
-      <DayArcSection />
-
       <BrainHealthSection />
+
+      <div className="bg-white py-14 md:py-24">
+        <ApproachSection />
+      </div>
 
       <BrainSection />
 
       {/* Key Ingredients */}
       <section className="bg-[#F4F4F8] md:rounded-[2rem] md:mx-8" style={{ backgroundImage: 'radial-gradient(circle, rgba(30,24,84,0.07) 1px, transparent 1px)', backgroundSize: '28px 28px' }}>
-        <div className="max-w-[1200px] mx-auto px-6 py-14 md:py-24">
+        <div className="max-w-[1200px] mx-auto px-6 py-10 md:py-16">
           <div className="flex flex-col md:flex-row gap-6 md:gap-16 items-start">
 
             {/* Left — header + CTA */}
@@ -223,10 +222,6 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-
-      <ApproachSection />
-
-
 
     </main>
   );

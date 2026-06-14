@@ -64,7 +64,7 @@ function WordCloud({ inView, mobile }: { inView: boolean; mobile: boolean }) {
       <div
         className="absolute inset-0 pointer-events-none z-10"
         style={{
-          background: 'radial-gradient(ellipse 85% 80% at 50% 50%, transparent 38%, #F4F4F8 88%)',
+          background: 'radial-gradient(ellipse 85% 80% at 50% 50%, transparent 38%, white 88%)',
         }}
       />
       <svg width="100%" height={H} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet">
@@ -106,8 +106,7 @@ export default function BrainHealthSection() {
   return (
     <section
       ref={sectionRef}
-      className="py-14 md:py-24 bg-[#F4F4F8] overflow-hidden md:rounded-[2rem] md:mx-8"
-      style={{ backgroundImage: 'radial-gradient(circle, rgba(30,24,84,0.07) 1px, transparent 1px)', backgroundSize: '28px 28px' }}
+      className="py-10 md:py-16 bg-white overflow-hidden"
     >
       <div className="max-w-[1200px] mx-auto px-6">
 
