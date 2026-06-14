@@ -33,11 +33,11 @@ export default async function OurPhilosophyPage() {
         </div>
       </section>
 
-      {/* A more peaceful approach */}
-      <PeacefulApproachSection />
-
       {/* Scroll-driven pillars */}
       <PhilosophyScroll />
+
+      {/* A more peaceful approach */}
+      <PeacefulApproachSection />
 
       {/* Venn diagram section */}
       <section className="py-16 md:py-20 border-t border-[#1E1854]/[0.06]">
