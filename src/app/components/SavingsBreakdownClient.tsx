@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 const ALTERNATIVES = [
   'a single Red Bull at the kiosk',
+  'a ginger shot at the juice bar',
   'a small espresso at your local café',
   'a pack of chewing gum',
   'a newspaper at the kiosk',
