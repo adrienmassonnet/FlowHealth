@@ -38,7 +38,7 @@ const categories: Record<string, string> = {
   'Cellular Health': 'Cellular Health',
   'Gut-Brain Axis': 'Gut-Brain Axis',
   Recovery: 'Recovery',
-  'Energy & Vitamins': 'Vitamins',
+  'Energy & Vitamins': 'Energy & Vitamins',
 };
 
 const ITEMS_PER_PAGE = 6;
