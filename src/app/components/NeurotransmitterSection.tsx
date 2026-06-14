@@ -81,9 +81,7 @@ export default function NeurotransmitterSection() {
       ref={sectionRef}
       className="py-10 md:py-16 bg-[#F4F4F8] relative overflow-hidden md:rounded-[2rem] md:mx-8"
       style={{
-        backgroundImage: 'radial-gradient(circle, rgba(30,24,84,0.07) 1px, transparent 1px)',
-        backgroundSize: '28px 28px',
-        opacity: isVisible ? 1 : 0,
+opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
         transition: 'opacity 0.7s cubic-bezier(0.25,0.1,0.1,1), transform 0.7s cubic-bezier(0.25,0.1,0.1,1)',
       }}

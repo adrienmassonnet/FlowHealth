@@ -32,12 +32,13 @@ function getPills(name: string): string[] {
 
 const categories: Record<string, string> = {
   all: 'All',
-  adaptogens: 'Adaptogens',
-  'amino-acids': 'Amino Acids',
-  'plant-extracts': 'Plant Extracts',
-  minerals: 'Minerals',
-  vitamins: 'Vitamins',
-  'gut-health': 'Gut Health',
+  Cognitive: 'Cognitive',
+  'Mood & Stress': 'Mood & Stress',
+  Neuroplasticity: 'Neuroplasticity',
+  'Cellular Health': 'Cellular Health',
+  'Gut-Brain Axis': 'Gut-Brain Axis',
+  Recovery: 'Recovery',
+  'Energy & Vitamins': 'Vitamins',
 };
 
 const ITEMS_PER_PAGE = 6;
@@ -140,7 +141,7 @@ function IngredientCardRow({ name, tagline, description, image, onClick }: { nam
 
 export default function IngredientsAccordion({ ingredients, variant = 'tile', activeIngredients }: { ingredients: Ingredient[]; variant?: 'tile' | 'card'; activeIngredients?: number }) {
   const cards: IngredientCard[] = ingredients
-    .filter((ing) => ing.active !== false)
+    .filter((ing) => ing.active !== false && ing.category !== 'Flavoring')
     .map((ing) => ({
       name: ing.name,
       category: ing.category,

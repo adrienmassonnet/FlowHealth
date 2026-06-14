@@ -22,6 +22,8 @@ import type {
   NavigationLinkEntry,
   PageHomeEntry,
 } from './contentful';
+// HomeostasisNodeEntry and OverstimulationTermEntry are typed as `any` in cfetch calls
+// because the components using them are currently self-contained with internal data.
 
 import {
   philosophyPrinciples as staticPrinciples,
@@ -176,14 +178,14 @@ export async function getIngredients() {
   if (!items?.length) return staticIngredients;
   return items.map((e) => ({
     name:        String(e.fields.name ?? ''),
-    form:        String(e.fields.brandedForm ?? ''),
+    form:        String((e.fields as any).brandedForm ?? e.fields.form ?? ''),
     dose:        String(e.fields.dose ?? ''),
     category:    String(e.fields.category ?? ''),
     description: String(e.fields.description ?? ''),
     imageUrl:    assetUrl(e.fields.image as any),
     imageAlt:    String(e.fields.imageAlt ?? e.fields.name ?? ''),
     order:       Number(e.fields.order ?? 0),
-    active:      Boolean(e.fields.isActive ?? true),
+    active:      (e.fields as any).active !== undefined ? Boolean((e.fields as any).active) : (e.fields.isActive !== undefined ? Boolean(e.fields.isActive) : true),
   }));
 }
 
@@ -255,6 +257,22 @@ export async function getHomepageContent() {
     ingredientsHeading:        String(f.ingredientsHeading ?? staticHomepageContent.ingredientsHeading),
     healthBenefitsSectionLabel: String(f.healthBenefitsSectionLabel ?? staticHomepageContent.healthBenefitsSectionLabel),
     healthBenefitsHeading:     String(f.healthBenefitsHeading ?? staticHomepageContent.healthBenefitsHeading),
+    // NeurotransmitterSection
+    homeostasisEyebrow:    String(f.homeostasisEyebrow    ?? 'What goes up must come down'),
+    homeostasisHeading:    String(f.homeostasisHeading    ?? 'True health is stability, not the constant swings.'),
+    homeostasisBody:       String(f.homeostasisBody       ?? ''),
+    homeostasisCenterLabel: String(f.homeostasisCenterLabel ?? "Flow's contribution to stability."),
+    // BrainHealthSection
+    brainHealthEyebrow:   String(f.brainHealthEyebrow    ?? 'Long-term brain health'),
+    brainHealthHeading:   String(f.brainHealthHeading    ?? 'Chronic overstimulation quietly hinders the brain.'),
+    brainHealthBody:      String(f.brainHealthBody       ?? ''),
+    // ApproachSection
+    approachEyebrow:      String(f.approachEyebrow       ?? 'The neuroscience of progress'),
+    approachHeading:      String(f.approachHeading       ?? 'The brain grows by going somewhere it hasn\'t been before. Flow is there for the journey.'),
+    approachCard1Label:   String(f.approachCard1Label    ?? 'The biology of growth'),
+    approachCard1Body:    String(f.approachCard1Body     ?? ''),
+    approachCard2Label:   String(f.approachCard2Label    ?? 'We celebrate you, not the supplement'),
+    approachCard2Body:    String(f.approachCard2Body     ?? ''),
   };
 }
 
@@ -479,6 +497,43 @@ export async function getBrandSettings() {
   } catch {
     return null;
   }
+}
+
+// ─── Homeostasis nodes (NeurotransmitterSection ring) ────────────────────────
+
+// Static fallback matching current hardcoded component data
+const STATIC_HOMEOSTASIS_NODES = [
+  { label: 'Stable brain.',               iconName: 'brain',    order: 1 },
+  { label: 'Balanced stress response.',   iconName: 'stress',   order: 2 },
+  { label: 'Settled digestive system.',   iconName: 'gut',      order: 3 },
+  { label: 'Steady nervous system.',      iconName: 'nervous',  order: 4 },
+  { label: 'Resilient cells.',            iconName: 'cellular', order: 5 },
+];
+
+export async function getHomeostasisNodes() {
+  const items = await cfetch<any>('homeostasisNode', { order: ['fields.order'] });
+  if (!items?.length) return STATIC_HOMEOSTASIS_NODES;
+  return items.map((e: any) => ({
+    label:    String(e.fields.label ?? ''),
+    iconName: String(e.fields.iconName ?? ''),
+    order:    Number(e.fields.order ?? 0),
+  }));
+}
+
+// ─── Overstimulation terms (BrainHealthSection word cloud) ───────────────────
+
+const STATIC_OVERSTIMULATION_TERMS = [
+  'Restlessness', 'Burnout', 'Dopamine crash', 'Cortisol overload',
+  'Broken sleep', 'Chronic fatigue', 'Anxiety spiral', 'Mood instability',
+  'Memory gaps', 'Neuroplasticity loss', 'Attention collapse', 'Decision fatigue',
+  'Tolerance build-up', 'Cognitive ageing', 'Stress baseline rising',
+  'Serotonin depletion', 'Neural inflammation', 'HPA dysregulation',
+];
+
+export async function getOverstimulationTerms() {
+  const items = await cfetch<any>('overstimulationTerm', { order: ['fields.order'] });
+  if (!items?.length) return STATIC_OVERSTIMULATION_TERMS;
+  return items.map((e: any) => String(e.fields.term ?? ''));
 }
 
 // ─── Rich text → plain text (for FAQ answers in backwards-compat mode) ────────

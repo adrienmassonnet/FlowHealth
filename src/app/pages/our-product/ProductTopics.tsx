@@ -40,7 +40,7 @@ export default function ProductTopics({ ingredients, activeIngredients }: { ingr
     <div className="bg-white">
 
       {/* The Ingredients */}
-      <IngredientsAccordion variant="card" activeIngredients={activeIngredients} ingredients={ingredients.filter((ing) => ing.active !== false).map((ing) => ({ ...ing, description: getBenefit(ing.name) ?? ing.description }))} />
+      <IngredientsAccordion variant="card" activeIngredients={activeIngredients} ingredients={ingredients.filter((ing) => ing.active !== false && ing.category !== 'Flavoring').map((ing) => ({ ...ing, description: getBenefit(ing.name) ?? ing.description }))} />
 
       {/* Five Systems */}
       <section className="border-t border-[#1E1854]/[0.06] bg-[#F8F8FC]">
