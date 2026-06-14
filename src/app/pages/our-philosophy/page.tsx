@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 import PhilosophyScroll from './PhilosophyScroll';
 import PrinciplesAccordion from './PrinciplesAccordion';
 import MorningRitualCard from '@/app/components/MorningRitualCard';
+import PeacefulApproachSection from '@/app/components/PeacefulApproachSection';
 
 export default async function OurPhilosophyPage() {
   const [principles, beliefs, cms, meta] = await Promise.all([getPhilosophyPrinciples(), getPhilosophyBeliefs(), getHomepageContent(), getProductMeta()]);
@@ -31,6 +32,9 @@ export default async function OurPhilosophyPage() {
           </p>
         </div>
       </section>
+
+      {/* A more peaceful approach */}
+      <PeacefulApproachSection />
 
       {/* Scroll-driven pillars */}
       <PhilosophyScroll />
