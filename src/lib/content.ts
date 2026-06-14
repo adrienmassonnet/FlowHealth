@@ -374,9 +374,9 @@ export async function getComparisonRows() {
   });
   if (!items?.length) return staticComparisonRows;
   return items.map((e) => ({
-    topic:       Array.isArray(e.fields.topicTags) ? (e.fields.topicTags as string[]) : [],
-    feature:     String(e.fields.flowValue ?? ''),
-    othersLabel: String(e.fields.othersValue ?? ''),
+    topic:       Array.isArray((e.fields as any).topic) ? ((e.fields as any).topic as string[]) : [],
+    feature:     String((e.fields as any).feature ?? ''),
+    othersLabel: String((e.fields as any).othersLabel ?? ''),
     order:       Number(e.fields.order ?? 0),
   }));
 }
