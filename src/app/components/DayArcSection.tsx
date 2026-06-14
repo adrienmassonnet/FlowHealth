@@ -319,10 +319,9 @@ export default function DayArcSection() {
             <svg
               viewBox="0 0 920 480"
               width="100%"
-              className="flex-1"
               height="100%"
               preserveAspectRatio="xMidYMid meet"
-              className="block overflow-visible"
+              className="flex-1 block overflow-visible"
               xmlns="http://www.w3.org/2000/svg"
             >
               <defs>
