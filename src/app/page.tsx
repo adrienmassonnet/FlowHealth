@@ -176,12 +176,6 @@ export default async function HomePage() {
 
       <BrainHealthSection />
 
-      <div className="bg-white py-14 md:py-24">
-        <ApproachSection />
-      </div>
-
-      <BrainSection />
-
       {/* Key Ingredients */}
       <section className="bg-[#F4F4F8] md:rounded-[2rem] md:mx-8" style={{ backgroundImage: 'radial-gradient(circle, rgba(30,24,84,0.07) 1px, transparent 1px)', backgroundSize: '28px 28px' }}>
         <div className="max-w-[1200px] mx-auto px-6 py-10 md:py-16">
@@ -222,6 +216,12 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      <div className="bg-white py-14 md:py-24">
+        <ApproachSection />
+      </div>
+
+      <BrainSection />
 
     </main>
   );
