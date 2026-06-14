@@ -215,25 +215,6 @@ export async function getFeaturedIngredients() {
 
 export async function getHealthBenefits() {
   return staticHealthBenefits;
-  const items = await cfetch<HealthBenefitEntry>('healthBenefit', {
-    order: ['fields.order'],
-    include: 1,
-  });
-  if (!items?.length) return staticHealthBenefits;
-  return items.map((e) => ({
-    number:      String(e.fields.number ?? ''),
-    label:       String(e.fields.label ?? ''),
-    title:       String(e.fields.title ?? e.fields.label ?? ''),
-    // Preserve comma-separated string format expected by existing components
-    ingredients: Array.isArray(e.fields.linkedIngredients)
-      ? (e.fields.linkedIngredients as any[]).map((i) => i?.fields?.name ?? '').filter(Boolean).join(', ')
-      : '',
-    description: String(e.fields.description ?? ''),
-    imageUrl:    assetUrl(e.fields.image as any),
-    imageAlt:    String(e.fields.imageAlt ?? e.fields.label ?? ''),
-    order:       Number(e.fields.order ?? 0),
-    blogSlug:    (e.fields.relatedBlogPost as any)?.fields?.slug ?? '',
-  }));
 }
 
 // ─── Feature cards (homepage) ─────────────────────────────────────────────────
