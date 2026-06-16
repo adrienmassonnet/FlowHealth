@@ -250,7 +250,7 @@ export default function DayArcSection() {
               return (
                 <div
                   key={i}
-                  className="rounded-2xl border transition-all duration-500"
+                  className="relative rounded-2xl border transition-all duration-500"
                   style={{
                     background: '#F8F8FB',
                     borderColor: 'rgba(30,24,84,0.07)',
@@ -268,16 +268,16 @@ export default function DayArcSection() {
                   }}
                 >
                   <div
-                    className="flex items-center gap-2 px-4 py-3 md:px-5 md:py-4 cursor-pointer md:cursor-default"
+                    className="absolute top-0 left-0 w-8 h-8 rounded-tl-2xl rounded-br-xl flex items-center justify-center text-xs font-semibold shrink-0 transition-all duration-500"
+                    style={{ background: mode === 'stim' ? 'rgba(217,119,6,0.12)' : 'rgba(59,56,184,0.10)', backdropFilter: 'blur(8px)', border: `1px solid ${mode === 'stim' ? 'rgba(217,119,6,0.20)' : 'rgba(59,56,184,0.18)'}`, color: mode === 'stim' ? 'rgba(217,119,6,0.85)' : 'rgba(59,56,184,0.7)' }}
+                  >
+                    {i + 1}
+                  </div>
+                  <div
+                    className="flex items-center gap-0 cursor-pointer md:cursor-default"
                     onClick={() => setMobileOpen(isOpen ? null : i)}
                   >
-                    <div
-                      className="w-4 h-4 rounded-full shrink-0 flex items-center justify-center text-[9px] font-bold transition-all duration-500"
-                      style={{ background: mode === 'stim' ? STIM_COLOR : 'linear-gradient(135deg,#3B38B8,#1E1854)', color: '#fff' }}
-                    >
-                      {i + 1}
-                    </div>
-                    <p className="text-sm font-semibold tracking-[-0.01em] flex-1" style={{ color: '#1E1854' }}>
+                    <p className="text-sm font-semibold tracking-[-0.01em] flex-1 pt-2 pb-3 pr-4 md:pb-4 md:pr-5 pl-10" style={{ color: '#1E1854' }}>
                       {mode === 'stim' ? c.stimLabel : c.flowLabel}
                     </p>
                     <svg

@@ -9,6 +9,7 @@ import ApproachSection from '@/app/components/ApproachSection';
 import BrainHealthSection from '@/app/components/BrainHealthSection';
 import DayArcSection from '@/app/components/DayArcSection';
 import NeurotransmitterSection from '@/app/components/NeurotransmitterSection';
+import InnerVitalitySection from '@/app/components/InnerVitalitySection';
 import {
   getHomepageContent,
   getFeaturedIngredients,
@@ -169,6 +170,8 @@ export default async function HomePage() {
           </div>
         </section>
       )}
+
+      <InnerVitalitySection />
 
       <DayArcSection />
 
