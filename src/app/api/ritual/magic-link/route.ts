@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/ritual/supabase';
-import { captureServerEvent } from '@/lib/ritual/posthog';
+import { captureServerEvent, identifyProfile } from '@/lib/ritual/posthog';
 import { createHmac } from 'crypto';
 
 // Verify email + order_id combo, bind device token, return hashed token.
@@ -41,7 +41,9 @@ export async function POST(req: NextRequest) {
       entry_source: 'magic_link',
     });
 
-    await captureServerEvent(email, 'magic_link_success', {
+    await identifyProfile(profile.id, email);
+    await captureServerEvent(profile.id, 'magic_link_success', {
+      email,
       sequence_position: profile.sequence_position,
       entry: 'email_cta',
     });

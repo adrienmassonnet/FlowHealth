@@ -34,7 +34,8 @@ export async function GET(req: NextRequest) {
           gap_nudge_sent_at: new Date().toISOString(),
         });
 
-        await captureServerEvent(profile.email, 'gap_nudge_sent', {
+        await captureServerEvent(profile.id, 'gap_nudge_sent', {
+          email: profile.email,
           gap_hours: GAP_HOURS,
           days_completed: daysCompleted,
           days_remaining: daysRemaining,

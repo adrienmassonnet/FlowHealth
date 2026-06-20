@@ -79,8 +79,8 @@ export async function POST(req: NextRequest) {
 
     const isNewProfile = profile.sequence_position === 0 && !profile.last_scan_at;
 
-    await identifyProfile(email);
-    await captureServerEvent(email, 'otp_verified', { is_new_profile: isNewProfile });
+    await identifyProfile(profile.id, email);
+    await captureServerEvent(profile.id, 'otp_verified', { email, is_new_profile: isNewProfile });
 
     // Return profile state — on first OTP verify we don't advance sequence yet;
     // that happens on the first QR scan. Return the current state.
