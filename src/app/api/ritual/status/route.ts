@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/lib/ritual/supabase';
+import { db } from '../../../../lib/ritual/supabase';
 
 // Read-only status check — does NOT advance sequence or consume daily scan.
 // Used on page load to restore UI state for returning users.
