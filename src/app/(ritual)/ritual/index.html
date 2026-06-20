@@ -1167,7 +1167,11 @@ async function handleScan() {
       if (data.display_position) {
         await hydrateDailyScreen(data.display_position);
       }
-      showCarousel(); break;
+      showCarousel();
+      if (data.state === 'already_checked_in') {
+        setTimeout(function() { window.showPopup && window.showPopup(); }, 400);
+      }
+      break;
   }
 }
 
@@ -1363,6 +1367,9 @@ async function hydrateDailyScreen(position) {
           await hydrateDailyScreen(data.display_position);
         }
         showCarousel();
+        if (data.state === 'already_checked_in') {
+          setTimeout(function() { window.showPopup && window.showPopup(); }, 400);
+        }
       }
     } catch(e) { console.error('[Path C]', e); }
   }
@@ -1468,6 +1475,7 @@ window.handleScan = handleScan;
         });
       });
     }
+    window.showPopup = showPopup;
 
     function hidePopup() {
       popup.classList.remove('visible');
