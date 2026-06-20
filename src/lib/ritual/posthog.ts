@@ -26,9 +26,9 @@ type ServerEventName =
   | 'magic_link_success'
   | 'magic_link_fail';
 
-// Use Supabase profile.id as distinctId when available.
-// For pre-auth events (no profile yet), pass email as distinctId — PostHog
-// will merge it once identifyProfile is called with the alias.
+// Anonymous aggregate events only — no identify(), no alias(), no email as distinctId.
+// Use a stable anonymous ID (Supabase profile.id or device token) so counts are deduplicated
+// but no personal data is attached to PostHog persons.
 export async function captureServerEvent(
   distinctId: string,
   event: ServerEventName,
@@ -39,22 +39,5 @@ export async function captureServerEvent(
     await getClient().flush();
   } catch (err) {
     console.error('[posthog] capture error:', err);
-  }
-}
-
-// Call once when a profile is confirmed (OTP verified or magic-link success).
-// Sets the Supabase UUID as the canonical distinctId and links the email alias.
-export async function identifyProfile(profileId: string, email: string): Promise<void> {
-  try {
-    // Identify with the Supabase UUID as canonical distinctId
-    getClient().identify({
-      distinctId: profileId,
-      properties: { email, supabase_id: profileId },
-    });
-    // Alias the email → profileId so pre-auth events merge onto this person
-    getClient().alias({ distinctId: profileId, alias: email });
-    await getClient().flush();
-  } catch (err) {
-    console.error('[posthog] identify error:', err);
   }
 }

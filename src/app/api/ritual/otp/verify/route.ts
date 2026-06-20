@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyCode, isLockedOut, attemptsRemaining, shouldLock, lockoutUntil } from '@/lib/ritual/otp';
 import { db } from '@/lib/ritual/supabase';
-import { captureServerEvent, identifyProfile } from '@/lib/ritual/posthog';
+import { captureServerEvent } from '@/lib/ritual/posthog';
 import { processScan } from '@/lib/ritual/state-machine';
 import crypto from 'crypto';
 
@@ -79,8 +79,7 @@ export async function POST(req: NextRequest) {
 
     const isNewProfile = profile.sequence_position === 0 && !profile.last_scan_at;
 
-    await identifyProfile(profile.id, email);
-    await captureServerEvent(profile.id, 'otp_verified', { email, is_new_profile: isNewProfile });
+    await captureServerEvent(profile.id, 'otp_verified', { is_new_profile: isNewProfile });
 
     // Return profile state — on first OTP verify we don't advance sequence yet;
     // that happens on the first QR scan. Return the current state.

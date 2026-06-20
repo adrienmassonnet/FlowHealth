@@ -821,44 +821,10 @@ const API_BASE = window.location.hostname === 'localhost' || window.location.hos
 
 const POSTHOG_KEY  = 'phc_waDY6xmaeCZGQ69NMgYbjh6oHgaBpkJK6skN5FdTqRGm';
 const POSTHOG_HOST = 'https://eu.i.posthog.com';
-const CONSENT_KEY  = 'flow_analytics_consent'; // 'granted' | 'denied' | unset
 
-/* ── PostHog: load only after consent is granted ── */
-function initPostHog() {
-  if (window._phLoaded) return;
-  window._phLoaded = true;
-  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]);t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+" (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys getNextSurveyStep onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-  posthog.init(POSTHOG_KEY, { api_host: POSTHOG_HOST, person_profiles: 'identified_only' });
-}
-
-/* ── Consent helpers ── */
-function getConsent() { return localStorage.getItem(CONSENT_KEY); }
-
-function grantConsent() {
-  localStorage.setItem(CONSENT_KEY, 'granted');
-  initPostHog();
-  hideConsentBanner();
-}
-
-function denyConsent() {
-  localStorage.setItem(CONSENT_KEY, 'denied');
-  // Stub posthog so phCapture calls are silent no-ops
-  window.posthog = window.posthog || { capture: function(){}, identify: function(){} };
-  hideConsentBanner();
-}
-
-function hideConsentBanner() {
-  const b = document.getElementById('consent-banner');
-  if (b) { b.style.opacity = '0'; setTimeout(function(){ b.style.display = 'none'; }, 280); }
-}
-
-// On load: if already decided, act immediately; otherwise show banner
-(function() {
-  const c = getConsent();
-  if (c === 'granted') { initPostHog(); }
-  else if (c === 'denied') { window.posthog = window.posthog || { capture: function(){}, identify: function(){} }; }
-  // 'unset' — banner will show after a short delay (see bottom of file)
-})();
+/* ── PostHog: anonymous aggregate analytics, no user identification ── */
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]);t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+" (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys getNextSurveyStep onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init(POSTHOG_KEY, { api_host: POSTHOG_HOST, person_profiles: 'identified_only' });
 
 /* ── phCapture: safe wrapper — works whether PostHog loaded or not ── */
 function phCapture(event, props) {
@@ -887,7 +853,6 @@ let sessionStartTime = Date.now();
 function showCarousel() {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('story-screen').classList.add('active');
-  window.maybeShowConsentBanner();
 }
 window.showCarousel = showCarousel;
 
@@ -1515,97 +1480,7 @@ window.handleScan = handleScan;
   /* ── End story carousel ── */
 ;
 
-  /* ── Show consent banner — called after content screen is shown ── */
-  window.maybeShowConsentBanner = function() {
-    if (getConsent()) return;
-    setTimeout(function() {
-      const b = document.getElementById('consent-banner');
-      if (b) { b.style.display = 'flex'; requestAnimationFrame(function(){ b.style.opacity = '1'; }); }
-    }, 1500);
-  };
 </script>
-
-<!-- ── Consent banner ── -->
-<style>
-#consent-banner {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  z-index: 9999;
-  display: none; /* shown via JS */
-  opacity: 0;
-  transition: opacity 280ms ease;
-  justify-content: center;
-  pointer-events: none;
-}
-.consent-sheet {
-  width: 100%; max-width: 390px;
-  margin: 0 auto;
-  background: rgba(235,230,220,0.97);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border-top: 1px solid rgba(255,255,255,0.60);
-  border-radius: 20px 20px 0 0;
-  padding: 20px 24px calc(36px + var(--sab));
-  box-shadow: 0 -8px 40px rgba(0,0,0,0.18);
-  pointer-events: all;
-}
-.consent-bar {
-  width: 32px; height: 3px; border-radius: 2px;
-  background: rgba(46,42,36,0.15);
-  margin: 0 auto 18px;
-}
-.consent-eyebrow {
-  font-size: 9px; font-weight: 600; letter-spacing: 1.8px;
-  text-transform: uppercase; color: #E8652A;
-  margin-bottom: 8px;
-}
-.consent-heading {
-  font-size: 17px; font-weight: 500; line-height: 1.4;
-  color: #2E2A24; margin-bottom: 10px;
-}
-.consent-body {
-  font-size: 13px; font-weight: 300; line-height: 1.65;
-  color: rgba(46,42,36,0.62); margin-bottom: 20px;
-}
-.consent-body a {
-  color: #3A3370; text-decoration: underline;
-  text-underline-offset: 2px;
-}
-.consent-actions {
-  display: flex; gap: 10px;
-}
-.consent-btn {
-  flex: 1; padding: 14px 16px; border-radius: 11px;
-  border: none; font-family: var(--font);
-  font-size: 14px; font-weight: 600;
-  cursor: pointer; transition: opacity 120ms;
-}
-.consent-btn:hover { opacity: 0.82; }
-.consent-accept {
-  background: #3A3370; color: #F4F1EA;
-}
-.consent-decline {
-  background: rgba(46,42,36,0.08);
-  border: 1px solid rgba(46,42,36,0.12);
-  color: rgba(46,42,36,0.55);
-}
-</style>
-
-<div id="consent-banner" role="dialog" aria-label="Analytics consent">
-  <div class="consent-sheet">
-    <div class="consent-bar"></div>
-    <p class="consent-eyebrow">A quick note</p>
-    <p class="consent-heading">Help us improve your ritual?</p>
-    <p class="consent-body">
-      Your ritual progress — scan history, sequence position, milestones — is always tracked as part of the service, no choice needed.<br><br>
-      We'd also like to use anonymous analytics (PostHog) to understand how people move through this experience and improve it. No ads, no third parties, EU servers only. <a href="https://flowhealth.ch/pages/privacy-policy" target="_blank">Privacy policy</a>.
-    </p>
-    <div class="consent-actions">
-      <button class="consent-btn consent-accept" onclick="grantConsent()">That's fine</button>
-      <button class="consent-btn consent-decline" onclick="denyConsent()">No thanks</button>
-    </div>
-  </div>
-</div>
 
 </body>
 </html>

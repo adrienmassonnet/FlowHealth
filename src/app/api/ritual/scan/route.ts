@@ -13,30 +13,26 @@ export async function POST(req: NextRequest) {
 
     const result = await processScan(deviceToken);
 
-    // Fire PostHog server-side events — use Supabase profile.id as canonical distinctId
+    // Fire PostHog server-side events — anonymous aggregate only, no email attached
     const distinctId = result.profile?.id ?? deviceToken;
-    const email = result.profile?.email;
 
     switch (result.state) {
       case 'already_checked_in':
         await captureServerEvent(distinctId, 'scan_rejected', {
-          email,
           sequence_position: result.profile?.sequence_position,
         });
         break;
       case 'device_conflict':
-        await captureServerEvent(distinctId, 'scan_device_conflict', { email });
+        await captureServerEvent(distinctId, 'scan_device_conflict', {});
         break;
       case 'gap_return':
         await captureServerEvent(distinctId, 'gap_return', {
-          email,
           sequence_position: result.profile?.sequence_position,
           display_position: result.displayPosition,
         });
         break;
       case 'milestone':
         await captureServerEvent(distinctId, 'milestone_reached', {
-          email,
           milestone_position: result.milestonePosition,
           sequence_position: result.profile?.sequence_position,
         });
@@ -44,7 +40,6 @@ export async function POST(req: NextRequest) {
       case 'daily_message':
       case 'first_time_success':
         await captureServerEvent(distinctId, 'scan_valid', {
-          email,
           sequence_position: result.profile?.sequence_position,
           display_position: result.displayPosition,
           outcome: result.state,
