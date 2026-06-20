@@ -1441,11 +1441,53 @@ async function handleScan() {
 }
 
 /* ── Hydrate daily screen with Contentful content ── */
+function hydrateProgress(position) {
+  const total = 10;
+  const done = position - 1;
+
+  function buildBars(container, barClass, doneClass, todayClass, futClass) {
+    if (!container) return;
+    container.innerHTML = '';
+    for (let i = 0; i < total; i++) {
+      const b = document.createElement('div');
+      b.className = barClass + ' ' + (i < done ? doneClass : i === done ? todayClass : futClass);
+      container.appendChild(b);
+    }
+  }
+
+  const label = position + ' day' + (position === 1 ? '' : 's') + ' out of 10';
+
+  // Screen 4 horizon
+  buildBars(document.querySelector('[data-s="4"] .h-bars'), 'h-bar', 'h-done', 'h-today', 'h-fut');
+  const cap4 = document.querySelector('[data-s="4"] .h-cap');
+  if (cap4) cap4.textContent = label;
+
+  // Screen 5 slide-0 horizon
+  buildBars(document.querySelector('#slide-0 .h-bars'), 'h-bar', 'h-done', 'h-today', 'h-fut');
+  const cap5a = document.querySelector('#slide-0 .h-cap');
+  if (cap5a) cap5a.textContent = label;
+
+  // Screen 5 slide-horizon bars (dark style)
+  document.querySelectorAll('.slide-horizon').forEach(function(sh) {
+    buildBars(sh.querySelector('.h-bars'), 'h-bar', 'sh-done', 'sh-today', 'sh-fut');
+    const cap = sh.querySelector('.h-cap');
+    if (cap) cap.textContent = label;
+  });
+
+  // Screen 7 cooldown horizon
+  buildBars(document.querySelector('[data-s="7"] .h-bars'), 'h-bar', 'h-done', 'h-today', 'h-fut');
+  const cap7 = document.querySelector('[data-s="7"] .h-cap');
+  if (cap7) cap7.textContent = label;
+}
+
 async function hydrateDailyScreen(position) {
   try {
     const res = await fetch(API_BASE + '/api/ritual/content/' + position);
     if (!res.ok) return;
     const day = await res.json();
+
+    // Progress bars
+    hydrateProgress(position);
 
     // Daily screen (S4)
     const eyebrow = document.querySelector('[data-s="4"] .daily-eyebrow');
