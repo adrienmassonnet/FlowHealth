@@ -1155,9 +1155,11 @@ let sessionStartTime = Date.now();
     const d = document.createElement('button');
     d.className = 'dot' + (i === 1 ? ' active' : '');
     d.setAttribute('aria-label', 'Screen ' + i);
-    d.addEventListener('click', () => go(i));
+    // Dots are position indicators only — no click navigation
     dotsEl.appendChild(d);
   }
+
+  const AUTH_ONLY_SCREENS = new Set([1, 2, 3, 9, 10, 11, 12]);
 
   function go(n) {
     if (n < 1 || n > TOTAL || !screens[n - 1]) return;
@@ -1166,6 +1168,10 @@ let sessionStartTime = Date.now();
     screens[n - 1].classList.add('active');
     dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i + 1 === n));
     counter.textContent = n + ' / ' + TOTAL;
+    // Hide nav dots and counter once user is past auth screens
+    const isAuthScreen = AUTH_ONLY_SCREENS.has(n);
+    dotsEl.style.display = isAuthScreen ? '' : 'none';
+    counter.style.display = isAuthScreen ? '' : 'none';
     cur = n;
     phCapture('screen_viewed', {
       screen_id: n,
@@ -1175,6 +1181,11 @@ let sessionStartTime = Date.now();
     });
   }
   window.go = go;
+
+  // Wire X buttons on content screens to go to already-checked-in screen
+  document.querySelectorAll('.x-btn').forEach(btn => {
+    btn.addEventListener('click', () => go(7));
+  });
 
   function screenName(n) {
     return {1:'email_entry',2:'otp',3:'success',4:'daily_message',5:'story',
