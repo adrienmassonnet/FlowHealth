@@ -762,6 +762,47 @@ html, body {
     <div class="story-tap-right" id="storyTapRight"></div>
 
 
+    <!-- Milestone popup (day 10) -->
+    <div class="story-popup" id="milestonePopup">
+      <div class="story-popup-sheet">
+        <div class="story-popup-bar"></div>
+        <div class="popup-progress">
+          <div class="popup-progress-bars" id="milestoneBars">
+            <div class="popup-bar pp-done" style="--i:0"></div>
+            <div class="popup-bar pp-done" style="--i:1"></div>
+            <div class="popup-bar pp-done" style="--i:2"></div>
+            <div class="popup-bar pp-done" style="--i:3"></div>
+            <div class="popup-bar pp-done" style="--i:4"></div>
+            <div class="popup-bar pp-done" style="--i:5"></div>
+            <div class="popup-bar pp-done" style="--i:6"></div>
+            <div class="popup-bar pp-done" style="--i:7"></div>
+            <div class="popup-bar pp-done" style="--i:8"></div>
+            <div class="popup-bar pp-today" style="--i:9"></div>
+          </div>
+          <span class="popup-progress-cap">10 days complete</span>
+        </div>
+        <p class="story-popup-eyebrow">Day 10</p>
+        <p class="story-popup-heading">You did it.</p>
+        <p class="story-popup-body">Ten mornings. Ten check-ins. Your reward is on its way — check your inbox.</p>
+        <div class="story-popup-actions">
+          <button class="story-popup-rewatch" id="milestoneRewatch">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 8a6 6 0 1 0 1.5-3.93" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <polyline points="2,4 2,8 6,8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Rewatch
+          </button>
+          <button class="story-popup-share" id="milestoneShare">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11 2l3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M14 5H6a4 4 0 0 0-4 4v1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+            Share
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- Completion popup -->
     <div class="story-popup" id="storyPopup">
       <div class="story-popup-sheet">
@@ -1122,6 +1163,11 @@ async function handleScan() {
       showCarousel();
       if (data.state === 'already_checked_in') {
         setTimeout(function() { window.showPopup && window.showPopup(); }, 400);
+      } else if (data.state === 'milestone') {
+        setTimeout(function() {
+          const mp = document.getElementById('milestonePopup');
+          if (mp) { mp.classList.add('visible'); requestAnimationFrame(function(){ mp.querySelector('.popup-progress') && mp.querySelector('.popup-progress').classList.add('animate'); }); }
+        }, 400);
       }
       break;
   }
@@ -1307,22 +1353,14 @@ async function hydrateDailyScreen(position) {
   }
 
   // ── Path C: existing device token (returning user, no URL params) ──
-  // Uses read-only /status — does NOT advance the sequence or consume the daily scan.
+  // Calls /scan directly — advances sequence if cooldown has passed, or returns
+  // already_checked_in if the user already scanned today. This is the correct
+  // behaviour: opening the ritual IS the daily check-in.
   const existing = localStorage.getItem(DEVICE_TOKEN_KEY);
   const token = getDeviceToken();
   if (existing) {
     try {
-      const { ok, data } = await apiPost('/api/ritual/status', { device_token: token });
-      if (ok && data.state !== 'new_visitor') {
-        currentScanState = data;
-        if (data.display_position) {
-          await hydrateDailyScreen(data.display_position);
-        }
-        showCarousel();
-        if (data.state === 'already_checked_in') {
-          setTimeout(function() { window.showPopup && window.showPopup(); }, 400);
-        }
-      }
+      await handleScan();
     } catch(e) { console.error('[Path C]', e); }
   }
 
@@ -1464,6 +1502,24 @@ window.handleScan = handleScan;
         navigator.share({ title: 'Flow Daily', text: 'Day ' + (window._currentDay || 1) + ' — Flow Daily Ritual.' });
       }
     });
+
+    // Milestone popup buttons
+    var milestoneRewatch = document.getElementById('milestoneRewatch');
+    var milestoneShare   = document.getElementById('milestoneShare');
+    if (milestoneRewatch) {
+      milestoneRewatch.addEventListener('click', function() {
+        var mp = document.getElementById('milestonePopup');
+        if (mp) mp.classList.remove('visible');
+        showSlide(0, true); startTimer(); syncPauseBtn();
+      });
+    }
+    if (milestoneShare) {
+      milestoneShare.addEventListener('click', function() {
+        if (navigator.share) {
+          navigator.share({ title: 'Flow Daily', text: 'I completed the 10-day Flow ritual.' });
+        }
+      });
+    }
 
 
     var observer = new MutationObserver(function(){

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { processScan } from '@/lib/ritual/state-machine';
 import { captureServerEvent } from '@/lib/ritual/posthog';
+import { sendMilestoneReward } from '@/lib/ritual/klaviyo';
 
 export async function POST(req: NextRequest) {
   try {
@@ -36,6 +37,17 @@ export async function POST(req: NextRequest) {
           milestone_position: result.milestonePosition,
           sequence_position: result.profile?.sequence_position,
         });
+        if (result.profile?.email) {
+          try {
+            await sendMilestoneReward(
+              result.profile.email,
+              'You completed the 10-day ritual.',
+              null // reward code — set via env or Contentful when ready
+            );
+          } catch (err) {
+            console.error('[scan] milestone reward email failed:', err);
+          }
+        }
         break;
       case 'daily_message':
       case 'first_time_success':
