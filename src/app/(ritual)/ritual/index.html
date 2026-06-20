@@ -1145,9 +1145,9 @@ let sessionStartTime = Date.now();
 
 /* ── Screen navigation ── */
 (function() {
-  const TOTAL = 12;
-  let cur = 1;
   const screens = document.querySelectorAll('.screen');
+  const TOTAL = screens.length;
+  let cur = 1;
   const counter = document.getElementById('counter');
   const dotsEl  = document.getElementById('dots');
 
