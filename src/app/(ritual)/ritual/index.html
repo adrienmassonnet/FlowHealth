@@ -1478,6 +1478,34 @@ function hydrateProgress(position) {
   buildBars(document.querySelector('[data-s="7"] .h-bars'), 'h-bar', 'h-done', 'h-today', 'h-fut');
   const cap7 = document.querySelector('[data-s="7"] .h-cap');
   if (cap7) cap7.textContent = label;
+
+  // Story completion popup bars
+  const popupBars = document.getElementById('popupBars');
+  if (popupBars) {
+    popupBars.innerHTML = '';
+    for (let i = 0; i < total; i++) {
+      const b = document.createElement('div');
+      const cls = i < done ? 'pp-done' : i === done ? 'pp-today' : 'pp-fut';
+      b.className = 'popup-bar ' + cls;
+      b.style.setProperty('--i', i);
+      popupBars.appendChild(b);
+    }
+  }
+  const popupCap = document.querySelector('.popup-progress-cap');
+  if (popupCap) {
+    const remaining = total - position;
+    popupCap.textContent = remaining === 0
+      ? '10 days complete'
+      : position + ' day' + (position === 1 ? '' : 's') + ' · ' + remaining + ' more to go';
+  }
+
+  // Slide eyebrow "Day N" and share text
+  const slideEyebrow = document.querySelector('#slide-0 .slide-quote-eyebrow');
+  if (slideEyebrow) {
+    const current = slideEyebrow.textContent;
+    slideEyebrow.textContent = 'Day ' + position + (current.includes('·') ? current.substring(current.indexOf('·')) : '');
+  }
+  window._currentDay = position;
 }
 
 async function hydrateDailyScreen(position) {
@@ -1784,7 +1812,7 @@ window.handleScan = handleScan;
 
     popupShare.addEventListener('click', function() {
       if (navigator.share) {
-        navigator.share({ title: 'Flow Daily', text: 'Day 4 — The body adapts in silence.' });
+        navigator.share({ title: 'Flow Daily', text: 'Day ' + (window._currentDay || 1) + ' — Flow Daily Ritual.' });
       }
     });
 
