@@ -783,6 +783,7 @@ html, body {
         </div>
         <p class="story-popup-heading">You showed up.</p>
         <p class="story-popup-body">That's the whole practice. Same time tomorrow.</p>
+        <p style="font-family:var(--font);font-size:13px;font-weight:500;color:var(--ink);opacity:0.55;text-align:center;margin-bottom:12px;">See you tomorrow for your next ritual</p>
         <div class="story-popup-actions">
           <button class="story-popup-rewatch" id="popupRewatch">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -799,7 +800,6 @@ html, body {
             Share
           </button>
         </div>
-        <button class="btn btn-primary story-popup-done" id="popupDone">See you tomorrow for your next ritual</button>
       </div>
     </div>
 
@@ -1394,7 +1394,6 @@ window.handleScan = handleScan;
     var popup        = document.getElementById('storyPopup');
     var popupRewatch = document.getElementById('popupRewatch');
     var popupShare   = document.getElementById('popupShare');
-    var popupDone    = document.getElementById('popupDone');
     var pauseBtn     = document.getElementById('storyPauseBtn');
     var pauseIcon    = pauseBtn.querySelector('.pause-icon');
     var playIcon     = pauseBtn.querySelector('.play-icon');
@@ -1501,7 +1500,6 @@ window.handleScan = handleScan;
       }
     });
 
-    popupDone.addEventListener('click', hidePopup);
 
     var observer = new MutationObserver(function(){
       if (storyScr.classList.contains('active')) {
