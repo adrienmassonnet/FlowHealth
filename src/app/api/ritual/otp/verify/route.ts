@@ -70,7 +70,11 @@ export async function POST(req: NextRequest) {
     // Hash device token before storing for privacy
     const hashedToken = hashDeviceToken(deviceToken);
 
-    await db.profiles.update(profile.id, { bound_device_token: hashedToken });
+    await db.profiles.update(profile.id, {
+      bound_device_token: hashedToken,
+      entry_source: 'qr_scan',
+      otp_verified_at: new Date().toISOString(),
+    });
     await db.deviceTokens.upsert(hashedToken, profile.id);
 
     const isNewProfile = profile.sequence_position === 0 && !profile.last_scan_at;

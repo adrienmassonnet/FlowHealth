@@ -10,6 +10,8 @@ export interface Profile {
   last_scan_at: string | null;
   bound_device_token: string | null;
   gap_nudge_sent_at: string | null;
+  entry_source: 'qr_scan' | 'magic_link' | 'direct' | null;
+  otp_verified_at: string | null;
   created_at: string;
   updated_at: string;
 }

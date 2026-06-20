@@ -36,7 +36,10 @@ export async function POST(req: NextRequest) {
 
     // Upsert device token and bind to profile
     await db.deviceTokens.upsert(hashedToken, profile.id);
-    await db.profiles.update(profile.id, { bound_device_token: hashedToken });
+    await db.profiles.update(profile.id, {
+      bound_device_token: hashedToken,
+      entry_source: 'magic_link',
+    });
 
     await captureServerEvent(email, 'magic_link_success', {
       sequence_position: profile.sequence_position,

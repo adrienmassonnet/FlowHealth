@@ -57,7 +57,7 @@ export async function processScan(deviceToken: string): Promise<ScanResult> {
         outcome: 'cooldown_rejected',
         device_token: deviceToken,
         ip_hash: null,
-        metadata: { hours_since_last_scan: Math.round(hours * 10) / 10 },
+        metadata: { email: profile.email, hours_since_last_scan: Math.round(hours * 10) / 10 },
       });
       return { state: 'already_checked_in', profile, displayPosition: displayPosition(profile.sequence_position), isGapReturn: false, isMilestone: false };
     }
@@ -70,7 +70,7 @@ export async function processScan(deviceToken: string): Promise<ScanResult> {
       outcome: 'device_conflict',
       device_token: deviceToken,
       ip_hash: null,
-      metadata: {},
+      metadata: { email: profile.email },
     });
     return { state: 'device_conflict', profile, displayPosition: displayPosition(profile.sequence_position), isGapReturn: false, isMilestone: false };
   }
@@ -97,7 +97,7 @@ export async function processScan(deviceToken: string): Promise<ScanResult> {
     outcome,
     device_token: deviceToken,
     ip_hash: null,
-    metadata: { sequence_position: newPosition, display_position: newDisplayPosition },
+    metadata: { email: profile.email, sequence_position: newPosition, display_position: newDisplayPosition },
   });
 
   // Milestone check
