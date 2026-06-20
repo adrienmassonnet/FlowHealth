@@ -40,8 +40,8 @@ html, body {
   box-shadow: 0 0 0 1px rgba(255,255,255,0.07), 0 40px 80px rgba(0,0,0,0.75);
 }
 @media (max-width: 430px) {
-  html, body { width:100%; height:100%; align-items: stretch; justify-content: stretch; }
-  .phone-frame { width:100%; height:100%; border-radius:0; box-shadow:none; }
+  html, body { width:100%; height:100%; align-items: stretch; justify-content: stretch; overflow:hidden; position:fixed; }
+  .phone-frame { width:100%; height:100%; border-radius:0; box-shadow:none; overflow:hidden; }
 }
 
 /* ── Screens ── */
@@ -805,20 +805,6 @@ html, body {
 
   </div>
 
-  <!-- Farewell overlay — lives outside all screens so it persists across screen transitions -->
-  <div class="story-farewell" id="storyFarewell">
-    <div class="farewell-inner">
-      <div class="farewell-icon">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M14 3C14 3 8 8 8 14a6 6 0 0 0 12 0c0-6-6-11-6-11Z" stroke="rgba(201,168,118,0.7)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <p class="farewell-prompt">Put your phone down.</p>
-      <p class="farewell-body">Step into your morning fully. Let the supplement work. Let the thought settle. Your only task now is to be present in whatever comes next.</p>
-      <p class="farewell-wish">Have a productive,<br>peaceful moment.</p>
-      <button id="farewellBack" style="margin-top:32px;background:none;border:1px solid rgba(201,168,118,0.35);border-radius:99px;padding:12px 28px;font-family:var(--font);font-size:13px;font-weight:500;letter-spacing:0.3px;color:rgba(244,241,234,0.55);cursor:pointer;">Back to daily ritual</button>
-    </div>
-  </div>
 
 
 <script>
@@ -943,6 +929,7 @@ window.showCarousel = showCarousel;
   frame.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
   frame.addEventListener('touchend', e => {
     if (!AUTH_SCREENS.has(cur)) return;
+    if (document.getElementById('story-screen').classList.contains('active')) return;
     const dx = e.changedTouches[0].clientX - tx;
     if (Math.abs(dx) > 40) go(cur + (dx < 0 ? 1 : -1));
   }, {passive:true});
@@ -1408,7 +1395,6 @@ window.handleScan = handleScan;
     var popupRewatch = document.getElementById('popupRewatch');
     var popupShare   = document.getElementById('popupShare');
     var popupDone    = document.getElementById('popupDone');
-    var farewell     = document.getElementById('storyFarewell');
     var pauseBtn     = document.getElementById('storyPauseBtn');
     var pauseIcon    = pauseBtn.querySelector('.pause-icon');
     var playIcon     = pauseBtn.querySelector('.play-icon');
@@ -1481,16 +1467,6 @@ window.handleScan = handleScan;
       popup.classList.remove('visible');
     }
 
-    function goAfterFarewell() {
-      hidePopup();
-      farewell.classList.add('visible');
-    }
-
-    document.getElementById('farewellBack').addEventListener('click', function() {
-      farewell.classList.remove('visible');
-      showPopup();
-    });
-
     function storyComplete() { showPopup(); }
 
     tapL.addEventListener('click', function(){ advance(-1); });
@@ -1525,7 +1501,7 @@ window.handleScan = handleScan;
       }
     });
 
-    popupDone.addEventListener('click', goAfterFarewell);
+    popupDone.addEventListener('click', hidePopup);
 
     var observer = new MutationObserver(function(){
       if (storyScr.classList.contains('active')) {
@@ -1533,7 +1509,6 @@ window.handleScan = handleScan;
       } else {
         if (rafId) cancelAnimationFrame(rafId);
         hidePopup();
-        farewell.classList.remove('visible');
         showSlide(0, true);
       }
     });
