@@ -1,0 +1,1297 @@
+{"timestamp":"00:00:00.368","source":"Server","level":"WARN","message":"⚠ The Edge Runtime is deprecated. You can use the \"nodejs\" runtime instead. Learn more: https://nextjs.org/docs/messages/edge-runtime-deprecated"}
+{"timestamp":"00:00:00.405","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:11.508","source":"Server","level":"WARN","message":"Storefront API Client: the provided apiVersion (\"2025-04\") is likely deprecated or not supported. Currently supported API versions: 2025-07, 2025-10, 2026-01, 2026-04, 2026-07, unstable"}
+{"timestamp":"00:00:14.075","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"00:00:16.329","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"00:00:16.588","source":"Browser","level":"LOG","message":"\n    ____                   _        _____\n   / ___| ___   ___   __ _| | ___  |_   _|_ _  __ _\n  | |  _ / _ \\ / _ \\ / _` | |/ _ \\   | |/ _` |/ _` |\n  | |_| | (_) | (_) | (_| | |  __/   | | (_| | (_| |\n   \\____|\\___/ \\___/ \\__, |_|\\___|   |_|\\__,_|\\__, |\n                     |___/                    |___/\n"}
+{"timestamp":"00:00:16.588","source":"Browser","level":"WARN","message":"Image with src \"/hero-mobile.png\" has \"fill\" prop and \"sizes\" prop of \"100vw\", but image is not rendered at full viewport width. Please adjust \"sizes\" to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes"}
+{"timestamp":"00:00:16.623","source":"Browser","level":"GROUP","message":"Processing commands (3)"}
+{"timestamp":"00:00:16.623","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"config\", \"G-F1B6SHB752\", {}]"}
+{"timestamp":"00:00:16.623","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:16.623","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"config\", \"G-F1B6SHB752\", {}]"}
+{"timestamp":"00:00:16.623","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:16.623","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"event\", \"gtm.js\", {send_to: \"G-F1B6SHB752\"}]"}
+{"timestamp":"00:00:16.623","source":"Browser","level":"LOG","message":"Loaded existing client id: 1935050769.1779363187"}
+{"timestamp":"00:00:16.623","source":"Browser","level":"LOG","message":"Event would be batched, but batching is disabled in debug mode."}
+{"timestamp":"00:00:16.623","source":"Browser","level":"GROUP","message":"Sending event \"gtm.js\" to undefined"}
+{"timestamp":"00:00:16.623","source":"Browser","level":"GROUP","message":"Request parameters:"}
+{"timestamp":"00:00:16.623","source":"Browser","level":"LOG","message":"v: 2"}
+{"timestamp":"00:00:16.623","source":"Browser","level":"LOG","message":"tid: G-F1B6SHB752"}
+{"timestamp":"00:00:16.623","source":"Browser","level":"LOG","message":"gtm: 45je6621v9251574952z89251593742za200zd9251574952"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"_p: 1780569822805"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"_dbg: 1"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"gcd: 13l3l3l3l1l1"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"npa: 0"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"dma: 0"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"_eu: AAAAAAQ"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"are: 1"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"cid: 1935050769.1779363187"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"frm: 0"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"pscdl: noapi"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"rcb: 1"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"sr: 1470x956"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"uaa: arm"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"uab: 64"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"uafvl: Chromium;148.0.7778.181|Google%20Chrome;148.0.7778.181|Not%2FA)Brand;99.0.0.0"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"uam: "}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"uamb: 0"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"uap: macOS"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"uapv: 14.3.0"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"uaw: 0"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"ul: fr-ch"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:16.624","source":"Browser","level":"GROUP","message":"Event parameters:"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"en: gtm.js"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"_et: 34"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:16.624","source":"Browser","level":"GROUP","message":"Shared parameters:"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"tag_exp: 0~115616986~115938466~115938469~117776794~118228214~119027224~119064591"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"sid: 1780569390"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"sct: 41"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"seg: 1"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"dl: http://localhost/"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"LOG","message":"dt: Flow Health — Stable Energy for Deep Focus"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:16.624","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:16.624","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:16.624","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:16.624","source":"Browser","level":"GROUP","message":"Processing commands (0)"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:16.624","source":"Browser","level":"GROUP","message":"Processing commands (0)"}
+{"timestamp":"00:00:16.624","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:16.631","source":"Server","level":"WARN","message":"[browser] \"Image with src \\\"/hero-mobile.png\\\" has \\\"fill\\\" prop and \\\"sizes\\\" prop of \\\"100vw\\\", but image is not rendered at full viewport width. Please adjust \\\"sizes\\\" to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes\" \"(file:///Users/adrienmassonnet/Library/Mobile Documents/com~apple~CloudDocs/Flow/Claude/FlowHealth/tmp/flowhealth-next/dev/static/chunks/node_modules_next_dist_1mdsahq._.js:2510:13)\""}
+{"timestamp":"00:00:16.631","source":"Browser","level":"GROUP","message":"Processing commands (3)"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.init_consent\", gtm.uniqueEventId: 1}"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:16.631","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.init\", gtm.uniqueEventId: 2}"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:16.631","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"js\", Thu Jun 04 2026 12:43:42 GMT+0200 (Central European Summer Time)]"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:16.631","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"config\", \"G-F1B6SHB752\"]"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"LOG","message":"Loaded existing client id: 1935050769.1779363187"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"LOG","message":"Event would be batched, but batching is disabled in debug mode."}
+{"timestamp":"00:00:16.631","source":"Browser","level":"GROUP","message":"Sending event \"page_view\" to undefined"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"GROUP","message":"Request parameters:"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"LOG","message":"v: 2"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"LOG","message":"tid: G-F1B6SHB752"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"LOG","message":"gtm: 45je6621v9251574952za200zd9251574952"}
+{"timestamp":"00:00:16.631","source":"Browser","level":"LOG","message":"_p: 1780569822805"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"_dbg: 1"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"gcd: 13l3l3l3l1l1"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"npa: 0"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"dma: 0"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"_eu: AAAAAAQ"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"are: 1"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"cid: 1935050769.1779363187"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"frm: 0"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"pscdl: noapi"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"rcb: 1"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"sr: 1470x956"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"uaa: arm"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"uab: 64"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"uafvl: Chromium;148.0.7778.181|Google%20Chrome;148.0.7778.181|Not%2FA)Brand;99.0.0.0"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"uam: "}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"uamb: 0"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"uap: macOS"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"uapv: 14.3.0"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"uaw: 0"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"ul: fr-ch"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:16.632","source":"Browser","level":"GROUP","message":"Event parameters:"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"en: page_view"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"_ee: 1"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:16.632","source":"Browser","level":"GROUP","message":"Shared parameters:"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"tag_exp: 0~115616986~115938466~115938469~117776794~118228214~119027224~119064591"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"sid: 1780569390"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"sct: 41"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"seg: 1"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"dl: http://localhost/"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"dt: Flow Health — Stable Energy for Deep Focus"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:16.632","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:16.632","source":"Browser","level":"LOG","message":"GTAG Command: \"config\", target: \"G-F1B6SHB752\", configuration: {}"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:16.632","source":"Browser","level":"GROUP","message":"Processing data layer push: {gtm.start: 1780569822805, event: \"gtm.js\"}"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:16.632","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:16.632","source":"Browser","level":"GROUP","message":"Processing commands (1)"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.dom\"}"}
+{"timestamp":"00:00:16.632","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:16.632","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:16.884","source":"Browser","level":"GROUP","message":"Processing commands (1)"}
+{"timestamp":"00:00:16.885","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.load\"}"}
+{"timestamp":"00:00:16.885","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:16.885","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:32.665","source":"Browser","level":"LOG","message":"\n    ____                   _        _____\n   / ___| ___   ___   __ _| | ___  |_   _|_ _  __ _\n  | |  _ / _ \\ / _ \\ / _` | |/ _ \\   | |/ _` |/ _` |\n  | |_| | (_) | (_) | (_| | |  __/   | | (_| | (_| |\n   \\____|\\___/ \\___/ \\__, |_|\\___|   |_|\\__,_|\\__, |\n                     |___/                    |___/\n"}
+{"timestamp":"00:00:32.665","source":"Browser","level":"GROUP","message":"Processing commands (3)"}
+{"timestamp":"00:00:32.665","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.init_consent\", gtm.uniqueEventId: 1}"}
+{"timestamp":"00:00:32.665","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:32.665","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.init\", gtm.uniqueEventId: 2}"}
+{"timestamp":"00:00:32.665","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:32.665","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:32.665","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:32.665","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:32.665","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:32.665","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:32.665","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:32.665","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:32.665","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:32.665","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:32.665","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:32.665","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:32.665","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:32.665","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:32.665","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:32.665","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:32.665","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"js\", Thu Jun 04 2026 12:43:40 GMT+0200 (Central European Summer Time)]"}
+{"timestamp":"00:00:32.665","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:00:32.665","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:32.665","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"config\", \"G-F1B6SHB752\"]"}
+{"timestamp":"00:00:32.665","source":"Browser","level":"LOG","message":"Loaded existing client id: 1935050769.1779363187"}
+{"timestamp":"00:00:32.665","source":"Browser","level":"LOG","message":"Event would be batched, but batching is disabled in debug mode."}
+{"timestamp":"00:00:32.665","source":"Browser","level":"GROUP","message":"Sending event \"page_view\" to undefined"}
+{"timestamp":"00:00:32.665","source":"Browser","level":"GROUP","message":"Request parameters:"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"v: 2"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"tid: G-F1B6SHB752"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"gtm: 45je6621v9251574952za200zd9251574952"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"_p: 1780569820537"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"_dbg: 1"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"gcd: 13l3l3l3l1l1"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"npa: 0"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"dma: 0"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"_eu: AAAAAAQ"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"are: 1"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"cid: 1935050769.1779363187"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"frm: 0"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"pscdl: noapi"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"rcb: 15"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"sr: 1470x956"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"uaa: arm"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"uab: 64"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"uafvl: Chromium;148.0.7778.181|Google%20Chrome;148.0.7778.181|Not%2FA)Brand;99.0.0.0"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"uam: "}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"uamb: 0"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"uap: macOS"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"uapv: 14.3.0"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"uaw: 0"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"ul: fr-ch"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:32.667","source":"Browser","level":"GROUP","message":"Event parameters:"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"en: page_view"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"_ee: 1"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:32.667","source":"Browser","level":"GROUP","message":"Shared parameters:"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"tag_exp: 0~115938465~115938468~118228215~119027224"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"sid: 1780569390"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"sct: 41"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"seg: 1"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"dl: http://localhost/"}
+{"timestamp":"00:00:32.667","source":"Browser","level":"LOG","message":"dt: Flow Health — Stable Energy for Deep Focus"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"GTAG Command: \"config\", target: \"G-F1B6SHB752\", configuration: {}"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUP","message":"Processing data layer push: {gtm.start: 1780569820537, event: \"gtm.js\"}"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUP","message":"Processing commands (1)"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.dom\"}"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUP","message":"Processing commands (1)"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.load\"}"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUP","message":"Processing commands (3)"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"config\", \"G-F1B6SHB752\", {}]"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"config\", \"G-F1B6SHB752\", {}]"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"event\", \"gtm.js\", {send_to: \"G-F1B6SHB752\"}]"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"Loaded existing client id: 1935050769.1779363187"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"Event would be batched, but batching is disabled in debug mode."}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUP","message":"Sending event \"gtm.js\" to undefined"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUP","message":"Request parameters:"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"v: 2"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"tid: G-F1B6SHB752"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"gtm: 45je6621v9251574952z89251593742za200zd9251574952"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"_p: 1780569820537"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"_dbg: 1"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"gcd: 13l3l3l3l1l1"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"npa: 0"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"dma: 0"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"_eu: AAAAAAQ"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"are: 1"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"cid: 1935050769.1779363187"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"frm: 0"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"pscdl: noapi"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"rcb: 15"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"sr: 1470x956"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"uaa: arm"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"uab: 64"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"uafvl: Chromium;148.0.7778.181|Google%20Chrome;148.0.7778.181|Not%2FA)Brand;99.0.0.0"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"uam: "}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"uamb: 0"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"uap: macOS"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"uapv: 14.3.0"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"uaw: 0"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"ul: fr-ch"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUP","message":"Event parameters:"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"en: gtm.js"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUP","message":"Shared parameters:"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"tag_exp: 0~115938465~115938468~118228215~119027224"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"sid: 1780569390"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"sct: 41"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"seg: 1"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"dl: http://localhost/"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"LOG","message":"dt: Flow Health — Stable Energy for Deep Focus"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUP","message":"Processing commands (0)"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUP","message":"Processing commands (0)"}
+{"timestamp":"00:00:32.668","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:00:32.668","source":"Browser","level":"WARN","message":"Image with src \"/hero-mobile.png\" has \"fill\" prop and \"sizes\" prop of \"100vw\", but image is not rendered at full viewport width. Please adjust \"sizes\" to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes"}
+{"timestamp":"00:00:32.671","source":"Server","level":"WARN","message":"[browser] \"Image with src \\\"/hero-mobile.png\\\" has \\\"fill\\\" prop and \\\"sizes\\\" prop of \\\"100vw\\\", but image is not rendered at full viewport width. Please adjust \\\"sizes\\\" to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes\" \"(file:///Users/adrienmassonnet/Library/Mobile Documents/com~apple~CloudDocs/Flow/Claude/FlowHealth/tmp/flowhealth-next/dev/static/chunks/node_modules_next_dist_1mdsahq._.js:2510:13)\""}
+{"timestamp":"00:04:44.165","source":"Server","level":"LOG","message":"✓ Compiled in 835ms"}
+{"timestamp":"00:07:40.057","source":"Browser","level":"GROUP","message":"Processing commands (1)"}
+{"timestamp":"00:07:40.058","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.scrollDepth\", gtm.scrollThreshold: 90, gtm.scrollUnits: \"percent\", gtm.scrollDirection: \"vertical\", gtm.triggers: \"9\"}"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:07:40.059","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"event\", \"scroll\", {percent_scrolled: 90, send_to: \"G-F1B6SHB752\"}]"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"Loaded existing client id: 1935050769.1779363187"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"Event would be batched, but batching is disabled in debug mode."}
+{"timestamp":"00:07:40.059","source":"Browser","level":"GROUP","message":"Sending event \"scroll\" to undefined"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"GROUP","message":"Request parameters:"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"v: 2"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"tid: G-F1B6SHB752"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"gtm: 45je6621v9251574952za200zd9251574952"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"_p: 1780569820537"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"_dbg: 1"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"gcd: 13l3l3l3l1l1"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"npa: 0"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"dma: 0"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"_eu: AEAAAAQ"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"ae: a"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"are: 1"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"cid: 1935050769.1779363187"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"frm: 0"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"pscdl: noapi"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"rcb: 15"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"sr: 390x844"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"uaa: arm"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"uab: 64"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"uafvl: Chromium;148.0.7778.181|Google%20Chrome;148.0.7778.181|Not%2FA)Brand;99.0.0.0"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"uam: "}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"uamb: 0"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"uap: macOS"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"uapv: 14.3.0"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"uaw: 0"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"ul: fr-ch"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:07:40.059","source":"Browser","level":"GROUP","message":"Event parameters:"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"en: scroll"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"epn.percent_scrolled: 90"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"_et: 34633"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:07:40.059","source":"Browser","level":"GROUP","message":"Shared parameters:"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"tag_exp: 0~115938465~115938468~118228215~119027224"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"sid: 1780569390"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"sct: 41"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"seg: 1"}
+{"timestamp":"00:07:40.059","source":"Browser","level":"LOG","message":"dl: http://localhost/"}
+{"timestamp":"00:07:40.060","source":"Browser","level":"LOG","message":"dt: Flow Health — Stable Energy for Deep Focus"}
+{"timestamp":"00:07:40.060","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:07:40.060","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:07:40.060","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:07:40.060","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:07:56.589","source":"Browser","level":"GROUP","message":"Processing commands (1)"}
+{"timestamp":"00:07:56.589","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.historyChange-v2\", gtm.historyChangeSource: \"replaceState\", gtm.oldUrlFragment: \"\", gtm.newUrlFragment: \"\", gtm.oldHistoryState: {__NA: true, __PRIVATE_NEXTJS_INTERNALS_TREE: {tree: [\"\", {...}, null, null, 16], renderedSearch: \"\"}}, gtm.newHistoryState: {__NA: true, __PRIVATE_NEXTJS_INTERNALS_TREE: {tree: [\"\", {...}, null, null, 16], renderedSearch: \"\"}}, gtm.oldUrl: \"http://localhost:3000/\", gtm.newUrl: \"http://localhost:3000/\", gtm.triggers: \"8\"}"}
+{"timestamp":"00:07:56.590","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:07:56.590","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:11:54.965","source":"Server","level":"LOG","message":"✓ Compiled in 563ms"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"GROUP","message":"Processing commands (1)"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.historyChange-v2\", gtm.historyChangeSource: \"pushState\", gtm.oldUrlFragment: \"\", gtm.newUrlFragment: \"\", gtm.oldHistoryState: {__NA: true, __PRIVATE_NEXTJS_INTERNALS_TREE: {tree: [\"\", {...}, null, null, 16], renderedSearch: \"\"}}, gtm.newHistoryState: {__NA: true, __PRIVATE_NEXTJS_INTERNALS_TREE: {tree: [\"\", {...}, null, null, 16], renderedSearch: \"\"}}, gtm.oldUrl: \"http://localhost:3000/\", gtm.newUrl: \"http://localhost:3000/pages/our-philosophy\", gtm.triggers: \"8\"}"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:14:07.365","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"event\", \"page_view\", {page_location: \"http://localhost:3000/pages/our-philosophy\", page_referrer: \"http://localhost:3000/\", send_to: \"G-F1B6SHB752\"}]"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"Loaded existing client id: 1935050769.1779363187"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"Event would be batched, but batching is disabled in debug mode."}
+{"timestamp":"00:14:07.365","source":"Browser","level":"GROUP","message":"Sending event \"page_view\" to undefined"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"GROUP","message":"Request parameters:"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"v: 2"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"tid: G-F1B6SHB752"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"gtm: 45je6621v9251574952za200zd9251574952"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"_p: 1780569820537"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"_dbg: 1"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"gcd: 13l3l3l3l1l1"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"npa: 0"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"dma: 0"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"_eu: AEAAAAQ"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"ae: a"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"are: 1"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"cid: 1935050769.1779363187"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"frm: 0"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"pscdl: noapi"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"rcb: 15"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"sr: 390x844"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"uaa: arm"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"uab: 64"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"uafvl: Chromium;148.0.7778.181|Google%20Chrome;148.0.7778.181|Not%2FA)Brand;99.0.0.0"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"uam: "}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"uamb: 0"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"uap: macOS"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"uapv: 14.3.0"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"uaw: 0"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"ul: fr-ch"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:14:07.365","source":"Browser","level":"GROUP","message":"Event parameters:"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"en: page_view"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"_et: 94107"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:14:07.365","source":"Browser","level":"GROUP","message":"Shared parameters:"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"tag_exp: 0~115938465~115938468~118228215~119027224"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"dl: http://localhost:3000/pages/our-philosophy"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"dr: http://localhost:3000/"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"sid: 1780569390"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"sct: 41"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"seg: 1"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"LOG","message":"dt: Our Philosophy | Flow Health"}
+{"timestamp":"00:14:07.365","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:14:07.365","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:14:07.365","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:14:07.365","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:15:05.261","source":"Browser","level":"WARN","message":"Image with src \"https://images.ctfassets.net/u04owy9lblh5/57lxgECnNreZhURUkxrK29/e56376be67f355dc06acaa17dba10689/hero-lifestyle.png\" has \"fill\" prop and \"sizes\" prop of \"100vw\", but image is not rendered at full viewport width. Please adjust \"sizes\" to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes"}
+{"timestamp":"00:15:05.307","source":"Server","level":"WARN","message":"[browser] \"Image with src \\\"https://images.ctfassets.net/u04owy9lblh5/57lxgECnNreZhURUkxrK29/e56376be67f355dc06acaa17dba10689/hero-lifestyle.png\\\" has \\\"fill\\\" prop and \\\"sizes\\\" prop of \\\"100vw\\\", but image is not rendered at full viewport width. Please adjust \\\"sizes\\\" to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes\" \"(file:///Users/adrienmassonnet/Library/Mobile Documents/com~apple~CloudDocs/Flow/Claude/FlowHealth/tmp/flowhealth-next/dev/static/chunks/node_modules_next_dist_1mdsahq._.js:2510:13)\""}
+{"timestamp":"00:15:06.052","source":"Browser","level":"GROUP","message":"Processing commands (1)"}
+{"timestamp":"00:15:06.053","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.historyChange-v2\", gtm.historyChangeSource: \"pushState\", gtm.oldUrlFragment: \"\", gtm.newUrlFragment: \"\", gtm.oldHistoryState: {__NA: true, __PRIVATE_NEXTJS_INTERNALS_TREE: {tree: [\"\", {...}, null, null, 16], renderedSearch: \"\"}}, gtm.newHistoryState: {__NA: true, __PRIVATE_NEXTJS_INTERNALS_TREE: {tree: [\"\", {...}, null, null, 16], renderedSearch: \"\"}}, gtm.oldUrl: \"http://localhost:3000/pages/our-philosophy\", gtm.newUrl: \"http://localhost:3000/\", gtm.triggers: \"8\"}"}
+{"timestamp":"00:15:06.054","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:15:06.054","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"event\", \"page_view\", {page_location: \"http://localhost:3000/\", page_referrer: \"http://localhost:3000/pages/our-philosophy\", send_to: \"G-F1B6SHB752\"}]"}
+{"timestamp":"00:15:06.054","source":"Browser","level":"LOG","message":"Loaded existing client id: 1935050769.1779363187"}
+{"timestamp":"00:15:06.054","source":"Browser","level":"LOG","message":"Event would be batched, but batching is disabled in debug mode."}
+{"timestamp":"00:15:06.054","source":"Browser","level":"GROUP","message":"Sending event \"page_view\" to undefined"}
+{"timestamp":"00:15:06.054","source":"Browser","level":"GROUP","message":"Request parameters:"}
+{"timestamp":"00:15:06.054","source":"Browser","level":"LOG","message":"v: 2"}
+{"timestamp":"00:15:06.054","source":"Browser","level":"LOG","message":"tid: G-F1B6SHB752"}
+{"timestamp":"00:15:06.054","source":"Browser","level":"LOG","message":"gtm: 45je6621v9251574952za200zd9251574952"}
+{"timestamp":"00:15:06.054","source":"Browser","level":"LOG","message":"_p: 1780569820537"}
+{"timestamp":"00:15:06.054","source":"Browser","level":"LOG","message":"_dbg: 1"}
+{"timestamp":"00:15:06.054","source":"Browser","level":"LOG","message":"gcd: 13l3l3l3l1l1"}
+{"timestamp":"00:15:06.054","source":"Browser","level":"LOG","message":"npa: 0"}
+{"timestamp":"00:15:06.054","source":"Browser","level":"LOG","message":"dma: 0"}
+{"timestamp":"00:15:06.054","source":"Browser","level":"LOG","message":"_eu: AEAAAAQ"}
+{"timestamp":"00:15:06.054","source":"Browser","level":"LOG","message":"ae: a"}
+{"timestamp":"00:15:06.054","source":"Browser","level":"LOG","message":"are: 1"}
+{"timestamp":"00:15:06.054","source":"Browser","level":"LOG","message":"cid: 1935050769.1779363187"}
+{"timestamp":"00:15:06.054","source":"Browser","level":"LOG","message":"frm: 0"}
+{"timestamp":"00:15:06.054","source":"Browser","level":"LOG","message":"pscdl: noapi"}
+{"timestamp":"00:15:06.054","source":"Browser","level":"LOG","message":"rcb: 15"}
+{"timestamp":"00:15:06.054","source":"Browser","level":"LOG","message":"sr: 390x844"}
+{"timestamp":"00:15:06.055","source":"Browser","level":"LOG","message":"uaa: arm"}
+{"timestamp":"00:15:06.055","source":"Browser","level":"LOG","message":"uab: 64"}
+{"timestamp":"00:15:06.055","source":"Browser","level":"LOG","message":"uafvl: Chromium;148.0.7778.181|Google%20Chrome;148.0.7778.181|Not%2FA)Brand;99.0.0.0"}
+{"timestamp":"00:15:06.055","source":"Browser","level":"LOG","message":"uam: "}
+{"timestamp":"00:15:06.055","source":"Browser","level":"LOG","message":"uamb: 0"}
+{"timestamp":"00:15:06.055","source":"Browser","level":"LOG","message":"uap: macOS"}
+{"timestamp":"00:15:06.055","source":"Browser","level":"LOG","message":"uapv: 14.3.0"}
+{"timestamp":"00:15:06.055","source":"Browser","level":"LOG","message":"uaw: 0"}
+{"timestamp":"00:15:06.055","source":"Browser","level":"LOG","message":"ul: fr-ch"}
+{"timestamp":"00:15:06.055","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:15:06.055","source":"Browser","level":"GROUP","message":"Event parameters:"}
+{"timestamp":"00:15:06.055","source":"Browser","level":"LOG","message":"en: page_view"}
+{"timestamp":"00:15:06.055","source":"Browser","level":"LOG","message":"_et: 23903"}
+{"timestamp":"00:15:06.055","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:15:06.055","source":"Browser","level":"GROUP","message":"Shared parameters:"}
+{"timestamp":"00:15:06.055","source":"Browser","level":"LOG","message":"tag_exp: 0~115938465~115938468~118228215~119027224"}
+{"timestamp":"00:15:06.055","source":"Browser","level":"LOG","message":"dl: http://localhost:3000/"}
+{"timestamp":"00:15:06.055","source":"Browser","level":"LOG","message":"dr: http://localhost:3000/pages/our-philosophy"}
+{"timestamp":"00:15:06.055","source":"Browser","level":"LOG","message":"sid: 1780569390"}
+{"timestamp":"00:15:06.055","source":"Browser","level":"LOG","message":"sct: 41"}
+{"timestamp":"00:15:06.055","source":"Browser","level":"LOG","message":"seg: 1"}
+{"timestamp":"00:15:06.055","source":"Browser","level":"LOG","message":"dt: Flow Health — Stable Energy for Deep Focus"}
+{"timestamp":"00:15:06.055","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:15:06.055","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:15:06.055","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:15:06.055","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:17:37.976","source":"Server","level":"LOG","message":"✓ Compiled in 655ms"}
+{"timestamp":"00:18:00.166","source":"Browser","level":"LOG","message":"\n    ____                   _        _____\n   / ___| ___   ___   __ _| | ___  |_   _|_ _  __ _\n  | |  _ / _ \\ / _ \\ / _` | |/ _ \\   | |/ _` |/ _` |\n  | |_| | (_) | (_) | (_| | |  __/   | | (_| | (_| |\n   \\____|\\___/ \\___/ \\__, |_|\\___|   |_|\\__,_|\\__, |\n                     |___/                    |___/\n"}
+{"timestamp":"00:18:00.167","source":"Browser","level":"WARN","message":"Image with src \"https://images.ctfassets.net/u04owy9lblh5/57lxgECnNreZhURUkxrK29/e56376be67f355dc06acaa17dba10689/hero-lifestyle.png\" has \"fill\" prop and \"sizes\" prop of \"100vw\", but image is not rendered at full viewport width. Please adjust \"sizes\" to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes"}
+{"timestamp":"00:18:00.169","source":"Server","level":"WARN","message":"[browser] \"Image with src \\\"https://images.ctfassets.net/u04owy9lblh5/57lxgECnNreZhURUkxrK29/e56376be67f355dc06acaa17dba10689/hero-lifestyle.png\\\" has \\\"fill\\\" prop and \\\"sizes\\\" prop of \\\"100vw\\\", but image is not rendered at full viewport width. Please adjust \\\"sizes\\\" to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes\" \"(file:///Users/adrienmassonnet/Library/Mobile Documents/com~apple~CloudDocs/Flow/Claude/FlowHealth/tmp/flowhealth-next/dev/static/chunks/node_modules_next_dist_1mdsahq._.js:2510:13)\""}
+{"timestamp":"00:18:00.169","source":"Browser","level":"GROUP","message":"Processing commands (3)"}
+{"timestamp":"00:18:00.169","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.init_consent\", gtm.uniqueEventId: 1}"}
+{"timestamp":"00:18:00.169","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:18:00.169","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.init\", gtm.uniqueEventId: 2}"}
+{"timestamp":"00:18:00.169","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:18:00.169","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:18:00.169","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:18:00.169","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:18:00.170","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:18:00.170","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:18:00.170","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:18:00.170","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:18:00.170","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:18:00.170","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:18:00.170","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:18:00.170","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:18:00.170","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:18:00.170","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:18:00.170","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:18:00.170","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:18:00.170","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"js\", Thu Jun 04 2026 13:01:26 GMT+0200 (Central European Summer Time)]"}
+{"timestamp":"00:18:00.170","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:18:00.170","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:18:00.170","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"config\", \"G-F1B6SHB752\"]"}
+{"timestamp":"00:18:00.170","source":"Browser","level":"LOG","message":"Loaded existing client id: 1935050769.1779363187"}
+{"timestamp":"00:18:00.170","source":"Browser","level":"LOG","message":"Event would be batched, but batching is disabled in debug mode."}
+{"timestamp":"00:18:00.170","source":"Browser","level":"GROUP","message":"Sending event \"page_view\" to undefined"}
+{"timestamp":"00:18:00.170","source":"Browser","level":"GROUP","message":"Request parameters:"}
+{"timestamp":"00:18:00.170","source":"Browser","level":"LOG","message":"v: 2"}
+{"timestamp":"00:18:00.170","source":"Browser","level":"LOG","message":"tid: G-F1B6SHB752"}
+{"timestamp":"00:18:00.171","source":"Browser","level":"LOG","message":"gtm: 45je6621v9251574952za200zd9251574952"}
+{"timestamp":"00:18:00.171","source":"Browser","level":"LOG","message":"_p: 1780570886222"}
+{"timestamp":"00:18:00.171","source":"Browser","level":"LOG","message":"_dbg: 1"}
+{"timestamp":"00:18:00.171","source":"Browser","level":"LOG","message":"gcd: 13l3l3l3l1l1"}
+{"timestamp":"00:18:00.171","source":"Browser","level":"LOG","message":"npa: 0"}
+{"timestamp":"00:18:00.171","source":"Browser","level":"LOG","message":"dma: 0"}
+{"timestamp":"00:18:00.171","source":"Browser","level":"LOG","message":"_eu: AAAAAAQ"}
+{"timestamp":"00:18:00.171","source":"Browser","level":"LOG","message":"are: 1"}
+{"timestamp":"00:18:00.171","source":"Browser","level":"LOG","message":"cid: 1935050769.1779363187"}
+{"timestamp":"00:18:00.171","source":"Browser","level":"LOG","message":"frm: 0"}
+{"timestamp":"00:18:00.171","source":"Browser","level":"LOG","message":"pscdl: noapi"}
+{"timestamp":"00:18:00.171","source":"Browser","level":"LOG","message":"rcb: 9"}
+{"timestamp":"00:18:00.172","source":"Browser","level":"LOG","message":"sr: 390x844"}
+{"timestamp":"00:18:00.172","source":"Browser","level":"LOG","message":"uaa: "}
+{"timestamp":"00:18:00.172","source":"Browser","level":"LOG","message":"uab: 64"}
+{"timestamp":"00:18:00.172","source":"Browser","level":"LOG","message":"uafvl: Chromium;148.0.7778.181|Google%20Chrome;148.0.7778.181|Not%2FA)Brand;99.0.0.0"}
+{"timestamp":"00:18:00.172","source":"Browser","level":"LOG","message":"uam: iPhone"}
+{"timestamp":"00:18:00.172","source":"Browser","level":"LOG","message":"uamb: 1"}
+{"timestamp":"00:18:00.172","source":"Browser","level":"LOG","message":"uap: iOS"}
+{"timestamp":"00:18:00.172","source":"Browser","level":"LOG","message":"uapv: 18.5"}
+{"timestamp":"00:18:00.172","source":"Browser","level":"LOG","message":"uaw: 0"}
+{"timestamp":"00:18:00.173","source":"Browser","level":"LOG","message":"ul: fr-ch"}
+{"timestamp":"00:18:00.174","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:18:00.175","source":"Browser","level":"GROUP","message":"Event parameters:"}
+{"timestamp":"00:18:00.175","source":"Browser","level":"LOG","message":"en: page_view"}
+{"timestamp":"00:18:00.175","source":"Browser","level":"LOG","message":"_ee: 1"}
+{"timestamp":"00:18:00.175","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:18:00.175","source":"Browser","level":"GROUP","message":"Shared parameters:"}
+{"timestamp":"00:18:00.175","source":"Browser","level":"LOG","message":"tag_exp: 0~115938466~115938469~118228214~119027222"}
+{"timestamp":"00:18:00.175","source":"Browser","level":"LOG","message":"sid: 1780569390"}
+{"timestamp":"00:18:00.175","source":"Browser","level":"LOG","message":"sct: 41"}
+{"timestamp":"00:18:00.177","source":"Browser","level":"LOG","message":"seg: 1"}
+{"timestamp":"00:18:00.177","source":"Browser","level":"LOG","message":"dl: http://localhost/"}
+{"timestamp":"00:18:00.177","source":"Browser","level":"LOG","message":"dt: Flow Health — Stable Energy for Deep Focus"}
+{"timestamp":"00:18:00.177","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:18:00.177","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:18:00.177","source":"Browser","level":"LOG","message":"GTAG Command: \"config\", target: \"G-F1B6SHB752\", configuration: {}"}
+{"timestamp":"00:18:00.177","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:18:00.177","source":"Browser","level":"GROUP","message":"Processing data layer push: {gtm.start: 1780570886222, event: \"gtm.js\"}"}
+{"timestamp":"00:18:00.177","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:18:00.177","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:18:00.177","source":"Browser","level":"GROUP","message":"Processing commands (1)"}
+{"timestamp":"00:18:00.178","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.dom\"}"}
+{"timestamp":"00:18:00.179","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:18:00.179","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:18:00.179","source":"Browser","level":"GROUP","message":"Processing commands (1)"}
+{"timestamp":"00:18:00.179","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.load\"}"}
+{"timestamp":"00:18:00.179","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:18:00.179","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:18:00.230","source":"Browser","level":"GROUP","message":"Processing commands (3)"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"config\", \"G-F1B6SHB752\", {}]"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:18:00.230","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"config\", \"G-F1B6SHB752\", {}]"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:18:00.230","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"event\", \"gtm.js\", {send_to: \"G-F1B6SHB752\"}]"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"Loaded existing client id: 1935050769.1779363187"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"Event would be batched, but batching is disabled in debug mode."}
+{"timestamp":"00:18:00.230","source":"Browser","level":"GROUP","message":"Sending event \"gtm.js\" to undefined"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"GROUP","message":"Request parameters:"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"v: 2"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"tid: G-F1B6SHB752"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"gtm: 45je6621v9251574952z89251593742za200zd9251574952"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"_p: 1780570886222"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"_dbg: 1"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"gcd: 13l3l3l3l1l1"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"npa: 0"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"dma: 0"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"_eu: AAAAAAQ"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"are: 1"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"cid: 1935050769.1779363187"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"frm: 0"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"pscdl: noapi"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"rcb: 9"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"sr: 390x844"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"uaa: "}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"uab: 64"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"uafvl: Chromium;148.0.7778.181|Google%20Chrome;148.0.7778.181|Not%2FA)Brand;99.0.0.0"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"uam: iPhone"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"uamb: 1"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"uap: iOS"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"uapv: 18.5"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"uaw: 0"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"ul: fr-ch"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:18:00.230","source":"Browser","level":"GROUP","message":"Event parameters:"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"en: gtm.js"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"_et: 41"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:18:00.230","source":"Browser","level":"GROUP","message":"Shared parameters:"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"tag_exp: 0~115938466~115938469~118228214~119027222"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"sid: 1780569390"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"sct: 41"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"seg: 1"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"dl: http://localhost/"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"LOG","message":"dt: Flow Health — Stable Energy for Deep Focus"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:18:00.230","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:18:00.230","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:18:00.230","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:18:00.230","source":"Browser","level":"GROUP","message":"Processing commands (0)"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:18:00.230","source":"Browser","level":"GROUP","message":"Processing commands (0)"}
+{"timestamp":"00:18:00.230","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:19:03.309","source":"Server","level":"LOG","message":"✓ Compiled in 406ms"}
+{"timestamp":"00:19:21.137","source":"Browser","level":"LOG","message":"\n    ____                   _        _____\n   / ___| ___   ___   __ _| | ___  |_   _|_ _  __ _\n  | |  _ / _ \\ / _ \\ / _` | |/ _ \\   | |/ _` |/ _` |\n  | |_| | (_) | (_) | (_| | |  __/   | | (_| | (_| |\n   \\____|\\___/ \\___/ \\__, |_|\\___|   |_|\\__,_|\\__, |\n                     |___/                    |___/\n"}
+{"timestamp":"00:19:21.138","source":"Browser","level":"WARN","message":"Image with src \"https://images.ctfassets.net/u04owy9lblh5/57lxgECnNreZhURUkxrK29/e56376be67f355dc06acaa17dba10689/hero-lifestyle.png\" has \"fill\" prop and \"sizes\" prop of \"100vw\", but image is not rendered at full viewport width. Please adjust \"sizes\" to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes"}
+{"timestamp":"00:19:21.138","source":"Server","level":"WARN","message":"[browser] \"Image with src \\\"https://images.ctfassets.net/u04owy9lblh5/57lxgECnNreZhURUkxrK29/e56376be67f355dc06acaa17dba10689/hero-lifestyle.png\\\" has \\\"fill\\\" prop and \\\"sizes\\\" prop of \\\"100vw\\\", but image is not rendered at full viewport width. Please adjust \\\"sizes\\\" to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes\" \"(file:///Users/adrienmassonnet/Library/Mobile Documents/com~apple~CloudDocs/Flow/Claude/FlowHealth/tmp/flowhealth-next/dev/static/chunks/node_modules_next_dist_1mdsahq._.js:2510:13)\""}
+{"timestamp":"00:19:21.139","source":"Browser","level":"GROUP","message":"Processing commands (3)"}
+{"timestamp":"00:19:21.145","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.init_consent\", gtm.uniqueEventId: 1}"}
+{"timestamp":"00:19:21.147","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:19:21.147","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.init\", gtm.uniqueEventId: 2}"}
+{"timestamp":"00:19:21.147","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:19:21.147","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:19:21.147","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:19:21.148","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:19:21.148","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:19:21.148","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:19:21.148","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:19:21.148","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:19:21.148","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:19:21.156","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:19:21.156","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:19:21.156","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:19:21.156","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:19:21.156","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:19:21.156","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:19:21.157","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:19:21.157","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"js\", Thu Jun 04 2026 13:02:47 GMT+0200 (Central European Summer Time)]"}
+{"timestamp":"00:19:21.157","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:19:21.157","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:19:21.157","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"config\", \"G-F1B6SHB752\"]"}
+{"timestamp":"00:19:21.162","source":"Browser","level":"LOG","message":"Loaded existing client id: 1935050769.1779363187"}
+{"timestamp":"00:19:21.163","source":"Browser","level":"LOG","message":"Event would be batched, but batching is disabled in debug mode."}
+{"timestamp":"00:19:21.169","source":"Browser","level":"GROUP","message":"Sending event \"page_view\" to undefined"}
+{"timestamp":"00:19:21.172","source":"Browser","level":"GROUP","message":"Request parameters:"}
+{"timestamp":"00:19:21.172","source":"Browser","level":"LOG","message":"v: 2"}
+{"timestamp":"00:19:21.173","source":"Browser","level":"LOG","message":"tid: G-F1B6SHB752"}
+{"timestamp":"00:19:21.173","source":"Browser","level":"LOG","message":"gtm: 45je6621v9251574952za200zd9251574952"}
+{"timestamp":"00:19:21.173","source":"Browser","level":"LOG","message":"_p: 1780570967064"}
+{"timestamp":"00:19:21.173","source":"Browser","level":"LOG","message":"_dbg: 1"}
+{"timestamp":"00:19:21.173","source":"Browser","level":"LOG","message":"gcd: 13l3l3l3l1l1"}
+{"timestamp":"00:19:21.173","source":"Browser","level":"LOG","message":"npa: 0"}
+{"timestamp":"00:19:21.173","source":"Browser","level":"LOG","message":"dma: 0"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"LOG","message":"_eu: AAAAAAQ"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"LOG","message":"are: 1"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"LOG","message":"cid: 1935050769.1779363187"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"LOG","message":"frm: 0"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"LOG","message":"pscdl: noapi"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"LOG","message":"rcb: 19"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"LOG","message":"sr: 390x844"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"LOG","message":"uaa: "}
+{"timestamp":"00:19:21.211","source":"Browser","level":"LOG","message":"uab: 64"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"LOG","message":"uafvl: Chromium;148.0.7778.181|Google%20Chrome;148.0.7778.181|Not%2FA)Brand;99.0.0.0"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"LOG","message":"uam: iPhone"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"LOG","message":"uamb: 1"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"LOG","message":"uap: iOS"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"LOG","message":"uapv: 18.5"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"LOG","message":"uaw: 0"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"LOG","message":"ul: fr-ch"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:19:21.211","source":"Browser","level":"GROUP","message":"Event parameters:"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"LOG","message":"en: page_view"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"LOG","message":"_ee: 1"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:19:21.211","source":"Browser","level":"GROUP","message":"Shared parameters:"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"LOG","message":"tag_exp: 0~115938466~115938468~118228214~119027222~119064590"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"LOG","message":"sid: 1780569390"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"LOG","message":"sct: 41"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"LOG","message":"seg: 1"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"LOG","message":"dl: http://localhost/"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"LOG","message":"dt: Flow Health — Stable Energy for Deep Focus"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:19:21.211","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:19:21.211","source":"Browser","level":"LOG","message":"GTAG Command: \"config\", target: \"G-F1B6SHB752\", configuration: {}"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:19:21.211","source":"Browser","level":"GROUP","message":"Processing data layer push: {gtm.start: 1780570967064, event: \"gtm.js\"}"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:19:21.211","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:19:21.211","source":"Browser","level":"GROUP","message":"Processing commands (1)"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.dom\"}"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:19:21.211","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:19:21.211","source":"Browser","level":"GROUP","message":"Processing commands (1)"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.load\"}"}
+{"timestamp":"00:19:21.211","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:19:21.211","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:19:21.217","source":"Browser","level":"GROUP","message":"Processing commands (3)"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"config\", \"G-F1B6SHB752\", {}]"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:19:21.217","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"config\", \"G-F1B6SHB752\", {}]"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:19:21.217","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"event\", \"gtm.js\", {send_to: \"G-F1B6SHB752\"}]"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"Loaded existing client id: 1935050769.1779363187"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"Event would be batched, but batching is disabled in debug mode."}
+{"timestamp":"00:19:21.217","source":"Browser","level":"GROUP","message":"Sending event \"gtm.js\" to undefined"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"GROUP","message":"Request parameters:"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"v: 2"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"tid: G-F1B6SHB752"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"gtm: 45je6621v9251574952z89251593742za200zd9251574952"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"_p: 1780570967064"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"_dbg: 1"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"gcd: 13l3l3l3l1l1"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"npa: 0"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"dma: 0"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"_eu: AAAAAAQ"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"are: 1"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"cid: 1935050769.1779363187"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"frm: 0"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"pscdl: noapi"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"rcb: 19"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"sr: 390x844"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"uaa: "}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"uab: 64"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"uafvl: Chromium;148.0.7778.181|Google%20Chrome;148.0.7778.181|Not%2FA)Brand;99.0.0.0"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"uam: iPhone"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"uamb: 1"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"uap: iOS"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"uapv: 18.5"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"uaw: 0"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"ul: fr-ch"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:19:21.217","source":"Browser","level":"GROUP","message":"Event parameters:"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"en: gtm.js"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"_et: 83"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:19:21.217","source":"Browser","level":"GROUP","message":"Shared parameters:"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"tag_exp: 0~115938466~115938468~118228214~119027222~119064590"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"sid: 1780569390"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"sct: 41"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"seg: 1"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"dl: http://localhost/"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"LOG","message":"dt: Flow Health — Stable Energy for Deep Focus"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:19:21.217","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:19:21.217","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:19:21.217","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:19:21.217","source":"Browser","level":"GROUP","message":"Processing commands (0)"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:19:21.217","source":"Browser","level":"GROUP","message":"Processing commands (0)"}
+{"timestamp":"00:19:21.217","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:19:38.263","source":"Server","level":"LOG","message":"✓ Compiled in 338ms"}
+{"timestamp":"00:19:53.400","source":"Server","level":"LOG","message":"✓ Compiled in 326ms"}
+{"timestamp":"00:20:34.986","source":"Server","level":"LOG","message":"✓ Compiled in 344ms"}
+{"timestamp":"00:21:40.890","source":"Browser","level":"GROUP","message":"Processing commands (1)"}
+{"timestamp":"00:21:40.893","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.historyChange-v2\", gtm.historyChangeSource: \"replaceState\", gtm.oldUrlFragment: \"\", gtm.newUrlFragment: \"\", gtm.oldHistoryState: {__NA: true, __PRIVATE_NEXTJS_INTERNALS_TREE: {tree: [\"\", {...}, null, null, 16], renderedSearch: \"\"}}, gtm.newHistoryState: {__NA: true, __PRIVATE_NEXTJS_INTERNALS_TREE: {tree: [\"\", {...}, null, null, 16], renderedSearch: \"\"}}, gtm.oldUrl: \"http://localhost:3000/\", gtm.newUrl: \"http://localhost:3000/\", gtm.triggers: \"8\"}"}
+{"timestamp":"00:21:40.894","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:21:40.894","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:21:47.500","source":"Server","level":"LOG","message":"✓ Compiled in 456ms"}
+{"timestamp":"00:22:05.321","source":"Browser","level":"LOG","message":"\n    ____                   _        _____\n   / ___| ___   ___   __ _| | ___  |_   _|_ _  __ _\n  | |  _ / _ \\ / _ \\ / _` | |/ _ \\   | |/ _` |/ _` |\n  | |_| | (_) | (_) | (_| | |  __/   | | (_| | (_| |\n   \\____|\\___/ \\___/ \\__, |_|\\___|   |_|\\__,_|\\__, |\n                     |___/                    |___/\n"}
+{"timestamp":"00:22:05.329","source":"Browser","level":"GROUP","message":"Processing commands (3)"}
+{"timestamp":"00:22:05.329","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.init_consent\", gtm.uniqueEventId: 1}"}
+{"timestamp":"00:22:05.329","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:22:05.329","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.init\", gtm.uniqueEventId: 2}"}
+{"timestamp":"00:22:05.329","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:22:05.329","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:22:05.329","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:22:05.329","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:22:05.329","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:22:05.329","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:22:05.329","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:22:05.329","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:22:05.329","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:22:05.329","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:22:05.329","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:22:05.329","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:22:05.330","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"js\", Thu Jun 04 2026 13:05:31 GMT+0200 (Central European Summer Time)]"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:22:05.330","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"config\", \"G-F1B6SHB752\"]"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"Loaded existing client id: 1935050769.1779363187"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"Event would be batched, but batching is disabled in debug mode."}
+{"timestamp":"00:22:05.330","source":"Browser","level":"GROUP","message":"Sending event \"page_view\" to undefined"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"GROUP","message":"Request parameters:"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"v: 2"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"tid: G-F1B6SHB752"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"gtm: 45je6621h1v9251574952za200zd9251574952"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"_p: 1780571131332"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"_dbg: 1"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"gcd: 13l3l3l3l1l1"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"npa: 0"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"dma: 0"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"_eu: AAAAAAQ"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"are: 1"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"cid: 1935050769.1779363187"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"frm: 0"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"pscdl: noapi"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"rcb: 4"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"sr: 390x844"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"uaa: "}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"uab: 64"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"uafvl: Chromium;148.0.7778.181|Google%20Chrome;148.0.7778.181|Not%2FA)Brand;99.0.0.0"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"uam: iPhone"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"uamb: 1"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"uap: iOS"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"uapv: 18.5"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"uaw: 0"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"ul: fr-ch"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:22:05.330","source":"Browser","level":"GROUP","message":"Event parameters:"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"en: page_view"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"_ee: 1"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:22:05.330","source":"Browser","level":"GROUP","message":"Shared parameters:"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"tag_exp: 0~115938466~115938469~118228215~119027224"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"sid: 1780569390"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"sct: 41"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"seg: 1"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"dl: http://localhost/"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"dt: Flow Health — Stable Energy for Deep Focus"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:22:05.330","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:22:05.330","source":"Browser","level":"LOG","message":"GTAG Command: \"config\", target: \"G-F1B6SHB752\", configuration: {}"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:22:05.330","source":"Browser","level":"GROUP","message":"Processing data layer push: {gtm.start: 1780571131332, event: \"gtm.js\"}"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:22:05.330","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:22:05.330","source":"Browser","level":"GROUP","message":"Processing commands (1)"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.dom\"}"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:22:05.330","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:22:05.330","source":"Browser","level":"GROUP","message":"Processing commands (1)"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.load\"}"}
+{"timestamp":"00:22:05.330","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:22:05.330","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:22:05.331","source":"Browser","level":"WARN","message":"Image with src \"https://images.ctfassets.net/u04owy9lblh5/57lxgECnNreZhURUkxrK29/e56376be67f355dc06acaa17dba10689/hero-lifestyle.png\" has \"fill\" prop and \"sizes\" prop of \"100vw\", but image is not rendered at full viewport width. Please adjust \"sizes\" to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes"}
+{"timestamp":"00:22:05.340","source":"Server","level":"WARN","message":"[browser] \"Image with src \\\"https://images.ctfassets.net/u04owy9lblh5/57lxgECnNreZhURUkxrK29/e56376be67f355dc06acaa17dba10689/hero-lifestyle.png\\\" has \\\"fill\\\" prop and \\\"sizes\\\" prop of \\\"100vw\\\", but image is not rendered at full viewport width. Please adjust \\\"sizes\\\" to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes\" \"(file:///Users/adrienmassonnet/Library/Mobile Documents/com~apple~CloudDocs/Flow/Claude/FlowHealth/tmp/flowhealth-next/dev/static/chunks/node_modules_next_dist_1mdsahq._.js:2510:13)\""}
+{"timestamp":"00:22:05.343","source":"Browser","level":"GROUP","message":"Processing commands (3)"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"config\", \"G-F1B6SHB752\", {}]"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:22:05.343","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"config\", \"G-F1B6SHB752\", {}]"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:22:05.343","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"event\", \"gtm.js\", {send_to: \"G-F1B6SHB752\"}]"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"Loaded existing client id: 1935050769.1779363187"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"Event would be batched, but batching is disabled in debug mode."}
+{"timestamp":"00:22:05.343","source":"Browser","level":"GROUP","message":"Sending event \"gtm.js\" to undefined"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"GROUP","message":"Request parameters:"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"v: 2"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"tid: G-F1B6SHB752"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"gtm: 45je6621h1v9251574952z89251593742za200zd9251574952"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"_p: 1780571131332"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"_dbg: 1"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"gcd: 13l3l3l3l1l1"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"npa: 0"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"dma: 0"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"_eu: AAAAAAQ"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"are: 1"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"cid: 1935050769.1779363187"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"frm: 0"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"pscdl: noapi"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"rcb: 4"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"sr: 390x844"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"uaa: "}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"uab: 64"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"uafvl: Chromium;148.0.7778.181|Google%20Chrome;148.0.7778.181|Not%2FA)Brand;99.0.0.0"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"uam: iPhone"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"uamb: 1"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"uap: iOS"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"uapv: 18.5"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"uaw: 0"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"ul: fr-ch"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:22:05.343","source":"Browser","level":"GROUP","message":"Event parameters:"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"en: gtm.js"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"_et: 101"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:22:05.343","source":"Browser","level":"GROUP","message":"Shared parameters:"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"tag_exp: 0~115938466~115938469~118228215~119027224"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"sid: 1780569390"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"sct: 41"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"seg: 1"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"dl: http://localhost/"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"LOG","message":"dt: Flow Health — Stable Energy for Deep Focus"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:22:05.343","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:22:05.343","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:22:05.343","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:22:05.343","source":"Browser","level":"GROUP","message":"Processing commands (0)"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:22:05.343","source":"Browser","level":"GROUP","message":"Processing commands (0)"}
+{"timestamp":"00:22:05.343","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:23:29.319","source":"Server","level":"LOG","message":"✓ Compiled in 255ms"}
+{"timestamp":"00:23:42.224","source":"Server","level":"LOG","message":"✓ Compiled in 82ms"}
+{"timestamp":"00:24:09.390","source":"Server","level":"LOG","message":"✓ Compiled in 219ms"}
+{"timestamp":"00:24:22.688","source":"Server","level":"LOG","message":"✓ Compiled in 126ms"}
+{"timestamp":"00:25:46.031","source":"Server","level":"LOG","message":"✓ Compiled in 396ms"}
+{"timestamp":"00:26:08.213","source":"Server","level":"LOG","message":"✓ Compiled in 158ms"}
+{"timestamp":"00:26:13.247","source":"Browser","level":"GROUP","message":"Processing commands (1)"}
+{"timestamp":"00:26:13.248","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.historyChange-v2\", gtm.historyChangeSource: \"replaceState\", gtm.oldUrlFragment: \"\", gtm.newUrlFragment: \"\", gtm.oldHistoryState: {__NA: true, __PRIVATE_NEXTJS_INTERNALS_TREE: {tree: [\"\", {...}, null, null, 16], renderedSearch: \"\"}}, gtm.newHistoryState: {__NA: true, __PRIVATE_NEXTJS_INTERNALS_TREE: {tree: [\"\", {...}, null, null, 16], renderedSearch: \"\"}}, gtm.oldUrl: \"http://localhost:3000/\", gtm.newUrl: \"http://localhost:3000/\", gtm.triggers: \"8\"}"}
+{"timestamp":"00:26:13.249","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:26:13.249","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:28:55.144","source":"Server","level":"LOG","message":"✓ Compiled in 452ms"}
+{"timestamp":"00:30:46.380","source":"Browser","level":"GROUP","message":"Processing commands (1)"}
+{"timestamp":"00:30:46.381","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.historyChange-v2\", gtm.historyChangeSource: \"replaceState\", gtm.oldUrlFragment: \"\", gtm.newUrlFragment: \"\", gtm.oldHistoryState: {__NA: true, __PRIVATE_NEXTJS_INTERNALS_TREE: {tree: [\"\", {...}, null, null, 16], renderedSearch: \"\"}}, gtm.newHistoryState: {__NA: true, __PRIVATE_NEXTJS_INTERNALS_TREE: {tree: [\"\", {...}, null, null, 16], renderedSearch: \"\"}}, gtm.oldUrl: \"http://localhost:3000/\", gtm.newUrl: \"http://localhost:3000/\", gtm.triggers: \"8\"}"}
+{"timestamp":"00:30:46.381","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:30:46.381","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:31:16.718","source":"Browser","level":"GROUP","message":"Processing commands (1)"}
+{"timestamp":"00:31:16.718","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.historyChange-v2\", gtm.historyChangeSource: \"replaceState\", gtm.oldUrlFragment: \"\", gtm.newUrlFragment: \"\", gtm.oldHistoryState: {__NA: true, __PRIVATE_NEXTJS_INTERNALS_TREE: {tree: [\"\", {...}, null, null, 16], renderedSearch: \"\"}}, gtm.newHistoryState: {__NA: true, __PRIVATE_NEXTJS_INTERNALS_TREE: {tree: [\"\", {...}, null, null, 16], renderedSearch: \"\"}}, gtm.oldUrl: \"http://localhost:3000/\", gtm.newUrl: \"http://localhost:3000/\", gtm.triggers: \"8\"}"}
+{"timestamp":"00:31:16.718","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:31:16.718","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:31:28.341","source":"Browser","level":"GROUP","message":"Processing commands (1)"}
+{"timestamp":"00:31:28.341","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.historyChange-v2\", gtm.historyChangeSource: \"replaceState\", gtm.oldUrlFragment: \"\", gtm.newUrlFragment: \"\", gtm.oldHistoryState: {__NA: true, __PRIVATE_NEXTJS_INTERNALS_TREE: {tree: [\"\", {...}, null, null, 16], renderedSearch: \"\"}}, gtm.newHistoryState: {__NA: true, __PRIVATE_NEXTJS_INTERNALS_TREE: {tree: [\"\", {...}, null, null, 16], renderedSearch: \"\"}}, gtm.oldUrl: \"http://localhost:3000/\", gtm.newUrl: \"http://localhost:3000/\", gtm.triggers: \"8\"}"}
+{"timestamp":"00:31:28.341","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:31:28.341","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:32:46.252","source":"Server","level":"LOG","message":"✓ Compiled in 98ms"}
+{"timestamp":"00:33:49.654","source":"Server","level":"LOG","message":"✓ Compiled in 160ms"}
+{"timestamp":"00:35:33.639","source":"Server","level":"LOG","message":"✓ Compiled in 99ms"}
+{"timestamp":"00:35:40.589","source":"Server","level":"LOG","message":"✓ Compiled in 368ms"}
+{"timestamp":"00:35:47.679","source":"Server","level":"LOG","message":"✓ Compiled in 76ms"}
+{"timestamp":"00:35:55.231","source":"Server","level":"LOG","message":"✓ Compiled in 104ms"}
+{"timestamp":"00:36:20.071","source":"Server","level":"LOG","message":"✓ Compiled in 95ms"}
+{"timestamp":"00:36:31.029","source":"Browser","level":"LOG","message":"\n    ____                   _        _____\n   / ___| ___   ___   __ _| | ___  |_   _|_ _  __ _\n  | |  _ / _ \\ / _ \\ / _` | |/ _ \\   | |/ _` |/ _` |\n  | |_| | (_) | (_) | (_| | |  __/   | | (_| | (_| |\n   \\____|\\___/ \\___/ \\__, |_|\\___|   |_|\\__,_|\\__, |\n                     |___/                    |___/\n"}
+{"timestamp":"00:36:31.029","source":"Browser","level":"WARN","message":"Image with src \"https://images.ctfassets.net/u04owy9lblh5/57lxgECnNreZhURUkxrK29/e56376be67f355dc06acaa17dba10689/hero-lifestyle.png\" has \"fill\" prop and \"sizes\" prop of \"100vw\", but image is not rendered at full viewport width. Please adjust \"sizes\" to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes"}
+{"timestamp":"00:36:31.031","source":"Server","level":"WARN","message":"[browser] \"Image with src \\\"https://images.ctfassets.net/u04owy9lblh5/57lxgECnNreZhURUkxrK29/e56376be67f355dc06acaa17dba10689/hero-lifestyle.png\\\" has \\\"fill\\\" prop and \\\"sizes\\\" prop of \\\"100vw\\\", but image is not rendered at full viewport width. Please adjust \\\"sizes\\\" to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes\" \"(file:///Users/adrienmassonnet/Library/Mobile Documents/com~apple~CloudDocs/Flow/Claude/FlowHealth/tmp/flowhealth-next/dev/static/chunks/node_modules_next_dist_1mdsahq._.js:2510:13)\""}
+{"timestamp":"00:36:31.031","source":"Browser","level":"GROUP","message":"Processing commands (3)"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.init_consent\", gtm.uniqueEventId: 1}"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:36:31.032","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.init\", gtm.uniqueEventId: 2}"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:36:31.032","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"js\", Thu Jun 04 2026 13:19:57 GMT+0200 (Central European Summer Time)]"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:36:31.032","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"config\", \"G-F1B6SHB752\"]"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"Loaded existing client id: 1935050769.1779363187"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"Event would be batched, but batching is disabled in debug mode."}
+{"timestamp":"00:36:31.032","source":"Browser","level":"GROUP","message":"Sending event \"page_view\" to undefined"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"GROUP","message":"Request parameters:"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"v: 2"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"tid: G-F1B6SHB752"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"gtm: 45je6621v9251574952za200zd9251574952"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"_p: 1780571997036"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"_dbg: 1"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"gcd: 13l3l3l3l1l1"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"npa: 0"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"dma: 0"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"_eu: AAAAAAQ"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"are: 1"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"cid: 1935050769.1779363187"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"frm: 0"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"pscdl: noapi"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"rcb: 19"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"sr: 390x844"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"uaa: "}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"uab: 64"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"uafvl: Chromium;148.0.7778.181|Google%20Chrome;148.0.7778.181|Not%2FA)Brand;99.0.0.0"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"uam: iPhone"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"uamb: 1"}
+{"timestamp":"00:36:31.032","source":"Browser","level":"LOG","message":"uap: iOS"}
+{"timestamp":"00:36:31.033","source":"Browser","level":"LOG","message":"uapv: 18.5"}
+{"timestamp":"00:36:31.033","source":"Browser","level":"LOG","message":"uaw: 0"}
+{"timestamp":"00:36:31.033","source":"Browser","level":"LOG","message":"ul: fr-ch"}
+{"timestamp":"00:36:31.033","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:36:31.033","source":"Browser","level":"GROUP","message":"Event parameters:"}
+{"timestamp":"00:36:31.033","source":"Browser","level":"LOG","message":"en: page_view"}
+{"timestamp":"00:36:31.033","source":"Browser","level":"LOG","message":"_ee: 1"}
+{"timestamp":"00:36:31.033","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:36:31.033","source":"Browser","level":"GROUP","message":"Shared parameters:"}
+{"timestamp":"00:36:31.033","source":"Browser","level":"LOG","message":"tag_exp: 0~115938465~115938469~118228215~119027222~119064591"}
+{"timestamp":"00:36:31.033","source":"Browser","level":"LOG","message":"sid: 1780569390"}
+{"timestamp":"00:36:31.033","source":"Browser","level":"LOG","message":"sct: 41"}
+{"timestamp":"00:36:31.033","source":"Browser","level":"LOG","message":"seg: 1"}
+{"timestamp":"00:36:31.033","source":"Browser","level":"LOG","message":"dl: http://localhost/"}
+{"timestamp":"00:36:31.033","source":"Browser","level":"LOG","message":"dt: Flow Health — Stable Energy for Deep Focus"}
+{"timestamp":"00:36:31.033","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:36:31.033","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:36:31.033","source":"Browser","level":"LOG","message":"GTAG Command: \"config\", target: \"G-F1B6SHB752\", configuration: {}"}
+{"timestamp":"00:36:31.033","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:36:31.033","source":"Browser","level":"GROUP","message":"Processing data layer push: {gtm.start: 1780571997037, event: \"gtm.js\"}"}
+{"timestamp":"00:36:31.033","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:36:31.033","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:36:31.033","source":"Browser","level":"GROUP","message":"Processing commands (1)"}
+{"timestamp":"00:36:31.033","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.dom\"}"}
+{"timestamp":"00:36:31.033","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:36:31.033","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:36:31.033","source":"Browser","level":"GROUP","message":"Processing commands (1)"}
+{"timestamp":"00:36:31.033","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.load\"}"}
+{"timestamp":"00:36:31.033","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:36:31.033","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:36:31.034","source":"Browser","level":"GROUP","message":"Processing commands (3)"}
+{"timestamp":"00:36:31.034","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"config\", \"G-F1B6SHB752\", {}]"}
+{"timestamp":"00:36:31.034","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:36:31.034","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"config\", \"G-F1B6SHB752\", {}]"}
+{"timestamp":"00:36:31.034","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:36:31.034","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"event\", \"gtm.js\", {send_to: \"G-F1B6SHB752\"}]"}
+{"timestamp":"00:36:31.034","source":"Browser","level":"LOG","message":"Loaded existing client id: 1935050769.1779363187"}
+{"timestamp":"00:36:31.034","source":"Browser","level":"LOG","message":"Event would be batched, but batching is disabled in debug mode."}
+{"timestamp":"00:36:31.034","source":"Browser","level":"GROUP","message":"Sending event \"gtm.js\" to undefined"}
+{"timestamp":"00:36:31.034","source":"Browser","level":"GROUP","message":"Request parameters:"}
+{"timestamp":"00:36:31.034","source":"Browser","level":"LOG","message":"v: 2"}
+{"timestamp":"00:36:31.034","source":"Browser","level":"LOG","message":"tid: G-F1B6SHB752"}
+{"timestamp":"00:36:31.034","source":"Browser","level":"LOG","message":"gtm: 45je6621v9251574952z89251593742za200zd9251574952"}
+{"timestamp":"00:36:31.034","source":"Browser","level":"LOG","message":"_p: 1780571997036"}
+{"timestamp":"00:36:31.034","source":"Browser","level":"LOG","message":"_dbg: 1"}
+{"timestamp":"00:36:31.034","source":"Browser","level":"LOG","message":"gcd: 13l3l3l3l1l1"}
+{"timestamp":"00:36:31.034","source":"Browser","level":"LOG","message":"npa: 0"}
+{"timestamp":"00:36:31.034","source":"Browser","level":"LOG","message":"dma: 0"}
+{"timestamp":"00:36:31.034","source":"Browser","level":"LOG","message":"_eu: AAAAAAQ"}
+{"timestamp":"00:36:31.034","source":"Browser","level":"LOG","message":"are: 1"}
+{"timestamp":"00:36:31.034","source":"Browser","level":"LOG","message":"cid: 1935050769.1779363187"}
+{"timestamp":"00:36:31.034","source":"Browser","level":"LOG","message":"frm: 0"}
+{"timestamp":"00:36:31.034","source":"Browser","level":"LOG","message":"pscdl: noapi"}
+{"timestamp":"00:36:31.034","source":"Browser","level":"LOG","message":"rcb: 19"}
+{"timestamp":"00:36:31.034","source":"Browser","level":"LOG","message":"sr: 390x844"}
+{"timestamp":"00:36:31.034","source":"Browser","level":"LOG","message":"uaa: "}
+{"timestamp":"00:36:31.034","source":"Browser","level":"LOG","message":"uab: 64"}
+{"timestamp":"00:36:31.034","source":"Browser","level":"LOG","message":"uafvl: Chromium;148.0.7778.181|Google%20Chrome;148.0.7778.181|Not%2FA)Brand;99.0.0.0"}
+{"timestamp":"00:36:31.035","source":"Browser","level":"LOG","message":"uam: iPhone"}
+{"timestamp":"00:36:31.035","source":"Browser","level":"LOG","message":"uamb: 1"}
+{"timestamp":"00:36:31.035","source":"Browser","level":"LOG","message":"uap: iOS"}
+{"timestamp":"00:36:31.035","source":"Browser","level":"LOG","message":"uapv: 18.5"}
+{"timestamp":"00:36:31.035","source":"Browser","level":"LOG","message":"uaw: 0"}
+{"timestamp":"00:36:31.035","source":"Browser","level":"LOG","message":"ul: fr-ch"}
+{"timestamp":"00:36:31.035","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:36:31.035","source":"Browser","level":"GROUP","message":"Event parameters:"}
+{"timestamp":"00:36:31.035","source":"Browser","level":"LOG","message":"en: gtm.js"}
+{"timestamp":"00:36:31.035","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:36:31.035","source":"Browser","level":"GROUP","message":"Shared parameters:"}
+{"timestamp":"00:36:31.035","source":"Browser","level":"LOG","message":"tag_exp: 0~115938465~115938469~118228215~119027222~119064591"}
+{"timestamp":"00:36:31.035","source":"Browser","level":"LOG","message":"sid: 1780569390"}
+{"timestamp":"00:36:31.035","source":"Browser","level":"LOG","message":"sct: 41"}
+{"timestamp":"00:36:31.035","source":"Browser","level":"LOG","message":"seg: 1"}
+{"timestamp":"00:36:31.035","source":"Browser","level":"LOG","message":"dl: http://localhost/"}
+{"timestamp":"00:36:31.035","source":"Browser","level":"LOG","message":"dt: Flow Health — Stable Energy for Deep Focus"}
+{"timestamp":"00:36:31.035","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:36:31.035","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:36:31.035","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:36:31.035","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:36:31.035","source":"Browser","level":"GROUP","message":"Processing commands (0)"}
+{"timestamp":"00:36:31.035","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:36:31.035","source":"Browser","level":"GROUP","message":"Processing commands (0)"}
+{"timestamp":"00:36:31.035","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:37:24.121","source":"Server","level":"LOG","message":"✓ Compiled in 141ms"}
+{"timestamp":"00:39:03.947","source":"Server","level":"LOG","message":"✓ Compiled in 413ms"}
+{"timestamp":"00:40:27.696","source":"Server","level":"LOG","message":"✓ Compiled in 486ms"}
+{"timestamp":"00:40:27.753","source":"Server","level":"WARN","message":"⚠ Fast Refresh had to perform a full reload when ./node_modules/next/dist/client/image-component.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload"}
+{"timestamp":"00:40:27.809","source":"Server","level":"WARN","message":"⚠ Fast Refresh had to perform a full reload when ./node_modules/next/dist/client/image-component.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload"}
+{"timestamp":"00:40:28.955","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"\n    ____                   _        _____\n   / ___| ___   ___   __ _| | ___  |_   _|_ _  __ _\n  | |  _ / _ \\ / _ \\ / _` | |/ _ \\   | |/ _` |/ _` |\n  | |_| | (_) | (_) | (_| | |  __/   | | (_| | (_| |\n   \\____|\\___/ \\___/ \\__, |_|\\___|   |_|\\__,_|\\__, |\n                     |___/                    |___/\n"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"GROUP","message":"Processing commands (3)"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.init_consent\", gtm.uniqueEventId: 1}"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:42:35.932","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.init\", gtm.uniqueEventId: 2}"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:42:35.932","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"js\", Thu Jun 04 2026 13:23:55 GMT+0200 (Central European Summer Time)]"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:42:35.932","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"config\", \"G-F1B6SHB752\"]"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"Loaded existing client id: 1935050769.1779363187"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"Event would be batched, but batching is disabled in debug mode."}
+{"timestamp":"00:42:35.932","source":"Browser","level":"GROUP","message":"Sending event \"page_view\" to undefined"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"GROUP","message":"Request parameters:"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"v: 2"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"tid: G-F1B6SHB752"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"gtm: 45je6621v9251574952za200zd9251574952"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"_p: 1780572235630"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"_dbg: 1"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"gcd: 13l3l3l3l1l1"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"npa: 0"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"dma: 0"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"_eu: AAAAAAQ"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"are: 1"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"cid: 1935050769.1779363187"}
+{"timestamp":"00:42:35.932","source":"Browser","level":"LOG","message":"frm: 0"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"pscdl: noapi"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"rcb: 12"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"sr: 390x844"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"uaa: "}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"uab: 64"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"uafvl: Chromium;148.0.7778.181|Google%20Chrome;148.0.7778.181|Not%2FA)Brand;99.0.0.0"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"uam: iPhone"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"uamb: 1"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"uap: iOS"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"uapv: 18.5"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"uaw: 0"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"ul: fr-ch"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUP","message":"Event parameters:"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"en: page_view"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"_ee: 1"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUP","message":"Shared parameters:"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"tag_exp: 0~115938466~115938469~118228215~119027222"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"sid: 1780569390"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"sct: 41"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"seg: 1"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"dl: http://localhost/"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"dr: http://localhost:3000/"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"dt: Flow Health — Stable Energy for Deep Focus"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"GTAG Command: \"config\", target: \"G-F1B6SHB752\", configuration: {}"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUP","message":"Processing data layer push: {gtm.start: 1780572235630, event: \"gtm.js\"}"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUP","message":"Processing commands (1)"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.dom\"}"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUP","message":"Processing commands (1)"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.load\"}"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUP","message":"Processing commands (3)"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"config\", \"G-F1B6SHB752\", {}]"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"config\", \"G-F1B6SHB752\", {}]"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"event\", \"gtm.js\", {send_to: \"G-F1B6SHB752\"}]"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"Loaded existing client id: 1935050769.1779363187"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"Event would be batched, but batching is disabled in debug mode."}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUP","message":"Sending event \"gtm.js\" to undefined"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUP","message":"Request parameters:"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"v: 2"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"tid: G-F1B6SHB752"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"gtm: 45je6621v9251574952z89251593742za200zd9251574952"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"_p: 1780572235630"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"_dbg: 1"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"gcd: 13l3l3l3l1l1"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"npa: 0"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"dma: 0"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"_eu: AAAAAAQ"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"are: 1"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"cid: 1935050769.1779363187"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"frm: 0"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"pscdl: noapi"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"rcb: 12"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"sr: 390x844"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"uaa: "}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"uab: 64"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"uafvl: Chromium;148.0.7778.181|Google%20Chrome;148.0.7778.181|Not%2FA)Brand;99.0.0.0"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"uam: iPhone"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"uamb: 1"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"uap: iOS"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"uapv: 18.5"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"uaw: 0"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"ul: fr-ch"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUP","message":"Event parameters:"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"en: gtm.js"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUP","message":"Shared parameters:"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"tag_exp: 0~115938466~115938469~118228215~119027222"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"sid: 1780569390"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"sct: 41"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"seg: 1"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"dl: http://localhost/"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"dr: http://localhost:3000/"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"LOG","message":"dt: Flow Health — Stable Energy for Deep Focus"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUP","message":"Processing commands (0)"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUP","message":"Processing commands (0)"}
+{"timestamp":"00:42:35.933","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:42:35.933","source":"Browser","level":"WARN","message":"Image with src \"https://images.ctfassets.net/u04owy9lblh5/57lxgECnNreZhURUkxrK29/e56376be67f355dc06acaa17dba10689/hero-lifestyle.png\" has \"fill\" prop and \"sizes\" prop of \"100vw\", but image is not rendered at full viewport width. Please adjust \"sizes\" to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes"}
+{"timestamp":"00:42:36.067","source":"Server","level":"WARN","message":"[browser] \"Image with src \\\"https://images.ctfassets.net/u04owy9lblh5/57lxgECnNreZhURUkxrK29/e56376be67f355dc06acaa17dba10689/hero-lifestyle.png\\\" has \\\"fill\\\" prop and \\\"sizes\\\" prop of \\\"100vw\\\", but image is not rendered at full viewport width. Please adjust \\\"sizes\\\" to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes\" \"(file:///Users/adrienmassonnet/Library/Mobile Documents/com~apple~CloudDocs/Flow/Claude/FlowHealth/tmp/flowhealth-next/dev/static/chunks/node_modules_next_dist_1mdsahq._.js:2510:13)\""}
+{"timestamp":"00:44:46.083","source":"Server","level":"LOG","message":"✓ Compiled in 232ms"}
+{"timestamp":"00:51:30.882","source":"Browser","level":"GROUP","message":"Processing commands (1)"}
+{"timestamp":"00:51:30.888","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.historyChange-v2\", gtm.historyChangeSource: \"replaceState\", gtm.oldUrlFragment: \"\", gtm.newUrlFragment: \"\", gtm.oldHistoryState: {__NA: true, __PRIVATE_NEXTJS_INTERNALS_TREE: {tree: [\"\", {...}, null, null, 16], renderedSearch: \"\"}}, gtm.newHistoryState: {__NA: true, __PRIVATE_NEXTJS_INTERNALS_TREE: {tree: [\"\", {...}, null, null, 16], renderedSearch: \"\"}}, gtm.oldUrl: \"http://localhost:3000/\", gtm.newUrl: \"http://localhost:3000/\", gtm.triggers: \"8\"}"}
+{"timestamp":"00:51:30.888","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:51:30.888","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:51:30.888","source":"Browser","level":"GROUP","message":"Processing commands (1)"}
+{"timestamp":"00:51:30.888","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.historyChange-v2\", gtm.historyChangeSource: \"replaceState\", gtm.oldUrlFragment: \"\", gtm.newUrlFragment: \"\", gtm.oldHistoryState: {__NA: true, __PRIVATE_NEXTJS_INTERNALS_TREE: {tree: [\"\", {...}, null, null, 16], renderedSearch: \"\"}}, gtm.newHistoryState: {__NA: true, __PRIVATE_NEXTJS_INTERNALS_TREE: {tree: [\"\", {...}, null, null, 16], renderedSearch: \"\"}}, gtm.oldUrl: \"http://localhost:3000/\", gtm.newUrl: \"http://localhost:3000/\", gtm.triggers: \"8\"}"}
+{"timestamp":"00:51:30.888","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:51:30.888","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:51:35.409","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"00:51:35.762","source":"Browser","level":"WARN","message":"Image with src \"/hero-mobile.png\" has \"fill\" prop and \"sizes\" prop of \"100vw\", but image is not rendered at full viewport width. Please adjust \"sizes\" to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes"}
+{"timestamp":"00:51:35.764","source":"Server","level":"WARN","message":"[browser] \"Image with src \\\"/hero-mobile.png\\\" has \\\"fill\\\" prop and \\\"sizes\\\" prop of \\\"100vw\\\", but image is not rendered at full viewport width. Please adjust \\\"sizes\\\" to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes\" \"(file:///Users/adrienmassonnet/Library/Mobile Documents/com~apple~CloudDocs/Flow/Claude/FlowHealth/tmp/flowhealth-next/dev/static/chunks/node_modules_next_dist_1mdsahq._.js:2510:13)\""}
+{"timestamp":"00:51:38.103","source":"Browser","level":"LOG","message":"\n    ____                   _        _____\n   / ___| ___   ___   __ _| | ___  |_   _|_ _  __ _\n  | |  _ / _ \\ / _ \\ / _` | |/ _ \\   | |/ _` |/ _` |\n  | |_| | (_) | (_) | (_| | |  __/   | | (_| | (_| |\n   \\____|\\___/ \\___/ \\__, |_|\\___|   |_|\\__,_|\\__, |\n                     |___/                    |___/\n"}
+{"timestamp":"00:51:38.103","source":"Browser","level":"GROUP","message":"Processing commands (5)"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.init_consent\", gtm.uniqueEventId: 1}"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"config\", \"G-F1B6SHB752\", {}]"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"GTAG Command: \"config\", target: \"G-F1B6SHB752\", configuration: {}"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.init\", gtm.uniqueEventId: 2}"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"js\", Thu Jun 04 2026 13:35:02 GMT+0200 (Central European Summer Time)]"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"Tag fired: [object Object]"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"Loaded existing client id: 1935050769.1779363187"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"Event would be batched, but batching is disabled in debug mode."}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUP","message":"Sending event \"page_view\" to undefined"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUP","message":"Request parameters:"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"v: 2"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"tid: G-F1B6SHB752"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"gtm: 45je6621v9251574952z89251593742za20gzb9251593742zd9251593742"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"_p: 1780572902001"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"_dbg: 1"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"gcd: 13l3l3l3l1l1"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"npa: 0"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"dma: 0"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"_eu: AAAAAAQ"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"are: 1"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"cid: 1935050769.1779363187"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"frm: 0"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"pscdl: noapi"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"rcb: 8"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"sr: 1470x956"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"uaa: arm"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"uab: 64"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"uafvl: Chromium;148.0.7778.181|Google%20Chrome;148.0.7778.181|Not%2FA)Brand;99.0.0.0"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"uam: "}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"uamb: 0"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"uap: macOS"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"uapv: 14.3.0"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"uaw: 0"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"ul: fr-ch"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUP","message":"Event parameters:"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"en: page_view"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUP","message":"Shared parameters:"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"tag_exp: 0~115938465~115938469~118228214~119027224"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"sid: 1780569390"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"sct: 41"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"seg: 1"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"dl: http://localhost/"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"dr: http://localhost:3000/"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"dt: Flow Health — Stable Energy for Deep Focus"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"config\", \"G-F1B6SHB752\", {}]"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"event\", \"gtm.js\", {send_to: \"G-F1B6SHB752\"}]"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"Loaded existing client id: 1935050769.1779363187"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"Event would be batched, but batching is disabled in debug mode."}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUP","message":"Sending event \"gtm.js\" to undefined"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUP","message":"Request parameters:"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"v: 2"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"tid: G-F1B6SHB752"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"gtm: 45je6621v9251574952z89251593742za20gzb9251593742zd9251593742"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"_p: 1780572902001"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"_dbg: 1"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"gcd: 13l3l3l3l1l1"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"npa: 0"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"dma: 0"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"_eu: AAAAAAQ"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"are: 1"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"cid: 1935050769.1779363187"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"frm: 0"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"pscdl: noapi"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"rcb: 8"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"sr: 1470x956"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"uaa: arm"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"uab: 64"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"uafvl: Chromium;148.0.7778.181|Google%20Chrome;148.0.7778.181|Not%2FA)Brand;99.0.0.0"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"uam: "}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"uamb: 0"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"uap: macOS"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"uapv: 14.3.0"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"uaw: 0"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"ul: fr-ch"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUP","message":"Event parameters:"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"en: gtm.js"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"_et: 3"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUP","message":"Shared parameters:"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"tag_exp: 0~115938465~115938469~118228214~119027224"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"sid: 1780569390"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"sct: 41"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"seg: 1"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"dl: http://localhost/"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"dr: http://localhost:3000/"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"LOG","message":"dt: Flow Health — Stable Energy for Deep Focus"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUP","message":"Processing GTAG command: [\"config\", \"G-F1B6SHB752\"]"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUP","message":"Processing data layer push: {gtm.start: 1780572902001, event: \"gtm.js\", gtm.uniqueEventId: 5}"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.dom\", gtm.uniqueEventId: 6}"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUP","message":"Processing data layer push: {event: \"gtm.load\", gtm.uniqueEventId: 7}"}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUPEND","message":""}
+{"timestamp":"00:51:38.104","source":"Browser","level":"GROUPEND","message":""}

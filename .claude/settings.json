@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "Bash(cp *)",
+      "Bash(rm *)",
+      "Bash(mkdir *)",
+      "Bash(open *)",
+      "Bash(kill *)",
+      "Bash(pkill *)",
+      "Bash(lsof *)",
+      "Bash(curl *)",
+      "Bash(npx *)",
+      "Bash(python3 *)",
+      "Bash(node *)",
+      "Bash(xattr *)",
+      "mcp__claude_ai_Google_Drive__read_file_content",
+      "mcp__claude_ai_Google_Drive__search_files"
+    ]
+  }
+}

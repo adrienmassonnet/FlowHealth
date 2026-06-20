@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --text-body: rgba(30, 24, 84, 0.75);
+  --text-secondary: rgba(30, 24, 84, 0.65);
+  --text-muted: rgba(30, 24, 84, 0.55);
+
+  --shadow-subtle:   0 1px 6px rgba(30, 24, 84, 0.06);
+  --shadow-card:     0 2px 16px rgba(30, 24, 84, 0.07);
+  --shadow-elevated: 0 4px 24px rgba(30, 24, 84, 0.11);
+  --shadow-floating: 0 8px 32px rgba(30, 24, 84, 0.15);
+  --shadow-glow:     0 0 80px rgba(59, 56, 184, 0.20);
+}
+
+
+html {
+  font-size: 21px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #ffffff;
+  color: #1E1854;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  text-rendering: optimizeLegibility;
+  text-align: left;
+}
+
+::selection {
+  background: rgba(30, 24, 84, 0.1);
+}
+
+@keyframes hbFadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.footer-gradient {
+  background: linear-gradient(
+    135deg,
+    #1E1854 0%,
+    #3B38B8 40%,
+    #1E1854 70%,
+    #0f0d2e 100%
+  );
+}
+
+@keyframes philosophyEnterForward {
+  from { opacity: 0; transform: translateX(24px); filter: blur(10px); }
+  to   { opacity: 1; transform: translateX(0);    filter: blur(0);    }
+}
+@keyframes philosophyEnterBackward {
+  from { opacity: 0; transform: translateX(-24px); filter: blur(10px); }
+  to   { opacity: 1; transform: translateX(0);     filter: blur(0);    }
+}
+
+.philosophy-enter-forward {
+  animation: philosophyEnterForward 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.philosophy-enter-backward {
+  animation: philosophyEnterBackward 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.card-selected {
+  background: linear-gradient(135deg, #3B38B8 0%, #1E1854 100%);
+  border-color: transparent !important;
+}
+
+@keyframes diceExit {
+  0%   { opacity: 1; transform: perspective(520px) rotateX(0deg)   rotateY(0deg)                     scale(1);    filter: blur(0px); }
+  100% { opacity: 0; transform: perspective(520px) rotateX(-80deg) rotateY(var(--dice-y-exit, 7deg))  scale(0.84); filter: blur(3px); }
+}
+@keyframes diceEnter {
+  0%   { opacity: 0; transform: perspective(520px) rotateX(80deg)  rotateY(var(--dice-y-enter, -7deg)) scale(0.84); filter: blur(3px); }
+  60%  { opacity: 1; }
+  100% { opacity: 1; transform: perspective(520px) rotateX(0deg)   rotateY(0deg)                       scale(1);    filter: blur(0px); }
+}
+.dice-exit {
+  animation: diceExit 0.2s cubic-bezier(0.55, 0, 1, 0.85) forwards;
+  transform-origin: center 110%;
+}
+.dice-enter {
+  animation: diceEnter 0.7s cubic-bezier(0.34, 1.45, 0.64, 1) forwards;
+  transform-origin: center -10%;
+}
+
+.topic-enter {
+  animation: hbFadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ─── Mobile overrides (below md = 768px) ───────────────────────────────── */
+@media (max-width: 767px) {
+  /* Typography */
+  h1 { font-size: 40px !important; line-height: 1.08 !important; }
+  h2 { font-size: 32px !important; line-height: 1.1 !important; }
+  h3 { font-size: 24px !important; line-height: 1.15 !important; }
+  h4 { font-size: 18px !important; line-height: 1.25 !important; }
+  p, li, blockquote { font-size: 17px !important; line-height: 1.35 !important; }
+  p.text-sm, p.text-base, li.text-sm { font-size: 17px !important; line-height: 1.35 !important; }
+  .text-sm { font-size: 14px !important; }
+  .text-xs { font-size: 12px !important; }
+
+  /* Side margins */
+  .px-6 { padding-left: 20px !important; padding-right: 20px !important; }
+
+  /* Section vertical padding — lock all section-level py classes to 48px */
+  .py-12, .py-14, .py-16, .py-20, .py-24 { padding-top: 48px !important; padding-bottom: 48px !important; }
+  .pt-20, .pt-24 { padding-top: 48px !important; }
+  .pb-10, .pb-12, .pb-16, .pb-20 { padding-bottom: 32px !important; }
+
+  /* Internal spacing — scale down space-y and gap */
+  .space-y-12 > * + * { margin-top: 40px !important; }
+  .space-y-8  > * + * { margin-top: 32px !important; }
+  .space-y-6  > * + * { margin-top: 24px !important; }
+  .space-y-4  > * + * { margin-top: 30px !important; }
+  .space-y-3  > * + * { margin-top: 8px !important; }
+  .space-y-2  > * + * { margin-top: 4px !important; }
+
+  .gap-10, .gap-14, .gap-16 { gap: 32px !important; }
+  .gap-6, .gap-5 { gap: 20px !important; }
+
+  /* Text → non-text asset spacing: match HealthBenefits mb-6 (~32px) */
+  .mb-8, .mt-8 { margin-bottom: 32px !important; margin-top: 32px !important; }
+  .mb-6 { margin-bottom: 32px !important; }
+  .mb-4 { margin-bottom: 32px !important; }
+
+  /* Left alignment */
+  * { text-align: left !important; }
+}
+
+.btn-cta {
+  background: linear-gradient(135deg, #3B38B8 0%, #1E1854 50%, #3B38B8 100%);
+  background-size: 200% 200%;
+  background-position: 100% 100%;
+  transition: background-position 0.7s cubic-bezier(0.25, 0.1, 0.1, 1);
+}
+
+.btn-cta:hover {
+  background-position: 0% 0%;
+}
