@@ -764,9 +764,11 @@ html, body {
 
     <!-- Milestone popup (day 10) -->
     <div class="story-popup" id="milestonePopup">
-      <div class="story-popup-sheet">
-        <div class="story-popup-bar"></div>
-        <div class="popup-progress">
+      <div class="story-popup-sheet" style="background:linear-gradient(160deg,rgba(30,24,84,0.97) 0%,rgba(46,42,36,0.97) 100%); border-top:1px solid rgba(232,101,42,0.35);">
+        <div class="story-popup-bar" style="background:rgba(232,101,42,0.35);"></div>
+
+        <!-- All 10 bars filled amber -->
+        <div class="popup-progress" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.10);">
           <div class="popup-progress-bars" id="milestoneBars">
             <div class="popup-bar pp-done" style="--i:0"></div>
             <div class="popup-bar pp-done" style="--i:1"></div>
@@ -777,22 +779,31 @@ html, body {
             <div class="popup-bar pp-done" style="--i:6"></div>
             <div class="popup-bar pp-done" style="--i:7"></div>
             <div class="popup-bar pp-done" style="--i:8"></div>
-            <div class="popup-bar pp-today" style="--i:9"></div>
+            <div class="popup-bar pp-done" style="--i:9"></div>
           </div>
-          <span class="popup-progress-cap">10 days complete</span>
+          <span class="popup-progress-cap" style="color:rgba(232,101,42,0.80);">10 days complete</span>
         </div>
-        <p class="story-popup-eyebrow">Day 10</p>
-        <p class="story-popup-heading">You did it.</p>
-        <p class="story-popup-body">Ten mornings. Ten check-ins. Your reward is on its way — check your inbox.</p>
+
+        <p class="story-popup-eyebrow" style="color:#E8652A;">Day 10</p>
+        <p class="story-popup-heading" style="color:#F4F1EA; font-weight:300; font-size:28px;">You did it.</p>
+        <p class="story-popup-body" style="color:rgba(244,241,234,0.60); margin-bottom:20px !important;">Ten mornings. Ten rituals. Your reward is waiting in your inbox.</p>
+
+        <!-- Reward code card -->
+        <div style="background:rgba(232,101,42,0.12); border:1px solid rgba(232,101,42,0.25); border-radius:14px; padding:16px 20px; margin-bottom:20px; text-align:center;">
+          <p style="font-family:var(--font); font-size:9px; font-weight:600; letter-spacing:1.6px; text-transform:uppercase; color:rgba(232,101,42,0.65); margin-bottom:8px;">Your discount code</p>
+          <p style="font-family:var(--font); font-size:20px; font-weight:600; letter-spacing:0.12em; color:#F4F1EA; margin-bottom:8px;">DAILYRITUAL_GIFT</p>
+          <p style="font-family:var(--font); font-size:12px; font-weight:500; color:rgba(244,241,234,0.45);">10% off · one use only</p>
+        </div>
+
         <div class="story-popup-actions">
-          <button class="story-popup-rewatch" id="milestoneRewatch">
+          <button class="story-popup-rewatch" id="milestoneRewatch" style="background:rgba(255,255,255,0.10); color:#F4F1EA; border-color:rgba(255,255,255,0.18);">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M2 8a6 6 0 1 0 1.5-3.93" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
               <polyline points="2,4 2,8 6,8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             Rewatch
           </button>
-          <button class="story-popup-share" id="milestoneShare">
+          <button class="story-popup-share" id="milestoneShare" style="background:#E8652A; color:#ffffff; border:none;">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M11 2l3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M14 5H6a4 4 0 0 0-4 4v1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>

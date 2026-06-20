@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
             await sendMilestoneReward(
               result.profile.email,
               'You completed the 10-day ritual.',
-              null // reward code — set via env or Contentful when ready
+              process.env.MILESTONE_REWARD_CODE ?? 'DAILYRITUAL_GIFT'
             );
           } catch (err) {
             console.error('[scan] milestone reward email failed:', err);
