@@ -1578,14 +1578,16 @@ async function hydrateDailyScreen(position) {
           window.go(6); window.maybeShowConsentBanner();
         }
       }
-    } catch(e) { /* fail silently — show email entry */ }
+    } catch(e) { console.error('[Path C]', e); }
   }
 
-  // Safety net: if nothing navigated within 3s, go to screen 1
+  // Safety net: if no content screen shown after 4s, fall back to screen 1
   setTimeout(function() {
-    if (document.querySelector('.screen.active')) return;
-    window.go(1);
-  }, 3000);
+    const active = document.querySelector('.screen.active');
+    const activeN = active ? parseInt(active.getAttribute('data-s')) : 0;
+    // Screen 1 is the default — if still on it after 4s, something stalled
+    if (!active || activeN === 1) window.go(1);
+  }, 4000);
 })();
 
 window.handleScan = handleScan;
