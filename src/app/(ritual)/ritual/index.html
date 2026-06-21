@@ -48,6 +48,53 @@ html, body {
 .screen { position:absolute; inset:0; opacity:0; pointer-events:none; transition:opacity 300ms ease; }
 .screen.active { opacity:1; pointer-events:all; }
 
+/* ── Lobby screen ── */
+#lobby-screen {
+  position:absolute; inset:0; z-index:100;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  background: #0e0a1e;
+  opacity:1; pointer-events:all;
+  transition: opacity 600ms cubic-bezier(0.4,0,0.2,1);
+}
+#lobby-screen.fade-out { opacity:0; pointer-events:none; }
+.lobby-logo {
+  display:flex; align-items:center; gap:10px;
+  margin-bottom:52px;
+}
+.lobby-logo-icon { opacity:0.85; }
+.lobby-wordmark { opacity:0.85; }
+.lobby-divider {
+  width:1px; height:18px;
+  background:rgba(255,255,255,0.22);
+  margin:0 14px;
+}
+.lobby-label {
+  font-family:var(--font); font-size:11px; font-weight:500;
+  color:rgba(255,255,255,0.45); letter-spacing:0.12em; text-transform:uppercase;
+}
+.lobby-title {
+  font-family:var(--font); font-size:26px; font-weight:300;
+  color:rgba(255,255,255,0.92); line-height:1.3; text-align:center;
+  letter-spacing:-0.01em; margin-bottom:52px;
+  padding:0 36px;
+}
+.lobby-spinner-wrap {
+  display:flex; flex-direction:column; align-items:center; gap:14px;
+}
+.lobby-spinner {
+  width:28px; height:28px;
+  border:2px solid rgba(255,255,255,0.12);
+  border-top-color:rgba(255,255,255,0.55);
+  border-radius:50%;
+  animation:spin 900ms linear infinite;
+}
+@keyframes spin { to { transform:rotate(360deg); } }
+.lobby-status {
+  font-family:var(--font); font-size:12px; font-weight:400;
+  color:rgba(255,255,255,0.38); letter-spacing:0.04em;
+  transition:opacity 300ms ease;
+}
+
 /* ── Backgrounds ── */
 .bg {
   position:absolute; inset:0; z-index:0;
@@ -548,8 +595,23 @@ html, body {
 </head>
 <body>
 <div class="phone-frame" id="frame">
+
+  <!-- ══ 0: Lobby ══ -->
+  <div id="lobby-screen">
+    <div class="lobby-logo">
+      <svg class="lobby-logo-icon" width="22" height="22" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M320 138.76V160H160V0H181.24C190.26 72.36 247.64 129.74 320 138.76Z" fill="white"/><path d="M160 160V320H138.76C129.74 247.64 72.36 190.26 0 181.24V160H160Z" fill="white"/></svg>
+      <div class="lobby-divider"></div>
+      <span class="lobby-label">Daily Ritual</span>
+    </div>
+    <p class="lobby-title">Welcome to your<br>daily inner moment</p>
+    <div class="lobby-spinner-wrap">
+      <div class="lobby-spinner" id="lobbySpinner"></div>
+      <p class="lobby-status" id="lobbyStatus">Authenticating your profile…</p>
+    </div>
+  </div>
+
   <!-- ══ 1: Email ══ -->
-  <div class="screen active" data-s="1">
+  <div class="screen" data-s="1">
     <div class="bg bg-wind"></div>
     <div class="overlay"></div>
     <div class="pill-wordmark">
@@ -881,6 +943,22 @@ posthog.init(POSTHOG_KEY, { api_host: POSTHOG_HOST, person_profiles: 'identified
 /* ── phCapture: safe wrapper — works whether PostHog loaded or not ── */
 function phCapture(event, props) {
   try { if (window.posthog && posthog.capture) posthog.capture(event, props || {}); } catch(e) {}
+}
+
+/* ── Lobby ── */
+function setLobbyStatus(text) {
+  const el = document.getElementById('lobbyStatus');
+  if (el) el.textContent = text;
+}
+
+function hideLobby(delay) {
+  setTimeout(function() {
+    const lobby = document.getElementById('lobby-screen');
+    if (lobby) {
+      lobby.classList.add('fade-out');
+      setTimeout(function() { lobby.style.display = 'none'; }, 650);
+    }
+  }, delay || 0);
 }
 
 /* ── Device token ── */
@@ -1312,8 +1390,8 @@ async function hydrateDailyScreen(position) {
   }
 
   // ── Path A: magic link (email + order_id in URL) ──
-  // Skips OTP entirely — email+order combo is the auth factor.
   if (pEmail && pOrder) {
+    setLobbyStatus('Verifying your access…');
     phCapture('magic_link_attempt', { utm_source: pUtmSrc });
     try {
       const { ok, data } = await apiPost('/api/ritual/magic-link', {
@@ -1323,34 +1401,32 @@ async function hydrateDailyScreen(position) {
       });
       if (ok) {
         currentEmail = pEmail;
-        // Server returns the hashed device token — replace local raw UUID
         localStorage.setItem(DEVICE_TOKEN_KEY, data.device_token);
         phCapture('magic_link_verified', { state: data.state });
+        setLobbyStatus('Profile found — opening your ritual…');
         if (data.state === 'first_time_success') {
+          hideLobby(600);
           window.go(3);
         } else {
-          // Returning user — run full scan to get current state
           await handleScan();
+          hideLobby(400);
         }
-        return; // done — skip all other init paths
+        return;
       } else if (data.error === 'not_found') {
-        // Profile doesn't exist yet — pre-fill email and let them go through OTP
-        // (first scan after delivery before any prior scan)
         const emailInput = document.querySelector('[data-s="1"] .input');
         if (emailInput) emailInput.value = pEmail;
         currentEmail = pEmail;
         phCapture('magic_link_fallback', { reason: 'profile_not_found' });
-        // Auto-submit OTP send so they just need to enter the code
         const { ok: sendOk } = await apiPost('/api/ritual/otp/send', { email: pEmail });
         if (sendOk) {
           const masked = pEmail[0] + '•'.repeat(Math.min(pEmail.split('@')[0].length - 1, 5)) + '@' + pEmail.split('@')[1];
           document.getElementById('otp-email-display').innerHTML = '<strong>' + masked + '</strong>';
+          hideLobby(300);
           window.go(2);
           window.otpStartResendCountdown && window.otpStartResendCountdown();
         }
         return;
       }
-      // order_mismatch or server error — fall through to normal flow
       phCapture('magic_link_fail', { error: data.error });
     } catch(e) { /* fall through */ }
   }
@@ -1363,26 +1439,25 @@ async function hydrateDailyScreen(position) {
     phCapture('email_prefilled', { utm_source: pUtmSrc });
   }
 
-  // ── Path C: existing device token (returning user, no URL params) ──
-  // Calls /scan directly — advances sequence if cooldown has passed, or returns
-  // already_checked_in if the user already scanned today. This is the correct
-  // behaviour: opening the ritual IS the daily check-in.
+  // ── Path C: existing device token (returning user) ──
   const existing = localStorage.getItem(DEVICE_TOKEN_KEY);
   const token = getDeviceToken();
   if (existing) {
+    setLobbyStatus('Profile found — opening your ritual…');
     try {
       await handleScan();
-    } catch(e) { console.error('[Path C]', e); }
+      hideLobby(400);
+      return;
+    } catch(e) {
+      console.error('[Path C]', e);
+    }
   }
 
-  // Safety net: if not on carousel and still on screen 1 after 4s, re-show screen 1
-  setTimeout(function() {
-    const activeScr = document.querySelector('.screen.active');
-    const carouselActive = document.getElementById('story-screen').classList.contains('active');
-    if (!carouselActive && (!activeScr || parseInt(activeScr.getAttribute('data-s')) === 1)) {
-      window.go(1);
-    }
-  }, 4000);
+  // No recognised profile — show email screen
+  setLobbyStatus('No profile found. Please sign in.');
+  hideLobby(500);
+  window.go(1);
+
 })();
 
 window.handleScan = handleScan;
