@@ -831,7 +831,7 @@ html, body {
             <div class="popup-bar pp-fut" style="--i:8"></div>
             <div class="popup-bar pp-fut" style="--i:9"></div>
           </div>
-          <span class="popup-progress-cap">4 days: 6 more to go</span>
+          <span class="popup-progress-cap" id="popupProgressCap">4 days: 6 more to go</span>
         </div>
         <p class="story-popup-heading">You showed up.</p>
         <p class="story-popup-body">That's the whole practice. Same time tomorrow.</p>
@@ -1225,7 +1225,7 @@ function hydrateProgress(position) {
       popupBars.appendChild(b);
     }
   }
-  const popupCap = document.querySelector('.popup-progress-cap');
+  const popupCap = document.getElementById('popupProgressCap');
   if (popupCap) {
     const remaining = total - position;
     popupCap.textContent = remaining === 0
