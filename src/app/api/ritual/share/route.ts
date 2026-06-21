@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
     }
 
     const referralCode = await db.profiles.ensureReferralCode(profile.id);
-    const shareUrl = `${process.env.NEXT_PUBLIC_SITE_URL ?? 'https://flowhealth.ch'}/ritual/share/${referralCode}?day=${dayPosition}`;
+    const shareUrl = `${process.env.NEXT_PUBLIC_SITE_URL ?? 'https://flowhealth.ch'}/share/${referralCode}?day=${dayPosition}`;
 
     return NextResponse.json({ referral_code: referralCode, share_url: shareUrl });
   } catch (err) {
