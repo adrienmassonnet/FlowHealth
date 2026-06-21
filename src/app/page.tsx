@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { getProducts } from '@/lib/shopify';
 import TrackedLink from '@/app/components/TrackedLink';
 import { HeroText, TrustCard } from '@/app/components/HeroAnimated';
@@ -10,19 +11,29 @@ import BrainHealthSection from '@/app/components/BrainHealthSection';
 import DayArcSection from '@/app/components/DayArcSection';
 import NeurotransmitterSection from '@/app/components/NeurotransmitterSection';
 import InnerVitalitySection from '@/app/components/InnerVitalitySection';
+import { FAQ } from '@/components/ui/faq-tabs';
+import { faqCategories as categories } from '@/lib/content-data';
 import {
   getHomepageContent,
   getFeaturedIngredients,
   getProductMeta,
+  getFaqItems,
 } from '@/lib/content';
 
 export default async function HomePage() {
-  const [products, cms, featuredIngredients, meta] = await Promise.all([
+  const [products, cms, featuredIngredients, meta, faqItems] = await Promise.all([
     getProducts(),
     getHomepageContent(),
     getFeaturedIngredients(),
     getProductMeta(),
+    getFaqItems(),
   ]);
+
+  const faqData = faqItems.reduce((acc, item) => {
+    if (!acc[item.category]) acc[item.category] = [];
+    acc[item.category].push({ question: item.question, answer: item.answer });
+    return acc;
+  }, {} as Record<string, { question: string; answer: string }[]>);
   const featured = products[0];
   const featuredImage = featured?.images.edges[0]?.node;
   const featuredImageSecondary = featured?.images.edges[1]?.node;
@@ -225,6 +236,37 @@ export default async function HomePage() {
       </div>
 
       <BrainSection />
+
+      {/* FAQ */}
+      <section className="bg-white py-14 md:py-24">
+        <div className="max-w-[1200px] mx-auto px-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+            <div>
+              <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent mb-2">
+                Support
+              </p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-[1.08] text-[#1E1854]">
+                Frequently asked questions
+              </h2>
+            </div>
+            <Link
+              href="/pages/faq"
+              className="shrink-0 inline-flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium text-[#1E1854]/45 hover:text-[#1E1854] transition-colors duration-200"
+            >
+              View all FAQs
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2.5 6H9.5M6.5 3L9.5 6L6.5 9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </Link>
+          </div>
+          <FAQ
+            title=""
+            subtitle=""
+            categories={categories}
+            faqData={faqData}
+          />
+        </div>
+      </section>
 
     </main>
   );
