@@ -97,18 +97,35 @@ export default async function SharePage(
     <div style={{ minHeight: '100vh', background: '#0e0a1e', fontFamily: "'Outfit', sans-serif", color: '#F4F1EA' }}>
       <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-      {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '28px 28px 0', justifyContent: 'center' }}>
-        <svg width="20" height="20" viewBox="0 0 320 320" fill="none">
-          <path d="M320 138.76V160H160V0H181.24C190.26 72.36 247.64 129.74 320 138.76Z" fill="white" opacity="0.85"/>
-          <path d="M160 160V320H138.76C129.74 247.64 72.36 190.26 0 181.24V160H160Z" fill="white" opacity="0.85"/>
-        </svg>
-        <div style={{ width: 1, height: 16, background: 'rgba(255,255,255,0.2)', margin: '0 10px' }} />
-        <span style={{ fontSize: 11, fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)' }}>Daily Ritual</span>
+      {/* Hero image */}
+      <div style={{ position: 'relative', width: '100%', height: 320, overflow: 'hidden' }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={`${SITE_URL}/bg-bubble.png`}
+          alt=""
+          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 60%', display: 'block' }}
+        />
+        {/* Gradient overlay fading into page background */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(to bottom, rgba(14,10,30,0.15) 0%, rgba(14,10,30,0.0) 40%, rgba(14,10,30,1) 100%)',
+        }} />
+        {/* Logo lockup centered over hero */}
+        <div style={{
+          position: 'absolute', top: 28, left: 0, right: 0,
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
+        }}>
+          <svg width="20" height="20" viewBox="0 0 320 320" fill="none">
+            <path d="M320 138.76V160H160V0H181.24C190.26 72.36 247.64 129.74 320 138.76Z" fill="white" opacity="0.85"/>
+            <path d="M160 160V320H138.76C129.74 247.64 72.36 190.26 0 181.24V160H160Z" fill="white" opacity="0.85"/>
+          </svg>
+          <div style={{ width: 1, height: 16, background: 'rgba(255,255,255,0.3)', margin: '0 10px' }} />
+          <span style={{ fontSize: 11, fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)' }}>Daily Ritual</span>
+        </div>
       </div>
 
       {/* Quote card */}
-      <div style={{ maxWidth: 480, margin: '40px auto 0', padding: '0 24px' }}>
+      <div style={{ maxWidth: 480, margin: '-16px auto 0', padding: '0 24px' }}>
         <div style={{
           background: 'linear-gradient(160deg, rgba(58,51,112,0.45) 0%, rgba(30,24,84,0.30) 100%)',
           border: '1px solid rgba(255,255,255,0.10)',
@@ -151,16 +168,26 @@ export default async function SharePage(
         }}>
           {/* Product image */}
           <div style={{
-            background: 'linear-gradient(135deg, #1E1854 0%, #2d2a8a 100%)',
+            position: 'relative',
+            overflow: 'hidden',
             padding: '36px 24px',
             display: 'flex',
             justifyContent: 'center',
+            minHeight: 220,
+            alignItems: 'center',
           }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`${SITE_URL}/bg-wind.png`}
+              alt=""
+              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', opacity: 0.55 }}
+            />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(30,24,84,0.6) 0%, rgba(14,10,30,0.5) 100%)' }} />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={`${SITE_URL}/our-product/our-product.png`}
               alt="Flow supplement pouch"
-              style={{ width: 180, height: 'auto', display: 'block' }}
+              style={{ position: 'relative', width: 180, height: 'auto', display: 'block' }}
             />
           </div>
 
