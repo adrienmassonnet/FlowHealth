@@ -536,6 +536,48 @@ html, body {
   text-transform: uppercase; color: var(--ink); opacity: 0.55;
 }
 
+/* Review popup */
+.review-label {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(244,241,234,0.45); margin-bottom: 10px;
+}
+.review-stars {
+  display: flex; gap: 6px; margin-bottom: 2px;
+}
+.review-star {
+  font-size: 28px; color: rgba(255,255,255,0.15); background: none; border: none;
+  cursor: pointer; padding: 2px; line-height: 1; transition: color 150ms, transform 150ms;
+}
+.review-star.active, .review-star.lit { color: #E8652A; }
+.review-star:active { transform: scale(1.2); }
+.review-chips {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.review-chip {
+  padding: 8px 14px; border-radius: 100px;
+  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14);
+  color: rgba(244,241,234,0.65); font-family: var(--font); font-size: 13px; font-weight: 500;
+  cursor: pointer; transition: background 150ms, color 150ms, border-color 150ms;
+}
+.review-chip.selected {
+  background: rgba(232,101,42,0.18); border-color: rgba(232,101,42,0.55); color: #F4F1EA;
+}
+.review-submit {
+  display: block; width: 100%; margin-top: 24px;
+  padding: 16px; border-radius: 100px; border: none; cursor: pointer;
+  background: #E8652A; color: #ffffff;
+  font-family: var(--font); font-size: 15px; font-weight: 600; letter-spacing: 0.02em;
+  transition: opacity 200ms;
+}
+.review-submit:disabled { opacity: 0.35; cursor: default; }
+.review-submit:not(:disabled):hover { opacity: 0.85; }
+.review-skip {
+  display: block; width: 100%; margin-top: 10px; padding: 10px;
+  background: none; border: none; cursor: pointer;
+  font-family: var(--font); font-size: 12px; color: rgba(244,241,234,0.28);
+  letter-spacing: 0.04em;
+}
+
 /* Farewell screen */
 .story-farewell {
   position: absolute; inset: 0; z-index: 70;
@@ -823,6 +865,49 @@ html, body {
     <div class="story-tap-left"  id="storyTapLeft"></div>
     <div class="story-tap-right" id="storyTapRight"></div>
 
+
+    <!-- Review popup (shown before milestone reward) -->
+    <div class="story-popup" id="reviewPopup">
+      <div class="story-popup-sheet" style="background:linear-gradient(160deg,rgba(20,16,60,0.98) 0%,rgba(30,24,84,0.98) 100%); border-top:1px solid rgba(255,255,255,0.12);">
+        <div class="story-popup-bar"></div>
+
+        <p class="story-popup-eyebrow" style="color:#E8652A;">Day 10 complete</p>
+        <p class="story-popup-heading" style="font-size:24px;">Before your reward —<br>quick reflection</p>
+        <p class="story-popup-body" style="font-size:13px; margin-bottom:20px !important; color:rgba(244,241,234,0.55);">30 seconds. Helps us improve the ritual for everyone.</p>
+
+        <!-- Star rating -->
+        <p class="review-label">How would you rate the 10-day ritual?</p>
+        <div class="review-stars" id="reviewStars">
+          <button class="review-star" data-v="1">★</button>
+          <button class="review-star" data-v="2">★</button>
+          <button class="review-star" data-v="3">★</button>
+          <button class="review-star" data-v="4">★</button>
+          <button class="review-star" data-v="5">★</button>
+        </div>
+
+        <!-- Q1 -->
+        <p class="review-label" style="margin-top:18px;">What did you notice most?</p>
+        <div class="review-chips" id="reviewQ1">
+          <button class="review-chip" data-q="q1" data-v="focus">Focus</button>
+          <button class="review-chip" data-q="q1" data-v="calm">Calm</button>
+          <button class="review-chip" data-q="q1" data-v="energy">Energy</button>
+          <button class="review-chip" data-q="q1" data-v="sleep">Sleep</button>
+          <button class="review-chip" data-q="q1" data-v="nothing_yet">Nothing yet</button>
+        </div>
+
+        <!-- Q2 -->
+        <p class="review-label" style="margin-top:18px;">Will you continue?</p>
+        <div class="review-chips" id="reviewQ2">
+          <button class="review-chip" data-q="q2" data-v="yes_already">Already reordered</button>
+          <button class="review-chip" data-q="q2" data-v="yes_plan">Planning to</button>
+          <button class="review-chip" data-q="q2" data-v="maybe">Not sure</button>
+          <button class="review-chip" data-q="q2" data-v="no">No</button>
+        </div>
+
+        <button class="review-submit" id="reviewSubmit" disabled>Claim your reward →</button>
+        <button class="review-skip" id="reviewSkip">Skip</button>
+      </div>
+    </div>
 
     <!-- Milestone popup (day 10) -->
     <div class="story-popup" id="milestonePopup">
@@ -1253,10 +1338,7 @@ async function handleScan() {
       if (data.state === 'already_checked_in') {
         setTimeout(function() { window.showPopup && window.showPopup(); }, 400);
       } else if (data.state === 'milestone') {
-        setTimeout(function() {
-          const mp = document.getElementById('milestonePopup');
-          if (mp) { mp.classList.add('visible'); requestAnimationFrame(function(){ mp.querySelector('.popup-progress') && mp.querySelector('.popup-progress').classList.add('animate'); }); }
-        }, 400);
+        setTimeout(function() { window.showReviewPopup && window.showReviewPopup(); }, 400);
       }
       break;
   }
@@ -1598,6 +1680,82 @@ window.handleScan = handleScan;
           alert('Link copied to clipboard.');
         }
       } catch(e) { /* user cancelled or share unsupported */ }
+    });
+
+    // Review popup logic
+    window.showReviewPopup = function() {
+      var rp = document.getElementById('reviewPopup');
+      if (rp) rp.classList.add('visible');
+    };
+
+    function showMilestonePopup() {
+      var rp = document.getElementById('reviewPopup');
+      if (rp) rp.classList.remove('visible');
+      var mp = document.getElementById('milestonePopup');
+      if (mp) {
+        mp.classList.add('visible');
+        requestAnimationFrame(function() {
+          var prog = mp.querySelector('.popup-progress');
+          if (prog) prog.classList.add('animate');
+        });
+      }
+    }
+
+    var reviewStarVal = 0;
+    var reviewAnswers = {};
+
+    // Star interaction
+    document.querySelectorAll('.review-star').forEach(function(star) {
+      star.addEventListener('click', function() {
+        reviewStarVal = parseInt(this.dataset.v, 10);
+        document.querySelectorAll('.review-star').forEach(function(s) {
+          s.classList.toggle('active', parseInt(s.dataset.v, 10) <= reviewStarVal);
+        });
+        checkReviewReady();
+      });
+      star.addEventListener('mouseover', function() {
+        var hv = parseInt(this.dataset.v, 10);
+        document.querySelectorAll('.review-star').forEach(function(s) {
+          s.classList.toggle('lit', parseInt(s.dataset.v, 10) <= hv);
+        });
+      });
+      star.addEventListener('mouseout', function() {
+        document.querySelectorAll('.review-star').forEach(function(s) { s.classList.remove('lit'); });
+      });
+    });
+
+    // Chip interaction
+    document.querySelectorAll('.review-chip').forEach(function(chip) {
+      chip.addEventListener('click', function() {
+        var q = this.dataset.q;
+        document.querySelectorAll('.review-chip[data-q="' + q + '"]').forEach(function(c) { c.classList.remove('selected'); });
+        this.classList.add('selected');
+        reviewAnswers[q] = this.dataset.v;
+        checkReviewReady();
+      });
+    });
+
+    function checkReviewReady() {
+      var btn = document.getElementById('reviewSubmit');
+      if (btn) btn.disabled = !(reviewStarVal > 0 && reviewAnswers.q1 && reviewAnswers.q2);
+    }
+
+    document.getElementById('reviewSubmit').addEventListener('click', async function() {
+      this.disabled = true;
+      this.textContent = 'Saving…';
+      try {
+        await apiPost('/api/ritual/review', {
+          device_token: getDeviceToken(),
+          rating: reviewStarVal,
+          noticed: reviewAnswers.q1,
+          continue: reviewAnswers.q2,
+        });
+      } catch(e) {}
+      showMilestonePopup();
+    });
+
+    document.getElementById('reviewSkip').addEventListener('click', function() {
+      showMilestonePopup();
     });
 
     // Milestone popup buttons
