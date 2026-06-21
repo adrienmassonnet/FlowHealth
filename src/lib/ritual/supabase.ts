@@ -12,6 +12,7 @@ export interface Profile {
   gap_nudge_sent_at: string | null;
   entry_source: 'qr_scan' | 'magic_link' | 'direct' | null;
   otp_verified_at: string | null;
+  referral_code: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -42,6 +43,11 @@ export interface ScanEvent {
   device_token: string | null;
   ip_hash: string | null;
   metadata: Record<string, unknown>;
+}
+
+function generateReferralCode(): string {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // no O/0/I/1 ambiguity
+  return Array.from({ length: 6 }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
 }
 
 function getClient() {
@@ -87,6 +93,29 @@ export const db = {
         .update(fields)
         .eq('id', id);
       if (error) throw error;
+    },
+
+    async findByReferralCode(code: string): Promise<Profile | null> {
+      const { data } = await getClient()
+        .from('profiles')
+        .select('*')
+        .eq('referral_code', code.toUpperCase())
+        .single();
+      return data ?? null;
+    },
+
+    async ensureReferralCode(id: string): Promise<string> {
+      // Return existing code or generate and persist a new one
+      const { data } = await getClient()
+        .from('profiles')
+        .select('referral_code')
+        .eq('id', id)
+        .single();
+      const existing = (data as { referral_code: string | null } | null)?.referral_code;
+      if (existing) return existing;
+      const code = generateReferralCode();
+      await getClient().from('profiles').update({ referral_code: code }).eq('id', id);
+      return code;
     },
 
     // Gap nudge cron: profiles with a valid scan, overdue for nudge, nudge not yet sent
@@ -183,6 +212,17 @@ export const db = {
     async insert(event: Omit<ScanEvent, 'id' | 'scanned_at'>): Promise<void> {
       const { error } = await getClient().from('scan_events').insert(event);
       if (error) throw error;
+    },
+  },
+
+  referralClicks: {
+    async record(referralCode: string, dayPosition: number, ipHash: string | null): Promise<void> {
+      await getClient().from('referral_clicks').insert({
+        referral_code: referralCode,
+        day_position: dayPosition,
+        ip_hash: ipHash,
+        clicked_at: new Date().toISOString(),
+      });
     },
   },
 };

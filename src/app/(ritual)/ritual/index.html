@@ -1583,10 +1583,21 @@ window.handleScan = handleScan;
       syncPauseBtn();
     });
 
-    popupShare.addEventListener('click', function() {
-      if (navigator.share) {
-        navigator.share({ title: 'Flow Daily', text: 'Day ' + (window._currentDay || 1) + ' — Flow Daily Ritual.' });
-      }
+    popupShare.addEventListener('click', async function() {
+      try {
+        const { ok, data } = await apiPost('/api/ritual/share', {
+          device_token: getDeviceToken(),
+          day_position: window._currentDay || 1,
+        });
+        const url = ok && data.share_url ? data.share_url : 'https://flowhealth.ch/ritual';
+        const text = 'Day ' + (window._currentDay || 1) + ' of my Flow Daily Ritual — here\'s what it felt like.';
+        if (navigator.share) {
+          await navigator.share({ title: 'Flow Daily Ritual', text, url });
+        } else {
+          await navigator.clipboard.writeText(url);
+          alert('Link copied to clipboard.');
+        }
+      } catch(e) { /* user cancelled or share unsupported */ }
     });
 
     // Milestone popup buttons
@@ -1600,10 +1611,21 @@ window.handleScan = handleScan;
       });
     }
     if (milestoneShare) {
-      milestoneShare.addEventListener('click', function() {
-        if (navigator.share) {
-          navigator.share({ title: 'Flow Daily', text: 'I completed the 10-day Flow ritual.' });
-        }
+      milestoneShare.addEventListener('click', async function() {
+        try {
+          const { ok, data } = await apiPost('/api/ritual/share', {
+            device_token: getDeviceToken(),
+            day_position: 10,
+          });
+          const url = ok && data.share_url ? data.share_url : 'https://flowhealth.ch/ritual';
+          const text = 'I completed the 10-day Flow Daily Ritual.';
+          if (navigator.share) {
+            await navigator.share({ title: 'Flow Daily Ritual', text, url });
+          } else {
+            await navigator.clipboard.writeText(url);
+            alert('Link copied to clipboard.');
+          }
+        } catch(e) { /* user cancelled */ }
       });
     }
 
