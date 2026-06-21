@@ -86,7 +86,7 @@ export default async function SharePage(
     day_position: position,
     ip_hash: null,
     clicked_at: new Date().toISOString(),
-  }).then(() => {}).catch(() => {});
+  }).then(() => {}, () => {});
 
   const content = await getDayContent(position);
   const heading = content?.heading ?? 'A daily moment for your mind.';
