@@ -251,7 +251,7 @@ function MobileIngredientChart({ ingredientName }: { ingredientName: string }) {
   );
 }
 
-function IngredientChart({ ingredientName }: { ingredientName: string }) {
+function IngredientChart({ ingredientName, className = '' }: { ingredientName: string; className?: string }) {
   const [activeChart, setActiveChart] = useState(0);
   const charts = INGREDIENT_CHARTS[ingredientName];
   if (!charts) return null;
@@ -266,7 +266,7 @@ function IngredientChart({ ingredientName }: { ingredientName: string }) {
   const padL = 24;
   const padR = 8;
   const padTop = 16;
-  const padBottom = 32;
+  const padBottom = 52;
   const chartW = svgW - padL - padR;
   const chartH = svgH - padTop - padBottom;
   const n = chart.bars.length;
@@ -287,10 +287,10 @@ function IngredientChart({ ingredientName }: { ingredientName: string }) {
   const ticks = Array.from({ length: tickCount + 1 }, (_, i) => minVal + (range * i) / tickCount);
 
   return (
-    <div className="shrink-0 w-80 flex flex-col gap-2.5 rounded-xl border border-[#1E1854]/[0.10] bg-[#F8F8FC] p-4">
+    <div className={`shrink-0 w-80 flex flex-col gap-2.5 rounded-xl border border-[#1E1854]/[0.10] bg-[#F8F8FC] p-4 ${className}`}>
 
       {/* Description */}
-      <p className="text-[11px] text-[#1E1854]/60 leading-snug">{chart.description}</p>
+      <p className="text-xs text-[#1E1854]/60 leading-snug">{chart.description}</p>
 
       {/* Legend */}
       <div className="flex items-center gap-4">
@@ -305,7 +305,8 @@ function IngredientChart({ ingredientName }: { ingredientName: string }) {
       </div>
 
       {/* SVG */}
-      <svg width={svgW} height={svgH} className="overflow-visible">
+      <div className="flex-1 min-h-0">
+      <svg width="100%" height="100%" viewBox={`0 0 ${svgW} ${svgH}`} preserveAspectRatio="xMidYMid meet" className="overflow-visible" style={{ minHeight: svgH }}>
         {/* Y-axis ticks + grid */}
         {ticks.map((tv, ti) => {
           const ty = toY(tv);
@@ -356,14 +357,24 @@ function IngredientChart({ ingredientName }: { ingredientName: string }) {
                     : `${b.comparator}×`}
                 </text>
               )}
-              {/* X label */}
-              <text x={cx} y={svgH - 4} textAnchor="middle" fontSize="8" fill="rgba(30,24,84,0.45)">
-                {b.label}
-              </text>
+              {/* X label — split on space into up to 2 lines */}
+              {(() => {
+                const words = b.label.split(' ');
+                const mid = Math.ceil(words.length / 2);
+                const line1 = words.slice(0, mid).join(' ');
+                const line2 = words.slice(mid).join(' ');
+                return (
+                  <text x={cx} y={svgH - (line2 ? 14 : 6)} textAnchor="middle" fontSize="8" fill="rgba(30,24,84,0.45)">
+                    <tspan x={cx} dy="0">{line1}</tspan>
+                    {line2 && <tspan x={cx} dy="10">{line2}</tspan>}
+                  </text>
+                );
+              })()}
             </g>
           );
         })}
       </svg>
+      </div>
 
       {/* Footer */}
       <div className="flex items-center justify-between pt-2.5 border-t border-[#1E1854]/[0.14]">
@@ -543,7 +554,7 @@ export default function HomepageIngredientsSection({ ingredients, sizes }: Props
               </div>
 
               {/* Right: chart panel — shown for ingredients with data */}
-              {INGREDIENT_CHARTS[step.name] && <IngredientChart ingredientName={step.name} />}
+              {INGREDIENT_CHARTS[step.name] && <IngredientChart ingredientName={step.name} className="self-stretch" />}
             </div>
           </motion.div>
 
