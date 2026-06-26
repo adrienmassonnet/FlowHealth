@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { EASE } from '@/lib/animation';
+import { EASE, VARIANTS, VIEWPORT, DURATION, T } from '@/lib/animation';
 
 export function HeroText({ children, delay = 0, className }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
