@@ -6,8 +6,7 @@ import Link from 'next/link';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { trackEvent } from '@/lib/clarity';
 import type { HealthBenefit } from '@/lib/content';
-
-const ease = [0.25, 0.1, 0.1, 1] as const;
+import { EASE, DURATION } from '@/lib/animation';
 
 interface Props {
   benefits: HealthBenefit[];
@@ -79,7 +78,7 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
           className="grid grid-cols-2 gap-2"
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, ease }}
+          transition={{ duration: DURATION.slow, ease: EASE.expoOut }}
         >
           {benefits.map((s, i) => {
             const isActive = active === i;
@@ -89,7 +88,7 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
                 onClick={() => setActive(i)}
                 initial={{ opacity: 0 }}
                 animate={inView ? { opacity: 1 } : {}}
-                transition={{ duration: 0.4, delay: 0.05 + i * 0.04, ease }}
+                transition={{ duration: DURATION.base, delay: 0.05 + i * 0.04, ease: EASE.expoOut }}
                 className={`
                   relative flex flex-col items-center justify-center gap-2 px-3 py-4 text-center
                   rounded-xl w-full overflow-hidden
@@ -122,7 +121,7 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
           className="relative rounded-2xl overflow-hidden min-h-[446px]"
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.1, ease }}
+          transition={{ duration: DURATION.slow, delay: 0.1, ease: EASE.expoOut }}
         >
           {benefits.map((b, i) =>
             b.imageUrl ? (
@@ -162,7 +161,7 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
           <div
             key={active}
             className="absolute inset-0 flex flex-col justify-end p-9"
-            style={{ animation: 'hbFadeUp 0.5s cubic-bezier(0.25, 0.1, 0.1, 1) forwards' }}
+            style={{ animation: `hbFadeUp ${DURATION.base}s cubic-bezier(0.16, 1, 0.3, 1) forwards` }}
           >
             <h3 className="text-3xl md:text-4xl font-semibold text-white tracking-[-0.02em] leading-snug mb-1.5">
               {step.title}
@@ -191,7 +190,7 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: DURATION.fast }}
             className="md:hidden fixed inset-0 z-50 flex items-end justify-center"
             onClick={() => setModalBenefit(null)}
           >
@@ -200,7 +199,7 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
               initial={{ y: '100%' }}
               animate={{ y: 0 }}
               exit={{ y: '100%' }}
-              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: DURATION.slow, ease: EASE.expoOut }}
               className="relative w-full bg-white rounded-t-3xl shadow-2xl flex flex-col max-h-[90svh]"
               onClick={(e) => e.stopPropagation()}
             >

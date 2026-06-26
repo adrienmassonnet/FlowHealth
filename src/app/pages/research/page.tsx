@@ -63,16 +63,6 @@ export default function ResearchPage() {
               journal: 'Phytotherapy Research, 2009',
             },
             {
-              ingredient: 'Bacopa Monnieri',
-              finding: 'Roodenrys et al. (2002) found 300mg/day for 12 weeks significantly improved delayed word recall and reduced the rate of forgetting newly acquired information.',
-              journal: 'Neuropsychopharmacology, 2002',
-            },
-            {
-              ingredient: 'Rhodiola Rosea',
-              finding: 'Shevtsov et al. (2003) demonstrated that a single dose of Rhodiola extract significantly improved capacity for mental work against a background of fatigue and stress in a randomised, double-blind, cross-over trial.',
-              journal: 'Phytomedicine, 2003',
-            },
-            {
               ingredient: 'Magnesium Bisglycinate',
               finding: 'Walker et al. (2002) confirmed that magnesium glycinate has substantially higher bioavailability than magnesium oxide, with significantly greater tissue retention after 60 days of supplementation.',
               journal: 'Journal of the American College of Nutrition, 2002',

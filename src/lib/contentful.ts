@@ -167,6 +167,17 @@ export interface CompanyValueFields extends BaseFields {
   order: number;
 }
 
+export interface HomeostasisNodeFields extends BaseFields {
+  label: string;
+  iconName: string;
+  order: number;
+}
+
+export interface OverstimulationTermFields extends BaseFields {
+  term: string;
+  order: number;
+}
+
 export interface PhilosophyPrincipleFields extends BaseFields {
   number?: string;
   title: string;
@@ -230,6 +241,22 @@ export interface PageHomeFields extends BaseFields {
   resultsSubheading?: string;
   bottomMissionEyebrow?: string;
   bottomMissionHeading?: string;
+  // NeurotransmitterSection
+  homeostasisEyebrow?: string;
+  homeostasisHeading?: string;
+  homeostasisBody?: string;
+  homeostasisCenterLabel?: string;
+  // BrainHealthSection
+  brainHealthEyebrow?: string;
+  brainHealthHeading?: string;
+  brainHealthBody?: string;
+  // ApproachSection
+  approachEyebrow?: string;
+  approachHeading?: string;
+  approachCard1Label?: string;
+  approachCard1Body?: string;
+  approachCard2Label?: string;
+  approachCard2Body?: string;
 }
 
 export interface PageProductDetailFields extends BaseFields {
@@ -283,6 +310,8 @@ export type PhilosophyBeliefSkeleton = EntrySkeletonType<PhilosophyBeliefFields,
 export type ComparisonRowSkeleton    = EntrySkeletonType<ComparisonRowFields,    'comparisonRow'>;
 export type SavingsSupplementSkeleton = EntrySkeletonType<SavingsSupplementFields, 'savingsSupplement'>;
 export type ResultsTimelineStepSkeleton = EntrySkeletonType<ResultsTimelineStepFields, 'resultsTimelineStep'>;
+export type HomeostasisNodeSkeleton  = EntrySkeletonType<HomeostasisNodeFields,  'homeostasisNode'>;
+export type OverstimulationTermSkeleton = EntrySkeletonType<OverstimulationTermFields, 'overstimulationTerm'>;
 export type NavigationLinkSkeleton   = EntrySkeletonType<NavigationLinkFields,   'navigationLink'>;
 export type PageHomeSkeleton         = EntrySkeletonType<PageHomeFields,         'pageHome'>;
 export type PageProductDetailSkeleton = EntrySkeletonType<PageProductDetailFields, 'pageProductDetail'>;
@@ -307,6 +336,8 @@ export type PhilosophyBeliefEntry = Entry<PhilosophyBeliefSkeleton>;
 export type ComparisonRowEntry    = Entry<ComparisonRowSkeleton>;
 export type SavingsSupplementEntry = Entry<SavingsSupplementSkeleton>;
 export type ResultsTimelineStepEntry = Entry<ResultsTimelineStepSkeleton>;
+export type HomeostasisNodeEntry  = Entry<HomeostasisNodeSkeleton>;
+export type OverstimulationTermEntry = Entry<OverstimulationTermSkeleton>;
 export type NavigationLinkEntry   = Entry<NavigationLinkSkeleton>;
 export type PageHomeEntry         = Entry<PageHomeSkeleton>;
 export type PageProductDetailEntry = Entry<PageProductDetailSkeleton>;

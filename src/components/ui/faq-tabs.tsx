@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { EASE, DURATION } from '@/lib/animation';
 import { Plus } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -90,7 +91,7 @@ const FAQList = ({ faqData, selected }: { faqData: FAQData; selected: string }) 
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 16 }}
-            transition={{ duration: 0.35, ease: 'easeOut' }}
+            transition={{ duration: DURATION.slow, ease: EASE.expoOut }}
             className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start"
           >
             {questions.map((faq, index) => (
@@ -110,7 +111,7 @@ const FAQCard = ({ question, answer, index }: FAQItem & { index: number }) => {
     <motion.div
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, delay: index * 0.04, ease: 'easeOut' }}
+      transition={{ duration: DURATION.base, delay: index * 0.04, ease: EASE.expoOut }}
       className={cn(
         'group relative bg-white rounded-2xl border transition-all duration-300 overflow-hidden',
         isOpen
@@ -122,7 +123,7 @@ const FAQCard = ({ question, answer, index }: FAQItem & { index: number }) => {
       <motion.div
         initial={false}
         animate={{ scaleX: isOpen ? 1 : 0 }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        transition={{ duration: DURATION.base, ease: EASE.expoOut }}
         className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#3B38B8] to-[#1E1854] origin-left"
       />
 
@@ -138,7 +139,7 @@ const FAQCard = ({ question, answer, index }: FAQItem & { index: number }) => {
         </span>
         <motion.span
           animate={{ rotate: isOpen ? 45 : 0 }}
-          transition={{ duration: 0.22 }}
+          transition={{ duration: DURATION.fast, ease: EASE.expoOut }}
           className={cn(
             'shrink-0 mt-0.5 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors duration-200',
             isOpen
@@ -153,7 +154,7 @@ const FAQCard = ({ question, answer, index }: FAQItem & { index: number }) => {
       <motion.div
         initial={false}
         animate={{ height: isOpen ? 'auto' : '0px' }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        transition={{ duration: DURATION.base, ease: EASE.expoOut }}
         className="overflow-hidden"
       >
         <div className="px-6 pb-6">

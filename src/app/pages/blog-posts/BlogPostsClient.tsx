@@ -19,7 +19,7 @@ type Post = {
   title: string;
   excerpt: string;
   tags: string[];
-  image: string;
+  image: string | null | undefined;
   date: string;
   readTime: string;
 };
@@ -80,27 +80,31 @@ export default function BlogPostsClient({ posts }: { posts: Post[] }) {
               {/* Mobile: top row with image + meta/title; Desktop: full-width image */}
               <div className="flex flex-row sm:flex-col">
                 {/* Mobile image — padded square with rounded corners */}
-                <div className="sm:hidden p-2 shrink-0">
-                  <div className="relative w-16 h-16 rounded-lg overflow-hidden bg-[#1E18540A]">
+                {post.image && (
+                  <div className="sm:hidden p-2 shrink-0">
+                    <div className="relative w-16 h-16 rounded-lg overflow-hidden bg-[#1E18540A]">
+                      <Image
+                        src={post.image}
+                        alt={post.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        sizes="64px"
+                      />
+                    </div>
+                  </div>
+                )}
+                {/* Desktop image — full width */}
+                {post.image && (
+                  <div className="hidden sm:block relative w-full sm:aspect-[16/10] overflow-hidden bg-[#1E18540A]">
                     <Image
                       src={post.image}
                       alt={post.title}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="64px"
+                      sizes="(max-width: 1024px) 50vw, 33vw"
                     />
                   </div>
-                </div>
-                {/* Desktop image — full width */}
-                <div className="hidden sm:block relative w-full sm:aspect-[16/10] overflow-hidden bg-[#1E18540A]">
-                  <Image
-                    src={post.image}
-                    alt={post.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 1024px) 50vw, 33vw"
-                  />
-                </div>
+                )}
                 {/* Meta + title (right of image on mobile, below image on sm+) */}
                 <div className="flex flex-col flex-1 p-3 sm:p-6 space-y-1 sm:space-y-3 min-w-0">
                   <div className="flex items-center gap-1.5 text-xs text-[rgba(30,24,84,0.45)]">

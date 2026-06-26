@@ -169,7 +169,7 @@ export default function DayArcSection() {
               { x: 650, label: mode === 'stim' ? '2nd dose' : '' },
               { x: 820, label: 'Evening' },
             ].map(({ x, label }) => (
-              <text key={label} x={x} y="435" textAnchor="middle" fontSize="17" fill="rgba(30,24,84,0.45)" fontFamily="Inter,system-ui" fontWeight="500">{label}</text>
+              <text key={label} x={x} y="435" textAnchor="middle" fontSize="22" fill="rgba(30,24,84,0.45)" fontFamily="Inter,system-ui" fontWeight="500">{label}</text>
             ))}
 
             {/* Natural baseline */}
@@ -353,7 +353,7 @@ export default function DayArcSection() {
                 { x: 650, label: mode === 'stim' ? '2nd dose' : '' },
                 { x: 820, label: 'Evening' },
               ].map(({ x, label }) => (
-                <text key={label} x={x} y="435" textAnchor="middle" fontSize="17" fill="rgba(30,24,84,0.45)" fontFamily="Inter,system-ui" fontWeight="500">
+                <text key={label} x={x} y="435" textAnchor="middle" fontSize="22" fill="rgba(30,24,84,0.45)" fontFamily="Inter,system-ui" fontWeight="500">
                   {label}
                 </text>
               ))}

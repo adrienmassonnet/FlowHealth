@@ -5,16 +5,15 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import TrackedLink from '@/app/components/TrackedLink';
 import { trackEvent } from '@/lib/clarity';
-
-const ease = [0.25, 0.1, 0.1, 1] as const;
+import { EASE, DURATION } from '@/lib/animation';
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 28, scale: 0.96 },
+  hidden: { opacity: 0, y: 16, scale: 0.97 },
   visible: (delay: number) => ({
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.75, delay, ease },
+    transition: { duration: DURATION.slow, delay, ease: EASE.expoOut },
   }),
 };
 
@@ -73,7 +72,7 @@ export default function BlogBento() {
         className="md:col-span-4 md:row-span-2"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-6% 0px' }}
+        viewport={{ once: true, margin: '-8% 0px' }}
         custom={0}
         variants={cardVariants}
       >
@@ -106,7 +105,7 @@ export default function BlogBento() {
         className="md:col-span-5"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-6% 0px' }}
+        viewport={{ once: true, margin: '-8% 0px' }}
         custom={0.1}
         variants={cardVariants}
       >
@@ -137,7 +136,7 @@ export default function BlogBento() {
         className="md:col-span-3"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-6% 0px' }}
+        viewport={{ once: true, margin: '-8% 0px' }}
         custom={0.2}
         variants={cardVariants}
       >
@@ -168,7 +167,7 @@ export default function BlogBento() {
         className="md:col-span-3"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-6% 0px' }}
+        viewport={{ once: true, margin: '-8% 0px' }}
         custom={0.1}
         variants={cardVariants}
       >
@@ -199,7 +198,7 @@ export default function BlogBento() {
         className="md:col-span-5"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-6% 0px' }}
+        viewport={{ once: true, margin: '-8% 0px' }}
         custom={0.2}
         variants={cardVariants}
       >

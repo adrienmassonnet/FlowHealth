@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { trackEvent } from '@/lib/clarity';
 
 type Ingredient = {
@@ -13,7 +13,99 @@ type Ingredient = {
   imageAlt: string;
   healthCategory: string;
   functionCategory: string;
+  scienceCard?: React.ReactNode;
 };
+
+function ZynamiteScienceCard() {
+  const metrics = [
+    { label: 'Reaction time', value: 4.7, unit: '%', note: 'improvement vs −5.2% placebo' },
+    { label: 'Attention accuracy', value: 9.7, unit: '%', note: 'enhanced vs baseline' },
+    { label: 'Processing speed', value: 11.5, unit: '%', note: 'faster task completion' },
+    { label: 'Emotional balance', value: 34.3, unit: '%', note: 'reduction in mood disturbance' },
+  ];
+
+  const comparisons = [
+    { aspect: 'Onset', caffeine: '~1 h', zynamite: '~1 h' },
+    { aspect: 'Duration', caffeine: '~2 h', zynamite: '~5 h' },
+    { aspect: 'Jitters', caffeine: true, zynamite: false },
+    { aspect: 'Crash', caffeine: true, zynamite: false },
+    { aspect: 'Tolerance buildup', caffeine: true, zynamite: false },
+    { aspect: 'Heart rate increase', caffeine: true, zynamite: false },
+  ];
+
+  const maxValue = Math.max(...metrics.map((m) => m.value));
+
+  return (
+    <div className="mt-2 rounded-xl bg-[#F4F3FB] p-4 space-y-4 border border-[#1E1854]/[0.07]">
+      {/* Header */}
+      <div className="flex items-start gap-2">
+        <span className="mt-0.5 shrink-0 w-4 h-4 rounded-full bg-[#1E1854] flex items-center justify-center">
+          <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 4.5L3 6.5L7 2" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        </span>
+        <p className="text-xs font-semibold text-[#1E1854] uppercase tracking-[0.08em]">Clinical evidence — RCT, double-blind, placebo-controlled</p>
+      </div>
+
+      {/* Bar chart */}
+      <div className="space-y-2.5">
+        {metrics.map((m) => (
+          <div key={m.label} className="space-y-0.5">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-medium text-[#1E1854]/70 tracking-[-0.01em]">{m.label}</span>
+              <span className="text-[11px] font-bold text-[#1E1854] tabular-nums">+{m.value}{m.unit}</span>
+            </div>
+            <div className="relative h-2 rounded-full bg-[#1E1854]/[0.08] overflow-hidden">
+              <div
+                className="absolute left-0 top-0 h-full rounded-full bg-[#1E1854]"
+                style={{ width: `${(m.value / maxValue) * 100}%` }}
+              />
+            </div>
+            <p className="text-[10px] text-[#1E1854]/40 leading-none">{m.note}</p>
+          </div>
+        ))}
+        <p className="text-[9px] text-[#1E1854]/30 pt-0.5">Sources: Wightman et al., Nutrients 2020; Castellote-Caballero et al., Pharmaceuticals 2025</p>
+      </div>
+
+      {/* Comparison table */}
+      <div>
+        <p className="text-[10px] font-semibold text-[#1E1854]/50 uppercase tracking-[0.08em] mb-1.5">vs Caffeine</p>
+        <div className="rounded-lg overflow-hidden border border-[#1E1854]/[0.08]">
+          <div className="grid grid-cols-3 bg-[#1E1854]/[0.06] px-3 py-1.5">
+            <span className="text-[9px] font-semibold text-[#1E1854]/40 uppercase tracking-[0.06em]"></span>
+            <span className="text-[9px] font-semibold text-[#1E1854]/40 uppercase tracking-[0.06em] text-center">Caffeine</span>
+            <span className="text-[9px] font-semibold text-[#1E1854] uppercase tracking-[0.06em] text-center">Zynamite®</span>
+          </div>
+          {comparisons.map((row, i) => (
+            <div key={row.aspect} className={`grid grid-cols-3 px-3 py-1.5 ${i % 2 === 0 ? 'bg-white' : 'bg-[#F4F3FB]'}`}>
+              <span className="text-[10px] text-[#1E1854]/60 font-medium leading-none self-center">{row.aspect}</span>
+              <div className="flex justify-center self-center">
+                {typeof row.caffeine === 'boolean' ? (
+                  row.caffeine ? (
+                    <span className="text-[10px] text-[#D94F4F] font-semibold">✕</span>
+                  ) : (
+                    <span className="text-[10px] text-[#2A9D6B] font-semibold">✓</span>
+                  )
+                ) : (
+                  <span className="text-[10px] text-[#1E1854]/50 tabular-nums">{row.caffeine}</span>
+                )}
+              </div>
+              <div className="flex justify-center self-center">
+                {typeof row.zynamite === 'boolean' ? (
+                  row.zynamite ? (
+                    <span className="text-[10px] text-[#D94F4F] font-semibold">✕</span>
+                  ) : (
+                    <span className="text-[10px] text-[#2A9D6B] font-semibold">✓</span>
+                  )
+                ) : (
+                  <span className="text-[10px] font-semibold text-[#1E1854] tabular-nums">{row.zynamite}</span>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export const allIngredients: Ingredient[] = [
   {
@@ -39,12 +131,13 @@ export const allIngredients: Ingredient[] = [
   {
     name: 'Zynamite® (Mango Leaf Extract)',
     dose: '300 mg',
-    benefit: 'Standardised to 60% mangiferin, Zynamite® modulates brain alpha and beta wave activity for alert, composed focus. Clinical trials show significant improvements in reaction time and reduced mental fatigue — without caffeine\'s cardiovascular side effects.',
-    science: 'A standardized extract from mango leaves (Mangifera indica), rich in mangiferin. Mangiferin modulates brain wave activity and supports efficient energy use in neurons, promoting alert yet calm performance that can last several hours.',
+    benefit: 'In double-blind RCTs, Zynamite® improved reaction time by 4.7%, attention accuracy by 9.7%, and reduced mood disturbance by 34.3% — effects lasting 5+ hours. It crosses the blood-brain barrier and activates the same neural circuits as caffeine, but without jitters, crashes, or tolerance buildup. Its active compound, mangiferin, inhibits COMT — the enzyme that breaks down dopamine and noradrenaline — sustaining higher neurotransmitter levels for longer.',
+    science: 'Mangiferin (from Mangifera indica leaves) inhibits COMT, an enzyme that degrades dopamine, adrenaline, and noradrenaline. This prolongs the presence of these neurotransmitters in the frontal cortex and hippocampus — the areas governing attention, working memory, and decision-making — without stimulating the cardiovascular system.',
     image: '/ingredients/mangifera.png',
     imageAlt: 'Zynamite mango leaf extract (Mangifera indica) — clinically studied nootropic for focus and mental energy in Flow Health',
     healthCategory: 'Cognitive Performance',
     functionCategory: 'Plant Extracts',
+    scienceCard: <ZynamiteScienceCard />,
   },
   {
     name: 'Green Tea Extract',
@@ -397,6 +490,7 @@ export default function IngredientsExplorer({
                       {(textMode === 'both' || textMode === 'science') && (
                         <p className={`leading-[1.7] ${textMode === 'science' ? 'text-sm text-[rgba(30,24,84,0.78)]' : 'text-xs text-[rgba(30,24,84,0.42)]'}`}>{ing.science}</p>
                       )}
+                      {ing.scienceCard}
                     </div>
                   </div>
                 ))}

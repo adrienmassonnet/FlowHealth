@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
+import { EASE, DURATION } from "@/lib/animation"
 
 interface Step {
   id: string
@@ -64,7 +65,7 @@ export function FeatureCarousel({ steps, interval = 7000 }: FeatureCarouselProps
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: DURATION.slow, ease: EASE.expoOut }}
           >
             {/* Text content */}
             <div className="flex flex-col justify-center p-10 md:w-[52%] gap-5">
@@ -72,7 +73,7 @@ export function FeatureCarousel({ steps, interval = 7000 }: FeatureCarouselProps
                 className="text-xs font-semibold uppercase tracking-[0.16em] text-[rgb(30,24,84)]"
                 initial={{ opacity: 0, x: -12 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.06, duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ delay: 0.05, duration: DURATION.base, ease: EASE.expoOut }}
               >
                 {active.label}
               </motion.p>
@@ -80,7 +81,7 @@ export function FeatureCarousel({ steps, interval = 7000 }: FeatureCarouselProps
                 className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] text-[#1E1854] leading-[1.1]"
                 initial={{ opacity: 0, x: -12 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.1, duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ delay: 0.09, duration: DURATION.base, ease: EASE.expoOut }}
               >
                 {active.title}
               </motion.h3>
@@ -88,7 +89,7 @@ export function FeatureCarousel({ steps, interval = 7000 }: FeatureCarouselProps
                 className="text-base leading-[1.7] text-[rgb(30,24,84)]"
                 initial={{ opacity: 0, x: -12 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.15, duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ delay: 0.13, duration: DURATION.base, ease: EASE.expoOut }}
               >
                 {active.description}
               </motion.p>
@@ -99,7 +100,7 @@ export function FeatureCarousel({ steps, interval = 7000 }: FeatureCarouselProps
               className="md:w-[48%] relative overflow-hidden"
               initial={{ opacity: 0, scale: 1.04 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ delay: 0.07, duration: DURATION.slow, ease: EASE.expoOut }}
             >
               <img
                 src={active.image}

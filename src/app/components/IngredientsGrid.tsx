@@ -4,13 +4,7 @@ import { useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useInView } from 'framer-motion';
-
-const ease = [0.25, 0.1, 0.1, 1] as const;
-
-const cardVariants = {
-  hidden: { opacity: 0, scale: 0.86, rotate: -3 },
-  visible: { opacity: 1, scale: 1, rotate: 0 },
-};
+import { EASE, DURATION, VARIANTS } from '@/lib/animation';
 
 interface Ingredient {
   name: string;
@@ -32,14 +26,14 @@ export default function IngredientsGrid({ ingredients, sizes, labelClassName = '
 
   return (
     <div ref={ref} className={`grid gap-3 w-full ${gridClassName}`}>
-      {ingredients.map((ing) => (
+      {ingredients.map((ing, i) => (
         <motion.div
           key={ing.name}
           className="flex flex-col"
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
-          variants={cardVariants}
-          transition={{ duration: 0.8, ease }}
+          variants={VARIANTS.fadeUp}
+          transition={{ duration: DURATION.slow, delay: i * 0.08, ease: EASE.expoOut }}
         >
           {/* Image card — z-10 sits on top of the benefit tag below */}
           <div className="group relative rounded-2xl overflow-hidden aspect-[4/3] shadow-[0_4px_16px_rgba(0,0,0,0.12)] z-10 cursor-pointer">

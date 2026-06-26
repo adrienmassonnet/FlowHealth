@@ -83,7 +83,7 @@ export default function BrainSection() {
   };
 
   return (
-    <section ref={sectionRef} className="py-14 md:py-24 bg-white overflow-hidden">
+    <section ref={sectionRef} className="py-10 md:py-16 bg-[#F4F4F8] overflow-hidden md:rounded-[2rem] md:mx-8">
       <style>{`
         @keyframes brain-fade-up {
           from { opacity: 0; transform: translateY(18px); }

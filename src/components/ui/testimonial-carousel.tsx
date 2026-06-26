@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
+import { EASE, DURATION } from '@/lib/animation';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { Testimonial } from '@/lib/content';
 import { trackEvent } from '@/lib/clarity';
@@ -16,7 +17,7 @@ const IMAGES = [
   'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80&auto=format&fit=crop',
 ];
 
-const TRANSITION = { duration: 0.55, ease: [0.25, 0.1, 0.1, 1] as const };
+const TRANSITION = { duration: DURATION.slow, ease: EASE.expoOut };
 
 export function TestimonialCarousel({ testimonials }: { testimonials: Testimonial[] }) {
   const [current, setCurrent] = useState(0);

@@ -31,29 +31,33 @@ export default async function BlogPostsPage() {
         >
           {/* Mobile: padded square image + meta/title row */}
           <div className="flex flex-row md:contents">
-            <div className="md:hidden p-2 shrink-0">
-              <div className="relative w-20 h-20 rounded-lg overflow-hidden">
+            {featured.coverImageUrl && (
+              <div className="md:hidden p-2 shrink-0">
+                <div className="relative w-20 h-20 rounded-lg overflow-hidden">
+                  <Image
+                    src={featured.coverImageUrl}
+                    alt={featured.title}
+                    fill
+                    className="object-cover"
+                    priority
+                    sizes="80px"
+                  />
+                </div>
+              </div>
+            )}
+            {/* Desktop: full image */}
+            {featured.coverImageUrl && (
+              <div className="hidden md:block relative md:aspect-auto md:h-full min-h-[260px]">
                 <Image
                   src={featured.coverImageUrl}
                   alt={featured.title}
                   fill
                   className="object-cover"
                   priority
-                  sizes="80px"
+                  sizes="50vw"
                 />
               </div>
-            </div>
-            {/* Desktop: full image */}
-            <div className="hidden md:block relative md:aspect-auto md:h-full min-h-[260px]">
-              <Image
-                src={featured.coverImageUrl}
-                alt={featured.title}
-                fill
-                className="object-cover"
-                priority
-                sizes="50vw"
-              />
-            </div>
+            )}
             {/* Meta + title */}
             <div className="flex flex-col flex-1 p-3 md:p-10 space-y-1 md:space-y-5 min-w-0">
               <div className="flex items-center gap-1.5 text-xs text-[rgba(30,24,84,0.5)]">

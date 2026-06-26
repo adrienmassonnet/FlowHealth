@@ -3,8 +3,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import cloud from 'd3-cloud';
-
-const ease = [0.25, 0.1, 0.1, 1] as const;
+import { EASE, DURATION } from '@/lib/animation';
 
 const inputWords = [
   { text: 'Restlessness',           fontSize: 40, opacity: 0.95, weight: 700 },
@@ -74,7 +73,7 @@ function WordCloud({ inView, mobile }: { inView: boolean; mobile: boolean }) {
               key={w.text}
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: w.opacity } : {}}
-              transition={{ duration: 0.6, ease, delay: 0.04 * i }}
+              transition={{ duration: DURATION.base, ease: EASE.expoOut, delay: 0.03 * i }}
               textAnchor="middle"
               transform={`translate(${w.x ?? 0},${w.y ?? 0}) rotate(${w.rotate ?? 0})`}
               fontSize={w.fontSize}
@@ -121,7 +120,7 @@ export default function BrainHealthSection() {
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.65, ease, delay: 0.1 }}
+            transition={{ duration: DURATION.slow, ease: EASE.expoOut, delay: 0.1 }}
             className="space-y-4 md:max-w-[500px]"
           >
             <div className="space-y-2">

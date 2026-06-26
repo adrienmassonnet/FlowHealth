@@ -355,7 +355,7 @@ function mapBlogPost(e: BlogPostEntry) {
     title:         String(e.fields.title ?? ''),
     slug:          String(e.fields.slug ?? ''),
     excerpt:       String(e.fields.excerpt ?? ''),
-    coverImageUrl: assetUrl(e.fields.coverImage as any),
+    coverImageUrl: String(e.fields.coverImageUrl ?? ''),
     category:      String(e.fields.category ?? ''),
     tags:          Array.isArray(e.fields.tags) ? (e.fields.tags as string[]) : [],
     publishedDate: String(e.fields.publishedDate ?? ''),

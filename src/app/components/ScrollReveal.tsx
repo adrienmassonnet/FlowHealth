@@ -2,33 +2,9 @@
 
 import { motion } from 'framer-motion';
 import type { ReactNode } from 'react';
+import { VARIANTS, VIEWPORT, T } from '@/lib/animation';
 
-const ease = [0.25, 0.1, 0.1, 1] as const;
-
-const variants = {
-  fadeUp: {
-    hidden: { opacity: 0, y: 32 },
-    visible: { opacity: 1, y: 0 },
-  },
-  scale: {
-    hidden: { opacity: 0, scale: 0.92 },
-    visible: { opacity: 1, scale: 1 },
-  },
-  fadeIn: {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-  },
-  popUp: {
-    hidden: { opacity: 0, scale: 0.86, rotate: -3 },
-    visible: { opacity: 1, scale: 1, rotate: 0 },
-  },
-  slideUp: {
-    hidden: { opacity: 0, y: 48 },
-    visible: { opacity: 1, y: 0 },
-  },
-};
-
-type Variant = keyof typeof variants;
+type Variant = keyof typeof VARIANTS;
 
 interface Props {
   children: ReactNode;
@@ -43,15 +19,15 @@ export default function ScrollReveal({
   className,
   variant = 'fadeUp',
   delay = 0,
-  duration = 0.8,
+  duration = T.base.duration,
 }: Props) {
   return (
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: '-8% 0px' }}
-      variants={variants[variant]}
-      transition={{ duration, delay, ease }}
+      viewport={VIEWPORT}
+      variants={VARIANTS[variant]}
+      transition={{ duration, delay, ease: T.base.ease }}
       className={className}
     >
       {children}

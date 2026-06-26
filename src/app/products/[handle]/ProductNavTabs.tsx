@@ -7,6 +7,7 @@ import { ga4SelectContent } from '@/lib/ga4';
 const TABS = [
   { id: 'section-benefits', label: 'Benefits' },
   { id: 'section-timeline', label: 'Timeline' },
+  { id: 'section-journey', label: 'Our Story' },
   { id: 'section-how-to-use', label: 'How to Use' },
   { id: 'section-ingredients', label: 'Ingredients' },
   { id: 'section-purity', label: 'Overview' },

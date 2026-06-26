@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { motion, AnimatePresence, PanInfo } from "framer-motion";
+import { SPRING } from "@/lib/animation";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -31,19 +32,8 @@ function wrap(min: number, max: number, v: number) {
   return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
 }
 
-const BASE_SPRING = {
-  type: "spring" as const,
-  stiffness: 300,
-  damping: 30,
-  mass: 1,
-};
-
-const TAP_SPRING = {
-  type: "spring" as const,
-  stiffness: 450,
-  damping: 18,
-  mass: 1,
-};
+const BASE_SPRING = SPRING.base;
+const TAP_SPRING = SPRING.tap;
 
 export function FocusRail({
   items,

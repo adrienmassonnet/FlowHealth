@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import { EASE, DURATION } from '@/lib/animation';
 
 const nodes = [
   {
@@ -80,26 +82,37 @@ export default function NeurotransmitterSection() {
     <section
       ref={sectionRef}
       className="py-10 md:py-16 bg-[#F4F4F8] relative overflow-hidden md:rounded-[2rem] md:mx-8"
-      style={{
-opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-        transition: 'opacity 0.7s cubic-bezier(0.25,0.1,0.1,1), transform 0.7s cubic-bezier(0.25,0.1,0.1,1)',
-      }}
     >
       <div className="relative max-w-[1200px] mx-auto px-6">
         <div className="flex flex-col md:flex-row md:items-center gap-10 md:gap-12">
 
           {/* Left: text */}
           <div className="md:w-[40%] shrink-0 space-y-4">
-            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">
+            <motion.p
+              className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent"
+              initial={{ opacity: 0 }}
+              animate={isVisible ? { opacity: 1 } : {}}
+              transition={{ duration: DURATION.base, ease: EASE.expoOut }}
+            >
               What goes up must come down
-            </p>
-            <h2 className="text-2xl md:text-4xl font-semibold tracking-[-0.03em] leading-[1.08] text-[#1E1854]">
+            </motion.p>
+            <motion.h2
+              className="text-2xl md:text-4xl font-semibold tracking-[-0.03em] leading-[1.08] text-[#1E1854]"
+              initial={{ opacity: 0, y: 16 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: DURATION.slow, delay: 0.07, ease: EASE.expoOut }}
+            >
               True health is stability, not the constant swings.
-            </h2>
-            <p className="text-sm leading-[1.6]" style={{ color: 'rgba(30,24,84,0.55)' }}>
+            </motion.h2>
+            <motion.p
+              className="text-sm leading-[1.6]"
+              style={{ color: 'rgba(30,24,84,0.55)' }}
+              initial={{ opacity: 0, y: 12 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: DURATION.slow, delay: 0.14, ease: EASE.expoOut }}
+            >
               It's not the highs that wear the body down — it's the constant variation. Every spike demands a recovery. Homeostasis is the body's ability to return to its natural baseline after each disruption. Flow supports five systems that lose that ability first under chronic stress, so the body spends less energy compensating and more in a state it can sustain.
-            </p>
+            </motion.p>
           </div>
 
           {/* Right: ring — desktop */}
@@ -128,25 +141,29 @@ opacity: isVisible ? 1 : 0,
                   </text>
                 </svg>
 
-                {nodes.map((n) => {
+                {nodes.map((n, i) => {
                   const rad = ((n.angle - 90) * Math.PI) / 180;
                   const cx = 50 + rx * 100 * Math.cos(rad);
                   const cy = 50 + ry * 100 * Math.sin(rad);
                   return (
                     <div
                       key={n.sentence}
-                      className="absolute rounded-2xl flex items-center gap-2.5 px-3.5 py-3"
-                      style={{
-                        left: `${cx}%`,
-                        top: `${cy}%`,
-                        transform: 'translate(-50%, -50%)',
-                        width: '26%',
-                        background: 'linear-gradient(135deg, #3B38B8, #1E1854)',
-                        boxShadow: '0 4px 20px rgba(59,56,184,0.3)',
-                      }}
+                      className="absolute"
+                      style={{ left: `${cx}%`, top: `${cy}%`, transform: 'translate(-50%, -50%)', width: '26%' }}
                     >
-                      <div className="shrink-0" style={{ color: 'white' }}>{n.icon}</div>
-                      <p className="text-xs font-semibold leading-[1.3] tracking-[-0.01em] text-white">{n.sentence}</p>
+                      <motion.div
+                        className="rounded-2xl flex items-center gap-2.5 px-3.5 py-3"
+                        style={{
+                          background: 'linear-gradient(135deg, #3B38B8, #1E1854)',
+                          boxShadow: '0 4px 20px rgba(59,56,184,0.3)',
+                        }}
+                        initial={{ opacity: 0, scale: 0.82 }}
+                        animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+                        transition={{ duration: DURATION.slow, delay: 0.2 + i * 0.1, ease: EASE.expoOut }}
+                      >
+                        <div className="shrink-0" style={{ color: 'white' }}>{n.icon}</div>
+                        <p className="text-xs font-semibold leading-[1.3] tracking-[-0.01em] text-white">{n.sentence}</p>
+                      </motion.div>
                     </div>
                   );
                 })}
@@ -156,18 +173,21 @@ opacity: isVisible ? 1 : 0,
 
           {/* Mobile: single column */}
           <div className="md:hidden flex flex-col gap-3">
-          <p className="text-xs tracking-[0.16em] uppercase font-semibold text-[#1E1854] mb-1">
-            Flow's contribution to stability
-          </p>
-            {nodes.map((n) => (
-              <div
+            <p className="text-xs tracking-[0.16em] uppercase font-semibold text-[#1E1854] mb-1">
+              Flow's contribution to stability
+            </p>
+            {nodes.map((n, i) => (
+              <motion.div
                 key={n.sentence}
                 className="rounded-2xl px-4 py-3.5 flex items-center gap-3"
                 style={{ background: 'linear-gradient(135deg, #3B38B8, #1E1854)' }}
+                initial={{ opacity: 0, x: -12 }}
+                animate={isVisible ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: DURATION.base, delay: 0.1 + i * 0.07, ease: EASE.expoOut }}
               >
                 <div className="shrink-0" style={{ color: 'white' }}>{n.icon}</div>
                 <p className="text-sm font-semibold leading-[1.3] tracking-[-0.01em] text-white">{n.sentence}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
 

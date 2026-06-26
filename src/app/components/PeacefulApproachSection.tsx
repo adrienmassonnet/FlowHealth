@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { EASE, DURATION } from '@/lib/animation';
 
 const chapters = [
   {
@@ -26,7 +27,6 @@ const chapters = [
   },
 ];
 
-const ease = [0.4, 0, 0.2, 1] as const;
 
 export default function PeacefulApproachSection() {
   const [active, setActive] = useState(0);
@@ -80,7 +80,7 @@ export default function PeacefulApproachSection() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease }}
+                      transition={{ duration: DURATION.base, ease: EASE.expoOut }}
                       className="overflow-hidden"
                     >
                       <p className="text-sm text-[#1E1854] leading-[1.55] px-5 pb-5">
@@ -125,7 +125,7 @@ export default function PeacefulApproachSection() {
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.38, ease }}
+                transition={{ duration: DURATION.base, ease: EASE.expoOut }}
                 className="absolute inset-0 px-10 py-10"
               >
                 <div className="space-y-3">

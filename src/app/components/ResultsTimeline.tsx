@@ -3,21 +3,21 @@
 import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import type { ResultsTimelineStep } from '@/lib/content';
-
-const ease = [0.25, 0.1, 0.1, 1] as const;
+import { EASE, DURATION, VIEWPORT, VARIANTS } from '@/lib/animation';
 
 export default function ResultsTimeline({ steps }: { steps: ResultsTimelineStep[] }) {
   const [expanded, setExpanded] = useState(false);
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-8% 0px' });
+  const inView = useInView(ref, VIEWPORT);
 
   return (
     <motion.div
       ref={ref}
       className="bg-white rounded-2xl px-6 md:px-10 pt-10 pb-4 shadow-[0_2px_16px_rgba(30,24,84,0.07)] border border-[#1E1854]/[0.06]"
-      initial={{ opacity: 0, y: 24 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, ease }}
+      initial="hidden"
+      animate={inView ? 'visible' : 'hidden'}
+      variants={VARIANTS.fadeUp}
+      transition={{ duration: DURATION.slow, ease: EASE.expoOut }}
     >
 
       {/* Mobile: vertical layout */}
@@ -26,9 +26,10 @@ export default function ResultsTimeline({ steps }: { steps: ResultsTimelineStep[
           <motion.div
             key={step.period}
             className={`relative${i < steps.length - 1 ? ' pb-6' : ''}`}
-            initial={{ opacity: 0, x: -16 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.15 + i * 0.1, ease }}
+            initial="hidden"
+            animate={inView ? 'visible' : 'hidden'}
+            variants={VARIANTS.slideInLeft}
+            transition={{ duration: DURATION.base, delay: 0.1 + i * 0.07, ease: EASE.expoOut }}
           >
             {i < steps.length - 1 && (
               <div className="absolute left-[16px] top-[28px] bottom-0 w-px bg-[#1E1854]/12" />
@@ -66,9 +67,10 @@ export default function ResultsTimeline({ steps }: { steps: ResultsTimelineStep[
             <motion.div
               key={step.period}
               className="relative space-y-3"
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.65, delay: 0.1 + i * 0.12, ease }}
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+              variants={VARIANTS.fadeUp}
+              transition={{ duration: DURATION.base, delay: 0.1 + i * 0.07, ease: EASE.expoOut }}
             >
               {i < steps.length - 1 && (
                 <div className="absolute top-[14px] left-0 w-[calc(100%+2rem)] h-px bg-[#1E1854]/12" />

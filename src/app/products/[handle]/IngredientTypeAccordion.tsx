@@ -13,7 +13,7 @@ const categories: IngredientCategory[] = [
   {
     type: 'Adaptogens',
     image: 'https://flow-health-2.myshopify.com/cdn/shop/files/gingner.png?crop=center&height=76&v=1765390947&width=76',
-    ingredients: ['Ashwagandha', 'Rhodiola Rosea'],
+    ingredients: ['Ashwagandha'],
   },
   {
     type: 'Amino Acids & Precursors',
@@ -21,7 +21,7 @@ const categories: IngredientCategory[] = [
   },
   {
     type: 'Functional Mushrooms & Herbs',
-    ingredients: ["Lion's Mane Mushroom", 'Bacopa Monnieri'],
+    ingredients: ["Lion's Mane Mushroom"],
   },
   {
     type: 'Vitamins',
