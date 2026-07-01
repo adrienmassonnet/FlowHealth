@@ -94,7 +94,7 @@ export default function DayArcSection() {
   return (
     <section
       ref={sectionRef}
-      className="py-12 md:py-16 bg-white"
+      className="py-10 md:py-16 bg-white"
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0)' : 'translateY(20px)',
@@ -206,8 +206,8 @@ export default function DayArcSection() {
             ))}
           </div>
 
-          {/* Right: SVG chart */}
-          <div className="flex-1 min-w-0 w-full" style={{ height: chartHeight || undefined }}>
+          {/* Right: SVG chart — hidden on mobile to keep the layout clean */}
+          <div className="hidden md:block flex-1 min-w-0 w-full" style={{ height: chartHeight || undefined }}>
             <svg
               viewBox="0 0 920 500"
               width="100%"

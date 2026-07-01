@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { trackEvent } from '@/lib/clarity';
 import { pixelInitiateCheckout } from '@/lib/pixel';
 import { ga4BeginCheckout } from '@/lib/ga4';
@@ -71,7 +72,7 @@ export default function PurchaseSelector({ variantId, price, currencyCode, disco
               <span className={`text-sm line-through ${isSubscribe ? 'text-white/40' : 'text-[hsla(var(--color-secondary)/0.6)]'}`}>{fullPrice}</span>
             </div>
             <p className={`text-xs mt-1.5 leading-relaxed ${isSubscribe ? 'text-white/65' : 'text-[hsla(var(--color-secondary)/0.7)]'}`}>
-              Cancel any time after the second month with zero hassle.
+              Pause or cancel from month 2 — no forms, no hassle.
             </p>
           </div>
         </div>
@@ -113,6 +114,13 @@ export default function PurchaseSelector({ variantId, price, currencyCode, disco
       >
         {`Buy Now — ${displayPrice} ${currencyCode}`}
       </button>
+
+      <p className="text-center text-xs text-[hsla(var(--color-secondary)/0.45)]">
+        Already a subscriber?{' '}
+        <Link href="/pages/subscription" className="underline underline-offset-2 hover:text-[#1E1854] transition-colors">
+          Manage your subscription
+        </Link>
+      </p>
     </div>
     </>
   );

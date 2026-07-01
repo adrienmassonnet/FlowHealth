@@ -73,7 +73,7 @@ export default function FaqAccordion() {
               className="overflow-hidden transition-all duration-300 ease-out"
               style={{ maxHeight: open === i ? '300px' : '0px' }}
             >
-              <p className="pb-5 text-sm text-[hsla(var(--color-secondary)/1)] leading-relaxed pl-14">
+              <p className="pb-5 text-sm text-[hsla(var(--color-secondary)/1)] leading-relaxed pl-4 sm:pl-14">
                 {item.content}
               </p>
             </div>

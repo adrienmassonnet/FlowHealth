@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Turnstile from 'react-turnstile';
 import { trackEvent } from '@/lib/clarity';
 import { ga4SignUp } from '@/lib/ga4';
 
@@ -14,6 +15,7 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
   const [email, setEmail] = useState('');
   const [notifyPromos, setNotifyPromos] = useState(true);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   // Lock body scroll when open
   useEffect(() => {
@@ -42,7 +44,7 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
       const res = await fetch('/api/prelaunch', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, notifyPromos }),
+        body: JSON.stringify({ email, notifyPromos, turnstileToken }),
       });
       if (!res.ok) throw new Error();
       setStatus('success');
@@ -134,35 +136,42 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
                 />
 
                 {/* Checkbox */}
-                <label className="flex items-start gap-3 cursor-pointer group">
-                  <span
-                    onClick={() => setNotifyPromos(v => !v)}
-                    className={`mt-0.5 shrink-0 w-4.5 h-4.5 rounded-md border-2 flex items-center justify-center transition-all duration-200 ${
+                <label
+                  className="flex items-start gap-3 cursor-pointer group"
+                  onClick={() => setNotifyPromos(v => !v)}
+                >
+                  <span className="mt-0.5 shrink-0 w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all duration-200 touch-manipulation" style={{ minWidth: '20px', minHeight: '20px' }}>
+                    <span className={`w-full h-full rounded-[4px] border-2 flex items-center justify-center transition-all duration-200 ${
                       notifyPromos
                         ? 'bg-[#1E1854] border-[#1E1854]'
                         : 'border-[#1E1854]/25 group-hover:border-[#1E1854]/50'
-                    }`}
-                  >
-                    {notifyPromos && (
-                      <svg width="9" height="7" viewBox="0 0 9 7" fill="none">
-                        <path d="M1 3.5l2.5 2.5 5-5" stroke="white" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    )}
+                    }`}>
+                      {notifyPromos && (
+                        <svg width="9" height="7" viewBox="0 0 9 7" fill="none">
+                          <path d="M1 3.5l2.5 2.5 5-5" stroke="white" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      )}
+                    </span>
                   </span>
-                  <span
-                    onClick={() => setNotifyPromos(v => !v)}
-                    className="text-xs text-[#1E1854]/55 leading-relaxed select-none"
-                  >
+                  <span className="text-xs text-[#1E1854]/55 leading-relaxed select-none pt-0.5">
                     Keep me posted on promotions, new product releases, and other updates from Flow
                   </span>
                 </label>
+
+                <Turnstile
+                  sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? '1x00000000000000000000AA'}
+                  onVerify={setTurnstileToken}
+                  onExpire={() => setTurnstileToken(null)}
+                  theme="light"
+                  className="mt-1"
+                />
 
                 {status === 'error' && (
                   <p className="text-xs text-red-500">Something went wrong — please try again.</p>
                 )}
                 <button
                   type="submit"
-                  disabled={status === 'loading'}
+                  disabled={status === 'loading' || !turnstileToken}
                   className="btn-cta w-full text-white font-semibold text-sm tracking-[0.06em] uppercase py-3.5 rounded-full disabled:opacity-40 transition-all duration-300"
                 >
                   {status === 'loading' ? 'Saving…' : 'Keep me informed'}

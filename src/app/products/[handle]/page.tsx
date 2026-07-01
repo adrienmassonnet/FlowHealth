@@ -78,9 +78,9 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
       <ProductPageInit productName={product.title} price={parseFloat(firstVariant.price.amount)} currencyCode={firstVariant.price.currencyCode} productId={product.id} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
       {/* Product hero */}
-      <section id="section-product" className="scroll-mt-16 pt-20 pb-12 md:pb-20 max-w-[1200px] mx-auto pl-3 pr-6 relative overflow-hidden">
+      <section id="section-product" className="scroll-mt-16 pt-20 pb-10 md:pb-20 max-w-[1200px] mx-auto px-5 md:px-6 relative overflow-hidden">
         {/* Mobile-only title — shown above gallery */}
-        <div className="md:hidden space-y-2 pb-4 pl-3 pr-6">
+        <div className="md:hidden space-y-2 pb-4">
           <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Cognitive Performance Formula</p>
           <h1 className="text-3xl font-semibold tracking-[-0.02em] leading-tight">{product.title}</h1>
         </div>
@@ -88,7 +88,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 md:gap-y-0 items-start">
           <ProductImageGallery images={images} title={product.title} />
 
-          <div className="space-y-7 pl-6 pr-0 md:pl-8 lg:pl-12 pt-8 md:pt-12">
+          <div className="space-y-6 md:pl-8 lg:pl-12 pt-0 md:pt-12">
             <div className="hidden md:block space-y-2">
               <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Cognitive Performance Formula</p>
               <h1 className="text-3xl font-semibold tracking-[-0.02em] leading-tight">{product.title}</h1>
@@ -176,7 +176,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
       <section id="section-reviews" className="pt-2 pb-16">
         <div className="max-w-[1200px] mx-auto px-6 pt-4 pb-20 md:pt-8">
           <div className="mb-9 space-y-2">
-            <h2 className="text-3xl font-semibold tracking-[-0.02em]">What our clients have said.</h2>
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-[-0.02em]">What our clients have said.</h2>
           </div>
           <TestimonialCarousel testimonials={testimonials} />
         </div>
@@ -186,7 +186,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
       <section id="section-shipping" className="pt-2 pb-16">
         <div className="max-w-[1200px] mx-auto px-6 pt-4 pb-20 md:pt-8">
           <div className="mb-9">
-            <h2 className="text-3xl font-semibold tracking-[-0.02em]">Simple, stress-free shipping & terms.</h2>
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-[-0.02em]">Simple, stress-free shipping & terms.</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {(() => {
@@ -239,7 +239,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
         <section className="max-w-[1200px] mx-auto px-6 py-20">
           <div className="text-center mb-12 space-y-2">
             <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Our Range</p>
-            <h2 className="text-3xl font-semibold tracking-[-0.02em]">Our Unique Formulas</h2>
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-[-0.02em]">Our Unique Formulas</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {relatedProducts.map((p) => {

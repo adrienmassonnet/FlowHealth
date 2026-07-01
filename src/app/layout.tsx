@@ -5,6 +5,7 @@ import Script from "next/script";
 import "./globals.css";
 import Header from "@/app/components/Header";
 import ScrollManager from "@/app/components/ScrollManager";
+import ExitIntentModal from "@/app/components/ExitIntentModal";
 const outfit = Outfit({ subsets: ["latin"], display: "swap", preload: true });
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.flow-health.ch';
@@ -115,6 +116,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <noscript><img height="1" width="1" style={{display:'none'}} src="https://www.facebook.com/tr?id=1449181289756992&ev=PageView&noscript=1" /></noscript>
         <ScrollManager />
         <Header />
+        <ExitIntentModal />
         {children}
         <footer className="footer-gradient text-white/50 mt-12">
           <div className="max-w-[1200px] mx-auto px-6 py-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16">

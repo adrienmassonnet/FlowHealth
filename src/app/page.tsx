@@ -10,6 +10,7 @@ import BrainSection from '@/app/components/BrainSection';
 import OverstimulationSection from '@/app/components/OverstimulationSection';
 import DayArcSection from '@/app/components/DayArcSection';
 import GenesisHeader from '@/app/components/GenesisHeader';
+import InnerVitalitySection from '@/app/components/InnerVitalitySection';
 import {
   getHomepageContent,
   getFeaturedIngredients,
@@ -56,13 +57,13 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
 
-        <div className="relative z-10 max-w-[1200px] mx-auto px-6 pb-18 pt-20 md:pb-20 md:pt-24 w-full">
-          <div className="max-w-lg space-y-5 md:space-y-7">
+        <div className="relative z-10 max-w-[1200px] mx-auto px-5 pb-12 pt-20 md:px-6 md:pb-20 md:pt-24 w-full">
+          <div className="max-w-lg space-y-4 md:space-y-7">
             <HeroText delay={0}>
               <p className="text-xs tracking-[0.16em] uppercase text-white/50 font-medium">{cms.heroTagline}</p>
             </HeroText>
             <HeroText delay={120}>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl md:text-[4.2rem] font-semibold leading-[1.04] tracking-[-0.03em] text-white">{cms.heroHeading}</h1>
+              <h1 className="text-[2rem] sm:text-4xl md:text-5xl md:text-[4.2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-white">{cms.heroHeading}</h1>
             </HeroText>
             <HeroText delay={260} className="pt-1">
               <TrackedLink
@@ -79,8 +80,8 @@ export default async function HomePage() {
 
       {/* Mission + Featured product */}
       {featured && (
-        <section className="py-24 bg-white">
-          <div className="max-w-[1200px] mx-auto px-6 space-y-12">
+        <section className="py-14 md:py-24 bg-white">
+          <div className="max-w-[1200px] mx-auto px-5 md:px-6 space-y-8 md:space-y-12">
             <div className="space-y-3 text-center max-w-[860px] mx-auto">
               <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">
                 {cms.missionSubheading || 'on a mission to fight over stimulation'}
@@ -180,6 +181,8 @@ export default async function HomePage() {
         </section>
       )}
 
+      <InnerVitalitySection />
+
       <HealthBenefits benefits={healthBenefits} sectionLabel={cms.healthBenefitsSectionLabel} heading={cms.healthBenefitsHeading} />
 
       {/* Genesis section */}
@@ -188,8 +191,8 @@ export default async function HomePage() {
       </section>
 
       {/* Trust cards */}
-      <section className="pb-20 md:pb-24 bg-white">
-        <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <section className="pb-12 md:pb-24 bg-white">
+        <div className="max-w-[1200px] mx-auto px-5 md:px-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
             {
               title: 'Empowered by stable energy',
@@ -240,8 +243,8 @@ export default async function HomePage() {
 
       {/* Key Ingredients */}
       <section className="bg-white">
-        <div className="max-w-[1200px] mx-auto px-6 py-20">
-          <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-start">
+        <div className="max-w-[1200px] mx-auto px-5 md:px-6 py-12 md:py-20">
+          <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-start">
 
             {/* Left — header + CTA */}
             <div className="md:w-[44%] shrink-0 flex flex-col gap-6 md:pt-2">

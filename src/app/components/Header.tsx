@@ -350,19 +350,30 @@ export default function Header() {
                 initial={{ opacity: 0, y: -8, filter: 'blur(6px)' }}
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 transition={{ duration: 0.9, ease: easeOut }}
-                className="md:flex-none flex items-center justify-center gap-3 md:gap-5 border border-white/30 backdrop-blur-xl h-10 w-10 md:w-auto rounded-full px-0 md:px-5"
+                className="md:flex-none flex items-center justify-center gap-3 md:gap-5 border border-white/30 backdrop-blur-xl h-10 w-auto rounded-full px-3 md:px-5"
                 style={pillStyle}
               >
-                {/* Hamburger — mobile only */}
-                <button
-                  className="md:hidden p-1 text-[#1E1854] shrink-0"
-                  aria-label="Open menu"
-                  onClick={() => setMobileOpen(true)}
-                >
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                  </svg>
-                </button>
+                {/* Mobile: hamburger + logo side by side */}
+                <div className="md:hidden flex items-center gap-2.5">
+                  <button
+                    className="p-1 text-[#1E1854] shrink-0"
+                    aria-label="Open menu"
+                    onClick={() => setMobileOpen(true)}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                    </svg>
+                  </button>
+                  <Link
+                    href="/"
+                    onClick={() => setMobileOpen(false)}
+                    className="flex items-center gap-1.5"
+                    aria-label="Flow Health"
+                  >
+                    <img src="/flow-logomark.svg?v=2" alt="" width={18} height={18} className="w-4.5 h-4.5" />
+                    <img src="/flow-wordmark.svg?v=2" alt="Flow" width={46} height={18} className="h-4.5 w-auto" />
+                  </Link>
+                </div>
 
                 {/* Logo — desktop only */}
                 <Link
@@ -437,7 +448,7 @@ export default function Header() {
                 <Link
                   href="/products/rooibos-hibiscus-pomegranate"
                   onClick={() => { setActiveMenu(null); trackEvent('header_get_flow_desktop'); }}
-                  className="btn-cta md:ml-0 hidden md:flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium text-white px-4 py-1.5 rounded-full shrink-0"
+                  className="btn-cta flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium text-white px-4 py-1.5 rounded-full shrink-0"
                 >
                   Shop
                 </Link>

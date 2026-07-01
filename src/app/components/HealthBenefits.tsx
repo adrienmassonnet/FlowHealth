@@ -24,7 +24,7 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
   if (!step) return null;
 
   return (
-    <section ref={ref} className="max-w-[1200px] mx-auto px-6 py-16">
+    <section ref={ref} className="max-w-[1200px] mx-auto px-5 md:px-6 py-10 md:py-16">
       {/* Header */}
       <div className="mb-8 space-y-1.5">
         <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">
@@ -83,7 +83,7 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
 
         {/* Right — detail image panel */}
         <motion.div
-          className="relative rounded-2xl overflow-hidden min-h-[428px] md:min-h-[446px]"
+          className="relative rounded-2xl overflow-hidden min-h-[280px] sm:min-h-[360px] md:min-h-[446px]"
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.1, ease }}
@@ -129,10 +129,10 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
           {/* Content — re-animates on each switch via key */}
           <div
             key={active}
-            className="absolute inset-0 flex flex-col justify-end p-7 md:p-9"
+            className="absolute inset-0 flex flex-col justify-end p-5 md:p-9"
             style={{ animation: 'hbFadeUp 0.5s cubic-bezier(0.25, 0.1, 0.1, 1) forwards' }}
           >
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-white tracking-[-0.02em] leading-snug mb-2">
+            <h3 className="text-xl sm:text-3xl md:text-4xl font-semibold text-white tracking-[-0.02em] leading-snug mb-2">
               {step.title}
             </h3>
             <p className="text-sm text-white/90 leading-relaxed mb-5">
