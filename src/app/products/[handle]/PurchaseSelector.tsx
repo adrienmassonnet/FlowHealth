@@ -5,6 +5,7 @@ import { trackEvent } from '@/lib/clarity';
 import { pixelInitiateCheckout } from '@/lib/pixel';
 import { ga4BeginCheckout } from '@/lib/ga4';
 import PreLaunchModal from '@/app/components/PreLaunchModal';
+import posthog from 'posthog-js';
 
 interface PurchaseSelectorProps {
   variantId: string;
@@ -30,6 +31,12 @@ export default function PurchaseSelector({ variantId, price, currencyCode, disco
     trackEvent(isSubscribe ? 'product_page_buy_subscribe' : 'product_page_buy_once');
     pixelInitiateCheckout({ value: parseFloat(displayPrice), currency: currencyCode });
     ga4BeginCheckout({ item_id: variantId, item_name: 'Flow', price: parseFloat(displayPrice), currency: currencyCode, item_brand: 'Flow Health', item_category: 'Supplement' });
+    posthog.capture('checkout_cta_clicked', {
+      purchase_type: selected,
+      price: parseFloat(displayPrice),
+      currency: currencyCode,
+      variant_id: variantId,
+    });
     setModalOpen(true);
   }
 
@@ -39,7 +46,7 @@ export default function PurchaseSelector({ variantId, price, currencyCode, disco
     <div className="space-y-3">
       {/* Subscribe card */}
       <button
-        onClick={() => { setSelected('subscribe'); trackEvent('product_page_select_subscribe'); }}
+        onClick={() => { setSelected('subscribe'); trackEvent('product_page_select_subscribe'); posthog.capture('purchase_type_selected', { purchase_type: 'subscribe' }); }}
         className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl border-2 transition-all duration-300 group ${
           isSubscribe
             ? 'card-selected'
@@ -71,7 +78,7 @@ export default function PurchaseSelector({ variantId, price, currencyCode, disco
 
       {/* One-time purchase — row button */}
       <button
-        onClick={() => { setSelected('once'); trackEvent('product_page_select_one_time'); }}
+        onClick={() => { setSelected('once'); trackEvent('product_page_select_one_time'); posthog.capture('purchase_type_selected', { purchase_type: 'once' }); }}
         className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl border-2 transition-all duration-200 group ${
           isOnce
             ? 'border-[#1E1854] bg-[#1E1854]/5'

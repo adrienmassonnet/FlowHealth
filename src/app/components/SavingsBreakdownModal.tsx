@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { trackEvent } from '@/lib/clarity';
+import posthog from 'posthog-js';
 
 type Supplement = { name: string; monthlyPriceCHF: number };
 
@@ -21,7 +22,7 @@ export default function SavingsBreakdownModal({
   return (
     <>
       <button
-        onClick={() => { setOpen(true); trackEvent('product_page_savings_breakdown_open'); }}
+        onClick={() => { setOpen(true); trackEvent('product_page_savings_breakdown_open'); posthog.capture('savings_breakdown_opened', { flow_price: flowPrice, traditional_total: traditionalTotal, savings }); }}
         className="inline-flex items-center gap-1.5 text-xs font-medium text-[rgb(30,24,84)] tracking-[0.04em] hover:opacity-75 transition-opacity"
       >
         See full breakdown

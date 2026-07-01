@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { subscribeToKlaviyoList, trackKlaviyoEvent } from '@/lib/klaviyo';
+import { getPostHogClient } from '@/lib/posthog-server';
 
 export async function POST(req: NextRequest) {
   try {
@@ -22,6 +23,24 @@ export async function POST(req: NextRequest) {
         console.error('[prelaunch] Klaviyo error', klaviyoErr);
       }
     }
+
+    const distinctId = req.headers.get('X-POSTHOG-DISTINCT-ID') ?? email;
+    const posthog = getPostHogClient();
+    posthog.identify({
+      distinctId: email,
+      properties: { email, notify_promos: notifyPromos ?? true },
+    });
+    if (distinctId !== email) {
+      posthog.alias({ distinctId: email, alias: distinctId });
+    }
+    posthog.capture({
+      distinctId: email,
+      event: 'prelaunch_email_captured',
+      properties: {
+        notify_promos: notifyPromos ?? true,
+        $session_id: req.headers.get('X-POSTHOG-SESSION-ID') ?? undefined,
+      },
+    });
 
     return NextResponse.json({ ok: true });
   } catch (err) {

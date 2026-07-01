@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { trackEvent } from '@/lib/clarity';
 import { ga4SignUp } from '@/lib/ga4';
+import posthog from 'posthog-js';
 
 interface PreLaunchModalProps {
   open: boolean;
@@ -38,17 +39,25 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
     if (!email) return;
     setStatus('loading');
     trackEvent('product_page_prelaunch_signup');
+    posthog.capture('prelaunch_signup_submitted', { notify_promos: notifyPromos });
     try {
       const res = await fetch('/api/prelaunch', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'X-POSTHOG-DISTINCT-ID': posthog.get_distinct_id(),
+          'X-POSTHOG-SESSION-ID': posthog.get_session_id() ?? '',
+        },
         body: JSON.stringify({ email, notifyPromos }),
       });
       if (!res.ok) throw new Error();
       setStatus('success');
       trackEvent('product_page_prelaunch_signup_success');
       ga4SignUp('pre_launch_modal');
-    } catch {
+      posthog.identify(email, { email, notify_promos: notifyPromos });
+      posthog.capture('prelaunch_signup_succeeded', { notify_promos: notifyPromos });
+    } catch (err) {
+      posthog.captureException(err);
       setStatus('error');
     }
   }

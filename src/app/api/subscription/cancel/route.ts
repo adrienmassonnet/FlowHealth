@@ -1,5 +1,6 @@
 import { cancelSubscription } from '@/lib/shopify-subscriptions';
 import { trackKlaviyoEvent } from '@/lib/klaviyo';
+import { getPostHogClient } from '@/lib/posthog-server';
 
 export async function POST(req: Request) {
   try {
@@ -14,6 +15,17 @@ export async function POST(req: Request) {
       subscription_id: subscriptionId,
       product_title: subscription.lines.edges[0]?.node.productTitle,
       cancellation_reason: reason,
+    });
+
+    const posthog = getPostHogClient();
+    posthog.capture({
+      distinctId: email,
+      event: 'subscription_cancelled',
+      properties: {
+        subscription_id: subscriptionId,
+        product_title: subscription.lines.edges[0]?.node.productTitle,
+        cancellation_reason: reason,
+      },
     });
 
     return Response.json({ subscription, reason });
