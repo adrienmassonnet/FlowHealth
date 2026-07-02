@@ -12,6 +12,7 @@ import BrainHealthSection from '@/app/components/BrainHealthSection';
 import DayArcSection from '@/app/components/DayArcSection';
 import NeurotransmitterSection from '@/app/components/NeurotransmitterSection';
 import InnerVitalitySection from '@/app/components/InnerVitalitySection';
+import ValuesStandForSection from '@/app/components/ValuesStandForSection';
 import { FAQ } from '@/components/ui/faq-tabs';
 import { faqCategories as categories } from '@/lib/content-data';
 import {
@@ -236,6 +237,13 @@ export default async function HomePage() {
       <div className="bg-white py-14 md:py-24">
         <ApproachSection />
       </div>
+
+      {/* Values — three pillars */}
+      <section className="bg-white border-t border-[#1E1854]/[0.06]">
+        <div className="max-w-[1200px] mx-auto px-6 py-16 md:py-24">
+          <ValuesStandForSection />
+        </div>
+      </section>
 
       <BrainSection />
 
