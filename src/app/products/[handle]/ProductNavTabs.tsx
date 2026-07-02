@@ -4,18 +4,33 @@ import { useEffect, useState, useCallback, useRef } from 'react';
 import { trackEvent } from '@/lib/clarity';
 import { ga4SelectContent } from '@/lib/ga4';
 
-const TABS = [
-  { id: 'section-benefits', label: 'Benefits' },
-  { id: 'section-timeline', label: 'Timeline' },
-  { id: 'section-journey', label: 'Our Story' },
-  { id: 'section-how-to-use', label: 'How to Use' },
-  { id: 'section-ingredients', label: 'Ingredients' },
-  { id: 'section-purity', label: 'Overview' },
-  { id: 'section-reviews', label: 'Reviews' },
-  { id: 'section-shipping', label: 'Shipping & Terms' },
-  { id: 'section-savings', label: 'How Flow Compares' },
+const TAB_GROUPS = [
+  {
+    label: 'About',
+    tabs: [
+      { id: 'section-benefits', label: 'Benefits' },
+      { id: 'section-timeline', label: 'Timeline' },
+      { id: 'section-how-to-use', label: 'How to Use' },
+    ],
+  },
+  {
+    label: 'Ingredients & Purity',
+    tabs: [
+      { id: 'section-ingredients', label: 'Ingredients' },
+      { id: 'section-purity', label: 'Overview' },
+    ],
+  },
+  {
+    label: 'Reviews & Shipping',
+    tabs: [
+      { id: 'section-reviews', label: 'Reviews' },
+      { id: 'section-shipping', label: 'Shipping & Terms' },
+      { id: 'section-savings', label: 'How Flow Compares' },
+    ],
+  },
 ];
 
+const TABS = TAB_GROUPS.flatMap((g) => g.tabs);
 const CONTENT_IDS = TABS.map((t) => t.id);
 const EASING = 'cubic-bezier(0.25, 0.1, 0.1, 1)';
 
@@ -59,7 +74,27 @@ function fadeOutSection(id: string): Promise<void> {
 
 export default function ProductNavTabs() {
   const [active, setActive] = useState<string>(TABS[0].id);
+  const [canScrollRight, setCanScrollRight] = useState(false);
   const pillsRef = useRef<HTMLDivElement>(null);
+
+  const updateScrollState = useCallback(() => {
+    const el = pillsRef.current;
+    if (!el) return;
+    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 4);
+  }, []);
+
+  useEffect(() => {
+    const el = pillsRef.current;
+    if (!el) return;
+    updateScrollState();
+    el.addEventListener('scroll', updateScrollState, { passive: true });
+    const ro = new ResizeObserver(updateScrollState);
+    ro.observe(el);
+    return () => {
+      el.removeEventListener('scroll', updateScrollState);
+      ro.disconnect();
+    };
+  }, [updateScrollState]);
 
   // Pre-select first section on mount, hide the rest
   useEffect(() => {
@@ -162,10 +197,10 @@ export default function ProductNavTabs() {
     <div data-product-nav className="bg-transparent">
       <div className="max-w-[1200px] mx-auto px-6">
         {/* Tab pills row */}
-        <div className="relative h-11 flex items-center">
+        <div className="relative rounded-2xl border border-[#1E185414] bg-[#1E1854]/[0.05] p-1.5">
           <div
             ref={pillsRef}
-            className="flex gap-2 overflow-x-auto w-full"
+            className="flex items-center gap-1.5 overflow-x-auto w-full scroll-smooth"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {TABS.map(({ id, label }) => (
@@ -173,17 +208,19 @@ export default function ProductNavTabs() {
                 key={id}
                 data-tab={id}
                 onClick={() => selectTab(id)}
-                className={`shrink-0 rounded-xl border px-3 py-2 text-xs font-medium transition-all duration-200 whitespace-nowrap min-h-[36px] ${
+                className={`flex-1 min-w-fit rounded-xl border px-3.5 py-2 text-xs font-semibold transition-all duration-200 whitespace-nowrap min-h-[36px] text-center ${
                   active === id
-                    ? 'bg-[#E8E7F5] text-[#1E1854] border-[#C8C6E8]'
-                    : 'border-[#1E185420] text-[#1E1854]/70 hover:border-[#1E1854]/25 hover:bg-[#1E1854]/[0.04]'
+                    ? 'bg-[#1E1854] text-white border-[#1E1854] shadow-sm'
+                    : 'border-transparent text-[#1E1854]/70 hover:border-[#1E1854]/25 hover:bg-white/60'
                 }`}
               >
                 {label}
               </button>
             ))}
           </div>
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-10 bg-gradient-to-l from-white to-transparent" />
+          {canScrollRight && (
+            <div className="pointer-events-none absolute right-1.5 top-1.5 bottom-1.5 w-10 rounded-r-xl bg-gradient-to-l from-[#F1F0FA] to-transparent" />
+          )}
         </div>
       </div>
     </div>

@@ -45,7 +45,6 @@ import MainBenefits from '@/app/components/MainBenefits';
 import ProductNavTabs from './ProductNavTabs';
 import ProductPageInit from './ProductPageInit';
 import { TestimonialCarousel } from '@/components/ui/testimonial-carousel';
-import ProductJourneySection from './ProductJourneySection';
 
 
 export default async function ProductPage({ params }: { params: Promise<{ handle: string }> }) {
@@ -173,11 +172,6 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
       {/* Timeline section */}
       <section id="section-timeline" className="pt-2 pb-16">
         <BenefitsTimeline steps={timelineSteps} />
-      </section>
-
-      {/* Our Story / Journey section */}
-      <section id="section-journey" className="pt-2 pb-16">
-        <ProductJourneySection />
       </section>
 
       {/* How to Use section */}

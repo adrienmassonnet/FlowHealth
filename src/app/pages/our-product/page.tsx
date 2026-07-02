@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   },
 };
 import ProductTopics from './ProductTopics';
+import ProductJourneySection from './ProductJourneySection';
 
 export default async function OurProductPage() {
   const [meta, ingredients] = await Promise.all([getProductMeta(), getIngredients()]);
@@ -69,6 +70,9 @@ export default async function OurProductPage() {
 
       {/* Tabbed topics */}
       <ProductTopics ingredients={ingredients} activeIngredients={meta.activeIngredients} />
+
+      {/* Our Story / journey timeline */}
+      <ProductJourneySection />
 
     </main>
   );
