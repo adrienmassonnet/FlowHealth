@@ -35,72 +35,8 @@ export const FAQ = ({
   return (
     <section className={cn('relative overflow-hidden px-4 py-12', className)}>
       {(title || subtitle) && <FAQHeader title={title} subtitle={subtitle} />}
-
-      {/* Mobile: category pills + stacked list */}
-      <div className="md:hidden relative z-10">
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
-          {Object.entries(categories).map(([key, label]) => (
-            <button
-              key={key}
-              onClick={() => setSelectedCategory(key)}
-              className={cn(
-                'whitespace-nowrap rounded-full px-5 py-2.5 text-xs tracking-[0.08em] uppercase font-medium transition-all duration-300',
-                selectedCategory === key
-                  ? 'bg-gradient-to-r from-[#3B38B8] to-[#1E1854] text-white shadow-[0_4px_14px_-4px_rgba(59,56,184,0.5)]'
-                  : 'bg-white border border-[#1E185420] shadow-[0_2px_8px_rgba(30,24,84,0.06)] text-[rgba(30,24,84,0.8)] hover:border-[#3B38B8] hover:text-[#3B38B8] hover:shadow-[0_4px_16px_rgba(59,56,184,0.12)]'
-              )}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-        <FAQList faqData={faqData} selected={selectedCategory} />
-      </div>
-
-      {/* Desktop: book-page reader */}
-      <div className="hidden md:grid relative z-10 max-w-5xl mx-auto grid-cols-[1fr_2fr] gap-0 border border-[#1E1854]/[0.08] rounded-2xl overflow-hidden shadow-[0_4px_40px_rgba(30,24,84,0.07)]">
-
-        {/* Category index — left spine */}
-        <div className="bg-white border-r border-[#1E1854]/[0.07] flex flex-col">
-          {Object.entries(categories).map(([key, label]) => (
-            <button
-              key={key}
-              onClick={() => setSelectedCategory(key)}
-              className={`text-left px-6 py-5 border-b border-[#1E1854]/[0.07] last:border-0 transition-colors duration-200 group ${
-                selectedCategory === key ? 'bg-[#F7F6FA]' : 'bg-white hover:bg-[#F7F6FA]/60'
-              }`}
-            >
-              <span className={`text-sm font-medium tracking-[-0.01em] transition-colors duration-200 leading-snug ${selectedCategory === key ? 'text-[#3B38B8]' : 'text-[#1E1854]/60 group-hover:text-[#1E1854]/80'}`}>
-                {label}
-              </span>
-            </button>
-          ))}
-        </div>
-
-        {/* Page content — right */}
-        <div className="relative bg-[#FAFAFA] min-h-[200px] overflow-hidden">
-          <AnimatePresence mode="wait">
-            {Object.entries(faqData).map(([category, questions]) => {
-              if (selectedCategory !== category) return null;
-              return (
-                <motion.div
-                  key={category}
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: DURATION.base, ease: EASE.expoOut }}
-                  className="px-8 py-8 space-y-3"
-                >
-                  {questions.map((faq, index) => (
-                    <FAQCard key={index} question={faq.question} answer={faq.answer} index={index} />
-                  ))}
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
-        </div>
-
-      </div>
+      <FAQTabs categories={categories} selected={selectedCategory} setSelected={setSelectedCategory} />
+      <FAQList faqData={faqData} selected={selectedCategory} />
     </section>
   );
 };
@@ -117,6 +53,33 @@ const FAQHeader = ({ title, subtitle }: { title: string; subtitle: string }) => 
   </div>
 );
 
+const FAQTabs = ({
+  categories,
+  selected,
+  setSelected,
+}: {
+  categories: Categories;
+  selected: string;
+  setSelected: (key: string) => void;
+}) => (
+  <div className="relative z-10 flex flex-wrap items-center justify-center gap-3 mb-10">
+    {Object.entries(categories).map(([key, label]) => (
+      <button
+        key={key}
+        onClick={() => setSelected(key)}
+        className={cn(
+          'whitespace-nowrap rounded-full px-5 py-2.5 text-xs tracking-[0.08em] uppercase font-medium transition-all duration-300',
+          selected === key
+            ? 'bg-gradient-to-r from-[#3B38B8] to-[#1E1854] text-white shadow-[0_4px_14px_-4px_rgba(59,56,184,0.5)]'
+            : 'bg-white border border-[#1E185420] shadow-[0_2px_8px_rgba(30,24,84,0.06)] text-[rgba(30,24,84,0.8)] hover:border-[#3B38B8] hover:text-[#3B38B8] hover:shadow-[0_4px_16px_rgba(59,56,184,0.12)]'
+        )}
+      >
+        {label}
+      </button>
+    ))}
+  </div>
+);
+
 const FAQList = ({ faqData, selected }: { faqData: FAQData; selected: string }) => (
   <div className="mx-auto max-w-5xl">
     <AnimatePresence mode="wait">
@@ -129,7 +92,7 @@ const FAQList = ({ faqData, selected }: { faqData: FAQData; selected: string }) 
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 16 }}
             transition={{ duration: DURATION.slow, ease: EASE.expoOut }}
-            className="flex flex-col gap-4"
+            className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start"
           >
             {questions.map((faq, index) => (
               <FAQCard key={index} question={faq.question} answer={faq.answer} index={index} />
