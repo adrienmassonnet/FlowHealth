@@ -2,7 +2,9 @@
 
 > Centralised reference for all user-facing copy. Use this document to review and improve copywriting across the site.
 >
-> **Sources:** `Hardcoded` = in `.tsx` file · `content-data.ts` = static fallback in `src/lib/content-data.ts` · `Sheets` = live from Google Sheets (60s ISR) · `Shopify` = Storefront API
+> **Sources:** `Hardcoded` = in `.tsx` file · `content-data.ts` = static fallback in `src/lib/content-data.ts` · `Shopify` = Storefront API
+>
+> **Note (2026-07):** This map predates the Contentful migration (2026-06-26). Any row still labeled `Sheets` is stale — Google Sheets was removed (`sheets.ts` deleted, dead code) and replaced by Contentful as the live CMS, with `content-data.ts` as fallback. Individual row labels have not yet been corrected; verify against `src/lib/content.ts` before relying on a specific row's `Source` value. See `CLAUDE.md` → "Content Layer — Contentful" for the current architecture.
 
 ---
 

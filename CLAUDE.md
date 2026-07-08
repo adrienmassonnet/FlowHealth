@@ -118,30 +118,23 @@ Content layer priority: **Google Sheets → `content-data.ts` fallback**. The ro
 
 ---
 
-## Google Sheets Integration
+## Content Layer — Contentful
 
-Live content backend. Changes appear within 60s (ISR revalidation). Sheets → `sheets.ts` → `content.ts` (Sheets first, falls back to `content-data.ts`).
+Live content backend as of 2026-06-26 (superseded an earlier Google Sheets integration — `sheets.ts` was dead code and has been removed; if you see references to Sheets in older docs/commits, they're stale). Flow: `contentfulClient` (`src/lib/contentful.ts`) → `content.ts` (Contentful first, falls back to `content-data.ts` if the content type is empty or the fetch fails).
 
-### Sheets → Code mapping
+Each `getXxx()` export in `content.ts` follows the same pattern: fetch a Contentful content type via `cfetch`/`cfetchOne`, map fields to the existing static shape, and return the `content-data.ts` static value if Contentful returns nothing. Page components call `getXxx()` and never need to know which source served the data.
 
-| Sheets tab | `sheets.ts` function | `content.ts` export |
+On-demand revalidation happens via the `/api/revalidate` webhook from Contentful; some pages also set `export const revalidate`.
+
+### Product Meta fields (`productMeta` Contentful content type)
+
+| Contentful field | Controls | Default (in `product-meta.ts`) |
 |---|---|---|
-| `Ingredients` | `getSheetsIngredients()` | `getIngredients()` |
-| `health_benefits` | `getSheetsHealthBenefits()` | `getHealthBenefits()` |
-| `Results Timeline` | `getSheetsResultsTimeline()` | `getResultsTimelineSteps()` |
-| `Comparison table` | `getSheetsComparisonRows()` | `getComparisonRows()` |
-| `Savings breakdown` | `getSheetsSavingsSupplements()` | `getSavingsSupplements()` |
-| `Meta` | `getSheetsProductMeta()` | `getProductMeta()` |
-
-### Product Meta fields (Meta tab)
-
-| Sheets field | Controls | Default |
-|---|---|---|
-| `price_single_CHF` | Product price everywhere | 58.50 |
-| `active_ingredients` | Ingredient count labels | 13 |
-| `calories_kcal` | Calorie display | 24 |
-| `total_formula_weight_g` | Formula weight display | 6.36 |
-| `servings_per_box` | Sachet count in savings breakdown | 30 |
+| `priceSingleCHF` | Product price everywhere | 58.50 |
+| `activeIngredients` | Ingredient count labels | 13 |
+| `caloriesKcal` | Calorie display | 24 |
+| `totalFormulaWeightG` | Formula weight display | 6.36 |
+| `servingsPerBox` | Sachet count in savings breakdown | 30 |
 
 **Rule: Always use `getProductMeta()` for product numbers — never hardcode or import from `PRODUCT_META`.**
 
@@ -154,14 +147,13 @@ const meta = await getProductMeta();
 return <MyClient activeIngredients={meta.activeIngredients} />;
 ```
 
-Dynamic placeholders in Sheets text: `{active_ingredients}` is interpolated server-side by `ComparisonTable.tsx`.
+### Adding a new Contentful-backed section
+1. Add the content type in Contentful with matching field names
+2. Add a `getXxx()` function in `src/lib/content.ts` using `cfetch`/`cfetchOne`, mapping fields to the shape the component expects
+3. Add a static fallback in `src/lib/content-data.ts` (used if the Contentful content type is empty/unreachable)
+4. Call `getXxx()` in the page server component
 
-### Adding a new Sheets-backed section
-1. Add tab in Google Sheets with column headers
-2. Add `getSheetsXxx()` in `src/lib/sheets.ts`
-3. Add `getXxx()` routing function in `src/lib/content.ts` with static fallback
-4. Add static fallback in `src/lib/content-data.ts`
-5. Call `getXxx()` in the page server component
+`CONTENT_MAP.md` and `content_map.csv` predate the Contentful migration — their `Source: Sheets` labels are stale (now served by Contentful/fallback per the pattern above). Don't trust those labels for individual fields until they're corrected; check `content.ts` directly instead.
 
 ---
 
