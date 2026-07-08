@@ -64,13 +64,13 @@ export default function MorningRitualCard() {
       transition={{ duration: 0.85, ease }}
     >
       <div
-        className={`bg-white rounded-2xl border border-[#1E1854]/[0.07] px-7 py-9 flex flex-col gap-6 shadow-[0_4px_32px_rgba(30,24,84,0.09)] md:min-h-[220px] justify-between ${animClass}`}
+        className={`bg-white rounded-2xl border border-ink/[0.07] px-7 py-9 flex flex-col gap-6 shadow-[0_4px_32px_rgba(30,24,84,0.09)] md:min-h-[220px] justify-between ${animClass}`}
         style={diceVars as React.CSSProperties}
       >
-        <span className="text-[#1E1854]/45">{card.icon}</span>
+        <span className="text-ink/45">{card.icon}</span>
         <div className="space-y-3">
-          <p className="text-base font-semibold text-[#1E1854] leading-snug tracking-[-0.01em]">{card.title}</p>
-          <p className="text-sm text-[#1E1854]/55 leading-relaxed">{card.description}</p>
+          <p className="text-base font-semibold text-ink leading-snug tracking-[-0.01em]">{card.title}</p>
+          <p className="text-sm text-ink/55 leading-relaxed">{card.description}</p>
         </div>
       </div>
 
@@ -78,7 +78,7 @@ export default function MorningRitualCard() {
       <div className="flex justify-center">
         <button
           onClick={advance}
-          className="text-xs tracking-[0.08em] uppercase font-medium text-[#1E1854]/45 hover:text-white border border-[#1E1854]/15 hover:border-transparent rounded-full px-5 py-2 transition-all duration-300 hover:[background:linear-gradient(135deg,#3B38B8_0%,#1E1854_100%)]"
+          className="text-xs tracking-[0.08em] uppercase font-medium text-ink/45 hover:text-white border border-ink/15 hover:border-transparent rounded-full px-5 py-2 transition-all duration-300 hover:[background:linear-gradient(135deg,var(--color-brand)_0%,var(--color-ink)_100%)]"
         >
           Reveal another truth
         </button>

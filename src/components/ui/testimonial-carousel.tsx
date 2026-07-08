@@ -66,15 +66,15 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
               exit={{ opacity: 0 }}
               transition={TRANSITION}
             >
-              <p className="text-[52px] leading-none text-[#1E1854]/10 font-serif select-none -mt-2 mb-1">&ldquo;</p>
-              <blockquote className="text-base font-medium text-[#1E1854]/75 leading-[1.75] tracking-[-0.01em] mb-8">
+              <p className="text-[52px] leading-none text-ink/10 font-serif select-none -mt-2 mb-1">&ldquo;</p>
+              <blockquote className="text-base font-medium text-ink/75 leading-[1.75] tracking-[-0.01em] mb-8">
                 {t.quote}
               </blockquote>
               <div className="flex items-center gap-3">
-                <span className="block w-5 h-px bg-[#1E1854]/20 shrink-0" />
+                <span className="block w-5 h-px bg-ink/20 shrink-0" />
                 <div>
-                  <p className="text-sm font-semibold text-[#1E1854] tracking-[-0.01em]">{t.authorName}</p>
-                  <p className="text-xs text-[#1E1854]/45 tracking-[0.04em] mt-0.5">{t.authorRole}</p>
+                  <p className="text-sm font-semibold text-ink tracking-[-0.01em]">{t.authorName}</p>
+                  <p className="text-xs text-ink/45 tracking-[0.04em] mt-0.5">{t.authorRole}</p>
                 </div>
               </div>
             </motion.div>
@@ -91,17 +91,17 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={TRANSITION}
-            className="bg-white border border-[#1E185420] rounded-2xl px-6 py-6 text-center"
+            className="bg-white border border-ink/[12.5%] rounded-2xl px-6 py-6 text-center"
           >
-            <p className="text-[28px] leading-none text-[#1E1854]/10 font-serif select-none mb-1">&ldquo;</p>
-            <blockquote className="text-sm font-medium text-[#1E1854]/75 leading-[1.7] mb-5">{t.quote}</blockquote>
+            <p className="text-[28px] leading-none text-ink/10 font-serif select-none mb-1">&ldquo;</p>
+            <blockquote className="text-sm font-medium text-ink/75 leading-[1.7] mb-5">{t.quote}</blockquote>
             <div className="flex items-center justify-center gap-3 mb-1">
               <div className="relative w-9 h-9 rounded-full overflow-hidden shrink-0">
                 <Image src={imageUrl} alt={t.authorName} fill className="object-cover" sizes="36px" />
               </div>
               <div className="text-left">
-                <p className="text-xs font-semibold text-[#1E1854]">{t.authorName}</p>
-                {t.authorRole && <p className="text-xs text-[#1E1854]/45 tracking-[0.03em] mt-0.5">{t.authorRole}</p>}
+                <p className="text-xs font-semibold text-ink">{t.authorName}</p>
+                {t.authorRole && <p className="text-xs text-ink/45 tracking-[0.03em] mt-0.5">{t.authorRole}</p>}
               </div>
             </div>
           </motion.div>
@@ -114,9 +114,9 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
           <button
             onClick={prev}
             aria-label="Previous testimonial"
-            className="w-10 h-10 rounded-full bg-[#1E1854]/[0.06] border border-[#1E1854]/10 flex items-center justify-center hover:bg-[#1E1854]/10 transition-colors duration-200"
+            className="w-10 h-10 rounded-full bg-ink/[0.06] border border-ink/10 flex items-center justify-center hover:bg-ink/10 transition-colors duration-200"
           >
-            <ChevronLeft className="w-4 h-4 text-[#1E1854]/50" />
+            <ChevronLeft className="w-4 h-4 text-ink/50" />
           </button>
 
           <CarouselDots
@@ -129,16 +129,16 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
           <button
             onClick={next}
             aria-label="Next testimonial"
-            className="w-10 h-10 rounded-full bg-[#1E1854]/[0.06] border border-[#1E1854]/10 flex items-center justify-center hover:bg-[#1E1854]/10 transition-colors duration-200"
+            className="w-10 h-10 rounded-full bg-ink/[0.06] border border-ink/10 flex items-center justify-center hover:bg-ink/10 transition-colors duration-200"
           >
-            <ChevronRight className="w-4 h-4 text-[#1E1854]/50" />
+            <ChevronRight className="w-4 h-4 text-ink/50" />
           </button>
         </div>
 
         <Link
           href="/pages/reviews"
           onClick={() => trackEvent('homepage_reviews_read_all')}
-          className="text-xs tracking-[0.1em] uppercase text-[#1E1854]/35 hover:text-[#1E1854]/60 transition-colors duration-300"
+          className="text-xs tracking-[0.1em] uppercase text-ink/35 hover:text-ink/60 transition-colors duration-300"
         >
           Read all reviews →
         </Link>

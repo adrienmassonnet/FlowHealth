@@ -47,9 +47,9 @@ export default function FaqAccordion() {
   return (
     <section className="max-w-[1200px] mx-auto px-6 py-14 md:py-20">
       <div className="mb-6 space-y-2">
-        <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">FAQ</p>
+        <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">FAQ</p>
       </div>
-      <div className="divide-y divide-[#1E185420] border-t border-[#1E185420]">
+      <div className="divide-y divide-ink/[12.5%] border-t border-ink/[12.5%]">
         {faqItems.map((item, i) => (
           <div key={item.title}>
             <button

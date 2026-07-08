@@ -44,7 +44,7 @@ export default function InnerVitalitySection() {
       ref={ref}
       className="relative overflow-hidden py-16 md:py-24"
       style={{
-        background: visible ? '#1E1854' : '#0e0c2e',
+        background: visible ? 'var(--color-ink)' : '#0e0c2e',
         transition: 'background 5s cubic-bezier(0.16,1,0.3,1) 1800ms',
       }}
     >

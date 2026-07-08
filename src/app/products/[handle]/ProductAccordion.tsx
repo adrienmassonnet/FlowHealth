@@ -11,7 +11,7 @@ export default function ProductAccordion({ items }: { items: AccordionItem[] }) 
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <div className="divide-y divide-[#1E185420] border-t border-[#1E185420]">
+    <div className="divide-y divide-ink/[12.5%] border-t border-ink/[12.5%]">
       {items.map((item, i) => (
         <div key={i}>
           <button

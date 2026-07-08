@@ -24,12 +24,12 @@ export default function PrinciplesAccordion({ principles }: Props) {
               onClick={() => setActive(isActive ? null : i)}
               className={`relative flex items-center px-4 py-3.5 rounded-xl w-full overflow-hidden text-left transition-all duration-400 ${
                 isActive
-                  ? 'border-2 border-[#3B38B8]/60 shadow-[0_4px_16px_rgba(30,24,84,0.22)]'
-                  : 'border-2 border-transparent bg-[#1E1854]/[0.05] hover:border-[#1E1854]/20'
+                  ? 'border-2 border-brand/60 shadow-[0_4px_16px_rgba(30,24,84,0.22)]'
+                  : 'border-2 border-transparent bg-ink/[0.05] hover:border-ink/20'
               }`}
             >
-              <span className={`absolute inset-0 bg-gradient-to-br from-[#3B38B8] to-[#1E1854] transition-opacity duration-400 ${isActive ? 'opacity-100' : 'opacity-0'}`} />
-              <span className={`relative z-10 text-sm font-semibold leading-snug transition-colors duration-400 ${isActive ? 'text-white' : 'text-[#1E1854]/75'}`}>
+              <span className={`absolute inset-0 bg-gradient-to-br from-brand to-ink transition-opacity duration-400 ${isActive ? 'opacity-100' : 'opacity-0'}`} />
+              <span className={`relative z-10 text-sm font-semibold leading-snug transition-colors duration-400 ${isActive ? 'text-white' : 'text-ink/75'}`}>
                 {p.title}
               </span>
             </button>
@@ -38,15 +38,15 @@ export default function PrinciplesAccordion({ principles }: Props) {
       </div>
 
       {/* Right — detail panel */}
-      <div className="rounded-2xl border border-[#1E1854]/[0.07] bg-[#F8F8FC] flex items-center">
+      <div className="rounded-2xl border border-ink/[0.07] bg-[#F8F8FC] flex items-center">
         {activePrinciple ? (
           <div key={activePrinciple.number} className="p-8 space-y-3" style={{ animation: 'hbFadeUp 0.45s cubic-bezier(0.25,0.1,0.1,1) forwards' }}>
-            <p className="text-xs font-mono tracking-[0.12em] text-[#1E1854]/30">{activePrinciple.number}</p>
-            <h3 className="text-lg font-semibold text-[#1E1854] tracking-[-0.01em]">{activePrinciple.title}</h3>
+            <p className="text-xs font-mono tracking-[0.12em] text-ink/30">{activePrinciple.number}</p>
+            <h3 className="text-lg font-semibold text-ink tracking-[-0.01em]">{activePrinciple.title}</h3>
             <p className="text-sm text-[rgba(30,24,84,0.65)] leading-relaxed">{activePrinciple.body}</p>
           </div>
         ) : (
-          <p className="px-8 text-sm text-[#1E1854]/25 italic">Select a principle to read more.</p>
+          <p className="px-8 text-sm text-ink/25 italic">Select a principle to read more.</p>
         )}
       </div>
 

@@ -25,13 +25,13 @@ export default function TakeFlowSteps() {
                   onClick={() => setActive(i)}
                   className={`w-full text-left rounded-2xl border transition-all duration-300 shadow-[0_2px_16px_rgba(30,24,84,0.07)] ${
                     active === i
-                      ? 'bg-white border-[#1E1854]/12 shadow-[0_4px_24px_rgba(30,24,84,0.11)]'
-                      : 'bg-white border-[#1E185420] hover:border-[#1E1854]/15'
+                      ? 'bg-white border-ink/12 shadow-[0_4px_24px_rgba(30,24,84,0.11)]'
+                      : 'bg-white border-ink/[12.5%] hover:border-ink/15'
                   }`}
                 >
                   <div className="flex items-start gap-4 px-5 py-4">
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold leading-snug text-[#1E1854]">
+                      <p className="text-sm font-semibold leading-snug text-ink">
                         {step.title}
                       </p>
                       <div

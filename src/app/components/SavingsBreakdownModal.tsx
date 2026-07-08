@@ -44,11 +44,11 @@ export default function SavingsBreakdownModal({
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-6 py-5 border-b border-[#1E185420]">
-              <p className="text-sm font-semibold text-[#1E1854]">Monthly breakdown</p>
+            <div className="flex items-center justify-between px-6 py-5 border-b border-ink/[12.5%]">
+              <p className="text-sm font-semibold text-ink">Monthly breakdown</p>
               <button
                 onClick={() => setOpen(false)}
-                className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-[#1E18540A] transition-colors text-[#1E1854]/40"
+                className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-ink/[3.9%] transition-colors text-ink/40"
               >
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                   <path d="M1.5 1.5l9 9M10.5 1.5l-9 9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
@@ -57,24 +57,24 @@ export default function SavingsBreakdownModal({
             </div>
 
             {/* List */}
-            <div className="px-6 divide-y divide-[#1E185420]">
+            <div className="px-6 divide-y divide-ink/[12.5%]">
               {supplements.map((s) => (
                 <div key={s.name} className="flex items-center justify-between gap-4 py-3.5">
                   <span className="text-sm text-[rgba(30,24,84,0.75)]">{s.name}</span>
-                  <span className="text-sm font-medium text-[#1E1854] shrink-0">CHF {s.monthlyPriceCHF}</span>
+                  <span className="text-sm font-medium text-ink shrink-0">CHF {s.monthlyPriceCHF}</span>
                 </div>
               ))}
             </div>
 
             {/* Totals */}
-            <div className="px-6 pt-1 pb-6 border-t-2 border-[#1E1854] mt-1 space-y-2">
+            <div className="px-6 pt-1 pb-6 border-t-2 border-ink mt-1 space-y-2">
               <div className="flex items-center justify-between gap-4 pt-3">
                 <span className="text-sm text-[rgba(30,24,84,0.45)] line-through">Traditional supplements</span>
                 <span className="text-sm text-[rgba(30,24,84,0.45)] line-through shrink-0">CHF {traditionalTotal}</span>
               </div>
               <div className="flex items-center justify-between gap-4">
-                <span className="text-base font-semibold text-[#1E1854]">Flow — 30 sachets · monthly</span>
-                <span className="text-base font-semibold text-[#1E1854] shrink-0">CHF {flowPrice}</span>
+                <span className="text-base font-semibold text-ink">Flow — 30 sachets · monthly</span>
+                <span className="text-base font-semibold text-ink shrink-0">CHF {flowPrice}</span>
               </div>
               <p className="text-xs text-[rgba(30,24,84,0.5)] pt-1">You save CHF {savings} every month.</p>
             </div>

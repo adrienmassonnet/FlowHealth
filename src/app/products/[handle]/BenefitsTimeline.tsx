@@ -17,13 +17,13 @@ export default function BenefitsTimeline({ steps }: { steps: ResultsTimelineStep
     <section className="bg-white pt-4 pb-20 md:pt-8">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="mb-6 space-y-2">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-[1.08] text-[#1E1854]">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-[1.08] text-ink">
             How I Will Feel
           </h2>
         </div>
 
         {/* Mobile: per-step accordion */}
-        <div className="md:hidden mb-6 rounded-2xl overflow-hidden border border-[#1E1854]/[0.06] shadow-[0_2px_16px_rgba(30,24,84,0.07)] divide-y divide-[#1E1854]/[0.06]">
+        <div className="md:hidden mb-6 rounded-2xl overflow-hidden border border-ink/[0.06] shadow-[0_2px_16px_rgba(30,24,84,0.07)] divide-y divide-ink/[0.06]">
           {mapped.map((step, i) => {
             const isOpen = mobileOpen === i;
             return (
@@ -33,12 +33,12 @@ export default function BenefitsTimeline({ steps }: { steps: ResultsTimelineStep
                   className="w-full flex items-center justify-between px-5 py-4 text-left gap-3"
                 >
                   <div className="flex flex-col min-w-0">
-                    <p className="text-[10px] font-semibold tracking-[0.14em] uppercase bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent mb-0.5">{step.week}</p>
-                    <p className="text-sm font-semibold tracking-[-0.01em] text-[#1E1854] leading-snug">{step.title}</p>
+                    <p className="text-[10px] font-semibold tracking-[0.14em] uppercase bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent mb-0.5">{step.week}</p>
+                    <p className="text-sm font-semibold tracking-[-0.01em] text-ink leading-snug">{step.title}</p>
                   </div>
                   <svg
                     width="12" height="8" viewBox="0 0 12 8" fill="none"
-                    className={`shrink-0 text-[#1E1854]/30 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                    className={`shrink-0 text-ink/30 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
                   >
                     <path d="M1 1.5l5 5 5-5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
@@ -62,7 +62,7 @@ export default function BenefitsTimeline({ steps }: { steps: ResultsTimelineStep
         </div>
 
         {/* Desktop: horizontal grid card with single expand toggle */}
-        <div className="hidden md:block mb-6 bg-white rounded-2xl px-6 pt-6 pb-0 shadow-[0_2px_16px_rgba(30,24,84,0.07)] border border-[#1E1854]/[0.06]">
+        <div className="hidden md:block mb-6 bg-white rounded-2xl px-6 pt-6 pb-0 shadow-[0_2px_16px_rgba(30,24,84,0.07)] border border-ink/[0.06]">
           <div>
             <div
               className="grid gap-6"
@@ -72,14 +72,14 @@ export default function BenefitsTimeline({ steps }: { steps: ResultsTimelineStep
                 <div key={step.week} className="flex flex-col gap-2">
                   <div className="relative">
                     {i < mapped.length - 1 && (
-                      <div className="absolute top-1/2 left-0 w-[calc(100%+1.5rem)] h-px bg-[#1E1854]/15 -translate-y-1/2 z-0" />
+                      <div className="absolute top-1/2 left-0 w-[calc(100%+1.5rem)] h-px bg-ink/15 -translate-y-1/2 z-0" />
                     )}
-                    <span className="relative z-10 inline-flex items-center gap-1.5 text-xs font-medium tracking-[0.06em] uppercase bg-gradient-to-r from-[#3B38B8] to-[#1E1854] text-white px-3 py-1 rounded-full shadow-[0_2px_8px_rgba(59,56,184,0.35)]">
+                    <span className="relative z-10 inline-flex items-center gap-1.5 text-xs font-medium tracking-[0.06em] uppercase bg-gradient-to-r from-brand to-ink text-white px-3 py-1 rounded-full shadow-[0_2px_8px_rgba(59,56,184,0.35)]">
                       <span className="w-1.5 h-1.5 rounded-full bg-white/60 shrink-0" />
                       {step.week}
                     </span>
                   </div>
-                  <p className="text-sm font-semibold tracking-[-0.01em] text-[#1E1854] leading-snug">{step.title}</p>
+                  <p className="text-sm font-semibold tracking-[-0.01em] text-ink leading-snug">{step.title}</p>
                   <div
                     className="grid"
                     style={{
@@ -107,7 +107,7 @@ export default function BenefitsTimeline({ steps }: { steps: ResultsTimelineStep
             >
               <svg
                 width="12" height="8" viewBox="0 0 12 8" fill="none"
-                className={`text-[#1E1854]/30 transition-transform duration-300 group-hover:text-[#1E1854]/60 ${desktopExpanded ? 'rotate-180' : ''}`}
+                className={`text-ink/30 transition-transform duration-300 group-hover:text-ink/60 ${desktopExpanded ? 'rotate-180' : ''}`}
               >
                 <path d="M1 1.5l5 5 5-5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
@@ -119,7 +119,7 @@ export default function BenefitsTimeline({ steps }: { steps: ResultsTimelineStep
         <div className="flex justify-center">
           <div
             className="w-full max-w-xl rounded-2xl px-7 py-8 flex flex-col gap-4 text-center"
-            style={{ background: 'linear-gradient(155deg, #3B38B8 0%, #1E1854 100%)', boxShadow: '0 4px 32px rgba(30,24,84,0.30), 0 0 80px rgba(59,56,184,0.20)' }}
+            style={{ background: 'linear-gradient(155deg, var(--color-brand) 0%, var(--color-ink) 100%)', boxShadow: '0 4px 32px rgba(30,24,84,0.30), 0 0 80px rgba(59,56,184,0.20)' }}
           >
             <p className="text-xs font-semibold tracking-[0.18em] uppercase text-white/50">
               Consistency is key

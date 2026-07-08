@@ -73,7 +73,7 @@ function SectionImage({ src, side }: { src: string; side: ImgSide }) {
     <div
       className={[
         isRight ? 'float-right ml-5' : 'float-left mr-5',
-        'mb-3 clear-both rounded-xl overflow-hidden relative bg-[#1E18540A] shrink-0',
+        'mb-3 clear-both rounded-xl overflow-hidden relative bg-ink/[3.9%] shrink-0',
       ].join(' ')}
       style={{ width: '42%', aspectRatio: isRight ? '4/3' : '3/4' }}
     >
@@ -152,16 +152,16 @@ function KeyTakeaway({ text }: { text: string }) {
   const sentences = text.match(/[^.!?]+[.!?]+/g) ?? [text];
   const best = sentences.find((s) => s.trim().length > 40 && s.trim().length < 160) ?? sentences[0] ?? text;
   return (
-    <div className="my-8 bg-gradient-to-br from-[#3B38B8]/[0.07] to-[#1E1854]/[0.04] border border-[#3B38B8]/15 rounded-2xl px-6 py-5 flex gap-4 items-start">
-      <div className="shrink-0 mt-0.5 w-7 h-7 rounded-full bg-gradient-to-br from-[#3B38B8] to-[#1E1854] flex items-center justify-center">
+    <div className="my-8 bg-gradient-to-br from-brand/[0.07] to-ink/[0.04] border border-brand/15 rounded-2xl px-6 py-5 flex gap-4 items-start">
+      <div className="shrink-0 mt-0.5 w-7 h-7 rounded-full bg-gradient-to-br from-brand to-ink flex items-center justify-center">
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
           <path d="M6 1v4l2.5 2.5" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
           <circle cx="6" cy="6" r="5" stroke="white" strokeWidth="1.2"/>
         </svg>
       </div>
       <div>
-        <p className="text-xs tracking-[0.12em] uppercase font-semibold text-[#3B38B8]/70 mb-1">Key insight</p>
-        <p className="text-sm font-medium text-[#1E1854] leading-snug">{best.trim()}</p>
+        <p className="text-xs tracking-[0.12em] uppercase font-semibold text-brand/70 mb-1">Key insight</p>
+        <p className="text-sm font-medium text-ink leading-snug">{best.trim()}</p>
       </div>
     </div>
   );
@@ -181,29 +181,29 @@ function RichTextNode({ node }: { node: any }): React.ReactNode {
 
     case 'heading-2':
       return (
-        <h2 className="text-base font-semibold text-[#1E1854] tracking-[-0.01em] mt-10 mb-3 pb-2 border-b border-[#1E185412]">
+        <h2 className="text-base font-semibold text-ink tracking-[-0.01em] mt-10 mb-3 pb-2 border-b border-ink/[7.1%]">
           {node.content?.map((child: any, i: number) => <RichTextNode key={i} node={child} />)}
         </h2>
       );
 
     case 'heading-3':
       return (
-        <h3 className="text-sm font-semibold text-[#1E1854] mt-6 mb-2">
+        <h3 className="text-sm font-semibold text-ink mt-6 mb-2">
           {node.content?.map((child: any, i: number) => <RichTextNode key={i} node={child} />)}
         </h3>
       );
 
     case 'heading-4':
       return (
-        <h4 className="text-xs font-semibold uppercase tracking-[0.1em] text-[#3B38B8]/70 mt-5 mb-1.5">
+        <h4 className="text-xs font-semibold uppercase tracking-[0.1em] text-brand/70 mt-5 mb-1.5">
           {node.content?.map((child: any, i: number) => <RichTextNode key={i} node={child} />)}
         </h4>
       );
 
     case 'blockquote':
       return (
-        <blockquote className="my-6 border-l-[3px] border-[#3B38B8] pl-5 py-1">
-          <p className="text-sm font-medium italic text-[#1E1854]/80 leading-relaxed">
+        <blockquote className="my-6 border-l-[3px] border-brand pl-5 py-1">
+          <p className="text-sm font-medium italic text-ink/80 leading-relaxed">
             {node.content?.map((child: any, i: number) => <RichTextNode key={i} node={child} />)}
           </p>
         </blockquote>
@@ -226,7 +226,7 @@ function RichTextNode({ node }: { node: any }): React.ReactNode {
     case 'list-item':
       return (
         <li className="flex items-start gap-3 text-sm text-[rgba(30,24,84,0.78)] leading-relaxed">
-          <span className="mt-[0.5em] shrink-0 w-1.5 h-1.5 rounded-full bg-gradient-to-br from-[#3B38B8] to-[#1E1854]" />
+          <span className="mt-[0.5em] shrink-0 w-1.5 h-1.5 rounded-full bg-gradient-to-br from-brand to-ink" />
           <span>{node.content?.map((child: any, i: number) => <RichTextNode key={i} node={child} />)}</span>
         </li>
       );
@@ -234,9 +234,9 @@ function RichTextNode({ node }: { node: any }): React.ReactNode {
     case 'hr':
       return (
         <div className="my-10 flex items-center gap-3">
-          <div className="h-px flex-1 bg-[#1E185412]" />
-          <div className="w-1 h-1 rounded-full bg-[#3B38B8]/30" />
-          <div className="h-px flex-1 bg-[#1E185412]" />
+          <div className="h-px flex-1 bg-ink/[7.1%]" />
+          <div className="w-1 h-1 rounded-full bg-brand/30" />
+          <div className="h-px flex-1 bg-ink/[7.1%]" />
         </div>
       );
 
@@ -244,8 +244,8 @@ function RichTextNode({ node }: { node: any }): React.ReactNode {
       let el: React.ReactNode = node.value ?? null;
       if (!el) return null;
       const marks = node.marks ?? [];
-      if (marks.some((m: any) => m.type === 'code')) return <code className="text-xs bg-[#1E1854]/[0.06] text-[#3B38B8] px-1.5 py-0.5 rounded font-mono">{el}</code>;
-      if (marks.some((m: any) => m.type === 'bold')) el = <strong className="font-semibold text-[#1E1854]">{el}</strong>;
+      if (marks.some((m: any) => m.type === 'code')) return <code className="text-xs bg-ink/[0.06] text-brand px-1.5 py-0.5 rounded font-mono">{el}</code>;
+      if (marks.some((m: any) => m.type === 'bold')) el = <strong className="font-semibold text-ink">{el}</strong>;
       if (marks.some((m: any) => m.type === 'italic')) el = <em className="italic">{el}</em>;
       if (marks.some((m: any) => m.type === 'underline')) el = <span className="underline underline-offset-2">{el}</span>;
       return el;
@@ -254,7 +254,7 @@ function RichTextNode({ node }: { node: any }): React.ReactNode {
     case 'hyperlink':
       return (
         <a href={node.data?.uri} target="_blank" rel="noopener noreferrer"
-           className="text-[#3B38B8] underline underline-offset-2 hover:text-[#1E1854] transition-colors">
+           className="text-brand underline underline-offset-2 hover:text-ink transition-colors">
           {node.content?.map((child: any, i: number) => <RichTextNode key={i} node={child} />)}
         </a>
       );
@@ -305,11 +305,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
 
       {/* ── Hero ─────────────────────────────────────────────────────── */}
-      <section className="relative w-full overflow-hidden bg-[#1E1854]" style={{ height: 'clamp(320px, 52vw, 560px)' }}>
+      <section className="relative w-full overflow-hidden bg-ink" style={{ height: 'clamp(320px, 52vw, 560px)' }}>
         {post.coverImageUrl && (
           <Image src={post.coverImageUrl} alt={post.title} fill className="object-cover opacity-50" priority sizes="100vw" />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0d0b2e]/95 via-[#1E1854]/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0d0b2e]/95 via-ink/50 to-transparent" />
 
         <div className="relative h-full max-w-[1200px] mx-auto px-6 flex flex-col justify-end pb-10">
           {/* Breadcrumb */}
@@ -350,7 +350,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div className="flex-1 min-w-0">
 
             {/* Excerpt lead */}
-            <div className="mb-8 pl-5 border-l-[3px] border-[#3B38B8]">
+            <div className="mb-8 pl-5 border-l-[3px] border-brand">
               <p className="text-sm font-medium text-[rgba(30,24,84,0.7)] leading-relaxed italic">
                 {post.excerpt}
               </p>
@@ -368,7 +368,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             {(post.tags ?? []).length > 0 && (
               <div className="mt-10 pt-6 border-t border-[#1E185210] flex flex-wrap gap-2">
                 {(post.tags ?? []).map((tag) => (
-                  <span key={tag} className="text-xs border border-[#1E185420] px-3 py-1 rounded-full text-[rgba(30,24,84,0.5)] font-medium tracking-[0.06em] uppercase">
+                  <span key={tag} className="text-xs border border-ink/[12.5%] px-3 py-1 rounded-full text-[rgba(30,24,84,0.5)] font-medium tracking-[0.06em] uppercase">
                     {tag}
                   </span>
                 ))}
@@ -376,7 +376,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             )}
 
             {/* Product CTA */}
-            <div className="mt-10 rounded-2xl bg-gradient-to-br from-[#1E1854] to-[#3B38B8] p-7 relative overflow-hidden">
+            <div className="mt-10 rounded-2xl bg-gradient-to-br from-ink to-brand p-7 relative overflow-hidden">
               <div className="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-white/[0.04]" />
               <div className="absolute -right-2 -bottom-6 w-24 h-24 rounded-full bg-white/[0.03]" />
               <div className="relative">
@@ -386,7 +386,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <Link href="/products/rooibos-hibiscus-pomegranate"
-                    className="bg-white text-[#1E1854] text-xs tracking-[0.1em] uppercase font-bold px-5 py-2.5 rounded-full hover:bg-white/90 transition-colors">
+                    className="bg-white text-ink text-xs tracking-[0.1em] uppercase font-bold px-5 py-2.5 rounded-full hover:bg-white/90 transition-colors">
                     Try Flow
                   </Link>
                   <Link href="/pages/our-product"
@@ -400,7 +400,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             {/* Back link */}
             <div className="mt-8">
               <Link href="/pages/blog-posts"
-                className="inline-flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium text-[rgba(30,24,84,0.45)] hover:text-[#1E1854] transition-colors">
+                className="inline-flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium text-[rgba(30,24,84,0.45)] hover:text-ink transition-colors">
                 <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
                   <path d="M8 3L4 6.5L8 10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
@@ -417,14 +417,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 <div className="flex flex-col gap-3">
                   {relatedPosts.map((p) => (
                     <Link key={p.slug} href={`/pages/blog-posts/${p.slug}`}
-                      className="group flex gap-3 items-start rounded-xl border border-[#1E185412] bg-white p-3 hover:border-[#1E185425] hover:shadow-[0_2px_12px_rgba(30,24,84,0.06)] transition-all">
-                      <div className="relative shrink-0 w-14 h-14 rounded-lg overflow-hidden bg-[#1E18540A]">
+                      className="group flex gap-3 items-start rounded-xl border border-ink/[7.1%] bg-white p-3 hover:border-ink/[14.5%] hover:shadow-[0_2px_12px_rgba(30,24,84,0.06)] transition-all">
+                      <div className="relative shrink-0 w-14 h-14 rounded-lg overflow-hidden bg-ink/[3.9%]">
                         {p.coverImageUrl && (
                           <Image src={p.coverImageUrl} alt={p.title} fill className="object-cover" sizes="56px" />
                         )}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs font-semibold text-[#1E1854] leading-snug line-clamp-2 group-hover:text-[#3B38B8] transition-colors">
+                        <p className="text-xs font-semibold text-ink leading-snug line-clamp-2 group-hover:text-brand transition-colors">
                           {p.title}
                         </p>
                         <p className="text-xs text-[rgba(30,24,84,0.4)] mt-1">{p.readTime}</p>
@@ -440,15 +440,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       {/* ── More articles (full-width bottom section) ─────────────────── */}
       {relatedPosts.length > 0 && (
-        <section className="border-t border-[#1E185210] bg-[#1E18540A]">
+        <section className="border-t border-[#1E185210] bg-ink/[3.9%]">
           <div className="max-w-[1200px] mx-auto px-6 py-16">
             <div className="flex items-end justify-between mb-8">
               <div>
-                <p className="text-xs tracking-[0.14em] uppercase font-semibold text-[#3B38B8]/65 mb-1">Keep reading</p>
-                <h2 className="text-base font-semibold tracking-[-0.01em] text-[#1E1854]">More from the Journal</h2>
+                <p className="text-xs tracking-[0.14em] uppercase font-semibold text-brand/65 mb-1">Keep reading</p>
+                <h2 className="text-base font-semibold tracking-[-0.01em] text-ink">More from the Journal</h2>
               </div>
               <Link href="/pages/blog-posts"
-                className="hidden sm:inline-flex items-center gap-1.5 text-xs tracking-[0.08em] uppercase font-medium text-[rgba(30,24,84,0.45)] hover:text-[#1E1854] transition-colors">
+                className="hidden sm:inline-flex items-center gap-1.5 text-xs tracking-[0.08em] uppercase font-medium text-[rgba(30,24,84,0.45)] hover:text-ink transition-colors">
                 All articles
                 <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
                   <path d="M2.5 5.5h6M6 3l2.5 2.5L6 8" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
@@ -459,8 +459,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {relatedPosts.map((p) => (
                 <Link key={p.slug} href={`/pages/blog-posts/${p.slug}`}
-                  className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-[#1E185412] hover:border-[#1E185228] hover:shadow-[0_4px_20px_rgba(30,24,84,0.07)] transition-all duration-300">
-                  <div className="relative aspect-[4/3] overflow-hidden bg-[#1E18540A]">
+                  className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-ink/[7.1%] hover:border-[#1E185228] hover:shadow-[0_4px_20px_rgba(30,24,84,0.07)] transition-all duration-300">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-ink/[3.9%]">
                     {p.coverImageUrl && (
                       <Image src={p.coverImageUrl} alt={p.title} fill
                         className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
@@ -474,7 +474,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   </div>
                   <div className="p-4 flex flex-col gap-1.5 flex-1">
                     <p className="text-xs text-[rgba(30,24,84,0.38)]">{p.readTime}</p>
-                    <h3 className="text-xs font-semibold text-[#1E1854] leading-snug line-clamp-2 group-hover:text-[#3B38B8] transition-colors flex-1">
+                    <h3 className="text-xs font-semibold text-ink leading-snug line-clamp-2 group-hover:text-brand transition-colors flex-1">
                       {p.title}
                     </h3>
                     <p className="text-xs text-[rgba(30,24,84,0.5)] line-clamp-2 leading-relaxed">{p.excerpt}</p>

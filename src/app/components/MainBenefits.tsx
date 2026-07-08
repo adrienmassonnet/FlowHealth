@@ -27,7 +27,7 @@ export default function MainBenefits({ benefits }: { benefits: HealthBenefit[] }
         {benefits.map((b) => (
           <div
             key={b.label}
-            className="relative rounded-2xl overflow-hidden cursor-pointer group h-[126px] bg-[#1E1854]"
+            className="relative rounded-2xl overflow-hidden cursor-pointer group h-[126px] bg-ink"
             onClick={() => { setModal(b); trackEvent('product_page_benefit_card_open'); }}
           >
             {b.imageUrl ? (
@@ -39,7 +39,7 @@ export default function MainBenefits({ benefits }: { benefits: HealthBenefit[] }
                 sizes="50vw"
               />
             ) : (
-              <div className="absolute inset-0 bg-gradient-to-br from-[#1E1854] to-[#2d2a7a]" />
+              <div className="absolute inset-0 bg-gradient-to-br from-ink to-[#2d2a7a]" />
             )}
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-4">
@@ -71,22 +71,22 @@ export default function MainBenefits({ benefits }: { benefits: HealthBenefit[] }
                 className={`
                   relative flex flex-col items-center justify-center gap-2 px-3 py-4 text-center
                   rounded-xl w-full overflow-hidden
-                  bg-[#1E1854]/[0.05] border-2 transition-[border-color,transform,box-shadow] duration-500
+                  bg-ink/[0.05] border-2 transition-[border-color,transform,box-shadow] duration-500
                   hover:scale-[1.02] active:scale-[0.97]
                   ${i === benefits.length - 1 && benefits.length % 2 !== 0 ? 'col-span-2' : ''}
                   ${isActive
-                    ? 'border-[#3B38B8]/60 shadow-[0_4px_16px_rgba(30,24,84,0.30)]'
-                    : 'border-transparent hover:border-[#1E1854]/20'
+                    ? 'border-brand/60 shadow-[0_4px_16px_rgba(30,24,84,0.30)]'
+                    : 'border-transparent hover:border-ink/20'
                   }
                 `}
               >
                 <span
-                  className={`absolute inset-0 bg-gradient-to-br from-[#3B38B8] to-[#1E1854] transition-opacity duration-500 ${
+                  className={`absolute inset-0 bg-gradient-to-br from-brand to-ink transition-opacity duration-500 ${
                     isActive ? 'opacity-100' : 'opacity-0'
                   }`}
                 />
                 <span className={`relative z-10 text-xs font-semibold leading-snug transition-colors duration-500 ${
-                  isActive ? 'text-white' : 'text-[#1E1854]/75'
+                  isActive ? 'text-white' : 'text-ink/75'
                 }`}>
                   {s.label}
                 </span>
@@ -156,7 +156,7 @@ export default function MainBenefits({ benefits }: { benefits: HealthBenefit[] }
             transition={{ duration: DURATION.fast }}
             onClick={() => setModal(null)}
           >
-            <div className="absolute inset-0 bg-[#1E1854]/60 backdrop-blur-sm" />
+            <div className="absolute inset-0 bg-ink/60 backdrop-blur-sm" />
             <motion.div
               className="absolute bottom-0 left-0 right-0 sm:relative sm:bottom-auto sm:left-auto sm:right-auto sm:w-full sm:max-w-md bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col max-h-[90svh]"
               initial={{ y: '100%' }}
@@ -180,19 +180,19 @@ export default function MainBenefits({ benefits }: { benefits: HealthBenefit[] }
               <button
                 onClick={() => setModal(null)}
                 aria-label="Close"
-                className="absolute top-3 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-sm text-[#1E1854]/50 hover:text-[#1E1854] hover:bg-white transition-colors duration-200"
+                className="absolute top-3 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-sm text-ink/50 hover:text-ink hover:bg-white transition-colors duration-200"
               >
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                   <path d="M11 3L3 11M3 3l8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
               </button>
               <div className="flex-1 px-7 pt-4 overflow-y-auto" style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}>
-                <h3 className="text-xl font-semibold text-[#1E1854] tracking-[-0.02em] leading-snug mb-3">{modal.label}</h3>
-                <p className="text-sm text-[#1E1854]/65 leading-relaxed mb-4">{modal.description}</p>
+                <h3 className="text-xl font-semibold text-ink tracking-[-0.02em] leading-snug mb-3">{modal.label}</h3>
+                <p className="text-sm text-ink/65 leading-relaxed mb-4">{modal.description}</p>
                 {modal.ingredients && (
                   <div className="flex flex-wrap gap-1.5 mb-4">
                     {modal.ingredients.split(',').map((ing) => (
-                      <span key={ing} className="text-xs tracking-wide px-2.5 py-1 rounded-full bg-[#3B38B8]/8 text-[#3B38B8] font-medium border border-[#3B38B8]/15">
+                      <span key={ing} className="text-xs tracking-wide px-2.5 py-1 rounded-full bg-brand/8 text-brand font-medium border border-brand/15">
                         {ing.trim()}
                       </span>
                     ))}

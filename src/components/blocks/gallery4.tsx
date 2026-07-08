@@ -58,7 +58,7 @@ const Gallery4 = ({
               variant="ghost"
               onClick={() => carouselApi?.scrollPrev()}
               disabled={!canScrollPrev}
-              className="border border-[#1E185420] rounded-none h-9 w-9 disabled:opacity-30"
+              className="border border-ink/[12.5%] rounded-none h-9 w-9 disabled:opacity-30"
             >
               <ArrowLeft className="size-4" />
             </Button>
@@ -67,7 +67,7 @@ const Gallery4 = ({
               variant="ghost"
               onClick={() => carouselApi?.scrollNext()}
               disabled={!canScrollNext}
-              className="border border-[#1E185420] rounded-none h-9 w-9 disabled:opacity-30"
+              className="border border-ink/[12.5%] rounded-none h-9 w-9 disabled:opacity-30"
             >
               <ArrowRight className="size-4" />
             </Button>
@@ -84,7 +84,7 @@ const Gallery4 = ({
             {items.map((item) => (
               <CarouselItem key={item.id} className="max-w-[300px] pl-[16px] lg:max-w-[340px]">
                 <a href={item.href} target="_blank" rel="noopener noreferrer" className="group block">
-                  <div className="relative overflow-hidden aspect-[3/4] bg-[#1E18540F] mb-4">
+                  <div className="relative overflow-hidden aspect-[3/4] bg-ink/[5.9%] mb-4">
                     <img
                       src={item.image}
                       alt={item.title}

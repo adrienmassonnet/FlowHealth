@@ -89,7 +89,7 @@ export default function NeurotransmitterSection() {
           {/* Left: text */}
           <div className="md:w-[40%] shrink-0 space-y-4">
             <motion.p
-              className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent"
+              className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent"
               initial={{ opacity: 0 }}
               animate={isVisible ? { opacity: 1 } : {}}
               transition={{ duration: DURATION.base, ease: EASE.expoOut }}
@@ -97,7 +97,7 @@ export default function NeurotransmitterSection() {
               What goes up must come down
             </motion.p>
             <motion.h2
-              className="text-2xl md:text-4xl font-semibold tracking-[-0.03em] leading-[1.08] text-[#1E1854]"
+              className="text-2xl md:text-4xl font-semibold tracking-[-0.03em] leading-[1.08] text-ink"
               initial={{ opacity: 0, y: 16 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: DURATION.slow, delay: 0.07, ease: EASE.expoOut }}
@@ -133,10 +133,10 @@ export default function NeurotransmitterSection() {
                     strokeWidth="0.4"
                     strokeDasharray="1.4 1.8"
                   />
-                  <text x="50" y="49" textAnchor="middle" fontSize="3.2" fontWeight="600" fill="#1E1854" fontFamily="Outfit, system-ui, sans-serif">
+                  <text x="50" y="49" textAnchor="middle" fontSize="3.2" fontWeight="600" fill="var(--color-ink)" fontFamily="Outfit, system-ui, sans-serif">
                     Flow's contribution
                   </text>
-                  <text x="50" y="54.5" textAnchor="middle" fontSize="3.2" fontWeight="600" fill="#1E1854" fontFamily="Outfit, system-ui, sans-serif">
+                  <text x="50" y="54.5" textAnchor="middle" fontSize="3.2" fontWeight="600" fill="var(--color-ink)" fontFamily="Outfit, system-ui, sans-serif">
                     to stability.
                   </text>
                 </svg>
@@ -154,7 +154,7 @@ export default function NeurotransmitterSection() {
                       <motion.div
                         className="rounded-2xl flex items-center gap-2.5 px-3.5 py-3"
                         style={{
-                          background: 'linear-gradient(135deg, #3B38B8, #1E1854)',
+                          background: 'linear-gradient(135deg, var(--color-brand), var(--color-ink))',
                           boxShadow: '0 4px 20px rgba(59,56,184,0.3)',
                         }}
                         initial={{ opacity: 0, scale: 0.82 }}
@@ -173,14 +173,14 @@ export default function NeurotransmitterSection() {
 
           {/* Mobile: single column */}
           <div className="md:hidden flex flex-col gap-3">
-            <p className="text-xs tracking-[0.16em] uppercase font-semibold text-[#1E1854] mb-1">
+            <p className="text-xs tracking-[0.16em] uppercase font-semibold text-ink mb-1">
               Flow's contribution to stability
             </p>
             {nodes.map((n, i) => (
               <motion.div
                 key={n.sentence}
                 className="rounded-2xl px-4 py-3.5 flex items-center gap-3"
-                style={{ background: 'linear-gradient(135deg, #3B38B8, #1E1854)' }}
+                style={{ background: 'linear-gradient(135deg, var(--color-brand), var(--color-ink))' }}
                 initial={{ opacity: 0, x: -12 }}
                 animate={isVisible ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: DURATION.base, delay: 0.1 + i * 0.07, ease: EASE.expoOut }}

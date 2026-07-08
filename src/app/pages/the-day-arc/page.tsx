@@ -15,10 +15,10 @@ export default function TheDayArcPage() {
     <main className="bg-white">
 
       {/* Hero */}
-      <section className="pt-28 md:pt-36 pb-12 md:pb-16 border-b border-[#1E1854]/[0.06]">
+      <section className="pt-28 md:pt-36 pb-12 md:pb-16 border-b border-ink/[0.06]">
         <div className="max-w-[760px] mx-auto px-6">
-          <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent mb-5">The Science</p>
-          <h1 className="text-4xl sm:text-5xl md:text-[3.5rem] font-semibold tracking-[-0.03em] text-[#1E1854] leading-tight mb-6">
+          <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent mb-5">The Science</p>
+          <h1 className="text-4xl sm:text-5xl md:text-[3.5rem] font-semibold tracking-[-0.03em] text-ink leading-tight mb-6">
             How the morning sets the tone for the rest of the day.
           </h1>
           <p className="text-base text-[rgba(30,24,84,0.65)] leading-relaxed max-w-xl">
@@ -33,7 +33,7 @@ export default function TheDayArcPage() {
 
           {/* Section 1 */}
           <section className="space-y-4">
-            <h2 className="text-2xl font-semibold text-[#1E1854] tracking-[-0.02em]">Your brain has a rhythm before you make any decisions</h2>
+            <h2 className="text-2xl font-semibold text-ink tracking-[-0.02em]">Your brain has a rhythm before you make any decisions</h2>
             <p>
               The quality of your thinking at 3pm is largely determined by what happened between 6 and 10am — not just what you did, but what your brain did on its own. In the hours after waking, a cascade of neurochemical shifts unfolds automatically: cortisol peaks to mobilise alertness, body temperature rises, and the adenosine accumulated overnight is fully cleared by sleep. These are not responses to what you ate or whether you exercised. They are biological defaults, shaped by millions of years of adaptation to the rhythm of light and darkness.
             </p>
@@ -44,7 +44,7 @@ export default function TheDayArcPage() {
 
           {/* Section 2 */}
           <section className="space-y-4">
-            <h2 className="text-2xl font-semibold text-[#1E1854] tracking-[-0.02em]">How readiness naturally evolves through the day</h2>
+            <h2 className="text-2xl font-semibold text-ink tracking-[-0.02em]">How readiness naturally evolves through the day</h2>
             <p>
               As the morning progresses, adenosine — a byproduct of neural activity — begins to accumulate again. This is not a flaw. It is the brain&apos;s built-in pressure valve, gradually reducing the cost of sustained focus and nudging the system toward eventual rest. By early afternoon, most people experience a natural dip: a softening of attention, a slight drop in motivation, a pull toward lower-demand tasks. This is physiologically normal, cross-cultural, and present even in people who have never touched caffeine.
             </p>
@@ -58,30 +58,30 @@ export default function TheDayArcPage() {
 
           {/* Section 3 */}
           <section className="space-y-4">
-            <h2 className="text-2xl font-semibold text-[#1E1854] tracking-[-0.02em]">Where stimulation disrupts the baseline</h2>
+            <h2 className="text-2xl font-semibold text-ink tracking-[-0.02em]">Where stimulation disrupts the baseline</h2>
             <p>
               The most common intervention is caffeine, consumed within minutes of waking — precisely when the brain&apos;s own cortisol and adenosine-clearing mechanisms are already doing their job. Caffeine works by occupying adenosine receptors, masking the signal of fatigue without resolving it. Adenosine continues to accumulate behind the blockade. When caffeine eventually clears, those receptors are flooded all at once, producing a crash that lands below the natural baseline rather than at it.
             </p>
             <p>
               The compounding effect is what matters most. Each cycle of artificial stimulation and subsequent crash makes the next morning&apos;s baseline slightly lower. Sleep quality degrades — caffeine consumed even six hours before bed measurably reduces slow-wave sleep, the phase most critical for cognitive restoration. Over time, people are not managing their energy; they are managing their withdrawal.
             </p>
-            <div className="rounded-xl border border-[#1E1854]/[0.07] bg-[#1E1854]/[0.025] p-5 space-y-1.5">
-              <p className="text-xs uppercase tracking-[0.12em] font-semibold text-[#3B38B8]">The compounding effect</p>
+            <div className="rounded-xl border border-ink/[0.07] bg-ink/[0.025] p-5 space-y-1.5">
+              <p className="text-xs uppercase tracking-[0.12em] font-semibold text-brand">The compounding effect</p>
               <p>Disrupted morning rhythm → masked fatigue signal → deeper afternoon crash → second dose → degraded sleep → lower baseline the next morning. The cycle repeats, each iteration starting from a slightly worse position.</p>
             </div>
           </section>
 
           {/* Section 4 */}
           <section className="space-y-4">
-            <h2 className="text-2xl font-semibold text-[#1E1854] tracking-[-0.02em]">Aligned support, not override</h2>
+            <h2 className="text-2xl font-semibold text-ink tracking-[-0.02em]">Aligned support, not override</h2>
             <p>
               Flow is built around a different premise: that the goal is not to override the brain&apos;s natural rhythm, but to support it — and in doing so, raise the ceiling of what that rhythm makes possible.
             </p>
             <p>
-              Rather than blocking adenosine receptors, Flow&apos;s formulation works with the brain&apos;s existing chemistry. <strong className="font-semibold text-[#1E1854]">Zynamite®</strong> preserves catecholamine availability — sustaining the alertness and motivation that naturally peak in the morning — without creating the adenosine debt that drives afternoon crashes. <strong className="font-semibold text-[#1E1854]">Panax Ginseng</strong> supports the HPA axis, moderating cortisol dysregulation so the natural dip feels manageable rather than debilitating. <strong className="font-semibold text-[#1E1854]">Saffr'Active®</strong> supports serotonin pathways, stabilising mood and reducing the sense of cognitive friction that makes tasks feel harder than they are.
+              Rather than blocking adenosine receptors, Flow&apos;s formulation works with the brain&apos;s existing chemistry. <strong className="font-semibold text-ink">Zynamite®</strong> preserves catecholamine availability — sustaining the alertness and motivation that naturally peak in the morning — without creating the adenosine debt that drives afternoon crashes. <strong className="font-semibold text-ink">Panax Ginseng</strong> supports the HPA axis, moderating cortisol dysregulation so the natural dip feels manageable rather than debilitating. <strong className="font-semibold text-ink">Saffr'Active®</strong> supports serotonin pathways, stabilising mood and reducing the sense of cognitive friction that makes tasks feel harder than they are.
             </p>
             <p>
-              The evening side of the arc receives equal attention. <strong className="font-semibold text-[#1E1854]">Rooibos</strong> helps clear the cortisol load that accumulates across a demanding day. <strong className="font-semibold text-[#1E1854]">Magnesium</strong> supports the deep sleep stages where adenosine is cleared and cognitive capacity is rebuilt. <strong className="font-semibold text-[#1E1854]">Lion&apos;s Mane</strong> operates on a longer timescale — supporting the structural integrity of the neural pathways that make consistent high performance possible over months and years, not just hours.
+              The evening side of the arc receives equal attention. <strong className="font-semibold text-ink">Rooibos</strong> helps clear the cortisol load that accumulates across a demanding day. <strong className="font-semibold text-ink">Magnesium</strong> supports the deep sleep stages where adenosine is cleared and cognitive capacity is rebuilt. <strong className="font-semibold text-ink">Lion&apos;s Mane</strong> operates on a longer timescale — supporting the structural integrity of the neural pathways that make consistent high performance possible over months and years, not just hours.
             </p>
             <p>
               The result is not a stronger peak. It is a more reliable arc — one that starts from a restored baseline, maintains more of its natural momentum through the day, and ends in a way that sets tomorrow up rather than compromising it.
@@ -90,7 +90,7 @@ export default function TheDayArcPage() {
 
           {/* Section 5 */}
           <section className="space-y-4">
-            <h2 className="text-2xl font-semibold text-[#1E1854] tracking-[-0.02em]">What this looks like in practice</h2>
+            <h2 className="text-2xl font-semibold text-ink tracking-[-0.02em]">What this looks like in practice</h2>
             <p>
               The most common shift people notice is not a surge — it is an absence. The 2pm wall becomes a 2pm dip, manageable rather than disabling. Tasks that would have been deferred until the next morning get completed with adequate quality. Decisions made in the afternoon carry the same clarity as decisions made at 10am.
             </p>
@@ -100,12 +100,12 @@ export default function TheDayArcPage() {
           </section>
 
           {/* CTA back */}
-          <div className="pt-6 border-t border-[#1E1854]/[0.06]">
+          <div className="pt-6 border-t border-ink/[0.06]">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-xs tracking-[0.1em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent hover:opacity-70 transition-opacity"
+              className="inline-flex items-center gap-2 text-xs tracking-[0.1em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent hover:opacity-70 transition-opacity"
             >
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="shrink-0 text-[#3B38B8]">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="shrink-0 text-brand">
                 <path d="M9 11L5 7l4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
               Back to Flow

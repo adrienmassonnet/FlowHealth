@@ -44,8 +44,8 @@ export function FeatureCarousel({ steps, interval = 7000 }: FeatureCarouselProps
               onClick={() => setStep(i)}
               className={`group w-full text-left px-4 py-4 border-l-2 transition-all duration-300 ${
                 isActive
-                  ? 'border-[rgb(30,24,84)] text-[#1E1854]'
-                  : 'border-[#1E185420] text-[rgba(30,24,84,0.5)] hover:text-[rgba(30,24,84,0.9)] hover:border-[rgba(30,24,84,0.3)]'
+                  ? 'border-[rgb(30,24,84)] text-ink'
+                  : 'border-ink/[12.5%] text-[rgba(30,24,84,0.5)] hover:text-[rgba(30,24,84,0.9)] hover:border-[rgba(30,24,84,0.3)]'
               }`}
             >
               <span className={`block text-base font-medium tracking-[-0.01em] transition-all duration-300 ${isActive ? 'font-semibold' : ''}`}>
@@ -57,7 +57,7 @@ export function FeatureCarousel({ steps, interval = 7000 }: FeatureCarouselProps
       </nav>
 
       {/* Right: card */}
-      <div className="relative overflow-hidden rounded-2xl border border-[#1E185420] bg-[#1E185408] min-h-[420px]">
+      <div className="relative overflow-hidden rounded-2xl border border-ink/[12.5%] bg-ink/[3.1%] min-h-[420px]">
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
@@ -78,7 +78,7 @@ export function FeatureCarousel({ steps, interval = 7000 }: FeatureCarouselProps
                 {active.label}
               </motion.p>
               <motion.h3
-                className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] text-[#1E1854] leading-[1.1]"
+                className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] text-ink leading-[1.1]"
                 initial={{ opacity: 0, x: -12 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.09, duration: DURATION.base, ease: EASE.expoOut }}
@@ -108,7 +108,7 @@ export function FeatureCarousel({ steps, interval = 7000 }: FeatureCarouselProps
                 className="absolute inset-0 w-full h-full object-cover"
               />
               {/* Subtle fade on left edge to blend with card */}
-              <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#1E1854/3] to-transparent" />
+              <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[var(--color-ink)/3] to-transparent" />
             </motion.div>
           </motion.div>
         </AnimatePresence>

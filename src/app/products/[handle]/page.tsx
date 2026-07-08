@@ -81,7 +81,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
       <section id="section-product" className="scroll-mt-16 pt-20 pb-12 md:pb-20 max-w-[1200px] mx-auto px-5 md:px-6 relative overflow-hidden">
         {/* Mobile-only title — shown above gallery */}
         <div className="md:hidden space-y-1.5 pb-4">
-          <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Cognitive Performance Formula</p>
+          <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Cognitive Performance Formula</p>
           <h1 className="text-2xl font-semibold tracking-[-0.02em] leading-tight">{product.title}</h1>
         </div>
 
@@ -90,7 +90,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
 
           <div className="space-y-6 md:pl-8 lg:pl-12">
             <div className="hidden md:block space-y-2">
-              <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Cognitive Performance Formula</p>
+              <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Cognitive Performance Formula</p>
               <h1 className="text-2xl md:text-3xl font-semibold tracking-[-0.02em] leading-tight">{product.title}</h1>
             </div>
 
@@ -99,7 +99,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
                 <p className="text-xs tracking-[0.1em] uppercase text-[rgb(30,24,84)]">Flavour</p>
                 <div className="flex flex-wrap gap-2">
                   {variants.map((v) => (
-                    <button key={v.id} className="border border-[#1E185420] px-4 py-2.5 text-xs min-h-[44px] tracking-wide hover:border-[rgb(30,24,84)] transition-colors">
+                    <button key={v.id} className="border border-ink/[12.5%] px-4 py-2.5 text-xs min-h-[44px] tracking-wide hover:border-[rgb(30,24,84)] transition-colors">
                       {v.title}
                     </button>
                   ))}
@@ -118,7 +118,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
                   'Formulated in Switzerland',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2 text-sm text-[rgb(30,24,84)]">
-                    <span className="text-[#3B38B8] mt-0.5 shrink-0">✓</span>
+                    <span className="text-brand mt-0.5 shrink-0">✓</span>
                     {item}
                   </li>
                 ))}
@@ -126,7 +126,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
             </div>
 
             <div className="space-y-2">
-              <p className="text-sm font-medium text-[#1E1854]">Real benefits, backed by EU-approved science.</p>
+              <p className="text-sm font-medium text-ink">Real benefits, backed by EU-approved science.</p>
               <div className="grid grid-cols-2 gap-3">
                 {[
                   { label: 'Reduces tiredness & fatigue', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" /></svg> },
@@ -134,9 +134,9 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
                   { label: 'Normal muscle & nerve function', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1" /><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" /><line x1="6" y1="1" x2="6" y2="4" /><line x1="10" y1="1" x2="10" y2="4" /><line x1="14" y1="1" x2="14" y2="4" /></svg> },
                   { label: 'Immune defence & cell protection', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg> },
                 ].map(({ label, icon }) => (
-                  <div key={label} className="flex items-center gap-2.5 rounded-xl border border-[#1E1854]/[0.08] bg-[#1E1854]/[0.03] px-3 py-2.5">
-                    <span className="text-[#3B38B8] shrink-0">{icon}</span>
-                    <span className="text-xs font-medium text-[#1E1854]/80 leading-snug">{label}</span>
+                  <div key={label} className="flex items-center gap-2.5 rounded-xl border border-ink/[0.08] bg-ink/[0.03] px-3 py-2.5">
+                    <span className="text-brand shrink-0">{icon}</span>
+                    <span className="text-xs font-medium text-ink/80 leading-snug">{label}</span>
                   </div>
                 ))}
               </div>
@@ -156,7 +156,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
       {/* Nav tabs */}
       <div data-product-nav-wrapper>
         <div className="max-w-[1200px] mx-auto px-6 pt-8 pb-2">
-          <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Learn more about Flow.</p>
+          <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Learn more about Flow.</p>
         </div>
         <ProductNavTabs />
       </div>
@@ -213,8 +213,8 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
                 <svg key="subscription" width="28" height="28" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="8" y="14" width="48" height="42" rx="4" /><path d="M8 26h48" /><path d="M20 8v12M44 8v12" /><circle cx="32" cy="42" r="7" /><path d="M32 38v4l3 2" /></svg>,
               ];
               return servicePillars.map((item, i) => (
-                <div key={item.title} className="border border-[#1E185420] rounded-2xl p-4 md:p-8 flex flex-row md:flex-col items-start gap-4 md:gap-5 shadow-[0_2px_16px_rgba(30,24,84,0.06)] bg-white">
-                  <div className="w-9 h-9 md:w-12 md:h-12 shrink-0 rounded-full bg-gradient-to-br from-[#3B38B8]/15 to-[#1E1854]/8 flex items-center justify-center text-[#3B38B8]">
+                <div key={item.title} className="border border-ink/[12.5%] rounded-2xl p-4 md:p-8 flex flex-row md:flex-col items-start gap-4 md:gap-5 shadow-[0_2px_16px_rgba(30,24,84,0.06)] bg-white">
+                  <div className="w-9 h-9 md:w-12 md:h-12 shrink-0 rounded-full bg-gradient-to-br from-brand/15 to-ink/8 flex items-center justify-center text-brand">
                     {pillarIcons[i]}
                   </div>
                   <div className="space-y-2">
@@ -226,7 +226,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
                           <li key={line} className="text-xs md:text-sm leading-snug">
                             {detail ? (
                               <span className="flex flex-col gap-0.5">
-                                <span className="font-medium text-[#1E1854]/80">{label}</span>
+                                <span className="font-medium text-ink/80">{label}</span>
                                 <span className="text-[rgba(30,24,84,0.55)]">{detail}</span>
                               </span>
                             ) : (
@@ -255,7 +255,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
       {relatedProducts.length > 0 && (
         <section className="max-w-[1200px] mx-auto px-6 py-12 md:py-20">
           <div className="text-center mb-8 md:mb-12 space-y-2">
-            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Our Range</p>
+            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Our Range</p>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-[1.08]">Our Unique Formulas</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -263,9 +263,9 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
               const img = p.images.edges[0]?.node;
               const price = p.priceRange.minVariantPrice;
               return (
-                <Link key={p.id} href={`/products/${p.handle}`} className="group bg-white border border-[#1E185420] rounded-2xl p-6 hover:shadow-[0_8px_32px_rgba(30,24,84,0.10)] transition-all duration-500 text-center">
+                <Link key={p.id} href={`/products/${p.handle}`} className="group bg-white border border-ink/[12.5%] rounded-2xl p-6 hover:shadow-[0_8px_32px_rgba(30,24,84,0.10)] transition-all duration-500 text-center">
                   {img && (
-                    <div className="relative aspect-square mb-4 bg-gradient-to-br from-[#3B38B8]/5 to-[#1E1854]/5 rounded-xl">
+                    <div className="relative aspect-square mb-4 bg-gradient-to-br from-brand/5 to-ink/5 rounded-xl">
                       <Image src={img.url} alt={img.altText ?? p.title} fill className="object-contain p-6 group-hover:scale-105 transition-transform duration-500" />
                     </div>
                   )}

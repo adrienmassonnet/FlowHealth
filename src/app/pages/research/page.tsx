@@ -10,31 +10,31 @@ export default function ResearchPage() {
     <main className="max-w-4xl mx-auto px-6 pt-20 pb-14 md:pb-24 space-y-12 md:space-y-16">
 
       <div className="space-y-3">
-        <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Science-backed</p>
+        <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Science-backed</p>
         <h1 className="text-4xl font-semibold tracking-[-0.02em]">Research</h1>
-        <p className="text-sm font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent leading-relaxed max-w-xl">
+        <p className="text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed max-w-xl">
           Every claim we make is backed by peer-reviewed clinical evidence. Below is the research foundation behind Flow&apos;s formula and delivery technology.
         </p>
       </div>
 
       {/* Delivery Technology */}
       <div className="space-y-6">
-        <div className="border-b border-[#1E185420] pb-4 space-y-1">
+        <div className="border-b border-ink/[12.5%] pb-4 space-y-1">
           <h2 className="text-xl font-semibold tracking-[-0.01em]">Liquid Delivery Technology</h2>
-          <p className="text-sm font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent leading-relaxed">
+          <p className="text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed">
             Why a drink outperforms capsules and powders on bioavailability and onset speed.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[#1E185420]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-ink/[12.5%]">
           {[
             { stat: '~95%', label: 'Absorption rate', detail: 'Liquid supplements achieve near-complete absorption vs. 40–60% for standard capsules.' },
             { stat: '15 min', label: 'Onset time', detail: 'Active ingredients enter the bloodstream within 15–30 minutes, vs. 45–90 minutes for solid forms.' },
             { stat: '8 actives', label: 'In one bottle', detail: 'A single 400ml bottle delivers a clinically dosed stack — no need to take multiple supplements.' },
           ].map((item) => (
-            <div key={item.label} className="bg-[#1E185408] p-6 space-y-2">
+            <div key={item.label} className="bg-ink/[3.1%] p-6 space-y-2">
               <p className="text-2xl font-semibold tracking-[-0.02em]">{item.stat}</p>
-              <p className="text-xs tracking-[0.1em] uppercase font-semibold font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">{item.label}</p>
-              <p className="text-sm font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent leading-relaxed">{item.detail}</p>
+              <p className="text-xs tracking-[0.1em] uppercase font-semibold font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">{item.label}</p>
+              <p className="text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed">{item.detail}</p>
             </div>
           ))}
         </div>
@@ -42,10 +42,10 @@ export default function ResearchPage() {
 
       {/* Key Studies */}
       <div className="space-y-6">
-        <div className="border-b border-[#1E185420] pb-4">
+        <div className="border-b border-ink/[12.5%] pb-4">
           <h2 className="text-xl font-semibold tracking-[-0.01em]">Key Clinical Studies</h2>
         </div>
-        <div className="space-y-px bg-[#1E185420]">
+        <div className="space-y-px bg-ink/[12.5%]">
           {[
             {
               ingredient: 'Ashwagandha (KSM-66®)',
@@ -68,9 +68,9 @@ export default function ResearchPage() {
               journal: 'Journal of the American College of Nutrition, 2002',
             },
           ].map((study) => (
-            <div key={study.ingredient} className="bg-[#1E185408] p-6 space-y-2">
+            <div key={study.ingredient} className="bg-ink/[3.1%] p-6 space-y-2">
               <p className="text-base font-semibold tracking-[-0.01em]">{study.ingredient}</p>
-              <p className="text-sm font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent leading-relaxed">{study.finding}</p>
+              <p className="text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed">{study.finding}</p>
               <p className="text-xs text-[rgba(30,24,84,0.6)] italic">{study.journal}</p>
             </div>
           ))}
@@ -78,8 +78,8 @@ export default function ResearchPage() {
       </div>
 
       {/* Disclaimer */}
-      <div className="border-t border-[#1E185420] pt-8">
-        <p className="text-xs font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent leading-relaxed">
+      <div className="border-t border-ink/[12.5%] pt-8">
+        <p className="text-xs font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed">
           The studies cited above are published peer-reviewed research on the individual ingredients used in Flow at their respective doses. These statements have not been evaluated by Swissmedic, the EMA, or the FDA. Flow is a food supplement, not a medicine, and is not intended to diagnose, treat, cure, or prevent any disease.
         </p>
       </div>

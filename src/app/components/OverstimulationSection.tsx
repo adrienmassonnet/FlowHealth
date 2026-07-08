@@ -85,10 +85,10 @@ export default function OverstimulationSection() {
           className="text-center mb-8 md:mb-10 space-y-3 transition-all duration-700"
           style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(12px)' }}
         >
-          <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">
+          <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">
             The Over-stimulation Cycle
           </p>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-[-0.03em] leading-[1.08] text-[#1E1854]">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-[-0.03em] leading-[1.08] text-ink">
             Your brain was not built for this.
           </h2>
         </div>
@@ -306,7 +306,7 @@ export default function OverstimulationSection() {
           }}
         >
           <button
-            className="group inline-flex items-center gap-2 border border-[#1E1854]/20 rounded-full px-5 py-2.5 text-xs tracking-[0.08em] uppercase font-medium text-[#1E1854]/55 hover:text-[#1E1854] hover:border-[#1E1854]/40 hover:bg-[#1E1854]/[0.03] hover:shadow-[0_2px_12px_rgba(30,24,84,0.08)] transition-all duration-300"
+            className="group inline-flex items-center gap-2 border border-ink/20 rounded-full px-5 py-2.5 text-xs tracking-[0.08em] uppercase font-medium text-ink/55 hover:text-ink hover:border-ink/40 hover:bg-ink/[0.03] hover:shadow-[0_2px_12px_rgba(30,24,84,0.08)] transition-all duration-300"
             onClick={() => { setHovered(false); setMobileStep(0); setScrollOffset(0); setBackMobileStep(0); setBackScrollOffset(0); setFlipped(f => !f); }}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}

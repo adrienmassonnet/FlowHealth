@@ -32,7 +32,7 @@ export default function VennCard({ vennBackgroundImageUrl, vennHeading, activeIn
         className="object-cover"
         sizes="1200px"
       />
-      <div className="absolute inset-0 bg-[#1E1854]/78" />
+      <div className="absolute inset-0 bg-ink/78" />
       <div className="relative z-10 px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
 
         {/* Mobile: heading shown first */}

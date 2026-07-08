@@ -55,8 +55,8 @@ export default function BlogPostsClient({ posts }: { posts: Post[] }) {
               onClick={() => setActiveCategory(cat.key)}
               className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium tracking-[0.04em] border transition-colors ${
                 activeCategory === cat.key
-                  ? 'bg-[#1E1854] text-white border-[#1E1854]'
-                  : 'bg-white text-[#1E1854] border-[#1E185420] hover:border-[rgba(30,24,84,0.4)]'
+                  ? 'bg-ink text-white border-ink'
+                  : 'bg-white text-ink border-ink/[12.5%] hover:border-[rgba(30,24,84,0.4)]'
               }`}
             >
               <span className={`w-1.5 h-1.5 rounded-full ${activeCategory === cat.key ? 'bg-white' : 'bg-[rgba(30,24,84,0.25)]'}`} />
@@ -75,14 +75,14 @@ export default function BlogPostsClient({ posts }: { posts: Post[] }) {
             <Link
               key={post.slug}
               href={`/pages/blog-posts/${post.slug}`}
-              className="group flex flex-col bg-white border border-[#1E185420] rounded-2xl overflow-hidden hover:border-[rgba(30,24,84,0.3)] transition-colors"
+              className="group flex flex-col bg-white border border-ink/[12.5%] rounded-2xl overflow-hidden hover:border-[rgba(30,24,84,0.3)] transition-colors"
             >
               {/* Mobile: top row with image + meta/title; Desktop: full-width image */}
               <div className="flex flex-row sm:flex-col">
                 {/* Mobile image — padded square with rounded corners */}
                 {post.image && (
                   <div className="sm:hidden p-2 shrink-0">
-                    <div className="relative w-16 h-16 rounded-lg overflow-hidden bg-[#1E18540A]">
+                    <div className="relative w-16 h-16 rounded-lg overflow-hidden bg-ink/[3.9%]">
                       <Image
                         src={post.image}
                         alt={post.title}
@@ -95,7 +95,7 @@ export default function BlogPostsClient({ posts }: { posts: Post[] }) {
                 )}
                 {/* Desktop image — full width */}
                 {post.image && (
-                  <div className="hidden sm:block relative w-full sm:aspect-[16/10] overflow-hidden bg-[#1E18540A]">
+                  <div className="hidden sm:block relative w-full sm:aspect-[16/10] overflow-hidden bg-ink/[3.9%]">
                     <Image
                       src={post.image}
                       alt={post.title}
@@ -112,7 +112,7 @@ export default function BlogPostsClient({ posts }: { posts: Post[] }) {
                     <span>·</span>
                     <span>{post.readTime}</span>
                   </div>
-                  <h3 className="text-sm font-semibold text-[#1E1854] leading-snug group-hover:text-[rgb(30,24,84)] transition-colors sm:text-base">
+                  <h3 className="text-sm font-semibold text-ink leading-snug group-hover:text-[rgb(30,24,84)] transition-colors sm:text-base">
                     {post.title}
                   </h3>
                   <p className="hidden sm:block text-sm text-[rgba(30,24,84,0.6)] leading-[1.55] flex-1">
@@ -120,7 +120,7 @@ export default function BlogPostsClient({ posts }: { posts: Post[] }) {
                   </p>
                   <div className="hidden sm:flex flex-wrap gap-1">
                     {post.tags.map((tag) => (
-                      <span key={tag} className="text-[10px] sm:text-xs uppercase tracking-[0.08em] border border-[#1E185420] px-2 py-0.5 rounded-full font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">
+                      <span key={tag} className="text-[10px] sm:text-xs uppercase tracking-[0.08em] border border-ink/[12.5%] px-2 py-0.5 rounded-full font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">
                         {tag}
                       </span>
                     ))}

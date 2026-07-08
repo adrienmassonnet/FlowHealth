@@ -86,8 +86,8 @@ function LanguageSelector({ muted }: { muted?: boolean }) {
         onClick={() => setOpen((o) => !o)}
         className={`flex items-center gap-1 text-xs tracking-[0.08em] uppercase transition-colors ${
           muted
-            ? 'text-[#1E1854]/60 hover:text-[#1E1854]'
-            : 'text-[#1E1854] hover:text-[#3B38B8]'
+            ? 'text-ink/60 hover:text-ink'
+            : 'text-ink hover:text-brand'
         }`}
       >
         <svg width="13" height="13" viewBox="0 0 16 16" fill="none" className="shrink-0">
@@ -103,7 +103,7 @@ function LanguageSelector({ muted }: { muted?: boolean }) {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="absolute right-0 top-full mt-2 w-32 rounded-xl border border-[#1E185420] bg-white shadow-lg overflow-hidden z-50"
+            className="absolute right-0 top-full mt-2 w-32 rounded-xl border border-ink/[12.5%] bg-white shadow-lg overflow-hidden z-50"
           >
             {languages.map((lang) => (
               <button
@@ -111,12 +111,12 @@ function LanguageSelector({ muted }: { muted?: boolean }) {
                 onClick={() => { setSelected(lang.code); setOpen(false); }}
                 className={`w-full flex items-center justify-between px-3 py-2 text-xs transition-colors ${
                   selected === lang.code
-                    ? 'bg-[#1E1854] text-white'
-                    : 'text-[#1E1854] hover:bg-[#1E185408]'
+                    ? 'bg-ink text-white'
+                    : 'text-ink hover:bg-ink/[3.1%]'
                 }`}
               >
                 <span>{lang.label}</span>
-                <span className={`font-mono text-xs ${selected === lang.code ? 'text-white/50' : 'text-[#1E1854]/40'}`}>{lang.code}</span>
+                <span className={`font-mono text-xs ${selected === lang.code ? 'text-white/50' : 'text-ink/40'}`}>{lang.code}</span>
               </button>
             ))}
           </motion.div>
@@ -148,8 +148,8 @@ function NavButton({ label, open }: { label: string; open: boolean }) {
     <button
       className={`relative flex items-center gap-1.5 text-xs tracking-[0.08em] uppercase px-3 py-1.5 rounded-full transition-all duration-200 ${
         open
-          ? 'bg-[#E8E8FF] text-[#1E1854]'
-          : 'text-[#1E1854] hover:text-[#3B38B8] hover:bg-[#E8E8FF]'
+          ? 'bg-[#E8E8FF] text-ink'
+          : 'text-ink hover:text-brand hover:bg-[#E8E8FF]'
       }`}
     >
       {label}
@@ -258,12 +258,12 @@ export default function Header() {
               className="fixed top-0 left-0 bottom-0 z-[70] w-[300px] bg-white flex flex-col md:hidden shadow-2xl"
             >
               {/* Drawer header */}
-              <div className="flex items-center justify-between px-5 h-16 border-b border-[#1E185420] shrink-0">
+              <div className="flex items-center justify-between px-5 h-16 border-b border-ink/[12.5%] shrink-0">
                 <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2.5" aria-label="Flow Health">
                   <img src="/flow-logomark.svg?v=2" alt="" width={20} height={20} className="w-5 h-5" />
                   <img src="/flow-wordmark.svg?v=2" alt="Flow" width={51} height={20} className="h-5 w-auto" />
                 </Link>
-                <button onClick={() => setMobileOpen(false)} className="p-2 -mr-1 text-[#1E1854]" aria-label="Close menu">
+                <button onClick={() => setMobileOpen(false)} className="p-2 -mr-1 text-ink" aria-label="Close menu">
                   <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                     <path d="M3 3l12 12M15 3L3 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                   </svg>
@@ -286,49 +286,49 @@ export default function Header() {
 
                 {/* For the Seekers section */}
                 <div className="px-3 mb-5">
-                  <p className="text-xs uppercase tracking-[0.14em] font-semibold text-[#1E1854]/40 px-3 mb-2">For the Seekers</p>
+                  <p className="text-xs uppercase tracking-[0.14em] font-semibold text-ink/40 px-3 mb-2">For the Seekers</p>
                   <div className="space-y-0.5">
                     {aboutLinks.map((link) => (
                       <Link
                         key={link.href}
                         href={link.href}
                         onClick={() => setMobileOpen(false)}
-                        className="group flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-[#1E185408] transition-colors"
+                        className="group flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-ink/[3.1%] transition-colors"
                       >
-                        <span className="shrink-0 w-8 h-8 rounded-lg bg-[#1E18540A] flex items-center justify-center text-[#1E1854]/60 group-hover:bg-[#1E1854] group-hover:text-white transition-colors">
+                        <span className="shrink-0 w-8 h-8 rounded-lg bg-ink/[3.9%] flex items-center justify-center text-ink/60 group-hover:bg-ink group-hover:text-white transition-colors">
                           {link.icon}
                         </span>
                         <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium text-[#1E1854]">{link.label}</p>
+                          <p className="text-sm font-medium text-ink">{link.label}</p>
                         </div>
                       </Link>
                     ))}
                     <Link
                       href="/pages/blog-posts"
                       onClick={() => setMobileOpen(false)}
-                      className="group flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-[#1E185408] transition-colors"
+                      className="group flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-ink/[3.1%] transition-colors"
                     >
-                      <span className="shrink-0 w-8 h-8 rounded-lg bg-[#1E18540A] flex items-center justify-center text-[#1E1854]/60 group-hover:bg-[#1E1854] group-hover:text-white transition-colors">
+                      <span className="shrink-0 w-8 h-8 rounded-lg bg-ink/[3.9%] flex items-center justify-center text-ink/60 group-hover:bg-ink group-hover:text-white transition-colors">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                           <path d="M4 5h12M4 8h8M4 11h10M4 14h6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
                         </svg>
                       </span>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-[#1E1854]">Our Articles</p>
+                        <p className="text-sm font-medium text-ink">Our Articles</p>
                       </div>
                     </Link>
                   </div>
                 </div>
 
                 {/* Divider */}
-                <div className="mx-3 mb-4 border-t border-[#1E185420]" />
+                <div className="mx-3 mb-4 border-t border-ink/[12.5%]" />
 
                 {/* Utility links */}
                 <div className="px-6">
                   <Link
                     href="/pages/faq"
                     onClick={() => setMobileOpen(false)}
-                    className="inline-flex items-center px-4 py-1.5 rounded-full border border-[#1E185420] text-xs tracking-[0.08em] uppercase font-medium text-[#1E1854] hover:bg-[#1E185408] transition-colors"
+                    className="inline-flex items-center px-4 py-1.5 rounded-full border border-ink/[12.5%] text-xs tracking-[0.08em] uppercase font-medium text-ink hover:bg-ink/[3.1%] transition-colors"
                   >
                     FAQ
                   </Link>
@@ -355,7 +355,7 @@ export default function Header() {
               >
                 {/* Hamburger — mobile only */}
                 <button
-                  className="md:hidden p-1 text-[#1E1854] shrink-0"
+                  className="md:hidden p-1 text-ink shrink-0"
                   aria-label="Open menu"
                   onClick={() => setMobileOpen(true)}
                 >
@@ -401,11 +401,11 @@ export default function Header() {
                                     onClick={() => setActiveMenu(null)}
                                     className="group flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-[#E8E8FF] transition-colors duration-150"
                                   >
-                                    <span className="shrink-0 w-8 h-8 rounded-lg bg-[#1E1854]/[0.06] flex items-center justify-center text-[#1E1854]/60 group-hover:bg-[#1E1854] group-hover:text-white transition-colors duration-200">
+                                    <span className="shrink-0 w-8 h-8 rounded-lg bg-ink/[0.06] flex items-center justify-center text-ink/60 group-hover:bg-ink group-hover:text-white transition-colors duration-200">
                                       {link.icon}
                                     </span>
                                     <div className="flex-1 min-w-0">
-                                      <p className="text-sm font-semibold text-[#1E1854] leading-snug">{link.label}</p>
+                                      <p className="text-sm font-semibold text-ink leading-snug">{link.label}</p>
                                     </div>
                                   </Link>
                                 </motion.div>
@@ -416,13 +416,13 @@ export default function Header() {
                                   onClick={() => setActiveMenu(null)}
                                   className="group flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-[#E8E8FF] transition-colors duration-150"
                                 >
-                                  <span className="shrink-0 w-8 h-8 rounded-lg bg-[#1E1854]/[0.06] flex items-center justify-center text-[#1E1854]/60 group-hover:bg-[#1E1854] group-hover:text-white transition-colors duration-200">
+                                  <span className="shrink-0 w-8 h-8 rounded-lg bg-ink/[0.06] flex items-center justify-center text-ink/60 group-hover:bg-ink group-hover:text-white transition-colors duration-200">
                                     <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
                                       <path d="M4 5h12M4 8h8M4 11h10M4 14h6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
                                     </svg>
                                   </span>
                                   <div className="flex-1 min-w-0">
-                                    <p className="text-sm font-semibold text-[#1E1854] leading-snug">Our Articles</p>
+                                    <p className="text-sm font-semibold text-ink leading-snug">Our Articles</p>
                                   </div>
                                 </Link>
                               </motion.div>

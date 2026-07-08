@@ -45,7 +45,7 @@ export default function ValuePillarsSection() {
           <button
             key={pillar.key}
             onClick={() => select(i)}
-            className={`relative flex items-stretch text-left overflow-hidden rounded-2xl bg-white border border-[#1E1854]/[0.08] shadow-[0_8px_32px_rgba(30,24,84,0.1)] focus:outline-none transition-[flex-grow] duration-700 ease-out ${
+            className={`relative flex items-stretch text-left overflow-hidden rounded-2xl bg-white border border-ink/[0.08] shadow-[0_8px_32px_rgba(30,24,84,0.1)] focus:outline-none transition-[flex-grow] duration-700 ease-out ${
               active ? 'flex-grow flex-shrink basis-0' : 'flex-grow-0 flex-shrink-0 basis-[52px] md:basis-[64px]'
             }`}
           >
@@ -65,7 +65,7 @@ export default function ValuePillarsSection() {
                   active ? 'opacity-0 pointer-events-none duration-150' : 'opacity-100 duration-300 delay-500'
                 }`}
               >
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1E1854]/85 via-[#1E1854]/15 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/15 to-transparent" />
                 <div className="relative z-10 h-full flex items-end justify-center pb-5">
                   <span
                     className="text-xs md:text-sm font-bold tracking-[0.12em] uppercase text-white [text-shadow:0_1px_4px_rgba(0,0,0,0.35)] whitespace-nowrap"
@@ -84,7 +84,7 @@ export default function ValuePillarsSection() {
                 active ? 'w-2/3 opacity-100 px-5 md:px-6 duration-300 delay-500' : 'w-0 opacity-0 px-0 duration-150'
               }`}
             >
-              <h3 className="font-semibold tracking-[-0.02em] text-[#1E1854] text-xl md:text-2xl mb-2 whitespace-normal">
+              <h3 className="font-semibold tracking-[-0.02em] text-ink text-xl md:text-2xl mb-2 whitespace-normal">
                 {pillar.title}
               </h3>
               <p className="text-sm text-[rgba(30,24,84,0.6)] leading-relaxed whitespace-normal">

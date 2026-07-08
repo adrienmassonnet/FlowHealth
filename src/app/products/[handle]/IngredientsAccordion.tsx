@@ -46,7 +46,7 @@ const ITEMS_PER_PAGE = 6;
 function IngredientTile({ name, tagline, image, onClick }: { name: string; tagline: string; image: string; onClick: () => void }) {
   return (
     <div
-      className="cursor-pointer rounded-2xl overflow-hidden border border-[#1E185420] group"
+      className="cursor-pointer rounded-2xl overflow-hidden border border-ink/[12.5%] group"
       onClick={onClick}
     >
       <div className="relative aspect-[4/3] md:aspect-auto md:h-[clamp(140px,16vh,200px)] w-full bg-[#f5f5fc]">
@@ -75,7 +75,7 @@ function IngredientTile({ name, tagline, image, onClick }: { name: string; tagli
 function IngredientCardRow({ name, tagline, description, image, onClick }: { name: string; tagline: string; description: string; image: string; onClick: () => void }) {
   return (
     <div
-      className="cursor-pointer group rounded-xl border border-[#1E1854]/[0.07] bg-white shadow-sm shadow-[#1E1854]/[0.04] hover:shadow-xl hover:shadow-[#1E1854]/[0.10] hover:-translate-y-0.5 transition-all duration-500 flex flex-col md:flex-row overflow-hidden"
+      className="cursor-pointer group rounded-xl border border-ink/[0.07] bg-white shadow-sm shadow-ink/[0.04] hover:shadow-xl hover:shadow-ink/[0.10] hover:-translate-y-0.5 transition-all duration-500 flex flex-col md:flex-row overflow-hidden"
       onClick={onClick}
     >
       {/* Desktop image sidebar */}
@@ -114,7 +114,7 @@ function IngredientCardRow({ name, tagline, description, image, onClick }: { nam
           <div className="flex items-center gap-2 flex-wrap">
             <h3 className="text-sm font-semibold text-black tracking-[-0.01em] leading-snug">{name}</h3>
             {tagline && (
-              <span className="text-[10px] font-semibold tracking-[0.08em] uppercase text-black/40 bg-[#1E1854]/[0.05] px-2 py-0.5 rounded-full whitespace-nowrap">
+              <span className="text-[10px] font-semibold tracking-[0.08em] uppercase text-black/40 bg-ink/[0.05] px-2 py-0.5 rounded-full whitespace-nowrap">
                 {tagline}
               </span>
             )}
@@ -122,19 +122,19 @@ function IngredientCardRow({ name, tagline, description, image, onClick }: { nam
           {getPills(name).length > 0 && (
             <div className="flex flex-wrap gap-1">
               {getPills(name).map((pill: string) => (
-                <span key={pill} className="text-[10px] font-semibold tracking-[0.06em] uppercase px-2 py-0.5 rounded-full bg-gradient-to-r from-[#3B38B8]/10 to-[#1E1854]/10 text-[#3B38B8]">
+                <span key={pill} className="text-[10px] font-semibold tracking-[0.06em] uppercase px-2 py-0.5 rounded-full bg-gradient-to-r from-brand/10 to-ink/10 text-brand">
                   {pill}
                 </span>
               ))}
             </div>
           )}
           {/* Description — desktop only inline, mobile below */}
-          <p className="hidden md:block text-xs text-[#1E1854]/60 leading-[1.55]">{description}</p>
+          <p className="hidden md:block text-xs text-ink/60 leading-[1.55]">{description}</p>
         </div>
       </div>
 
       {/* Description — mobile only, below the image+title row */}
-      <p className="md:hidden text-xs text-[#1E1854]/60 leading-[1.55] px-3 pb-3">{description}</p>
+      <p className="md:hidden text-xs text-ink/60 leading-[1.55] px-3 pb-3">{description}</p>
     </div>
   );
 }
@@ -191,14 +191,14 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile', ac
               className={cn(
                 'shrink-0 whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-200 flex items-center gap-1.5',
                 active
-                  ? 'bg-[#1E1854] text-white'
-                  : 'bg-[#1E1854]/6 text-[#1E1854]/50 hover:bg-[#1E1854]/10 hover:text-[#1E1854]/70'
+                  ? 'bg-ink text-white'
+                  : 'bg-ink/6 text-ink/50 hover:bg-ink/10 hover:text-ink/70'
               )}
             >
               {label}
               <span className={cn(
                 'text-xs font-semibold rounded-full px-1.5 py-0.5 leading-none tabular-nums',
-                active ? 'bg-white/20 text-white/80' : 'bg-[#1E1854]/8 text-[#1E1854]/40'
+                active ? 'bg-white/20 text-white/80' : 'bg-ink/8 text-ink/40'
               )}>{count}</span>
             </button>
           );
@@ -224,8 +224,8 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile', ac
                 className={cn(
                   'relative rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-200 flex items-center justify-between gap-2 w-full text-left',
                   active
-                    ? 'bg-[#1E1854] text-white'
-                    : 'text-[#1E1854]/45 hover:text-[#1E1854]/70 hover:bg-[#1E1854]/6'
+                    ? 'bg-ink text-white'
+                    : 'text-ink/45 hover:text-ink/70 hover:bg-ink/6'
                 )}
               >
                 {label}
@@ -233,7 +233,7 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile', ac
                   'text-xs font-semibold rounded-full px-1.5 py-0.5 leading-none tabular-nums shrink-0 transition-colors duration-200',
                   active
                     ? 'bg-white/20 text-white/80'
-                    : 'bg-[#1E1854]/8 text-[#1E1854]/35'
+                    : 'bg-ink/8 text-ink/35'
                 )}>{count}</span>
               </button>
             );
@@ -282,7 +282,7 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile', ac
           onClick={() => setPage((p) => Math.max(0, p - 1))}
           disabled={safePage === 0}
           aria-label="Previous ingredients"
-          className="w-8 h-8 flex items-center justify-center text-[#1E1854]/65 disabled:opacity-25 disabled:pointer-events-none hover:text-[#1E1854] transition-colors duration-300"
+          className="w-8 h-8 flex items-center justify-center text-ink/65 disabled:opacity-25 disabled:pointer-events-none hover:text-ink transition-colors duration-300"
         >
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
             <path d="M11 4L6 9L11 14" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
@@ -294,7 +294,7 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile', ac
               key={i}
               onClick={() => setPage(i)}
               aria-label={`Page ${i + 1}`}
-              className={`rounded-full transition-all duration-300 ${i === safePage ? 'w-5 h-1 bg-[#1E1854]/35' : 'w-1.5 h-1.5 bg-[#1E1854]/12 hover:bg-[#1E1854]/25'}`}
+              className={`rounded-full transition-all duration-300 ${i === safePage ? 'w-5 h-1 bg-ink/35' : 'w-1.5 h-1.5 bg-ink/12 hover:bg-ink/25'}`}
             />
           ))}
         </div>
@@ -302,7 +302,7 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile', ac
           onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
           disabled={safePage === totalPages - 1}
           aria-label="Next ingredients"
-          className="w-8 h-8 flex items-center justify-center text-[#1E1854]/65 disabled:opacity-25 disabled:pointer-events-none hover:text-[#1E1854] transition-colors duration-300"
+          className="w-8 h-8 flex items-center justify-center text-ink/65 disabled:opacity-25 disabled:pointer-events-none hover:text-ink transition-colors duration-300"
         >
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
             <path d="M7 4L12 9L7 14" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
@@ -323,7 +323,7 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile', ac
           className="fixed inset-0 z-50 flex items-end sm:items-center justify-center"
           onClick={() => setActiveCard(null)}
         >
-          <div className="absolute inset-0 bg-[#1E1854]/60 backdrop-blur-sm" />
+          <div className="absolute inset-0 bg-ink/60 backdrop-blur-sm" />
           <motion.div
             initial={{ y: '100%' }}
             animate={{ y: 0 }}
@@ -351,7 +351,7 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile', ac
             <button
               onClick={() => setActiveCard(null)}
               aria-label="Close"
-              className="absolute top-3 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-sm text-[#1E1854]/50 hover:text-[#1E1854] hover:bg-white transition-colors duration-200"
+              className="absolute top-3 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-sm text-ink/50 hover:text-ink hover:bg-white transition-colors duration-200"
             >
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <path d="M11 3L3 11M3 3l8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
@@ -359,17 +359,17 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile', ac
             </button>
 
             <div className="flex-1 px-7 pt-4 overflow-y-auto" style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}>
-              <h3 className="text-xl font-semibold text-[#1E1854] tracking-[-0.02em] leading-snug mb-1">{activeCard.name}</h3>
+              <h3 className="text-xl font-semibold text-ink tracking-[-0.02em] leading-snug mb-1">{activeCard.name}</h3>
               {activeCard.tagline && (
-                <span className="inline-block text-xs tracking-[0.08em] uppercase font-semibold bg-[#1E1854]/8 text-[#1E1854]/55 px-2.5 py-1 rounded-full mb-3">
+                <span className="inline-block text-xs tracking-[0.08em] uppercase font-semibold bg-ink/8 text-ink/55 px-2.5 py-1 rounded-full mb-3">
                   {activeCard.tagline}
                 </span>
               )}
-              <p className="text-sm text-[#1E1854]/65 leading-[1.55] mb-4">{activeCard.description}</p>
+              <p className="text-sm text-ink/65 leading-[1.55] mb-4">{activeCard.description}</p>
               {getPills(activeCard.name).length > 0 && (
                 <div className="flex flex-wrap gap-1.5">
                   {getPills(activeCard.name).map((pill) => (
-                    <span key={pill} className="text-xs tracking-wide px-2.5 py-1 rounded-full bg-[#3B38B8]/8 text-[#3B38B8] font-medium border border-[#3B38B8]/15">
+                    <span key={pill} className="text-xs tracking-wide px-2.5 py-1 rounded-full bg-brand/8 text-brand font-medium border border-brand/15">
                       {pill}
                     </span>
                   ))}

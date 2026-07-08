@@ -26,7 +26,7 @@ export default async function OurProductPage() {
             <div className="flex flex-col md:flex-row md:items-stretch gap-10 md:gap-16">
               {/* Text */}
               <div className="flex-1 space-y-6">
-                <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">About Flow</p>
+                <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">About Flow</p>
                 <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] leading-tight">
                   One formula.<br className="hidden sm:block" /> Nothing hidden.
                 </h1>
@@ -44,7 +44,7 @@ export default async function OurProductPage() {
                   sizes="(max-width: 768px) 100vw, 420px"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1E1854]/30 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/30 via-transparent to-transparent" />
               </div>
             </div>
             {/* Specs — full width below */}
@@ -57,7 +57,7 @@ export default async function OurProductPage() {
                 { value: 'No added sugar', label: 'Formula' },
                 { value: 'Caffeine-free', label: 'Formula' },
               ].map((spec, i) => (
-                <div key={i} className="bg-gradient-to-br from-[#1E1854] to-[#2d2a7a] rounded-xl px-4 py-3">
+                <div key={i} className="bg-gradient-to-br from-ink to-[#2d2a7a] rounded-xl px-4 py-3">
                   <p className="text-lg font-semibold tracking-[-0.02em] text-white">{spec.value}</p>
                   <p className="text-xs tracking-[0.08em] uppercase text-white/50 mt-1">{spec.label}</p>
                 </div>

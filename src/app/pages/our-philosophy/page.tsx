@@ -23,8 +23,8 @@ export default async function OurPhilosophyPage() {
       {/* Hero */}
       <section className="bg-white pt-28 md:pt-36 pb-14 md:pb-20">
         <div className="max-w-[1200px] mx-auto px-6">
-          <p className="text-xs tracking-[0.16em] uppercase text-[#1E1854]/40 font-medium mb-5">About Flow</p>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-[-0.03em] text-[#1E1854] leading-tight max-w-3xl mb-6">
+          <p className="text-xs tracking-[0.16em] uppercase text-ink/40 font-medium mb-5">About Flow</p>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-[-0.03em] text-ink leading-tight max-w-3xl mb-6">
             Built for minds that refuse to settle.
           </h1>
           <p className="text-sm text-[rgba(30,24,84,0.65)] max-w-lg leading-relaxed">
@@ -40,7 +40,7 @@ export default async function OurPhilosophyPage() {
       <PeacefulApproachSection />
 
       {/* Venn diagram section */}
-      <section className="py-16 md:py-20 border-t border-[#1E1854]/[0.06]">
+      <section className="py-16 md:py-20 border-t border-ink/[0.06]">
         <div className="max-w-[1200px] mx-auto px-6">
           <VennCard
             vennBackgroundImageUrl={cms.vennBackgroundImageUrl}
@@ -51,13 +51,13 @@ export default async function OurPhilosophyPage() {
       </section>
 
       {/* Values — rotating principle cards */}
-      <section className="bg-white border-t border-[#1E1854]/[0.06]">
+      <section className="bg-white border-t border-ink/[0.06]">
         <div className="max-w-[1200px] mx-auto px-6 py-16 md:py-24">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center">
             <MorningRitualCard />
             <div className="space-y-4">
-              <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Values we hold dear</p>
-              <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-tight text-[#1E1854]">
+              <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Values we hold dear</p>
+              <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-tight text-ink">
                 Flow is human led and science based.
               </h2>
             </div>
@@ -70,7 +70,7 @@ export default async function OurPhilosophyPage() {
         <div className="max-w-[1200px] mx-auto px-6 py-16 md:py-24">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-10 md:gap-16 items-start">
             <div className="space-y-3">
-              <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">What We Believe</p>
+              <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">What We Believe</p>
               <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
                 Conviction,<br />not aspiration.
               </h2>
@@ -82,12 +82,12 @@ export default async function OurPhilosophyPage() {
                 const firstSentence = firstPeriodIdx > -1 ? normalized.slice(0, firstPeriodIdx + 1) : normalized;
                 const rest = firstPeriodIdx > -1 ? normalized.slice(firstPeriodIdx + 2) : '';
                 return (
-                  <div key={b.text.slice(0, 40)} className="group rounded-xl border border-[#1E1854]/[0.07] bg-white shadow-sm shadow-[#1E1854]/[0.04] hover:shadow-md hover:shadow-[#1E1854]/[0.07] hover:-translate-y-0.5 transition-all duration-500 p-4 flex items-start gap-3">
-                    <span className="shrink-0 mt-0.5 w-9 h-9 rounded-full bg-gradient-to-br from-[#1E1854] to-[#2d2a7a] flex items-center justify-center text-xs font-semibold text-white/60 tabular-nums">
+                  <div key={b.text.slice(0, 40)} className="group rounded-xl border border-ink/[0.07] bg-white shadow-sm shadow-ink/[0.04] hover:shadow-md hover:shadow-ink/[0.07] hover:-translate-y-0.5 transition-all duration-500 p-4 flex items-start gap-3">
+                    <span className="shrink-0 mt-0.5 w-9 h-9 rounded-full bg-gradient-to-br from-ink to-[#2d2a7a] flex items-center justify-center text-xs font-semibold text-white/60 tabular-nums">
                       {String(i + 1).padStart(2, '0')}
                     </span>
                     <div className="pt-0.5">
-                      <p className="text-sm font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent leading-snug">{firstSentence}</p>
+                      <p className="text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-snug">{firstSentence}</p>
                       {rest && <p className="mt-1.5 text-xs text-[rgba(30,24,84,0.60)] leading-relaxed">{rest}</p>}
                     </div>
                   </div>
@@ -102,7 +102,7 @@ export default async function OurPhilosophyPage() {
       <section className="bg-white">
         <div className="max-w-[1200px] mx-auto px-6 py-16 md:py-24">
           <div className="mb-12 space-y-2">
-            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Non-Negotiables</p>
+            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Non-Negotiables</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">Our six principles.</h2>
           </div>
           <PrinciplesAccordion principles={principles} />

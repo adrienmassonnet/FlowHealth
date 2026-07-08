@@ -46,8 +46,8 @@ export const FAQ = ({
               className={cn(
                 'whitespace-nowrap rounded-full px-5 py-2.5 text-xs tracking-[0.08em] uppercase font-medium transition-all duration-300',
                 selectedCategory === key
-                  ? 'bg-gradient-to-r from-[#3B38B8] to-[#1E1854] text-white shadow-[0_4px_14px_-4px_rgba(59,56,184,0.5)]'
-                  : 'bg-white border border-[#1E185420] shadow-[0_2px_8px_rgba(30,24,84,0.06)] text-[rgba(30,24,84,0.8)] hover:border-[#3B38B8] hover:text-[#3B38B8] hover:shadow-[0_4px_16px_rgba(59,56,184,0.12)]'
+                  ? 'bg-gradient-to-r from-brand to-ink text-white shadow-[0_4px_14px_-4px_rgba(59,56,184,0.5)]'
+                  : 'bg-white border border-ink/[12.5%] shadow-[0_2px_8px_rgba(30,24,84,0.06)] text-[rgba(30,24,84,0.8)] hover:border-brand hover:text-brand hover:shadow-[0_4px_16px_rgba(59,56,184,0.12)]'
               )}
             >
               {label}
@@ -58,19 +58,19 @@ export const FAQ = ({
       </div>
 
       {/* Desktop: book-page reader */}
-      <div className="hidden md:grid relative z-10 max-w-5xl mx-auto grid-cols-[1fr_2fr] gap-0 border border-[#1E1854]/[0.08] rounded-2xl overflow-hidden shadow-[0_4px_40px_rgba(30,24,84,0.07)]">
+      <div className="hidden md:grid relative z-10 max-w-5xl mx-auto grid-cols-[1fr_2fr] gap-0 border border-ink/[0.08] rounded-2xl overflow-hidden shadow-[0_4px_40px_rgba(30,24,84,0.07)]">
 
         {/* Category index — left spine */}
-        <div className="bg-white border-r border-[#1E1854]/[0.07] flex flex-col">
+        <div className="bg-white border-r border-ink/[0.07] flex flex-col">
           {Object.entries(categories).map(([key, label]) => (
             <button
               key={key}
               onClick={() => setSelectedCategory(key)}
-              className={`text-left px-6 py-5 border-b border-[#1E1854]/[0.07] last:border-0 transition-colors duration-200 group ${
+              className={`text-left px-6 py-5 border-b border-ink/[0.07] last:border-0 transition-colors duration-200 group ${
                 selectedCategory === key ? 'bg-[#F7F6FA]' : 'bg-white hover:bg-[#F7F6FA]/60'
               }`}
             >
-              <span className={`text-sm font-medium tracking-[-0.01em] transition-colors duration-200 leading-snug ${selectedCategory === key ? 'text-[#3B38B8]' : 'text-[#1E1854]/60 group-hover:text-[#1E1854]/80'}`}>
+              <span className={`text-sm font-medium tracking-[-0.01em] transition-colors duration-200 leading-snug ${selectedCategory === key ? 'text-brand' : 'text-ink/60 group-hover:text-ink/80'}`}>
                 {label}
               </span>
             </button>
@@ -110,7 +110,7 @@ const FAQHeader = ({ title, subtitle }: { title: string; subtitle: string }) => 
     <span className="mb-4 text-xs tracking-[0.16em] uppercase font-medium text-[rgba(30,24,84,0.5)]">
       {subtitle}
     </span>
-    <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-[1.0] text-[#1E1854]">
+    <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-[1.0] text-ink">
       {title}
     </h2>
     <span className="absolute -top-[350px] left-[50%] z-0 h-[500px] w-[600px] -translate-x-[50%] rounded-full bg-[rgba(30,24,84,0.04)] blur-3xl pointer-events-none" />
@@ -152,8 +152,8 @@ const FAQCard = ({ question, answer, index }: FAQItem & { index: number }) => {
       className={cn(
         'group relative bg-white rounded-2xl border transition-all duration-300 overflow-hidden',
         isOpen
-          ? 'border-[#1E1854]/20 shadow-[0_8px_32px_-8px_rgba(30,24,84,0.18)]'
-          : 'border-[#1E185420] shadow-[0_2px_12px_-4px_rgba(30,24,84,0.07)] hover:shadow-[0_6px_24px_-6px_rgba(30,24,84,0.14)] hover:border-[#1E1854]/15'
+          ? 'border-ink/20 shadow-[0_8px_32px_-8px_rgba(30,24,84,0.18)]'
+          : 'border-ink/[12.5%] shadow-[0_2px_12px_-4px_rgba(30,24,84,0.07)] hover:shadow-[0_6px_24px_-6px_rgba(30,24,84,0.14)] hover:border-ink/15'
       )}
     >
       {/* Accent bar */}
@@ -161,7 +161,7 @@ const FAQCard = ({ question, answer, index }: FAQItem & { index: number }) => {
         initial={false}
         animate={{ scaleX: isOpen ? 1 : 0 }}
         transition={{ duration: DURATION.base, ease: EASE.expoOut }}
-        className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#3B38B8] to-[#1E1854] origin-left"
+        className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-brand to-ink origin-left"
       />
 
       <button
@@ -170,7 +170,7 @@ const FAQCard = ({ question, answer, index }: FAQItem & { index: number }) => {
       >
         <span className={cn(
           'text-sm font-semibold tracking-[-0.01em] leading-snug transition-colors duration-200',
-          isOpen ? 'text-[#1E1854]' : 'text-[rgba(30,24,84,0.85)] group-hover:text-[#1E1854]'
+          isOpen ? 'text-ink' : 'text-[rgba(30,24,84,0.85)] group-hover:text-ink'
         )}>
           {question}
         </span>
@@ -180,11 +180,11 @@ const FAQCard = ({ question, answer, index }: FAQItem & { index: number }) => {
           className={cn(
             'shrink-0 mt-0.5 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors duration-200',
             isOpen
-              ? 'bg-[#1E1854] border-[#1E1854]'
-              : 'border-[#1E185420] group-hover:border-[#1E1854]/40'
+              ? 'bg-ink border-ink'
+              : 'border-ink/[12.5%] group-hover:border-ink/40'
           )}
         >
-          <Plus className={cn('w-3 h-3', isOpen ? 'text-white' : 'text-[#1E1854]')} />
+          <Plus className={cn('w-3 h-3', isOpen ? 'text-white' : 'text-ink')} />
         </motion.span>
       </button>
 
@@ -195,7 +195,7 @@ const FAQCard = ({ question, answer, index }: FAQItem & { index: number }) => {
         className="overflow-hidden"
       >
         <div className="px-6 pb-6">
-          <div className="w-full h-px bg-[#1E185420] mb-4" />
+          <div className="w-full h-px bg-ink/[12.5%] mb-4" />
           <p className="text-sm text-[rgba(30,24,84,0.75)] leading-[1.75]">{answer}</p>
         </div>
       </motion.div>

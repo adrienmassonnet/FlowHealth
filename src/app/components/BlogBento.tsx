@@ -202,8 +202,8 @@ export default function BlogBento() {
         custom={0.2}
         variants={cardVariants}
       >
-      <div className="bg-white rounded-3xl p-5 flex flex-col gap-4 border border-[#1E1854]/[0.07] shadow-[0_4px_20px_rgba(30,24,84,0.07)] h-full">
-        <p className="text-xs tracking-[0.14em] uppercase text-[#1E1854]/35 font-medium">
+      <div className="bg-white rounded-3xl p-5 flex flex-col gap-4 border border-ink/[0.07] shadow-[0_4px_20px_rgba(30,24,84,0.07)] h-full">
+        <p className="text-xs tracking-[0.14em] uppercase text-ink/35 font-medium">
           Browse by topic
         </p>
 
@@ -213,9 +213,9 @@ export default function BlogBento() {
               key={t.label}
               href={t.href}
               onClick={() => trackEvent('homepage_blog_topic_click')}
-              className="relative overflow-hidden group/pill text-xs font-medium tracking-[0.04em] px-4 py-2 rounded-full border border-[#1E1854]/12 text-[#1E1854]/55 hover:border-transparent hover:text-white transition-colors duration-300 hover:shadow-[0_2px_8px_rgba(59,56,184,0.30)]"
+              className="relative overflow-hidden group/pill text-xs font-medium tracking-[0.04em] px-4 py-2 rounded-full border border-ink/12 text-ink/55 hover:border-transparent hover:text-white transition-colors duration-300 hover:shadow-[0_2px_8px_rgba(59,56,184,0.30)]"
             >
-              <span className="absolute inset-0 bg-gradient-to-r from-[#3B38B8] to-[#1E1854] opacity-0 group-hover/pill:opacity-100 transition-opacity duration-300" />
+              <span className="absolute inset-0 bg-gradient-to-r from-brand to-ink opacity-0 group-hover/pill:opacity-100 transition-opacity duration-300" />
               <span className="relative">{t.label}</span>
             </Link>
           ))}

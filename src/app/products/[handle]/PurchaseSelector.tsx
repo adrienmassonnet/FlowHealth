@@ -43,12 +43,12 @@ export default function PurchaseSelector({ variantId, price, currencyCode, disco
         className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl border-2 transition-all duration-300 group ${
           isSubscribe
             ? 'card-selected'
-            : 'border-[#1E185420] hover:border-[rgba(30,24,84,0.4)]'
+            : 'border-ink/[12.5%] hover:border-[rgba(30,24,84,0.4)]'
         }`}
       >
         {/* Radio */}
         <span className={`shrink-0 w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors ${
-          isSubscribe ? 'border-white' : 'border-[#1E185420] group-hover:border-[#1E1854]/50'
+          isSubscribe ? 'border-white' : 'border-ink/[12.5%] group-hover:border-ink/50'
         }`}>
           {isSubscribe && <span className="block w-2 h-2 rounded-full bg-white" />}
         </span>
@@ -74,25 +74,25 @@ export default function PurchaseSelector({ variantId, price, currencyCode, disco
         onClick={() => { setSelected('once'); trackEvent('product_page_select_one_time'); }}
         className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl border-2 transition-all duration-200 group ${
           isOnce
-            ? 'border-[#1E1854] bg-[#1E1854]/5'
-            : 'border-[#1E185420] hover:border-[#1E1854]/40 hover:bg-[#1E1854]/3'
+            ? 'border-ink bg-ink/5'
+            : 'border-ink/[12.5%] hover:border-ink/40 hover:bg-ink/3'
         }`}
       >
         {/* Radio */}
         <span className={`shrink-0 w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors ${
-          isOnce ? 'border-[#1E1854]' : 'border-[#1E185420] group-hover:border-[#1E1854]/50'
+          isOnce ? 'border-ink' : 'border-ink/[12.5%] group-hover:border-ink/50'
         }`}>
-          {isOnce && <span className="w-2 h-2 rounded-full bg-[#1E1854]" />}
+          {isOnce && <span className="w-2 h-2 rounded-full bg-ink" />}
         </span>
 
         <span className={`text-sm transition-colors ${
-          isOnce ? 'font-semibold text-[#1E1854]' : 'text-[rgba(30,24,84,0.8)]'
+          isOnce ? 'font-semibold text-ink' : 'text-[rgba(30,24,84,0.8)]'
         }`}>
           One-time purchase
         </span>
 
         <span className={`ml-auto text-sm tabular-nums transition-colors ${
-          isOnce ? 'font-semibold text-[#1E1854]' : 'text-[rgba(30,24,84,0.7)]'
+          isOnce ? 'font-semibold text-ink' : 'text-[rgba(30,24,84,0.7)]'
         }`}>
           {fullPrice} <span className="font-normal text-xs">{currencyCode}</span>
         </span>

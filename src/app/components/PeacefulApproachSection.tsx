@@ -35,20 +35,20 @@ export default function PeacefulApproachSection() {
   const activeChapter = chapters[safeActive];
 
   return (
-    <section className="border-t border-[#1E1854]/[0.06]">
+    <section className="border-t border-ink/[0.06]">
       <div className="max-w-[1200px] mx-auto px-6 py-14 md:py-16">
 
         <div className="text-center max-w-[680px] mx-auto space-y-3 mb-8 md:mb-10">
-          <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">
+          <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">
             A more peaceful approach
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.08] tracking-[-0.035em] text-[#1E1854]">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.08] tracking-[-0.035em] text-ink">
             We don&apos;t sell you a better version of yourself. We help you build one.
           </h2>
         </div>
 
         {/* Mobile: vertical accordion */}
-        <div className="md:hidden flex flex-col divide-y divide-[#1E1854]/[0.07] border border-[#1E1854]/[0.08] rounded-2xl overflow-hidden shadow-[0_4px_40px_rgba(30,24,84,0.07)]">
+        <div className="md:hidden flex flex-col divide-y divide-ink/[0.07] border border-ink/[0.08] rounded-2xl overflow-hidden shadow-[0_4px_40px_rgba(30,24,84,0.07)]">
           {chapters.map((c, i) => {
             const isOpen = mobileOpen === i;
             return (
@@ -58,15 +58,15 @@ export default function PeacefulApproachSection() {
                   className="w-full flex items-center justify-between px-5 py-4 text-left"
                 >
                   <div>
-                    <span className={`block text-[10px] tracking-[0.14em] uppercase font-semibold mb-0.5 ${isOpen ? 'text-[#3B38B8]' : 'text-[#1E1854]/30'}`}>
+                    <span className={`block text-[10px] tracking-[0.14em] uppercase font-semibold mb-0.5 ${isOpen ? 'text-brand' : 'text-ink/30'}`}>
                       {c.topic}
                     </span>
-                    <span className="text-sm font-medium tracking-[-0.01em] leading-snug text-[#1E1854]">
+                    <span className="text-sm font-medium tracking-[-0.01em] leading-snug text-ink">
                       {c.label}
                     </span>
                   </div>
-                  <span className={`shrink-0 w-6 h-6 rounded-full border flex items-center justify-center ml-4 transition-colors duration-200 ${isOpen ? 'border-[#3B38B8]/40 bg-[#3B38B8]/8' : 'border-[#1E1854]/15'}`}>
-                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke={isOpen ? '#3B38B8' : 'rgba(30,24,84,0.35)'} strokeWidth="1.5" strokeLinecap="round">
+                  <span className={`shrink-0 w-6 h-6 rounded-full border flex items-center justify-center ml-4 transition-colors duration-200 ${isOpen ? 'border-brand/40 bg-brand/8' : 'border-ink/15'}`}>
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke={isOpen ? 'var(--color-brand)' : 'rgba(30,24,84,0.35)'} strokeWidth="1.5" strokeLinecap="round">
                       {isOpen
                         ? <line x1="2" y1="5" x2="8" y2="5"/>
                         : <><line x1="5" y1="2" x2="5" y2="8"/><line x1="2" y1="5" x2="8" y2="5"/></>
@@ -83,7 +83,7 @@ export default function PeacefulApproachSection() {
                       transition={{ duration: DURATION.base, ease: EASE.expoOut }}
                       className="overflow-hidden"
                     >
-                      <p className="text-sm text-[#1E1854] leading-[1.55] px-5 pb-5">
+                      <p className="text-sm text-ink leading-[1.55] px-5 pb-5">
                         {c.body}
                       </p>
                     </motion.div>
@@ -95,22 +95,22 @@ export default function PeacefulApproachSection() {
         </div>
 
         {/* Desktop: book-page reader */}
-        <div className="hidden md:grid grid-cols-[1fr_2fr] gap-0 border border-[#1E1854]/[0.08] rounded-2xl overflow-hidden shadow-[0_4px_40px_rgba(30,24,84,0.07)]">
+        <div className="hidden md:grid grid-cols-[1fr_2fr] gap-0 border border-ink/[0.08] rounded-2xl overflow-hidden shadow-[0_4px_40px_rgba(30,24,84,0.07)]">
 
           {/* Chapter index — left spine */}
-          <div className="bg-white border-r border-[#1E1854]/[0.07] flex flex-col">
+          <div className="bg-white border-r border-ink/[0.07] flex flex-col">
             {chapters.map((c, i) => (
               <button
                 key={c.label}
                 onClick={() => setActive(i)}
-                className={`text-left px-6 py-5 border-b border-[#1E1854]/[0.07] last:border-0 transition-colors duration-200 group ${
+                className={`text-left px-6 py-5 border-b border-ink/[0.07] last:border-0 transition-colors duration-200 group ${
                   safeActive === i ? 'bg-[#F7F6FA]' : 'bg-white hover:bg-[#F7F6FA]/60'
                 }`}
               >
-                <span className={`block text-[10px] tracking-[0.14em] uppercase font-semibold mb-0.5 transition-colors duration-200 ${safeActive === i ? 'text-[#3B38B8]' : 'text-[#1E1854]/25 group-hover:text-[#1E1854]/40'}`}>
+                <span className={`block text-[10px] tracking-[0.14em] uppercase font-semibold mb-0.5 transition-colors duration-200 ${safeActive === i ? 'text-brand' : 'text-ink/25 group-hover:text-ink/40'}`}>
                   {c.topic}
                 </span>
-                <span className={`text-sm font-medium tracking-[-0.01em] transition-colors duration-200 leading-snug ${safeActive === i ? 'text-[#1E1854]' : 'text-[#1E1854]/40 group-hover:text-[#1E1854]/60'}`}>
+                <span className={`text-sm font-medium tracking-[-0.01em] transition-colors duration-200 leading-snug ${safeActive === i ? 'text-ink' : 'text-ink/40 group-hover:text-ink/60'}`}>
                   {c.label}
                 </span>
               </button>
@@ -129,10 +129,10 @@ export default function PeacefulApproachSection() {
                 className="absolute inset-0 px-10 py-10"
               >
                 <div className="space-y-3">
-                  <p className="text-xs tracking-[0.12em] uppercase font-semibold text-[#3B38B8]/70">
+                  <p className="text-xs tracking-[0.12em] uppercase font-semibold text-brand/70">
                     {activeChapter.topic} — {activeChapter.label}
                   </p>
-                  <p className="text-[1.05rem] text-[#1E1854]/70 leading-[1.55]">
+                  <p className="text-[1.05rem] text-ink/70 leading-[1.55]">
                     {activeChapter.body}
                   </p>
                 </div>

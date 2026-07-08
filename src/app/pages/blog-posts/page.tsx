@@ -27,7 +27,7 @@ export default async function BlogPostsPage() {
       <section className="max-w-[1200px] mx-auto px-6 pt-20 pb-16">
         <Link
           href={`/pages/blog-posts/${featured.slug}`}
-          className="group flex flex-col md:grid md:grid-cols-2 md:gap-8 md:items-center bg-[#1E185408] rounded-2xl overflow-hidden border border-[#1E185420] hover:border-[rgba(30,24,84,0.3)] transition-colors"
+          className="group flex flex-col md:grid md:grid-cols-2 md:gap-8 md:items-center bg-ink/[3.1%] rounded-2xl overflow-hidden border border-ink/[12.5%] hover:border-[rgba(30,24,84,0.3)] transition-colors"
         >
           {/* Mobile: padded square image + meta/title row */}
           <div className="flex flex-row md:contents">
@@ -65,7 +65,7 @@ export default async function BlogPostsPage() {
                 <span>·</span>
                 <span>{featured.readTime}</span>
               </div>
-              <h2 className="text-sm font-semibold md:text-3xl md:font-semibold tracking-[-0.02em] leading-snug text-[#1E1854] group-hover:text-[rgb(30,24,84)] transition-colors">
+              <h2 className="text-sm font-semibold md:text-3xl md:font-semibold tracking-[-0.02em] leading-snug text-ink group-hover:text-[rgb(30,24,84)] transition-colors">
                 {featured.title}
               </h2>
               <p className="hidden md:block text-sm text-[rgba(30,24,84,0.65)] leading-relaxed">
@@ -73,7 +73,7 @@ export default async function BlogPostsPage() {
               </p>
               <div className="hidden md:flex flex-wrap gap-2 pt-1">
                 {(featured.tags ?? []).map((tag) => (
-                  <span key={tag} className="text-xs border border-[#1E185420] px-3 py-1 rounded-full text-[rgba(30,24,84,0.6)]">
+                  <span key={tag} className="text-xs border border-ink/[12.5%] px-3 py-1 rounded-full text-[rgba(30,24,84,0.6)]">
                     {tag}
                   </span>
                 ))}
@@ -102,10 +102,10 @@ export default async function BlogPostsPage() {
 
       {/* Product cross-link */}
       <section className="max-w-[1200px] mx-auto px-6 pb-24">
-        <div className="bg-[#1E18540A] rounded-2xl px-8 md:px-12 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border border-[#1E185420]">
+        <div className="bg-ink/[3.9%] rounded-2xl px-8 md:px-12 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border border-ink/[12.5%]">
           <div>
-            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent mb-2">From the lab to your shelf</p>
-            <p className="text-xl font-semibold tracking-[-0.02em] text-[#1E1854] max-w-md leading-snug">
+            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent mb-2">From the lab to your shelf</p>
+            <p className="text-xl font-semibold tracking-[-0.02em] text-ink max-w-md leading-snug">
               Ready to put the science into practice? Flow is built around every ingredient we write about.
             </p>
           </div>
@@ -113,7 +113,7 @@ export default async function BlogPostsPage() {
             <Link href="/products/rooibos-hibiscus-pomegranate" className="btn-cta inline-flex items-center justify-center text-white text-xs tracking-[0.1em] uppercase font-semibold px-6 py-3.5 rounded-full">
               Get Flow
             </Link>
-            <Link href="/pages/our-product" className="inline-flex items-center justify-center border border-[#1E1854]/20 text-[#1E1854] text-xs tracking-[0.1em] uppercase font-medium px-6 py-3.5 rounded-full hover:border-[#1E1854]/40 transition-colors">
+            <Link href="/pages/our-product" className="inline-flex items-center justify-center border border-ink/20 text-ink text-xs tracking-[0.1em] uppercase font-medium px-6 py-3.5 rounded-full hover:border-ink/40 transition-colors">
               The Formula
             </Link>
           </div>

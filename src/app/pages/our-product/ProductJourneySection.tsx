@@ -82,7 +82,7 @@ export default function ProductJourneySection() {
 
         {/* Header */}
         <div className="mb-10 md:mb-14 space-y-2 max-w-2xl">
-          <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">
+          <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">
             From idea to sachet
           </p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-[1.08]">
@@ -97,12 +97,12 @@ export default function ProductJourneySection() {
         <div className="hidden md:block">
           {/* Connector line */}
           <div className="relative mb-10">
-            <div className="absolute top-5 left-0 right-0 h-px bg-gradient-to-r from-[#3B38B8]/20 via-[#3B38B8]/40 to-[#1E1854]/20" />
+            <div className="absolute top-5 left-0 right-0 h-px bg-gradient-to-r from-brand/20 via-brand/40 to-ink/20" />
             <div className="flex justify-between relative">
               {CHAPTERS.map((ch) => (
                 <div key={ch.year} className="flex flex-col items-center" style={{ width: `${100 / CHAPTERS.length}%` }}>
                   {/* Node */}
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#3B38B8] to-[#1E1854] flex items-center justify-center text-white shadow-[0_0_0_4px_white,0_0_0_5px_rgba(59,56,184,0.2)] z-10">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand to-ink flex items-center justify-center text-white shadow-[0_0_0_4px_white,0_0_0_5px_rgba(59,56,184,0.2)] z-10">
                     {ch.icon}
                   </div>
                 </div>
@@ -115,14 +115,14 @@ export default function ProductJourneySection() {
             {CHAPTERS.map((ch, i) => (
               <div
                 key={ch.year}
-                className="flex-1 rounded-2xl border border-[#1E185415] bg-white p-5 shadow-[0_2px_12px_rgba(30,24,84,0.05)] flex flex-col gap-3"
+                className="flex-1 rounded-2xl border border-ink/[8.2%] bg-white p-5 shadow-[0_2px_12px_rgba(30,24,84,0.05)] flex flex-col gap-3"
                 style={{ opacity: 1 }}
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] tracking-[0.18em] uppercase font-semibold text-[#3B38B8]/60">{ch.label}</span>
-                  <span className="text-xs font-semibold text-[#1E1854]/20">{ch.year}</span>
+                  <span className="text-[10px] tracking-[0.18em] uppercase font-semibold text-brand/60">{ch.label}</span>
+                  <span className="text-xs font-semibold text-ink/20">{ch.year}</span>
                 </div>
-                <p className="text-sm font-semibold text-[#1E1854] leading-snug tracking-[-0.01em]">{ch.heading}</p>
+                <p className="text-sm font-semibold text-ink leading-snug tracking-[-0.01em]">{ch.heading}</p>
                 <p className="text-xs text-[rgba(30,24,84,0.55)] leading-[1.6]">{ch.body}</p>
               </div>
             ))}
@@ -132,22 +132,22 @@ export default function ProductJourneySection() {
         {/* Mobile: vertical timeline */}
         <div className="md:hidden relative">
           {/* Vertical line */}
-          <div className="absolute left-4 top-5 bottom-5 w-px bg-gradient-to-b from-[#3B38B8]/30 via-[#3B38B8]/20 to-[#1E1854]/10" />
+          <div className="absolute left-4 top-5 bottom-5 w-px bg-gradient-to-b from-brand/30 via-brand/20 to-ink/10" />
 
           <div className="flex flex-col gap-8 pl-12">
             {CHAPTERS.map((ch) => (
               <div key={ch.year} className="relative">
                 {/* Node */}
-                <div className="absolute -left-12 top-0 w-8 h-8 rounded-full bg-gradient-to-br from-[#3B38B8] to-[#1E1854] flex items-center justify-center text-white shadow-[0_0_0_3px_white,0_0_0_4px_rgba(59,56,184,0.2)]">
+                <div className="absolute -left-12 top-0 w-8 h-8 rounded-full bg-gradient-to-br from-brand to-ink flex items-center justify-center text-white shadow-[0_0_0_3px_white,0_0_0_4px_rgba(59,56,184,0.2)]">
                   {ch.icon}
                 </div>
 
-                <div className="rounded-2xl border border-[#1E185415] bg-white p-5 shadow-[0_2px_12px_rgba(30,24,84,0.05)] flex flex-col gap-2">
+                <div className="rounded-2xl border border-ink/[8.2%] bg-white p-5 shadow-[0_2px_12px_rgba(30,24,84,0.05)] flex flex-col gap-2">
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] tracking-[0.18em] uppercase font-semibold text-[#3B38B8]">{ch.label}</span>
-                    <span className="text-[10px] font-semibold text-[#1E1854]/25">{ch.year}</span>
+                    <span className="text-[10px] tracking-[0.18em] uppercase font-semibold text-brand">{ch.label}</span>
+                    <span className="text-[10px] font-semibold text-ink/25">{ch.year}</span>
                   </div>
-                  <p className="text-sm font-semibold text-[#1E1854] leading-snug">{ch.heading}</p>
+                  <p className="text-sm font-semibold text-ink leading-snug">{ch.heading}</p>
                   <p className="text-xs text-[rgba(30,24,84,0.55)] leading-[1.6]">{ch.body}</p>
                 </div>
               </div>

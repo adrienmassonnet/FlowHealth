@@ -36,13 +36,13 @@ function ZynamiteScienceCard() {
   const maxValue = Math.max(...metrics.map((m) => m.value));
 
   return (
-    <div className="mt-2 rounded-xl bg-[#F4F3FB] p-4 space-y-4 border border-[#1E1854]/[0.07]">
+    <div className="mt-2 rounded-xl bg-[#F4F3FB] p-4 space-y-4 border border-ink/[0.07]">
       {/* Header */}
       <div className="flex items-start gap-2">
-        <span className="mt-0.5 shrink-0 w-4 h-4 rounded-full bg-[#1E1854] flex items-center justify-center">
+        <span className="mt-0.5 shrink-0 w-4 h-4 rounded-full bg-ink flex items-center justify-center">
           <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 4.5L3 6.5L7 2" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
         </span>
-        <p className="text-xs font-semibold text-[#1E1854] uppercase tracking-[0.08em]">Clinical evidence — RCT, double-blind, placebo-controlled</p>
+        <p className="text-xs font-semibold text-ink uppercase tracking-[0.08em]">Clinical evidence — RCT, double-blind, placebo-controlled</p>
       </div>
 
       {/* Bar chart */}
@@ -50,33 +50,33 @@ function ZynamiteScienceCard() {
         {metrics.map((m) => (
           <div key={m.label} className="space-y-0.5">
             <div className="flex items-center justify-between">
-              <span className="text-[11px] font-medium text-[#1E1854]/70 tracking-[-0.01em]">{m.label}</span>
-              <span className="text-[11px] font-bold text-[#1E1854] tabular-nums">+{m.value}{m.unit}</span>
+              <span className="text-[11px] font-medium text-ink/70 tracking-[-0.01em]">{m.label}</span>
+              <span className="text-[11px] font-bold text-ink tabular-nums">+{m.value}{m.unit}</span>
             </div>
-            <div className="relative h-2 rounded-full bg-[#1E1854]/[0.08] overflow-hidden">
+            <div className="relative h-2 rounded-full bg-ink/[0.08] overflow-hidden">
               <div
-                className="absolute left-0 top-0 h-full rounded-full bg-[#1E1854]"
+                className="absolute left-0 top-0 h-full rounded-full bg-ink"
                 style={{ width: `${(m.value / maxValue) * 100}%` }}
               />
             </div>
-            <p className="text-[10px] text-[#1E1854]/40 leading-none">{m.note}</p>
+            <p className="text-[10px] text-ink/40 leading-none">{m.note}</p>
           </div>
         ))}
-        <p className="text-[9px] text-[#1E1854]/30 pt-0.5">Sources: Wightman et al., Nutrients 2020; Castellote-Caballero et al., Pharmaceuticals 2025</p>
+        <p className="text-[9px] text-ink/30 pt-0.5">Sources: Wightman et al., Nutrients 2020; Castellote-Caballero et al., Pharmaceuticals 2025</p>
       </div>
 
       {/* Comparison table */}
       <div>
-        <p className="text-[10px] font-semibold text-[#1E1854]/50 uppercase tracking-[0.08em] mb-1.5">vs Caffeine</p>
-        <div className="rounded-lg overflow-hidden border border-[#1E1854]/[0.08]">
-          <div className="grid grid-cols-3 bg-[#1E1854]/[0.06] px-3 py-1.5">
-            <span className="text-[9px] font-semibold text-[#1E1854]/40 uppercase tracking-[0.06em]"></span>
-            <span className="text-[9px] font-semibold text-[#1E1854]/40 uppercase tracking-[0.06em] text-center">Caffeine</span>
-            <span className="text-[9px] font-semibold text-[#1E1854] uppercase tracking-[0.06em] text-center">Zynamite®</span>
+        <p className="text-[10px] font-semibold text-ink/50 uppercase tracking-[0.08em] mb-1.5">vs Caffeine</p>
+        <div className="rounded-lg overflow-hidden border border-ink/[0.08]">
+          <div className="grid grid-cols-3 bg-ink/[0.06] px-3 py-1.5">
+            <span className="text-[9px] font-semibold text-ink/40 uppercase tracking-[0.06em]"></span>
+            <span className="text-[9px] font-semibold text-ink/40 uppercase tracking-[0.06em] text-center">Caffeine</span>
+            <span className="text-[9px] font-semibold text-ink uppercase tracking-[0.06em] text-center">Zynamite®</span>
           </div>
           {comparisons.map((row, i) => (
             <div key={row.aspect} className={`grid grid-cols-3 px-3 py-1.5 ${i % 2 === 0 ? 'bg-white' : 'bg-[#F4F3FB]'}`}>
-              <span className="text-[10px] text-[#1E1854]/60 font-medium leading-none self-center">{row.aspect}</span>
+              <span className="text-[10px] text-ink/60 font-medium leading-none self-center">{row.aspect}</span>
               <div className="flex justify-center self-center">
                 {typeof row.caffeine === 'boolean' ? (
                   row.caffeine ? (
@@ -85,7 +85,7 @@ function ZynamiteScienceCard() {
                     <span className="text-[10px] text-[#2A9D6B] font-semibold">✓</span>
                   )
                 ) : (
-                  <span className="text-[10px] text-[#1E1854]/50 tabular-nums">{row.caffeine}</span>
+                  <span className="text-[10px] text-ink/50 tabular-nums">{row.caffeine}</span>
                 )}
               </div>
               <div className="flex justify-center self-center">
@@ -96,7 +96,7 @@ function ZynamiteScienceCard() {
                     <span className="text-[10px] text-[#2A9D6B] font-semibold">✓</span>
                   )
                 ) : (
-                  <span className="text-[10px] font-semibold text-[#1E1854] tabular-nums">{row.zynamite}</span>
+                  <span className="text-[10px] font-semibold text-ink tabular-nums">{row.zynamite}</span>
                 )}
               </div>
             </div>
@@ -394,12 +394,12 @@ export default function IngredientsExplorer({
       onClick={onClick}
       className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-sm transition-colors duration-200 ${
         isActive
-          ? 'bg-[#1E1854] text-white'
-          : 'text-[#1E1854]/60 hover:text-[#1E1854] hover:bg-[#1E1854]/[0.04]'
+          ? 'bg-ink text-white'
+          : 'text-ink/60 hover:text-ink hover:bg-ink/[0.04]'
       }`}
     >
       <span className="font-medium tracking-[-0.01em]">{label}</span>
-      {count !== null && <span className={`text-xs tabular-nums ${isActive ? 'text-white/60' : 'text-[#1E1854]/30'}`}>{count}</span>}
+      {count !== null && <span className={`text-xs tabular-nums ${isActive ? 'text-white/60' : 'text-ink/30'}`}>{count}</span>}
     </button>
   );
 
@@ -409,7 +409,7 @@ export default function IngredientsExplorer({
       {/* Left sidebar filter (desktop) */}
       <aside className="hidden md:flex flex-col gap-2 w-52 lg:w-56 shrink-0 sticky top-24">
         {sidebarBtn('All ingredients', totalCount, !activeGroup && !activeCategory, () => selectFilter(null))}
-        <div className="border-t border-[#1E185420] my-2" />
+        <div className="border-t border-ink/[12.5%] my-2" />
         {filterGroups.map((group) => {
           const groupSections = buildGroupedSections(group.id === '__health_benefits__' ? 'health' : 'function');
           return (
@@ -421,12 +421,12 @@ export default function IngredientsExplorer({
                   onClick={() => selectFilter(group.id, s.category)}
                   className={`w-full flex items-center justify-between pl-6 pr-3 py-1.5 rounded-xl text-xs transition-colors duration-200 ${
                     activeCategory === s.category && activeGroup === group.id
-                      ? 'bg-[#1E1854]/10 text-[#1E1854] font-semibold'
-                      : 'text-[#1E1854]/45 hover:text-[#1E1854] hover:bg-[#1E1854]/[0.04]'
+                      ? 'bg-ink/10 text-ink font-semibold'
+                      : 'text-ink/45 hover:text-ink hover:bg-ink/[0.04]'
                   }`}
                 >
                   <span className="tracking-[-0.01em]">{s.category}</span>
-                  <span className="tabular-nums text-[#1E1854]/30">{s.ingredients.length}</span>
+                  <span className="tabular-nums text-ink/30">{s.ingredients.length}</span>
                 </button>
               ))}
             </div>
@@ -440,7 +440,7 @@ export default function IngredientsExplorer({
           <div className="flex gap-2 overflow-x-auto pb-1 -mx-6 px-6 no-scrollbar">
             <button
               onClick={() => selectFilter(null)}
-              className={`shrink-0 text-xs tracking-[0.1em] uppercase font-medium px-4 py-2 rounded-full border transition-colors ${!activeGroup && !activeCategory ? 'bg-[#1E1854] text-white border-[#1E1854]' : 'border-[#1E185420] text-[#1E1854]/50'}`}
+              className={`shrink-0 text-xs tracking-[0.1em] uppercase font-medium px-4 py-2 rounded-full border transition-colors ${!activeGroup && !activeCategory ? 'bg-ink text-white border-ink' : 'border-ink/[12.5%] text-ink/50'}`}
             >
               All
             </button>
@@ -448,7 +448,7 @@ export default function IngredientsExplorer({
               <button
                 key={group.id}
                 onClick={() => selectFilter(group.id)}
-                className={`shrink-0 text-xs tracking-[0.1em] uppercase font-medium px-4 py-2 rounded-full border transition-colors ${activeGroup === group.id && !activeCategory ? 'bg-[#1E1854] text-white border-[#1E1854]' : 'border-[#1E185420] text-[#1E1854]/50'}`}
+                className={`shrink-0 text-xs tracking-[0.1em] uppercase font-medium px-4 py-2 rounded-full border transition-colors ${activeGroup === group.id && !activeCategory ? 'bg-ink text-white border-ink' : 'border-ink/[12.5%] text-ink/50'}`}
               >
                 {group.label}
               </button>
@@ -466,7 +466,7 @@ export default function IngredientsExplorer({
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {section.visibleIngredients.map((ing) => (
-                  <div key={ing.name} className="group rounded-xl border border-[#1E1854]/[0.07] flex flex-col bg-white shadow-sm shadow-[#1E1854]/[0.04] hover:shadow-xl hover:shadow-[#1E1854]/[0.10] hover:-translate-y-0.5 transition-all duration-500 overflow-hidden">
+                  <div key={ing.name} className="group rounded-xl border border-ink/[0.07] flex flex-col bg-white shadow-sm shadow-ink/[0.04] hover:shadow-xl hover:shadow-ink/[0.10] hover:-translate-y-0.5 transition-all duration-500 overflow-hidden">
                     <div className="relative aspect-[16/9] w-full overflow-hidden">
                       <Image
                         src={ing.image}
@@ -483,7 +483,7 @@ export default function IngredientsExplorer({
                       )}
                     </div>
                     <div className="p-4 flex flex-col gap-3">
-                      <h3 className="text-base font-semibold tracking-[-0.02em] leading-snug text-[#1E1854]">{ing.name}</h3>
+                      <h3 className="text-base font-semibold tracking-[-0.02em] leading-snug text-ink">{ing.name}</h3>
                       {(textMode === 'both' || textMode === 'benefit') && (
                         <p className="text-sm text-[rgba(30,24,84,0.78)] leading-relaxed">{ing.benefit}</p>
                       )}
@@ -501,7 +501,7 @@ export default function IngredientsExplorer({
           {hiddenCount > 0 && (
             <button
               onClick={() => setShowAll(true)}
-              className="w-full py-3 text-sm font-medium tracking-[-0.01em] text-[#1E1854]/60 hover:text-[#1E1854] border border-[#1E1854]/[0.10] hover:border-[#1E1854]/[0.25] rounded-xl transition-colors duration-200"
+              className="w-full py-3 text-sm font-medium tracking-[-0.01em] text-ink/60 hover:text-ink border border-ink/[0.10] hover:border-ink/[0.25] rounded-xl transition-colors duration-200"
             >
               Show {hiddenCount} more ingredient{hiddenCount > 1 ? 's' : ''}
             </button>
@@ -509,7 +509,7 @@ export default function IngredientsExplorer({
           {showAll && !activeGroup && !activeCategory && (
             <button
               onClick={() => setShowAll(false)}
-              className="w-full py-3 text-sm font-medium tracking-[-0.01em] text-[#1E1854]/60 hover:text-[#1E1854] border border-[#1E1854]/[0.10] hover:border-[#1E1854]/[0.25] rounded-xl transition-colors duration-200"
+              className="w-full py-3 text-sm font-medium tracking-[-0.01em] text-ink/60 hover:text-ink border border-ink/[0.10] hover:border-ink/[0.25] rounded-xl transition-colors duration-200"
             >
               Show less
             </button>

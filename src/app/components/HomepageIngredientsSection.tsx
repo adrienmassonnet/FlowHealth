@@ -181,16 +181,16 @@ function MobileIngredientChart({ ingredientName }: { ingredientName: string }) {
   const ticks = Array.from({ length: tickCount + 1 }, (_, i) => minVal + (range * i) / tickCount);
 
   return (
-    <div className="flex flex-col gap-2 rounded-xl border border-[#1E1854]/[0.10] bg-[#F8F8FC] p-3">
-      <p className="text-[10px] text-[#1E1854]/60 leading-snug line-clamp-4">{chart.description}</p>
+    <div className="flex flex-col gap-2 rounded-xl border border-ink/[0.10] bg-[#F8F8FC] p-3">
+      <p className="text-[10px] text-ink/60 leading-snug line-clamp-4">{chart.description}</p>
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-1.5">
-          <span className="w-3 h-2.5 rounded-sm bg-[#1E1854] shrink-0" />
-          <span className="text-[10px] font-semibold text-[#1E1854]/70">{activeLabel}</span>
+          <span className="w-3 h-2.5 rounded-sm bg-ink shrink-0" />
+          <span className="text-[10px] font-semibold text-ink/70">{activeLabel}</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="w-3 h-2.5 rounded-sm bg-[#1E1854]/22 shrink-0" />
-          <span className="text-[10px] font-semibold text-[#1E1854]/40">{comparatorLabel}</span>
+          <span className="w-3 h-2.5 rounded-sm bg-ink/22 shrink-0" />
+          <span className="text-[10px] font-semibold text-ink/40">{comparatorLabel}</span>
         </div>
       </div>
       <svg width={svgW} height={svgH} className="overflow-visible w-full" viewBox={`0 0 ${svgW} ${svgH}`}>
@@ -233,16 +233,16 @@ function MobileIngredientChart({ ingredientName }: { ingredientName: string }) {
           );
         })}
       </svg>
-      <div className="flex items-center justify-between pt-2 border-t border-[#1E1854]/[0.14]">
+      <div className="flex items-center justify-between pt-2 border-t border-ink/[0.14]">
         <p className="truncate flex-1 pr-3" style={{ fontSize: '9px', color: 'rgba(30,24,84,0.40)' }}>{chart.source}</p>
         <div className="flex items-center gap-1.5 shrink-0">
           <button onClick={() => setActiveChart((p) => (p - 1 + charts.length) % charts.length)}
-            className="w-7 h-7 flex items-center justify-center rounded-full bg-[#1E1854]/10 text-[#1E1854]/70">
+            className="w-7 h-7 flex items-center justify-center rounded-full bg-ink/10 text-ink/70">
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M6.5 2L3.5 5l3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
-          <span className="text-[11px] font-semibold text-[#1E1854]/55 tabular-nums">{activeChart + 1}/{charts.length}</span>
+          <span className="text-[11px] font-semibold text-ink/55 tabular-nums">{activeChart + 1}/{charts.length}</span>
           <button onClick={() => setActiveChart((p) => (p + 1) % charts.length)}
-            className="w-7 h-7 flex items-center justify-center rounded-full bg-[#1E1854]/10 text-[#1E1854]/70">
+            className="w-7 h-7 flex items-center justify-center rounded-full bg-ink/10 text-ink/70">
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M3.5 2l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
         </div>
@@ -287,20 +287,20 @@ function IngredientChart({ ingredientName, className = '' }: { ingredientName: s
   const ticks = Array.from({ length: tickCount + 1 }, (_, i) => minVal + (range * i) / tickCount);
 
   return (
-    <div className={`shrink-0 w-80 flex flex-col gap-2.5 rounded-xl border border-[#1E1854]/[0.10] bg-[#F8F8FC] p-4 ${className}`}>
+    <div className={`shrink-0 w-80 flex flex-col gap-2.5 rounded-xl border border-ink/[0.10] bg-[#F8F8FC] p-4 ${className}`}>
 
       {/* Description */}
-      <p className="text-xs text-[#1E1854]/60 leading-snug">{chart.description}</p>
+      <p className="text-xs text-ink/60 leading-snug">{chart.description}</p>
 
       {/* Legend */}
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-1.5">
-          <span className="w-3 h-2.5 rounded-sm bg-[#1E1854] shrink-0" />
-          <span className="text-[10px] font-semibold text-[#1E1854]/70">{activeLabel}</span>
+          <span className="w-3 h-2.5 rounded-sm bg-ink shrink-0" />
+          <span className="text-[10px] font-semibold text-ink/70">{activeLabel}</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="w-3 h-2.5 rounded-sm bg-[#1E1854]/22 shrink-0" />
-          <span className="text-[10px] font-semibold text-[#1E1854]/40">{comparatorLabel}</span>
+          <span className="w-3 h-2.5 rounded-sm bg-ink/22 shrink-0" />
+          <span className="text-[10px] font-semibold text-ink/40">{comparatorLabel}</span>
         </div>
       </div>
 
@@ -377,19 +377,19 @@ function IngredientChart({ ingredientName, className = '' }: { ingredientName: s
       </div>
 
       {/* Footer */}
-      <div className="flex items-center justify-between pt-2.5 border-t border-[#1E1854]/[0.14]">
+      <div className="flex items-center justify-between pt-2.5 border-t border-ink/[0.14]">
         <p className="truncate flex-1 pr-3" style={{ fontSize: '9px', color: 'rgba(30,24,84,0.40)' }}>{chart.source}</p>
         <div className="flex items-center gap-1.5 shrink-0">
           <button
             onClick={() => setActiveChart((p) => (p - 1 + charts.length) % charts.length)}
-            className="w-7 h-7 flex items-center justify-center rounded-full bg-[#1E1854]/10 text-[#1E1854]/70 hover:bg-[#1E1854]/20 hover:text-[#1E1854] transition-colors duration-200"
+            className="w-7 h-7 flex items-center justify-center rounded-full bg-ink/10 text-ink/70 hover:bg-ink/20 hover:text-ink transition-colors duration-200"
           >
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M6.5 2L3.5 5l3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
-          <span className="text-[11px] font-semibold text-[#1E1854]/55 tabular-nums">{activeChart + 1}/{charts.length}</span>
+          <span className="text-[11px] font-semibold text-ink/55 tabular-nums">{activeChart + 1}/{charts.length}</span>
           <button
             onClick={() => setActiveChart((p) => (p + 1) % charts.length)}
-            className="w-7 h-7 flex items-center justify-center rounded-full bg-[#1E1854]/10 text-[#1E1854]/70 hover:bg-[#1E1854]/20 hover:text-[#1E1854] transition-colors duration-200"
+            className="w-7 h-7 flex items-center justify-center rounded-full bg-ink/10 text-ink/70 hover:bg-ink/20 hover:text-ink transition-colors duration-200"
           >
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M3.5 2l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
@@ -428,7 +428,7 @@ export default function HomepageIngredientsSection({ ingredients, sizes }: Props
           {cards.map((c) => (
             <div
               key={c.name}
-              className="rounded-2xl overflow-hidden cursor-pointer group bg-white border border-[#1E1854]/[0.08]"
+              className="rounded-2xl overflow-hidden cursor-pointer group bg-white border border-ink/[0.08]"
               onClick={() => setModal(c)}
             >
               {/* Photo */}
@@ -450,7 +450,7 @@ export default function HomepageIngredientsSection({ ingredients, sizes }: Props
               </div>
               {/* Benefit strip */}
               <div className="px-3 py-2 bg-white">
-                <p className="text-[11px] font-semibold text-[#1E1854] leading-snug">{c.benefit}</p>
+                <p className="text-[11px] font-semibold text-ink leading-snug">{c.benefit}</p>
               </div>
             </div>
           ))}
@@ -480,8 +480,8 @@ export default function HomepageIngredientsSection({ ingredients, sizes }: Props
                     border-2 transition-[border-color,transform,box-shadow] duration-500
                     hover:scale-[1.01] active:scale-[0.99]
                     ${isActive
-                      ? 'border-[#1E1854]/60 shadow-[0_4px_16px_rgba(30,24,84,0.20)]'
-                      : 'border-transparent hover:border-[#1E1854]/20'
+                      ? 'border-ink/60 shadow-[0_4px_16px_rgba(30,24,84,0.20)]'
+                      : 'border-transparent hover:border-ink/20'
                     }
                   `}
                 >
@@ -503,7 +503,7 @@ export default function HomepageIngredientsSection({ ingredients, sizes }: Props
                   </div>
                   {/* Benefit text below image */}
                   <div className="px-3 py-2.5 bg-white">
-                    <p className="text-xs font-semibold tracking-[-0.01em] leading-snug text-[#1E1854]">
+                    <p className="text-xs font-semibold tracking-[-0.01em] leading-snug text-ink">
                       {c.benefit}
                     </p>
                   </div>
@@ -514,7 +514,7 @@ export default function HomepageIngredientsSection({ ingredients, sizes }: Props
 
           {/* Right — white detail card */}
           <motion.div
-            className="relative rounded-2xl overflow-hidden bg-white border border-[#1E1854]/[0.08] shadow-sm"
+            className="relative rounded-2xl overflow-hidden bg-white border border-ink/[0.08] shadow-sm"
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: DURATION.slow, delay: 0.1, ease: EASE.expoOut }}
@@ -528,27 +528,27 @@ export default function HomepageIngredientsSection({ ingredients, sizes }: Props
               {/* Left: text */}
               <div className="flex flex-col gap-3 flex-1 min-w-0">
                 {/* Eyebrow */}
-                <span className="text-xs font-semibold tracking-[0.08em] uppercase bg-[#1E1854]/8 text-[#1E1854]/50 px-2.5 py-1 rounded-full self-start">
+                <span className="text-xs font-semibold tracking-[0.08em] uppercase bg-ink/8 text-ink/50 px-2.5 py-1 rounded-full self-start">
                   {step.badge} · {step.dose}
                 </span>
                 {/* Pills */}
                 <div className="flex items-center gap-1.5 flex-wrap">
                   {step.pills.map((pill) => (
-                    <span key={pill} className="text-xs tracking-wide px-2.5 py-1 rounded-full bg-[#3B38B8]/8 text-[#3B38B8] font-medium border border-[#3B38B8]/15">
+                    <span key={pill} className="text-xs tracking-wide px-2.5 py-1 rounded-full bg-brand/8 text-brand font-medium border border-brand/15">
                       {pill}
                     </span>
                   ))}
                 </div>
-                <h3 className="text-lg md:text-xl font-semibold text-[#1E1854] tracking-[-0.02em] leading-snug">
+                <h3 className="text-lg md:text-xl font-semibold text-ink tracking-[-0.02em] leading-snug">
                   {step.title}
                 </h3>
                 {step.stat && (
                   <div className="flex items-center gap-2 bg-[#F0EFFB] rounded-xl px-3 py-1.5 self-start">
-                    <span className="text-sm font-bold text-[#1E1854] tabular-nums">{step.stat.value}</span>
-                    <span className="text-xs text-[#1E1854]/55 leading-snug">{step.stat.label}</span>
+                    <span className="text-sm font-bold text-ink tabular-nums">{step.stat.value}</span>
+                    <span className="text-xs text-ink/55 leading-snug">{step.stat.label}</span>
                   </div>
                 )}
-                <p className="text-sm text-[#1E1854]/65 leading-relaxed">
+                <p className="text-sm text-ink/65 leading-relaxed">
                   {step.description}
                 </p>
               </div>
@@ -572,7 +572,7 @@ export default function HomepageIngredientsSection({ ingredients, sizes }: Props
             transition={{ duration: DURATION.fast }}
             onClick={() => setModal(null)}
           >
-            <div className="absolute inset-0 bg-[#1E1854]/60 backdrop-blur-sm" />
+            <div className="absolute inset-0 bg-ink/60 backdrop-blur-sm" />
             <motion.div
               className="relative w-full sm:max-w-md bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col max-h-[92svh]"
               initial={{ y: '100%' }}
@@ -590,7 +590,7 @@ export default function HomepageIngredientsSection({ ingredients, sizes }: Props
               <button
                 onClick={() => setModal(null)}
                 aria-label="Close"
-                className="absolute top-3 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-sm text-[#1E1854]/50 hover:text-[#1E1854] transition-colors duration-200"
+                className="absolute top-3 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-sm text-ink/50 hover:text-ink transition-colors duration-200"
               >
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                   <path d="M11 3L3 11M3 3l8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
@@ -599,28 +599,28 @@ export default function HomepageIngredientsSection({ ingredients, sizes }: Props
               <div className="flex-1 px-5 pt-4 overflow-y-auto" style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}>
                 {/* Header */}
                 <div className="flex items-start justify-between gap-2 mb-1">
-                  <h3 className="text-xl font-semibold text-[#1E1854] tracking-[-0.02em] leading-snug">{modal.name}</h3>
-                  <span className="inline-block text-[10px] tracking-[0.08em] uppercase font-semibold bg-[#1E1854]/8 text-[#1E1854]/55 px-2 py-1 rounded-full shrink-0 mt-0.5">
+                  <h3 className="text-xl font-semibold text-ink tracking-[-0.02em] leading-snug">{modal.name}</h3>
+                  <span className="inline-block text-[10px] tracking-[0.08em] uppercase font-semibold bg-ink/8 text-ink/55 px-2 py-1 rounded-full shrink-0 mt-0.5">
                     {modal.dose}
                   </span>
                 </div>
                 {/* Pills */}
                 <div className="flex flex-wrap gap-1.5 mb-3">
                   {modal.pills.map((pill) => (
-                    <span key={pill} className="text-xs tracking-wide px-2.5 py-1 rounded-full bg-[#3B38B8]/8 text-[#3B38B8] font-medium border border-[#3B38B8]/15">
+                    <span key={pill} className="text-xs tracking-wide px-2.5 py-1 rounded-full bg-brand/8 text-brand font-medium border border-brand/15">
                       {pill}
                     </span>
                   ))}
                 </div>
                 {/* Description with 4-line clamp + Read more */}
                 <div className="mb-4">
-                  <p className={`text-sm text-[#1E1854]/65 leading-[1.55] ${descExpanded ? '' : 'line-clamp-4'}`}>
+                  <p className={`text-sm text-ink/65 leading-[1.55] ${descExpanded ? '' : 'line-clamp-4'}`}>
                     {modal.description}
                   </p>
                   {!descExpanded && (
                     <button
                       onClick={() => setDescExpanded(true)}
-                      className="mt-1 text-xs font-semibold text-[#3B38B8] hover:underline"
+                      className="mt-1 text-xs font-semibold text-brand hover:underline"
                     >
                       Read more
                     </button>
@@ -634,8 +634,8 @@ export default function HomepageIngredientsSection({ ingredients, sizes }: Props
                 )}
                 {!INGREDIENT_CHARTS[modal.name] && modal.stat && (
                   <div className="flex items-center gap-2.5 bg-[#F0EFFB] rounded-xl px-3 py-2 mb-4">
-                    <span className="text-base font-bold text-[#1E1854] tabular-nums shrink-0">{modal.stat.value}</span>
-                    <span className="text-xs text-[#1E1854]/55 leading-snug">{modal.stat.label}</span>
+                    <span className="text-base font-bold text-ink tabular-nums shrink-0">{modal.stat.value}</span>
+                    <span className="text-xs text-ink/55 leading-snug">{modal.stat.label}</span>
                   </div>
                 )}
               </div>

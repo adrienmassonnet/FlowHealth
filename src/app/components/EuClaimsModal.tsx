@@ -67,7 +67,7 @@ export default function EuClaimsModal() {
       <button
         onClick={() => setOpen(true)}
         aria-label="Learn about EU-approved health claims"
-        className="inline-flex items-center justify-center w-4 h-4 rounded-full border border-[#3B38B8]/30 text-[#3B38B8] hover:bg-[#3B38B8]/08 transition-colors shrink-0"
+        className="inline-flex items-center justify-center w-4 h-4 rounded-full border border-brand/30 text-brand hover:bg-brand/08 transition-colors shrink-0"
       >
         <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
           <path d="M4 1v3M4 6v.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
@@ -86,16 +86,16 @@ export default function EuClaimsModal() {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="flex items-start justify-between px-6 py-5 border-b border-[#1E1854]/[0.08] shrink-0">
+            <div className="flex items-start justify-between px-6 py-5 border-b border-ink/[0.08] shrink-0">
               <div className="space-y-1 pr-4">
-                <p className="text-sm font-semibold text-[#1E1854]">EU-approved health claims</p>
+                <p className="text-sm font-semibold text-ink">EU-approved health claims</p>
                 <p className="text-xs text-[rgba(30,24,84,0.55)] leading-relaxed">
                   Under EU Regulation No 1924/2006, health claims on food products must be scientifically substantiated and approved by the European Food Safety Authority (EFSA). Every claim listed here is legally permitted at the dose included in Flow.
                 </p>
               </div>
               <button
                 onClick={() => setOpen(false)}
-                className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-[#1E1854]/[0.06] transition-colors text-[#1E1854]/40 shrink-0"
+                className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-ink/[0.06] transition-colors text-ink/40 shrink-0"
               >
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                   <path d="M1.5 1.5l9 9M10.5 1.5l-9 9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
@@ -106,23 +106,23 @@ export default function EuClaimsModal() {
             {/* Table */}
             <div className="overflow-y-auto">
               <table className="w-full text-xs">
-                <thead className="sticky top-0 bg-[#F8F8FB] border-b border-[#1E1854]/[0.08]">
+                <thead className="sticky top-0 bg-[#F8F8FB] border-b border-ink/[0.08]">
                   <tr>
-                    <th className="text-left px-6 py-3 text-[#1E1854] font-semibold tracking-[0.04em]">Ingredient</th>
-                    <th className="text-left px-4 py-3 text-[#1E1854] font-semibold tracking-[0.04em]">Dose in Flow</th>
-                    <th className="text-left px-4 py-3 text-[#1E1854] font-semibold tracking-[0.04em]">Approved claims</th>
+                    <th className="text-left px-6 py-3 text-ink font-semibold tracking-[0.04em]">Ingredient</th>
+                    <th className="text-left px-4 py-3 text-ink font-semibold tracking-[0.04em]">Dose in Flow</th>
+                    <th className="text-left px-4 py-3 text-ink font-semibold tracking-[0.04em]">Approved claims</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#1E1854]/[0.05]">
+                <tbody className="divide-y divide-ink/[0.05]">
                   {claims.map((row) => (
                     <tr key={row.ingredient} className="align-top">
-                      <td className="px-6 py-4 font-medium text-[#1E1854] whitespace-nowrap">{row.ingredient}</td>
+                      <td className="px-6 py-4 font-medium text-ink whitespace-nowrap">{row.ingredient}</td>
                       <td className="px-4 py-4 text-[rgba(30,24,84,0.55)] whitespace-nowrap">{row.dose}</td>
                       <td className="px-4 py-4 text-[rgba(30,24,84,0.75)]">
                         <ul className="space-y-1">
                           {row.claims.map((c) => (
                             <li key={c} className="flex items-start gap-1.5">
-                              <span className="text-[#3B38B8] mt-[0.15em] shrink-0">·</span>
+                              <span className="text-brand mt-[0.15em] shrink-0">·</span>
                               {c}
                             </li>
                           ))}
@@ -135,7 +135,7 @@ export default function EuClaimsModal() {
             </div>
 
             {/* Footer */}
-            <div className="px-6 py-4 border-t border-[#1E1854]/[0.08] shrink-0">
+            <div className="px-6 py-4 border-t border-ink/[0.08] shrink-0">
               <p className="text-[10px] text-[rgba(30,24,84,0.40)] leading-relaxed">
                 Source: EU Register of authorised health claims — ec.europa.eu/food/safety/labelling_nutrition/claims/register
               </p>

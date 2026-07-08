@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 :root {
+  --color-ink: #1E1854;
+  --color-brand: #3B38B8;
+  --color-surface-alt: #F7F7FB;
+
   --text-body: rgba(30, 24, 84, 0.75);
   --text-secondary: rgba(30, 24, 84, 0.65);
   --text-muted: rgba(30, 24, 84, 0.55);
@@ -25,7 +29,7 @@ html {
 
 body {
   background: #ffffff;
-  color: #1E1854;
+  color: var(--color-ink);
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
@@ -45,9 +49,9 @@ body {
 .footer-gradient {
   background: linear-gradient(
     135deg,
-    #1E1854 0%,
-    #3B38B8 40%,
-    #1E1854 70%,
+    var(--color-ink) 0%,
+    var(--color-brand) 40%,
+    var(--color-ink) 70%,
     #0f0d2e 100%
   );
 }
@@ -69,7 +73,7 @@ body {
 }
 
 .card-selected {
-  background: linear-gradient(135deg, #3B38B8 0%, #1E1854 100%);
+  background: linear-gradient(135deg, var(--color-brand) 0%, var(--color-ink) 100%);
   border-color: transparent !important;
 }
 
@@ -136,7 +140,7 @@ body {
 }
 
 .btn-cta {
-  background: linear-gradient(135deg, #3B38B8 0%, #1E1854 50%, #3B38B8 100%);
+  background: linear-gradient(135deg, var(--color-brand) 0%, var(--color-ink) 50%, var(--color-brand) 100%);
   background-size: 200% 200%;
   background-position: 100% 100%;
   transition: background-position 0.7s cubic-bezier(0.25, 0.1, 0.1, 1);

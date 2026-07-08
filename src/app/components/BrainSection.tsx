@@ -122,20 +122,20 @@ export default function BrainSection() {
         <div className="space-y-4 mb-6 max-w-2xl">
           <div className="space-y-2">
             <p
-              className={`text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent${visible ? ' brain-animate' : ''}`}
+              className={`text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent${visible ? ' brain-animate' : ''}`}
               style={visible ? { animationDelay: '0ms' } : {}}
             >
               Our brain sets the tone
             </p>
             <h2
-              className={`text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-[1.08] text-[#1E1854]${visible ? ' brain-animate' : ''}`}
+              className={`text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-[1.08] text-ink${visible ? ' brain-animate' : ''}`}
               style={visible ? { animationDelay: '80ms' } : {}}
             >
               Flow primes the brain to be effortlessly optimal, helping you achieve more.
             </h2>
           </div>
           <p
-            className={`text-sm sm:text-base text-[#1E1854]/60 leading-[1.55] max-w-xl${visible ? ' brain-animate' : ''}`}
+            className={`text-sm sm:text-base text-ink/60 leading-[1.55] max-w-xl${visible ? ' brain-animate' : ''}`}
             style={visible ? { animationDelay: '160ms' } : {}}
           >
             Whether it's sports, work, or recovery — Flow optimizes your neurochemistry so you perform at your best, day after day.
@@ -153,7 +153,7 @@ export default function BrainSection() {
             <div
               key={i}
               ref={(el) => { cardRefs.current[i] = el; }}
-              className={`shrink-0 snap-start w-[62vw] sm:w-[44vw] md:w-auto flex flex-col rounded-2xl overflow-hidden border border-[#1E1854]/[0.07] bg-[#F8F8FB] shadow-[0_2px_16px_rgba(30,24,84,0.06)]${visible ? ' brain-card' : ''}`}
+              className={`shrink-0 snap-start w-[62vw] sm:w-[44vw] md:w-auto flex flex-col rounded-2xl overflow-hidden border border-ink/[0.07] bg-[#F8F8FB] shadow-[0_2px_16px_rgba(30,24,84,0.06)]${visible ? ' brain-card' : ''}`}
               style={visible ? { animationDelay: `${200 + i * 120}ms` } : {}}
             >
             <Link
@@ -173,13 +173,13 @@ export default function BrainSection() {
 
               {/* Content */}
               <div className="flex flex-col gap-2 p-4">
-                <span className="text-[10px] tracking-[0.12em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">
+                <span className="text-[10px] tracking-[0.12em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">
                   {article.category}
                 </span>
-                <p className="text-sm font-semibold text-[#1E1854] leading-snug tracking-[-0.01em]">
+                <p className="text-sm font-semibold text-ink leading-snug tracking-[-0.01em]">
                   {article.title}
                 </p>
-                <span className="text-[10px] tracking-[0.06em] uppercase font-medium text-[#1E1854]/30 mt-1">Read article →</span>
+                <span className="text-[10px] tracking-[0.06em] uppercase font-medium text-ink/30 mt-1">Read article →</span>
               </div>
             </Link>
             </div>

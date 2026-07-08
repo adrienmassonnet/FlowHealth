@@ -64,7 +64,7 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
     >
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-[#1E1854]/60 backdrop-blur-sm"
+        className="absolute inset-0 bg-ink/60 backdrop-blur-sm"
         onClick={onClose}
       />
 
@@ -75,7 +75,7 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
         <button
           onClick={onClose}
           aria-label="Close"
-          className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/70 backdrop-blur-sm text-[#1E1854]/50 hover:text-[#1E1854] hover:bg-white transition-colors duration-200"
+          className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/70 backdrop-blur-sm text-ink/50 hover:text-ink hover:bg-white transition-colors duration-200"
         >
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <path d="M11 3L3 11M3 3l8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
@@ -98,13 +98,13 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
         <div className="px-8 pt-4 pb-8" style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}>
           {status === 'success' ? (
             <div className="text-center py-4">
-              <div className="w-12 h-12 rounded-full bg-[#1E1854]/8 flex items-center justify-center mx-auto mb-5">
+              <div className="w-12 h-12 rounded-full bg-ink/8 flex items-center justify-center mx-auto mb-5">
                 <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                  <path d="M4 11l5 5 9-9" stroke="#1E1854" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M4 11l5 5 9-9" stroke="var(--color-ink)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-[#1E1854] tracking-[-0.02em] mb-2">You're on the list</h2>
-              <p className="text-sm text-[#1E1854]/65 leading-relaxed">
+              <h2 className="text-xl font-semibold text-ink tracking-[-0.02em] mb-2">You're on the list</h2>
+              <p className="text-sm text-ink/65 leading-relaxed">
                 We'll be in touch the moment Flow is ready — expect early access, the launch date, and a little something extra for those who believed in us first.
               </p>
               <button
@@ -116,10 +116,10 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
             </div>
           ) : (
             <>
-              <h2 className="text-2xl font-semibold text-[#1E1854] tracking-[-0.02em] leading-tight mb-2">
+              <h2 className="text-2xl font-semibold text-ink tracking-[-0.02em] leading-tight mb-2">
                 Flow isn't available yet
               </h2>
-              <p className="text-sm text-[#1E1854]/65 leading-relaxed mb-6">
+              <p className="text-sm text-ink/65 leading-relaxed mb-6">
                 Drop your email and we'll let you know the moment it launches, with early access and everything worth knowing.
               </p>
 
@@ -130,7 +130,7 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                   placeholder="Your email address"
-                  className="w-full px-4 py-3.5 rounded-xl border border-[#1E1854]/15 bg-[#1E1854]/3 text-sm text-[#1E1854] placeholder:text-[#1E1854]/35 focus:outline-none focus:border-[#1E1854]/40 transition-colors duration-200"
+                  className="w-full px-4 py-3.5 rounded-xl border border-ink/15 bg-ink/3 text-sm text-ink placeholder:text-ink/35 focus:outline-none focus:border-ink/40 transition-colors duration-200"
                 />
 
                 {/* Checkbox */}
@@ -139,8 +139,8 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
                     onClick={() => setNotifyPromos(v => !v)}
                     className={`mt-0.5 shrink-0 w-4.5 h-4.5 rounded-md border-2 flex items-center justify-center transition-all duration-200 ${
                       notifyPromos
-                        ? 'bg-[#1E1854] border-[#1E1854]'
-                        : 'border-[#1E1854]/25 group-hover:border-[#1E1854]/50'
+                        ? 'bg-ink border-ink'
+                        : 'border-ink/25 group-hover:border-ink/50'
                     }`}
                   >
                     {notifyPromos && (
@@ -151,7 +151,7 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
                   </span>
                   <span
                     onClick={() => setNotifyPromos(v => !v)}
-                    className="text-xs text-[#1E1854]/55 leading-relaxed select-none"
+                    className="text-xs text-ink/55 leading-relaxed select-none"
                   >
                     Keep me posted on promotions, new product releases, and other updates from Flow
                   </span>
@@ -169,7 +169,7 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
                 </button>
               </form>
 
-              <p className="mt-4 text-xs text-center text-[#1E1854]/30 leading-relaxed">
+              <p className="mt-4 text-xs text-center text-ink/30 leading-relaxed">
                 No spam. Unsubscribe anytime.
               </p>
             </>

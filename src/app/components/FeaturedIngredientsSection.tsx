@@ -79,7 +79,7 @@ export default function FeaturedIngredientsSection({ ingredients, sizes }: Props
             animate={inView ? 'visible' : 'hidden'}
             variants={VARIANTS.fadeUp}
             transition={{ duration: DURATION.slow, delay: i * 0.09, ease: EASE.expoOut }}
-            className="group flex flex-col rounded-2xl overflow-hidden border border-[#1E1854]/[0.08] bg-white shadow-sm shadow-[#1E1854]/[0.04] hover:shadow-lg hover:shadow-[#1E1854]/[0.10] hover:-translate-y-0.5 transition-all duration-500"
+            className="group flex flex-col rounded-2xl overflow-hidden border border-ink/[0.08] bg-white shadow-sm shadow-ink/[0.04] hover:shadow-lg hover:shadow-ink/[0.10] hover:-translate-y-0.5 transition-all duration-500"
           >
             {/* Image */}
             <div className="relative aspect-[16/9] overflow-hidden">
@@ -108,18 +108,18 @@ export default function FeaturedIngredientsSection({ ingredients, sizes }: Props
             {/* Body */}
             <div className="flex flex-col gap-3 p-4 flex-1">
               {/* Tagline */}
-              <p className="text-sm font-semibold tracking-[-0.01em] leading-snug text-[#1E1854]">
+              <p className="text-sm font-semibold tracking-[-0.01em] leading-snug text-ink">
                 {meta.tagline}
               </p>
 
               {/* Stat pill */}
               <div className="flex items-center gap-2.5 bg-[#F0EFFB] rounded-xl px-3 py-2">
-                <span className="text-base font-bold text-[#1E1854] tabular-nums shrink-0">{meta.stat.value}</span>
-                <span className="text-[11px] text-[#1E1854]/55 leading-snug">{meta.stat.label}</span>
+                <span className="text-base font-bold text-ink tabular-nums shrink-0">{meta.stat.value}</span>
+                <span className="text-[11px] text-ink/55 leading-snug">{meta.stat.label}</span>
               </div>
 
               {/* Mechanism */}
-              <p className="text-xs text-[#1E1854]/55 leading-relaxed flex-1">
+              <p className="text-xs text-ink/55 leading-relaxed flex-1">
                 {meta.mechanism}
               </p>
 
@@ -127,7 +127,7 @@ export default function FeaturedIngredientsSection({ ingredients, sizes }: Props
               {ing.blogSlug && (
                 <Link
                   href={`/pages/blog-posts/${ing.blogSlug}`}
-                  className="self-start flex items-center gap-1.5 text-[10px] tracking-[0.08em] uppercase font-semibold text-[#1E1854]/35 hover:text-[#1E1854] transition-colors duration-200"
+                  className="self-start flex items-center gap-1.5 text-[10px] tracking-[0.08em] uppercase font-semibold text-ink/35 hover:text-ink transition-colors duration-200"
                 >
                   Read the science
                   <svg width="10" height="10" viewBox="0 0 10 10" fill="none">

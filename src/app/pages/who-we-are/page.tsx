@@ -55,7 +55,7 @@ export default async function WhoWeArePage() {
     <main>
 
       {/* Hero */}
-      <section className="relative min-h-[60vh] flex items-end bg-[#1E1854] overflow-hidden">
+      <section className="relative min-h-[60vh] flex items-end bg-ink overflow-hidden">
         <Image
           src="https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=1800&q=85&auto=format&fit=crop"
           alt="Who we are"
@@ -63,7 +63,7 @@ export default async function WhoWeArePage() {
           className="object-cover opacity-35"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1E1854] via-[#1E1854]/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-transparent" />
         <div className="relative z-10 max-w-[1200px] mx-auto px-6 pb-20 md:pb-28">
           <p className="text-xs tracking-[0.16em] uppercase text-white/40 font-medium mb-4">About Flow</p>
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-semibold tracking-[-0.03em] text-white leading-tight max-w-2xl">
@@ -76,7 +76,7 @@ export default async function WhoWeArePage() {
       </section>
 
       {/* Origin story */}
-      <section className="bg-[#1E1854] py-20">
+      <section className="bg-ink py-20">
         <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
           <div className="relative aspect-[4/3] rounded-2xl overflow-hidden order-last md:order-first">
             <Image
@@ -104,7 +104,7 @@ export default async function WhoWeArePage() {
       {/* Story intro */}
       <section className="max-w-[1200px] mx-auto px-6 py-12 md:py-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
         <div className="space-y-6">
-          <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Our Story</p>
+          <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Our Story</p>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
             Built by people who needed it first.
           </h2>
@@ -129,14 +129,14 @@ export default async function WhoWeArePage() {
       <section className="bg-white">
         <div className="max-w-[1200px] mx-auto px-6 py-20">
           <div className="mb-12 space-y-2">
-            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">What We Stand For</p>
+            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">What We Stand For</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">Our principles.</h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-[#1E185420] border border-[#1E185420] rounded-2xl overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-ink/[12.5%] border border-ink/[12.5%] rounded-2xl overflow-hidden">
             {values.map((v) => (
-              <div key={v.title} className="bg-[#1E185408] p-8 space-y-4">
-                <span className="text-[#1E1854]">{v.icon}</span>
-                <h3 className="text-base font-semibold text-[#1E1854] tracking-[-0.01em]">{v.title}</h3>
+              <div key={v.title} className="bg-ink/[3.1%] p-8 space-y-4">
+                <span className="text-ink">{v.icon}</span>
+                <h3 className="text-base font-semibold text-ink tracking-[-0.01em]">{v.title}</h3>
                 <p className="text-sm text-[rgba(30,24,84,0.65)] leading-relaxed">{v.description}</p>
               </div>
             ))}
@@ -145,16 +145,16 @@ export default async function WhoWeArePage() {
       </section>
 
       {/* Team */}
-      <section className="bg-[#1E185408]">
+      <section className="bg-ink/[3.1%]">
         <div className="max-w-[1200px] mx-auto px-6 py-20">
           <div className="mb-12 space-y-2">
-            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">The People Behind Flow</p>
+            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">The People Behind Flow</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">Meet the team.</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {teamData.map((member) => (
               <div key={member.name} className="space-y-4">
-                <div className="relative aspect-square rounded-2xl overflow-hidden bg-[#1E18540D]">
+                <div className="relative aspect-square rounded-2xl overflow-hidden bg-ink/[5.1%]">
                   <Image
                     src={member.imageUrl}
                     alt={member.imageAlt || member.name}
@@ -164,8 +164,8 @@ export default async function WhoWeArePage() {
                   />
                 </div>
                 <div>
-                  <p className="text-lg font-semibold text-[#1E1854] tracking-[-0.01em]">{member.name}</p>
-                  <p className="text-xs uppercase tracking-[0.08em] font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent mt-0.5">{member.role}</p>
+                  <p className="text-lg font-semibold text-ink tracking-[-0.01em]">{member.name}</p>
+                  <p className="text-xs uppercase tracking-[0.08em] font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent mt-0.5">{member.role}</p>
                   <p className="mt-3 text-sm text-[rgba(30,24,84,0.7)] leading-relaxed">{member.bio}</p>
                 </div>
               </div>
@@ -175,18 +175,18 @@ export default async function WhoWeArePage() {
       </section>
 
       {/* Timeline */}
-      <section className="bg-[#1E185408]">
+      <section className="bg-ink/[3.1%]">
         <div className="max-w-[1200px] mx-auto px-6 py-20">
           <div className="mb-12 space-y-2">
-            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Our Journey</p>
+            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Our Journey</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">How we got here.</h2>
           </div>
-          <div className="relative pl-6 border-l border-[#1E185420] space-y-10">
+          <div className="relative pl-6 border-l border-ink/[12.5%] space-y-10">
             {milestonesData.map((m) => (
               <div key={m.year} className="relative">
-                <span className="absolute -left-[25px] w-3 h-3 rounded-full border-2 border-[#1E1854] bg-white top-1" />
+                <span className="absolute -left-[25px] w-3 h-3 rounded-full border-2 border-ink bg-white top-1" />
                 <p className="text-xs uppercase tracking-[0.1em] font-semibold text-[rgba(30,24,84,0.45)] mb-1">{m.year}</p>
-                <h3 className="text-lg font-semibold text-[#1E1854] mb-1">{m.label}</h3>
+                <h3 className="text-lg font-semibold text-ink mb-1">{m.label}</h3>
                 <p className="text-sm text-[rgba(30,24,84,0.65)] leading-relaxed max-w-lg">{m.description}</p>
               </div>
             ))}

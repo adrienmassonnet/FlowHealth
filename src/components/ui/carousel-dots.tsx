@@ -16,10 +16,10 @@ export function CarouselDots({
   variant = 'dark',
   className = '',
 }: CarouselDotsProps) {
-  const activeClass = variant === 'dark' ? 'bg-[#1E1854]/60' : 'bg-white';
+  const activeClass = variant === 'dark' ? 'bg-ink/60' : 'bg-white';
   const inactiveClass =
     variant === 'dark'
-      ? 'bg-[#1E1854]/20 hover:bg-[#1E1854]/40'
+      ? 'bg-ink/20 hover:bg-ink/40'
       : 'bg-white/35 hover:bg-white/60';
 
   return (

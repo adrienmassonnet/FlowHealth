@@ -68,7 +68,7 @@ export default function IngredientsGrid({ ingredients, sizes, labelClassName = '
           {/* Benefit tag — tucked behind the image via -mt + pt, slides out below */}
           {ing.benefit && (
             <div className="relative z-0 flex-1 -mt-3 pt-5 pb-3 px-4 bg-[#E3E1F4] rounded-b-2xl shadow-[0_8px_20px_rgba(30,24,84,0.18),0_2px_6px_rgba(30,24,84,0.10)]">
-              <p className="text-xs sm:text-sm font-semibold tracking-[-0.01em] leading-snug bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">
+              <p className="text-xs sm:text-sm font-semibold tracking-[-0.01em] leading-snug bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">
                 {ing.benefit}
               </p>
             </div>

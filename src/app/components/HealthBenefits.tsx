@@ -27,7 +27,7 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
     <section ref={ref} className="max-w-[1200px] mx-auto px-6 py-14 md:py-24">
       {/* Header */}
       <div className="mb-6 md:mb-8 space-y-1.5">
-        <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">
+        <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">
           {sectionLabel || 'Health Benefits'}
         </p>
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
@@ -41,7 +41,7 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
           <button
             key={s.number}
             onClick={() => setModalBenefit(s)}
-            className="relative rounded-2xl overflow-hidden aspect-[3/2.7] text-left border border-[#1E1854]/10 shadow-[0_2px_12px_rgba(30,24,84,0.07)] group"
+            className="relative rounded-2xl overflow-hidden aspect-[3/2.7] text-left border border-ink/10 shadow-[0_2px_12px_rgba(30,24,84,0.07)] group"
           >
             {s.imageUrl && (
               <Image
@@ -92,22 +92,22 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
                 className={`
                   relative flex flex-col items-center justify-center gap-2 px-3 py-4 text-center
                   rounded-xl w-full overflow-hidden
-                  bg-[#1E1854]/[0.05] border-2 transition-[border-color,transform,box-shadow] duration-500
+                  bg-ink/[0.05] border-2 transition-[border-color,transform,box-shadow] duration-500
                   hover:scale-[1.02] active:scale-[0.97]
                   ${i === benefits.length - 1 && benefits.length % 2 !== 0 ? 'col-span-2' : ''}
                   ${isActive
-                    ? 'border-[#3B38B8]/60 shadow-[0_4px_16px_rgba(30,24,84,0.30)]'
-                    : 'border-transparent hover:border-[#1E1854]/20'
+                    ? 'border-brand/60 shadow-[0_4px_16px_rgba(30,24,84,0.30)]'
+                    : 'border-transparent hover:border-ink/20'
                   }
                 `}
               >
                 <span
-                  className={`absolute inset-0 bg-gradient-to-br from-[#3B38B8] to-[#1E1854] transition-opacity duration-500 ${
+                  className={`absolute inset-0 bg-gradient-to-br from-brand to-ink transition-opacity duration-500 ${
                     isActive ? 'opacity-100' : 'opacity-0'
                   }`}
                 />
                 <span className={`relative z-10 text-xs font-semibold leading-snug transition-colors duration-500 ${
-                  isActive ? 'text-white' : 'text-[#1E1854]/75'
+                  isActive ? 'text-white' : 'text-ink/75'
                 }`}>
                   {s.label}
                 </span>
@@ -194,7 +194,7 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
             className="md:hidden fixed inset-0 z-50 flex items-end justify-center"
             onClick={() => setModalBenefit(null)}
           >
-            <div className="absolute inset-0 bg-[#1E1854]/60 backdrop-blur-sm" />
+            <div className="absolute inset-0 bg-ink/60 backdrop-blur-sm" />
             <motion.div
               initial={{ y: '100%' }}
               animate={{ y: 0 }}
@@ -218,19 +218,19 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
               <button
                 onClick={() => setModalBenefit(null)}
                 aria-label="Close"
-                className="absolute top-3 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-sm text-[#1E1854]/50 hover:text-[#1E1854] transition-colors duration-200"
+                className="absolute top-3 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-sm text-ink/50 hover:text-ink transition-colors duration-200"
               >
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                   <path d="M11 3L3 11M3 3l8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
               </button>
               <div className="flex-1 px-6 pt-4 overflow-y-auto" style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}>
-                <h3 className="text-xl font-semibold text-[#1E1854] tracking-[-0.02em] leading-snug mb-2">{modalBenefit.title}</h3>
-                <p className="text-sm text-[#1E1854]/65 leading-relaxed mb-4">{modalBenefit.description}</p>
+                <h3 className="text-xl font-semibold text-ink tracking-[-0.02em] leading-snug mb-2">{modalBenefit.title}</h3>
+                <p className="text-sm text-ink/65 leading-relaxed mb-4">{modalBenefit.description}</p>
                 {modalBenefit.ingredients && (
                   <div className="flex flex-wrap gap-1.5">
                     {modalBenefit.ingredients.split(',').map((ing) => (
-                      <span key={ing} className="text-xs tracking-wide px-2.5 py-1 rounded-full bg-[#3B38B8]/8 text-[#3B38B8] font-medium border border-[#3B38B8]/15">
+                      <span key={ing} className="text-xs tracking-wide px-2.5 py-1 rounded-full bg-brand/8 text-brand font-medium border border-brand/15">
                         {ing.trim()}
                       </span>
                     ))}

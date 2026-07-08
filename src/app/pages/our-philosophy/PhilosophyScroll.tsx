@@ -52,12 +52,12 @@ function PhilosophyMobile() {
   };
 
   return (
-    <section className="border-t border-[#1E1854]/[0.06] bg-[#F8F8FC]">
+    <section className="border-t border-ink/[0.06] bg-[#F8F8FC]">
       <div className="max-w-[1200px] mx-auto px-4 pt-6 pb-8">
         <div className="mb-4 flex items-end justify-between">
-          <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Our Pillars</p>
+          <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Our Pillars</p>
           {!isOpen && (
-            <div className="flex items-center gap-1.5 text-[#1E1854]/35">
+            <div className="flex items-center gap-1.5 text-ink/35">
               <span className="text-xs tracking-[0.1em] uppercase">Tap to explore</span>
             </div>
           )}
@@ -70,7 +70,7 @@ function PhilosophyMobile() {
               key={p.number}
               onClick={() => select(i)}
               className={`relative rounded-xl overflow-hidden group transition-all duration-300 h-[22vw] min-h-[80px] ${
-                i === activeIndex ? 'ring-2 ring-[#3B38B8]/60 shadow-lg shadow-[#1E1854]/20' : ''
+                i === activeIndex ? 'ring-2 ring-brand/60 shadow-lg shadow-ink/20' : ''
               }`}
             >
               <Image
@@ -82,8 +82,8 @@ function PhilosophyMobile() {
               />
               <div className={`absolute inset-0 transition-colors duration-300 ${
                 i === activeIndex
-                  ? 'bg-gradient-to-t from-[#1E1854]/90 via-[#1E1854]/50 to-[#3B38B8]/20'
-                  : 'bg-gradient-to-t from-[#1E1854]/80 via-[#1E1854]/20 to-transparent'
+                  ? 'bg-gradient-to-t from-ink/90 via-ink/50 to-brand/20'
+                  : 'bg-gradient-to-t from-ink/80 via-ink/20 to-transparent'
               }`} />
               <div className="absolute bottom-0 left-0 right-0 p-2.5 space-y-0.5">
                 <p className="text-[10px] font-mono tracking-[0.12em] text-white/45">{p.number}</p>
@@ -97,7 +97,7 @@ function PhilosophyMobile() {
         {isOpen && (
           <div className="space-y-4">
             {/* Image */}
-            <div className="relative rounded-2xl overflow-hidden ring-1 ring-[#1E1854]/[0.08] shadow-xl shadow-[#1E1854]/[0.08]" style={{ height: '48vw', minHeight: 160 }}>
+            <div className="relative rounded-2xl overflow-hidden ring-1 ring-ink/[0.08] shadow-xl shadow-ink/[0.08]" style={{ height: '48vw', minHeight: 160 }}>
               {points.map((p, i) => (
                 <div
                   key={p.number}
@@ -115,11 +115,11 @@ function PhilosophyMobile() {
             {/* Text */}
             <div key={`${activeIndex}-${direction}`} className="space-y-2 pb-2">
               <p
-                className={`${enterClass} text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent`}
+                className={`${enterClass} text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent`}
                 style={{ animationDelay: '0ms' }}
               >{point.label}</p>
               <h2
-                className={`${enterClass} text-2xl font-semibold tracking-[-0.03em] leading-tight text-[#1E1854]`}
+                className={`${enterClass} text-2xl font-semibold tracking-[-0.03em] leading-tight text-ink`}
                 style={{ animationDelay: '60ms' }}
               >{point.heading}</h2>
               <p
@@ -239,7 +239,7 @@ function PhilosophyDesktop() {
   const enterClass = direction === 'forward' ? 'philosophy-enter-forward' : 'philosophy-enter-backward';
 
   return (
-    <section className="border-t border-[#1E1854]/[0.06]">
+    <section className="border-t border-ink/[0.06]">
       <div ref={outerRef} style={{ height: `${(points.length + 2) * 100}vh` }} className="relative">
         <div className="sticky top-0 h-screen overflow-hidden bg-[#F8F8FC]">
 
@@ -255,8 +255,8 @@ function PhilosophyDesktop() {
           >
             <div className="flex-1 max-w-[1200px] w-full mx-auto px-6 pt-8 pb-10 flex flex-col min-h-0">
               <div className="mb-5 flex items-end justify-between shrink-0">
-                <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">Our Pillars</p>
-                <div className="flex items-center gap-1.5 text-[#1E1854]/35">
+                <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Our Pillars</p>
+                <div className="flex items-center gap-1.5 text-ink/35">
                   <span className="text-xs tracking-[0.1em] uppercase">Scroll to explore</span>
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-bounce">
                     <path d="M12 5v14M5 12l7 7 7-7"/>
@@ -273,7 +273,7 @@ function PhilosophyDesktop() {
                       className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                       sizes="25vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1E1854]/85 via-[#1E1854]/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/20 to-transparent" />
                     <div className="absolute bottom-0 left-0 right-0 p-6 space-y-1">
                       <p className="text-xs font-mono tracking-[0.12em] text-white/45">{p.number}</p>
                       <p className="text-xl font-semibold text-white tracking-[-0.02em] leading-snug">{p.label}</p>
@@ -295,24 +295,24 @@ function PhilosophyDesktop() {
             }}
           >
             <div className="max-w-[1200px] w-full mx-auto px-6 pt-8 pb-5 shrink-0">
-              <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent mb-5">Our Pillars</p>
+              <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent mb-5">Our Pillars</p>
               <div className="grid grid-cols-4 gap-3">
                 {points.map((p, i) => (
                   <div
                     key={p.number}
                     className={`rounded-xl border p-4 transition-all duration-500 ${
                       i === activeIndex
-                        ? 'card-selected shadow-lg shadow-[#1E1854]/20'
+                        ? 'card-selected shadow-lg shadow-ink/20'
                         : i < activeIndex
-                        ? 'border-[#1E1854]/[0.12] bg-white'
-                        : 'border-[#1E1854]/[0.07] bg-white opacity-50'
+                        ? 'border-ink/[0.12] bg-white'
+                        : 'border-ink/[0.07] bg-white opacity-50'
                     }`}
                   >
                     <p className={`text-xs font-mono tracking-[0.12em] mb-2 ${
-                      i === activeIndex ? 'text-white/50' : 'text-[#1E1854]/25'
+                      i === activeIndex ? 'text-white/50' : 'text-ink/25'
                     }`}>{p.number}</p>
                     <p className={`text-sm font-semibold tracking-[-0.01em] leading-snug ${
-                      i === activeIndex ? 'text-white' : 'text-[#1E1854]'
+                      i === activeIndex ? 'text-white' : 'text-ink'
                     }`}>{p.label}</p>
                   </div>
                 ))}
@@ -322,7 +322,7 @@ function PhilosophyDesktop() {
             <div className="flex-1 max-w-[1200px] w-full mx-auto px-6 pb-10 min-h-0">
               <div className="h-full grid grid-cols-2 gap-14 items-center">
 
-                <div className="relative rounded-2xl overflow-hidden h-full ring-1 ring-[#1E1854]/[0.08] shadow-xl shadow-[#1E1854]/[0.08]">
+                <div className="relative rounded-2xl overflow-hidden h-full ring-1 ring-ink/[0.08] shadow-xl shadow-ink/[0.08]">
                   {points.map((p, i) => {
                     const isActive = i === activeIndex;
                     const isPast = i < activeIndex;
@@ -345,11 +345,11 @@ function PhilosophyDesktop() {
 
                 <div key={`${activeIndex}-${direction}`} className="space-y-5">
                   <p
-                    className={`${enterClass} text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent`}
+                    className={`${enterClass} text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent`}
                     style={{ animationDelay: '0ms' }}
                   >{point.label}</p>
                   <h2
-                    className={`${enterClass} text-[2.4rem] font-semibold tracking-[-0.03em] leading-tight text-[#1E1854]`}
+                    className={`${enterClass} text-[2.4rem] font-semibold tracking-[-0.03em] leading-tight text-ink`}
                     style={{ animationDelay: '80ms' }}
                   >{point.heading}</h2>
                   <p

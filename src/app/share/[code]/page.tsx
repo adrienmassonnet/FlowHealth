@@ -207,7 +207,7 @@ export default async function SharePage(
               style={{
                 display: 'block',
                 textAlign: 'center',
-                background: 'linear-gradient(135deg, #3B38B8 0%, #1E1854 100%)',
+                background: 'linear-gradient(135deg, var(--color-brand) 0%, var(--color-ink) 100%)',
                 color: '#ffffff',
                 fontFamily: "'Outfit', sans-serif",
                 fontSize: 15,

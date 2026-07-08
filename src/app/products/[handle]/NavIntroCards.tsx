@@ -156,7 +156,7 @@ export default function NavIntroCards() {
           <button
             key={card.id}
             onClick={() => doSelectTab(card.id)}
-            className="shrink-0 rounded-xl border border-[#1E185420] bg-white px-4 py-2.5 text-xs font-medium text-[#1E1854] hover:border-[#1E1854]/25 hover:bg-[#1E1854]/[0.04] transition-all duration-200 whitespace-nowrap"
+            className="shrink-0 rounded-xl border border-ink/[12.5%] bg-white px-4 py-2.5 text-xs font-medium text-ink hover:border-ink/25 hover:bg-ink/[0.04] transition-all duration-200 whitespace-nowrap"
           >
             {card.label}
           </button>

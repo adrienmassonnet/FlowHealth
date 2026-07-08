@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 
 const STIM_COLOR = '#D97706';
-const FLOW_COLOR = '#3B38B8';
+const FLOW_COLOR = 'var(--color-brand)';
 
 const STIM_PATH = "M40,290 C80,272 130,248 180,225 C210,208 240,180 270,158 C300,138 340,130 380,128 C410,127 440,145 470,172 C490,192 510,240 535,278 C555,308 575,318 600,305 C620,288 638,252 655,210 C668,176 682,158 705,170 C728,185 750,200 770,210 C790,218 810,218 835,214 C855,210 870,208 880,210";
 const FLOW_PATH = "M40,290 C80,272 130,248 180,225 C210,210 235,198 260,190 C290,181 330,174 370,170 C410,167 450,166 490,166 C530,167 565,170 600,174 C635,178 670,184 710,191 C745,197 785,207 820,216 C848,222 865,226 880,228";
@@ -98,10 +98,10 @@ export default function DayArcSection() {
         {/* Header */}
         <div className="text-center max-w-[720px] mx-auto mb-8 space-y-4">
           <div className="space-y-2">
-            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">
+            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">
               Win your morning, win your day
             </p>
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-[-0.03em] leading-[1.08] text-[#1E1854]">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-[-0.03em] leading-[1.08] text-ink">
               Set your chemistry right for the entire day.
             </h2>
           </div>
@@ -113,17 +113,17 @@ export default function DayArcSection() {
         {/* Mobile: toggle above chart */}
         <div className="md:hidden mb-5 w-full">
           <div
-            className="relative flex items-center rounded-full p-[3px] mb-1 cursor-pointer overflow-hidden border border-[#1E1854]/10"
+            className="relative flex items-center rounded-full p-[3px] mb-1 cursor-pointer overflow-hidden border border-ink/10"
             style={{ isolation: 'isolate' }}
             onClick={() => setMode(mode === 'stim' ? 'flow' : 'stim')}
             role="switch"
             aria-checked={mode === 'flow'}
           >
             <div className="absolute inset-0 rounded-full" style={{ background: 'rgba(30,24,84,0.08)', opacity: mode === 'stim' ? 1 : 0, transition: 'opacity 0.5s' }} />
-            <div className="absolute inset-0 rounded-full" style={{ background: 'linear-gradient(135deg,#3B38B8,#1E1854)', opacity: mode === 'flow' ? 1 : 0, transition: 'opacity 0.5s' }} />
+            <div className="absolute inset-0 rounded-full" style={{ background: 'linear-gradient(135deg,var(--color-brand),var(--color-ink))', opacity: mode === 'flow' ? 1 : 0, transition: 'opacity 0.5s' }} />
             <div className="absolute top-[3px] bottom-[3px] rounded-full" style={{ background: mode === 'stim' ? '#fff' : 'rgba(255,255,255,0.18)', left: mode === 'stim' ? '3px' : 'calc(50% + 1px)', right: mode === 'stim' ? 'calc(50% + 1px)' : '3px', boxShadow: mode === 'stim' ? '0 1px 6px rgba(30,24,84,0.14)' : 'none', transition: 'left 0.45s cubic-bezier(0.4,0,0.2,1), right 0.45s cubic-bezier(0.4,0,0.2,1), background 0.45s', zIndex: 1 }} />
             <div className="relative flex-1 flex items-center justify-center px-4 py-1.5" style={{ zIndex: 2 }}>
-              <span className="text-xs font-medium whitespace-nowrap" style={{ color: mode === 'stim' ? '#1E1854' : 'rgba(255,255,255,0.5)', transition: 'color 0.5s' }}>With caffeine</span>
+              <span className="text-xs font-medium whitespace-nowrap" style={{ color: mode === 'stim' ? 'var(--color-ink)' : 'rgba(255,255,255,0.5)', transition: 'color 0.5s' }}>With caffeine</span>
             </div>
             <div className="relative flex-1 flex items-center justify-center px-4 py-1.5" style={{ zIndex: 2 }}>
               <span className="text-xs font-medium whitespace-nowrap" style={{ color: mode === 'flow' ? '#fff' : 'rgba(30,24,84,0.4)', transition: 'color 0.5s' }}>With Flow</span>
@@ -142,16 +142,16 @@ export default function DayArcSection() {
           >
             <defs>
               <linearGradient id="dayArcFlowGradM" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#3B38B8" />
-                <stop offset="100%" stopColor="#1E1854" />
+                <stop offset="0%" stopColor="var(--color-brand)" />
+                <stop offset="100%" stopColor="var(--color-ink)" />
               </linearGradient>
               <linearGradient id="stimFillM" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor={STIM_COLOR} stopOpacity="0.12" />
                 <stop offset="100%" stopColor={STIM_COLOR} stopOpacity="0" />
               </linearGradient>
               <linearGradient id="flowFillM" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#3B38B8" stopOpacity="0.10" />
-                <stop offset="100%" stopColor="#3B38B8" stopOpacity="0" />
+                <stop offset="0%" stopColor="var(--color-brand)" stopOpacity="0.10" />
+                <stop offset="100%" stopColor="var(--color-brand)" stopOpacity="0" />
               </linearGradient>
               <clipPath id="chartClipM">
                 <rect x="40" y="0" width="840" height="420" />
@@ -213,14 +213,14 @@ export default function DayArcSection() {
             {/* Toggle — desktop only */}
             <div
               ref={toggleRef}
-              className="hidden md:flex relative items-center self-start rounded-full p-[3px] mb-4 cursor-pointer overflow-hidden border border-[#1E1854]/10"
+              className="hidden md:flex relative items-center self-start rounded-full p-[3px] mb-4 cursor-pointer overflow-hidden border border-ink/10"
               style={{ isolation: 'isolate' }}
               onClick={() => setMode(mode === 'stim' ? 'flow' : 'stim')}
               role="switch"
               aria-checked={mode === 'flow'}
             >
               <div className="absolute inset-0 rounded-full" style={{ background: 'rgba(30,24,84,0.08)', opacity: mode === 'stim' ? 1 : 0, transition: 'opacity 0.5s cubic-bezier(0.4,0,0.2,1)' }} />
-              <div className="absolute inset-0 rounded-full" style={{ background: 'linear-gradient(135deg,#3B38B8,#1E1854)', opacity: mode === 'flow' ? 1 : 0, transition: 'opacity 0.5s cubic-bezier(0.4,0,0.2,1)' }} />
+              <div className="absolute inset-0 rounded-full" style={{ background: 'linear-gradient(135deg,var(--color-brand),var(--color-ink))', opacity: mode === 'flow' ? 1 : 0, transition: 'opacity 0.5s cubic-bezier(0.4,0,0.2,1)' }} />
               <div
                 className="absolute top-[3px] bottom-[3px] rounded-full"
                 style={{
@@ -233,7 +233,7 @@ export default function DayArcSection() {
                 }}
               />
               <div className="relative flex items-center justify-center py-1.5" style={{ zIndex: 2, width: '120px' }}>
-                <span className="text-xs font-medium whitespace-nowrap" style={{ color: mode === 'stim' ? '#1E1854' : 'rgba(255,255,255,0.5)', transition: 'color 0.5s cubic-bezier(0.4,0,0.2,1)' }}>
+                <span className="text-xs font-medium whitespace-nowrap" style={{ color: mode === 'stim' ? 'var(--color-ink)' : 'rgba(255,255,255,0.5)', transition: 'color 0.5s cubic-bezier(0.4,0,0.2,1)' }}>
                   With caffeine
                 </span>
               </div>
@@ -277,7 +277,7 @@ export default function DayArcSection() {
                     className="flex items-center gap-0 cursor-pointer md:cursor-default"
                     onClick={() => setMobileOpen(isOpen ? null : i)}
                   >
-                    <p className="text-sm font-semibold tracking-[-0.01em] flex-1 pt-2 pb-3 pr-4 md:pb-4 md:pr-5 pl-10" style={{ color: '#1E1854' }}>
+                    <p className="text-sm font-semibold tracking-[-0.01em] flex-1 pt-2 pb-3 pr-4 md:pb-4 md:pr-5 pl-10" style={{ color: 'var(--color-ink)' }}>
                       {mode === 'stim' ? c.stimLabel : c.flowLabel}
                     </p>
                     <svg
@@ -312,8 +312,8 @@ export default function DayArcSection() {
             <div className="flex items-start gap-3 px-2 mb-3">
               <svg className="shrink-0 mt-[7px]" width="28" height="10" viewBox="0 0 28 10"><line x1="0" y1="5" x2="28" y2="5" stroke="rgba(30,24,84,0.35)" strokeWidth="1.5" strokeDasharray="6,5" strokeLinecap="round"/></svg>
               <div className="space-y-0.5">
-                <p className="text-sm font-medium text-[#1E1854]/60">Natural cognitive baseline</p>
-                <p className="text-sm text-[#1E1854]/40">Large swings above it cause jitters and anxiety. Drops below it bring fatigue and brain fog. Staying close is what makes performance last.</p>
+                <p className="text-sm font-medium text-ink/60">Natural cognitive baseline</p>
+                <p className="text-sm text-ink/40">Large swings above it cause jitters and anxiety. Drops below it bring fatigue and brain fog. Staying close is what makes performance last.</p>
               </div>
             </div>
             <svg
@@ -326,16 +326,16 @@ export default function DayArcSection() {
             >
               <defs>
                 <linearGradient id="dayArcFlowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#3B38B8" />
-                  <stop offset="100%" stopColor="#1E1854" />
+                  <stop offset="0%" stopColor="var(--color-brand)" />
+                  <stop offset="100%" stopColor="var(--color-ink)" />
                 </linearGradient>
                 <linearGradient id="stimFill" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%" stopColor={STIM_COLOR} stopOpacity="0.12" />
                   <stop offset="100%" stopColor={STIM_COLOR} stopOpacity="0" />
                 </linearGradient>
                 <linearGradient id="flowFill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#3B38B8" stopOpacity="0.10" />
-                  <stop offset="100%" stopColor="#3B38B8" stopOpacity="0" />
+                  <stop offset="0%" stopColor="var(--color-brand)" stopOpacity="0.10" />
+                  <stop offset="100%" stopColor="var(--color-brand)" stopOpacity="0" />
                 </linearGradient>
                 <clipPath id="chartClip">
                   <rect x="40" y="0" width="840" height="410" />

@@ -79,7 +79,7 @@ function WordCloud({ inView, mobile }: { inView: boolean; mobile: boolean }) {
               fontSize={w.fontSize}
               fontWeight={w.weight}
               fontFamily="Outfit, system-ui, sans-serif"
-              fill="#1E1854"
+              fill="var(--color-ink)"
             >
               {w.text}
             </motion.text>
@@ -124,14 +124,14 @@ export default function BrainHealthSection() {
             className="space-y-4 md:max-w-[500px]"
           >
             <div className="space-y-2">
-              <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">
+              <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">
                 Long-term brain health
               </p>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-[1.08] text-[#1E1854]">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-[1.08] text-ink">
                 Chronic overstimulation quietly hinders the brain.
               </h2>
             </div>
-            <p className="text-sm md:text-base text-[#1E1854]/55 leading-[1.55]">
+            <p className="text-sm md:text-base text-ink/55 leading-[1.55]">
               Flow was built for this. Through clinically studied adaptogens and nootropics, it targets the root causes of what chronic overstimulation does over time to stress, focus, mood, and sleep.
             </p>
           </motion.div>

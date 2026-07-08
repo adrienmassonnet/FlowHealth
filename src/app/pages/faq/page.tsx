@@ -45,7 +45,7 @@ export default async function FaqPage({ searchParams }: { searchParams: Promise<
         <div className="max-w-[1200px] mx-auto px-6 pt-20 md:pt-24 pb-16 md:pb-24">
           {/* Heading */}
           <div className="max-w-2xl mb-10">
-            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent mb-4">Support</p>
+            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent mb-4">Support</p>
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-[-0.03em] leading-[1.0]">
               Frequently asked<br />questions
             </h1>
@@ -65,7 +65,7 @@ export default async function FaqPage({ searchParams }: { searchParams: Promise<
       {/* Bottom CTA */}
       <section className="bg-white">
         <div className="max-w-[1200px] mx-auto px-6 pb-16">
-          <div className="bg-[#1E185408] rounded-2xl px-8 md:px-12 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="bg-ink/[3.1%] rounded-2xl px-8 md:px-12 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
               <p className="text-base font-semibold tracking-[-0.01em] mb-1">Still have questions?</p>
               <p className="text-sm text-[rgb(30,24,84)]">Our team typically responds within one business day.</p>

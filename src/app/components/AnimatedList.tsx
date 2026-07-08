@@ -21,8 +21,8 @@ export default function AnimatedList({ items }: { items: Item[] }) {
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: DURATION.base, delay: 0.05 + i * 0.06, ease: EASE.expoOut }}
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-[#1E1854]/25 shrink-0" />
-          <span className="text-[#1E1854]/75">{value}</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-ink/25 shrink-0" />
+          <span className="text-ink/75">{value}</span>
         </motion.li>
       ))}
     </ul>

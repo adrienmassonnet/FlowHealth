@@ -197,7 +197,7 @@ export default function ProductNavTabs() {
     <div data-product-nav className="bg-transparent">
       <div className="max-w-[1200px] mx-auto px-6">
         {/* Tab pills row */}
-        <div className="relative rounded-2xl border border-[#1E185414] bg-[#1E1854]/[0.05] p-1.5">
+        <div className="relative rounded-2xl border border-ink/[7.8%] bg-ink/[0.05] p-1.5">
           <div
             ref={pillsRef}
             className="flex items-center gap-1.5 overflow-x-auto w-full scroll-smooth"
@@ -210,8 +210,8 @@ export default function ProductNavTabs() {
                 onClick={() => selectTab(id)}
                 className={`flex-1 min-w-fit rounded-xl border px-3.5 py-2 text-xs font-semibold transition-all duration-200 whitespace-nowrap min-h-[36px] text-center ${
                   active === id
-                    ? 'bg-[#1E1854] text-white border-[#1E1854] shadow-sm'
-                    : 'border-transparent text-[#1E1854]/70 hover:border-[#1E1854]/25 hover:bg-white/60'
+                    ? 'bg-ink text-white border-ink shadow-sm'
+                    : 'border-transparent text-ink/70 hover:border-ink/25 hover:bg-white/60'
                 }`}
               >
                 {label}

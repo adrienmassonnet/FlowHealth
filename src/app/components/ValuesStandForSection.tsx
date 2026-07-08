@@ -23,8 +23,8 @@ export default function ValuesStandForSection() {
         <ValuePillarsSection />
       </div>
       <div ref={textRef} className="space-y-4 max-w-sm md:w-[400px] md:shrink-0">
-        <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">What we stand for</p>
-        <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-tight text-[#1E1854]">
+        <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">What we stand for</p>
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-tight text-ink">
           Being transparent on our intentions and guiding principles is vital to us.
         </h2>
         <p className="text-sm text-[rgba(30,24,84,0.65)] leading-relaxed">

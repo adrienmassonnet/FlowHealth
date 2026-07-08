@@ -79,7 +79,7 @@ export default async function HomePage() {
               <TrackedLink
                 href="/products/rooibos-hibiscus-pomegranate"
                 clarityEvent="homepage_hero_shop_flow"
-                className="flex md:inline-flex items-center justify-center rounded-full bg-white text-[#1E1854] text-xs tracking-[0.12em] uppercase font-semibold px-7 py-4 md:px-8 md:py-4 hover:opacity-90 transition-opacity duration-500"
+                className="flex md:inline-flex items-center justify-center rounded-full bg-white text-ink text-xs tracking-[0.12em] uppercase font-semibold px-7 py-4 md:px-8 md:py-4 hover:opacity-90 transition-opacity duration-500"
               >
                 Get Flow
               </TrackedLink>
@@ -95,12 +95,12 @@ export default async function HomePage() {
             {/* Section header */}
             <div className="text-center max-w-[860px] mx-auto space-y-2">
               <ScrollReveal variant="fade">
-                <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">
+                <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">
                   conceived to remove the noise
                 </p>
               </ScrollReveal>
               <ScrollReveal variant="fadeUp" delay={0.06}>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.08] tracking-[-0.03em] text-[#1E1854]">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.08] tracking-[-0.03em] text-ink">
                   Flow is made for those whose minds refuse to settle but who seek inner peace.
                 </h2>
               </ScrollReveal>
@@ -141,7 +141,7 @@ export default async function HomePage() {
               <div className="w-full md:flex-1 flex flex-col gap-6">
 
                 <ScrollReveal variant="fadeUp" delay={0.1}>
-                  <p className="text-base text-[#1E1854]/65" style={{ lineHeight: '1.25' }}>
+                  <p className="text-base text-ink/65" style={{ lineHeight: '1.25' }}>
                     Start each morning with one sachet. Feel sharper, stay steady, and move closer to what matters.
                   </p>
                 </ScrollReveal>
@@ -164,8 +164,8 @@ export default async function HomePage() {
                     { label: 'Long term', body: 'Sustained brain cell growth, deeper sleep, and reduced cortisol over time.' },
                   ].map(({ label, body }, i) => (
                     <ScrollReveal key={label} variant="fadeUp" delay={0.08 + i * 0.07} className="flex-1 flex">
-                      <div className="w-full rounded-xl border border-[#1E1854]/[0.07] bg-[#1E18540A] px-3 py-3 flex flex-col gap-1.5">
-                        <p className="text-sm font-semibold tracking-[-0.01em] text-[#1E1854] m-0">{label}</p>
+                      <div className="w-full rounded-xl border border-ink/[0.07] bg-ink/[3.9%] px-3 py-3 flex flex-col gap-1.5">
+                        <p className="text-sm font-semibold tracking-[-0.01em] text-ink m-0">{label}</p>
                         <p className="text-sm leading-[1.5] m-0" style={{ color: 'rgba(30,24,84,0.55)' }}>{body}</p>
                       </div>
                     </ScrollReveal>
@@ -203,12 +203,12 @@ export default async function HomePage() {
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
             <div className="space-y-2">
               <ScrollReveal variant="fade">
-                <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent">
+                <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">
                   {cms.ingredientsSectionLabel || 'our ingredients'}
                 </p>
               </ScrollReveal>
               <ScrollReveal variant="fadeUp" delay={0.06}>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-[1.08] text-[#1E1854]">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-[1.08] text-ink">
                   {cms.ingredientsHeading}
                 </h2>
               </ScrollReveal>
@@ -216,7 +216,7 @@ export default async function HomePage() {
             <TrackedLink
               href="/pages/our-product"
               clarityEvent="homepage_ingredients_see_all"
-              className="inline-flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium text-[#1E1854]/45 hover:text-[#1E1854] transition-colors duration-200 shrink-0"
+              className="inline-flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium text-ink/45 hover:text-ink transition-colors duration-200 shrink-0"
             >
               {`See all ${meta.activeIngredients} ingredients`}
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -239,7 +239,7 @@ export default async function HomePage() {
       </div>
 
       {/* Values — three pillars */}
-      <section className="bg-white border-t border-[#1E1854]/[0.06]">
+      <section className="bg-white border-t border-ink/[0.06]">
         <div className="max-w-[1200px] mx-auto px-6 py-16 md:py-24">
           <ValuesStandForSection />
         </div>
@@ -252,16 +252,16 @@ export default async function HomePage() {
         <div className="max-w-[1200px] mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
             <div>
-              <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-[#3B38B8] to-[#1E1854] bg-clip-text text-transparent mb-2">
+              <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent mb-2">
                 Support
               </p>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-[1.08] text-[#1E1854]">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-[1.08] text-ink">
                 Frequently asked questions
               </h2>
             </div>
             <Link
               href="/pages/faq"
-              className="shrink-0 inline-flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium text-[#1E1854]/45 hover:text-[#1E1854] transition-colors duration-200"
+              className="shrink-0 inline-flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium text-ink/45 hover:text-ink transition-colors duration-200"
             >
               View all FAQs
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
