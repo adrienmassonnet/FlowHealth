@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getTestimonials } from '@/lib/content';
+import { getFirstProductHandle } from '@/lib/shopify';
 
 export const metadata: Metadata = {
   title: 'Reviews',
@@ -31,7 +32,10 @@ const stats = [
 ];
 
 export default async function ReviewsPage() {
-  const testimonials = await getTestimonials();
+  const [testimonials, productHandle] = await Promise.all([
+    getTestimonials(),
+    getFirstProductHandle(),
+  ]);
 
   return (
     <main>
@@ -114,7 +118,7 @@ export default async function ReviewsPage() {
             </p>
           </div>
           <Link
-            href="/products/rooibos-hibiscus-pomegranate"
+            href={`/products/${productHandle ?? 'flow'}`}
             className="shrink-0 inline-flex items-center gap-2 bg-white text-ink text-xs tracking-[0.1em] uppercase font-semibold px-7 py-4 rounded-full hover:bg-[rgb(30,24,84)] hover:text-white transition-colors"
           >
             Get Flow

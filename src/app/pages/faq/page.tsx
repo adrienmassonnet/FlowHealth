@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Link from 'next/link'; // used in bottom CTA
+import TrackedLink from '@/app/components/TrackedLink';
 import { FAQ } from '@/components/ui/faq-tabs';
 import { getFaqItems } from '@/lib/content';
 import { faqCategories as categories } from '@/lib/content-data';
@@ -70,12 +70,13 @@ export default async function FaqPage({ searchParams }: { searchParams: Promise<
               <p className="text-base font-semibold tracking-[-0.01em] mb-1">Still have questions?</p>
               <p className="text-sm text-[rgb(30,24,84)]">Our team typically responds within one business day.</p>
             </div>
-            <Link
+            <TrackedLink
               href="/pages/contact"
+              clarityEvent="faq_contact_us"
               className="btn-cta shrink-0 inline-flex items-center gap-2 text-white text-xs tracking-[0.1em] uppercase font-semibold px-6 py-3.5 rounded-full"
             >
               Contact us
-            </Link>
+            </TrackedLink>
           </div>
         </div>
       </section>

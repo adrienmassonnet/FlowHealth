@@ -66,6 +66,10 @@ export function ga4SelectContent(contentType: string, itemId: string) {
   gtag('event', 'select_content', { content_type: contentType, item_id: itemId });
 }
 
+export function ga4TabClick(tabGroup: string, tabLabel: string) {
+  gtag('event', 'tab_click', { tab_group: tabGroup, tab_label: tabLabel });
+}
+
 export function ga4GenerateLead() {
   gtag('event', 'generate_lead');
 }

@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { getProducts } from '@/lib/shopify';
 import TrackedLink from '@/app/components/TrackedLink';
 import { HeroText, TrustCard } from '@/app/components/HeroAnimated';
@@ -69,15 +68,15 @@ export default async function HomePage() {
 
         <div className="relative z-10 max-w-[1200px] mx-auto px-6 pb-10 pt-20 md:pb-20 md:pt-24 w-full">
           <div className="max-w-lg space-y-4 md:space-y-7">
-            <HeroText delay={100}>
+            <HeroText delayPropId="headline1Delay">
               <p className="text-xs tracking-[0.16em] uppercase text-white/50 font-medium">{cms.heroTagline}</p>
             </HeroText>
-            <HeroText delay={400}>
+            <HeroText delayPropId="headline2Delay">
               <h1 className="text-2xl sm:text-4xl md:text-5xl md:text-[4.2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-white">{cms.heroHeading}</h1>
             </HeroText>
-            <HeroText delay={800} className="pt-1 w-full">
+            <HeroText delayPropId="ctaDelay" className="pt-1 w-full">
               <TrackedLink
-                href="/products/rooibos-hibiscus-pomegranate"
+                href={featured ? `/products/${featured.handle}` : '/'}
                 clarityEvent="homepage_hero_shop_flow"
                 className="flex md:inline-flex items-center justify-center rounded-full bg-white text-ink text-xs tracking-[0.12em] uppercase font-semibold px-7 py-4 md:px-8 md:py-4 hover:opacity-90 transition-opacity duration-500"
               >
@@ -259,15 +258,16 @@ export default async function HomePage() {
                 Frequently asked questions
               </h2>
             </div>
-            <Link
+            <TrackedLink
               href="/pages/faq"
+              clarityEvent="homepage_view_all_faqs"
               className="shrink-0 inline-flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium text-ink/45 hover:text-ink transition-colors duration-200"
             >
               View all FAQs
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <path d="M2.5 6H9.5M6.5 3L9.5 6L6.5 9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-            </Link>
+            </TrackedLink>
           </div>
           <FAQ
             title=""

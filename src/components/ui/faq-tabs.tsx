@@ -5,6 +5,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { EASE, DURATION } from '@/lib/animation';
 import { Plus } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { trackEvent } from '@/lib/clarity';
+import { ga4TabClick } from '@/lib/ga4';
 
 type FAQItem = { question: string; answer: string };
 type FAQData = Record<string, FAQItem[]>;
@@ -42,7 +44,7 @@ export const FAQ = ({
           {Object.entries(categories).map(([key, label]) => (
             <button
               key={key}
-              onClick={() => setSelectedCategory(key)}
+              onClick={() => { setSelectedCategory(key); trackEvent('faq_category_tab_click'); ga4TabClick('faq_category', label); }}
               className={cn(
                 'whitespace-nowrap rounded-full px-5 py-2.5 text-xs tracking-[0.08em] uppercase font-medium transition-all duration-300',
                 selectedCategory === key
@@ -65,7 +67,7 @@ export const FAQ = ({
           {Object.entries(categories).map(([key, label]) => (
             <button
               key={key}
-              onClick={() => setSelectedCategory(key)}
+              onClick={() => { setSelectedCategory(key); trackEvent('faq_category_tab_click'); ga4TabClick('faq_category', label); }}
               className={`text-left px-6 py-5 border-b border-ink/[0.07] last:border-0 transition-colors duration-200 group ${
                 selectedCategory === key ? 'bg-[#F7F6FA]' : 'bg-white hover:bg-[#F7F6FA]/60'
               }`}
@@ -165,7 +167,10 @@ const FAQCard = ({ question, answer, index }: FAQItem & { index: number }) => {
       />
 
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => {
+          setIsOpen(!isOpen);
+          if (!isOpen) trackEvent('faq_question_accordion_open');
+        }}
         className="flex w-full items-start justify-between gap-4 px-6 pt-6 pb-5 text-left"
       >
         <span className={cn(

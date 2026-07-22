@@ -4,7 +4,10 @@ import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { EASE } from '@/lib/animation';
 import type { Ingredient } from '@/lib/content';
+import { trackEvent } from '@/lib/clarity';
+import { ga4SelectContent } from '@/lib/ga4';
 
 type IngredientCard = { name: string; category: string; tagline: string; description: string; image: string };
 
@@ -154,6 +157,19 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile', ac
   const [activeCard, setActiveCard] = useState<IngredientCard | null>(null);
   const categoryTabsRef = useRef<HTMLDivElement>(null);
 
+  function selectCategory(key: string) {
+    setSelectedCategory(key);
+    setPage(0);
+    setActiveCard(null);
+    trackEvent(`product_ingredient_filter_${key}`);
+  }
+
+  function openCard(card: IngredientCard) {
+    setActiveCard(card);
+    trackEvent('product_ingredient_card_open');
+    ga4SelectContent('ingredient_card', card.name);
+  }
+
   // Scroll selected category to the left when it changes
   useEffect(() => {
     if (!categoryTabsRef.current) return;
@@ -187,7 +203,7 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile', ac
           return (
             <button
               key={key}
-              onClick={() => { setSelectedCategory(key); setPage(0); setActiveCard(null); }}
+              onClick={() => selectCategory(key)}
               className={cn(
                 'shrink-0 whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-200 flex items-center gap-1.5',
                 active
@@ -220,7 +236,7 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile', ac
               <button
                 key={key}
                 data-category={key}
-                onClick={() => { setSelectedCategory(key); setPage(0); setActiveCard(null); }}
+                onClick={() => selectCategory(key)}
                 className={cn(
                   'relative rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-200 flex items-center justify-between gap-2 w-full text-left',
                   active
@@ -258,7 +274,7 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile', ac
                   name={ing.name}
                   tagline={ing.tagline}
                   image={ing.image}
-                  onClick={() => setActiveCard(ing)}
+                  onClick={() => openCard(ing)}
                 />
               ) : (
                 <IngredientCardRow
@@ -267,7 +283,7 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile', ac
                   tagline={ing.tagline}
                   description={ing.description}
                   image={ing.image}
-                  onClick={() => setActiveCard(ing)}
+                  onClick={() => openCard(ing)}
                 />
               ))}
               {Array.from({ length: placeholderCount }).map((_, i) => (
@@ -279,7 +295,7 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile', ac
           {/* Carousel navigation — always reserve space */}
           <div className="mt-8 flex items-center justify-center gap-5">
         <button
-          onClick={() => setPage((p) => Math.max(0, p - 1))}
+          onClick={() => { setPage((p) => Math.max(0, p - 1)); trackEvent('product_ingredient_page_prev'); }}
           disabled={safePage === 0}
           aria-label="Previous ingredients"
           className="w-8 h-8 flex items-center justify-center text-ink/65 disabled:opacity-25 disabled:pointer-events-none hover:text-ink transition-colors duration-300"
@@ -299,7 +315,7 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile', ac
           ))}
         </div>
         <button
-          onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
+          onClick={() => { setPage((p) => Math.min(totalPages - 1, p + 1)); trackEvent('product_ingredient_page_next'); }}
           disabled={safePage === totalPages - 1}
           aria-label="Next ingredients"
           className="w-8 h-8 flex items-center justify-center text-ink/65 disabled:opacity-25 disabled:pointer-events-none hover:text-ink transition-colors duration-300"
@@ -328,7 +344,7 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile', ac
             initial={{ y: '100%' }}
             animate={{ y: 0 }}
             exit={{ y: '100%' }}
-            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.45, ease: EASE.expoOut }}
             className="relative w-full sm:max-w-md bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col max-h-[90svh]"
             onClick={(e) => e.stopPropagation()}
           >

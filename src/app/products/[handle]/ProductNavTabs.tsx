@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback, useRef } from 'react';
 import { trackEvent } from '@/lib/clarity';
-import { ga4SelectContent } from '@/lib/ga4';
+import { ga4SelectContent, ga4TabClick } from '@/lib/ga4';
 
 const TAB_GROUPS = [
   {
@@ -32,6 +32,7 @@ const TAB_GROUPS = [
 
 const TABS = TAB_GROUPS.flatMap((g) => g.tabs);
 const CONTENT_IDS = TABS.map((t) => t.id);
+const TAB_LABELS = Object.fromEntries(TABS.map((t) => [t.id, t.label]));
 const EASING = 'cubic-bezier(0.25, 0.1, 0.1, 1)';
 
 function fadeInSection(id: string) {
@@ -172,6 +173,7 @@ export default function ProductNavTabs() {
     setActive(id);
     trackEvent(`product_tab_${id.replace('section-', '')}`);
     ga4SelectContent('product_tab', id.replace('section-', ''));
+    ga4TabClick('pdp_subnav', TAB_LABELS[id] ?? id);
 
     // Scroll to bring the nav wrapper into view just below the site header
     requestAnimationFrame(() => {
@@ -182,16 +184,6 @@ export default function ProductNavTabs() {
       }
     });
   }, [active]);
-
-  // Listen for tab selections from NavIntroCards
-  useEffect(() => {
-    const handler = (e: Event) => {
-      const ce = e as CustomEvent<{ id: string }>;
-      selectTab(ce.detail.id);
-    };
-    window.addEventListener('flow:selectTab', handler);
-    return () => window.removeEventListener('flow:selectTab', handler);
-  }, [selectTab]);
 
   return (
     <div data-product-nav className="bg-transparent">

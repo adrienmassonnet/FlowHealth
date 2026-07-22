@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getBlogPost, getBlogPosts } from '@/lib/content';
+import { getFirstProductHandle } from '@/lib/shopify';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -274,7 +275,7 @@ export async function generateStaticParams() {
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const [post, allPosts] = await Promise.all([getBlogPost(slug), getBlogPosts()]);
+  const [post, allPosts, productHandle] = await Promise.all([getBlogPost(slug), getBlogPosts(), getFirstProductHandle()]);
 
   if (!post) notFound();
 
@@ -385,7 +386,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   Flow is formulated around every ingredient we write about.
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  <Link href="/products/rooibos-hibiscus-pomegranate"
+                  <Link href={`/products/${productHandle ?? 'flow'}`}
                     className="bg-white text-ink text-xs tracking-[0.1em] uppercase font-bold px-5 py-2.5 rounded-full hover:bg-white/90 transition-colors">
                     Try Flow
                   </Link>

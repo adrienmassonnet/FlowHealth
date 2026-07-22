@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { AnimatePresence, motion, useInView } from 'framer-motion';
 import { EASE, DURATION } from '@/lib/animation';
+import { trackEvent } from '@/lib/clarity';
+import { ga4SelectContent } from '@/lib/ga4';
 
 interface IngredientData {
   name: string;
@@ -236,12 +238,12 @@ function MobileIngredientChart({ ingredientName }: { ingredientName: string }) {
       <div className="flex items-center justify-between pt-2 border-t border-ink/[0.14]">
         <p className="truncate flex-1 pr-3" style={{ fontSize: '9px', color: 'rgba(30,24,84,0.40)' }}>{chart.source}</p>
         <div className="flex items-center gap-1.5 shrink-0">
-          <button onClick={() => setActiveChart((p) => (p - 1 + charts.length) % charts.length)}
+          <button onClick={() => { setActiveChart((p) => (p - 1 + charts.length) % charts.length); trackEvent('homepage_zynamite_chart_prev'); }}
             className="w-7 h-7 flex items-center justify-center rounded-full bg-ink/10 text-ink/70">
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M6.5 2L3.5 5l3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
           <span className="text-[11px] font-semibold text-ink/55 tabular-nums">{activeChart + 1}/{charts.length}</span>
-          <button onClick={() => setActiveChart((p) => (p + 1) % charts.length)}
+          <button onClick={() => { setActiveChart((p) => (p + 1) % charts.length); trackEvent('homepage_zynamite_chart_next'); }}
             className="w-7 h-7 flex items-center justify-center rounded-full bg-ink/10 text-ink/70">
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M3.5 2l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
@@ -381,14 +383,14 @@ function IngredientChart({ ingredientName, className = '' }: { ingredientName: s
         <p className="truncate flex-1 pr-3" style={{ fontSize: '9px', color: 'rgba(30,24,84,0.40)' }}>{chart.source}</p>
         <div className="flex items-center gap-1.5 shrink-0">
           <button
-            onClick={() => setActiveChart((p) => (p - 1 + charts.length) % charts.length)}
+            onClick={() => { setActiveChart((p) => (p - 1 + charts.length) % charts.length); trackEvent('homepage_zynamite_chart_prev'); }}
             className="w-7 h-7 flex items-center justify-center rounded-full bg-ink/10 text-ink/70 hover:bg-ink/20 hover:text-ink transition-colors duration-200"
           >
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M6.5 2L3.5 5l3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
           <span className="text-[11px] font-semibold text-ink/55 tabular-nums">{activeChart + 1}/{charts.length}</span>
           <button
-            onClick={() => setActiveChart((p) => (p + 1) % charts.length)}
+            onClick={() => { setActiveChart((p) => (p + 1) % charts.length); trackEvent('homepage_zynamite_chart_next'); }}
             className="w-7 h-7 flex items-center justify-center rounded-full bg-ink/10 text-ink/70 hover:bg-ink/20 hover:text-ink transition-colors duration-200"
           >
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M3.5 2l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -429,7 +431,7 @@ export default function HomepageIngredientsSection({ ingredients, sizes }: Props
             <div
               key={c.name}
               className="rounded-2xl overflow-hidden cursor-pointer group bg-white border border-ink/[0.08]"
-              onClick={() => setModal(c)}
+              onClick={() => { setModal(c); trackEvent('homepage_ingredient_card_open'); ga4SelectContent('ingredient_card', c.name); }}
             >
               {/* Photo */}
               <div className="relative w-full h-[100px] overflow-hidden">
@@ -471,7 +473,7 @@ export default function HomepageIngredientsSection({ ingredients, sizes }: Props
               return (
                 <motion.button
                   key={c.name}
-                  onClick={() => setActive(i)}
+                  onClick={() => { setActive(i); trackEvent('homepage_ingredient_card_open'); ga4SelectContent('ingredient_card', c.name); }}
                   initial={{ opacity: 0 }}
                   animate={inView ? { opacity: 1 } : {}}
                   transition={{ duration: DURATION.base, delay: 0.05 + i * 0.04, ease: EASE.expoOut }}

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { trackEvent } from '@/lib/clarity';
 
 const ALTERNATIVES = [
   'a single Red Bull at the kiosk',
@@ -58,7 +59,10 @@ export default function SavingsBreakdownClient({
   const [altIndex, setAltIndex] = useState(0);
   const [activeRow, setActiveRow] = useState<number | null>(comparisonRows[0]?.order ?? null);
 
-  const flipAlternative = () => setAltIndex((i) => (i + 1) % ALTERNATIVES.length);
+  const flipAlternative = () => {
+    setAltIndex((i) => (i + 1) % ALTERNATIVES.length);
+    trackEvent('product_savings_comparison_next');
+  };
 
   return (
     <section className="max-w-[1200px] mx-auto px-6 pt-4 pb-20 md:pt-8">
@@ -83,7 +87,7 @@ export default function SavingsBreakdownClient({
               CHF {savings} cheaper than buying separately
             </span>
             <button
-              onClick={() => setOpen(true)}
+              onClick={() => { setOpen(true); trackEvent('product_page_savings_breakdown_open'); }}
               className="inline-flex items-center gap-1 text-xs font-medium text-ink/40 hover:text-ink transition-colors duration-200"
             >
               See full breakdown
@@ -125,7 +129,7 @@ export default function SavingsBreakdownClient({
             return (
               <button
                 key={row.order}
-                onClick={() => setActiveRow(row.order)}
+                onClick={() => { setActiveRow(row.order); trackEvent('product_savings_row_select'); }}
                 className={`w-full text-left px-3 py-3 transition-colors duration-200 ${isActive ? 'bg-ink ' : 'bg-white hover:bg-ink/4'}`}
               >
                 <span className={`text-[11px] font-semibold leading-snug ${isActive ? 'text-white' : 'text-ink/50'}`}>

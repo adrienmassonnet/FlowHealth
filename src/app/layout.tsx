@@ -5,6 +5,8 @@ import Script from "next/script";
 import "./globals.css";
 import Header from "@/app/components/Header";
 import ScrollManager from "@/app/components/ScrollManager";
+import TrackedLink from "@/app/components/TrackedLink";
+import { getFirstProductHandle } from "@/lib/shopify";
 const outfit = Outfit({ subsets: ["latin"], display: "swap", preload: true });
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.flowhealth.ch';
@@ -65,7 +67,8 @@ const organizationJsonLd = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const productHandle = (await getFirstProductHandle()) ?? 'flow';
   return (
     <html lang="en" className="scroll-pt-16">
       <head>
@@ -114,7 +117,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N3CRPDLV" height="0" width="0" style={{display:'none',visibility:'hidden'}}></iframe></noscript>
         <noscript><img height="1" width="1" style={{display:'none'}} src="https://www.facebook.com/tr?id=1449181289756992&ev=PageView&noscript=1" /></noscript>
         <ScrollManager />
-        <Header />
+        <Header productHandle={productHandle} />
         {children}
         <footer className="footer-gradient text-white/50 mt-12">
           <div className="max-w-[1200px] mx-auto px-6 py-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16">
@@ -129,7 +132,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   { label: 'Legal notice', href: '/pages/legal-notice' },
                   { label: 'Blogs', href: '/pages/blog-posts' },
                 ].map((l) => (
-                  <li key={l.label}><Link href={l.href} className="hover:text-white transition-colors">{l.label}</Link></li>
+                  <li key={l.label}><TrackedLink href={l.href} clarityEvent={`footer_link_${l.label.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`} className="hover:text-white transition-colors">{l.label}</TrackedLink></li>
                 ))}
               </ul>
             </div>
@@ -141,7 +144,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 {[
                   { label: 'Reviews', href: '/pages/reviews' },
                 ].map((l) => (
-                  <li key={l.label}><Link href={l.href} className="hover:text-white transition-colors">{l.label}</Link></li>
+                  <li key={l.label}><TrackedLink href={l.href} clarityEvent={`footer_link_${l.label.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`} className="hover:text-white transition-colors">{l.label}</TrackedLink></li>
                 ))}
               </ul>
             </div>
@@ -158,7 +161,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   { label: 'Privacy policy', href: '/pages/privacy-policy' },
                   { label: 'Terms & conditions', href: '/pages/terms-and-conditions' },
                 ].map((l) => (
-                  <li key={l.label}><Link href={l.href} className="hover:text-white transition-colors">{l.label}</Link></li>
+                  <li key={l.label}><TrackedLink href={l.href} clarityEvent={`footer_link_${l.label.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`} className="hover:text-white transition-colors">{l.label}</TrackedLink></li>
                 ))}
               </ul>
             </div>

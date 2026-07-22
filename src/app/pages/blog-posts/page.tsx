@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 import BlogPostsClient from './BlogPostsClient';
 import { getBlogPosts } from '@/lib/content';
+import { getFirstProductHandle } from '@/lib/shopify';
 
 export const metadata: Metadata = {
   title: 'Journal',
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogPostsPage() {
-  const allPosts = await getBlogPosts();
+  const [allPosts, productHandle] = await Promise.all([getBlogPosts(), getFirstProductHandle()]);
   const featured = allPosts.find((p) => p.featured) ?? allPosts[0];
   const posts = allPosts.filter((p) => p.slug !== featured?.slug);
 
@@ -110,7 +111,7 @@ export default async function BlogPostsPage() {
             </p>
           </div>
           <div className="flex gap-3 shrink-0">
-            <Link href="/products/rooibos-hibiscus-pomegranate" className="btn-cta inline-flex items-center justify-center text-white text-xs tracking-[0.1em] uppercase font-semibold px-6 py-3.5 rounded-full">
+            <Link href={`/products/${productHandle ?? 'flow'}`} className="btn-cta inline-flex items-center justify-center text-white text-xs tracking-[0.1em] uppercase font-semibold px-6 py-3.5 rounded-full">
               Get Flow
             </Link>
             <Link href="/pages/our-product" className="inline-flex items-center justify-center border border-ink/20 text-ink text-xs tracking-[0.1em] uppercase font-medium px-6 py-3.5 rounded-full hover:border-ink/40 transition-colors">

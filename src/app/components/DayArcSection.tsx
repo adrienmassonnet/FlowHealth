@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { useSectionProp } from '@/lib/section-animation-context';
+import { trackEvent } from '@/lib/clarity';
 
 const STIM_COLOR = '#D97706';
 const FLOW_COLOR = 'var(--color-brand)';
@@ -44,6 +46,12 @@ const dots = {
 
 export default function DayArcSection() {
   const [mode, setMode] = useState<'stim' | 'flow'>('stim');
+
+  function toggleMode() {
+    const next = mode === 'stim' ? 'flow' : 'stim';
+    setMode(next);
+    trackEvent('homepage_caffeine_comparison_toggle');
+  }
   const [visible, setVisible] = useState(false);
   const [chartHeight, setChartHeight] = useState<number>(360);
   const [toggleHeight, setToggleHeight] = useState<number>(0);
@@ -83,17 +91,31 @@ export default function DayArcSection() {
   const accentColor = mode === 'stim' ? STIM_COLOR : FLOW_COLOR;
   const dotPositions = dots[mode];
 
+  const entranceDuration = useSectionProp('day-arc', 'entranceDuration') as number;
+  const entranceEase = useSectionProp('day-arc', 'entranceEase') as [number, number, number, number];
+  const toggleDuration = useSectionProp('day-arc', 'toggleDuration') as number;
+  const cardHoverDuration = useSectionProp('day-arc', 'cardHoverDuration') as number;
+  const dotScaleDuration = useSectionProp('day-arc', 'dotScaleDuration') as number;
+  const entranceEaseCss = `cubic-bezier(${entranceEase.join(',')})`;
+
   return (
     <section
       ref={sectionRef}
-      className="py-12 md:py-16 bg-white"
+      className="relative py-16 md:py-24 overflow-hidden bg-surface-alt"
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0)' : 'translateY(20px)',
-        transition: 'opacity 0.7s cubic-bezier(0.25,0.1,0.1,1), transform 0.7s cubic-bezier(0.25,0.1,0.1,1)',
+        filter: visible ? 'blur(0px)' : 'blur(10px)',
+        transition: `opacity ${entranceDuration}s ${entranceEaseCss}, transform ${entranceDuration}s ${entranceEaseCss}, filter ${entranceDuration}s ${entranceEaseCss}`,
       }}
     >
-      <div className="max-w-[1200px] mx-auto px-6">
+      {/* EXPERIMENT: light-touch "scene" isolation — same surface family as the rest of the site, just a soft brand-tinted glow to mark this as its own room */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div style={{ position: 'absolute', top: '-20%', left: '-8%', width: '50%', height: '70%', background: 'radial-gradient(circle, rgba(59,56,184,0.07) 0%, rgba(59,56,184,0) 70%)', filter: 'blur(60px)' }} />
+        <div style={{ position: 'absolute', bottom: '-25%', right: '-8%', width: '55%', height: '75%', background: 'radial-gradient(circle, rgba(217,119,6,0.05) 0%, rgba(217,119,6,0) 70%)', filter: 'blur(70px)' }} />
+      </div>
+
+      <div className="relative max-w-[1200px] mx-auto px-6">
 
         {/* Header */}
         <div className="text-center max-w-[720px] mx-auto mb-8 space-y-4">
@@ -115,13 +137,13 @@ export default function DayArcSection() {
           <div
             className="relative flex items-center rounded-full p-[3px] mb-1 cursor-pointer overflow-hidden border border-ink/10"
             style={{ isolation: 'isolate' }}
-            onClick={() => setMode(mode === 'stim' ? 'flow' : 'stim')}
+            onClick={toggleMode}
             role="switch"
             aria-checked={mode === 'flow'}
           >
             <div className="absolute inset-0 rounded-full" style={{ background: 'rgba(30,24,84,0.08)', opacity: mode === 'stim' ? 1 : 0, transition: 'opacity 0.5s' }} />
             <div className="absolute inset-0 rounded-full" style={{ background: 'linear-gradient(135deg,var(--color-brand),var(--color-ink))', opacity: mode === 'flow' ? 1 : 0, transition: 'opacity 0.5s' }} />
-            <div className="absolute top-[3px] bottom-[3px] rounded-full" style={{ background: mode === 'stim' ? '#fff' : 'rgba(255,255,255,0.18)', left: mode === 'stim' ? '3px' : 'calc(50% + 1px)', right: mode === 'stim' ? 'calc(50% + 1px)' : '3px', boxShadow: mode === 'stim' ? '0 1px 6px rgba(30,24,84,0.14)' : 'none', transition: 'left 0.45s cubic-bezier(0.4,0,0.2,1), right 0.45s cubic-bezier(0.4,0,0.2,1), background 0.45s', zIndex: 1 }} />
+            <div className="absolute top-[3px] bottom-[3px] rounded-full" style={{ background: mode === 'stim' ? '#fff' : 'rgba(255,255,255,0.18)', left: mode === 'stim' ? '3px' : 'calc(50% + 1px)', right: mode === 'stim' ? 'calc(50% + 1px)' : '3px', boxShadow: mode === 'stim' ? '0 1px 6px rgba(30,24,84,0.14)' : 'none', transition: `left ${toggleDuration}s cubic-bezier(0.4,0,0.2,1), right ${toggleDuration}s cubic-bezier(0.4,0,0.2,1), background ${toggleDuration}s`, zIndex: 1 }} />
             <div className="relative flex-1 flex items-center justify-center px-4 py-1.5" style={{ zIndex: 2 }}>
               <span className="text-xs font-medium whitespace-nowrap" style={{ color: mode === 'stim' ? 'var(--color-ink)' : 'rgba(255,255,255,0.5)', transition: 'color 0.5s' }}>With caffeine</span>
             </div>
@@ -215,7 +237,7 @@ export default function DayArcSection() {
               ref={toggleRef}
               className="hidden md:flex relative items-center self-start rounded-full p-[3px] mb-4 cursor-pointer overflow-hidden border border-ink/10"
               style={{ isolation: 'isolate' }}
-              onClick={() => setMode(mode === 'stim' ? 'flow' : 'stim')}
+              onClick={toggleMode}
               role="switch"
               aria-checked={mode === 'flow'}
             >
@@ -228,7 +250,7 @@ export default function DayArcSection() {
                   left: mode === 'stim' ? '3px' : 'calc(50% + 1px)',
                   right: mode === 'stim' ? 'calc(50% + 1px)' : '3px',
                   boxShadow: mode === 'stim' ? '0 1px 6px rgba(30,24,84,0.14)' : 'none',
-                  transition: 'left 0.45s cubic-bezier(0.4,0,0.2,1), right 0.45s cubic-bezier(0.4,0,0.2,1), background 0.45s, box-shadow 0.45s',
+                  transition: `left ${toggleDuration}s cubic-bezier(0.4,0,0.2,1), right ${toggleDuration}s cubic-bezier(0.4,0,0.2,1), background ${toggleDuration}s, box-shadow ${toggleDuration}s`,
                   zIndex: 1,
                 }}
               />
@@ -250,11 +272,12 @@ export default function DayArcSection() {
               return (
                 <div
                   key={i}
-                  className="relative rounded-2xl border transition-all duration-500"
+                  className="relative rounded-2xl border"
                   style={{
                     background: '#F8F8FB',
                     borderColor: 'rgba(30,24,84,0.07)',
                     boxShadow: '0 2px 16px rgba(30,24,84,0.06)',
+                    transition: `all ${cardHoverDuration}s`,
                   }}
                   onMouseEnter={e => {
                     setHoveredCard(i);
@@ -394,7 +417,7 @@ export default function DayArcSection() {
                   <g
                     key={i}
                     transform={`translate(${d.cx},${d.cy}) scale(${scale}) translate(${-d.cx},${-d.cy})`}
-                    style={{ transition: 'transform 0.35s cubic-bezier(0.25,0.1,0.1,1)' }}
+                    style={{ transition: `transform ${dotScaleDuration}s cubic-bezier(0.25,0.1,0.1,1)` }}
                   >
                     <circle cx={d.cx} cy={d.cy} r="8" fill={accentColor} />
                     <circle cx={d.cx} cy={d.cy} r="5" fill="#F8F8FB" />

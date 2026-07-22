@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { takeFlowSteps as steps } from '@/lib/content-data';
+import { trackEvent } from '@/lib/clarity';
+import { ga4SelectContent } from '@/lib/ga4';
 
 export default function TakeFlowSteps() {
   const [active, setActive] = useState(0);
@@ -22,7 +24,11 @@ export default function TakeFlowSteps() {
               {steps.map((step, i) => (
                 <button
                   key={i}
-                  onClick={() => setActive(i)}
+                  onClick={() => {
+                    setActive(i);
+                    trackEvent('product_usage_step_open');
+                    ga4SelectContent('usage_step', step.title);
+                  }}
                   className={`w-full text-left rounded-2xl border transition-all duration-300 shadow-[0_2px_16px_rgba(30,24,84,0.07)] ${
                     active === i
                       ? 'bg-white border-ink/12 shadow-[0_4px_24px_rgba(30,24,84,0.11)]'

@@ -26,8 +26,8 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
 
   const t = testimonials[current];
   const imageUrl = IMAGES[current % IMAGES.length];
-  const prev = () => setCurrent((i) => (i - 1 + testimonials.length) % testimonials.length);
-  const next = () => setCurrent((i) => (i + 1) % testimonials.length);
+  const prev = () => { setCurrent((i) => (i - 1 + testimonials.length) % testimonials.length); trackEvent('product_reviews_carousel_prev'); };
+  const next = () => { setCurrent((i) => (i + 1) % testimonials.length); trackEvent('product_reviews_carousel_next'); };
 
   return (
     <div className="w-full max-w-[920px] mx-auto">

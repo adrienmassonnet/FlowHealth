@@ -2,6 +2,7 @@
 
 import { PRODUCT_META } from '@/lib/product-meta';
 import { useState } from 'react';
+import { trackEvent } from '@/lib/clarity';
 
 
 
@@ -186,7 +187,7 @@ export default function HealthCenter({ caloriesKcal, activeIngredients, totalFor
               ))}
             </div>
             <button
-              onClick={() => setNutritionOpen(true)}
+              onClick={() => { setNutritionOpen(true); trackEvent('product_nutritional_value_open'); }}
               className="flex items-center gap-1.5 text-xs font-semibold text-brand hover:text-ink transition-colors"
             >
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -200,7 +201,11 @@ export default function HealthCenter({ caloriesKcal, activeIngredients, totalFor
 
         {/* Right column: Selection Process */}
         <div className="space-y-2">
-          <a href={`/products/${handle}`} className="flex items-center gap-1 text-xs font-semibold tracking-[0.12em] uppercase text-ink/40 hover:text-ink/70 transition-colors">
+          <a
+            href={`/products/${handle}`}
+            onClick={() => trackEvent('product_selection_process_click')}
+            className="flex items-center gap-1 text-xs font-semibold tracking-[0.12em] uppercase text-ink/40 hover:text-ink/70 transition-colors"
+          >
             Our selection process
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
               <path d="M2 5h6M5.5 2.5L8 5l-2.5 2.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>

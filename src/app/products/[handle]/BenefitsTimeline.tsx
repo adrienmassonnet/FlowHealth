@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import type { ResultsTimelineStep } from '@/lib/content';
+import { trackEvent } from '@/lib/clarity';
+import { ga4SelectContent } from '@/lib/ga4';
 
 export default function BenefitsTimeline({ steps }: { steps: ResultsTimelineStep[] }) {
   const mapped = steps.map((s) => {
@@ -29,7 +31,10 @@ export default function BenefitsTimeline({ steps }: { steps: ResultsTimelineStep
             return (
               <div key={step.week} className="bg-white">
                 <button
-                  onClick={() => setMobileOpen(isOpen ? null : i)}
+                  onClick={() => {
+                    setMobileOpen(isOpen ? null : i);
+                    if (!isOpen) { trackEvent('product_timeline_stage_open'); ga4SelectContent('timeline_stage', step.week); }
+                  }}
                   className="w-full flex items-center justify-between px-5 py-4 text-left gap-3"
                 >
                   <div className="flex flex-col min-w-0">
@@ -102,7 +107,10 @@ export default function BenefitsTimeline({ steps }: { steps: ResultsTimelineStep
           </div>
           <div className="flex justify-center">
             <button
-              onClick={() => setDesktopExpanded((e) => !e)}
+              onClick={() => {
+                setDesktopExpanded((e) => !e);
+                if (!desktopExpanded) trackEvent('product_timeline_stage_open');
+              }}
               className="group py-2 px-4 flex items-end transition-colors duration-200"
             >
               <svg

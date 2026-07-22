@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { trackEvent } from '@/lib/clarity';
+import { EASE, DURATION } from '@/lib/animation';
 
 // ─── Data ───────────────────────────────────────────────────────────────────
 
@@ -40,8 +41,8 @@ const aboutLinks = [
 
 // ─── Animation variants ──────────────────────────────────────────────────────
 
-const easeOut: [number, number, number, number] = [0.16, 1, 0.3, 1];
-const easeIn: [number, number, number, number] = [0.4, 0, 1, 1];
+const easeOut = EASE.expoOut;
+const easeIn = EASE.expoIn;
 
 const panelVariants = {
   hidden: { opacity: 0, y: -6, scale: 0.98 },
@@ -162,7 +163,7 @@ function NavButton({ label, open }: { label: string; open: boolean }) {
 
 type ActiveMenu = 'about' | null;
 
-export default function Header() {
+export default function Header({ productHandle }: { productHandle: string }) {
   const [scrolled, setScrolled] = useState(false);
   const [activeMenu, setActiveMenu] = useState<ActiveMenu>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -273,7 +274,7 @@ export default function Header() {
               {/* Shop CTA — top of drawer */}
               <div className="px-4 pt-4 pb-3 shrink-0">
                 <Link
-                  href="/products/rooibos-hibiscus-pomegranate"
+                  href={`/products/${productHandle}`}
                   onClick={() => { setMobileOpen(false); trackEvent('header_get_flow_mobile'); }}
                   className="btn-cta flex items-center justify-center w-full py-3.5 rounded-full text-white text-xs tracking-[0.08em] uppercase font-semibold"
                 >
@@ -349,7 +350,7 @@ export default function Header() {
               <motion.div
                 initial={{ opacity: 0, y: -8, filter: 'blur(6px)' }}
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                transition={{ duration: 0.9, ease: easeOut }}
+                transition={{ duration: DURATION.slow, ease: easeOut }}
                 className="md:flex-none flex items-center justify-center gap-3 md:gap-5 border border-white/30 backdrop-blur-xl h-10 w-10 md:w-auto rounded-full px-0 md:px-5"
                 style={pillStyle}
               >
@@ -435,7 +436,7 @@ export default function Header() {
 
                 {/* Shop CTA */}
                 <Link
-                  href="/products/rooibos-hibiscus-pomegranate"
+                  href={`/products/${productHandle}`}
                   onClick={() => { setActiveMenu(null); trackEvent('header_get_flow_desktop'); }}
                   className="btn-cta md:ml-0 hidden md:flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium text-white px-4 py-1.5 rounded-full shrink-0"
                 >
@@ -452,7 +453,7 @@ export default function Header() {
                     initial={{ opacity: 0, scale: 0.85 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.85 }}
-                    transition={{ duration: 0.25, ease: easeOut }}
+                    transition={{ duration: DURATION.fast, ease: easeOut }}
                     className="md:hidden shrink-0 w-10 h-10 flex items-center justify-center rounded-full border border-white/30 backdrop-blur-xl"
                     style={pillStyle}
                   >
@@ -465,7 +466,7 @@ export default function Header() {
               <motion.div
                 initial={{ opacity: 0, y: -8, filter: 'blur(6px)' }}
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                transition={{ duration: 0.9, ease: easeOut, delay: 0.08 }}
+                transition={{ duration: DURATION.slow, ease: easeOut, delay: 0.08 }}
                 className="hidden md:flex items-center border border-white/30 backdrop-blur-xl h-10 rounded-full px-4"
                 style={pillStyle}
               >
