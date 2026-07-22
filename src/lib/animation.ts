@@ -10,11 +10,13 @@ export const DURATION = {
 
 // ─── Easings ──────────────────────────────────────────────────────────────────
 // expoOut  — snappy deceleration, default for reveals
+// expoIn   — matching acceleration, for exits paired with expoOut entrances
 // inOut    — balanced, good for UI state changes
 // diceOut  — aggressive exit ease for the dice flip
 // diceIn   — bouncy spring-like entry ease for the dice flip
 export const EASE = {
   expoOut: [0.16, 1, 0.3, 1]      as [number, number, number, number],
+  expoIn:  [0.4, 0, 1, 1]         as [number, number, number, number],
   inOut:   [0.25, 0.1, 0.1, 1]    as [number, number, number, number],
   diceOut: [0.55, 0, 1, 0.85]     as [number, number, number, number],
   diceIn:  [0.34, 1.45, 0.64, 1]  as [number, number, number, number],
