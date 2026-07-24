@@ -6,7 +6,7 @@ import { trackEvent } from '@/lib/clarity';
 const categories = [
   {
     title: 'Customer Support',
-    description: 'Questions about your order, delivery, or account — we respond within 24 hours.',
+    description: 'Questions about your order, delivery, or account: we respond within 24 hours.',
     icon: (
       <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
         <circle cx="10" cy="7" r="3" stroke="currentColor" strokeWidth="1.3"/>
@@ -51,13 +51,13 @@ export default function ContactPage() {
 
       {/* Hero section */}
       <div className="bg-white border-b border-ink/[12.5%]">
-        <div className="max-w-[1200px] mx-auto px-6 pt-6 pb-12 md:py-16">
+        <div className="flow-container pt-6 pb-12 md:py-16">
           <div className="flex flex-col md:grid md:grid-cols-2 md:gap-x-20 md:gap-y-10 gap-8 items-start">
 
             {/* Heading + description — first on all screens */}
             <div className="order-1 md:col-start-1 md:row-start-1">
               <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent mb-3">Get in touch</p>
-              <h1 className="text-3xl md:text-5xl font-semibold tracking-[-0.02em] leading-tight text-ink mb-4">
+              <h1 className="flow-h1 mb-4">
                 Contact Us
               </h1>
               <p className="text-sm text-[rgba(30,24,84,0.65)] leading-relaxed max-w-sm">
@@ -116,7 +116,7 @@ export default function ContactPage() {
               ) : (
                 <>
                   <p className="text-xs tracking-[0.14em] uppercase text-[rgba(30,24,84,0.45)] font-medium mb-1">Write to us</p>
-                  <h2 className="text-xl font-semibold text-ink tracking-[-0.01em] mb-6">Get in Touch</h2>
+                  <h2 className="flow-h4 mb-6">Get in Touch</h2>
 
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="grid grid-cols-2 gap-3">

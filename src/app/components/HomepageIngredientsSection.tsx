@@ -29,25 +29,25 @@ const META: Record<string, IngredientMeta> = {
     badge: 'Caffeine alternative',
     benefit: 'Jitter-free sustained focus.',
     title: 'Jitter-free mental energy that lasts 5+ hours',
-    description: 'Mangiferin — the active compound in Zynamite® — inhibits COMT, the enzyme that breaks down dopamine and noradrenaline. This keeps key neurotransmitters elevated for longer, activating the same brain areas as caffeine (frontal cortex, hippocampus) without raising heart rate or blood pressure. In double-blind RCTs, a single dose improved reaction time by 4.7%, attention accuracy by 9.7%, and processing speed by 11.5%, with effects sustained for at least 5 hours.',
+    description: 'Mangiferin, the active compound in Zynamite®, inhibits COMT, the enzyme that breaks down dopamine and noradrenaline. This keeps key neurotransmitters elevated for longer, activating the same brain areas as caffeine (frontal cortex, hippocampus) without raising heart rate or blood pressure. In double-blind RCTs, a single dose improved reaction time by 4.7%, attention accuracy by 9.7%, and processing speed by 11.5%, with effects sustained for at least 5 hours.',
     pills: ['Focus', 'Mental Clarity', 'Anti-Fatigue', 'No Jitters'],
-    stat: { value: '+4.7%', label: 'reaction time — RCT, placebo-controlled' },
+    stat: { value: '+4.7%', label: 'reaction time: RCT, placebo-controlled' },
   },
   "Saffr'Active®": {
     dose: '50 mg',
     badge: 'Mood · Sleep · Focus',
     benefit: 'Balanced mood and clarity.',
-    title: 'Mood, sleep and focus — backed by three independent RCTs',
+    title: 'Mood, sleep and focus: backed by three independent RCTs',
     description: "Standardised to crocin and safranal, Saffr'Active® modulates serotonin, dopamine and GABA pathways. Three independent double-blind trials confirm: 6-week supplementation improves sleep quality, latency and duration; reduces depression and anxiety scores; and in children with ADHD, matches methylphenidate for hyperactivity while improving sleep onset. At 50 mg, this is the clinically validated dose.",
     pills: ['Mood', 'Sleep Quality', 'Anxiety Relief', 'ADHD Support'],
-    stat: { value: '3 RCTs', label: 'sleep, mood & ADHD — all placebo-controlled' },
+    stat: { value: '3 RCTs', label: 'sleep, mood & ADHD, all placebo-controlled' },
   },
   'TMG': {
     dose: '500 mg',
     badge: 'Methylation',
     benefit: 'Augmented brain and cellular energy.',
     title: 'Methyl donor for brain chemistry and long-term cognitive health',
-    description: 'Trimethylglycine (TMG) donates methyl groups in the one-carbon cycle — the biochemical pathway responsible for converting homocysteine to methionine. Elevated homocysteine is strongly associated with cognitive decline and mood disruption. TMG keeps this conversion efficient, supporting healthy brain chemistry, neurotransmitter synthesis, and cellular energy production.',
+    description: 'Trimethylglycine (TMG) donates methyl groups in the one-carbon cycle, the biochemical pathway responsible for converting homocysteine to methionine. Elevated homocysteine is strongly associated with cognitive decline and mood disruption. TMG keeps this conversion efficient, supporting healthy brain chemistry, neurotransmitter synthesis, and cellular energy production.',
     pills: ['Methylation', 'Brain Chemistry', 'Energy', 'Cognitive Health'],
     stat: null,
   },
@@ -56,7 +56,7 @@ const META: Record<string, IngredientMeta> = {
     badge: 'Neuroplasticity',
     benefit: 'Neuroprotection and gut-brain support.',
     title: 'The only known botanical to stimulate Nerve Growth Factor',
-    description: "Lion's Mane (Hericium erinaceus) contains hericenones and erinacines — two classes of compounds that cross the blood-brain barrier and directly stimulate the synthesis of Nerve Growth Factor (NGF). NGF is essential for the growth, maintenance, and survival of neurons, playing a central role in neuroplasticity, memory formation, and long-term cognitive resilience.",
+    description: "Lion's Mane (Hericium erinaceus) contains hericenones and erinacines, two classes of compounds that cross the blood-brain barrier and directly stimulate the synthesis of Nerve Growth Factor (NGF). NGF is essential for the growth, maintenance, and survival of neurons, playing a central role in neuroplasticity, memory formation, and long-term cognitive resilience.",
     pills: ['Memory', 'Neuroplasticity', 'Brain Health', 'NGF'],
     stat: null,
   },
@@ -184,15 +184,15 @@ function MobileIngredientChart({ ingredientName }: { ingredientName: string }) {
 
   return (
     <div className="flex flex-col gap-2 rounded-xl border border-ink/[0.10] bg-[#F8F8FC] p-3">
-      <p className="text-[10px] text-ink/60 leading-snug line-clamp-4">{chart.description}</p>
+      <p className="text-micro text-ink/60 leading-snug line-clamp-4">{chart.description}</p>
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-1.5">
           <span className="w-3 h-2.5 rounded-sm bg-ink shrink-0" />
-          <span className="text-[10px] font-semibold text-ink/70">{activeLabel}</span>
+          <span className="text-micro font-semibold text-ink/70">{activeLabel}</span>
         </div>
         <div className="flex items-center gap-1.5">
           <span className="w-3 h-2.5 rounded-sm bg-ink/22 shrink-0" />
-          <span className="text-[10px] font-semibold text-ink/40">{comparatorLabel}</span>
+          <span className="text-micro font-semibold text-ink/40">{comparatorLabel}</span>
         </div>
       </div>
       <svg width={svgW} height={svgH} className="overflow-visible w-full" viewBox={`0 0 ${svgW} ${svgH}`}>
@@ -298,11 +298,11 @@ function IngredientChart({ ingredientName, className = '' }: { ingredientName: s
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-1.5">
           <span className="w-3 h-2.5 rounded-sm bg-ink shrink-0" />
-          <span className="text-[10px] font-semibold text-ink/70">{activeLabel}</span>
+          <span className="text-micro font-semibold text-ink/70">{activeLabel}</span>
         </div>
         <div className="flex items-center gap-1.5">
           <span className="w-3 h-2.5 rounded-sm bg-ink/22 shrink-0" />
-          <span className="text-[10px] font-semibold text-ink/40">{comparatorLabel}</span>
+          <span className="text-micro font-semibold text-ink/40">{comparatorLabel}</span>
         </div>
       </div>
 
@@ -446,7 +446,7 @@ export default function HomepageIngredientsSection({ ingredients, sizes }: Props
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 px-3 py-2">
-                  <p className="text-[9px] font-semibold tracking-[0.08em] uppercase text-white/55 mb-0.5">{c.dose}</p>
+                  <p className="text-micro font-semibold tracking-[0.08em] uppercase text-white/55 mb-0.5">{c.dose}</p>
                   <p className="text-sm font-semibold text-white leading-snug">{c.name}</p>
                 </div>
               </div>
@@ -602,7 +602,7 @@ export default function HomepageIngredientsSection({ ingredients, sizes }: Props
                 {/* Header */}
                 <div className="flex items-start justify-between gap-2 mb-1">
                   <h3 className="text-xl font-semibold text-ink tracking-[-0.02em] leading-snug">{modal.name}</h3>
-                  <span className="inline-block text-[10px] tracking-[0.08em] uppercase font-semibold bg-ink/8 text-ink/55 px-2 py-1 rounded-full shrink-0 mt-0.5">
+                  <span className="inline-block text-micro tracking-[0.08em] uppercase font-semibold bg-ink/8 text-ink/55 px-2 py-1 rounded-full shrink-0 mt-0.5">
                     {modal.dose}
                   </span>
                 </div>

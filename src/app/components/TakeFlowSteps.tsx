@@ -2,17 +2,17 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { takeFlowSteps as steps } from '@/lib/content-data';
+import type { TakeFlowStep } from '@/lib/content-data';
 import { trackEvent } from '@/lib/clarity';
 import { ga4SelectContent } from '@/lib/ga4';
 
-export default function TakeFlowSteps() {
+export default function TakeFlowSteps({ steps }: { steps: TakeFlowStep[] }) {
   const [active, setActive] = useState(0);
 
   return (
     <section>
-      <div className="max-w-[1200px] mx-auto px-6 pt-4 pb-20 md:pt-8">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-[1.08] mb-6">
+      <div className="flow-container pt-4 pb-20 md:pt-8">
+        <h2 className="flow-h2 mb-6">
           The right setup unlocks all the benefits.
         </h2>
         <div className="flex flex-col md:flex-row items-stretch gap-16 md:gap-20">

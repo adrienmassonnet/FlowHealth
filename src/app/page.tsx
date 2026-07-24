@@ -47,7 +47,7 @@ export default async function HomePage() {
         {/* Mobile image */}
         <Image
           src="/hero-mobile.png"
-          alt="Flow Health — clarity in motion"
+          alt="Flow Health: clarity in motion"
           fill
           className="md:hidden object-cover object-center"
           priority
@@ -56,7 +56,7 @@ export default async function HomePage() {
         {/* Desktop image */}
         <Image
           src={cms.heroImageUrl || '/hero-desktop.png'}
-          alt="Flow Health — clarity in motion"
+          alt="Flow Health: clarity in motion"
           fill
           className="hidden md:block object-cover object-[center_20%]"
           priority
@@ -66,13 +66,13 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent md:from-black/35 md:via-transparent" />
 
-        <div className="relative z-10 max-w-[1200px] mx-auto px-6 pb-10 pt-20 md:pb-20 md:pt-24 w-full">
+        <div className="relative z-10 flow-container pb-10 pt-20 md:pb-20 md:pt-24 w-full">
           <div className="max-w-lg space-y-4 md:space-y-7">
             <HeroText delayPropId="headline1Delay">
               <p className="text-xs tracking-[0.16em] uppercase text-white/50 font-medium">{cms.heroTagline}</p>
             </HeroText>
             <HeroText delayPropId="headline2Delay">
-              <h1 className="text-2xl sm:text-4xl md:text-5xl md:text-[4.2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-white">{cms.heroHeading}</h1>
+              <h1 className="flow-display text-white">{cms.heroHeading}</h1>
             </HeroText>
             <HeroText delayPropId="ctaDelay" className="pt-1 w-full">
               <TrackedLink
@@ -90,7 +90,7 @@ export default async function HomePage() {
       {/* Mission + Featured product */}
       {featured && (
         <section className="py-14 md:py-24 bg-white">
-          <div className="max-w-[1200px] mx-auto px-6 space-y-8 md:space-y-12">
+          <div className="flow-container space-y-8 md:space-y-12">
             {/* Section header */}
             <div className="text-center max-w-[860px] mx-auto space-y-2">
               <ScrollReveal variant="fade">
@@ -99,7 +99,7 @@ export default async function HomePage() {
                 </p>
               </ScrollReveal>
               <ScrollReveal variant="fadeUp" delay={0.06}>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.08] tracking-[-0.03em] text-ink">
+                <h2 className="flow-h2">
                   Flow is made for those whose minds refuse to settle but who seek inner peace.
                 </h2>
               </ScrollReveal>
@@ -151,7 +151,7 @@ export default async function HomePage() {
                     { label: 'Content', value: '30 single-dose sachets' },
                     { label: 'Formula', value: `${meta.activeIngredients} clinically-dosed ingredients` },
                     { label: 'Dose', value: `${meta.totalFormulaWeightG} g of active ingredients per sachet` },
-                    { label: 'Calories', value: `${meta.caloriesKcal} kcal — no sugar` },
+                    { label: 'Calories', value: `${meta.caloriesKcal} kcal, no sugar` },
                     { label: 'Energy', value: 'Stimulant-free, no crash' },
                   ]}
                 />
@@ -196,7 +196,7 @@ export default async function HomePage() {
 
       {/* Key Ingredients */}
       <section className="bg-[#F4F4F8] md:rounded-[2rem] md:mx-8" style={{ backgroundImage: 'radial-gradient(circle, rgba(30,24,84,0.07) 1px, transparent 1px)', backgroundSize: '28px 28px' }}>
-        <div className="max-w-[1200px] mx-auto px-6 py-10 md:py-16 space-y-8">
+        <div className="flow-container py-10 md:py-16 space-y-8">
 
           {/* Header row */}
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
@@ -207,7 +207,7 @@ export default async function HomePage() {
                 </p>
               </ScrollReveal>
               <ScrollReveal variant="fadeUp" delay={0.06}>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-[1.08] text-ink">
+                <h2 className="flow-h2">
                   {cms.ingredientsHeading}
                 </h2>
               </ScrollReveal>
@@ -239,7 +239,7 @@ export default async function HomePage() {
 
       {/* Values — three pillars */}
       <section className="bg-white border-t border-ink/[0.06]">
-        <div className="max-w-[1200px] mx-auto px-6 py-16 md:py-24">
+        <div className="flow-container py-16 md:py-24">
           <ValuesStandForSection />
         </div>
       </section>
@@ -248,13 +248,13 @@ export default async function HomePage() {
 
       {/* FAQ */}
       <section className="bg-white py-14 md:py-24">
-        <div className="max-w-[1200px] mx-auto px-6">
+        <div className="flow-container">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
             <div>
               <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent mb-2">
                 Support
               </p>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-[1.08] text-ink">
+              <h2 className="flow-h2">
                 Frequently asked questions
               </h2>
             </div>

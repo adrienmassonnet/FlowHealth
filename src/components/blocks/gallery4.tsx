@@ -43,13 +43,13 @@ const Gallery4 = ({
 
   return (
     <section className="py-24">
-      <div className="max-w-[1200px] mx-auto px-6">
+      <div className="flow-container">
         <div className="mb-10 flex items-end justify-between">
           <div className="space-y-2">
             <p className="text-xs tracking-[0.16em] uppercase text-[rgb(30,24,84)]">
               From the Journal
             </p>
-            <h2 className="text-2xl font-semibold tracking-[-0.02em]">{title}</h2>
+            <h2 className="flow-h3">{title}</h2>
             <p className="text-sm text-[rgb(30,24,84)] max-w-sm">{description}</p>
           </div>
           <div className="hidden md:flex gap-2">

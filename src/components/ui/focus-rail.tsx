@@ -98,7 +98,7 @@ export function FocusRail({
       tabIndex={0}
       onKeyDown={onKeyDown}
     >
-      <div className="max-w-[1200px] mx-auto px-6 py-12 md:py-20">
+      <div className="flow-container py-12 md:py-20">
 
         {/* Section header */}
         {heading && (
@@ -106,7 +106,7 @@ export function FocusRail({
             <p className="text-xs tracking-[0.16em] uppercase text-[rgba(30,24,84,0.5)] font-medium">
               From the blog
             </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-[1.05] text-ink">
+            <h2 className="flow-h2">
               {heading}
             </h2>
           </div>

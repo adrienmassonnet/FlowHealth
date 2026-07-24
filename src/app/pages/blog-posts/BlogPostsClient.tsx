@@ -37,11 +37,11 @@ export default function BlogPostsClient({ posts }: { posts: Post[] }) {
     : posts.filter((p) => p.category === activeCategory);
 
   return (
-    <section className="max-w-[1200px] mx-auto px-6 pb-24">
+    <section className="flow-container pb-24">
       {/* Header row */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
         <div className="space-y-2">
-          <h2 className="text-3xl font-semibold tracking-[-0.02em]">Latest blogs</h2>
+          <h2 className="flow-h2">Latest blogs</h2>
           <p className="text-sm text-[rgba(30,24,84,0.55)] max-w-sm">
             Get the most recent updates about cognitive health, ingredients, and focus science.
           </p>
@@ -112,7 +112,7 @@ export default function BlogPostsClient({ posts }: { posts: Post[] }) {
                     <span>·</span>
                     <span>{post.readTime}</span>
                   </div>
-                  <h3 className="text-sm font-semibold text-ink leading-snug group-hover:text-[rgb(30,24,84)] transition-colors sm:text-base">
+                  <h3 className="flow-h5 group-hover:text-[rgb(30,24,84)] transition-colors">
                     {post.title}
                   </h3>
                   <p className="hidden sm:block text-sm text-[rgba(30,24,84,0.6)] leading-[1.55] flex-1">
@@ -120,7 +120,7 @@ export default function BlogPostsClient({ posts }: { posts: Post[] }) {
                   </p>
                   <div className="hidden sm:flex flex-wrap gap-1">
                     {post.tags.map((tag) => (
-                      <span key={tag} className="text-[10px] sm:text-xs uppercase tracking-[0.08em] border border-ink/[12.5%] px-2 py-0.5 rounded-full font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">
+                      <span key={tag} className="text-micro sm:text-xs uppercase tracking-[0.08em] border border-ink/[12.5%] px-2 py-0.5 rounded-full font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">
                         {tag}
                       </span>
                     ))}

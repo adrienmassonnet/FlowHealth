@@ -4,8 +4,7 @@ import { useRef } from 'react';
 import Image from 'next/image';
 import { motion, useInView } from 'framer-motion';
 import VennSVG from '@/app/components/VennSVG';
-
-const ease = [0.25, 0.1, 0.1, 1] as const;
+import { EASE } from '@/lib/animation';
 
 interface Props {
   vennBackgroundImageUrl: string;
@@ -23,7 +22,7 @@ export default function VennCard({ vennBackgroundImageUrl, vennHeading, activeIn
       className="relative overflow-hidden rounded-2xl py-16 md:py-20"
       initial={{ opacity: 0, scale: 0.96, y: 24 }}
       animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
-      transition={{ duration: 1.0, ease }}
+      transition={{ duration: 1.0, ease: EASE.inOut }}
     >
       <Image
         src={vennBackgroundImageUrl || '/venn-bg.png'}
@@ -40,9 +39,9 @@ export default function VennCard({ vennBackgroundImageUrl, vennHeading, activeIn
           className="space-y-5 md:hidden"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.85, ease }}
+          transition={{ duration: 0.85, ease: EASE.inOut }}
         >
-          <h2 className="text-2xl sm:text-3xl font-semibold leading-tight tracking-[-0.03em] text-white">
+          <h2 className="flow-h2 text-white">
             {vennHeading}
           </h2>
         </motion.div>
@@ -55,9 +54,9 @@ export default function VennCard({ vennBackgroundImageUrl, vennHeading, activeIn
           className="hidden md:block space-y-5"
           initial={{ opacity: 0, x: 32 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.85, ease }}
+          transition={{ duration: 0.85, ease: EASE.inOut }}
         >
-          <h2 className="text-3xl md:text-4xl font-semibold leading-tight tracking-[-0.03em] text-white">
+          <h2 className="flow-h2 text-white">
             {vennHeading}
           </h2>
         </motion.div>

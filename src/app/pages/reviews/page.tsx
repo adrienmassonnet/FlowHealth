@@ -5,7 +5,7 @@ import { getFirstProductHandle } from '@/lib/shopify';
 
 export const metadata: Metadata = {
   title: 'Reviews',
-  description: 'See what Flow customers say. Over 200 verified reviews — 4.9 average rating, 94% would recommend.',
+  description: 'See what Flow customers say. Over 200 verified reviews: 4.9 average rating, 94% would recommend.',
 };
 
 // Star icon rendered inline — no extra dependency
@@ -41,12 +41,12 @@ export default async function ReviewsPage() {
     <main>
       {/* Hero */}
       <section className="bg-white border-b border-ink/[12.5%]">
-        <div className="max-w-[1200px] mx-auto px-6 pt-12 pb-10 md:pt-20 md:pb-24">
+        <div className="flow-container pt-12 pb-10 md:pt-20 md:pb-24">
           <div className="max-w-2xl">
             <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent mb-4">
               Reviews
             </p>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-[-0.03em] leading-[1.0] mb-3 md:mb-5">
+            <h1 className="flow-h1 flow-h1--hero mb-3 md:mb-5">
               What people say<br />about Flow
             </h1>
             <p className="text-sm text-[rgba(30,24,84,0.75)] leading-[1.7] max-w-md">
@@ -58,11 +58,11 @@ export default async function ReviewsPage() {
 
       {/* Stats bar */}
       <section className="bg-ink/[3.9%] border-b border-ink/[12.5%]">
-        <div className="max-w-[1200px] mx-auto px-6 py-5 md:py-10">
+        <div className="flow-container py-5 md:py-10">
           <div className="grid grid-cols-3 gap-3 sm:gap-6 md:gap-0 md:flex md:items-center md:divide-x md:divide-ink/[12.5%]">
             {stats.map((s) => (
               <div key={s.label} className="md:px-10 first:pl-0 last:pr-0 text-center md:text-left">
-                <p className="text-2xl md:text-3xl font-semibold tracking-[-0.03em] text-ink">{s.value}</p>
+                <p className="flow-h3">{s.value}</p>
                 <p className="text-xs text-[rgba(30,24,84,0.55)] mt-1 tracking-[0.04em]">{s.label}</p>
               </div>
             ))}
@@ -72,10 +72,10 @@ export default async function ReviewsPage() {
 
       {/* Reviews grid */}
       <section className="bg-ink/[3.1%]">
-        <div className="max-w-[1200px] mx-auto px-4 py-8 md:px-6 md:py-20">
+        <div className="flow-container py-8 md:px-6 md:py-20">
           {testimonials.length === 0 ? (
             <p className="text-sm text-[rgba(30,24,84,0.5)] text-center py-12">
-              No reviews yet — check back soon.
+              No reviews yet, check back soon.
             </p>
           ) : (
             <div className="columns-1 sm:columns-2 lg:columns-3 gap-3 sm:gap-5 space-y-3 sm:space-y-5">
@@ -108,18 +108,18 @@ export default async function ReviewsPage() {
 
       {/* CTA */}
       <section className="bg-ink">
-        <div className="max-w-[1200px] mx-auto px-6 py-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="flow-container py-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
             <p className="text-xs tracking-[0.16em] uppercase text-white/40 font-medium mb-3">
               Ready to experience it yourself?
             </p>
-            <p className="text-2xl md:text-3xl font-semibold tracking-[-0.02em] text-white max-w-lg leading-snug">
+            <p className="flow-h3 text-white max-w-lg">
               Join the people who made Flow part of their morning.
             </p>
           </div>
           <Link
             href={`/products/${productHandle ?? 'flow'}`}
-            className="shrink-0 inline-flex items-center gap-2 bg-white text-ink text-xs tracking-[0.1em] uppercase font-semibold px-7 py-4 rounded-full hover:bg-[rgb(30,24,84)] hover:text-white transition-colors"
+            className="shrink-0 inline-flex items-center gap-2 bg-white text-ink flow-label px-7 py-4 rounded-full hover:bg-[rgb(30,24,84)] hover:text-white transition-colors"
           >
             Get Flow
           </Link>

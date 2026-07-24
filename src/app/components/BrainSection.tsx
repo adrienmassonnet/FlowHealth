@@ -116,7 +116,7 @@ export default function BrainSection() {
         }
       `}</style>
 
-      <div className="max-w-[1200px] mx-auto px-6">
+      <div className="flow-container">
 
         {/* Header */}
         <div className="space-y-4 mb-6 max-w-2xl">
@@ -128,7 +128,7 @@ export default function BrainSection() {
               Our brain sets the tone
             </p>
             <h2
-              className={`text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-[1.08] text-ink${visible ? ' brain-animate' : ''}`}
+              className={`flow-h2${visible ? ' brain-animate' : ''}`}
               style={visible ? { animationDelay: '80ms' } : {}}
             >
               Flow primes the brain to be effortlessly optimal, helping you achieve more.
@@ -138,7 +138,7 @@ export default function BrainSection() {
             className={`text-sm sm:text-base text-ink/60 leading-[1.55] max-w-xl${visible ? ' brain-animate' : ''}`}
             style={visible ? { animationDelay: '160ms' } : {}}
           >
-            Whether it's sports, work, or recovery — Flow optimizes your neurochemistry so you perform at your best, day after day.
+            Whether it's sports, work, or recovery, Flow optimizes your neurochemistry so you perform at your best, day after day.
           </p>
         </div>
 
@@ -173,13 +173,13 @@ export default function BrainSection() {
 
               {/* Content */}
               <div className="flex flex-col gap-2 p-4">
-                <span className="text-[10px] tracking-[0.12em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">
+                <span className="text-micro tracking-[0.12em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">
                   {article.category}
                 </span>
                 <p className="text-sm font-semibold text-ink leading-snug tracking-[-0.01em]">
                   {article.title}
                 </p>
-                <span className="text-[10px] tracking-[0.06em] uppercase font-medium text-ink/30 mt-1">Read article →</span>
+                <span className="text-micro tracking-[0.06em] uppercase font-medium text-ink/30 mt-1">Read article →</span>
               </div>
             </Link>
             </div>

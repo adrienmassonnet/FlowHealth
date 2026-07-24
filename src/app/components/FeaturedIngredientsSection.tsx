@@ -24,29 +24,29 @@ const META: Record<string, IngredientMeta> = {
   'Zynamite®': {
     dose: '300 mg',
     tagline: 'Jitter-free mental energy that lasts 5+ hours',
-    mechanism: 'Mangiferin inhibits COMT — the enzyme that breaks down dopamine and noradrenaline — keeping neurotransmitter levels elevated for sustained focus without cardiovascular stimulation.',
+    mechanism: 'Mangiferin inhibits COMT, the enzyme that breaks down dopamine and noradrenaline, keeping neurotransmitter levels elevated for sustained focus without cardiovascular stimulation.',
     stat: { value: '+4.7%', label: 'reaction time (RCT, placebo-controlled)' },
     badge: 'Caffeine alternative',
   },
   "Saffr'Active®": {
     dose: '50 mg',
     tagline: 'Clinically proven mood and emotional resilience',
-    mechanism: 'Crocin and safranal modulate serotonin reuptake and support BDNF expression — the neurotrophin responsible for neuronal health and emotional regulation.',
+    mechanism: 'Crocin and safranal modulate serotonin reuptake and support BDNF expression, the neurotrophin responsible for neuronal health and emotional regulation.',
     stat: { value: '+34%', label: 'improvement in emotional balance (RCT)' },
     badge: 'Mood support',
   },
   'TMG': {
     dose: '500 mg',
     tagline: 'Methyl donor for brain chemistry and energy',
-    mechanism: 'Trimethylglycine donates methyl groups in the one-carbon cycle, converting homocysteine to methionine. Elevated homocysteine is linked to cognitive decline — TMG keeps this pathway balanced.',
+    mechanism: 'Trimethylglycine donates methyl groups in the one-carbon cycle, converting homocysteine to methionine. Elevated homocysteine is linked to cognitive decline; TMG keeps this pathway balanced.',
     stat: { value: '3×', label: 'methyl donor capacity vs folate alone' },
     badge: 'Methylation support',
   },
   "Lion's Mane": {
     dose: '250 mg',
     tagline: 'The only known plant compound to stimulate NGF',
-    mechanism: 'Hericenones and erinacines cross the blood-brain barrier and directly stimulate Nerve Growth Factor synthesis — essential for neuronal maintenance, plasticity, and long-term cognitive resilience.',
-    stat: { value: 'NGF', label: 'synthesis stimulation — unique to this mushroom' },
+    mechanism: 'Hericenones and erinacines cross the blood-brain barrier and directly stimulate Nerve Growth Factor synthesis, essential for neuronal maintenance, plasticity, and long-term cognitive resilience.',
+    stat: { value: 'NGF', label: 'synthesis stimulation, unique to this mushroom' },
     badge: 'Neuroplasticity',
   },
 };
@@ -96,10 +96,10 @@ export default function FeaturedIngredientsSection({ ingredients, sizes }: Props
               {/* Name + dose overlay */}
               <div className="absolute bottom-0 left-0 right-0 px-4 py-3 flex items-end justify-between">
                 <div>
-                  <p className="text-[10px] font-semibold tracking-[0.08em] uppercase text-white/60 mb-0.5">{meta.dose}</p>
+                  <p className="text-micro font-semibold tracking-[0.08em] uppercase text-white/60 mb-0.5">{meta.dose}</p>
                   <p className="text-base font-semibold tracking-[-0.01em] text-white leading-tight">{ing.name}</p>
                 </div>
-                <span className="text-[9px] font-semibold tracking-[0.07em] uppercase bg-white/15 backdrop-blur-sm text-white px-2 py-1 rounded-full border border-white/20">
+                <span className="text-micro font-semibold tracking-[0.07em] uppercase bg-white/15 backdrop-blur-sm text-white px-2 py-1 rounded-full border border-white/20">
                   {meta.badge}
                 </span>
               </div>
@@ -127,7 +127,7 @@ export default function FeaturedIngredientsSection({ ingredients, sizes }: Props
               {ing.blogSlug && (
                 <Link
                   href={`/pages/blog-posts/${ing.blogSlug}`}
-                  className="self-start flex items-center gap-1.5 text-[10px] tracking-[0.08em] uppercase font-semibold text-ink/35 hover:text-ink transition-colors duration-200"
+                  className="self-start flex items-center gap-1.5 text-micro tracking-[0.08em] uppercase font-semibold text-ink/35 hover:text-ink transition-colors duration-200"
                 >
                   Read the science
                   <svg width="10" height="10" viewBox="0 0 10 10" fill="none">

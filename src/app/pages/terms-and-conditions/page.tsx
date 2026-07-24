@@ -3,7 +3,7 @@ import { PRODUCT_META } from '@/lib/product-meta';
 
 export const metadata: Metadata = {
   title: 'Terms & Conditions',
-  description: 'Flow Health terms and conditions — your rights, our obligations, and how orders, subscriptions, and returns are governed.',
+  description: 'Flow Health terms and conditions: your rights, our obligations, and how orders, subscriptions, and returns are governed.',
 };
 
 export default function TermsAndConditionsPage() {
@@ -12,7 +12,7 @@ export default function TermsAndConditionsPage() {
 
       <div className="space-y-3">
         <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Legal</p>
-        <h1 className="text-4xl font-semibold tracking-[-0.02em]">Terms &amp; conditions</h1>
+        <h1 className="flow-h1">Terms &amp; conditions</h1>
         <p className="text-xs font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Last updated: 27 November 2025</p>
       </div>
 
@@ -27,7 +27,7 @@ export default function TermsAndConditionsPage() {
 
       {/* Section 1 */}
       <div className="space-y-3">
-        <h2 className="text-lg font-semibold tracking-[-0.01em]">1. Company Information</h2>
+        <h2 className="flow-h4">1. Company Information</h2>
         <div className="text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed space-y-1">
           <p className="font-medium text-[rgb(30,24,84)]">Flow Health Massonnet</p>
           <p>Chemin de Belle Combe 37, 1093 Lutry, Switzerland</p>
@@ -42,7 +42,7 @@ export default function TermsAndConditionsPage() {
 
       {/* Section 2 */}
       <div className="space-y-3">
-        <h2 className="text-lg font-semibold tracking-[-0.01em]">2. Applicability</h2>
+        <h2 className="flow-h4">2. Applicability</h2>
         <p className="text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed">
           These Terms apply to all visits to and all orders placed on www.flowhealth.ch. We reserve the right to update these Terms at any time. The version valid at the time of your order applies to that purchase.
         </p>
@@ -50,7 +50,7 @@ export default function TermsAndConditionsPage() {
 
       {/* Section 3 */}
       <div className="space-y-4">
-        <h2 className="text-lg font-semibold tracking-[-0.01em]">3. Products &amp; Health Information</h2>
+        <h2 className="flow-h4">3. Products &amp; Health Information</h2>
         <ul className="space-y-2 text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed list-disc list-inside">
           <li>Our products are food supplements (not medicines).</li>
           <li>They are not intended to diagnose, treat, cure, or prevent any disease.</li>
@@ -61,18 +61,18 @@ export default function TermsAndConditionsPage() {
 
       {/* Section 4 */}
       <div className="space-y-4">
-        <h2 className="text-lg font-semibold tracking-[-0.01em]">4. Ordering &amp; Contract Formation</h2>
+        <h2 className="flow-h4">4. Ordering &amp; Contract Formation</h2>
         <ul className="space-y-2 text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed list-disc list-inside">
           <li>Offers on the website are non-binding until you place an order.</li>
           <li>By clicking "Pay Now", you make a binding offer to purchase.</li>
-          <li>We send an automatic order confirmation by email — the contract is concluded only when we explicitly accept (usually via shipping confirmation).</li>
+          <li>We send an automatic order confirmation by email; the contract is concluded only when we explicitly accept (usually via shipping confirmation).</li>
           <li>Minimum age: 18 years.</li>
         </ul>
       </div>
 
       {/* Section 5 */}
       <div className="space-y-4">
-        <h2 className="text-lg font-semibold tracking-[-0.01em]">5. Prices &amp; Payment</h2>
+        <h2 className="flow-h4">5. Prices &amp; Payment</h2>
         <ul className="space-y-2 text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed list-disc list-inside">
           <li>All prices are in CHF (Swiss Francs) and include Swiss VAT (8.1%).</li>
           <li>For deliveries outside Switzerland (EU/UK/rest of world), prices are shown excl. VAT; import duties and local taxes are your responsibility and will be charged by the courier (DDP not offered).</li>
@@ -83,7 +83,7 @@ export default function TermsAndConditionsPage() {
 
       {/* Section 6 */}
       <div className="space-y-4">
-        <h2 className="text-lg font-semibold tracking-[-0.01em]">6. Subscription Terms</h2>
+        <h2 className="flow-h4">6. Subscription Terms</h2>
         <ul className="space-y-2 text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed list-disc list-inside">
           <li>You may choose "Subscribe &amp; Save".</li>
           <li>Subscription renews automatically at the selected interval until cancelled.</li>
@@ -94,15 +94,15 @@ export default function TermsAndConditionsPage() {
 
       {/* Section 7 */}
       <div className="space-y-5">
-        <h2 className="text-lg font-semibold tracking-[-0.01em]">7. Shipping &amp; Delivery</h2>
+        <h2 className="flow-h4">7. Shipping &amp; Delivery</h2>
         <div className="overflow-x-auto">
           <table className="w-full text-base border-collapse">
             <thead>
               <tr className="border-b border-ink/[12.5%]">
-                <th className="text-left py-3 pr-5 text-xs tracking-[0.1em] uppercase font-semibold">Destination</th>
-                <th className="text-left py-3 pr-5 text-xs tracking-[0.1em] uppercase font-semibold">Shipping Cost</th>
-                <th className="text-left py-3 pr-5 text-xs tracking-[0.1em] uppercase font-semibold">Delivery Time</th>
-                <th className="text-left py-3 text-xs tracking-[0.1em] uppercase font-semibold">Carrier</th>
+                <th className="text-left py-3 pr-5 flow-label">Destination</th>
+                <th className="text-left py-3 pr-5 flow-label">Shipping Cost</th>
+                <th className="text-left py-3 pr-5 flow-label">Delivery Time</th>
+                <th className="text-left py-3 flow-label">Carrier</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-ink/[12.5%]">
@@ -130,7 +130,7 @@ export default function TermsAndConditionsPage() {
 
       {/* Section 8 */}
       <div className="space-y-4">
-        <h2 className="text-lg font-semibold tracking-[-0.01em]">8. {PRODUCT_META.returnDays}-Day Money-Back Guarantee</h2>
+        <h2 className="flow-h4">8. {PRODUCT_META.returnDays}-Day Money-Back Guarantee</h2>
         <ul className="space-y-2 text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed list-disc list-inside">
           <li>You may return unopened and unused products within {PRODUCT_META.returnDays} days of delivery for a full refund (excluding shipping costs).</li>
           <li>Opened products are only eligible if defective or damaged.</li>
@@ -141,7 +141,7 @@ export default function TermsAndConditionsPage() {
 
       {/* Section 9 */}
       <div className="space-y-4">
-        <h2 className="text-lg font-semibold tracking-[-0.01em]">9. Right of Withdrawal (EU/EEA customers only)</h2>
+        <h2 className="flow-h4">9. Right of Withdrawal (EU/EEA customers only)</h2>
         <ul className="space-y-2 text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed list-disc list-inside">
           <li>You have a statutory 14-day withdrawal right starting the day after delivery (no reason required).</li>
           <li>
@@ -157,16 +157,16 @@ export default function TermsAndConditionsPage() {
 
       {/* Section 10 */}
       <div className="space-y-4">
-        <h2 className="text-lg font-semibold tracking-[-0.01em]">10. Warranty &amp; Liability</h2>
+        <h2 className="flow-h4">10. Warranty &amp; Liability</h2>
         <ul className="space-y-2 text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed list-disc list-inside">
           <li>Swiss law provides a 2-year warranty for defects.</li>
-          <li>We are liable only for intentional acts or gross negligence. Liability for slight negligence — except for personal injury — is excluded to the extent permitted by law.</li>
+          <li>We are liable only for intentional acts or gross negligence. Liability for slight negligence (except for personal injury) is excluded to the extent permitted by law.</li>
         </ul>
       </div>
 
       {/* Section 11 */}
       <div className="space-y-3">
-        <h2 className="text-lg font-semibold tracking-[-0.01em]">11. Intellectual Property</h2>
+        <h2 className="flow-h4">11. Intellectual Property</h2>
         <p className="text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed">
           All content (photos, texts, logos, designs) is owned by Flow Health Massonnet or its licensors. Any reproduction or use without written permission is prohibited.
         </p>
@@ -174,7 +174,7 @@ export default function TermsAndConditionsPage() {
 
       {/* Section 12 */}
       <div className="space-y-3">
-        <h2 className="text-lg font-semibold tracking-[-0.01em]">12. Force Majeure</h2>
+        <h2 className="flow-h4">12. Force Majeure</h2>
         <p className="text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed">
           We are not liable for delays or non-performance caused by events beyond our control (e.g., strikes, pandemics, customs delays).
         </p>
@@ -182,9 +182,9 @@ export default function TermsAndConditionsPage() {
 
       {/* Section 13 */}
       <div className="space-y-4">
-        <h2 className="text-lg font-semibold tracking-[-0.01em]">13. Governing Law &amp; Jurisdiction</h2>
+        <h2 className="flow-h4">13. Governing Law &amp; Jurisdiction</h2>
         <ul className="space-y-2 text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed list-disc list-inside">
-          <li>Swiss law applies (excluding UN Sales Convention — CISG).</li>
+          <li>Swiss law applies (excluding UN Sales Convention, CISG).</li>
           <li>Exclusive place of jurisdiction: Lutry, Switzerland.</li>
           <li>
             EU consumers may also use the courts of their residence and the EU Online Dispute Resolution platform:{' '}
@@ -197,7 +197,7 @@ export default function TermsAndConditionsPage() {
 
       {/* Section 14 */}
       <div className="space-y-3">
-        <h2 className="text-lg font-semibold tracking-[-0.01em]">14. Severability</h2>
+        <h2 className="flow-h4">14. Severability</h2>
         <p className="text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed">
           If any provision of these Terms is or becomes invalid, the remaining provisions remain valid.
         </p>
@@ -205,7 +205,7 @@ export default function TermsAndConditionsPage() {
 
       {/* Section 15 */}
       <div className="space-y-4 border-t border-ink/[12.5%] pt-10">
-        <h2 className="text-lg font-semibold tracking-[-0.01em]">15. Contact</h2>
+        <h2 className="flow-h4">15. Contact</h2>
         <div className="text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent space-y-1">
           <p>
             Email:{' '}

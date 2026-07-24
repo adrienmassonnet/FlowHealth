@@ -115,9 +115,9 @@ function IngredientCardRow({ name, tagline, description, image, onClick }: { nam
 
         <div className="flex flex-col gap-1.5 p-3 md:p-4 flex-1 min-w-0 justify-center">
           <div className="flex items-center gap-2 flex-wrap">
-            <h3 className="text-sm font-semibold text-black tracking-[-0.01em] leading-snug">{name}</h3>
+            <h3 className="flow-h5">{name}</h3>
             {tagline && (
-              <span className="text-[10px] font-semibold tracking-[0.08em] uppercase text-black/40 bg-ink/[0.05] px-2 py-0.5 rounded-full whitespace-nowrap">
+              <span className="text-micro font-semibold tracking-[0.08em] uppercase text-black/40 bg-ink/[0.05] px-2 py-0.5 rounded-full whitespace-nowrap">
                 {tagline}
               </span>
             )}
@@ -125,7 +125,7 @@ function IngredientCardRow({ name, tagline, description, image, onClick }: { nam
           {getPills(name).length > 0 && (
             <div className="flex flex-wrap gap-1">
               {getPills(name).map((pill: string) => (
-                <span key={pill} className="text-[10px] font-semibold tracking-[0.06em] uppercase px-2 py-0.5 rounded-full bg-gradient-to-r from-brand/10 to-ink/10 text-brand">
+                <span key={pill} className="text-micro font-semibold tracking-[0.06em] uppercase px-2 py-0.5 rounded-full bg-gradient-to-r from-brand/10 to-ink/10 text-brand">
                   {pill}
                 </span>
               ))}
@@ -187,9 +187,9 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile', ac
   const placeholderCount = ITEMS_PER_PAGE - visible.length;
 
   return (
-    <section className="max-w-[1200px] mx-auto px-5 md:px-6 pt-4 pb-16 md:pb-20 md:pt-8">
+    <section className="flow-container pt-4 pb-16 md:pb-20 md:pt-8">
       <div className="mb-6 space-y-2">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-[1.08]">{activeIngredients ?? cards.filter(c => c.category !== 'taste').length} active compounds</h2>
+        <h2 className="flow-h2">{activeIngredients ?? cards.filter(c => c.category !== 'taste').length} active compounds</h2>
       </div>
 
       {/* Mobile: horizontal scroll tabs */}

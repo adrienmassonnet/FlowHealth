@@ -6,10 +6,10 @@ import { faqCategories as categories } from '@/lib/content-data';
 
 export const metadata: Metadata = {
   title: 'FAQ',
-  description: 'Answers to common questions about Flow — product formula, usage & dosage, shipping, returns, and safety.',
+  description: 'Answers to common questions about Flow: product formula, usage & dosage, shipping, returns, and safety.',
   openGraph: {
-    title: 'Flow FAQ — Frequently Asked Questions',
-    description: 'Answers to common questions about Flow — product formula, usage & dosage, shipping, returns, and safety.',
+    title: 'Flow FAQ: Frequently Asked Questions',
+    description: 'Answers to common questions about Flow: product formula, usage & dosage, shipping, returns, and safety.',
   },
 };
 
@@ -42,11 +42,11 @@ export default async function FaqPage({ searchParams }: { searchParams: Promise<
 
       {/* Hero + FAQ tabs — seamless section */}
       <section className="bg-white">
-        <div className="max-w-[1200px] mx-auto px-6 pt-20 md:pt-24 pb-16 md:pb-24">
+        <div className="flow-container pt-20 md:pt-24 pb-16 md:pb-24">
           {/* Heading */}
           <div className="max-w-2xl mb-10">
             <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent mb-4">Support</p>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-[-0.03em] leading-[1.0]">
+            <h1 className="flow-h1 flow-h1--hero">
               Frequently asked<br />questions
             </h1>
           </div>
@@ -64,7 +64,7 @@ export default async function FaqPage({ searchParams }: { searchParams: Promise<
 
       {/* Bottom CTA */}
       <section className="bg-white">
-        <div className="max-w-[1200px] mx-auto px-6 pb-16">
+        <div className="flow-container pb-16">
           <div className="bg-ink/[3.1%] rounded-2xl px-8 md:px-12 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
               <p className="text-base font-semibold tracking-[-0.01em] mb-1">Still have questions?</p>
@@ -73,7 +73,7 @@ export default async function FaqPage({ searchParams }: { searchParams: Promise<
             <TrackedLink
               href="/pages/contact"
               clarityEvent="faq_contact_us"
-              className="btn-cta shrink-0 inline-flex items-center gap-2 text-white text-xs tracking-[0.1em] uppercase font-semibold px-6 py-3.5 rounded-full"
+              className="btn-cta shrink-0 inline-flex items-center gap-2 text-white flow-label px-6 py-3.5 rounded-full"
             >
               Contact us
             </TrackedLink>

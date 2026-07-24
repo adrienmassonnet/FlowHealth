@@ -28,10 +28,10 @@ export default function IngredientCard({ name, form, category, description, dose
       <div className="p-3 sm:p-6 flex flex-col gap-2 sm:gap-3 flex-1 min-w-0">
         <div className="flex flex-wrap items-start justify-between gap-1.5">
           <div className="min-w-0">
-            <h3 className="text-sm sm:text-base font-semibold text-ink tracking-[-0.01em] leading-snug">{name}</h3>
+            <h3 className="flow-h5">{name}</h3>
             <p className="text-xs text-[rgba(30,24,84,0.45)] mt-0.5">{form}</p>
           </div>
-          <span className="text-[10px] sm:text-xs uppercase tracking-[0.08em] border border-ink/[12.5%] px-2 py-0.5 rounded-full font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent shrink-0">{category}</span>
+          <span className="text-micro sm:text-xs uppercase tracking-[0.08em] border border-ink/[12.5%] px-2 py-0.5 rounded-full font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent shrink-0">{category}</span>
         </div>
 
         {open && (
@@ -44,7 +44,7 @@ export default function IngredientCard({ name, form, category, description, dose
         >
           <div className="flex items-baseline gap-1">
             <span className="text-sm sm:text-xl font-semibold text-ink tracking-[-0.02em]">{dose}</span>
-            <span className="text-[10px] sm:text-xs text-[rgba(30,24,84,0.4)] uppercase tracking-[0.06em]">per serving</span>
+            <span className="text-micro sm:text-xs text-[rgba(30,24,84,0.4)] uppercase tracking-[0.06em]">per serving</span>
           </div>
           <svg
             width="16" height="16" viewBox="0 0 16 16" fill="none"

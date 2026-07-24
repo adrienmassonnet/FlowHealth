@@ -14,8 +14,8 @@ const cards = [
   {
     stimLabel: 'The morning rush',
     flowLabel: 'Sustained prime state',
-    stim: 'Caffeine arrives when your brain is already primed. Adenosine keeps building behind blocked receptors — the debt accrues quietly.',
-    flow: 'Zynamite® works with your brain\'s own chemistry — no adenosine debt, no rebound. The peak holds because nothing borrowed it.',
+    stim: 'Caffeine arrives when your brain is already primed. Adenosine keeps building behind blocked receptors: the debt accrues quietly.',
+    flow: 'Zynamite® works with your brain\'s own chemistry, no adenosine debt, no rebound. The peak holds because nothing borrowed it.',
   },
   {
     stimLabel: 'The crash sets in',
@@ -115,7 +115,7 @@ export default function DayArcSection() {
         <div style={{ position: 'absolute', bottom: '-25%', right: '-8%', width: '55%', height: '75%', background: 'radial-gradient(circle, rgba(217,119,6,0.05) 0%, rgba(217,119,6,0) 70%)', filter: 'blur(70px)' }} />
       </div>
 
-      <div className="relative max-w-[1200px] mx-auto px-6">
+      <div className="relative flow-container">
 
         {/* Header */}
         <div className="text-center max-w-[720px] mx-auto mb-8 space-y-4">
@@ -123,12 +123,12 @@ export default function DayArcSection() {
             <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">
               Win your morning, win your day
             </p>
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-[-0.03em] leading-[1.08] text-ink">
+            <h2 className="flow-h2">
               Set your chemistry right for the entire day.
             </h2>
           </div>
           <p className="text-sm leading-[1.55]" style={{ color: 'rgba(30,24,84,0.55)' }}>
-            Flow is built for the morning window — when adenosine has cleared and cortisol peaks naturally. Most drinks overstimulate a brain that was already primed. Flow works with that biology, not against it.
+            Flow is built for the morning window, when adenosine has cleared and cortisol peaks naturally. Most drinks overstimulate a brain that was already primed. Flow works with that biology, not against it.
           </p>
         </div>
 

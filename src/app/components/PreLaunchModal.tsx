@@ -105,7 +105,7 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
               </div>
               <h2 className="text-xl font-semibold text-ink tracking-[-0.02em] mb-2">You're on the list</h2>
               <p className="text-sm text-ink/65 leading-relaxed">
-                We'll be in touch the moment Flow is ready — expect early access, the launch date, and a little something extra for those who believed in us first.
+                We'll be in touch the moment Flow is ready: expect early access, the launch date, and a little something extra for those who believed in us first.
               </p>
               <button
                 onClick={onClose}
@@ -116,7 +116,7 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
             </div>
           ) : (
             <>
-              <h2 className="text-2xl font-semibold text-ink tracking-[-0.02em] leading-tight mb-2">
+              <h2 className="flow-h3 mb-2">
                 Flow isn't available yet
               </h2>
               <p className="text-sm text-ink/65 leading-relaxed mb-6">
@@ -158,7 +158,7 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
                 </label>
 
                 {status === 'error' && (
-                  <p className="text-xs text-red-500">Something went wrong — please try again.</p>
+                  <p className="text-xs text-red-500">Something went wrong, please try again.</p>
                 )}
                 <button
                   type="submit"

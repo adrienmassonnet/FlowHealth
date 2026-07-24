@@ -83,7 +83,7 @@ export default function NeurotransmitterSection() {
       ref={sectionRef}
       className="py-10 md:py-16 bg-[#F4F4F8] relative overflow-hidden md:rounded-[2rem] md:mx-8"
     >
-      <div className="relative max-w-[1200px] mx-auto px-6">
+      <div className="relative flow-container">
         <div className="flex flex-col md:flex-row md:items-center gap-10 md:gap-12">
 
           {/* Left: text */}
@@ -111,7 +111,7 @@ export default function NeurotransmitterSection() {
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: DURATION.slow, delay: 0.14, ease: EASE.expoOut }}
             >
-              It's not the highs that wear the body down — it's the constant variation. Every spike demands a recovery. Homeostasis is the body's ability to return to its natural baseline after each disruption. Flow supports five systems that lose that ability first under chronic stress, so the body spends less energy compensating and more in a state it can sustain.
+              It's not the highs that wear the body down; it's the constant variation. Every spike demands a recovery. Homeostasis is the body's ability to return to its natural baseline after each disruption. Flow supports five systems that lose that ability first under chronic stress, so the body spends less energy compensating and more in a state it can sustain.
             </motion.p>
           </div>
 

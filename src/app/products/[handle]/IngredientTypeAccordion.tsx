@@ -41,10 +41,10 @@ export default function IngredientTypeAccordion() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="max-w-[1200px] mx-auto px-6 py-16">
+    <section className="flow-container py-16">
       <div className="mb-10 space-y-2">
         <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Formula Breakdown</p>
-        <h2 className="text-3xl font-semibold tracking-[-0.02em]">Ingredient Type</h2>
+        <h2 className="flow-h2">Ingredient Type</h2>
       </div>
       <div className="divide-y divide-ink/[12.5%] border-t border-ink/[12.5%]">
         {categories.map((cat, i) => (

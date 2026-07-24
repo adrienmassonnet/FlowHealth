@@ -29,7 +29,7 @@ const aboutLinks = [
   {
     href: '/pages/our-product',
     label: 'Our Product',
-    description: 'Inside the formula — every ingredient, every dose.',
+    description: 'Inside the formula: every ingredient, every dose.',
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
         <rect x="7" y="3" width="6" height="14" rx="2" stroke="currentColor" strokeWidth="1.3"/>
@@ -147,7 +147,7 @@ function Chevron({ open }: { open: boolean }) {
 function NavButton({ label, open }: { label: string; open: boolean }) {
   return (
     <button
-      className={`relative flex items-center gap-1.5 text-xs tracking-[0.08em] uppercase px-3 py-1.5 rounded-full transition-all duration-200 ${
+      className={`relative flex items-center gap-1.5 text-xs tracking-[0.08em] uppercase px-[16px] py-[8px] rounded-full transition-all duration-200 ${
         open
           ? 'bg-[#E8E8FF] text-ink'
           : 'text-ink hover:text-brand hover:bg-[#E8E8FF]'
@@ -259,7 +259,7 @@ export default function Header({ productHandle }: { productHandle: string }) {
               className="fixed top-0 left-0 bottom-0 z-[70] w-[300px] bg-white flex flex-col md:hidden shadow-2xl"
             >
               {/* Drawer header */}
-              <div className="flex items-center justify-between px-5 h-16 border-b border-ink/[12.5%] shrink-0">
+              <div className="flex items-center justify-between px-5 h-[84px] border-b border-ink/[12.5%] shrink-0">
                 <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2.5" aria-label="Flow Health">
                   <img src="/flow-logomark.svg?v=2" alt="" width={20} height={20} className="w-5 h-5" />
                   <img src="/flow-wordmark.svg?v=2" alt="Flow" width={51} height={20} className="h-5 w-auto" />
@@ -341,17 +341,17 @@ export default function Header({ productHandle }: { productHandle: string }) {
         )}
       </AnimatePresence>
 
-      <header className="fixed top-2 left-0 right-0 z-50">
+      <header className="fixed top-[10px] left-0 right-0 z-50">
         <div className="relative">
-          <div className="max-w-[1200px] mx-auto px-6">
-            <div className="h-14 flex items-center justify-between gap-3">
+          <div className="flow-container">
+            <div className="h-[74px] flex items-center justify-between gap-4">
 
               {/* Main pill */}
               <motion.div
                 initial={{ opacity: 0, y: -8, filter: 'blur(6px)' }}
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 transition={{ duration: DURATION.slow, ease: easeOut }}
-                className="md:flex-none flex items-center justify-center gap-3 md:gap-5 border border-white/30 backdrop-blur-xl h-10 w-10 md:w-auto rounded-full px-0 md:px-5"
+                className="md:flex-none flex items-center justify-center gap-4 md:gap-[26px] border border-white/30 backdrop-blur-xl h-[53px] w-[53px] md:w-auto rounded-full px-0 md:px-[26px]"
                 style={pillStyle}
               >
                 {/* Hamburger — mobile only */}
@@ -372,8 +372,8 @@ export default function Header({ productHandle }: { productHandle: string }) {
                   className="shrink-0 hidden md:flex items-center gap-2"
                   aria-label="Flow Health"
                 >
-                  <img src="/flow-logomark.svg?v=2" alt="" width={20} height={20} className="hidden md:block w-5 h-5" />
-                  <img src="/flow-wordmark.svg?v=2" alt="Flow" width={51} height={20} className="hidden md:block h-5 w-auto" />
+                  <img src="/flow-logomark.svg?v=2" alt="" width={20} height={20} className="hidden md:block w-[26px] h-[26px]" />
+                  <img src="/flow-wordmark.svg?v=2" alt="Flow" width={51} height={20} className="hidden md:block h-[26px] w-auto" />
                 </Link>
 
                 {/* Desktop nav dropdowns */}
@@ -438,7 +438,7 @@ export default function Header({ productHandle }: { productHandle: string }) {
                 <Link
                   href={`/products/${productHandle}`}
                   onClick={() => { setActiveMenu(null); trackEvent('header_get_flow_desktop'); }}
-                  className="btn-cta md:ml-0 hidden md:flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium text-white px-4 py-1.5 rounded-full shrink-0"
+                  className="btn-cta md:ml-0 hidden md:flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium text-white px-[21px] py-[8px] rounded-full shrink-0"
                 >
                   Shop
                 </Link>
@@ -454,7 +454,7 @@ export default function Header({ productHandle }: { productHandle: string }) {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.85 }}
                     transition={{ duration: DURATION.fast, ease: easeOut }}
-                    className="md:hidden shrink-0 w-10 h-10 flex items-center justify-center rounded-full border border-white/30 backdrop-blur-xl"
+                    className="md:hidden shrink-0 w-[53px] h-[53px] flex items-center justify-center rounded-full border border-white/30 backdrop-blur-xl"
                     style={pillStyle}
                   >
                     <LanguageSelector muted={false} />
@@ -467,7 +467,7 @@ export default function Header({ productHandle }: { productHandle: string }) {
                 initial={{ opacity: 0, y: -8, filter: 'blur(6px)' }}
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 transition={{ duration: DURATION.slow, ease: easeOut, delay: 0.08 }}
-                className="hidden md:flex items-center border border-white/30 backdrop-blur-xl h-10 rounded-full px-4"
+                className="hidden md:flex items-center border border-white/30 backdrop-blur-xl h-[53px] rounded-full px-[21px]"
                 style={pillStyle}
               >
                 <LanguageSelector muted={scrolled} />

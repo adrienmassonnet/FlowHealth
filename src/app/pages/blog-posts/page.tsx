@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: 'Journal',
   description: 'Articles on cognitive performance, ingredient science, and the research behind Flow. Evidence-based insights for a sharper mind.',
   openGraph: {
-    title: 'Flow Journal — Cognitive Performance Articles',
+    title: 'Flow Journal: Cognitive Performance Articles',
     description: 'Articles on cognitive performance, ingredient science, and the research behind Flow. Evidence-based insights for a sharper mind.',
   },
 };
@@ -25,7 +25,7 @@ export default async function BlogPostsPage() {
   return (
     <main>
       {/* Featured post */}
-      <section className="max-w-[1200px] mx-auto px-6 pt-20 pb-16">
+      <section className="flow-container pt-20 pb-16">
         <Link
           href={`/pages/blog-posts/${featured.slug}`}
           className="group flex flex-col md:grid md:grid-cols-2 md:gap-8 md:items-center bg-ink/[3.1%] rounded-2xl overflow-hidden border border-ink/[12.5%] hover:border-[rgba(30,24,84,0.3)] transition-colors"
@@ -102,16 +102,16 @@ export default async function BlogPostsPage() {
       </Suspense>
 
       {/* Product cross-link */}
-      <section className="max-w-[1200px] mx-auto px-6 pb-24">
+      <section className="flow-container pb-24">
         <div className="bg-ink/[3.9%] rounded-2xl px-8 md:px-12 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border border-ink/[12.5%]">
           <div>
             <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent mb-2">From the lab to your shelf</p>
-            <p className="text-xl font-semibold tracking-[-0.02em] text-ink max-w-md leading-snug">
+            <p className="flow-h4 max-w-md">
               Ready to put the science into practice? Flow is built around every ingredient we write about.
             </p>
           </div>
           <div className="flex gap-3 shrink-0">
-            <Link href={`/products/${productHandle ?? 'flow'}`} className="btn-cta inline-flex items-center justify-center text-white text-xs tracking-[0.1em] uppercase font-semibold px-6 py-3.5 rounded-full">
+            <Link href={`/products/${productHandle ?? 'flow'}`} className="btn-cta inline-flex items-center justify-center text-white flow-label px-6 py-3.5 rounded-full">
               Get Flow
             </Link>
             <Link href="/pages/our-product" className="inline-flex items-center justify-center border border-ink/20 text-ink text-xs tracking-[0.1em] uppercase font-medium px-6 py-3.5 rounded-full hover:border-ink/40 transition-colors">

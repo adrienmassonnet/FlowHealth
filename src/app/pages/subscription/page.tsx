@@ -192,20 +192,20 @@ function SubscriptionPageInner() {
 
       {/* Hero */}
       <div className="border-b border-ink/[12.5%]">
-        <div className="max-w-[1200px] mx-auto px-6 pt-6 pb-10 md:py-14">
+        <div className="flow-container pt-6 pb-10 md:py-14">
           <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent mb-3">
             My account
           </p>
-          <h1 className="text-3xl md:text-5xl font-semibold tracking-[-0.02em] leading-tight text-ink mb-3">
+          <h1 className="flow-h1 mb-3">
             Subscription
           </h1>
           <p className="text-sm text-[var(--text-secondary)] leading-relaxed max-w-sm">
-            View and manage your recurring Flow order — pause, cancel, or resume your delivery.
+            View and manage your recurring Flow order: pause, cancel, or resume your delivery.
           </p>
         </div>
       </div>
 
-      <div className="max-w-[1200px] mx-auto px-6 py-12 md:py-16">
+      <div className="flow-container py-12 md:py-16">
         <div className="max-w-lg mx-auto">
 
           {/* ── Step 1: Email lookup ── */}
@@ -260,7 +260,7 @@ function SubscriptionPageInner() {
               <p className="text-xs tracking-[0.14em] uppercase text-[var(--text-muted)] font-medium mb-1">Check your inbox</p>
               <h2 className="text-xl font-semibold text-ink tracking-[-0.01em] mb-1">Enter your code</h2>
               <p className="text-xs text-[var(--text-muted)] mb-6">
-                If {email} has a subscription, we&apos;ve sent a code — it expires in 10 minutes.
+                If {email} has a subscription, we&apos;ve sent a code; it expires in 10 minutes.
               </p>
 
               <form onSubmit={handleVerify} className="space-y-4">
@@ -304,9 +304,9 @@ function SubscriptionPageInner() {
               <div className="bg-white rounded-2xl border border-ink/[12.5%] shadow-[var(--shadow-card)] p-7 md:p-9">
                 <div className="flex items-start justify-between gap-3 mb-6">
                   <div>
-                    <h2 className="text-lg font-semibold text-ink tracking-[-0.01em]">{sub.productTitle}</h2>
+                    <h2 className="flow-h4">{sub.productTitle}</h2>
                   </div>
-                  <span className={`shrink-0 text-[10px] font-semibold tracking-[0.08em] uppercase px-2.5 py-1 rounded-full border ${STATUS_BADGE[sub.status].classes}`}>
+                  <span className={`shrink-0 text-micro font-semibold tracking-[0.08em] uppercase px-2.5 py-1 rounded-full border ${STATUS_BADGE[sub.status].classes}`}>
                     {STATUS_BADGE[sub.status].label}
                   </span>
                 </div>
@@ -385,7 +385,7 @@ function SubscriptionPageInner() {
                   <div className="pt-4 border-t border-ink/[12.5%]">
                     <p className="text-sm font-semibold text-ink mb-1">Cancel your subscription?</p>
                     <p className="text-xs text-[var(--text-muted)] mb-4 leading-relaxed">
-                      All future charges and shipments will stop. Please tell us why — it helps us improve.
+                      All future charges and shipments will stop. Please tell us why; it helps us improve.
                     </p>
 
                     <div className="space-y-2 mb-4">
@@ -485,7 +485,7 @@ function SubscriptionPageInner() {
                 </svg>
               }
               title="Subscription cancelled"
-              description="Your subscription has been cancelled. No further payments will be taken. We're sorry to see you go — feel free to reorder whenever you're ready."
+              description="Your subscription has been cancelled. No further payments will be taken. We're sorry to see you go; feel free to reorder whenever you're ready."
             >
               <a
                 href={`/products/${productHandle}`}

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'Our Philosophy',
   description: 'Flow is built on one belief: cognitive performance should be earned through science, not marketing. Read the principles that guide every formulation decision we make.',
   openGraph: {
-    title: 'Our Philosophy — The Principles Behind Flow',
+    title: 'Our Philosophy: The Principles Behind Flow',
     description: 'Flow is built on one belief: cognitive performance should be earned through science, not marketing. Read the principles that guide every formulation decision we make.',
   },
 };
@@ -22,13 +22,13 @@ export default async function OurPhilosophyPage() {
 
       {/* Hero */}
       <section className="bg-white pt-28 md:pt-36 pb-14 md:pb-20">
-        <div className="max-w-[1200px] mx-auto px-6">
+        <div className="flow-container">
           <p className="text-xs tracking-[0.16em] uppercase text-ink/40 font-medium mb-5">About Flow</p>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-[-0.03em] text-ink leading-tight max-w-3xl mb-6">
+          <h1 className="flow-display max-w-3xl mb-6">
             Built for minds that refuse to settle.
           </h1>
           <p className="text-sm text-[rgba(30,24,84,0.65)] max-w-lg leading-relaxed">
-            Flow started with a personal frustration — scattered focus, overstimulation, and a supplement market full of noise. We decided to build something better.
+            Flow started with a personal frustration: scattered focus, overstimulation, and a supplement market full of noise. We decided to build something better.
           </p>
         </div>
       </section>
@@ -41,7 +41,7 @@ export default async function OurPhilosophyPage() {
 
       {/* Venn diagram section */}
       <section className="py-16 md:py-20 border-t border-ink/[0.06]">
-        <div className="max-w-[1200px] mx-auto px-6">
+        <div className="flow-container">
           <VennCard
             vennBackgroundImageUrl={cms.vennBackgroundImageUrl}
             vennHeading={cms.vennHeading}
@@ -52,12 +52,12 @@ export default async function OurPhilosophyPage() {
 
       {/* Values — rotating principle cards */}
       <section className="bg-white border-t border-ink/[0.06]">
-        <div className="max-w-[1200px] mx-auto px-6 py-16 md:py-24">
+        <div className="flow-container py-16 md:py-24">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center">
             <MorningRitualCard />
             <div className="space-y-4">
               <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Values we hold dear</p>
-              <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-tight text-ink">
+              <h2 className="flow-h2">
                 Flow is human led and science based.
               </h2>
             </div>
@@ -67,11 +67,11 @@ export default async function OurPhilosophyPage() {
 
       {/* What we believe */}
       <section className="bg-white">
-        <div className="max-w-[1200px] mx-auto px-6 py-16 md:py-24">
+        <div className="flow-container py-16 md:py-24">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-10 md:gap-16 items-start">
             <div className="space-y-3">
               <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">What We Believe</p>
-              <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
+              <h2 className="flow-h2">
                 Conviction,<br />not aspiration.
               </h2>
             </div>
@@ -100,10 +100,10 @@ export default async function OurPhilosophyPage() {
 
       {/* Core principles */}
       <section className="bg-white">
-        <div className="max-w-[1200px] mx-auto px-6 py-16 md:py-24">
+        <div className="flow-container py-16 md:py-24">
           <div className="mb-12 space-y-2">
             <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Non-Negotiables</p>
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">Our six principles.</h2>
+            <h2 className="flow-h2">Our six principles.</h2>
           </div>
           <PrinciplesAccordion principles={principles} />
         </div>

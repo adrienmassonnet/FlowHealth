@@ -187,7 +187,7 @@ export default function ProductNavTabs() {
 
   return (
     <div data-product-nav className="bg-transparent">
-      <div className="max-w-[1200px] mx-auto px-6">
+      <div className="flow-container">
         {/* Tab pills row */}
         <div className="relative rounded-2xl border border-ink/[7.8%] bg-ink/[0.05] p-1.5">
           <div

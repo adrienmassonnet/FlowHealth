@@ -65,8 +65,8 @@ export default function SavingsBreakdownClient({
   };
 
   return (
-    <section className="max-w-[1200px] mx-auto px-6 pt-4 pb-20 md:pt-8">
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-[1.08] mb-6">
+    <section className="flow-container pt-4 pb-20 md:pt-8">
+      <h2 className="flow-h2 mb-6">
         Flow stacks up to its competition.
       </h2>
 
@@ -230,7 +230,7 @@ export default function SavingsBreakdownClient({
                 <span className="text-sm text-[rgba(30,24,84,0.45)] line-through shrink-0">CHF {traditionalTotal}</span>
               </div>
               <div className="flex items-center justify-between gap-4">
-                <span className="text-base font-semibold text-ink">Flow — {servingsPerBox} sachets · subscription</span>
+                <span className="text-base font-semibold text-ink">Flow: {servingsPerBox} sachets · subscription</span>
                 <span className="text-base font-semibold text-ink shrink-0">CHF {flowPrice}</span>
               </div>
               <p className="text-xs text-[rgba(30,24,84,0.5)] pt-1">You save CHF {savings} every month.</p>

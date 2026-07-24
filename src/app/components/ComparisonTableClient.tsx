@@ -2,8 +2,7 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-
-const ease = [0.25, 0.1, 0.1, 1] as const;
+import { EASE } from '@/lib/animation';
 
 function CrossIcon() {
   return (
@@ -27,17 +26,17 @@ export default function ComparisonTableClient({ interpolatedRows }: { interpolat
     <section className="relative overflow-hidden bg-white">
 
 
-      <div className="relative max-w-[1200px] mx-auto px-6 pt-4 pb-20 md:pt-8">
+      <div className="relative flow-container pt-4 pb-20 md:pt-8">
 
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-8% 0px' }}
-          transition={{ duration: 0.9, ease }}
+          transition={{ duration: 0.9, ease: EASE.inOut }}
           className="mb-6 space-y-2"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-[1.08] text-ink">
+          <h2 className="flow-h2">
             How Flow compares
           </h2>
         </motion.div>
@@ -50,8 +49,8 @@ export default function ComparisonTableClient({ interpolatedRows }: { interpolat
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-5% 0px' }}
-              transition={{ duration: 0.75, delay: i * 0.06, ease }}
-              whileHover={{ y: -4, transition: { duration: 0.35, ease } }}
+              transition={{ duration: 0.75, delay: i * 0.06, ease: EASE.inOut }}
+              whileHover={{ y: -4, transition: { duration: 0.35, ease: EASE.inOut } }}
               className="group relative rounded-xl md:rounded-2xl overflow-hidden flex flex-col cursor-default"
               style={{
                 background: '#F4F4FB',
@@ -71,7 +70,7 @@ export default function ComparisonTableClient({ interpolatedRows }: { interpolat
                       height={12}
                       className="shrink-0 opacity-35"
                     />
-                    <p className="text-[10px] tracking-[0.12em] uppercase font-semibold text-ink/35">
+                    <p className="text-micro tracking-[0.12em] uppercase font-semibold text-ink/35">
                       {row.topic[0]}
                     </p>
                   </div>
@@ -83,9 +82,9 @@ export default function ComparisonTableClient({ interpolatedRows }: { interpolat
               <div className="px-3 py-2.5 md:px-4 md:py-3 flex items-center gap-2">
                 <CrossIcon />
                 <div>
-                  <p className="text-[10px] tracking-[0.1em] uppercase font-semibold text-ink/35 mb-0.5">Others</p>
+                  <p className="text-micro tracking-[0.1em] uppercase font-semibold text-ink/35 mb-0.5">Others</p>
                   {row.othersLabel && (
-                    <p className="text-[10px] md:text-xs text-ink/55 leading-snug">{row.othersLabel}</p>
+                    <p className="text-micro md:text-xs text-ink/55 leading-snug">{row.othersLabel}</p>
                   )}
                 </div>
               </div>

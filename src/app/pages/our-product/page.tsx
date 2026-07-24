@@ -4,10 +4,10 @@ import { getProductMeta, getIngredients } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Our Product',
-  description: 'Flow is a daily cognitive supplement with 16 clinically-dosed active ingredients — zero fillers, no caffeine, no added sugar. Formulated in Switzerland for deep focus and lasting mental clarity.',
+  description: 'Flow is a daily cognitive supplement with 16 clinically-dosed active ingredients: zero fillers, no caffeine, no added sugar. Formulated in Switzerland for deep focus and lasting mental clarity.',
   openGraph: {
-    title: 'Flow — Our Cognitive Performance Formula',
-    description: 'Flow is a daily cognitive supplement with 16 clinically-dosed active ingredients — zero fillers, no caffeine, no added sugar. Formulated in Switzerland for deep focus and lasting mental clarity.',
+    title: 'Flow: Our Cognitive Performance Formula',
+    description: 'Flow is a daily cognitive supplement with 16 clinically-dosed active ingredients: zero fillers, no caffeine, no added sugar. Formulated in Switzerland for deep focus and lasting mental clarity.',
   },
 };
 import ProductTopics from './ProductTopics';
@@ -19,7 +19,7 @@ export default async function OurProductPage() {
     <main>
 
       {/* Hero */}
-      <section className="max-w-[1200px] mx-auto px-6">
+      <section className="flow-container">
         <div className="pt-20 pb-8 md:pb-12">
           <div className="space-y-8">
             {/* Top row: text + image */}
@@ -27,7 +27,7 @@ export default async function OurProductPage() {
               {/* Text */}
               <div className="flex-1 space-y-6">
                 <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">About Flow</p>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] leading-tight">
+                <h1 className="flow-h1">
                   One formula.<br className="hidden sm:block" /> Nothing hidden.
                 </h1>
                 <p className="text-base text-[rgba(30,24,84,0.65)] leading-relaxed">

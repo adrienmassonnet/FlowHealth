@@ -22,14 +22,14 @@ const points = [
     number: '03',
     label: 'Every Dawn Is Yours',
     heading: 'Design Your Every Morning for Success.',
-    description: 'Each new day is a fresh beginning. When you start it with intention and the right ritual, calm focus, motivation, and inner connection naturally follow — because in life, everything is connected.',
+    description: 'Each new day is a fresh beginning. When you start it with intention and the right ritual, calm focus, motivation, and inner connection naturally follow, because in life, everything is connected.',
     image: '/our-philosophy/every-dawn-is-yours.png',
   },
   {
     number: '04',
     label: 'Tranquility as Fuel',
     heading: 'True productivity begins with inner calm.',
-    description: 'Real growth and peak performance don\'t come from pushing harder — they come from finding peace. Tranquility restores mental health, sharpens creativity, and becomes the healthiest, most sustainable fuel for becoming your fullest self.',
+    description: 'Real growth and peak performance don\'t come from pushing harder; they come from finding peace. Tranquility restores mental health, sharpens creativity, and becomes the healthiest, most sustainable fuel for becoming your fullest self.',
     image: '/our-philosophy/tranquility-as-fuel.png',
   },
 ];
@@ -53,7 +53,7 @@ function PhilosophyMobile() {
 
   return (
     <section className="border-t border-ink/[0.06] bg-[#F8F8FC]">
-      <div className="max-w-[1200px] mx-auto px-4 pt-6 pb-8">
+      <div className="flow-container pt-6 pb-8">
         <div className="mb-4 flex items-end justify-between">
           <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Our Pillars</p>
           {!isOpen && (
@@ -86,7 +86,7 @@ function PhilosophyMobile() {
                   : 'bg-gradient-to-t from-ink/80 via-ink/20 to-transparent'
               }`} />
               <div className="absolute bottom-0 left-0 right-0 p-2.5 space-y-0.5">
-                <p className="text-[10px] font-mono tracking-[0.12em] text-white/45">{p.number}</p>
+                <p className="text-micro font-mono tracking-[0.12em] text-white/45">{p.number}</p>
                 <p className="text-xs font-semibold text-white tracking-[-0.01em] leading-tight">{p.label}</p>
               </div>
             </button>
@@ -253,7 +253,7 @@ function PhilosophyDesktop() {
               pointerEvents: isOpen ? 'none' : 'auto',
             }}
           >
-            <div className="flex-1 max-w-[1200px] w-full mx-auto px-6 pt-8 pb-10 flex flex-col min-h-0">
+            <div className="flex-1 flow-container w-full pt-8 pb-10 flex flex-col min-h-0">
               <div className="mb-5 flex items-end justify-between shrink-0">
                 <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Our Pillars</p>
                 <div className="flex items-center gap-1.5 text-ink/35">
@@ -294,7 +294,7 @@ function PhilosophyDesktop() {
               pointerEvents: isOpen ? 'auto' : 'none',
             }}
           >
-            <div className="max-w-[1200px] w-full mx-auto px-6 pt-8 pb-5 shrink-0">
+            <div className="flow-container w-full pt-8 pb-5 shrink-0">
               <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent mb-5">Our Pillars</p>
               <div className="grid grid-cols-4 gap-3">
                 {points.map((p, i) => (
@@ -319,7 +319,7 @@ function PhilosophyDesktop() {
               </div>
             </div>
 
-            <div className="flex-1 max-w-[1200px] w-full mx-auto px-6 pb-10 min-h-0">
+            <div className="flex-1 flow-container w-full pb-10 min-h-0">
               <div className="h-full grid grid-cols-2 gap-14 items-center">
 
                 <div className="relative rounded-2xl overflow-hidden h-full ring-1 ring-ink/[0.08] shadow-xl shadow-ink/[0.08]">

@@ -37,7 +37,7 @@ const faqItems = [
         <path d="m33.961 34.261 10.039 7.739m-12-30v17" />
       </svg>
     ),
-    content: `${PRODUCT_META.returnDays}-day satisfaction guarantee — if you are not completely satisfied with your purchase, contact us within ${PRODUCT_META.returnDays} days for a full refund. No questions asked. Returned products must be unused and in their original packaging.`,
+    content: `${PRODUCT_META.returnDays}-day satisfaction guarantee: if you are not completely satisfied with your purchase, contact us within ${PRODUCT_META.returnDays} days for a full refund. No questions asked. Returned products must be unused and in their original packaging.`,
   },
 ];
 
@@ -45,7 +45,7 @@ export default function FaqAccordion() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="max-w-[1200px] mx-auto px-6 py-14 md:py-20">
+    <section className="flow-container py-14 md:py-20">
       <div className="mb-6 space-y-2">
         <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">FAQ</p>
       </div>

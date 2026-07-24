@@ -17,9 +17,9 @@ export default function MainBenefits({ benefits }: { benefits: HealthBenefit[] }
   if (!step) return null;
 
   return (
-    <section ref={ref} className="max-w-[1200px] mx-auto px-6 pt-4 pb-30 md:pt-8">
+    <section ref={ref} className="flow-container pt-4 pb-30 md:pt-8">
       <div className="mb-6 space-y-2">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-[1.08]">Main benefits</h2>
+        <h2 className="flow-h2">Main benefits</h2>
       </div>
 
       {/* Mobile: 2-col card grid */}
@@ -43,7 +43,7 @@ export default function MainBenefits({ benefits }: { benefits: HealthBenefit[] }
             )}
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-4">
-              <h3 className="text-sm font-semibold text-white leading-snug drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">{b.label}</h3>
+              <h3 className="flow-h5 text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">{b.label}</h3>
             </div>
           </div>
         ))}
@@ -125,7 +125,7 @@ export default function MainBenefits({ benefits }: { benefits: HealthBenefit[] }
             className="absolute inset-0 flex flex-col justify-end p-9"
             style={{ animation: `hbFadeUp ${DURATION.base}s cubic-bezier(0.16, 1, 0.3, 1) forwards` }}
           >
-            <h3 className="text-3xl md:text-4xl font-semibold text-white tracking-[-0.02em] leading-snug mb-1.5">
+            <h3 className="flow-h2 text-white mb-1.5">
               {step.title}
             </h3>
             <p className="text-sm text-white/90 leading-relaxed mb-3">

@@ -17,9 +17,9 @@ export default function BenefitsTimeline({ steps }: { steps: ResultsTimelineStep
 
   return (
     <section className="bg-white pt-4 pb-20 md:pt-8">
-      <div className="max-w-[1200px] mx-auto px-6">
+      <div className="flow-container">
         <div className="mb-6 space-y-2">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-[1.08] text-ink">
+          <h2 className="flow-h2">
             How I Will Feel
           </h2>
         </div>
@@ -38,7 +38,7 @@ export default function BenefitsTimeline({ steps }: { steps: ResultsTimelineStep
                   className="w-full flex items-center justify-between px-5 py-4 text-left gap-3"
                 >
                   <div className="flex flex-col min-w-0">
-                    <p className="text-[10px] font-semibold tracking-[0.14em] uppercase bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent mb-0.5">{step.week}</p>
+                    <p className="text-micro font-semibold tracking-[0.14em] uppercase bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent mb-0.5">{step.week}</p>
                     <p className="text-sm font-semibold tracking-[-0.01em] text-ink leading-snug">{step.title}</p>
                   </div>
                   <svg
@@ -136,7 +136,7 @@ export default function BenefitsTimeline({ steps }: { steps: ResultsTimelineStep
               The longer you take it, the more it compounds.
             </h3>
             <p className="text-sm text-white/75 leading-[1.55]">
-              You&apos;ll notice clarity and calm <strong className="text-white font-semibold">from day one</strong> — deeper benefits compound with <strong className="text-white font-semibold">4–8 weeks</strong> of daily use.
+              You&apos;ll notice clarity and calm <strong className="text-white font-semibold">from day one</strong>; deeper benefits compound with <strong className="text-white font-semibold">4–8 weeks</strong> of daily use.
             </p>
           </div>
         </div>

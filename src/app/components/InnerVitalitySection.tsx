@@ -13,7 +13,7 @@ const lines = [
   },
   {
     label: 'Become who you want to be',
-    body: 'The person built in quiet hours shows up fully — healthier, happier, more present.',
+    body: 'The person built in quiet hours shows up fully: healthier, happier, more present.',
   },
 ];
 
@@ -118,7 +118,7 @@ export default function InnerVitalitySection() {
         }}
       />
 
-      <div className="relative z-10 max-w-[1200px] mx-auto px-6">
+      <div className="relative z-10 flow-container">
 
         <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-center">
 
@@ -133,7 +133,7 @@ export default function InnerVitalitySection() {
           </p>
 
           <h2
-            className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.08] tracking-[-0.03em] text-white"
+            className="flow-h2 text-white"
             style={fade(visible, 700)}
           >
             Those who look inward perform better, feel better, and live better.
@@ -143,7 +143,7 @@ export default function InnerVitalitySection() {
             className="text-base leading-[1.6]"
             style={{ color: 'rgba(255,255,255,0.45)', ...fade(visible, 1200) }}
           >
-            Inner vitality is not a luxury. It is the foundation — the quiet morning work that makes everything else possible.
+            Inner vitality is not a luxury. It is the foundation: the quiet morning work that makes everything else possible.
           </p>
 
         </div>

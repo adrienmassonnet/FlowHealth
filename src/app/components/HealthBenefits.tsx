@@ -24,13 +24,13 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
   if (!step) return null;
 
   return (
-    <section ref={ref} className="max-w-[1200px] mx-auto px-6 py-14 md:py-24">
+    <section ref={ref} className="flow-container py-14 md:py-24">
       {/* Header */}
       <div className="mb-6 md:mb-8 space-y-1.5">
         <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">
           {sectionLabel || 'Health Benefits'}
         </p>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
+        <h2 className="flow-h2">
           {heading || 'Everything your body needs.\nNothing it doesn\'t.'}
         </h2>
       </div>
@@ -163,7 +163,7 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
             className="absolute inset-0 flex flex-col justify-end p-9"
             style={{ animation: `hbFadeUp ${DURATION.base}s cubic-bezier(0.16, 1, 0.3, 1) forwards` }}
           >
-            <h3 className="text-3xl md:text-4xl font-semibold text-white tracking-[-0.02em] leading-snug mb-1.5">
+            <h3 className="flow-h2 text-white mb-1.5">
               {step.title}
             </h3>
             <p className="text-sm text-white/90 leading-relaxed mb-3">

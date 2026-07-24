@@ -8,22 +8,22 @@ const chapters = [
   {
     topic: 'Partnership',
     label: 'You do the work, we support it',
-    body: 'Real progress requires commitment no supplement can replace. Flow is a partner: a steadier foundation, more consistent energy, clearer thinking to build on. The work is still yours — we just make it more manageable.',
+    body: 'Real progress requires commitment no supplement can replace. Flow is a partner: a steadier foundation, more consistent energy, clearer thinking to build on. The work is still yours; we just make it more manageable.',
   },
   {
     topic: 'Promise',
     label: 'No shortcuts, no magic',
-    body: 'Flow is not a magic pill. It can sharpen focus and support energy — but only if the conditions exist. Sleep, movement, recovery are not optional extras. They are the actual work.',
+    body: 'Flow is not a magic pill. It can sharpen focus and support energy, but only if the conditions exist. Sleep, movement, recovery are not optional extras. They are the actual work.',
   },
   {
     topic: 'Industry',
     label: 'Anxiety as a business model',
-    body: 'We\'re expected to be reachable and optimised at all times. The supplement industry sells into that pressure rather than questioning it. Every label implies you\'re falling short — that anxiety is the product. Wrong foundation for something you take daily.',
+    body: 'We\'re expected to be reachable and optimised at all times. The supplement industry sells into that pressure rather than questioning it. Every label implies you\'re falling short: that anxiety is the product. Wrong foundation for something you take daily.',
   },
   {
     topic: 'Product',
     label: 'Evidence, not marketing',
-    body: 'Flow started with one question: what does genuinely honest look like? Every ingredient is research-backed, dosed at clinical levels. Nothing is there to impress on a label, nothing left out to save cost. Every compound is published and verifiable — we expect you to check.',
+    body: 'Flow started with one question: what does genuinely honest look like? Every ingredient is research-backed, dosed at clinical levels. Nothing is there to impress on a label, nothing left out to save cost. Every compound is published and verifiable; we expect you to check.',
   },
 ];
 
@@ -36,13 +36,13 @@ export default function PeacefulApproachSection() {
 
   return (
     <section className="border-t border-ink/[0.06]">
-      <div className="max-w-[1200px] mx-auto px-6 py-14 md:py-16">
+      <div className="flow-container py-14 md:py-16">
 
         <div className="text-center max-w-[680px] mx-auto space-y-3 mb-8 md:mb-10">
           <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">
             A more peaceful approach
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.08] tracking-[-0.035em] text-ink">
+          <h2 className="flow-h2">
             We don&apos;t sell you a better version of yourself. We help you build one.
           </h2>
         </div>
@@ -58,7 +58,7 @@ export default function PeacefulApproachSection() {
                   className="w-full flex items-center justify-between px-5 py-4 text-left"
                 >
                   <div>
-                    <span className={`block text-[10px] tracking-[0.14em] uppercase font-semibold mb-0.5 ${isOpen ? 'text-brand' : 'text-ink/30'}`}>
+                    <span className={`block text-micro tracking-[0.14em] uppercase font-semibold mb-0.5 ${isOpen ? 'text-brand' : 'text-ink/30'}`}>
                       {c.topic}
                     </span>
                     <span className="text-sm font-medium tracking-[-0.01em] leading-snug text-ink">
@@ -107,7 +107,7 @@ export default function PeacefulApproachSection() {
                   safeActive === i ? 'bg-[#F7F6FA]' : 'bg-white hover:bg-[#F7F6FA]/60'
                 }`}
               >
-                <span className={`block text-[10px] tracking-[0.14em] uppercase font-semibold mb-0.5 transition-colors duration-200 ${safeActive === i ? 'text-brand' : 'text-ink/25 group-hover:text-ink/40'}`}>
+                <span className={`block text-micro tracking-[0.14em] uppercase font-semibold mb-0.5 transition-colors duration-200 ${safeActive === i ? 'text-brand' : 'text-ink/25 group-hover:text-ink/40'}`}>
                   {c.topic}
                 </span>
                 <span className={`text-sm font-medium tracking-[-0.01em] transition-colors duration-200 leading-snug ${safeActive === i ? 'text-ink' : 'text-ink/40 group-hover:text-ink/60'}`}>
@@ -130,7 +130,7 @@ export default function PeacefulApproachSection() {
               >
                 <div className="space-y-3">
                   <p className="text-xs tracking-[0.12em] uppercase font-semibold text-brand/70">
-                    {activeChapter.topic} — {activeChapter.label}
+                    {activeChapter.topic}: {activeChapter.label}
                   </p>
                   <p className="text-[1.05rem] text-ink/70 leading-[1.55]">
                     {activeChapter.body}

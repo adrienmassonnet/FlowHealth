@@ -73,7 +73,7 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
               <div className="flex items-center gap-3">
                 <span className="block w-5 h-px bg-ink/20 shrink-0" />
                 <div>
-                  <p className="text-sm font-semibold text-ink tracking-[-0.01em]">{t.authorName}</p>
+                  <p className="flow-h5">{t.authorName}</p>
                   <p className="text-xs text-ink/45 tracking-[0.04em] mt-0.5">{t.authorRole}</p>
                 </div>
               </div>

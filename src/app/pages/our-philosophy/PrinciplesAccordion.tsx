@@ -42,7 +42,7 @@ export default function PrinciplesAccordion({ principles }: Props) {
         {activePrinciple ? (
           <div key={activePrinciple.number} className="p-8 space-y-3" style={{ animation: 'hbFadeUp 0.45s cubic-bezier(0.25,0.1,0.1,1) forwards' }}>
             <p className="text-xs font-mono tracking-[0.12em] text-ink/30">{activePrinciple.number}</p>
-            <h3 className="text-lg font-semibold text-ink tracking-[-0.01em]">{activePrinciple.title}</h3>
+            <h3 className="flow-h4">{activePrinciple.title}</h3>
             <p className="text-sm text-[rgba(30,24,84,0.65)] leading-relaxed">{activePrinciple.body}</p>
           </div>
         ) : (

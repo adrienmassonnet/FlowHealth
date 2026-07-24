@@ -24,11 +24,11 @@ export default function ValuesStandForSection() {
       </div>
       <div ref={textRef} className="space-y-4 max-w-sm md:w-[400px] md:shrink-0">
         <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">What we stand for</p>
-        <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-tight text-ink">
+        <h2 className="flow-h2">
           Being transparent on our intentions and guiding principles is vital to us.
         </h2>
         <p className="text-sm text-[rgba(30,24,84,0.65)] leading-relaxed">
-          What a brand stands for matters as much as what it makes. That&apos;s why we choose to be open about our values, the causes we champion, and the commitments we hold ourselves to — because we&apos;re not just building a supplement, we&apos;re building something people can believe in.
+          What a brand stands for matters as much as what it makes. That&apos;s why we choose to be open about our values, the causes we champion, and the commitments we hold ourselves to: because we&apos;re not just building a supplement, we&apos;re building something people can believe in.
         </p>
       </div>
     </div>

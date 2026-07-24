@@ -182,7 +182,7 @@ function RichTextNode({ node }: { node: any }): React.ReactNode {
 
     case 'heading-2':
       return (
-        <h2 className="text-base font-semibold text-ink tracking-[-0.01em] mt-10 mb-3 pb-2 border-b border-ink/[7.1%]">
+        <h2 className="flow-h5 mt-10 mb-3 pb-2 border-b border-ink/[7.1%]">
           {node.content?.map((child: any, i: number) => <RichTextNode key={i} node={child} />)}
         </h2>
       );
@@ -312,7 +312,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0d0b2e]/95 via-ink/50 to-transparent" />
 
-        <div className="relative h-full max-w-[1200px] mx-auto px-6 flex flex-col justify-end pb-10">
+        <div className="relative h-full flow-container flex flex-col justify-end pb-10">
           {/* Breadcrumb */}
           <nav className="absolute top-8 left-6 right-6 flex items-center gap-2 text-xs text-white/45">
             <Link href="/" className="hover:text-white/80 transition-colors">Home</Link>
@@ -328,7 +328,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 {post.category}
               </span>
             )}
-            <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-[-0.02em] leading-tight text-white mb-4">
+            <h1 className="flow-h2 text-white mb-4">
               {post.title}
             </h1>
             <div className="flex flex-wrap items-center gap-3 text-xs text-white/45">
@@ -344,7 +344,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </section>
 
       {/* ── Two-column layout ─────────────────────────────────────────── */}
-      <div className="max-w-[1200px] mx-auto px-6 py-12">
+      <div className="flow-container py-12">
         <div className="flex gap-12 items-start">
 
           {/* ── Main column ──────────────────────────────────────────── */}
@@ -442,7 +442,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       {/* ── More articles (full-width bottom section) ─────────────────── */}
       {relatedPosts.length > 0 && (
         <section className="border-t border-[#1E185210] bg-ink/[3.9%]">
-          <div className="max-w-[1200px] mx-auto px-6 py-16">
+          <div className="flow-container py-16">
             <div className="flex items-end justify-between mb-8">
               <div>
                 <p className="text-xs tracking-[0.14em] uppercase font-semibold text-brand/65 mb-1">Keep reading</p>

@@ -78,7 +78,7 @@ export function FeatureCarousel({ steps, interval = 7000 }: FeatureCarouselProps
                 {active.label}
               </motion.p>
               <motion.h3
-                className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] text-ink leading-[1.1]"
+                className="flow-h2"
                 initial={{ opacity: 0, x: -12 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.09, duration: DURATION.base, ease: EASE.expoOut }}

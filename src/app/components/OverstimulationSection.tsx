@@ -78,7 +78,7 @@ export default function OverstimulationSection() {
 
   return (
     <section ref={sectionRef} className="py-14 md:py-24 bg-white overflow-x-hidden">
-      <div className="max-w-[1200px] mx-auto px-6">
+      <div className="flow-container">
 
         {/* Subheader + heading — above card */}
         <div
@@ -88,7 +88,7 @@ export default function OverstimulationSection() {
           <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">
             The Over-stimulation Cycle
           </p>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-[-0.03em] leading-[1.08] text-ink">
+          <h2 className="flow-h2">
             Your brain was not built for this.
           </h2>
         </div>

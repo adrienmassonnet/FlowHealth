@@ -8,11 +8,11 @@ import { EASE, DURATION, VIEWPORT } from '@/lib/animation';
 const cards = [
   {
     label: 'The biology of growth',
-    body: 'Discomfort and uncertainty are not signs of failure — they are neuroplasticity in motion. Every unfamiliar challenge triggers new synaptic connections. The friction is the mechanism.',
+    body: 'Discomfort and uncertainty are not signs of failure; they are neuroplasticity in motion. Every unfamiliar challenge triggers new synaptic connections. The friction is the mechanism.',
   },
   {
     label: 'We celebrate you, not the supplement',
-    body: "Most brands put the product at the center. We put you there. Flow doesn't make you better — you do that. We support the conditions: steadier energy, clearer thinking, less noise. The work, the repetition, the growth — that's yours.",
+    body: "Most brands put the product at the center. We put you there. Flow doesn't make you better; you do that. We support the conditions: steadier energy, clearer thinking, less noise. The work, the repetition, the growth: that's yours.",
   },
 ];
 
@@ -34,7 +34,7 @@ export default function ApproachSection() {
       />
       <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/60" />
 
-      <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 py-16 md:py-20">
+      <div className="relative z-10 w-full flow-container py-16 md:py-20">
         <div className="flex flex-col md:flex-row md:items-center gap-10 md:gap-16">
 
           {/* Left — eyebrow + heading */}
@@ -48,7 +48,7 @@ export default function ApproachSection() {
               The neuroscience of progress
             </motion.p>
             <motion.h2
-              className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.08] tracking-[-0.035em] text-white"
+              className="flow-h2 text-white"
               initial={{ opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: DURATION.slow, delay: 0.07, ease: EASE.expoOut }}
@@ -67,7 +67,7 @@ export default function ApproachSection() {
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: DURATION.slow, delay: 0.12 + i * 0.1, ease: EASE.expoOut }}
               >
-                <p className="text-[10px] tracking-[0.16em] uppercase font-semibold text-white/45">
+                <p className="text-micro tracking-[0.16em] uppercase font-semibold text-white/45">
                   {card.label}
                 </p>
                 <p className="text-sm text-white/80 leading-[1.6]">

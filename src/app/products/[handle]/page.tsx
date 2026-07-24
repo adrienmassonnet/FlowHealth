@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getProduct, getProducts } from '@/lib/shopify';
-import { getHealthBenefits, getResultsTimelineSteps, getIngredients, getProductMeta, getTestimonials } from '@/lib/content';
+import { getHealthBenefits, getResultsTimelineSteps, getIngredients, getProductMeta, getTestimonials, getProductHero, getTakeFlowSteps } from '@/lib/content';
 import { servicePillars } from '@/lib/content-data';
 
 export async function generateMetadata({ params }: { params: Promise<{ handle: string }> }): Promise<Metadata> {
@@ -47,11 +47,14 @@ import ProductPageInit from './ProductPageInit';
 import { TestimonialCarousel } from '@/components/ui/testimonial-carousel';
 
 
-export default async function ProductPage({ params }: { params: Promise<{ handle: string }> }) {
+export default async function ProductPage({ params, searchParams }: { params: Promise<{ handle: string }>; searchParams: Promise<{ campaign?: string }> }) {
   const { handle } = await params;
-  const [product, allProducts, healthBenefits, timelineSteps, ingredients, meta, testimonials] = await Promise.all([getProduct(handle), getProducts(), getHealthBenefits(), getResultsTimelineSteps(), getIngredients(), getProductMeta(), getTestimonials()]);
+  const { campaign } = await searchParams;
+  const [product, allProducts, healthBenefits, timelineSteps, ingredients, meta, testimonials, takeFlowSteps] = await Promise.all([getProduct(handle), getProducts(), getHealthBenefits(campaign), getResultsTimelineSteps(), getIngredients(), getProductMeta(), getTestimonials(), getTakeFlowSteps()]);
 
   if (!product) notFound();
+
+  const heroHeadline = await getProductHero(product.title, campaign);
 
   const images = product.images.edges.map((e) => e.node);
   const variants = product.variants.edges.map((e) => e.node);
@@ -78,11 +81,11 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
       <ProductPageInit productName={product.title} price={parseFloat(firstVariant.price.amount)} currencyCode={firstVariant.price.currencyCode} productId={product.id} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
       {/* Product hero */}
-      <section id="section-product" className="scroll-mt-16 pt-20 pb-12 md:pb-20 max-w-[1200px] mx-auto px-5 md:px-6 relative overflow-hidden">
+      <section id="section-product" className="scroll-mt-16 pt-20 pb-12 md:pb-20 flow-container relative overflow-hidden">
         {/* Mobile-only title — shown above gallery */}
         <div className="md:hidden space-y-1.5 pb-4">
           <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Cognitive Performance Formula</p>
-          <h1 className="text-2xl font-semibold tracking-[-0.02em] leading-tight">{product.title}</h1>
+          <h1 className="flow-h1">{heroHeadline}</h1>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 md:gap-y-0 items-start">
@@ -91,7 +94,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
           <div className="space-y-6 md:pl-8 lg:pl-12">
             <div className="hidden md:block space-y-2">
               <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Cognitive Performance Formula</p>
-              <h1 className="text-2xl md:text-3xl font-semibold tracking-[-0.02em] leading-tight">{product.title}</h1>
+              <h1 className="text-2xl md:text-3xl font-semibold tracking-[-0.02em] leading-tight">{heroHeadline}</h1>
             </div>
 
             {variants.length > 1 && (
@@ -109,7 +112,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
 
             <div className="space-y-3">
               <p className="text-sm text-[rgb(30,24,84)] leading-[1.55]">
-                A daily cognitive supplement in powder sachet form — mix one sachet in 400–500 ml of water. One box contains 30 sachets.
+                A daily cognitive supplement in powder sachet form: mix one sachet in 400–500 ml of water. One box contains 30 sachets.
               </p>
               <ul className="space-y-1.5">
                 {[
@@ -155,7 +158,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
 
       {/* Nav tabs */}
       <div data-product-nav-wrapper>
-        <div className="max-w-[1200px] mx-auto px-6 pt-8 pb-2">
+        <div className="flow-container pt-8 pb-2">
           <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Learn more about Flow.</p>
         </div>
         <ProductNavTabs />
@@ -176,7 +179,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
 
       {/* How to Use section */}
       <section id="section-how-to-use" className="pt-2 pb-16">
-        <TakeFlowSteps />
+        <TakeFlowSteps steps={takeFlowSteps} />
       </section>
 
       {/* Ingredients section */}
@@ -191,9 +194,9 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
 
       {/* Reviews section */}
       <section id="section-reviews" className="pt-2 pb-16">
-        <div className="max-w-[1200px] mx-auto px-6 pt-4 pb-20 md:pt-8">
+        <div className="flow-container pt-4 pb-20 md:pt-8">
           <div className="mb-6 space-y-2">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-[1.08]">What our clients have said.</h2>
+            <h2 className="flow-h2">What our clients have said.</h2>
           </div>
           <TestimonialCarousel testimonials={testimonials} />
         </div>
@@ -201,9 +204,9 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
 
       {/* Shipping & Returns section */}
       <section id="section-shipping" className="pt-2 pb-16">
-        <div className="max-w-[1200px] mx-auto px-6 pt-4 pb-20 md:pt-8">
+        <div className="flow-container pt-4 pb-20 md:pt-8">
           <div className="mb-6 space-y-2">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-[1.08]">Simple, stress-free shipping & terms.</h2>
+            <h2 className="flow-h2">Simple, stress-free shipping & terms.</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {(() => {
@@ -253,10 +256,10 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
 
       {/* Related products */}
       {relatedProducts.length > 0 && (
-        <section className="max-w-[1200px] mx-auto px-6 py-12 md:py-20">
+        <section className="flow-container py-12 md:py-20">
           <div className="text-center mb-8 md:mb-12 space-y-2">
             <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Our Range</p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-[1.08]">Our Unique Formulas</h2>
+            <h2 className="flow-h2">Our Unique Formulas</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {relatedProducts.map((p) => {

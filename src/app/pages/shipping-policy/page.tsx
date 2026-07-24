@@ -11,7 +11,7 @@ export default function ShippingPolicyPage() {
 
       <div className="space-y-3">
         <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Support</p>
-        <h1 className="text-4xl font-semibold tracking-[-0.02em]">Shipping policy</h1>
+        <h1 className="flow-h1">Shipping policy</h1>
         <p className="text-xs font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Last updated: 27 November 2025</p>
       </div>
 
@@ -21,15 +21,15 @@ export default function ShippingPolicyPage() {
 
       {/* Section 1 */}
       <div className="space-y-5">
-        <h2 className="text-lg font-semibold tracking-[-0.01em]">1. Shipping Destinations &amp; Costs</h2>
+        <h2 className="flow-h4">1. Shipping Destinations &amp; Costs</h2>
         <div className="overflow-x-auto">
           <table className="w-full text-base border-collapse">
             <thead>
               <tr className="border-b border-ink/[12.5%]">
-                <th className="text-left py-3 pr-6 text-xs tracking-[0.1em] uppercase font-semibold">Destination</th>
-                <th className="text-left py-3 pr-6 text-xs tracking-[0.1em] uppercase font-semibold">Order Value</th>
-                <th className="text-left py-3 pr-6 text-xs tracking-[0.1em] uppercase font-semibold">Shipping Cost</th>
-                <th className="text-left py-3 text-xs tracking-[0.1em] uppercase font-semibold">Estimated Delivery*</th>
+                <th className="text-left py-3 pr-6 flow-label">Destination</th>
+                <th className="text-left py-3 pr-6 flow-label">Order Value</th>
+                <th className="text-left py-3 pr-6 flow-label">Shipping Cost</th>
+                <th className="text-left py-3 flow-label">Estimated Delivery*</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-ink/[12.5%]">
@@ -62,7 +62,7 @@ export default function ShippingPolicyPage() {
 
       {/* Section 2 */}
       <div className="space-y-4">
-        <h2 className="text-lg font-semibold tracking-[-0.01em]">2. Carriers We Use</h2>
+        <h2 className="flow-h4">2. Carriers We Use</h2>
         <ul className="space-y-2 text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed">
           <li><span className="font-medium text-[rgb(30,24,84)]">Switzerland &amp; Liechtenstein</span> → Swiss Post (PostPac Priority) or Planzer</li>
           <li><span className="font-medium text-[rgb(30,24,84)]">EU / EEA / UK</span> → DHL Express, UPS, or DPD with full tracking</li>
@@ -73,7 +73,7 @@ export default function ShippingPolicyPage() {
 
       {/* Section 3 */}
       <div className="space-y-4">
-        <h2 className="text-lg font-semibold tracking-[-0.01em]">3. Order Processing Time</h2>
+        <h2 className="flow-h4">3. Order Processing Time</h2>
         <ul className="space-y-2 text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed list-disc list-inside">
           <li>Orders placed before 13:00 CET (Mon–Fri) are normally dispatched the same day.</li>
           <li>Orders placed after 13:00 CET or on weekends/public holidays are dispatched the next business day.</li>
@@ -82,7 +82,7 @@ export default function ShippingPolicyPage() {
 
       {/* Section 4 */}
       <div className="space-y-4">
-        <h2 className="text-lg font-semibold tracking-[-0.01em]">4. Customs, Duties &amp; Taxes</h2>
+        <h2 className="flow-h4">4. Customs, Duties &amp; Taxes</h2>
         <p className="text-xs tracking-[0.08em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent font-medium">Important for non-Swiss customers</p>
         <ul className="space-y-2 text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed">
           <li><span className="font-medium text-[rgb(30,24,84)]">Switzerland &amp; Liechtenstein</span> → Prices include 8.1% Swiss VAT. No additional fees.</li>
@@ -95,7 +95,7 @@ export default function ShippingPolicyPage() {
 
       {/* Section 5 */}
       <div className="space-y-4">
-        <h2 className="text-lg font-semibold tracking-[-0.01em]">5. Temperature-Controlled Shipping</h2>
+        <h2 className="flow-h4">5. Temperature-Controlled Shipping</h2>
         <p className="text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed">
           All supplements are shipped in insulated packaging at no extra cost to protect potency.
         </p>
@@ -103,7 +103,7 @@ export default function ShippingPolicyPage() {
 
       {/* Section 6 */}
       <div className="space-y-4">
-        <h2 className="text-lg font-semibold tracking-[-0.01em]">6. Lost or Delayed Parcels</h2>
+        <h2 className="flow-h4">6. Lost or Delayed Parcels</h2>
         <ul className="space-y-2 text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed list-disc list-inside">
           <li>If your tracking shows "delivered" but you did not receive it → contact us within 7 days.</li>
           <li>If a parcel is lost in transit → we will reship or fully refund you (our choice).</li>
@@ -113,7 +113,7 @@ export default function ShippingPolicyPage() {
 
       {/* Section 7 */}
       <div className="space-y-4">
-        <h2 className="text-lg font-semibold tracking-[-0.01em]">7. Address Accuracy</h2>
+        <h2 className="flow-h4">7. Address Accuracy</h2>
         <p className="text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed">
           You are responsible for providing a correct and complete shipping address. Re-shipping due to an incorrect or incomplete address costs CHF 15–50, depending on destination (payable before reshipment).
         </p>
@@ -121,7 +121,7 @@ export default function ShippingPolicyPage() {
 
       {/* Section 8 */}
       <div className="space-y-4">
-        <h2 className="text-lg font-semibold tracking-[-0.01em]">8. Signature &amp; Safe Drop</h2>
+        <h2 className="flow-h4">8. Signature &amp; Safe Drop</h2>
         <ul className="space-y-2 text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed list-disc list-inside">
           <li>High-value orders (&gt; CHF 300) always require a signature.</li>
           <li>For smaller orders, you can choose "Leave at door" at your own risk.</li>
@@ -130,7 +130,7 @@ export default function ShippingPolicyPage() {
 
       {/* Section 9 */}
       <div className="space-y-4 border-t border-ink/[12.5%] pt-10">
-        <h2 className="text-lg font-semibold tracking-[-0.01em]">9. Questions or Changes?</h2>
+        <h2 className="flow-h4">9. Questions or Changes?</h2>
         <p className="text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed">
           Contact us before 13:00 CET on the day of dispatch:
         </p>

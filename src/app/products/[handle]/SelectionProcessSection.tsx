@@ -3,7 +3,7 @@ import Image from 'next/image';
 const pillars = [
   {
     title: 'Peer-Reviewed Evidence',
-    description: 'Every ingredient is backed by human clinical trials — not animal studies or in-vitro data.',
+    description: 'Every ingredient is backed by human clinical trials, not animal studies or in-vitro data.',
     icon: (
       <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
         <circle cx="18" cy="18" r="8" stroke="white" strokeWidth="1.5"/>
@@ -13,7 +13,7 @@ const pillars = [
   },
   {
     title: 'Clinical Dosing',
-    description: 'We dose at proven therapeutic levels — no pixie-dusting or proprietary blends hiding underdoses.',
+    description: 'We dose at proven therapeutic levels: no pixie-dusting or proprietary blends hiding underdoses.',
     icon: (
       <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
         <rect x="13" y="5" width="10" height="26" rx="5" stroke="white" strokeWidth="1.5"/>
@@ -24,7 +24,7 @@ const pillars = [
   },
   {
     title: 'Bioavailable Forms',
-    description: 'We select the most bioavailable form of each compound — the exact form used in the clinical research.',
+    description: 'We select the most bioavailable form of each compound: the exact form used in the clinical research.',
     icon: (
       <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
         <path d="M18 6 C18 6 10 14 10 22 C10 27.5 13.6 31 18 31 C22.4 31 26 27.5 26 22 C26 14 18 6 18 6Z" stroke="white" strokeWidth="1.5" strokeLinejoin="round"/>
@@ -35,7 +35,7 @@ const pillars = [
   },
   {
     title: 'Swiss GMP Manufacturing',
-    description: 'Produced under pharmaceutical-grade Swiss GMP conditions — every batch tested for purity and potency.',
+    description: 'Produced under pharmaceutical-grade Swiss GMP conditions, with every batch tested for purity and potency.',
     icon: (
       <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
         <rect x="9" y="5" width="18" height="26" rx="2" stroke="white" strokeWidth="1.5"/>
@@ -88,7 +88,7 @@ export default function SelectionProcessSection() {
 
       {/* Desktop: all text visible, no flip */}
       <div className="hidden md:block">
-        <div className="max-w-[1200px] mx-auto px-6">
+        <div className="flow-container">
         <div className="relative overflow-hidden h-[680px] rounded-2xl">
           <Image
             src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=1400&q=85&auto=format&fit=crop"

@@ -2,7 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   FLOW DESIGN SYSTEM — single source of truth for type, space, and motion.
+
+   Read DESIGN_SYSTEM.md before editing. Two rules keep this coherent:
+
+   1. Components never compose their own type stack. Use .flow-display /
+      .flow-h1 / .flow-h2 / .flow-h3 / .flow-body etc. Do not write
+      `text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[...]`.
+   2. Every size below is FLUID. One clamp() spans mobile→desktop, so there
+      are no breakpoint overrides and nothing needs !important to win.
+
+   The root is 16px (browser default) so Tailwind's rem utilities mean what
+   they say: text-xs is 12px, text-sm is 14px, p-4 is 16px.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 :root {
+  /* ── Colour ──────────────────────────────────────────────────────────── */
   --color-ink: #1E1854;
   --color-brand: #3B38B8;
   --color-surface-alt: #F7F7FB;
@@ -11,26 +27,76 @@
   --text-secondary: rgba(30, 24, 84, 0.65);
   --text-muted: rgba(30, 24, 84, 0.55);
 
+  /* ── Elevation ───────────────────────────────────────────────────────── */
   --shadow-subtle:   0 1px 6px rgba(30, 24, 84, 0.06);
   --shadow-card:     0 2px 16px rgba(30, 24, 84, 0.07);
   --shadow-elevated: 0 4px 24px rgba(30, 24, 84, 0.11);
   --shadow-floating: 0 8px 32px rgba(30, 24, 84, 0.15);
   --shadow-glow:     0 0 80px rgba(59, 56, 184, 0.20);
-}
 
+  /* ── Type scale ──────────────────────────────────────────────────────────
+     Each token interpolates from its 375px value to its 1440px value.
+     Sizes in the comments are the rendered px at those two widths.        */
+  /* Upper bounds reproduce exactly what the old 21px root rendered at desktop,
+     so desktop is unchanged from before the refactor. Lower bounds are the
+     mobile sizes, tuned up for legibility on a phone. */
+  --fs-display: clamp(2.125rem,  0.937rem + 5.07vw, 5.5rem);      /* 34 → 88   */
+  --fs-h1:      clamp(1.875rem,  1.479rem + 1.69vw, 3rem);        /* 30 → 48   */
+  /* Editorial page heroes (FAQ, Reviews) sit a tier above a standard page
+     title — they were 63px before the refactor and stay there. */
+  --fs-h1-hero: clamp(2rem,      1.318rem + 2.91vw, 3.9375rem);   /* 32 → 63   */
+  --fs-h2:      clamp(1.8125rem, 1.416rem + 1.69vw, 2.9375rem);   /* 29 → 47   */
+  --fs-h3:      clamp(1.375rem,  1.287rem + 0.38vw, 1.625rem);    /* 22 → 26   */
+  --fs-h4:      clamp(1.1875rem, 1.089rem + 0.42vw, 1.46875rem);  /* 19 → 23.5 */
+  --fs-h5:      clamp(1rem,      0.934rem + 0.28vw, 1.1875rem);   /* 16 → 19   */
+  --fs-body:    clamp(1.0625rem, 0.974rem + 0.38vw, 1.3125rem);   /* 17 → 21   */
+  --fs-caption: clamp(0.9375rem, 0.871rem + 0.28vw, 1.125rem);    /* 15 → 18   */
+  --fs-fine:    clamp(0.8125rem, 0.758rem + 0.23vw, 0.96875rem);  /* 13 → 15.5 */
+  --fs-label:   clamp(0.8125rem, 0.769rem + 0.19vw, 0.9375rem);   /* 13 → 15   */
+  --fs-label-sm: clamp(0.71875rem, 0.686rem + 0.14vw, 0.8125rem); /* 11.5 → 13 */
 
-html {
-  font-size: 21px;
+  /* ── Space scale ─────────────────────────────────────────────────────── */
+  --space-section-sm: clamp(2.5rem, 1.97rem + 2.25vw, 4rem);  /*  40 →  64 */
+  --space-section:    clamp(3rem,   1.94rem + 4.5vw,  6rem);  /*  48 →  96 */
+  --space-section-lg: clamp(4rem,   2.59rem + 6vw,    8rem);  /*  64 → 128 */
+  /* Side margin. Every px here is a px taken off the content column, but going
+     much below this crowds the rounded corners on a phone. Landed midway
+     between the original 20/31.5 and a tighter 16/24. */
+  --space-gutter:     clamp(1.125rem, 0.905rem + 0.94vw, 1.75rem); /* 18 → 28 */
+
+  /* Rhythm inside a section. Steps are strictly increasing — the old mobile
+     block had space-y-4 (30px) larger than space-y-6 (24px), which inverted
+     the grouping hierarchy. */
+  --space-2xs: 0.25rem;  /*  4 */
+  --space-xs:  0.5rem;   /*  8 */
+  --space-sm:  1rem;     /* 16 */
+  --space-md:  1.5rem;   /* 24 */
+  --space-lg:  2rem;     /* 32 */
+  --space-xl:  2.5rem;   /* 40 */
+
+  /* ── Motion ──────────────────────────────────────────────────────────── */
+  --ease-out: cubic-bezier(0.25, 0.1, 0.1, 1);
+  --dur-fast: 0.25s;
+  --dur-base: 0.65s;
+  --dur-slow: 0.9s;
 }
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  /* Browser default. Never set a px root here — it breaks Tailwind's rem
+     scale and disables the user's own font-size accessibility setting. */
+  font-size: 100%;
+}
+
 body {
   background: #ffffff;
   color: var(--color-ink);
   font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: var(--fs-body);
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
   text-rendering: optimizeLegibility;
@@ -41,19 +107,184 @@ body {
   background: rgba(30, 24, 84, 0.1);
 }
 
+/* ═══ Typography utilities ══════════════════════════════════════════════════
+   These are the only approved way to size text. Element defaults below match
+   them so unstyled markup (CMS rich text, blog posts) lands on the scale too.
+   ═════════════════════════════════════════════════════════════════════════ */
+
+/* These live in the components layer on purpose. Tailwind emits utilities
+   AFTER components, so a utility always wins on a tie — `flow-h2 text-white`
+   renders white, `flow-body text-ink/55` takes the opacity. Defined outside a
+   layer they would sit after the utilities and silently beat them, which turns
+   every heading on a dark background into dark-on-dark. */
+@layer components {
+  .flow-display,
+  .flow-h1,
+  .flow-h2,
+  .flow-h3,
+  .flow-h4,
+  .flow-h5 {
+    font-weight: 600;
+    color: var(--color-ink);
+    text-wrap: balance;
+  }
+
+  .flow-display { font-size: var(--fs-display); line-height: 1.05; letter-spacing: -0.03em; }
+  .flow-h1      { font-size: var(--fs-h1);      line-height: 1.08; letter-spacing: -0.03em; }
+  .flow-h1--hero { font-size: var(--fs-h1-hero); line-height: 1.02; }
+  .flow-h2      { font-size: var(--fs-h2);      line-height: 1.1;  letter-spacing: -0.025em; }
+  .flow-h3      { font-size: var(--fs-h3);      line-height: 1.2;  letter-spacing: -0.02em; }
+  .flow-h4      { font-size: var(--fs-h4);      line-height: 1.3;  letter-spacing: -0.01em; }
+  /* Card titles and long-form document sub-headings. The audit found 31 of 31
+     h3s and 40 legal-page h2s sitting at 14–18px with no token to land on. */
+  .flow-h5      { font-size: var(--fs-h5);      line-height: 1.35; letter-spacing: -0.01em; }
+
+  .flow-body {
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    color: var(--text-body);
+    text-wrap: pretty;
+  }
+
+  .flow-caption {
+    font-size: var(--fs-caption);
+    line-height: 1.5;
+    color: var(--text-muted);
+    text-wrap: pretty;
+  }
+
+  .flow-fine {
+    font-size: var(--fs-fine);
+    line-height: 1.45;
+    color: var(--text-muted);
+  }
+
+  /* Eyebrow label above a heading. Max 3 per page. */
+  .flow-label {
+    font-size: var(--fs-label);
+    line-height: 1.4;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-brand);
+  }
+
+  /* Compact eyebrow, for dense cards and badges. Replaces the scattered
+     text-[9px] / text-[10px] arbitrary values the audit turned up — 9px
+     tracked uppercase is below the legible floor on a phone. */
+  .flow-label--sm {
+    font-size: var(--fs-label-sm);
+    letter-spacing: 0.14em;
+  }
+
+  .flow-label--gradient {
+    background: linear-gradient(to right, var(--color-brand), var(--color-ink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+/* Element baselines — in the base layer, so any .flow-* or Tailwind class wins
+   normally. This is what replaced the old `h1 { font-size: 40px !important }`
+   mobile block, which silently overrode every component's own type classes. */
+@layer base {
+  h1 { font-size: var(--fs-h1); line-height: 1.08; letter-spacing: -0.03em; }
+  h2 { font-size: var(--fs-h2); line-height: 1.1;  letter-spacing: -0.025em; }
+  h3 { font-size: var(--fs-h3); line-height: 1.2;  letter-spacing: -0.02em; }
+  h4 { font-size: var(--fs-h4); line-height: 1.3;  letter-spacing: -0.01em; }
+}
+
+/* ═══ Layout utilities ════════════════════════════════════════════════════ */
+
+@layer components {
+  .flow-container {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: var(--space-gutter);
+  }
+
+  .flow-section     { padding-block: var(--space-section); }
+  .flow-section--sm { padding-block: var(--space-section-sm); }
+  .flow-section--lg { padding-block: var(--space-section-lg); }
+
+  .flow-section-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-lg);
+    max-width: 860px;
+  }
+
+  .flow-section-header--center {
+    align-items: center;
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .max-w-copy { max-width: 680px; }
+}
+
+/* ═══ Mobile alignment ══════════════════════════════════════════════════════
+   The brand reads left-aligned on small screens. This replaces the old
+   `* { text-align: left !important }`, which flattened every centred layout
+   on mobile including buttons, tabs and cards that need their own alignment.
+   Specificity (0,2,0) beats Tailwind's .text-center without !important.
+   Opt a block out with `mobile-keep-center`.
+   ═════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  .text-center:not(.mobile-keep-center),
+  .flow-section-header--center:not(.mobile-keep-center) {
+    text-align: left;
+  }
+
+  .flow-section-header--center:not(.mobile-keep-center) {
+    align-items: flex-start;
+  }
+}
+
+/* ═══ Components ══════════════════════════════════════════════════════════ */
+
+@layer components {
+  .btn-cta {
+    background: linear-gradient(135deg, var(--color-brand) 0%, var(--color-ink) 50%, var(--color-brand) 100%);
+    background-size: 200% 200%;
+    background-position: 100% 100%;
+    transition: background-position 0.7s var(--ease-out);
+  }
+
+  .btn-cta:hover {
+    background-position: 0% 0%;
+  }
+
+  .card-selected {
+    background: linear-gradient(135deg, var(--color-brand) 0%, var(--color-ink) 100%);
+    border-color: transparent !important;
+  }
+}
+
+/* Every interactive element clears the 44px minimum touch target. */
+button,
+a[role="button"],
+[type="button"],
+[type="submit"] {
+  touch-action: manipulation;
+}
+
+/* Visible keyboard focus. The site removes tap highlight, so without this
+   keyboard users get no affordance at all. */
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ═══ Motion ══════════════════════════════════════════════════════════════ */
+
 @keyframes hbFadeUp {
   from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: translateY(0); }
-}
-
-.footer-gradient {
-  background: linear-gradient(
-    135deg,
-    var(--color-ink) 0%,
-    var(--color-brand) 40%,
-    var(--color-ink) 70%,
-    #0f0d2e 100%
-  );
 }
 
 @keyframes philosophyEnterForward {
@@ -70,11 +301,6 @@ body {
 }
 .philosophy-enter-backward {
   animation: philosophyEnterBackward 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.card-selected {
-  background: linear-gradient(135deg, var(--color-brand) 0%, var(--color-ink) 100%);
-  border-color: transparent !important;
 }
 
 @keyframes diceExit {
@@ -99,53 +325,38 @@ body {
   animation: hbFadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* ─── Mobile overrides (below md = 768px) ───────────────────────────────── */
-@media (max-width: 767px) {
-  /* Typography */
-  h1 { font-size: 40px !important; line-height: 1.08 !important; }
-  h2 { font-size: 32px !important; line-height: 1.1 !important; }
-  h3 { font-size: 24px !important; line-height: 1.15 !important; }
-  h4 { font-size: 18px !important; line-height: 1.25 !important; }
-  p, li, blockquote { font-size: 17px !important; line-height: 1.35 !important; }
-  p.text-sm, p.text-base, li.text-sm { font-size: 17px !important; line-height: 1.35 !important; }
-  .text-sm { font-size: 14px !important; }
-  .text-xs { font-size: 12px !important; }
-
-  /* Side margins */
-  .px-6 { padding-left: 20px !important; padding-right: 20px !important; }
-
-  /* Section vertical padding — lock all section-level py classes to 48px */
-  .py-12, .py-14, .py-16, .py-20, .py-24 { padding-top: 48px !important; padding-bottom: 48px !important; }
-  .pt-20, .pt-24 { padding-top: 48px !important; }
-  .pb-10, .pb-12, .pb-16, .pb-20 { padding-bottom: 32px !important; }
-
-  /* Internal spacing — scale down space-y and gap */
-  .space-y-12 > * + * { margin-top: 40px !important; }
-  .space-y-8  > * + * { margin-top: 32px !important; }
-  .space-y-6  > * + * { margin-top: 24px !important; }
-  .space-y-4  > * + * { margin-top: 30px !important; }
-  .space-y-3  > * + * { margin-top: 8px !important; }
-  .space-y-2  > * + * { margin-top: 4px !important; }
-
-  .gap-10, .gap-14, .gap-16 { gap: 32px !important; }
-  .gap-6, .gap-5 { gap: 20px !important; }
-
-  /* Text → non-text asset spacing: match HealthBenefits mb-6 (~32px) */
-  .mb-8, .mt-8 { margin-bottom: 32px !important; margin-top: 32px !important; }
-  .mb-6 { margin-bottom: 32px !important; }
-  .mb-4 { margin-bottom: 32px !important; }
-
-  /* Left alignment */
-  * { text-align: left !important; }
+.footer-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--color-ink) 0%,
+    var(--color-brand) 40%,
+    var(--color-ink) 70%,
+    #0f0d2e 100%
+  );
 }
 
-.btn-cta {
-  background: linear-gradient(135deg, var(--color-brand) 0%, var(--color-ink) 50%, var(--color-brand) 100%);
-  background-size: 200% 200%;
-  background-position: 100% 100%;
-  transition: background-position 0.7s cubic-bezier(0.25, 0.1, 0.1, 1);
-}
+/* Honour the OS "reduce motion" setting across CSS keyframes, Tailwind
+   transitions and framer-motion's inline styles. Framer reads the same media
+   query via useReducedMotion, but this covers everything it does not own. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
 
-.btn-cta:hover {
-  background-position: 0% 0%;
+  .philosophy-enter-forward,
+  .philosophy-enter-backward,
+  .dice-enter,
+  .dice-exit,
+  .topic-enter {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
 }

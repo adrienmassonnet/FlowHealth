@@ -9,7 +9,7 @@ import { trackEvent } from '@/lib/clarity';
 const pillars = [
   {
     title: 'Peer-Reviewed Evidence',
-    description: 'Human clinical trials only — no animal studies or in-vitro data.',
+    description: 'Human clinical trials only, no animal studies or in-vitro data.',
     icon: (
       <svg width="28" height="28" viewBox="0 0 36 36" fill="none">
         <circle cx="18" cy="18" r="8" stroke="currentColor" strokeWidth="1.5"/>
@@ -30,7 +30,7 @@ const pillars = [
   },
   {
     title: 'Bioavailable Forms',
-    description: 'The most absorbable form of each compound — the exact form used in research.',
+    description: 'The most absorbable form of each compound: the exact form used in research.',
     icon: (
       <svg width="28" height="28" viewBox="0 0 36 36" fill="none">
         <path d="M18 6 C18 6 10 14 10 22 C10 27.5 13.6 31 18 31 C22.4 31 26 27.5 26 22 C26 14 18 6 18 6Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
@@ -84,9 +84,9 @@ export default function HealthCenter({ caloriesKcal, activeIngredients, totalFor
   const [nutritionOpen, setNutritionOpen] = useState(false);
 
   return (
-    <section className="max-w-[1200px] mx-auto px-6 pt-4 pb-20 md:pt-8">
+    <section className="flow-container pt-4 pb-20 md:pt-8">
       <div className="mb-6 space-y-2">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-[1.08]">Our product has nothing to hide.</h2>
+        <h2 className="flow-h2">Our product has nothing to hide.</h2>
       </div>
 
       {/* Nutrition popup */}
@@ -163,7 +163,7 @@ export default function HealthCenter({ caloriesKcal, activeIngredients, totalFor
               ].map((row) => (
                 <div key={row.label} className="bg-gradient-to-br from-ink to-[#2d2a7a] rounded-xl px-3 py-2.5">
                   <p className="text-sm font-semibold tracking-[-0.02em] text-white leading-snug">{row.value}</p>
-                  <p className="text-[10px] tracking-[0.07em] uppercase text-white/50 mt-0.5">{row.label}</p>
+                  <p className="text-micro tracking-[0.07em] uppercase text-white/50 mt-0.5">{row.label}</p>
                 </div>
               ))}
             </div>

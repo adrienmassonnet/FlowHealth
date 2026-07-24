@@ -20,10 +20,10 @@ export const metadata: Metadata = {
     apple: '/flow-logomark.svg',
   },
   title: {
-    default: 'Flow Health — Stable Energy for Deep Focus',
+    default: 'Flow Health: Stable Energy for Deep Focus',
     template: '%s | Flow Health',
   },
-  description: 'Flow is a premium Swiss cognitive supplement — 16 clinically-dosed active ingredients for sustained focus, balanced mood, and long-term brain health. No caffeine, no sugar, no fillers.',
+  description: 'Flow is a premium Swiss cognitive supplement with 16 clinically-dosed active ingredients for sustained focus, balanced mood, and long-term brain health. No caffeine, no sugar, no fillers.',
   keywords: ['cognitive supplement', 'nootropic', 'focus supplement', 'Swiss supplement', "lion's mane", 'saffron extract', 'mental clarity', 'brain health'],
   authors: [{ name: 'Flow Health' }],
   creator: 'Flow Health',
@@ -32,13 +32,13 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: SITE_URL,
     siteName: 'Flow Health',
-    title: 'Flow Health — Stable Energy for Deep Focus',
-    description: 'Flow is a premium Swiss cognitive supplement — 16 clinically-dosed active ingredients for sustained focus, balanced mood, and long-term brain health.',
+    title: 'Flow Health: Stable Energy for Deep Focus',
+    description: 'Flow is a premium Swiss cognitive supplement with 16 clinically-dosed active ingredients for sustained focus, balanced mood, and long-term brain health.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Flow Health — Stable Energy for Deep Focus',
-    description: 'Flow is a premium Swiss cognitive supplement — 16 clinically-dosed active ingredients for sustained focus, balanced mood, and long-term brain health.',
+    title: 'Flow Health: Stable Energy for Deep Focus',
+    description: 'Flow is a premium Swiss cognitive supplement with 16 clinically-dosed active ingredients for sustained focus, balanced mood, and long-term brain health.',
   },
   robots: {
     index: true,
@@ -63,7 +63,7 @@ const organizationJsonLd = {
   brand: {
     '@type': 'Brand',
     name: 'Flow Health',
-    description: 'Premium Swiss cognitive supplement — caffeine-free, fully transparent formula.',
+    description: 'Premium Swiss cognitive supplement: caffeine-free, fully transparent formula.',
   },
 };
 
@@ -120,7 +120,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <Header productHandle={productHandle} />
         {children}
         <footer className="footer-gradient text-white/50 mt-12">
-          <div className="max-w-[1200px] mx-auto px-6 py-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16">
+          <div className="flow-container py-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16">
 
             {/* About Flow */}
             <div className="space-y-4">
@@ -189,7 +189,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           </div>
 
           {/* Bottom bar */}
-          <div className="max-w-[1200px] mx-auto px-6 py-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flow-container py-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-xs">Copyright © 2026 <Link href="/" className="hover:text-white transition-colors">Flow Health</Link></p>
             {/* PayPal icon */}
             <svg viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg" width="38" height="24" aria-label="PayPal" className="opacity-50">

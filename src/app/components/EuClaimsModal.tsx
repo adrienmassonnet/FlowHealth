@@ -136,8 +136,8 @@ export default function EuClaimsModal() {
 
             {/* Footer */}
             <div className="px-6 py-4 border-t border-ink/[0.08] shrink-0">
-              <p className="text-[10px] text-[rgba(30,24,84,0.40)] leading-relaxed">
-                Source: EU Register of authorised health claims — ec.europa.eu/food/safety/labelling_nutrition/claims/register
+              <p className="text-micro text-[rgba(30,24,84,0.40)] leading-relaxed">
+                Source: EU Register of authorised health claims, ec.europa.eu/food/safety/labelling_nutrition/claims/register
               </p>
             </div>
           </div>

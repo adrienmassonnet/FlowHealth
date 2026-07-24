@@ -107,7 +107,7 @@ export default function BrainHealthSection() {
       ref={sectionRef}
       className="py-10 md:py-16 bg-white overflow-hidden"
     >
-      <div className="max-w-[1200px] mx-auto px-6">
+      <div className="flow-container">
 
         <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
 
@@ -127,7 +127,7 @@ export default function BrainHealthSection() {
               <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">
                 Long-term brain health
               </p>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-[1.08] text-ink">
+              <h2 className="flow-h2">
                 Chronic overstimulation quietly hinders the brain.
               </h2>
             </div>

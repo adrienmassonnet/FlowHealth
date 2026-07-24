@@ -1,6 +1,6 @@
 export default function ProductLoading() {
   return (
-    <div className="pt-20 pb-12 md:pb-20 max-w-[1200px] mx-auto px-6 animate-pulse">
+    <div className="pt-20 pb-12 md:pb-20 flow-container animate-pulse">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
         {/* Image gallery skeleton */}
         <div className="aspect-square bg-ink/5 rounded-2xl" />
