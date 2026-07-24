@@ -81,7 +81,7 @@ export default function NeurotransmitterSection() {
   return (
     <section
       ref={sectionRef}
-      className="py-10 md:py-16 bg-[#F4F4F8] relative overflow-hidden md:rounded-[2rem] md:mx-8"
+      className="py-10 md:py-16 bg-[#F4F4F8] relative overflow-hidden md:rounded-2xl md:mx-8"
     >
       <div className="relative flow-container">
         <div className="flex flex-col md:flex-row md:items-center gap-10 md:gap-12">

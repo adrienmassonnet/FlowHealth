@@ -41,7 +41,13 @@ export default function MainBenefits({ benefits }: { benefits: HealthBenefit[] }
             ) : (
               <div className="absolute inset-0 bg-gradient-to-br from-ink to-[#2d2a7a]" />
             )}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+            {/* Tap affordance — without this the cards read as static imagery */}
+            <span className="absolute top-2.5 right-2.5 w-6 h-6 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center">
+              <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+                <path d="M5.5 1.5v8M1.5 5.5h8" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+            </span>
             <div className="absolute bottom-0 left-0 right-0 p-4">
               <h3 className="flow-h5 text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">{b.label}</h3>
             </div>

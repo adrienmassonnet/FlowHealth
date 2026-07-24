@@ -73,13 +73,18 @@ const config: Config = {
         narrow:  '480px',   /* constrained headings */
       },
 
-      /* ── Border radius ──────────────────────────────────────────── */
+      /* ── Border radius ──────────────────────────────────────────────────
+         Tightened ~40% from the previous ladder (10/14/20/28/32), which read
+         as over-rounded. Even 4px steps so the scale is predictable, and 3xl
+         is no longer smaller than xl as it was when it fell through to the
+         Tailwind default. rounded-full is unchanged — pills stay pills. */
       borderRadius: {
-        sm:  '0.625rem',  /* 10px — tags, pills */
-        md:  '0.875rem',  /* 14px — small cards */
-        lg:  '1.25rem',   /* 20px — standard cards */
-        xl:  '1.75rem',   /* 28px — large panels */
-        '2xl': '2rem',
+        sm:    '0.375rem', /*  6px — tags, badges */
+        md:    '0.5rem',   /*  8px — small cards */
+        lg:    '0.75rem',  /* 12px — standard cards */
+        xl:    '1rem',     /* 16px — large panels */
+        '2xl': '1.25rem',  /* 20px */
+        '3xl': '1.5rem',   /* 24px — hero panels, modals */
       },
 
       /* ── Box shadows ────────────────────────────────────────────── */

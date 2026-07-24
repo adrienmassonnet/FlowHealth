@@ -75,70 +75,51 @@ function IngredientTile({ name, tagline, image, onClick }: { name: string; tagli
   );
 }
 
-function IngredientCardRow({ name, tagline, description, image, onClick }: { name: string; tagline: string; description: string; image: string; onClick: () => void }) {
+function IngredientCardRow({ name, tagline, image, onClick }: { name: string; tagline: string; description?: string; image: string; onClick: () => void }) {
   return (
-    <div
-      className="cursor-pointer group rounded-xl border border-ink/[0.07] bg-white shadow-sm shadow-ink/[0.04] hover:shadow-xl hover:shadow-ink/[0.10] hover:-translate-y-0.5 transition-all duration-500 flex flex-col md:flex-row overflow-hidden"
+    <button
+      type="button"
+      className="cursor-pointer group rounded-xl border border-ink/[0.07] bg-white shadow-sm shadow-ink/[0.04] hover:shadow-xl hover:shadow-ink/[0.10] hover:-translate-y-0.5 hover:border-brand/30 transition-all duration-500 flex flex-col overflow-hidden text-left w-full"
       onClick={onClick}
+      aria-label={`${name} — view details`}
     >
-      {/* Desktop image sidebar */}
-      <div className="hidden md:block relative w-28 self-stretch shrink-0 overflow-hidden">
+      <div className="relative w-full aspect-[16/10] shrink-0 overflow-hidden bg-ink/[0.04]">
         {image && (image.startsWith('/') || image.startsWith('http')) && (
           <Image
             src={image}
             alt={name}
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-            sizes="112px"
+            sizes="(max-width: 768px) 50vw, 25vw"
             unoptimized={!image.startsWith('/')}
           />
         )}
+        {tagline && (
+          <span className="absolute bottom-2 left-2 text-micro font-semibold tracking-[0.08em] uppercase text-white bg-black/45 backdrop-blur-sm px-2 py-0.5 rounded-full whitespace-nowrap">
+            {tagline}
+          </span>
+        )}
+        {/* Affordance — the cards read as static imagery without it */}
+        <span className="absolute top-2 right-2 w-6 h-6 rounded-full bg-white/25 backdrop-blur-sm border border-white/40 flex items-center justify-center">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+            <path d="M5.5 1.5v8M1.5 5.5h8" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+          </svg>
+        </span>
       </div>
 
-      {/* Title + pills (+ mobile image inline) */}
-      <div className="flex flex-row gap-0 flex-1 min-w-0">
-        {/* Mobile image */}
-        <div className="md:hidden p-2 shrink-0">
-          <div className="relative w-16 h-16 rounded-lg overflow-hidden">
-            {image && (image.startsWith('/') || image.startsWith('http')) && (
-              <Image
-                src={image}
-                alt={name}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                sizes="64px"
-                unoptimized={!image.startsWith('/')}
-              />
-            )}
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-1.5 p-3 md:p-4 flex-1 min-w-0 justify-center">
-          <div className="flex items-center gap-2 flex-wrap">
-            <h3 className="flow-h5">{name}</h3>
-            {tagline && (
-              <span className="text-micro font-semibold tracking-[0.08em] uppercase text-black/40 bg-ink/[0.05] px-2 py-0.5 rounded-full whitespace-nowrap">
-                {tagline}
+      <div className="flex flex-col gap-1.5 p-3 flex-1 min-w-0">
+        <h3 className="flow-h5">{name}</h3>
+        {getPills(name).length > 0 && (
+          <div className="flex flex-wrap gap-1">
+            {getPills(name).map((pill: string) => (
+              <span key={pill} className="text-micro font-semibold tracking-[0.06em] uppercase px-2 py-0.5 rounded-full bg-brand/10 text-brand">
+                {pill}
               </span>
-            )}
+            ))}
           </div>
-          {getPills(name).length > 0 && (
-            <div className="flex flex-wrap gap-1">
-              {getPills(name).map((pill: string) => (
-                <span key={pill} className="text-micro font-semibold tracking-[0.06em] uppercase px-2 py-0.5 rounded-full bg-gradient-to-r from-brand/10 to-ink/10 text-brand">
-                  {pill}
-                </span>
-              ))}
-            </div>
-          )}
-          {/* Description — desktop only inline, mobile below */}
-          <p className="hidden md:block text-xs text-ink/60 leading-[1.55]">{description}</p>
-        </div>
+        )}
       </div>
-
-      {/* Description — mobile only, below the image+title row */}
-      <p className="md:hidden text-xs text-ink/60 leading-[1.55] px-3 pb-3">{description}</p>
-    </div>
+    </button>
   );
 }
 
@@ -205,7 +186,7 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile', ac
               key={key}
               onClick={() => selectCategory(key)}
               className={cn(
-                'shrink-0 whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-200 flex items-center gap-1.5',
+                'shrink-0 whitespace-nowrap rounded-full px-3.5 min-h-[44px] text-xs font-semibold transition-all duration-200 flex items-center gap-1.5 border',
                 active
                   ? 'bg-ink text-white'
                   : 'bg-ink/6 text-ink/50 hover:bg-ink/10 hover:text-ink/70'
@@ -214,7 +195,7 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile', ac
               {label}
               <span className={cn(
                 'text-xs font-semibold rounded-full px-1.5 py-0.5 leading-none tabular-nums',
-                active ? 'bg-white/20 text-white/80' : 'bg-ink/8 text-ink/40'
+                active ? 'bg-white/25 text-white' : 'bg-ink/10 text-ink/60'
               )}>{count}</span>
             </button>
           );
@@ -238,18 +219,18 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile', ac
                 data-category={key}
                 onClick={() => selectCategory(key)}
                 className={cn(
-                  'relative rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-200 flex items-center justify-between gap-2 w-full text-left',
+                  'relative rounded-full px-3.5 min-h-[40px] text-xs font-semibold transition-all duration-200 flex items-center justify-between gap-2 w-full text-left border',
                   active
-                    ? 'bg-ink text-white'
-                    : 'text-ink/45 hover:text-ink/70 hover:bg-ink/6'
+                    ? 'bg-ink text-white border-ink'
+                    : 'text-ink/70 border-ink/15 bg-white hover:border-ink/40 hover:text-ink'
                 )}
               >
                 {label}
                 <span className={cn(
                   'text-xs font-semibold rounded-full px-1.5 py-0.5 leading-none tabular-nums shrink-0 transition-colors duration-200',
                   active
-                    ? 'bg-white/20 text-white/80'
-                    : 'bg-ink/8 text-ink/35'
+                    ? 'bg-white/25 text-white'
+                    : 'bg-ink/10 text-ink/60'
                 )}>{count}</span>
               </button>
             );
@@ -266,7 +247,7 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile', ac
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.2 }}
-              className={variant === 'tile' ? 'grid grid-cols-2 sm:grid-cols-3 gap-4' : 'grid grid-cols-1 gap-3'}
+              className={variant === 'tile' ? 'grid grid-cols-2 sm:grid-cols-3 gap-4' : 'grid grid-cols-2 gap-3'}
             >
               {visible.map((ing) => variant === 'tile' ? (
                 <IngredientTile
@@ -287,7 +268,7 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile', ac
                 />
               ))}
               {Array.from({ length: placeholderCount }).map((_, i) => (
-                <div key={`ph-${i}`} className={variant === 'tile' ? 'rounded-2xl aspect-[4/3] invisible' : 'rounded-xl h-[88px] invisible'} />
+                <div key={`ph-${i}`} className={variant === 'tile' ? 'rounded-2xl aspect-[4/3] invisible' : 'rounded-xl aspect-[16/10] invisible'} />
               ))}
             </motion.div>
           </AnimatePresence>
@@ -298,7 +279,7 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile', ac
           onClick={() => { setPage((p) => Math.max(0, p - 1)); trackEvent('product_ingredient_page_prev'); }}
           disabled={safePage === 0}
           aria-label="Previous ingredients"
-          className="w-8 h-8 flex items-center justify-center text-ink/65 disabled:opacity-25 disabled:pointer-events-none hover:text-ink transition-colors duration-300"
+          className="w-11 h-11 rounded-full border border-ink/20 bg-white flex items-center justify-center text-ink disabled:opacity-30 disabled:pointer-events-none hover:border-ink/45 hover:bg-ink/[0.04] transition-colors duration-300"
         >
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
             <path d="M11 4L6 9L11 14" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
@@ -310,7 +291,7 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile', ac
               key={i}
               onClick={() => setPage(i)}
               aria-label={`Page ${i + 1}`}
-              className={`rounded-full transition-all duration-300 ${i === safePage ? 'w-5 h-1 bg-ink/35' : 'w-1.5 h-1.5 bg-ink/12 hover:bg-ink/25'}`}
+              className={`rounded-full transition-all duration-300 ${i === safePage ? 'w-6 h-1.5 bg-brand' : 'w-1.5 h-1.5 bg-ink/25 hover:bg-ink/45'}`}
             />
           ))}
         </div>
@@ -318,7 +299,7 @@ export default function IngredientsAccordion({ ingredients, variant = 'tile', ac
           onClick={() => { setPage((p) => Math.min(totalPages - 1, p + 1)); trackEvent('product_ingredient_page_next'); }}
           disabled={safePage === totalPages - 1}
           aria-label="Next ingredients"
-          className="w-8 h-8 flex items-center justify-center text-ink/65 disabled:opacity-25 disabled:pointer-events-none hover:text-ink transition-colors duration-300"
+          className="w-11 h-11 rounded-full border border-ink/20 bg-white flex items-center justify-center text-ink disabled:opacity-30 disabled:pointer-events-none hover:border-ink/45 hover:bg-ink/[0.04] transition-colors duration-300"
         >
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
             <path d="M7 4L12 9L7 14" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>

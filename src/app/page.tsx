@@ -195,7 +195,7 @@ export default async function HomePage() {
       <BrainHealthSection />
 
       {/* Key Ingredients */}
-      <section className="bg-[#F4F4F8] md:rounded-[2rem] md:mx-8" style={{ backgroundImage: 'radial-gradient(circle, rgba(30,24,84,0.07) 1px, transparent 1px)', backgroundSize: '28px 28px' }}>
+      <section className="bg-[#F4F4F8] md:rounded-2xl md:mx-8" style={{ backgroundImage: 'radial-gradient(circle, rgba(30,24,84,0.07) 1px, transparent 1px)', backgroundSize: '28px 28px' }}>
         <div className="flow-container py-10 md:py-16 space-y-8">
 
           {/* Header row */}

@@ -23,7 +23,7 @@ export default function ApproachSection() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden md:rounded-[2rem] md:mx-8 2xl:mx-auto 2xl:max-w-[1216px] min-h-[560px] md:min-h-[600px] flex items-center"
+      className="relative overflow-hidden md:rounded-2xl md:mx-8 2xl:mx-auto 2xl:max-w-[1216px] min-h-[560px] md:min-h-[600px] flex items-center"
     >
       <Image
         src="/overstimulation.png"

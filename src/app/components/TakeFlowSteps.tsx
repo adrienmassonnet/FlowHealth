@@ -48,7 +48,11 @@ export default function TakeFlowSteps({ steps }: { steps: TakeFlowStep[] }) {
                           transition: 'grid-template-rows 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease',
                         }}
                       >
-                      <div className="overflow-hidden">
+                      {/* min-h-0 is required: grid items default to
+                          min-height:auto, which stops the 0fr row from
+                          collapsing, so closed steps kept reserving their
+                          full body height. */}
+                      <div className="overflow-hidden min-h-0">
                         {Array.isArray(step.body) ? (
                           <ol className="mt-2 space-y-1">
                             {step.body.map((line, idx) => (

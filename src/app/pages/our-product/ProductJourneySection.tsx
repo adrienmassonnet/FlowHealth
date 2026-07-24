@@ -93,66 +93,50 @@ export default function ProductJourneySection() {
           </p>
         </div>
 
-        {/* Desktop: horizontal timeline */}
-        <div className="hidden md:block">
-          {/* Connector line */}
-          <div className="relative mb-10">
-            <div className="absolute top-5 left-0 right-0 h-px bg-gradient-to-r from-brand/20 via-brand/40 to-ink/20" />
-            <div className="flex justify-between relative">
-              {CHAPTERS.map((ch) => (
-                <div key={ch.year} className="flex flex-col items-center" style={{ width: `${100 / CHAPTERS.length}%` }}>
-                  {/* Node */}
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand to-ink flex items-center justify-center text-white shadow-[0_0_0_4px_white,0_0_0_5px_rgba(59,56,184,0.2)] z-10">
-                    {ch.icon}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Cards */}
-          <div className="flex gap-4">
-            {CHAPTERS.map((ch, i) => (
-              <div
-                key={ch.year}
-                className="flex-1 rounded-2xl border border-ink/[8.2%] bg-white p-5 shadow-[0_2px_12px_rgba(30,24,84,0.05)] flex flex-col gap-3"
-                style={{ opacity: 1 }}
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-micro tracking-[0.18em] uppercase font-semibold text-brand/60">{ch.label}</span>
-                  <span className="text-xs font-semibold text-ink/20">{ch.year}</span>
-                </div>
-                <p className="text-sm font-semibold text-ink leading-snug tracking-[-0.01em]">{ch.heading}</p>
-                <p className="text-xs text-[rgba(30,24,84,0.55)] leading-[1.6]">{ch.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Mobile: vertical timeline */}
-        <div className="md:hidden relative">
-          {/* Vertical line */}
-          <div className="absolute left-4 top-5 bottom-5 w-px bg-gradient-to-b from-brand/30 via-brand/20 to-ink/10" />
-
-          <div className="flex flex-col gap-8 pl-12">
-            {CHAPTERS.map((ch) => (
-              <div key={ch.year} className="relative">
-                {/* Node */}
-                <div className="absolute -left-12 top-0 w-8 h-8 rounded-full bg-gradient-to-br from-brand to-ink flex items-center justify-center text-white shadow-[0_0_0_3px_white,0_0_0_4px_rgba(59,56,184,0.2)]">
+        {/* Desktop: cards carry their own icon — the connector rail stole
+            width from the copy and added no information */}
+        <div className="hidden md:flex gap-4">
+          {CHAPTERS.map((ch) => (
+            <div
+              key={ch.year}
+              className="flex-1 rounded-xl border border-ink/[8.2%] bg-white p-5 shadow-[0_2px_12px_rgba(30,24,84,0.05)] flex flex-col gap-3"
+            >
+              <div className="flex items-center gap-3">
+                <span className="shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-brand to-ink flex items-center justify-center text-white">
                   {ch.icon}
-                </div>
-
-                <div className="rounded-2xl border border-ink/[8.2%] bg-white p-5 shadow-[0_2px_12px_rgba(30,24,84,0.05)] flex flex-col gap-2">
+                </span>
+                <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">
                     <span className="text-micro tracking-[0.18em] uppercase font-semibold text-brand">{ch.label}</span>
-                    <span className="text-micro font-semibold text-ink/25">{ch.year}</span>
+                    <span className="text-micro font-semibold text-ink/55 tabular-nums">{ch.year}</span>
                   </div>
-                  <p className="text-sm font-semibold text-ink leading-snug">{ch.heading}</p>
-                  <p className="text-xs text-[rgba(30,24,84,0.55)] leading-[1.6]">{ch.body}</p>
+                  <p className="flow-h5 leading-snug">{ch.heading}</p>
                 </div>
               </div>
-            ))}
-          </div>
+              <p className="text-xs text-[rgba(30,24,84,0.72)] leading-[1.6]">{ch.body}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Mobile: full-width cards, icon inline with the title */}
+        <div className="md:hidden flex flex-col gap-4">
+          {CHAPTERS.map((ch) => (
+            <div key={ch.year} className="rounded-xl border border-ink/[8.2%] bg-white p-5 shadow-[0_2px_12px_rgba(30,24,84,0.05)] flex flex-col gap-3">
+              <div className="flex items-center gap-3">
+                <span className="shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-brand to-ink flex items-center justify-center text-white">
+                  {ch.icon}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2">
+                    <span className="text-micro tracking-[0.18em] uppercase font-semibold text-brand">{ch.label}</span>
+                    <span className="text-micro font-semibold text-ink/55 tabular-nums">{ch.year}</span>
+                  </div>
+                  <p className="flow-h5 leading-snug">{ch.heading}</p>
+                </div>
+              </div>
+              <p className="text-xs text-[rgba(30,24,84,0.72)] leading-[1.6]">{ch.body}</p>
+            </div>
+          ))}
         </div>
 
       </div>

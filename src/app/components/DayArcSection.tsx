@@ -145,10 +145,12 @@ export default function DayArcSection() {
             <div className="absolute inset-0 rounded-full" style={{ background: 'linear-gradient(135deg,var(--color-brand),var(--color-ink))', opacity: mode === 'flow' ? 1 : 0, transition: 'opacity 0.5s' }} />
             <div className="absolute top-[3px] bottom-[3px] rounded-full" style={{ background: mode === 'stim' ? '#fff' : 'rgba(255,255,255,0.18)', left: mode === 'stim' ? '3px' : 'calc(50% + 1px)', right: mode === 'stim' ? 'calc(50% + 1px)' : '3px', boxShadow: mode === 'stim' ? '0 1px 6px rgba(30,24,84,0.14)' : 'none', transition: `left ${toggleDuration}s cubic-bezier(0.4,0,0.2,1), right ${toggleDuration}s cubic-bezier(0.4,0,0.2,1), background ${toggleDuration}s`, zIndex: 1 }} />
             <div className="relative flex-1 flex items-center justify-center px-4 py-1.5" style={{ zIndex: 2 }}>
-              <span className="text-xs font-medium whitespace-nowrap" style={{ color: mode === 'stim' ? 'var(--color-ink)' : 'rgba(255,255,255,0.5)', transition: 'color 0.5s' }}>With caffeine</span>
+              <span className="shrink-0 w-2 h-2 rounded-full mr-2" style={{ background: STIM_COLOR }} />
+                <span className="text-xs font-medium whitespace-nowrap" style={{ color: mode === 'stim' ? 'var(--color-ink)' : 'rgba(255,255,255,0.5)', transition: 'color 0.5s' }}>With caffeine</span>
             </div>
             <div className="relative flex-1 flex items-center justify-center px-4 py-1.5" style={{ zIndex: 2 }}>
-              <span className="text-xs font-medium whitespace-nowrap" style={{ color: mode === 'flow' ? '#fff' : 'rgba(30,24,84,0.4)', transition: 'color 0.5s' }}>With Flow</span>
+              <span className="shrink-0 w-2 h-2 rounded-full mr-2" style={{ background: FLOW_COLOR }} />
+                <span className="text-xs font-medium whitespace-nowrap" style={{ color: mode === 'flow' ? '#fff' : 'rgba(30,24,84,0.4)', transition: 'color 0.5s' }}>With Flow</span>
             </div>
           </div>
         </div>
@@ -182,6 +184,9 @@ export default function DayArcSection() {
 
             {/* Axis */}
             <line x1="40" y1="410" x2="880" y2="410" stroke="rgba(30,24,84,0.08)" strokeWidth="1" />
+
+            {/* Y-axis label */}
+            <text x="16" y="205" transform="rotate(-90 16 205)" textAnchor="middle" fontSize="20" fill="rgba(30,24,84,0.45)" fontFamily="Inter,system-ui" fontWeight="500">Cognitive readiness</text>
 
             {/* X labels */}
             {[
@@ -254,12 +259,14 @@ export default function DayArcSection() {
                   zIndex: 1,
                 }}
               />
-              <div className="relative flex items-center justify-center py-1.5" style={{ zIndex: 2, width: '120px' }}>
+              <div className="relative flex items-center justify-center py-1.5" style={{ zIndex: 2, width: '104px' }}>
+                <span className="shrink-0 w-2 h-2 rounded-full mr-2" style={{ background: STIM_COLOR }} />
                 <span className="text-xs font-medium whitespace-nowrap" style={{ color: mode === 'stim' ? 'var(--color-ink)' : 'rgba(255,255,255,0.5)', transition: 'color 0.5s cubic-bezier(0.4,0,0.2,1)' }}>
                   With caffeine
                 </span>
               </div>
-              <div className="relative flex items-center justify-center py-1.5" style={{ zIndex: 2, width: '120px' }}>
+              <div className="relative flex items-center justify-center py-1.5" style={{ zIndex: 2, width: '104px' }}>
+                <span className="shrink-0 w-2 h-2 rounded-full mr-2" style={{ background: FLOW_COLOR }} />
                 <span className="text-xs font-medium whitespace-nowrap" style={{ color: mode === 'flow' ? '#fff' : 'rgba(30,24,84,0.4)', transition: 'color 0.5s cubic-bezier(0.4,0,0.2,1)' }}>
                   With Flow
                 </span>
@@ -291,27 +298,30 @@ export default function DayArcSection() {
                   }}
                 >
                   <div
-                    className="absolute top-0 left-0 w-8 h-8 rounded-tl-2xl rounded-br-xl flex items-center justify-center text-xs font-semibold shrink-0 transition-all duration-500"
-                    style={{ background: mode === 'stim' ? 'rgba(217,119,6,0.12)' : 'rgba(59,56,184,0.10)', backdropFilter: 'blur(8px)', border: `1px solid ${mode === 'stim' ? 'rgba(217,119,6,0.20)' : 'rgba(59,56,184,0.18)'}`, color: mode === 'stim' ? 'rgba(217,119,6,0.85)' : 'rgba(59,56,184,0.7)' }}
-                  >
-                    {i + 1}
-                  </div>
-                  <div
-                    className="flex items-center gap-0 cursor-pointer md:cursor-default"
+                    className="flex items-center gap-3 cursor-pointer md:cursor-default px-4 py-3 md:px-5 md:py-4"
                     onClick={() => setMobileOpen(isOpen ? null : i)}
                   >
-                    <p className="text-sm font-semibold tracking-[-0.01em] flex-1 pt-2 pb-3 pr-4 md:pb-4 md:pr-5 pl-10" style={{ color: 'var(--color-ink)' }}>
+                    <span
+                      className="shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-micro font-semibold tabular-nums transition-colors duration-500"
+                      style={{
+                        background: mode === 'stim' ? 'rgba(217,119,6,0.14)' : 'rgba(59,56,184,0.12)',
+                        color: mode === 'stim' ? 'rgb(180,83,9)' : 'var(--color-brand)',
+                      }}
+                    >
+                      {i + 1}
+                    </span>
+                    <p className="text-sm font-semibold tracking-[-0.01em] flex-1" style={{ color: 'var(--color-ink)' }}>
                       {mode === 'stim' ? c.stimLabel : c.flowLabel}
                     </p>
                     <svg
-                      className={`md:hidden shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                      className={`md:hidden shrink-0 ml-1 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
                       width="14" height="14" viewBox="0 0 14 14" fill="none"
                     >
                       <path d="M3 5l4 4 4-4" stroke="rgba(30,24,84,0.4)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </div>
                   <div className={`md:block ${isOpen ? 'block' : 'hidden'}`}>
-                    <p className="text-sm leading-[1.55] px-4 pb-3 md:px-5 md:pb-4 md:pt-0" style={{ color: 'rgba(30,24,84,0.55)' }}>
+                    <p className="text-sm leading-[1.55] px-4 pb-3 pl-13 md:px-5 md:pb-4 md:pt-0 md:pl-14" style={{ color: 'rgba(30,24,84,0.7)' }}>
                       {mode === 'stim' ? c.stim : c.flow}
                     </p>
                   </div>
@@ -371,6 +381,9 @@ export default function DayArcSection() {
 
               {/* Axis */}
               <line x1="40" y1="410" x2="880" y2="410" stroke="rgba(30,24,84,0.08)" strokeWidth="1" />
+
+              {/* Y-axis label */}
+              <text x="16" y="205" transform="rotate(-90 16 205)" textAnchor="middle" fontSize="20" fill="rgba(30,24,84,0.45)" fontFamily="Inter,system-ui" fontWeight="500">Cognitive readiness</text>
 
               {/* X labels */}
               {[

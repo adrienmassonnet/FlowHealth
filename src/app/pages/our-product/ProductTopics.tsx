@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import IngredientsAccordion from '@/app/products/[handle]/IngredientsAccordion';
 import { allIngredients } from '@/app/components/IngredientsExplorer';
 import type { Ingredient } from '@/lib/content';
@@ -36,6 +37,8 @@ const contrast = [
 ];
 
 export default function ProductTopics({ ingredients, activeIngredients }: { ingredients: Ingredient[]; activeIngredients?: number }) {
+  const [activeSystem, setActiveSystem] = useState(0);
+
   return (
     <div className="bg-white">
 
@@ -48,23 +51,40 @@ export default function ProductTopics({ ingredients, activeIngredients }: { ingr
           <div className="mb-10 md:mb-14 space-y-3 max-w-2xl">
             <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">The Formula</p>
             <h2 className="flow-h2">Five systems. One formula.</h2>
-            <p className="text-sm text-[rgba(30,24,84,0.65)] leading-relaxed">Most supplements target a single pathway. Flow is built around five interconnected cognitive systems, because memory, focus, stress, neuroplasticity, and recovery don't operate in isolation.</p>
+            <p className="text-sm text-[rgba(30,24,84,0.78)] leading-relaxed">Most supplements target a single pathway. Flow is built around five interconnected cognitive systems, because memory, focus, stress, neuroplasticity, and recovery don't operate in isolation.</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-            {systems.map((s) => (
-              <div key={s.domain} className="rounded-2xl bg-white border border-ink/[0.07] shadow-sm shadow-ink/[0.03] p-5 flex flex-col gap-4">
-                <span className={`self-start text-micro font-semibold tracking-[0.14em] uppercase px-2.5 py-1 rounded-full bg-gradient-to-r ${s.color} text-white`}>{s.domain}</span>
-                <p className="text-xs text-ink/70 leading-relaxed flex-1">{s.mechanism}</p>
-                <div className="space-y-1.5 pt-2 border-t border-ink/[0.06]">
-                  {s.ingredients.map((ing) => (
-                    <div key={ing} className="flex items-start gap-1.5">
-                      <span className="shrink-0 mt-[3px] w-1.5 h-1.5 rounded-full bg-brand/40" />
-                      <span className="text-xs text-ink font-medium leading-tight">{ing}</span>
-                    </div>
-                  ))}
+          {/* One system at a time — five narrow columns forced 2-word line
+              wraps and buried the mechanism copy. */}
+          <div className="flex flex-wrap gap-2 mb-4">
+            {systems.map((s, i) => {
+              const isActive = i === activeSystem;
+              return (
+                <button
+                  key={s.domain}
+                  onClick={() => setActiveSystem(i)}
+                  aria-pressed={isActive}
+                  className={`min-h-[44px] px-4 py-2 rounded-full text-xs font-semibold tracking-[0.08em] uppercase transition-colors duration-200 border ${
+                    isActive
+                      ? `bg-gradient-to-r ${s.color} text-white border-transparent shadow-sm`
+                      : 'bg-white text-ink/70 border-ink/15 hover:border-ink/35 hover:text-ink'
+                  }`}
+                >
+                  {s.domain}
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="rounded-xl bg-white border border-ink/[0.07] shadow-sm shadow-ink/[0.03] p-5 md:p-6">
+            <p className="flow-h5 mb-3">{systems[activeSystem].mechanism}</p>
+            <div className="flex flex-wrap gap-x-6 gap-y-2 pt-4 border-t border-ink/[0.06]">
+              {systems[activeSystem].ingredients.map((ing) => (
+                <div key={ing} className="flex items-center gap-2">
+                  <span className="shrink-0 w-1.5 h-1.5 rounded-full bg-brand" />
+                  <span className="text-sm text-ink font-medium">{ing}</span>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -75,18 +95,17 @@ export default function ProductTopics({ ingredients, activeIngredients }: { ingr
           <div className="mb-10 md:mb-14 space-y-3 max-w-2xl">
             <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Quality & Format</p>
             <h2 className="flow-h2">Made right, from start to finish.</h2>
-            <p className="text-sm text-[rgba(30,24,84,0.65)] leading-relaxed">The ingredients on the label only matter if the process behind them is held to the same standard.</p>
+            <p className="text-sm text-[rgba(30,24,84,0.78)] leading-relaxed">The ingredients on the label only matter if the process behind them is held to the same standard.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {steps.map((step, i) => (
               <div key={step.number} className="rounded-2xl border border-ink/[0.07] bg-[#F8F8FC] p-6 flex flex-col gap-4">
-                <div className="flex items-center gap-3">
-                  <span className="shrink-0 w-9 h-9 rounded-full bg-gradient-to-br from-ink to-[#2d2a7a] flex items-center justify-center text-xs font-semibold text-white/60 tabular-nums">{step.number}</span>
-                  {i < steps.length - 1 && <div className="hidden lg:block flex-1 h-px bg-ink/10" />}
+                <div className="flex items-start gap-3">
+                  <span className="shrink-0 w-9 h-9 rounded-full bg-gradient-to-br from-brand to-ink flex items-center justify-center text-xs font-semibold text-white tabular-nums">{step.number}</span>
+                  <h3 className="flow-h5 pt-1.5">{step.title}</h3>
                 </div>
                 <div className="space-y-2 flex-1">
-                  <h3 className="flow-h5">{step.title}</h3>
-                  <p className="text-xs text-ink/60 leading-relaxed">{step.detail}</p>
+                  <p className="text-xs text-ink/75 leading-relaxed">{step.detail}</p>
                 </div>
               </div>
             ))}
@@ -100,26 +119,26 @@ export default function ProductTopics({ ingredients, activeIngredients }: { ingr
           <div className="mb-10 md:mb-14 space-y-3 max-w-2xl">
             <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Our Promise</p>
             <h2 className="flow-h2">What you'll never find in Flow.</h2>
-            <p className="text-sm text-[rgba(30,24,84,0.65)] leading-relaxed">The supplement industry has a long list of common shortcuts. These are the ones we refuse to take.</p>
+            <p className="text-sm text-[rgba(30,24,84,0.78)] leading-relaxed">The supplement industry has a long list of common shortcuts. These are the ones we refuse to take.</p>
           </div>
           {/* Mobile: stacked cards */}
           <div className="md:hidden flex flex-col gap-3">
             {contrast.map((row) => (
               <div key={row.topic} className="rounded-xl border border-ink/[0.08] bg-white overflow-hidden">
                 <div className="px-4 py-2 border-b border-ink/[0.06] bg-[#F4F4FB]">
-                  <span className="text-micro font-semibold tracking-[0.12em] uppercase text-ink/40">{row.topic}</span>
+                  <span className="text-micro font-semibold tracking-[0.12em] uppercase text-ink/60">{row.topic}</span>
                 </div>
                 <div className="flex items-start gap-2.5 px-4 py-3 border-b border-ink/[0.06]">
-                  <span className="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center">
+                  <span className="shrink-0 w-5 h-5 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center">
                     <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="#16a34a" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   </span>
-                  <span className="text-xs text-ink leading-relaxed pt-0.5">{row.flow}</span>
+                  <span className="text-xs text-ink leading-relaxed">{row.flow}</span>
                 </div>
                 <div className="flex items-start gap-2.5 px-4 py-3">
-                  <span className="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-ink/[0.04] border border-ink/10 flex items-center justify-center">
-                    <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M2.5 2.5l4 4M6.5 2.5l-4 4" stroke="var(--color-ink)" strokeOpacity="0.3" strokeWidth="1.4" strokeLinecap="round"/></svg>
+                  <span className="shrink-0 w-5 h-5 rounded-full bg-ink/[0.04] border border-ink/10 flex items-center justify-center">
+                    <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M2.5 2.5l4 4M6.5 2.5l-4 4" stroke="var(--color-ink)" strokeOpacity="0.45" strokeWidth="1.4" strokeLinecap="round"/></svg>
                   </span>
-                  <span className="text-xs text-ink/45 leading-relaxed pt-0.5">{row.others}</span>
+                  <span className="text-xs text-ink/65 leading-relaxed">{row.others}</span>
                 </div>
               </div>
             ))}
@@ -135,25 +154,25 @@ export default function ProductTopics({ ingredients, activeIngredients }: { ingr
               </div>
               <div className="px-4 py-3 border-l border-ink/[0.08] flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-ink/20" />
-                <span className="text-xs font-semibold tracking-[0.1em] uppercase text-ink/35">Typical brands</span>
+                <span className="text-xs font-semibold tracking-[0.1em] uppercase text-ink/55">Typical brands</span>
               </div>
             </div>
             {contrast.map((row, i) => (
               <div key={row.topic} className={`grid grid-cols-[180px_1fr_1fr] ${i < contrast.length - 1 ? 'border-b border-ink/[0.06]' : ''} ${i % 2 === 0 ? 'bg-white' : 'bg-[#F8F8FC]/70'}`}>
                 <div className="px-4 py-4 flex items-center">
-                  <span className="text-xs font-semibold tracking-[0.08em] uppercase text-ink/50 leading-tight">{row.topic}</span>
+                  <span className="text-xs font-semibold tracking-[0.08em] uppercase text-ink/60 leading-tight">{row.topic}</span>
                 </div>
                 <div className="px-4 py-4 border-l border-ink/[0.06] flex items-start gap-2.5">
-                  <span className="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center">
+                  <span className="shrink-0 w-5 h-5 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center">
                     <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="#16a34a" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   </span>
-                  <span className="text-xs text-ink leading-relaxed pt-0.5">{row.flow}</span>
+                  <span className="text-xs text-ink leading-relaxed">{row.flow}</span>
                 </div>
                 <div className="px-4 py-4 border-l border-ink/[0.06] flex items-start gap-2.5">
-                  <span className="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-ink/[0.04] border border-ink/10 flex items-center justify-center">
-                    <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M2.5 2.5l4 4M6.5 2.5l-4 4" stroke="var(--color-ink)" strokeOpacity="0.3" strokeWidth="1.4" strokeLinecap="round"/></svg>
+                  <span className="shrink-0 w-5 h-5 rounded-full bg-ink/[0.04] border border-ink/10 flex items-center justify-center">
+                    <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M2.5 2.5l4 4M6.5 2.5l-4 4" stroke="var(--color-ink)" strokeOpacity="0.45" strokeWidth="1.4" strokeLinecap="round"/></svg>
                   </span>
-                  <span className="text-xs text-ink/45 leading-relaxed pt-0.5">{row.others}</span>
+                  <span className="text-xs text-ink/65 leading-relaxed">{row.others}</span>
                 </div>
               </div>
             ))}
