@@ -24,7 +24,7 @@ export default async function OurPhilosophyPage() {
       <section className="bg-white pt-28 md:pt-36 pb-14 md:pb-20">
         <div className="flow-container">
           <p className="text-xs tracking-[0.16em] uppercase text-ink/40 font-medium mb-5">About Flow</p>
-          <h1 className="flow-display max-w-3xl mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-[-0.03em] text-ink leading-tight max-w-3xl mb-6">
             Built for minds that refuse to settle.
           </h1>
           <p className="text-sm text-[rgba(30,24,84,0.65)] max-w-lg leading-relaxed">
@@ -57,7 +57,7 @@ export default async function OurPhilosophyPage() {
             <MorningRitualCard />
             <div className="space-y-4">
               <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Values we hold dear</p>
-              <h2 className="flow-h2">
+              <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-tight text-ink">
                 Flow is human led and science based.
               </h2>
             </div>
@@ -71,7 +71,7 @@ export default async function OurPhilosophyPage() {
           <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-10 md:gap-16 items-start">
             <div className="space-y-3">
               <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">What We Believe</p>
-              <h2 className="flow-h2">
+              <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
                 Conviction,<br />not aspiration.
               </h2>
             </div>
@@ -103,7 +103,7 @@ export default async function OurPhilosophyPage() {
         <div className="flow-container py-16 md:py-24">
           <div className="mb-12 space-y-2">
             <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Non-Negotiables</p>
-            <h2 className="flow-h2">Our six principles.</h2>
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">Our six principles.</h2>
           </div>
           <PrinciplesAccordion principles={principles} />
         </div>

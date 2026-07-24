@@ -84,7 +84,7 @@ export default function ValuePillarsSection() {
                 active ? 'w-2/3 opacity-100 px-5 md:px-6 duration-300 delay-500' : 'w-0 opacity-0 px-0 duration-150'
               }`}
             >
-              <h3 className="flow-h4 mb-2 whitespace-normal">
+              <h3 className="font-semibold tracking-[-0.02em] text-ink text-xl md:text-2xl mb-2 whitespace-normal">
                 {pillar.title}
               </h3>
               <p className="text-sm text-[rgba(30,24,84,0.6)] leading-relaxed whitespace-normal">

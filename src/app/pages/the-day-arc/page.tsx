@@ -18,7 +18,7 @@ export default function TheDayArcPage() {
       <section className="pt-28 md:pt-36 pb-12 md:pb-16 border-b border-ink/[0.06]">
         <div className="max-w-[760px] mx-auto px-6">
           <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent mb-5">The Science</p>
-          <h1 className="flow-display mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-[73.5px] font-semibold tracking-[-0.03em] text-ink leading-tight mb-6">
             How the morning sets the tone for the rest of the day.
           </h1>
           <p className="text-base text-[rgba(30,24,84,0.65)] leading-relaxed max-w-xl">
@@ -33,7 +33,7 @@ export default function TheDayArcPage() {
 
           {/* Section 1 */}
           <section className="space-y-4">
-            <h2 className="flow-h3">Your brain has a rhythm before you make any decisions</h2>
+            <h2 className="text-2xl font-semibold text-ink tracking-[-0.02em]">Your brain has a rhythm before you make any decisions</h2>
             <p>
               The quality of your thinking at 3pm is largely determined by what happened between 6 and 10am, not just what you did, but what your brain did on its own. In the hours after waking, a cascade of neurochemical shifts unfolds automatically: cortisol peaks to mobilise alertness, body temperature rises, and the adenosine accumulated overnight is fully cleared by sleep. These are not responses to what you ate or whether you exercised. They are biological defaults, shaped by millions of years of adaptation to the rhythm of light and darkness.
             </p>
@@ -44,7 +44,7 @@ export default function TheDayArcPage() {
 
           {/* Section 2 */}
           <section className="space-y-4">
-            <h2 className="flow-h3">How readiness naturally evolves through the day</h2>
+            <h2 className="text-2xl font-semibold text-ink tracking-[-0.02em]">How readiness naturally evolves through the day</h2>
             <p>
               As the morning progresses, adenosine, a byproduct of neural activity, begins to accumulate again. This is not a flaw. It is the brain&apos;s built-in pressure valve, gradually reducing the cost of sustained focus and nudging the system toward eventual rest. By early afternoon, most people experience a natural dip: a softening of attention, a slight drop in motivation, a pull toward lower-demand tasks. This is physiologically normal, cross-cultural, and present even in people who have never touched caffeine.
             </p>
@@ -58,7 +58,7 @@ export default function TheDayArcPage() {
 
           {/* Section 3 */}
           <section className="space-y-4">
-            <h2 className="flow-h3">Where stimulation disrupts the baseline</h2>
+            <h2 className="text-2xl font-semibold text-ink tracking-[-0.02em]">Where stimulation disrupts the baseline</h2>
             <p>
               The most common intervention is caffeine, consumed within minutes of waking, precisely when the brain&apos;s own cortisol and adenosine-clearing mechanisms are already doing their job. Caffeine works by occupying adenosine receptors, masking the signal of fatigue without resolving it. Adenosine continues to accumulate behind the blockade. When caffeine eventually clears, those receptors are flooded all at once, producing a crash that lands below the natural baseline rather than at it.
             </p>
@@ -73,7 +73,7 @@ export default function TheDayArcPage() {
 
           {/* Section 4 */}
           <section className="space-y-4">
-            <h2 className="flow-h3">Aligned support, not override</h2>
+            <h2 className="text-2xl font-semibold text-ink tracking-[-0.02em]">Aligned support, not override</h2>
             <p>
               Flow is built around a different premise: that the goal is not to override the brain&apos;s natural rhythm, but to support it, and in doing so, raise the ceiling of what that rhythm makes possible.
             </p>
@@ -90,7 +90,7 @@ export default function TheDayArcPage() {
 
           {/* Section 5 */}
           <section className="space-y-4">
-            <h2 className="flow-h3">What this looks like in practice</h2>
+            <h2 className="text-2xl font-semibold text-ink tracking-[-0.02em]">What this looks like in practice</h2>
             <p>
               The most common shift people notice is not a surge; it is an absence. The 2pm wall becomes a 2pm dip, manageable rather than disabling. Tasks that would have been deferred until the next morning get completed with adequate quality. Decisions made in the afternoon carry the same clarity as decisions made at 10am.
             </p>
@@ -103,7 +103,7 @@ export default function TheDayArcPage() {
           <div className="pt-6 border-t border-ink/[0.06]">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 flow-label bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent hover:opacity-70 transition-opacity"
+              className="inline-flex items-center gap-2 text-xs tracking-[0.1em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent hover:opacity-70 transition-opacity"
             >
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="shrink-0 text-brand">
                 <path d="M9 11L5 7l4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>

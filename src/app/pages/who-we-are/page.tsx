@@ -66,7 +66,7 @@ export default async function WhoWeArePage() {
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-transparent" />
         <div className="relative z-10 flow-container pb-20 md:pb-28">
           <p className="text-xs tracking-[0.16em] uppercase text-white/40 font-medium mb-4">About Flow</p>
-          <h1 className="flow-display text-white max-w-2xl">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-semibold tracking-[-0.03em] text-white leading-tight max-w-2xl">
             A small team.<br />An uncompromising standard.
           </h1>
           <p className="mt-6 text-sm text-white/60 max-w-md leading-relaxed">
@@ -89,7 +89,7 @@ export default async function WhoWeArePage() {
           </div>
           <div className="space-y-6">
             <p className="text-xs tracking-[0.16em] uppercase text-white/40 font-medium">How We Started</p>
-            <h2 className="flow-h2 text-white">
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight text-white">
               A personal struggle became a product.
             </h2>
             <div className="space-y-4 text-sm text-white/60 leading-relaxed">
@@ -105,7 +105,7 @@ export default async function WhoWeArePage() {
       <section className="flow-container py-12 md:py-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
         <div className="space-y-6">
           <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Our Story</p>
-          <h2 className="flow-h2">
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
             Built by people who needed it first.
           </h2>
           <div className="space-y-4 text-sm text-[rgba(30,24,84,0.75)] leading-relaxed">
@@ -130,13 +130,13 @@ export default async function WhoWeArePage() {
         <div className="flow-container py-20">
           <div className="mb-12 space-y-2">
             <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">What We Stand For</p>
-            <h2 className="flow-h2">Our principles.</h2>
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">Our principles.</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-ink/[12.5%] border border-ink/[12.5%] rounded-2xl overflow-hidden">
             {values.map((v) => (
               <div key={v.title} className="bg-ink/[3.1%] p-8 space-y-4">
                 <span className="text-ink">{v.icon}</span>
-                <h3 className="flow-h5">{v.title}</h3>
+                <h3 className="text-base font-semibold text-ink tracking-[-0.01em]">{v.title}</h3>
                 <p className="text-sm text-[rgba(30,24,84,0.65)] leading-relaxed">{v.description}</p>
               </div>
             ))}
@@ -149,7 +149,7 @@ export default async function WhoWeArePage() {
         <div className="flow-container py-20">
           <div className="mb-12 space-y-2">
             <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">The People Behind Flow</p>
-            <h2 className="flow-h2">Meet the team.</h2>
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">Meet the team.</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {teamData.map((member) => (
@@ -164,7 +164,7 @@ export default async function WhoWeArePage() {
                   />
                 </div>
                 <div>
-                  <p className="flow-h4">{member.name}</p>
+                  <p className="text-lg font-semibold text-ink tracking-[-0.01em]">{member.name}</p>
                   <p className="text-xs uppercase tracking-[0.08em] font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent mt-0.5">{member.role}</p>
                   <p className="mt-3 text-sm text-[rgba(30,24,84,0.7)] leading-relaxed">{member.bio}</p>
                 </div>
@@ -179,14 +179,14 @@ export default async function WhoWeArePage() {
         <div className="flow-container py-20">
           <div className="mb-12 space-y-2">
             <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Our Journey</p>
-            <h2 className="flow-h2">How we got here.</h2>
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">How we got here.</h2>
           </div>
           <div className="relative pl-6 border-l border-ink/[12.5%] space-y-10">
             {milestonesData.map((m) => (
               <div key={m.year} className="relative">
                 <span className="absolute -left-[25px] w-3 h-3 rounded-full border-2 border-ink bg-white top-1" />
                 <p className="text-xs uppercase tracking-[0.1em] font-semibold text-[rgba(30,24,84,0.45)] mb-1">{m.year}</p>
-                <h3 className="flow-h4 mb-1">{m.label}</h3>
+                <h3 className="text-lg font-semibold text-ink mb-1">{m.label}</h3>
                 <p className="text-sm text-[rgba(30,24,84,0.65)] leading-relaxed max-w-lg">{m.description}</p>
               </div>
             ))}
@@ -205,7 +205,7 @@ export default async function WhoWeArePage() {
               <Image src={card.image} alt={card.label} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 768px) 100vw, 50vw" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10" />
               <div className="relative z-10 p-6 space-y-1">
-                <h3 className="flow-h4 text-white">{card.label}</h3>
+                <h3 className="text-lg font-semibold text-white">{card.label}</h3>
                 <p className="text-xs text-white/80 leading-snug">{card.description}</p>
               </div>
             </Link>

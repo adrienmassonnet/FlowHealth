@@ -47,7 +47,7 @@ const config: Config = {
         label:   ['var(--fs-label)',   { lineHeight: '1.4', letterSpacing: '0.16em' }],
         /* Smallest rung. Replaces scattered text-[9px]/text-[10px] literals —
            9px was below the legible floor on a phone. */
-        micro:   ['var(--fs-label-sm)', { lineHeight: '1.4' }],
+        micro:   ['var(--fs-label-sm)', { lineHeight: '1.4' }], /* 11 flat */
       },
 
       /* ── Brand colors — use as bg-ink, text-brand, border-subtle, etc. ── */

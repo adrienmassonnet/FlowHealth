@@ -46,7 +46,7 @@ export default async function ReviewsPage() {
             <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent mb-4">
               Reviews
             </p>
-            <h1 className="flow-h1 flow-h1--hero mb-3 md:mb-5">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-[-0.03em] leading-[1.0] mb-3 md:mb-5">
               What people say<br />about Flow
             </h1>
             <p className="text-sm text-[rgba(30,24,84,0.75)] leading-[1.7] max-w-md">
@@ -62,7 +62,7 @@ export default async function ReviewsPage() {
           <div className="grid grid-cols-3 gap-3 sm:gap-6 md:gap-0 md:flex md:items-center md:divide-x md:divide-ink/[12.5%]">
             {stats.map((s) => (
               <div key={s.label} className="md:px-10 first:pl-0 last:pr-0 text-center md:text-left">
-                <p className="flow-h3">{s.value}</p>
+                <p className="text-2xl md:text-3xl font-semibold tracking-[-0.03em] text-ink">{s.value}</p>
                 <p className="text-xs text-[rgba(30,24,84,0.55)] mt-1 tracking-[0.04em]">{s.label}</p>
               </div>
             ))}
@@ -113,13 +113,13 @@ export default async function ReviewsPage() {
             <p className="text-xs tracking-[0.16em] uppercase text-white/40 font-medium mb-3">
               Ready to experience it yourself?
             </p>
-            <p className="flow-h3 text-white max-w-lg">
+            <p className="text-2xl md:text-3xl font-semibold tracking-[-0.02em] text-white max-w-lg leading-snug">
               Join the people who made Flow part of their morning.
             </p>
           </div>
           <Link
             href={`/products/${productHandle ?? 'flow'}`}
-            className="shrink-0 inline-flex items-center gap-2 bg-white text-ink flow-label px-7 py-4 rounded-full hover:bg-[rgb(30,24,84)] hover:text-white transition-colors"
+            className="shrink-0 inline-flex items-center gap-2 bg-white text-ink text-xs tracking-[0.1em] uppercase font-semibold px-7 py-4 rounded-full hover:bg-[rgb(30,24,84)] hover:text-white transition-colors"
           >
             Get Flow
           </Link>

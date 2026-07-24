@@ -106,12 +106,12 @@ export default async function BlogPostsPage() {
         <div className="bg-ink/[3.9%] rounded-2xl px-8 md:px-12 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border border-ink/[12.5%]">
           <div>
             <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent mb-2">From the lab to your shelf</p>
-            <p className="flow-h4 max-w-md">
+            <p className="text-xl font-semibold tracking-[-0.02em] text-ink max-w-md leading-snug">
               Ready to put the science into practice? Flow is built around every ingredient we write about.
             </p>
           </div>
           <div className="flex gap-3 shrink-0">
-            <Link href={`/products/${productHandle ?? 'flow'}`} className="btn-cta inline-flex items-center justify-center text-white flow-label px-6 py-3.5 rounded-full">
+            <Link href={`/products/${productHandle ?? 'flow'}`} className="btn-cta inline-flex items-center justify-center text-white text-xs tracking-[0.1em] uppercase font-semibold px-6 py-3.5 rounded-full">
               Get Flow
             </Link>
             <Link href="/pages/our-product" className="inline-flex items-center justify-center border border-ink/20 text-ink text-xs tracking-[0.1em] uppercase font-medium px-6 py-3.5 rounded-full hover:border-ink/40 transition-colors">

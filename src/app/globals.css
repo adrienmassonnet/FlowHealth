@@ -53,7 +53,7 @@
   --fs-caption: clamp(0.9375rem, 0.871rem + 0.28vw, 1.125rem);    /* 15 → 18   */
   --fs-fine:    clamp(0.8125rem, 0.758rem + 0.23vw, 0.96875rem);  /* 13 → 15.5 */
   --fs-label:   clamp(0.8125rem, 0.769rem + 0.19vw, 0.9375rem);   /* 13 → 15   */
-  --fs-label-sm: clamp(0.71875rem, 0.686rem + 0.14vw, 0.8125rem); /* 11.5 → 13 */
+  --fs-label-sm: 0.6875rem;                                       /* 11 flat  */
 
   /* ── Space scale ─────────────────────────────────────────────────────── */
   --space-section-sm: clamp(2.5rem, 1.97rem + 2.25vw, 4rem);  /*  40 →  64 */

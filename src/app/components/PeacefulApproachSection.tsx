@@ -132,7 +132,7 @@ export default function PeacefulApproachSection() {
                   <p className="text-xs tracking-[0.12em] uppercase font-semibold text-brand/70">
                     {activeChapter.topic}: {activeChapter.label}
                   </p>
-                  <p className="text-[1.05rem] text-ink/70 leading-[1.55]">
+                  <p className="text-[22px] text-ink/70 leading-[1.55]">
                     {activeChapter.body}
                   </p>
                 </div>

@@ -123,7 +123,7 @@ export default function DayArcSection() {
             <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">
               Win your morning, win your day
             </p>
-            <h2 className="flow-h2">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-[-0.03em] leading-[1.08] text-ink">
               Set your chemistry right for the entire day.
             </h2>
           </div>

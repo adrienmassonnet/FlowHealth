@@ -11,7 +11,7 @@ export default function ResearchPage() {
 
       <div className="space-y-3">
         <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Science-backed</p>
-        <h1 className="flow-h1">Research</h1>
+        <h1 className="text-4xl font-semibold tracking-[-0.02em]">Research</h1>
         <p className="text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed max-w-xl">
           Every claim we make is backed by peer-reviewed clinical evidence. Below is the research foundation behind Flow&apos;s formula and delivery technology.
         </p>
@@ -20,7 +20,7 @@ export default function ResearchPage() {
       {/* Delivery Technology */}
       <div className="space-y-6">
         <div className="border-b border-ink/[12.5%] pb-4 space-y-1">
-          <h2 className="flow-h4">Liquid Delivery Technology</h2>
+          <h2 className="text-xl font-semibold tracking-[-0.01em]">Liquid Delivery Technology</h2>
           <p className="text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed">
             Why a drink outperforms capsules and powders on bioavailability and onset speed.
           </p>
@@ -32,8 +32,8 @@ export default function ResearchPage() {
             { stat: '8 actives', label: 'In one bottle', detail: 'A single 400ml bottle delivers a clinically dosed stack, no need to take multiple supplements.' },
           ].map((item) => (
             <div key={item.label} className="bg-ink/[3.1%] p-6 space-y-2">
-              <p className="flow-h3">{item.stat}</p>
-              <p className="flow-label font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">{item.label}</p>
+              <p className="text-2xl font-semibold tracking-[-0.02em]">{item.stat}</p>
+              <p className="text-xs tracking-[0.1em] uppercase font-semibold font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">{item.label}</p>
               <p className="text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-relaxed">{item.detail}</p>
             </div>
           ))}
@@ -43,7 +43,7 @@ export default function ResearchPage() {
       {/* Key Studies */}
       <div className="space-y-6">
         <div className="border-b border-ink/[12.5%] pb-4">
-          <h2 className="flow-h4">Key Clinical Studies</h2>
+          <h2 className="text-xl font-semibold tracking-[-0.01em]">Key Clinical Studies</h2>
         </div>
         <div className="space-y-px bg-ink/[12.5%]">
           {[

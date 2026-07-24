@@ -27,7 +27,7 @@ export default async function OurProductPage() {
               {/* Text */}
               <div className="flex-1 space-y-6">
                 <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">About Flow</p>
-                <h1 className="flow-h1">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] leading-tight">
                   One formula.<br className="hidden sm:block" /> Nothing hidden.
                 </h1>
                 <p className="text-base text-[rgba(30,24,84,0.65)] leading-relaxed">

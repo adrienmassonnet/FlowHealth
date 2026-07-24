@@ -349,7 +349,7 @@ function PhilosophyDesktop() {
                     style={{ animationDelay: '0ms' }}
                   >{point.label}</p>
                   <h2
-                    className={`${enterClass} text-[2.4rem] font-semibold tracking-[-0.03em] leading-tight text-ink`}
+                    className={`${enterClass} text-[50.4px] font-semibold tracking-[-0.03em] leading-tight text-ink`}
                     style={{ animationDelay: '80ms' }}
                   >{point.heading}</h2>
                   <p
