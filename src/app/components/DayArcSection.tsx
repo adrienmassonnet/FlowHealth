@@ -325,7 +325,11 @@ export default function DayArcSection() {
             className="hidden md:flex flex-col flex-1 min-w-0 w-full rounded-2xl"
             style={{
               marginTop: toggleHeight,
-              height: chartHeight - toggleHeight || undefined,
+              /* minHeight, not height: the SVG below is width:100% with
+                 preserveAspectRatio="meet", so its height is forced to
+                 width / 1.917. Pinning the card to the left column's height
+                 pushed the x-axis labels up to 48px outside the card. */
+              minHeight: chartHeight - toggleHeight || undefined,
               background: '#F8F8FB',
               boxShadow: '0 2px 16px rgba(30,24,84,0.07)',
               padding: '24px 16px 16px',
@@ -342,9 +346,9 @@ export default function DayArcSection() {
             <svg
               viewBox="0 0 920 480"
               width="100%"
-              height="100%"
+              height="auto"
               preserveAspectRatio="xMidYMid meet"
-              className="flex-1 block overflow-visible"
+              className="block w-full h-auto"
               xmlns="http://www.w3.org/2000/svg"
             >
               <defs>
