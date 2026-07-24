@@ -4,10 +4,16 @@ let _client: ReturnType<typeof createStorefrontApiClient> | undefined;
 
 function shopifyClient() {
   if (!_client) {
+    const token = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN!;
     _client = createStorefrontApiClient({
       storeDomain: process.env.SHOPIFY_STORE_DOMAIN!,
-      apiVersion: '2025-04',
-      publicAccessToken: process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN!,
+      apiVersion: '2025-10',
+      // Headless private tokens (shpat_…) authenticate with a different header
+      // than public storefront tokens, so send whichever kind we were given.
+      // This module is server-only — a private token must never reach the browser.
+      ...(token?.startsWith('shpat_')
+        ? { privateAccessToken: token }
+        : { publicAccessToken: token }),
     });
   }
   return _client;
