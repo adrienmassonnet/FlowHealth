@@ -3,10 +3,14 @@
 // All function signatures are unchanged — no pages need updating.
 // Fallback activates automatically when Contentful is unavailable.
 
+import { unstable_cache } from 'next/cache';
+import { cache } from 'react';
 import { contentfulClient, assetUrl } from './contentful';
 import type {
   IngredientEntry,
   HealthBenefitEntry,
+  TakeFlowStepEntry,
+  ProductHeroEntry,
   FeatureCardEntry,
   TeamMemberEntry,
   TestimonialEntry,
@@ -42,6 +46,7 @@ import {
   comparisonRows as staticComparisonRows,
   savingsSupplements as staticSavingsSupplements,
   productHighlights as staticProductHighlights,
+  takeFlowSteps as staticTakeFlowSteps,
 } from './content-data';
 
 import { PRODUCT_META } from './product-meta';
@@ -95,6 +100,88 @@ async function cfetchOne<T>(contentType: string): Promise<T | null> {
   } catch {
     return null;
   }
+}
+
+// Confirmed via isolated testing (build + `next start`, not a dev-only quirk):
+// calling revalidateTag() in a request that has never touched any
+// unstable_cache-wrapped function does not actually persist the invalidation
+// to later requests, even though it returns successfully. Touching ANY
+// unstable_cache call first — not necessarily the one being invalidated —
+// fixes it. This is a documented workaround for that behavior, not a
+// content-specific cache. The revalidate webhook must call this before
+// calling revalidateTag.
+const touchCacheContext = unstable_cache(async () => true, ['__cache_context_warm__'], {
+  tags: ['__cache_context_warm__'],
+});
+export async function warmCacheContextForRevalidate() {
+  await touchCacheContext();
+}
+
+// Cross-request cache for a fixed (contentType, options) query — invalidated
+// by the revalidate webhook calling revalidateTag(`contentful:${contentType}`).
+// Only for resolvers whose query doesn't vary per request; tag-scoped queries
+// go through getEntriesForTag instead, which keys on the resolved tag too.
+function cachedFetch<T>(contentType: string, options: Record<string, unknown> = {}): Promise<T[] | null> {
+  return unstable_cache(
+    () => cfetch<T>(contentType, options),
+    [contentType],
+    { tags: [`contentful:${contentType}`] },
+  )();
+}
+
+// ─── Generic content-tag resolver ──────────────────────────────────────────────
+// Adding a new persona or benefit tag is purely a Contentful content change —
+// create a contentTag entry, link it from whatever entries should match it.
+// No content-type-specific or per-tag branching belongs here or in any caller.
+
+async function resolveTagIdUncached(tagSlug: string): Promise<string | null> {
+  try {
+    const res = await contentfulClient.getEntries<any>({
+      content_type: 'contentTag',
+      'fields.slug': tagSlug,
+      limit: 1,
+    });
+    return res.items[0]?.sys.id ?? null;
+  } catch {
+    return null;
+  }
+}
+
+// Cross-request cache — invalidated when the revalidate webhook sees a
+// contentTag publish event and calls revalidateTag('contentful:contentTag').
+const resolveTagIdCached = unstable_cache(resolveTagIdUncached, ['contentTag-slug'], {
+  tags: ['contentful:contentTag'],
+});
+
+// Per-request dedupe — getHealthBenefits and getProductHero (and any future
+// caller) each resolve the same campaign slug; React's cache() ensures that
+// resolution happens once per request no matter how many callers ask for it,
+// even on a cold unstable_cache miss.
+const resolveTagId = cache(async (tagSlug: string | undefined): Promise<string | null> => {
+  if (!tagSlug) return null;
+  return resolveTagIdCached(tagSlug);
+});
+
+// Returns entries of `contentType` linked (via their `tags` field) to the
+// resolved tag, or `fallback` if the tag doesn't resolve or nothing matches.
+// Cached per (contentType, tagSlug) pair and invalidated by that content
+// type's own revalidateTag — same function for every caller, no per-tag or
+// per-content-type branching.
+async function getEntriesForTag<T>(
+  contentType: string,
+  tagSlug: string | undefined,
+  fallback: T[],
+  options: Record<string, unknown> = {},
+): Promise<T[]> {
+  const tagId = await resolveTagId(tagSlug);
+  if (!tagId) return fallback;
+  const fetchTagged = unstable_cache(
+    () => cfetch<T>(contentType, { 'fields.tags.sys.id[in]': tagId, include: 2, ...options }),
+    [contentType, tagSlug ?? 'default'],
+    { tags: [`contentful:${contentType}`] },
+  );
+  const items = await fetchTagged();
+  return items?.length ? items : fallback;
 }
 
 // ─── Philosophy ───────────────────────────────────────────────────────────────
@@ -172,7 +259,7 @@ export async function getMilestones() {
 // ─── Ingredients ─────────────────────────────────────────────────────────────
 
 export async function getIngredients() {
-  const items = await cfetch<IngredientEntry>('ingredient', {
+  const items = await cachedFetch<IngredientEntry>('ingredient', {
     order: ['fields.order'],
   });
   if (!items?.length) return staticIngredients;
@@ -215,8 +302,52 @@ export async function getFeaturedIngredients() {
 
 // ─── Health benefits ──────────────────────────────────────────────────────────
 
-export async function getHealthBenefits() {
-  return staticHealthBenefits;
+export async function getHealthBenefits(tagSlug?: string) {
+  const items = await cachedFetch<HealthBenefitEntry>('healthBenefit', {
+    order: ['fields.order'],
+    include: 2,
+  });
+  if (!items?.length) return staticHealthBenefits;
+
+  const tagged = await getEntriesForTag<HealthBenefitEntry>('healthBenefit', tagSlug, []);
+  const taggedIds = new Set(tagged.map((e) => e.sys.id));
+  const ordered = taggedIds.size
+    ? [...items].sort((a, b) => Number(taggedIds.has(b.sys.id)) - Number(taggedIds.has(a.sys.id)))
+    : items;
+
+  return ordered.map((e) => {
+    const linked = Array.isArray(e.fields.linkedIngredients)
+      ? (e.fields.linkedIngredients as any[]).map((i) => String(i?.fields?.name ?? '')).filter(Boolean)
+      : [];
+    return {
+      number:      String(e.fields.number ?? ''),
+      label:       String(e.fields.label ?? ''),
+      title:       String(e.fields.title ?? e.fields.label ?? ''),
+      ingredients: linked.length ? linked.join(', ') : String(e.fields.ingredients ?? ''),
+      description: String(e.fields.description ?? ''),
+      imageUrl:    assetUrl(e.fields.image as any),
+      imageAlt:    String(e.fields.title ?? e.fields.label ?? ''),
+      order:       Number(e.fields.order ?? 0),
+      blogSlug:    e.fields.blogSlug ? String(e.fields.blogSlug) : undefined,
+    };
+  });
+}
+
+// ─── Take Flow steps (How to Use) ─────────────────────────────────────────────
+
+export async function getTakeFlowSteps() {
+  const items = await cachedFetch<TakeFlowStepEntry>('takeFlowStep', {
+    order: ['fields.order'],
+  });
+  if (!items?.length) return staticTakeFlowSteps;
+  return items.map((e) => ({
+    number: String(e.fields.number ?? ''),
+    title:  String(e.fields.title ?? ''),
+    body:   Array.isArray(e.fields.bodyList) && e.fields.bodyList.length
+      ? (e.fields.bodyList as string[])
+      : String(e.fields.bodyText ?? ''),
+    image:  assetUrl(e.fields.image as any),
+  }));
 }
 
 // ─── Feature cards (homepage) ─────────────────────────────────────────────────
@@ -279,7 +410,7 @@ export async function getHomepageContent() {
 // ─── Results timeline ─────────────────────────────────────────────────────────
 
 export async function getResultsTimelineSteps() {
-  const items = await cfetch<ResultsTimelineStepEntry>('resultsTimelineStep', {
+  const items = await cachedFetch<ResultsTimelineStepEntry>('resultsTimelineStep', {
     order: ['fields.order'],
   });
   if (!items?.length) return staticTimelineSteps;
@@ -313,7 +444,7 @@ export async function getFaqItems() {
 // ─── Testimonials ─────────────────────────────────────────────────────────────
 
 export async function getTestimonials() {
-  const items = await cfetch<TestimonialEntry>('testimonial', {
+  const items = await cachedFetch<TestimonialEntry>('testimonial', {
     order: ['fields.order'],
   });
   if (!items?.length) return staticTestimonials;
@@ -401,15 +532,48 @@ export async function getProductHighlights() {
   return staticProductHighlights;
 }
 
+// ─── Product hero (dynamic on-page headline) ─────────────────────────────────
+
+const getDefaultProductHero = unstable_cache(
+  async () => {
+    const res = await contentfulClient.getEntries<any>({
+      content_type: 'productHero',
+      'fields.tags[exists]': false,
+      limit: 1,
+    });
+    return res.items[0]?.fields?.headline ?? null;
+  },
+  ['productHero', 'default'],
+  { tags: ['contentful:productHero'] },
+);
+
+export async function getProductHero(fallbackHeadline: string, tagSlug?: string) {
+  try {
+    const defaultHeadline = String((await getDefaultProductHero()) ?? fallbackHeadline);
+    const tagged = await getEntriesForTag<ProductHeroEntry>('productHero', tagSlug, []);
+    return String(tagged[0]?.fields.headline ?? defaultHeadline);
+  } catch {
+    return fallbackHeadline;
+  }
+}
+
 // ─── Product meta ─────────────────────────────────────────────────────────────
 
-export async function getProductMeta() {
-  try {
+const getProductMetaFields = unstable_cache(
+  async () => {
     const res = await contentfulClient.getEntries<any>({
       content_type: 'productMeta',
       limit: 1,
     });
-    const f = res.items[0]?.fields;
+    return res.items[0]?.fields ?? null;
+  },
+  ['productMeta'],
+  { tags: ['contentful:productMeta'] },
+);
+
+export async function getProductMeta() {
+  try {
+    const f = await getProductMetaFields();
     if (!f) return buildProductMeta(null);
     return buildProductMeta(f);
   } catch {

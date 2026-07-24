@@ -94,11 +94,33 @@ export interface HealthBenefitFields extends BaseFields {
   number?: string;
   label: string;
   title?: string;
+  ingredients?: string;
   description?: string;
   linkedIngredients?: Entry<IngredientSkeleton>[];
   image?: Asset;
-  imageAlt?: string;
-  relatedBlogPost?: Entry<BlogPostSkeleton>;
+  order: number;
+  blogSlug?: string;
+  tags?: Entry<ContentTagSkeleton>[];
+}
+
+export interface ProductHeroFields extends BaseFields {
+  headline: string;
+  tags?: Entry<ContentTagSkeleton>[];
+}
+
+export interface ContentTagFields extends BaseFields {
+  label: string;
+  slug: string;
+  dimension: string;
+  status: string;
+}
+
+export interface TakeFlowStepFields extends BaseFields {
+  number: string;
+  title: string;
+  bodyText?: string;
+  bodyList?: string[];
+  image: Asset;
   order: number;
 }
 
@@ -298,6 +320,9 @@ export type BrandSettingsSkeleton    = EntrySkeletonType<BrandSettingsFields,   
 export type ProductMetaSkeleton      = EntrySkeletonType<ProductMetaFields,      'productMeta'>;
 export type IngredientSkeleton       = EntrySkeletonType<IngredientFields,       'ingredient'>;
 export type HealthBenefitSkeleton    = EntrySkeletonType<HealthBenefitFields,    'healthBenefit'>;
+export type TakeFlowStepSkeleton     = EntrySkeletonType<TakeFlowStepFields,     'takeFlowStep'>;
+export type ProductHeroSkeleton      = EntrySkeletonType<ProductHeroFields,      'productHero'>;
+export type ContentTagSkeleton       = EntrySkeletonType<ContentTagFields,       'contentTag'>;
 export type FeatureCardSkeleton      = EntrySkeletonType<FeatureCardFields,      'featureCard'>;
 export type TeamMemberSkeleton       = EntrySkeletonType<TeamMemberFields,       'teamMember'>;
 export type TestimonialSkeleton      = EntrySkeletonType<TestimonialFields,      'testimonial'>;
@@ -324,6 +349,9 @@ export type BrandSettingsEntry    = Entry<BrandSettingsSkeleton>;
 export type ProductMetaEntry      = Entry<ProductMetaSkeleton>;
 export type IngredientEntry       = Entry<IngredientSkeleton>;
 export type HealthBenefitEntry    = Entry<HealthBenefitSkeleton>;
+export type TakeFlowStepEntry     = Entry<TakeFlowStepSkeleton>;
+export type ProductHeroEntry      = Entry<ProductHeroSkeleton>;
+export type ContentTagEntry       = Entry<ContentTagSkeleton>;
 export type FeatureCardEntry      = Entry<FeatureCardSkeleton>;
 export type TeamMemberEntry       = Entry<TeamMemberSkeleton>;
 export type TestimonialEntry      = Entry<TestimonialSkeleton>;
