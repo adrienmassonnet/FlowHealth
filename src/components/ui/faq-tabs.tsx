@@ -38,48 +38,28 @@ export const FAQ = ({
     <section className={cn('relative overflow-hidden px-4 py-12', className)}>
       {(title || subtitle) && <FAQHeader title={title} subtitle={subtitle} />}
 
-      {/* Mobile: category pills + stacked list */}
-      <div className="md:hidden relative z-10">
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
-          {Object.entries(categories).map(([key, label]) => (
-            <button
-              key={key}
-              onClick={() => { setSelectedCategory(key); trackEvent('faq_category_tab_click'); ga4TabClick('faq_category', label); }}
-              className={cn(
-                'whitespace-nowrap rounded-full px-5 py-2.5 text-xs tracking-[0.08em] uppercase font-medium transition-all duration-300',
-                selectedCategory === key
-                  ? 'bg-gradient-to-r from-brand to-ink text-white shadow-[0_4px_14px_-4px_rgba(59,56,184,0.5)]'
-                  : 'bg-white border border-ink/[12.5%] shadow-[0_2px_8px_rgba(30,24,84,0.06)] text-[rgba(30,24,84,0.8)] hover:border-brand hover:text-brand hover:shadow-[0_4px_16px_rgba(59,56,184,0.12)]'
-              )}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-        <FAQList faqData={faqData} selected={selectedCategory} />
-      </div>
+      {/* Table: category topics on the left, questions on the right — same
+          layout on every breakpoint, just tighter on mobile */}
+      <div className="relative z-10 max-w-5xl mx-auto grid grid-cols-[104px_1fr] sm:grid-cols-[150px_1fr] md:grid-cols-[1fr_2fr] border border-ink/[0.08] rounded-2xl overflow-hidden shadow-[0_4px_40px_rgba(30,24,84,0.07)]">
 
-      {/* Desktop: book-page reader */}
-      <div className="hidden md:grid relative z-10 max-w-5xl mx-auto grid-cols-[1fr_2fr] gap-0 border border-ink/[0.08] rounded-2xl overflow-hidden shadow-[0_4px_40px_rgba(30,24,84,0.07)]">
-
-        {/* Category index — left spine */}
+        {/* Category index — left */}
         <div className="bg-white border-r border-ink/[0.07] flex flex-col">
           {Object.entries(categories).map(([key, label]) => (
             <button
               key={key}
               onClick={() => { setSelectedCategory(key); trackEvent('faq_category_tab_click'); ga4TabClick('faq_category', label); }}
-              className={`text-left px-6 py-5 border-b border-ink/[0.07] last:border-0 transition-colors duration-200 group ${
+              className={`text-left px-3 py-3.5 md:px-6 md:py-5 border-b border-ink/[0.07] last:border-0 transition-colors duration-200 group ${
                 selectedCategory === key ? 'bg-[#F7F6FA]' : 'bg-white hover:bg-[#F7F6FA]/60'
               }`}
             >
-              <span className={`text-sm font-medium tracking-[-0.01em] transition-colors duration-200 leading-snug ${selectedCategory === key ? 'text-brand' : 'text-ink/60 group-hover:text-ink/80'}`}>
+              <span className={`text-xs md:text-sm font-medium tracking-[-0.01em] transition-colors duration-200 leading-snug ${selectedCategory === key ? 'text-brand' : 'text-ink/60 group-hover:text-ink/80'}`}>
                 {label}
               </span>
             </button>
           ))}
         </div>
 
-        {/* Page content — right */}
+        {/* Questions — right */}
         <div className="relative bg-[#FAFAFA] min-h-[200px] overflow-hidden">
           <AnimatePresence mode="wait">
             {Object.entries(faqData).map(([category, questions]) => {
@@ -91,7 +71,7 @@ export const FAQ = ({
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: DURATION.base, ease: EASE.expoOut }}
-                  className="px-8 py-8 space-y-3"
+                  className="px-3 py-3 md:px-8 md:py-8 space-y-2.5 md:space-y-3"
                 >
                   {questions.map((faq, index) => (
                     <FAQCard key={index} question={faq.question} answer={faq.answer} index={index} />
@@ -116,30 +96,6 @@ const FAQHeader = ({ title, subtitle }: { title: string; subtitle: string }) => 
       {title}
     </h2>
     <span className="absolute -top-[350px] left-[50%] z-0 h-[500px] w-[600px] -translate-x-[50%] rounded-full bg-[rgba(30,24,84,0.04)] blur-3xl pointer-events-none" />
-  </div>
-);
-
-const FAQList = ({ faqData, selected }: { faqData: FAQData; selected: string }) => (
-  <div className="mx-auto max-w-5xl">
-    <AnimatePresence mode="wait">
-      {Object.entries(faqData).map(([category, questions]) => {
-        if (selected !== category) return null;
-        return (
-          <motion.div
-            key={category}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 16 }}
-            transition={{ duration: DURATION.slow, ease: EASE.expoOut }}
-            className="flex flex-col gap-4"
-          >
-            {questions.map((faq, index) => (
-              <FAQCard key={index} question={faq.question} answer={faq.answer} index={index} />
-            ))}
-          </motion.div>
-        );
-      })}
-    </AnimatePresence>
   </div>
 );
 
@@ -171,10 +127,10 @@ const FAQCard = ({ question, answer, index }: FAQItem & { index: number }) => {
           setIsOpen(!isOpen);
           if (!isOpen) trackEvent('faq_question_accordion_open');
         }}
-        className="flex w-full items-start justify-between gap-4 px-6 pt-6 pb-5 text-left"
+        className="flex w-full items-start justify-between gap-2.5 md:gap-4 px-3.5 pt-4 pb-3.5 md:px-6 md:pt-6 md:pb-5 text-left"
       >
         <span className={cn(
-          'text-sm font-semibold tracking-[-0.01em] leading-snug transition-colors duration-200',
+          'text-[13px] md:text-sm font-semibold tracking-[-0.01em] leading-snug transition-colors duration-200',
           isOpen ? 'text-ink' : 'text-[rgba(30,24,84,0.85)] group-hover:text-ink'
         )}>
           {question}
@@ -199,9 +155,9 @@ const FAQCard = ({ question, answer, index }: FAQItem & { index: number }) => {
         transition={{ duration: DURATION.base, ease: EASE.expoOut }}
         className="overflow-hidden"
       >
-        <div className="px-6 pb-6">
-          <div className="w-full h-px bg-ink/[12.5%] mb-4" />
-          <p className="text-sm text-[rgba(30,24,84,0.75)] leading-[1.75]">{answer}</p>
+        <div className="px-3.5 pb-4 md:px-6 md:pb-6">
+          <div className="w-full h-px bg-ink/[12.5%] mb-3 md:mb-4" />
+          <p className="text-[13px] md:text-sm text-[rgba(30,24,84,0.75)] leading-[1.7]">{answer}</p>
         </div>
       </motion.div>
     </motion.div>

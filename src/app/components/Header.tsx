@@ -346,12 +346,13 @@ export default function Header({ productHandle }: { productHandle: string }) {
           <div className="flow-container">
             <div className="h-[74px] flex items-center justify-between gap-4">
 
-              {/* Main pill */}
+              {/* Main pill — on mobile it reveals the wordmark at the top of
+                  the page and collapses to just the menu button on scroll */}
               <motion.div
                 initial={{ opacity: 0, y: -8, filter: 'blur(6px)' }}
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 transition={{ duration: DURATION.slow, ease: easeOut }}
-                className="md:flex-none flex items-center justify-center gap-4 md:gap-[26px] border border-white/30 backdrop-blur-xl h-[53px] w-[53px] md:w-auto rounded-full px-0 md:px-[26px]"
+                className="md:flex-none flex items-center justify-center w-auto h-[53px] rounded-full border border-white/30 backdrop-blur-xl px-2.5 md:gap-[26px] md:px-[26px]"
                 style={pillStyle}
               >
                 {/* Hamburger — mobile only */}
@@ -364,6 +365,19 @@ export default function Header({ productHandle }: { productHandle: string }) {
                     <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                   </svg>
                 </button>
+
+                {/* Wordmark — mobile, only while at the top of the page */}
+                <Link
+                  href="/"
+                  onClick={() => { setActiveMenu(null); trackEvent('header_logo_click'); }}
+                  aria-label="Flow Health"
+                  className={`md:hidden shrink-0 flex items-center gap-2 overflow-hidden transition-[max-width,opacity,margin,transform] duration-[450ms] ease-[cubic-bezier(0.25,0.1,0.1,1)] ${
+                    scrolled ? 'max-w-0 opacity-0 ml-0 -translate-x-1 pointer-events-none' : 'max-w-[124px] opacity-100 ml-2 translate-x-0'
+                  }`}
+                >
+                  <img src="/flow-logomark.svg?v=2" alt="" width={22} height={22} className="w-[22px] h-[22px] shrink-0" />
+                  <img src="/flow-wordmark.svg?v=2" alt="Flow" width={51} height={20} className="h-[22px] w-auto shrink-0" />
+                </Link>
 
                 {/* Logo — desktop only */}
                 <Link

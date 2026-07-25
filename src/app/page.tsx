@@ -67,18 +67,19 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent md:from-black/35 md:via-transparent" />
 
         <div className="relative z-10 flow-container pb-10 pt-20 md:pb-20 md:pt-24 w-full">
-          <div className="max-w-lg space-y-4 md:space-y-7">
+          <div className="max-w-lg">
+            {/* Eyebrow + headline kept tight as one unit */}
             <HeroText delayPropId="headline1Delay">
-              <p className="text-xs tracking-[0.16em] uppercase text-white/50 font-medium">{cms.heroTagline}</p>
+              <p className="text-xs tracking-[0.16em] uppercase text-white/80 font-semibold mb-2">{cms.heroTagline}</p>
             </HeroText>
             <HeroText delayPropId="headline2Delay">
               <h1 className="flow-display text-white">{cms.heroHeading}</h1>
             </HeroText>
-            <HeroText delayPropId="ctaDelay" className="pt-1 w-full">
+            <HeroText delayPropId="ctaDelay" className="pt-5 md:pt-6">
               <TrackedLink
                 href={featured ? `/products/${featured.handle}` : '/'}
                 clarityEvent="homepage_hero_shop_flow"
-                className="flex md:inline-flex items-center justify-center rounded-full bg-white text-ink text-xs tracking-[0.12em] uppercase font-semibold px-7 py-4 md:px-8 md:py-4 hover:opacity-90 transition-opacity duration-500"
+                className="inline-flex items-center justify-center rounded-full bg-white text-ink text-xs tracking-[0.12em] uppercase font-semibold px-6 py-3 hover:opacity-90 transition-opacity duration-500"
               >
                 Get Flow
               </TrackedLink>
@@ -215,7 +216,7 @@ export default async function HomePage() {
             <TrackedLink
               href="/pages/our-product"
               clarityEvent="homepage_ingredients_see_all"
-              className="inline-flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-medium text-ink/45 hover:text-ink transition-colors duration-200 shrink-0"
+              className="self-start inline-flex items-center gap-2 text-xs tracking-[0.08em] uppercase font-semibold text-ink border border-ink/25 rounded-full px-5 py-2.5 min-h-[44px] hover:border-ink hover:bg-ink hover:text-white transition-colors duration-200 shrink-0"
             >
               {`See all ${meta.activeIngredients} ingredients`}
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">

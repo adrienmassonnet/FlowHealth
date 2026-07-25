@@ -208,7 +208,10 @@ export interface PhilosophyPrincipleFields extends BaseFields {
 }
 
 export interface PhilosophyBeliefFields extends BaseFields {
-  text: string;
+  header?: string;
+  description?: string;
+  /** Legacy combined field — kept for older data; split into header/description. */
+  text?: string;
   order: number;
 }
 

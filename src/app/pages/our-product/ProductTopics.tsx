@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { StepCard } from '@/app/components/StepCard';
 import IngredientsAccordion from '@/app/products/[handle]/IngredientsAccordion';
 import { allIngredients } from '@/app/components/IngredientsExplorer';
 import type { Ingredient } from '@/lib/content';
@@ -98,16 +99,8 @@ export default function ProductTopics({ ingredients, activeIngredients }: { ingr
             <p className="text-sm text-[rgba(30,24,84,0.78)] leading-relaxed">The ingredients on the label only matter if the process behind them is held to the same standard.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {steps.map((step, i) => (
-              <div key={step.number} className="rounded-2xl border border-ink/[0.07] bg-[#F8F8FC] p-6 flex flex-col gap-4">
-                <div className="flex items-start gap-3">
-                  <span className="shrink-0 w-9 h-9 rounded-full bg-gradient-to-br from-brand to-ink flex items-center justify-center text-xs font-semibold text-white tabular-nums">{step.number}</span>
-                  <h3 className="flow-h5 pt-1.5">{step.title}</h3>
-                </div>
-                <div className="space-y-2 flex-1">
-                  <p className="text-xs text-ink/75 leading-relaxed">{step.detail}</p>
-                </div>
-              </div>
+            {steps.map((step) => (
+              <StepCard key={step.number} number={step.number} title={step.title} description={step.detail} />
             ))}
           </div>
         </div>

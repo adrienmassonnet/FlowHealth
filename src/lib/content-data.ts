@@ -24,7 +24,7 @@ export const ACTIVE_INGREDIENT_NAMES = [
 ] as const;
 
 export interface PhilosophyPrinciple { number: string; title: string; body: string; }
-export interface PhilosophyBelief { text: string; order: number; }
+export interface PhilosophyBelief { header?: string; description?: string; text?: string; order: number; }
 export interface TeamMember { name: string; role: string; bio: string; imageUrl: string; imageAlt: string; order: number; }
 export interface CompanyValue { title: string; description: string; order: number; }
 export interface Milestone { year: string; label: string; description: string; order: number; }
@@ -52,7 +52,7 @@ export const philosophyPrinciples: PhilosophyPrinciple[] = [
 
 export const philosophyBeliefs: PhilosophyBelief[] = [
   { text: `The mind is the most important asset you have, and in an age of endless distraction, protecting it is an act of discipline.`, order: 1 },
-  { text: `Most people are operating far below their cognitive potential, not from lack of effort, but from poor nutrition, chronic stress, and overstimulation.`, order: 2 },
+  { text: `Most people run below their potential — not from lack of effort, but from poor nutrition, chronic stress, and overstimulation.`, order: 2 },
   { text: `High-quality supplementation is not a shortcut. It is infrastructure: the same way sleep, exercise, and diet are infrastructure.`, order: 3 },
   { text: `Transparency is not a brand value. It is a minimum standard.`, order: 4 },
   { text: `We believe in compounding: small, consistent inputs that build over months and years into something remarkable.`, order: 5 }
@@ -131,7 +131,7 @@ export const homepageContent: HomepageContent = {
   bottomMissionEyebrow: `On a Mission to Inner Peace`,
   bottomMissionHeading: `At Flow, we are science-based with humans at heart. Our goal is to revitalise people`,
   ingredientsSectionLabel: `16 ingredients to reach flow state`,
-  ingredientsHeading: `Our unique blend of ingredients is enhanced with four key compounds delivering unmatched benefits.`,
+  ingredientsHeading: `Four key compounds, unmatched benefits.`,
   healthBenefitsSectionLabel: `Health Benefits`,
   healthBenefitsHeading: `Flow delivers benefits beyond immediate focus`,
 };

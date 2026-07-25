@@ -204,8 +204,10 @@ export async function getPhilosophyBeliefs() {
   });
   if (!items?.length) return staticBeliefs;
   return items.map((e) => ({
-    text:  String(e.fields.text ?? ''),
-    order: Number(e.fields.order ?? 0),
+    header:      String(e.fields.header ?? ''),
+    description: String(e.fields.description ?? ''),
+    text:        String(e.fields.text ?? ''),
+    order:       Number(e.fields.order ?? 0),
   }));
 }
 

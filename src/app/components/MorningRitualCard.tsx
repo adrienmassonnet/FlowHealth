@@ -4,8 +4,7 @@ import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { trackEvent } from '@/lib/clarity';
 import { morningRitualCards } from '@/lib/content-data';
-
-const ease = [0.25, 0.1, 0.1, 1] as const;
+import { EASE } from '@/lib/animation';
 
 const icons = [
   <svg key="0" width="32" height="32" viewBox="0 0 26 26" fill="none"><path d="M5 17C5 13.134 8.686 10 13 10C17.314 10 21 13.134 21 17" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/><path d="M3 17H23" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/><path d="M13 10V7" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/><path d="M7 8.5L8.5 10M19 8.5L17.5 10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/></svg>,
@@ -29,12 +28,14 @@ function rand(min: number, max: number) {
 export default function MorningRitualCard() {
   const [index, setIndex] = useState(0);
   const [phase, setPhase] = useState<Phase>('idle');
+  const [spins, setSpins] = useState(0);
   const [diceVars, setDiceVars] = useState<Record<string, string>>({});
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-8% 0px' });
 
   const advance = () => {
     if (phase !== 'idle') return;
+    setSpins((s) => s + 1);
     trackEvent('homepage_morning_card_next');
     // Pick a random Y tilt: positive = tilt right, negative = tilt left
     const sign = Math.random() < 0.5 ? 1 : -1;
@@ -61,7 +62,7 @@ export default function MorningRitualCard() {
       className="flex flex-col gap-4"
       initial={{ opacity: 0, scale: 0.94, y: 20 }}
       animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
-      transition={{ duration: 0.85, ease }}
+      transition={{ duration: 0.85, ease: EASE.inOut }}
     >
       <div
         className={`bg-white rounded-2xl border border-ink/[0.07] px-7 py-9 flex flex-col gap-6 shadow-[0_4px_32px_rgba(30,24,84,0.09)] md:min-h-[220px] justify-between ${animClass}`}
@@ -78,8 +79,16 @@ export default function MorningRitualCard() {
       <div className="flex justify-center">
         <button
           onClick={advance}
-          className="text-xs tracking-[0.08em] uppercase font-medium text-ink/45 hover:text-white border border-ink/15 hover:border-transparent rounded-full px-5 py-2 transition-all duration-300 hover:[background:linear-gradient(135deg,var(--color-brand)_0%,var(--color-ink)_100%)]"
+          className="inline-flex items-center gap-2 min-h-[44px] text-xs tracking-[0.08em] uppercase font-semibold text-ink border-2 border-ink/20 hover:border-ink/40 hover:bg-ink/[0.04] rounded-full px-5 py-2.5 transition-colors duration-200"
         >
+          {/* Icon spins once on each click, then rests back at the default state */}
+          <svg
+            width="15" height="15" viewBox="0 0 16 16" fill="none"
+            style={{ transform: `rotate(${spins * -360}deg)`, transition: 'transform 0.6s cubic-bezier(0.25,0.1,0.1,1)' }}
+          >
+            <path d="M2.5 8a5.5 5.5 0 0 1 9.4-3.9M13.5 8a5.5 5.5 0 0 1-9.4 3.9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+            <path d="M11.5 1.5V4.5H8.5M4.5 14.5V11.5H7.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
           Reveal another truth
         </button>
       </div>

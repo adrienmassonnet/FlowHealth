@@ -38,58 +38,49 @@ export default function ValuePillarsSection() {
   };
 
   return (
-    <div className="relative w-full min-h-[320px] h-full flex gap-3">
+    <div className="w-full flex flex-col gap-3">
       {pillars.map((pillar, i) => {
         const active = i === activeIndex;
         return (
           <button
             key={pillar.key}
             onClick={() => select(i)}
-            className={`relative flex items-stretch text-left overflow-hidden rounded-2xl bg-white border border-ink/[0.08] shadow-[0_8px_32px_rgba(30,24,84,0.1)] focus:outline-none transition-[flex-grow] duration-700 ease-out ${
-              active ? 'flex-grow flex-shrink basis-0' : 'flex-grow-0 flex-shrink-0 basis-[52px] md:basis-[64px]'
-            }`}
+            aria-expanded={active}
+            className="w-full block text-left rounded-2xl bg-white border border-ink/[0.08] shadow-[0_8px_32px_rgba(30,24,84,0.08)] overflow-hidden focus:outline-none"
           >
-            {/* Image — width follows the parent's flex transition automatically */}
-            <div className={`relative shrink-0 h-full ${active ? 'w-1/3' : 'w-full'}`}>
+            {/* Image: closed = full banner with the title overlaid on top;
+                open = a shorter banner across the top of the card */}
+            <div className={`relative w-full transition-[height] duration-500 ease-out ${active ? 'h-48' : 'h-20'}`}>
               <Image
                 src={pillar.imageUrl}
                 alt={pillar.imageAlt}
                 fill
-                sizes="220px"
+                sizes="(max-width: 768px) 100vw, 400px"
                 className="object-cover"
               />
-
-              {/* Closed-state overlay */}
-              <div
-                className={`absolute inset-0 transition-opacity ease-out ${
-                  active ? 'opacity-0 pointer-events-none duration-150' : 'opacity-100 duration-300 delay-500'
-                }`}
-              >
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/15 to-transparent" />
-                <div className="relative z-10 h-full flex items-end justify-center pb-5">
-                  <span
-                    className="text-xs md:text-sm font-bold tracking-[0.12em] uppercase text-white [text-shadow:0_1px_4px_rgba(0,0,0,0.35)] whitespace-nowrap"
-                    style={{ writingMode: 'vertical-rl' }}
-                  >
+              {/* Closed-state overlay title — fades out on open */}
+              <div className={`absolute inset-0 transition-opacity duration-300 ${active ? 'opacity-0' : 'opacity-100'}`}>
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/25 to-transparent" />
+                <div className="absolute inset-0 flex items-end p-4">
+                  <h3 className="text-white font-bold text-lg tracking-[-0.01em] [text-shadow:0_1px_6px_rgba(0,0,0,0.4)]">
                     {pillar.title}
-                  </span>
+                  </h3>
                 </div>
               </div>
             </div>
 
-            {/* Text — width tracks the parent's live size automatically (percentage-based, no own transition needed);
-                opacity fades in only once the box has mostly finished expanding, and fades out instantly on click away */}
-            <div
-              className={`shrink-0 flex flex-col justify-center overflow-hidden whitespace-nowrap transition-opacity ease-out ${
-                active ? 'w-2/3 opacity-100 px-5 md:px-6 duration-300 delay-500' : 'w-0 opacity-0 px-0 duration-150'
-              }`}
-            >
-              <h3 className="font-semibold tracking-[-0.02em] text-ink text-xl md:text-2xl mb-2 whitespace-normal">
-                {pillar.title}
-              </h3>
-              <p className="text-sm text-[rgba(30,24,84,0.6)] leading-relaxed whitespace-normal">
-                {pillar.description}
-              </p>
+            {/* Open-state: title below the image, then description */}
+            <div className={`grid transition-[grid-template-rows] duration-500 ease-out ${active ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+              <div className="overflow-hidden min-h-0">
+                <div className="px-3.5 py-3.5">
+                  <h3 className="text-ink font-semibold text-base tracking-[-0.01em] mb-1.5">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-sm text-[rgba(30,24,84,0.65)] leading-relaxed">
+                    {pillar.description}
+                  </p>
+                </div>
+              </div>
             </div>
           </button>
         );

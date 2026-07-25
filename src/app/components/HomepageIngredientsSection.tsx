@@ -446,7 +446,6 @@ export default function HomepageIngredientsSection({ ingredients, sizes }: Props
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 px-3 py-2">
-                  <p className="text-micro font-semibold tracking-[0.08em] uppercase text-white/55 mb-0.5">{c.dose}</p>
                   <p className="text-sm font-semibold text-white leading-snug">{c.name}</p>
                 </div>
               </div>

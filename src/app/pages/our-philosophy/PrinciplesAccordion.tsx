@@ -1,4 +1,5 @@
 'use client';
+import { StepCard } from '@/app/components/StepCard';
 
 import { useState } from 'react';
 import type { PhilosophyPrinciple } from '@/lib/content-data';
@@ -37,18 +38,21 @@ export default function PrinciplesAccordion({ principles }: Props) {
         })}
       </div>
 
-      {/* Right — detail panel */}
-      <div className="rounded-2xl border border-ink/[0.07] bg-[#F8F8FC] flex items-center">
-        {activePrinciple ? (
-          <div key={activePrinciple.number} className="p-8 space-y-3" style={{ animation: 'hbFadeUp 0.45s cubic-bezier(0.25,0.1,0.1,1) forwards' }}>
-            <p className="text-xs font-mono tracking-[0.12em] text-ink/30">{activePrinciple.number}</p>
-            <h3 className="flow-h4">{activePrinciple.title}</h3>
-            <p className="text-sm text-[rgba(30,24,84,0.65)] leading-relaxed">{activePrinciple.body}</p>
-          </div>
-        ) : (
+      {/* Right — detail panel, using the shared numbered-step container */}
+      {activePrinciple ? (
+        <StepCard
+          key={activePrinciple.number}
+          number={activePrinciple.number}
+          title={activePrinciple.title}
+          description={activePrinciple.body}
+          className="h-full"
+          style={{ animation: 'hbFadeUp 0.45s cubic-bezier(0.25,0.1,0.1,1) forwards' }}
+        />
+      ) : (
+        <div className="rounded-xl border border-ink/[0.07] bg-white flex items-center">
           <p className="px-8 text-sm text-ink/25 italic">Select a principle to read more.</p>
-        )}
-      </div>
+        </div>
+      )}
 
     </div>
   );

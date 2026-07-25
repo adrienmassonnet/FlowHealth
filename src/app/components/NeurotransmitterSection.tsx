@@ -111,7 +111,7 @@ export default function NeurotransmitterSection() {
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: DURATION.slow, delay: 0.14, ease: EASE.expoOut }}
             >
-              It's not the highs that wear the body down; it's the constant variation. Every spike demands a recovery. Homeostasis is the body's ability to return to its natural baseline after each disruption. Flow supports five systems that lose that ability first under chronic stress, so the body spends less energy compensating and more in a state it can sustain.
+              It's not the highs that wear the body down — it's the constant swings. Flow supports the five systems that destabilise first under chronic stress, so the body spends less energy compensating and more in a state it can sustain.
             </motion.p>
           </div>
 
@@ -171,24 +171,31 @@ export default function NeurotransmitterSection() {
             </div>
           </div>
 
-          {/* Mobile: single column */}
-          <div className="md:hidden flex flex-col gap-3">
-            <p className="text-xs tracking-[0.16em] uppercase font-semibold text-ink mb-1">
+          {/* Mobile: two-column grid */}
+          <div className="md:hidden">
+            <p className="text-xs tracking-[0.16em] uppercase font-semibold text-ink mb-3">
               Flow's contribution to stability
             </p>
-            {nodes.map((n, i) => (
-              <motion.div
-                key={n.sentence}
-                className="rounded-2xl px-4 py-3.5 flex items-center gap-3"
-                style={{ background: 'linear-gradient(135deg, var(--color-brand), var(--color-ink))' }}
-                initial={{ opacity: 0, x: -12 }}
-                animate={isVisible ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: DURATION.base, delay: 0.1 + i * 0.07, ease: EASE.expoOut }}
-              >
-                <div className="shrink-0" style={{ color: 'white' }}>{n.icon}</div>
-                <p className="text-sm font-semibold leading-[1.3] tracking-[-0.01em] text-white">{n.sentence}</p>
-              </motion.div>
-            ))}
+            <div className="grid grid-cols-2 gap-2.5">
+              {nodes.map((n, i) => (
+                <motion.div
+                  key={n.sentence}
+                  className={`rounded-xl px-3 py-3 flex items-center gap-2.5 ${
+                    // centre a lone final card while keeping a single-column width
+                    i === nodes.length - 1 && nodes.length % 2 === 1
+                      ? 'col-span-2 justify-self-center w-[calc(50%-0.3125rem)]'
+                      : ''
+                  }`}
+                  style={{ background: 'linear-gradient(135deg, var(--color-brand), var(--color-ink))' }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: DURATION.base, delay: 0.1 + i * 0.06, ease: EASE.expoOut }}
+                >
+                  <div className="shrink-0" style={{ color: 'white' }}>{n.icon}</div>
+                  <p className="text-xs font-semibold leading-[1.25] tracking-[-0.01em] text-white">{n.sentence}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
         </div>

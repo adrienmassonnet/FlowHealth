@@ -276,16 +276,23 @@ export default function DayArcSection() {
             {/* Cards */}
             {cards.map((c, i) => {
               const isOpen = mobileOpen === i;
+              const tintBg = mode === 'stim' ? 'rgba(217,119,6,0.14)' : 'rgba(59,56,184,0.12)';
+              const tintText = mode === 'stim' ? 'rgb(180,83,9)' : 'var(--color-brand)';
+              const label = mode === 'stim' ? c.stimLabel : c.flowLabel;
               return (
                 <div
                   key={i}
-                  className="relative rounded-2xl border"
+                  className="relative rounded-xl border overflow-hidden"
                   style={{
                     background: '#F8F8FB',
                     borderColor: 'rgba(30,24,84,0.07)',
                     boxShadow: '0 2px 16px rgba(30,24,84,0.06)',
-                    transition: `all ${cardHoverDuration}s`,
-                  }}
+                    transition: `transform ${cardHoverDuration}s, box-shadow ${cardHoverDuration}s`,
+                    // mode tint exposed as a variable so the title's colour coverage
+                    // and the number badge can animate to it via transition-colors
+                    ['--tint' as string]: tintBg,
+                    ['--tint-text' as string]: tintText,
+                  } as React.CSSProperties}
                   onMouseEnter={e => {
                     setHoveredCard(i);
                     (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-3px)';
@@ -297,33 +304,52 @@ export default function DayArcSection() {
                     (e.currentTarget as HTMLDivElement).style.boxShadow = '0 2px 16px rgba(30,24,84,0.06)';
                   }}
                 >
-                  <div
-                    className="flex items-center gap-3 cursor-pointer md:cursor-default px-4 py-3 md:px-5 md:py-4"
+                  <button
+                    type="button"
+                    className="w-full flex items-stretch text-left md:cursor-default"
                     onClick={() => setMobileOpen(isOpen ? null : i)}
+                    aria-expanded={isOpen}
                   >
+                    {/* Number — always in the tinted badge. Its bottom-right cut moves to
+                        the title once the tint extends over it (open / desktop). */}
                     <span
-                      className="shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-micro font-semibold tabular-nums transition-colors duration-500"
-                      style={{
-                        background: mode === 'stim' ? 'rgba(217,119,6,0.14)' : 'rgba(59,56,184,0.12)',
-                        color: mode === 'stim' ? 'rgb(180,83,9)' : 'var(--color-brand)',
-                      }}
+                      className={`flex items-center pl-3.5 pr-3 py-2.5 shrink-0 bg-[var(--tint)] transition-[border-radius] duration-500 ${
+                        isOpen ? 'rounded-br-none' : 'rounded-br-xl'
+                      } md:rounded-br-none`}
                     >
-                      {i + 1}
+                      <span className="text-micro font-semibold tabular-nums" style={{ color: 'var(--tint-text)' }}>
+                        {i + 1}
+                      </span>
                     </span>
-                    <p className="text-sm font-semibold tracking-[-0.01em] flex-1" style={{ color: 'var(--color-ink)' }}>
-                      {mode === 'stim' ? c.stimLabel : c.flowLabel}
-                    </p>
+                    {/* Title — background fades from transparent to the tint on open, so the
+                        colour coverage grows over it smoothly. Content-width, not full. */}
+                    <span
+                      className={`flex items-center pr-3.5 py-2.5 text-sm font-semibold tracking-[-0.01em] leading-snug rounded-br-xl transition-colors duration-500 ${
+                        isOpen ? 'bg-[var(--tint)]' : 'bg-transparent'
+                      } md:bg-[var(--tint)]`}
+                      style={{ color: 'var(--color-ink)' }}
+                    >
+                      {label}
+                    </span>
                     <svg
-                      className={`md:hidden shrink-0 ml-1 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                      className={`md:hidden shrink-0 self-center ml-auto mr-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
                       width="14" height="14" viewBox="0 0 14 14" fill="none"
                     >
                       <path d="M3 5l4 4 4-4" stroke="rgba(30,24,84,0.4)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
-                  </div>
-                  <div className={`md:block ${isOpen ? 'block' : 'hidden'}`}>
-                    <p className="text-sm leading-[1.55] px-4 pb-3 pl-13 md:px-5 md:pb-4 md:pt-0 md:pl-14" style={{ color: 'rgba(30,24,84,0.7)' }}>
-                      {mode === 'stim' ? c.stim : c.flow}
-                    </p>
+                  </button>
+                  {/* Body — smooth height via the 0fr→1fr grid technique (needs min-h-0 on
+                      the child); md keeps it permanently open */}
+                  <div
+                    className={`grid transition-[grid-template-rows] duration-500 ease-out ${
+                      isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+                    } md:grid-rows-[1fr]`}
+                  >
+                    <div className="overflow-hidden min-h-0">
+                      <p className="text-sm leading-[1.55] px-4 pb-3 pt-2 md:px-5 md:pb-4 md:pt-2" style={{ color: 'rgba(30,24,84,0.7)' }}>
+                        {mode === 'stim' ? c.stim : c.flow}
+                      </p>
+                    </div>
                   </div>
                 </div>
               );

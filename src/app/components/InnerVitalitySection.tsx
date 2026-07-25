@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { StepCard } from './StepCard';
 
 const lines = [
   {
@@ -151,24 +152,14 @@ export default function InnerVitalitySection() {
         {/* Right — cards vertical */}
         <div className="flex-1 flex flex-col gap-4">
           {lines.map(({ label, body }, i) => (
-            <div
+            <StepCard
               key={label}
-              className="relative rounded-xl overflow-hidden flex flex-col gap-0"
-              style={{
-                background: 'rgba(255,255,255,0.04)',
-                border: '1px solid rgba(255,255,255,0.07)',
-                ...fade(visible, 1700 + i * 400),
-              }}
-            >
-              <div
-                className="flex items-center gap-3 px-3 py-2 rounded-tl-xl rounded-br-xl self-start"
-                style={{ background: 'rgba(180,200,255,0.10)' }}
-              >
-                <span className="text-xs font-semibold" style={{ color: 'rgba(180,200,255,0.7)' }}>{i + 1}</span>
-                <p className="text-base font-semibold tracking-[-0.01em] text-white">{label}</p>
-              </div>
-              <p className="text-sm leading-[1.6] px-4 py-3" style={{ color: 'rgba(255,255,255,0.45)' }}>{body}</p>
-            </div>
+              tone="dark"
+              number={i + 1}
+              title={label}
+              description={body}
+              style={fade(visible, 1700 + i * 400) as React.CSSProperties}
+            />
           ))}
         </div>
 

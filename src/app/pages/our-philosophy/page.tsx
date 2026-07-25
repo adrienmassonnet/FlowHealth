@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 };
 import PhilosophyScroll from './PhilosophyScroll';
 import PrinciplesAccordion from './PrinciplesAccordion';
+import { StepCard } from '@/app/components/StepCard';
 import MorningRitualCard from '@/app/components/MorningRitualCard';
 import PeacefulApproachSection from '@/app/components/PeacefulApproachSection';
 
@@ -53,20 +54,22 @@ export default async function OurPhilosophyPage() {
       {/* Values — rotating principle cards */}
       <section className="bg-white border-t border-ink/[0.06]">
         <div className="flow-container py-16 md:py-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center">
+          {/* Section header above the card */}
+          <div className="max-w-2xl space-y-3 mb-8 md:mb-10">
+            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Values we hold dear</p>
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-tight text-ink">
+              Flow is human led and science based.
+            </h2>
+          </div>
+          <div className="max-w-md mx-auto md:mx-0">
             <MorningRitualCard />
-            <div className="space-y-4">
-              <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Values we hold dear</p>
-              <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] leading-tight text-ink">
-                Flow is human led and science based.
-              </h2>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* What we believe */}
-      <section className="bg-white">
+      {/* What we believe — each glass card emits its own brand-blue + coral
+          light (see StepCard glass variant); the section stays neutral */}
+      <section className="bg-[#FBFBFE]">
         <div className="flow-container py-16 md:py-24">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-10 md:gap-16 items-start">
             <div className="space-y-3">
@@ -75,22 +78,25 @@ export default async function OurPhilosophyPage() {
                 Conviction,<br />not aspiration.
               </h2>
             </div>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {beliefs.filter((_, i) => i !== 3).map((b, i) => {
-                const normalized = b.text.replace(/ — /g, '. ').replace(/^(.)/, (c) => c.toUpperCase());
-                const firstPeriodIdx = normalized.indexOf('. ');
-                const firstSentence = firstPeriodIdx > -1 ? normalized.slice(0, firstPeriodIdx + 1) : normalized;
-                const rest = firstPeriodIdx > -1 ? normalized.slice(firstPeriodIdx + 2) : '';
+                // Prefer the explicit Header / Description fields; fall back to
+                // splitting the legacy combined `text` for un-migrated entries.
+                let header = b.header?.trim();
+                let description = b.description?.trim();
+                if (!header) {
+                  const normalized = (b.text ?? '').replace(/ — /g, '. ').replace(/^(.)/, (c) => c.toUpperCase());
+                  const firstPeriodIdx = normalized.indexOf('. ');
+                  header = firstPeriodIdx > -1 ? normalized.slice(0, firstPeriodIdx + 1) : normalized;
+                  if (!description) description = firstPeriodIdx > -1 ? normalized.slice(firstPeriodIdx + 2) : '';
+                }
                 return (
-                  <div key={b.text.slice(0, 40)} className="group rounded-xl border border-ink/[0.07] bg-white shadow-sm shadow-ink/[0.04] hover:shadow-md hover:shadow-ink/[0.07] hover:-translate-y-0.5 transition-all duration-500 p-4 flex items-start gap-3">
-                    <span className="shrink-0 mt-0.5 w-9 h-9 rounded-full bg-gradient-to-br from-ink to-[#2d2a7a] flex items-center justify-center text-xs font-semibold text-white/60 tabular-nums">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <div className="pt-0.5">
-                      <p className="text-sm font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent leading-snug">{firstSentence}</p>
-                      {rest && <p className="mt-1.5 text-xs text-[rgba(30,24,84,0.60)] leading-relaxed">{rest}</p>}
-                    </div>
-                  </div>
+                  <StepCard
+                    key={b.header || b.text || i}
+                    number={i + 1}
+                    title={header}
+                    description={description || undefined}
+                  />
                 );
               })}
             </div>
@@ -101,7 +107,7 @@ export default async function OurPhilosophyPage() {
       {/* Core principles */}
       <section className="bg-white">
         <div className="flow-container py-16 md:py-24">
-          <div className="mb-12 space-y-2">
+          <div className="mb-6 space-y-2">
             <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Non-Negotiables</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">Our six principles.</h2>
           </div>

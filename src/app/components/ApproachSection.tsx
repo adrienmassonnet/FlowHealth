@@ -67,7 +67,7 @@ export default function ApproachSection() {
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: DURATION.slow, delay: 0.12 + i * 0.1, ease: EASE.expoOut }}
               >
-                <p className="text-micro tracking-[0.16em] uppercase font-semibold text-white/45">
+                <p className="text-micro tracking-[0.16em] uppercase font-bold text-white">
                   {card.label}
                 </p>
                 <p className="text-sm text-white/80 leading-[1.6]">

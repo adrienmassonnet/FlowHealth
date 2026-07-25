@@ -51,49 +51,68 @@ function PhilosophyMobile() {
     setActiveIndex(i === activeIndex ? -1 : i);
   };
 
+  const go = (dir: 'forward' | 'backward') => {
+    const next = dir === 'forward' ? activeIndex + 1 : activeIndex - 1;
+    if (next < 0 || next >= points.length) return;
+    setDirection(dir);
+    setActiveIndex(next);
+  };
+
+  const close = () => setActiveIndex(-1);
+
   return (
     <section className="border-t border-ink/[0.06] bg-[#F8F8FC]">
       <div className="flow-container pt-6 pb-8">
-        <div className="mb-4 flex items-end justify-between">
+        <div className="mb-4 flex items-center justify-between gap-3">
           <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">Our Pillars</p>
-          {!isOpen && (
-            <div className="flex items-center gap-1.5 text-ink/35">
-              <span className="text-xs tracking-[0.1em] uppercase">Tap to explore</span>
-            </div>
+          {isOpen && (
+            <button
+              onClick={close}
+              className="inline-flex items-center gap-1 text-micro font-semibold tracking-[0.1em] uppercase text-brand shrink-0"
+            >
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M9.5 6h-7M5 3L2.5 6 5 9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              View all
+            </button>
           )}
         </div>
 
-        {/* Step cards grid — compact image tiles */}
-        <div className="grid grid-cols-2 gap-2 mb-5">
-          {points.map((p, i) => (
-            <button
-              key={p.number}
-              onClick={() => select(i)}
-              className={`relative rounded-xl overflow-hidden group transition-all duration-300 h-[22vw] min-h-[80px] ${
-                i === activeIndex ? 'ring-2 ring-brand/60 shadow-lg shadow-ink/20' : ''
-              }`}
-            >
-              <Image
-                src={p.image}
-                alt={p.label}
-                fill
-                className="object-cover transition-transform duration-500 group-active:scale-[1.03]"
-                sizes="50vw"
-              />
-              <div className={`absolute inset-0 transition-colors duration-300 ${
-                i === activeIndex
-                  ? 'bg-gradient-to-t from-ink/90 via-ink/50 to-brand/20'
-                  : 'bg-gradient-to-t from-ink/80 via-ink/20 to-transparent'
-              }`} />
-              <div className="absolute bottom-0 left-0 right-0 p-2.5 space-y-0.5">
-                <p className="text-micro font-mono tracking-[0.12em] text-white/45">{p.number}</p>
-                <p className="text-xs font-semibold text-white tracking-[-0.01em] leading-tight">{p.label}</p>
-              </div>
-            </button>
-          ))}
-        </div>
+        {/* Closed: image tiles + tap-to-explore */}
+        {!isOpen && (
+          <>
+            <div className="grid grid-cols-2 gap-2 mb-5">
+              {points.map((p, i) => (
+                <button
+                  key={p.number}
+                  onClick={() => select(i)}
+                  className="relative rounded-xl overflow-hidden group transition-all duration-300 h-[22vw] min-h-[80px]"
+                >
+                  <Image
+                    src={p.image}
+                    alt={p.label}
+                    fill
+                    className="object-cover transition-transform duration-500 group-active:scale-[1.03]"
+                    sizes="50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-2.5 space-y-0.5">
+                    <p className="text-micro font-mono tracking-[0.12em] text-white/45">{p.number}</p>
+                    <p className="text-xs font-semibold text-white tracking-[-0.01em] leading-tight">{p.label}</p>
+                  </div>
+                </button>
+              ))}
+            </div>
+            <div className="flex justify-center">
+              <button
+                onClick={() => select(0)}
+                className="inline-flex items-center min-h-[44px] text-xs font-semibold tracking-[0.1em] uppercase text-brand bg-brand/10 hover:bg-brand/[0.16] rounded-full px-6 py-2.5 transition-colors duration-200"
+              >
+                Tap to explore
+              </button>
+            </div>
+          </>
+        )}
 
-        {/* Expanded content */}
+        {/* Open: one pillar at a time with prev / next navigation */}
         {isOpen && (
           <div className="space-y-4">
             {/* Image */}
@@ -112,8 +131,9 @@ function PhilosophyMobile() {
               ))}
             </div>
 
-            {/* Text */}
-            <div key={`${activeIndex}-${direction}`} className="space-y-2 pb-2">
+            {/* Text — min-height reserves space for the longest pillar so the
+                navigation below stays at the same position for all four */}
+            <div key={`${activeIndex}-${direction}`} className="space-y-2 pb-1 min-h-[224px]">
               <p
                 className={`${enterClass} text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent`}
                 style={{ animationDelay: '0ms' }}
@@ -126,6 +146,27 @@ function PhilosophyMobile() {
                 className={`${enterClass} text-sm text-[rgba(30,24,84,0.7)] leading-relaxed`}
                 style={{ animationDelay: '120ms' }}
               >{point.description}</p>
+            </div>
+
+            {/* Prev / counter / next */}
+            <div className="flex items-center justify-between pt-2 border-t border-ink/[0.08]">
+              <button
+                onClick={() => go('backward')}
+                disabled={activeIndex === 0}
+                aria-label="Previous pillar"
+                className="w-11 h-11 rounded-full border border-ink/15 bg-white flex items-center justify-center text-ink disabled:opacity-30 disabled:pointer-events-none hover:border-ink/40 transition-colors"
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </button>
+              <span className="text-xs font-semibold text-ink/45 tabular-nums tracking-[0.1em]">{activeIndex + 1} / {points.length}</span>
+              <button
+                onClick={() => go('forward')}
+                disabled={activeIndex === points.length - 1}
+                aria-label="Next pillar"
+                className="w-11 h-11 rounded-full border border-ink/15 bg-white flex items-center justify-center text-ink disabled:opacity-30 disabled:pointer-events-none hover:border-ink/40 transition-colors"
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </button>
             </div>
           </div>
         )}
