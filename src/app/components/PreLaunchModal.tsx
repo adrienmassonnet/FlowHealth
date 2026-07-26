@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { trackEvent } from '@/lib/clarity';
 import { ga4SignUp } from '@/lib/ga4';
+import { useSwipeToClose } from '@/lib/useSwipeToClose';
 
 interface PreLaunchModalProps {
   open: boolean;
@@ -14,6 +16,7 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
   const [email, setEmail] = useState('');
   const [notifyPromos, setNotifyPromos] = useState(true);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const { panelProps, handleProps } = useSwipeToClose(onClose);
 
   // Lock body scroll when open
   useEffect(() => {
@@ -69,7 +72,16 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
       />
 
       {/* Panel */}
-      <div className="relative w-full sm:max-w-md bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-hidden">
+      <motion.div
+        className="relative w-full sm:max-w-md bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-hidden"
+        {...panelProps}
+      >
+        <div
+          {...handleProps}
+          className="sm:hidden absolute top-0 left-0 right-0 z-10 pt-2.5 pb-1 flex items-center justify-center touch-none cursor-grab active:cursor-grabbing"
+        >
+          <span className="w-10 h-1.5 rounded-full bg-ink/15" />
+        </div>
 
         {/* Close */}
         <button
@@ -175,7 +187,7 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
             </>
           )}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { AnimatePresence, motion, useInView } from 'framer-motion';
 import { EASE, DURATION } from '@/lib/animation';
 import { trackEvent } from '@/lib/clarity';
 import { ga4SelectContent } from '@/lib/ga4';
+import { useSwipeToClose } from '@/lib/useSwipeToClose';
 
 interface IngredientData {
   name: string;
@@ -412,6 +413,7 @@ export default function HomepageIngredientsSection({ ingredients, sizes }: Props
   const [descExpanded, setDescExpanded] = useState(false);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-8% 0px' });
+  const { panelProps, handleProps } = useSwipeToClose(() => setModal(null));
 
   useEffect(() => {
     document.body.style.overflow = modal ? 'hidden' : '';
@@ -581,7 +583,14 @@ export default function HomepageIngredientsSection({ ingredients, sizes }: Props
               exit={{ y: '100%' }}
               transition={{ duration: DURATION.slow, ease: EASE.expoOut }}
               onClick={(e) => e.stopPropagation()}
+              {...panelProps}
             >
+              <div
+                {...handleProps}
+                className="sm:hidden shrink-0 pt-2.5 pb-1 flex items-center justify-center touch-none cursor-grab active:cursor-grabbing"
+              >
+                <span className="w-10 h-1.5 rounded-full bg-ink/15" />
+              </div>
               {modal.imageUrl && (
                 <div className="relative w-full h-28 sm:h-40 shrink-0 overflow-hidden rounded-t-3xl">
                   <Image src={modal.imageUrl} alt={modal.name} fill className="object-cover" sizes="448px" />

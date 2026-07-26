@@ -1,7 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { trackEvent } from '@/lib/clarity';
+import { useSwipeToClose } from '@/lib/useSwipeToClose';
 
 type Supplement = { name: string; monthlyPriceCHF: number };
 
@@ -17,6 +19,7 @@ export default function SavingsBreakdownModal({
   savings: number;
 }) {
   const [open, setOpen] = useState(false);
+  const { panelProps, handleProps } = useSwipeToClose(() => setOpen(false));
 
   return (
     <>
@@ -39,10 +42,18 @@ export default function SavingsBreakdownModal({
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
 
           {/* Panel */}
-          <div
+          <motion.div
             className="relative w-full max-w-sm bg-white rounded-2xl shadow-xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
+            {...panelProps}
           >
+            <div
+              {...handleProps}
+              className="sm:hidden pt-2.5 pb-1 flex items-center justify-center touch-none cursor-grab active:cursor-grabbing"
+            >
+              <span className="w-10 h-1.5 rounded-full bg-ink/15" />
+            </div>
+
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-5 border-b border-ink/[12.5%]">
               <p className="text-sm font-semibold text-ink">Monthly breakdown</p>
@@ -73,12 +84,12 @@ export default function SavingsBreakdownModal({
                 <span className="text-sm text-[rgba(30,24,84,0.45)] line-through shrink-0">CHF {traditionalTotal}</span>
               </div>
               <div className="flex items-center justify-between gap-4">
-                <span className="text-base font-semibold text-ink">Flow — 30 sachets · monthly</span>
+                <span className="text-base font-semibold text-ink">Flow: 30 sachets · monthly</span>
                 <span className="text-base font-semibold text-ink shrink-0">CHF {flowPrice}</span>
               </div>
               <p className="text-xs text-[rgba(30,24,84,0.5)] pt-1">You save CHF {savings} every month.</p>
             </div>
-          </div>
+          </motion.div>
         </div>
       )}
     </>

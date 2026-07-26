@@ -7,6 +7,7 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { trackEvent } from '@/lib/clarity';
 import type { HealthBenefit } from '@/lib/content';
 import { EASE, DURATION } from '@/lib/animation';
+import { useSwipeToClose } from '@/lib/useSwipeToClose';
 
 interface Props {
   benefits: HealthBenefit[];
@@ -18,6 +19,7 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
   const [active, setActive] = useState(0);
   const [modalBenefit, setModalBenefit] = useState<HealthBenefit | null>(null);
   const step = benefits[Math.max(0, active)];
+  const { panelProps, handleProps } = useSwipeToClose(() => setModalBenefit(null));
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-8% 0px' });
 
@@ -202,7 +204,14 @@ export default function HealthBenefits({ benefits, sectionLabel, heading }: Prop
               transition={{ duration: DURATION.slow, ease: EASE.expoOut }}
               className="relative w-full bg-white rounded-t-3xl shadow-2xl flex flex-col max-h-[90svh]"
               onClick={(e) => e.stopPropagation()}
+              {...panelProps}
             >
+              <div
+                {...handleProps}
+                className="absolute top-0 left-0 right-0 z-10 pt-2.5 pb-1 flex items-center justify-center touch-none cursor-grab active:cursor-grabbing"
+              >
+                <span className="w-10 h-1.5 rounded-full bg-white/70" />
+              </div>
               {modalBenefit.imageUrl && (
                 <div className="relative w-full h-40 shrink-0 overflow-hidden rounded-t-3xl">
                   <Image

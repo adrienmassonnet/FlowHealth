@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { useSwipeToClose } from '@/lib/useSwipeToClose';
 
 const claims = [
   {
@@ -61,6 +63,7 @@ const claims = [
 
 export default function EuClaimsModal() {
   const [open, setOpen] = useState(false);
+  const { panelProps, handleProps } = useSwipeToClose(() => setOpen(false));
 
   return (
     <>
@@ -81,10 +84,18 @@ export default function EuClaimsModal() {
         >
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
 
-          <div
+          <motion.div
             className="relative w-full max-w-lg bg-white rounded-2xl shadow-xl overflow-hidden max-h-[85vh] flex flex-col"
             onClick={(e) => e.stopPropagation()}
+            {...panelProps}
           >
+            <div
+              {...handleProps}
+              className="sm:hidden shrink-0 pt-2.5 pb-1 flex items-center justify-center touch-none cursor-grab active:cursor-grabbing"
+            >
+              <span className="w-10 h-1.5 rounded-full bg-ink/15" />
+            </div>
+
             {/* Header */}
             <div className="flex items-start justify-between px-6 py-5 border-b border-ink/[0.08] shrink-0">
               <div className="space-y-1 pr-4">
@@ -140,7 +151,7 @@ export default function EuClaimsModal() {
                 Source: EU Register of authorised health claims, ec.europa.eu/food/safety/labelling_nutrition/claims/register
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       )}
     </>
