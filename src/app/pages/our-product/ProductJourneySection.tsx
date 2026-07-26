@@ -1,3 +1,7 @@
+'use client';
+
+import { useState } from 'react';
+
 const CHAPTERS = [
   {
     year: '01',
@@ -76,6 +80,8 @@ const CHAPTERS = [
 ];
 
 export default function ProductJourneySection() {
+  const [openYear, setOpenYear] = useState<string | null>(null);
+
   return (
     <section className="pt-4 pb-16">
       <div className="flow-container pt-4 md:pt-8">
@@ -118,25 +124,49 @@ export default function ProductJourneySection() {
           ))}
         </div>
 
-        {/* Mobile: full-width cards, icon inline with the title */}
+        {/* Mobile: collapsed cards show icon, eyebrow, headline — tap to reveal the body */}
         <div className="md:hidden flex flex-col gap-4">
-          {CHAPTERS.map((ch) => (
-            <div key={ch.year} className="rounded-xl border border-ink/[8.2%] bg-white p-5 shadow-[0_2px_12px_rgba(30,24,84,0.05)] flex flex-col gap-3">
-              <div className="flex items-center gap-3">
-                <span className="shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-brand to-ink flex items-center justify-center text-white">
-                  {ch.icon}
-                </span>
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-2">
-                    <span className="text-micro tracking-[0.18em] uppercase font-semibold text-brand">{ch.label}</span>
-                    <span className="text-micro font-semibold text-ink/55 tabular-nums">{ch.year}</span>
+          {CHAPTERS.map((ch) => {
+            const isOpen = openYear === ch.year;
+            return (
+              <button
+                key={ch.year}
+                type="button"
+                onClick={() => setOpenYear(isOpen ? null : ch.year)}
+                aria-expanded={isOpen}
+                className="text-left rounded-xl border border-ink/[8.2%] bg-white p-5 shadow-[0_2px_12px_rgba(30,24,84,0.05)] flex flex-col gap-3 w-full"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-brand to-ink flex items-center justify-center text-white">
+                    {ch.icon}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                      <span className="text-micro tracking-[0.18em] uppercase font-semibold text-brand">{ch.label}</span>
+                      <span className="text-micro font-semibold text-ink/55 tabular-nums">{ch.year}</span>
+                    </div>
+                    <p className="flow-h5 leading-snug">{ch.heading}</p>
                   </div>
-                  <p className="flow-h5 leading-snug">{ch.heading}</p>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className={`shrink-0 text-ink/40 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+                  >
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
                 </div>
-              </div>
-              <p className="text-xs text-[rgba(30,24,84,0.72)] leading-[1.6]">{ch.body}</p>
-            </div>
-          ))}
+                {isOpen && (
+                  <p className="text-xs text-[rgba(30,24,84,0.72)] leading-[1.6]">{ch.body}</p>
+                )}
+              </button>
+            );
+          })}
         </div>
 
       </div>
