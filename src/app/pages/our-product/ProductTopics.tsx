@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { EASE, DURATION } from '@/lib/animation';
 import { StepCard } from '@/app/components/StepCard';
 import IngredientsAccordion from '@/app/products/[handle]/IngredientsAccordion';
 import { allIngredients } from '@/app/components/IngredientsExplorer';
@@ -39,6 +41,7 @@ const contrast = [
 
 export default function ProductTopics({ ingredients, activeIngredients }: { ingredients: Ingredient[]; activeIngredients?: number }) {
   const [activeSystem, setActiveSystem] = useState(0);
+  const [activeTopic, setActiveTopic] = useState(0);
 
   return (
     <div className="bg-white">
@@ -114,27 +117,52 @@ export default function ProductTopics({ ingredients, activeIngredients }: { ingr
             <h2 className="flow-h2">What you'll never find in Flow.</h2>
             <p className="text-sm text-[rgba(30,24,84,0.78)] leading-relaxed">The supplement industry has a long list of common shortcuts. These are the ones we refuse to take.</p>
           </div>
-          {/* Mobile: stacked cards */}
-          <div className="md:hidden flex flex-col gap-3">
-            {contrast.map((row) => (
-              <div key={row.topic} className="rounded-xl border border-ink/[0.08] bg-white overflow-hidden">
-                <div className="px-4 py-2 border-b border-ink/[0.06] bg-[#F4F4FB]">
-                  <span className="text-micro font-semibold tracking-[0.12em] uppercase text-ink/60">{row.topic}</span>
-                </div>
-                <div className="flex items-start gap-2.5 px-4 py-3 border-b border-ink/[0.06]">
-                  <span className="shrink-0 w-5 h-5 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center">
-                    <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="#16a34a" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          {/* Mobile: vertical topic list + single-open comparison, matching FAQ table layout */}
+          <div className="md:hidden grid grid-cols-[104px_1fr] border border-ink/[0.08] rounded-2xl overflow-hidden">
+            {/* Topics — left */}
+            <div className="bg-white border-r border-ink/[0.07] flex flex-col">
+              {contrast.map((row, i) => (
+                <button
+                  key={row.topic}
+                  onClick={() => setActiveTopic(i)}
+                  aria-pressed={activeTopic === i}
+                  className={`text-left px-3 py-3.5 border-b border-ink/[0.07] last:border-0 transition-colors duration-200 ${
+                    activeTopic === i ? 'bg-[#F7F6FA]' : 'bg-white hover:bg-[#F7F6FA]/60'
+                  }`}
+                >
+                  <span className={`text-[11px] font-semibold tracking-[0.08em] uppercase leading-snug transition-colors duration-200 ${activeTopic === i ? 'text-brand' : 'text-ink/60'}`}>
+                    {row.topic}
                   </span>
-                  <span className="text-xs text-ink leading-relaxed">{row.flow}</span>
-                </div>
-                <div className="flex items-start gap-2.5 px-4 py-3">
-                  <span className="shrink-0 w-5 h-5 rounded-full bg-ink/[0.04] border border-ink/10 flex items-center justify-center">
-                    <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M2.5 2.5l4 4M6.5 2.5l-4 4" stroke="var(--color-ink)" strokeOpacity="0.45" strokeWidth="1.4" strokeLinecap="round"/></svg>
-                  </span>
-                  <span className="text-xs text-ink/65 leading-relaxed">{row.others}</span>
-                </div>
-              </div>
-            ))}
+                </button>
+              ))}
+            </div>
+
+            {/* Comparison — right */}
+            <div className="relative bg-[#FAFAFA] min-h-[180px] overflow-hidden">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={contrast[activeTopic].topic}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: DURATION.base, ease: EASE.expoOut }}
+                  className="px-3.5 py-4 space-y-3"
+                >
+                  <div className="flex items-start gap-2.5">
+                    <span className="shrink-0 w-5 h-5 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center mt-0.5">
+                      <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="#16a34a" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    </span>
+                    <span className="text-xs text-ink leading-relaxed">{contrast[activeTopic].flow}</span>
+                  </div>
+                  <div className="flex items-start gap-2.5 pt-3 border-t border-ink/[0.06]">
+                    <span className="shrink-0 w-5 h-5 rounded-full bg-ink/[0.04] border border-ink/10 flex items-center justify-center mt-0.5">
+                      <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M2.5 2.5l4 4M6.5 2.5l-4 4" stroke="var(--color-ink)" strokeOpacity="0.45" strokeWidth="1.4" strokeLinecap="round"/></svg>
+                    </span>
+                    <span className="text-xs text-ink/65 leading-relaxed">{contrast[activeTopic].others}</span>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
 
           {/* Desktop: table */}
