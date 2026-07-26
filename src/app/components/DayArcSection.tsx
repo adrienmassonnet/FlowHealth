@@ -118,16 +118,14 @@ export default function DayArcSection() {
       <div className="relative flow-container">
 
         {/* Header */}
-        <div className="text-center max-w-[720px] mx-auto mb-8 space-y-4">
-          <div className="space-y-2">
-            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">
-              Win your morning, win your day
-            </p>
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-[-0.03em] leading-[1.08] text-ink">
-              Set your chemistry right for the entire day.
-            </h2>
-          </div>
-          <p className="text-sm leading-[1.55]" style={{ color: 'rgba(30,24,84,0.55)' }}>
+        <div className="flow-section-header flow-section-header--center max-w-[720px] mx-auto">
+          <p className="flow-label flow-label--gradient">
+            Win your morning, win your day
+          </p>
+          <h2 className="flow-h2 text-ink">
+            Set your chemistry right for the entire day.
+          </h2>
+          <p className="flow-body max-w-copy" style={{ color: 'rgba(30,24,84,0.55)' }}>
             Flow is built for the morning window, when adenosine has cleared and cortisol peaks naturally. Most drinks overstimulate a brain that was already primed. Flow works with that biology, not against it.
           </p>
         </div>
@@ -259,15 +257,15 @@ export default function DayArcSection() {
                   zIndex: 1,
                 }}
               />
-              <div className="relative flex items-center justify-center py-1.5" style={{ zIndex: 2, width: '104px' }}>
-                <span className="shrink-0 w-2 h-2 rounded-full mr-2" style={{ background: STIM_COLOR }} />
-                <span className="text-xs font-medium whitespace-nowrap" style={{ color: mode === 'stim' ? 'var(--color-ink)' : 'rgba(255,255,255,0.5)', transition: 'color 0.5s cubic-bezier(0.4,0,0.2,1)' }}>
+              <div className="relative flex items-center justify-center py-3" style={{ zIndex: 2, width: '148px' }}>
+                <span className="shrink-0 w-2.5 h-2.5 rounded-full mr-2" style={{ background: STIM_COLOR }} />
+                <span className="text-sm font-medium whitespace-nowrap" style={{ color: mode === 'stim' ? 'var(--color-ink)' : 'rgba(255,255,255,0.5)', transition: 'color 0.5s cubic-bezier(0.4,0,0.2,1)' }}>
                   With caffeine
                 </span>
               </div>
-              <div className="relative flex items-center justify-center py-1.5" style={{ zIndex: 2, width: '104px' }}>
-                <span className="shrink-0 w-2 h-2 rounded-full mr-2" style={{ background: FLOW_COLOR }} />
-                <span className="text-xs font-medium whitespace-nowrap" style={{ color: mode === 'flow' ? '#fff' : 'rgba(30,24,84,0.4)', transition: 'color 0.5s cubic-bezier(0.4,0,0.2,1)' }}>
+              <div className="relative flex items-center justify-center py-3" style={{ zIndex: 2, width: '148px' }}>
+                <span className="shrink-0 w-2.5 h-2.5 rounded-full mr-2" style={{ background: FLOW_COLOR }} />
+                <span className="text-sm font-medium whitespace-nowrap" style={{ color: mode === 'flow' ? '#fff' : 'rgba(30,24,84,0.4)', transition: 'color 0.5s cubic-bezier(0.4,0,0.2,1)' }}>
                   With Flow
                 </span>
               </div>
@@ -317,14 +315,14 @@ export default function DayArcSection() {
                         isOpen ? 'rounded-br-none' : 'rounded-br-xl'
                       } md:rounded-br-none`}
                     >
-                      <span className="text-micro font-semibold tabular-nums" style={{ color: 'var(--tint-text)' }}>
+                      <span className="text-xs font-semibold tabular-nums" style={{ color: 'var(--tint-text)' }}>
                         {i + 1}
                       </span>
                     </span>
                     {/* Title — background fades from transparent to the tint on open, so the
                         colour coverage grows over it smoothly. Content-width, not full. */}
                     <span
-                      className={`flex items-center pr-3.5 py-2.5 text-sm font-semibold tracking-[-0.01em] leading-snug rounded-br-xl transition-colors duration-500 ${
+                      className={`flex items-center pl-2 pr-3.5 py-2.5 text-base font-semibold tracking-[-0.01em] leading-snug rounded-br-xl transition-colors duration-500 ${
                         isOpen ? 'bg-[var(--tint)]' : 'bg-transparent'
                       } md:bg-[var(--tint)]`}
                       style={{ color: 'var(--color-ink)' }}
