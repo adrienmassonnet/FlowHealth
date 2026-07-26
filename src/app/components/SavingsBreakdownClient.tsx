@@ -79,12 +79,9 @@ export default function SavingsBreakdownClient({
         <div className="flex-1 space-y-1.5">
           <p className="text-xs font-semibold tracking-[0.1em] uppercase text-ink/35">What you pay</p>
           <span className="text-2xl md:text-4xl font-semibold tracking-[-0.03em] text-ink">CHF {flowPrice}<span className="text-sm font-medium text-ink/40 ml-1">/mo</span></span>
-          <p className="text-xs text-ink/45 leading-[1.55]">
-            One sachet. {activeIngredients} active ingredients. {servingsPerBox} days of supply. The same stack bought separately would run you <span className="font-semibold text-ink/60">CHF {traditionalTotal}/mo</span>.
-          </p>
           <div className="flex flex-wrap items-center gap-2 pt-0.5">
             <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-700">
-              CHF {savings} cheaper than buying separately
+              CHF {savings} cheaper than the {activeIngredients} ingredients bought separately
             </span>
             <button
               onClick={() => { setOpen(true); trackEvent('product_page_savings_breakdown_open'); }}
