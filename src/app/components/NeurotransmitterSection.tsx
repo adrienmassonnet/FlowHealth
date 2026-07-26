@@ -97,7 +97,7 @@ export default function NeurotransmitterSection() {
               What goes up must come down
             </motion.p>
             <motion.h2
-              className="text-2xl md:text-4xl font-semibold tracking-[-0.03em] leading-[1.08] text-ink"
+              className="flow-h2"
               initial={{ opacity: 0, y: 16 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: DURATION.slow, delay: 0.07, ease: EASE.expoOut }}
@@ -173,14 +173,14 @@ export default function NeurotransmitterSection() {
 
           {/* Mobile: two-column grid */}
           <div className="md:hidden">
-            <p className="text-xs tracking-[0.16em] uppercase font-semibold text-ink mb-3">
+            <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent mb-3">
               Flow's contribution to stability
             </p>
             <div className="grid grid-cols-2 gap-2.5">
               {nodes.map((n, i) => (
                 <motion.div
                   key={n.sentence}
-                  className={`rounded-xl px-3 py-3 flex items-center gap-2.5 ${
+                  className={`rounded-xl px-3 py-3 min-h-16 flex items-center gap-2.5 ${
                     // centre a lone final card while keeping a single-column width
                     i === nodes.length - 1 && nodes.length % 2 === 1
                       ? 'col-span-2 justify-self-center w-[calc(50%-0.3125rem)]'
