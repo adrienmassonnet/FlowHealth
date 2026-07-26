@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
+import Image from 'next/image';
 import { motion, useInView } from 'framer-motion';
 import cloud from 'd3-cloud';
 import { EASE, DURATION } from '@/lib/animation';
@@ -105,34 +106,53 @@ export default function BrainHealthSection() {
   return (
     <section
       ref={sectionRef}
-      className="py-10 md:py-16 bg-white overflow-hidden"
+      className="py-section-sm md:py-section bg-white overflow-hidden"
     >
       <div className="flow-container">
 
-        <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
+        <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-6">
 
-          {/* Word cloud — left */}
-          <div className="w-full md:flex-1 min-w-0">
+          {/* Word cloud — left on desktop, below the text on mobile */}
+          <div className="order-2 md:order-1 w-full md:flex-1 min-w-0">
             <WordCloud inView={inView} mobile={isMobile} />
           </div>
 
-          {/* Text block — right */}
+          {/* Text block — right on desktop, first on mobile */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: DURATION.slow, ease: EASE.expoOut, delay: 0.1 }}
-            className="space-y-4 md:max-w-[500px]"
+            className="order-1 md:order-2 relative isolate space-y-4 md:max-w-[500px]"
           >
+            {/* Image behind the text — calm emerging from chaos */}
+            <div className="absolute -inset-4 md:-inset-x-5 md:-inset-y-12 -z-10 pointer-events-none overflow-hidden rounded-3xl bg-ink transform-gpu">
+              <Image
+                src="/calm-from-chaos.png"
+                alt=""
+                fill
+                className="object-cover scale-110 transform-gpu"
+                sizes="(max-width: 768px) 100vw, 600px"
+              />
+            </div>
             <div className="space-y-2">
-              <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">
+              <p
+                className="text-xs tracking-[0.16em] uppercase font-semibold text-white/70"
+                style={{ textShadow: '0 1px 3px rgba(0,0,0,0.9), 0 2px 14px rgba(0,0,0,0.5)' }}
+              >
                 Long-term brain health
               </p>
-              <h2 className="flow-h2">
+              <h2
+                className="flow-h2 text-white"
+                style={{ textShadow: '0 2px 4px rgba(0,0,0,0.9), 0 4px 20px rgba(0,0,0,0.5)' }}
+              >
                 Chronic overstimulation quietly hinders the brain.
               </h2>
             </div>
-            <p className="text-sm md:text-base text-ink/55 leading-[1.55]">
-              Flow was built for this. Through clinically studied adaptogens and nootropics, it targets the root causes of what chronic overstimulation does over time to stress, focus, mood, and sleep.
+            <p
+              className="text-sm text-white/90 leading-[1.55]"
+              style={{ textShadow: '0 1px 3px rgba(0,0,0,0.9), 0 2px 14px rgba(0,0,0,0.5)' }}
+            >
+              Modern life keeps the nervous system switched on &mdash; notifications, deadlines, and stimulants stacking until cortisol never fully settles, showing up as mood swings, foggy recall, and a stress response that won&rsquo;t ease. Flow works with the body&rsquo;s own chemistry instead of pushing it further: saffron and ginseng support healthy serotonin and dopamine activity, magnesium and rooibos help manage the body&rsquo;s everyday hormonal stress response, and Lion&rsquo;s Mane supports long-term cognitive vitality &mdash; for steadier mood, calmer stress, and clearer thinking.
             </p>
           </motion.div>
 
