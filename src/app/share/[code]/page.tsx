@@ -53,10 +53,10 @@ export async function generateMetadata(
   const heading = content?.heading ?? 'A daily moment for your mind.';
 
   return {
-    title: `Flow Daily Ritual — ${heading}`,
+    title: `Flow Daily Ritual: ${heading}`,
     description: `Join the Flow Daily Ritual. 10 days of morning practices designed to compound focus, clarity, and inner calm. Here's what day ${position} felt like.`,
     openGraph: {
-      title: `Flow Daily Ritual — Day ${position}`,
+      title: `Flow Daily Ritual: Day ${position}`,
       description: heading,
       images: [`${SITE_URL}/ritual/share/${code}/og?day=${position}`],
     },
@@ -151,7 +151,7 @@ export default async function SharePage(
             What is the Flow Daily Ritual?
           </p>
           <p style={{ fontSize: 15, fontWeight: 300, lineHeight: 1.75, color: 'rgba(244,241,234,0.70)', marginBottom: 12 }}>
-            Every morning after taking Flow, scan the QR code in your box. Each scan unlocks a thought built around what your body and mind are doing — neuroscience, focus, recovery, clarity.
+            Every morning after taking Flow, scan the QR code in your box. Each scan unlocks a thought built around what your body and mind are doing: neuroscience, focus, recovery, clarity.
           </p>
           <p style={{ fontSize: 15, fontWeight: 300, lineHeight: 1.75, color: 'rgba(244,241,234,0.70)' }}>
             Scan ten mornings in a row and something arrives. But consistency is what unlocks it.

@@ -78,7 +78,7 @@
 
 | value | unit | description |
 |---|---|---|
-| 13 | Active ingredients | Each chosen for clinical evidence, not marketing appeal. |
+| 16 | Active ingredients | Each chosen for clinical evidence, not marketing appeal. (Counts B1/B3/B6/B12 individually — see PRODUCT_META.activeIngredients in product-meta.ts) |
 | 0 | Proprietary blends | Every dose is disclosed. No hidden fillers or trace amounts. |
 | 30+ | Clinical studies | The evidence base behind our core ingredient stack. |
 | Swiss | GMP certified | Manufactured to pharmaceutical-grade standards in Switzerland. |
@@ -152,7 +152,7 @@
 |---|---|---|
 | 01 | Simple Daily Ritual | Pour one sachet into 400–500 ml of water / Stir gently until fully dissolved / Drink slowly and mindfully / Repeat every day |
 | 02 | Your Morning Routine | Take Flow first thing in the morning. The early hours offer a clean slate with peak dopamine sensitivity and minimal distractions, delivering full calm energy and focus that lasts all day. |
-| 03 | Pair with Meaningful Moments | Link your Flow moment to an activity you enjoy and that helps you grow — journaling, a short walk, deep work or creative time. It becomes the emblem of your commitment to personal growth. |
+| 03 | Pair with Meaningful Moments | Link your Flow moment to an activity you enjoy and that helps you grow: journaling, a short walk, deep work or creative time. It becomes the emblem of your commitment to personal growth. |
 
 ---
 
@@ -170,10 +170,10 @@
 
 | title | description |
 |---|---|
-| Peer-Reviewed Evidence | Every ingredient is backed by human clinical trials — not animal studies or in-vitro data. |
-| Clinical Dosing | We dose at proven therapeutic levels — no pixie-dusting or proprietary blends hiding underdoses. |
-| Bioavailable Forms | We select the most bioavailable form of each compound — the exact form used in the clinical research. |
-| Swiss GMP Manufacturing | Produced under pharmaceutical-grade Swiss GMP conditions — every batch tested for purity and potency. |
+| Peer-Reviewed Evidence | Every ingredient is backed by human clinical trials, not animal studies or in-vitro data. |
+| Clinical Dosing | We dose at proven therapeutic levels: no pixie-dusting or proprietary blends hiding underdoses. |
+| Bioavailable Forms | We select the most bioavailable form of each compound: the exact form used in the clinical research. |
+| Swiss GMP Manufacturing | Produced under pharmaceutical-grade Swiss GMP conditions, with every batch tested for purity and potency. |
 
 ---
 

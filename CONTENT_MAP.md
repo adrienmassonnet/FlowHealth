@@ -33,7 +33,7 @@
 | Location | Current Copy | Source |
 |---|---|---|
 | Site title | `Flow Health` | Hardcoded |
-| Meta description | `Stable Energy for Deep Focus — Premium Swiss functional beverage` | Hardcoded |
+| Meta description | `Stable Energy for Deep Focus, Premium Swiss functional beverage` | Hardcoded |
 
 ### Announcement Bar
 | Location | Current Copy | Source |
@@ -46,7 +46,7 @@
 | About dropdown label | `About Flow` | Hardcoded |
 | About → link 1 | `Who We Are` · `The team and story behind Flow Health.` | Hardcoded |
 | About → link 2 | `Our Philosophy` · `The principles we refuse to compromise on.` | Hardcoded |
-| About → link 3 | `Our Product` · `Inside the formula — every ingredient, every dose.` | Hardcoded |
+| About → link 3 | `Our Product` · `Inside the formula, every ingredient, every dose.` | Hardcoded |
 | Learn dropdown label | `Latest articles` | Hardcoded |
 | Learn → see all | `See all` / `View all articles` | Hardcoded |
 | Mobile nav links | `Who We Are`, `Our Philosophy`, `Our Product`, `Ingredients`, `Blog`, `FAQ`, `Contact`, `Get Flow` | Hardcoded |
@@ -95,7 +95,7 @@
 | Element | Current Copy | Source |
 |---|---|---|
 | Product title | *(dynamic)* | Shopify |
-| Benefit copy | `Promotes homeostasis, fights over-stimulation, and supports peak cognitive performance — naturally.` | Hardcoded |
+| Benefit copy | `Promotes homeostasis, fights over-stimulation, and supports peak cognitive performance, naturally.` | Hardcoded |
 | Button 1 | `Learn More` | Hardcoded |
 | Button 2 | `Shop Now` | Hardcoded |
 
@@ -138,7 +138,7 @@
 | Row 1 — Others | `Underdosed or proprietary blends` | Hardcoded |
 | Row 2 — Flow | `One formula replaces 4–6 separate supplements` | Hardcoded |
 | Row 2 — Others | `Multiple products required` | Hardcoded |
-| Row 3 — Flow | `Ready-to-drink — no pills, no mixing, no measuring` | Hardcoded |
+| Row 3 — Flow | `Ready-to-drink, no pills, no mixing, no measuring` | Hardcoded |
 | Row 3 — Others | `Multiple capsules or powders spread across the day` | Hardcoded |
 | Row 4 — Flow | `Each ingredient backed by peer-reviewed research` | Hardcoded |
 | Row 4 — Others | `Rarely cited` | Hardcoded |
@@ -150,7 +150,7 @@
 |---|---|---|
 | Section label | `Save Money` | Hardcoded |
 | Heading | `One bottle replaces 8 daily supplements.` | Hardcoded |
-| Body | `The average person spends over CHF 265 every month on individual supplements. Flow consolidates everything into one bottle — without compromise.` | Hardcoded |
+| Body | `The average person spends over CHF 265 every month on individual supplements. Flow consolidates everything into one bottle, without compromise.` | Hardcoded |
 | Savings badge label | `Monthly savings` | Hardcoded |
 | Savings amount | `CHF 186` | Hardcoded |
 | Savings context | `switching to Flow` | Hardcoded |
@@ -203,10 +203,10 @@
 | Element | Current Copy | Source |
 |---|---|---|
 | Section heading | `Our rigorous ingredient selection process.` | Hardcoded |
-| Criterion 1 | `Peer-Reviewed Evidence` · `Every ingredient is backed by human clinical trials — not animal studies or in-vitro data.` | Hardcoded |
-| Criterion 2 | `Clinical Dosing` · `We dose at proven therapeutic levels — no pixie-dusting or proprietary blends hiding underdoses.` | Hardcoded |
-| Criterion 3 | `Bioavailable Forms` · `We select the most bioavailable form of each compound — the exact form used in the clinical research.` | Hardcoded |
-| Criterion 4 | `Swiss GMP Manufacturing` · `Produced under pharmaceutical-grade Swiss GMP conditions — every batch tested for purity and potency.` | Hardcoded |
+| Criterion 1 | `Peer-Reviewed Evidence` · `Every ingredient is backed by human clinical trials, not animal studies or in-vitro data.` | Hardcoded |
+| Criterion 2 | `Clinical Dosing` · `We dose at proven therapeutic levels, no pixie-dusting or proprietary blends hiding underdoses.` | Hardcoded |
+| Criterion 3 | `Bioavailable Forms` · `We select the most bioavailable form of each compound, the exact form used in the clinical research.` | Hardcoded |
+| Criterion 4 | `Swiss GMP Manufacturing` · `Produced under pharmaceutical-grade Swiss GMP conditions, every batch tested for purity and potency.` | Hardcoded |
 
 ### Ingredients Accordion (Flip Cards)
 | Ingredient | Tagline | Description | Source |
@@ -217,10 +217,10 @@
 | `Panax Ginseng` | `Cognitive function & stamina` | `A renowned adaptogen that supports cognitive function and physical stamina. Panax ginseng modulates the HPA axis and cortisol response, helping maintain balance under sustained stress.` | Hardcoded |
 | `Ashwagandha KSM-66®` | `Calm, grounded, balanced` | `A clinically-studied adaptogen that reduces cortisol levels and supports healthy hormonal balance. Promotes a calm, grounded state while supporting thyroid and adrenal health.` | Hardcoded |
 | `Lion's Mane Mushroom` | `Neuroplasticity & memory` | `A medicinal mushroom that stimulates NGF (Nerve Growth Factor), supporting the formation of new neural connections. Studied for its role in improving memory, cognitive speed, and long-term brain health.` | Hardcoded |
-| `Electrolytes` | `Hydration & nerve signalling` | `A precise blend of sodium, potassium, and magnesium that supports optimal hydration, nerve signalling, and muscle function — ensuring your body and mind operate at full capacity.` | Hardcoded |
+| `Electrolytes` | `Hydration & nerve signalling` | `A precise blend of sodium, potassium, and magnesium that supports optimal hydration, nerve signalling, and muscle function, ensuring your body and mind operate at full capacity.` | Hardcoded |
 | `Prebiotics & Probiotics` | `Gut-brain axis support` | `A dual-action gut-brain axis support system. Prebiotics feed beneficial bacteria while probiotics replenish them, supporting mood, immunity, and serotonin production.` | Hardcoded |
 | `Bacopa Monnieri` | `Memory & learning support` | `An Ayurvedic herb used for centuries to enhance memory and cognitive performance. Bacopa modulates acetylcholine and serotonin pathways, with clinical studies showing improved recall after 8–12 weeks.` | Hardcoded |
-| `Alpha-GPC` | `Acetylcholine precursor` | `A highly bioavailable choline source that crosses the blood-brain barrier to boost acetylcholine levels — the neurotransmitter central to memory, focus, and learning. Popular with athletes and nootropic users.` | Hardcoded |
+| `Alpha-GPC` | `Acetylcholine precursor` | `A highly bioavailable choline source that crosses the blood-brain barrier to boost acetylcholine levels, the neurotransmitter central to memory, focus, and learning. Popular with athletes and nootropic users.` | Hardcoded |
 | `Magnesium Glycinate` | `Calm, sleep & recovery` | `The most bioavailable form of magnesium, chelated with glycine for superior absorption. Supports over 300 enzymatic reactions, deep sleep, muscle relaxation, and healthy cortisol rhythms.` | Hardcoded |
 | `Green Tea Catechins` | `Antioxidant & mitochondrial health` | `Powerful antioxidants that support cellular energy production and cardiovascular health. EGCG from green tea protects neurons and supports healthy mitochondrial function for sustained vitality.` | Hardcoded |
 
@@ -229,7 +229,7 @@
 |---|---|---|
 | Shipping details | `Free shipping on orders over CHF 50. Orders are dispatched within 1–2 business days from our Swiss warehouse. Standard delivery takes 3–5 business days within Switzerland and 5–10 business days internationally.` | Hardcoded |
 | Delivery details | `We offer free delivery on all orders over CHF 50. For orders under CHF 50, a flat shipping fee of CHF 5 applies. All deliveries are tracked and you will receive a confirmation email with your tracking number once your order has been dispatched.` | Hardcoded |
-| Returns details | `30-day satisfaction guarantee — if you are not completely satisfied with your purchase, contact us within 30 days for a full refund. No questions asked. Returned products must be unused and in their original packaging.` | Hardcoded |
+| Returns details | `30-day satisfaction guarantee, if you are not completely satisfied with your purchase, contact us within 30 days for a full refund. No questions asked. Returned products must be unused and in their original packaging.` | Hardcoded |
 
 ### "Still Got Questions" Section
 | Element | Current Copy | Source |
@@ -247,14 +247,14 @@
 |---|---|---|
 | Label | `Transparent Formula` | Hardcoded |
 | Heading | `Ingredients` | Hardcoded |
-| Body | `Every ingredient in Flow is selected for its clinical evidence, bioavailability, and synergy with the full formula. No fillers, no proprietary blends — just full doses of what works.` | Hardcoded |
+| Body | `Every ingredient in Flow is selected for its clinical evidence, bioavailability, and synergy with the full formula. No fillers, no proprietary blends, just full doses of what works.` | Hardcoded |
 
 ### Three Axes of Wellbeing
 | Element | Current Copy | Source |
 |---|---|---|
 | Section label | `Our approach` | Hardcoded |
 | Heading | `Three axes of wellbeing` | Hardcoded |
-| Body | `Every ingredient in Flow was chosen for its contribution to at least one of three interconnected systems. Together, they address the whole person — not just a single symptom.` | Hardcoded |
+| Body | `Every ingredient in Flow was chosen for its contribution to at least one of three interconnected systems. Together, they address the whole person, not just a single symptom.` | Hardcoded |
 | Axis 1 | `Cognitive Function` · `Sharpens focus, sustains mental energy, and supports long-term neuroplasticity via cholinergic, dopaminergic, and NGF pathways.` | Hardcoded |
 | Axis 2 | `Mood & Hormonal Balance` · `Regulates cortisol, supports dopamine and serotonin synthesis, and builds resilience to physical and emotional stress.` | Hardcoded |
 | Axis 3 | `Cellular & Metabolic Health` · `Protects neurons from oxidative stress, fuels mitochondrial efficiency, and provides the co-factors every cell needs to thrive.` | Hardcoded |
@@ -295,14 +295,14 @@
 |---|---|---|
 | Label | `About Flow` | Hardcoded |
 | Heading | `Built for minds that refuse to settle.` | Hardcoded |
-| Body | `Flow started with a personal frustration — scattered focus, overstimulation, and a supplement market full of noise. We decided to build something better.` | Hardcoded |
+| Body | `Flow started with a personal frustration, scattered focus, overstimulation, and a supplement market full of noise. We decided to build something better.` | Hardcoded |
 
 ### Mission Section
 | Element | Current Copy | Source |
 |---|---|---|
 | Label | `Our Mission` | Hardcoded |
 | Heading | `Restore balance. Unlock clarity.` | Hardcoded |
-| Body | `At Flow, we believe true performance and lasting happiness come from within — from a calm, sustainable mind that lets you live with clarity, purpose, and joy. In a world that pushes constant hustle and overstimulation, we're here to help you restore balance and unlock the quiet strength already inside you.` | Hardcoded |
+| Body | `At Flow, we believe true performance and lasting happiness come from within, from a calm, sustainable mind that lets you live with clarity, purpose, and joy. In a world that pushes constant hustle and overstimulation, we're here to help you restore balance and unlock the quiet strength already inside you.` | Hardcoded |
 
 ### What We Believe
 | Element | Current Copy | Source |
@@ -324,7 +324,7 @@
 |---|---|---|
 | Label | `The Standard` | Hardcoded |
 | Heading | `If we wouldn't take it ourselves, we don't sell it.` | Hardcoded |
-| Body | `Every member of the Flow team uses the product daily. That is not a marketing claim — it is the simplest quality test we have. When the people making the product are also the people taking it, the incentives align perfectly. We ask ourselves one question before every decision: would we be comfortable explaining this to a customer who holds us fully accountable? If not, we don't do it.` | Hardcoded |
+| Body | `Every member of the Flow team uses the product daily. That is not a marketing claim; it is the simplest quality test we have. When the people making the product are also the people taking it, the incentives align perfectly. We ask ourselves one question before every decision: would we be comfortable explaining this to a customer who holds us fully accountable? If not, we don't do it.` | Hardcoded |
 
 ### CTA Section
 | Element | Current Copy | Source |
@@ -357,7 +357,7 @@
 |---|---|---|
 | Label | `The Formula` | Hardcoded |
 | Heading | `Built for the long game.` | Hardcoded |
-| Body | `Most cognitive supplements are designed around one or two hero ingredients padded out with cheap fillers. Flow is built differently — every ingredient earns its place through clinical evidence, not marketing. The formula targets five domains simultaneously: memory consolidation, stress resilience, neuroplasticity, focused attention, and sleep quality. These systems are deeply interconnected — optimising all five compounds over time. You won't notice a spike on day one. You will notice that six weeks in, tasks feel easier, stress feels lighter, and focus feels more available on demand.` | Hardcoded |
+| Body | `Most cognitive supplements are designed around one or two hero ingredients padded out with cheap fillers. Flow is built differently: every ingredient earns its place through clinical evidence, not marketing. The formula targets five domains simultaneously: memory consolidation, stress resilience, neuroplasticity, focused attention, and sleep quality. These systems are deeply interconnected, optimising all five compounds over time. You won't notice a spike on day one. You will notice that six weeks in, tasks feel easier, stress feels lighter, and focus feels more available on demand.` | Hardcoded |
 
 ### Format Details
 | Element | Current Copy | Source |
@@ -365,7 +365,7 @@
 | Label | `The Details` | Hardcoded |
 | Heading | `Made right, from start to finish.` | Hardcoded |
 | Format 1 | `Capsule form` · `Delayed-release vegetarian capsules for optimal absorption. No fillers, no anti-caking agents, no unnecessary additives.` | Hardcoded |
-| Format 2 | `30-day supply` · `Two capsules daily with your morning meal. Designed for consistent daily use — benefits compound over 4–12 weeks.` | Hardcoded |
+| Format 2 | `30-day supply` · `Two capsules daily with your morning meal. Designed for consistent daily use, benefits compound over 4–12 weeks.` | Hardcoded |
 | Format 3 | `Third-party tested` · `Every batch is independently tested for purity, potency, and contaminants before it leaves the facility.` | Hardcoded |
 
 ### Our Promise
@@ -376,10 +376,10 @@
 | Body | `We're here for the long haul, committed to supporting your journey toward a calmer mind, deeper focus, and a more fulfilling life.` | Hardcoded |
 | Bullet 1 | `Clean, natural ingredients you can trust` | Hardcoded |
 | Bullet 2 | `No artificial stimulants or hidden additives` | Hardcoded |
-| Bullet 3 | `Clinically dosed — no pixie-dusting` | Hardcoded |
+| Bullet 3 | `Clinically dosed, no pixie-dusting` | Hardcoded |
 | Bullet 4 | `Third-party tested for purity and potency` | Hardcoded |
 | Bullet 5 | `Sustainable packaging and responsible sourcing` | Hardcoded |
-| Bullet 6 | `Honest communication — always` | Hardcoded |
+| Bullet 6 | `Honest communication, always` | Hardcoded |
 
 ### CTA Section
 | Element | Current Copy | Source |
@@ -412,7 +412,7 @@
 |---|---|---|
 | Label | `Our Story` | Hardcoded |
 | Heading | `Built by people who needed it first.` | Hardcoded |
-| Body | `Flow started with a conversation between a neuroscientist and a nutritionist who were both dealing with the same problem: a supplement market full of proprietary blends, underdosed ingredients, and claims with no clinical backing. We decided to do it differently. No investors, no shortcuts, no compromise on ingredients. We spent three years formulating before we sold a single bottle. Today, Flow is one of the most transparently dosed cognitive supplements on the market. Every ingredient, every source, every milligram — on the label.` | Hardcoded |
+| Body | `Flow started with a conversation between a neuroscientist and a nutritionist who were both dealing with the same problem: a supplement market full of proprietary blends, underdosed ingredients, and claims with no clinical backing. We decided to do it differently. No investors, no shortcuts, no compromise on ingredients. We spent three years formulating before we sold a single bottle. Today, Flow is one of the most transparently dosed cognitive supplements on the market. Every ingredient, every source, every milligram, on the label.` | Hardcoded |
 
 ### Team & Timeline
 | Element | Current Copy | Source |
@@ -442,7 +442,7 @@
 | Subheading | `Why a drink outperforms capsules and powders on bioavailability and onset speed.` | Hardcoded |
 | Stat 1 | `~95%` · `Absorption rate` · `Liquid supplements achieve near-complete absorption vs. 40–60% for standard capsules.` | Hardcoded |
 | Stat 2 | `15 min` · `Onset time` · `Active ingredients enter the bloodstream within 15–30 minutes, vs. 45–90 minutes for solid forms.` | Hardcoded |
-| Stat 3 | `8 actives` · `In one bottle` · `A single 400ml bottle delivers a clinically dosed stack — no need to take multiple supplements.` | Hardcoded |
+| Stat 3 | `8 actives` · `In one bottle` · `A single 400ml bottle delivers a clinically dosed stack, no need to take multiple supplements.` | Hardcoded |
 
 ### Clinical Studies
 | Study subject | Headline finding | Journal | Source |
@@ -496,7 +496,7 @@
 | Element | Current Copy | Source |
 |---|---|---|
 | Featured post title | `Nootropics Explained: What They Are and How They Actually Work` | Hardcoded |
-| Featured excerpt | `The word "nootropic" gets thrown around a lot, but few people understand the mechanisms behind cognitive enhancement. We break down the science — clearly and honestly.` | Hardcoded |
+| Featured excerpt | `The word "nootropic" gets thrown around a lot, but few people understand the mechanisms behind cognitive enhancement. We break down the science, clearly and honestly.` | Hardcoded |
 
 ### Article List
 | Title | Tags | Date | Read time | Source |
@@ -544,7 +544,7 @@
 | Free shipping threshold (DE/AT/FR) | `CHF 150 / €140` | Hardcoded |
 | Free shipping threshold (EU/EEA) | `CHF 200` | Hardcoded |
 | Processing cutoff | `Orders placed before 13:00 CET (Mon–Fri) are normally dispatched the same day.` | Hardcoded |
-| Sign-off | `Thank you for your order! — Flow Health Team` | Hardcoded |
+| Sign-off | `Thank you for your order! Flow Health Team` | Hardcoded |
 
 ---
 
@@ -573,7 +573,7 @@
 | Intro | `We take your privacy very seriously...` *(see full page)* | Hardcoded |
 | Response time | `We will respond within 30 days.` | Hardcoded |
 | Children notice | `Our products and website are not intended for persons under 18. We do not knowingly collect data from children.` | Hardcoded |
-| Sign-off | `Thank you for trusting us with your data. — Flow Health Team` | Hardcoded |
+| Sign-off | `Thank you for trusting us with your data. Flow Health Team` | Hardcoded |
 
 ---
 

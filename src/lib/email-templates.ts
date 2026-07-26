@@ -4,7 +4,7 @@
  */
 
 export function prelaunchConfirmationEmail(email: string): { subject: string; html: string; text: string } {
-  const subject = "You're on the list — Flow";
+  const subject = "You're on the list: Flow";
 
   const html = `<!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -13,7 +13,7 @@ export function prelaunchConfirmationEmail(email: string): { subject: string; ht
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="x-apple-disable-message-reformatting">
-  <title>You're on the list — Flow</title>
+  <title>You're on the list: Flow</title>
   <style type="text/css">
     * { box-sizing: border-box; }
     body { margin: 0; padding: 0; background-color: #f2f1ee; font-family: Arial, Helvetica, sans-serif; }
@@ -76,7 +76,7 @@ export function prelaunchConfirmationEmail(email: string): { subject: string; ht
 
             <p style="font-family:Arial,Helvetica,sans-serif; font-size:15px; color:#1E1854;
                        opacity:0.65; line-height:1.7; margin:0 0 28px 0 !important;">
-              We received your email — <strong style="color:#1E1854; opacity:1;">${email}</strong> —
+              We received your email (<strong style="color:#1E1854; opacity:1;">${email}</strong>)
               and you'll be the first to know the moment Flow is ready to ship.
               <br><br>
               Expect early access, the launch date, and a little something extra for those who believed in us first.
@@ -96,7 +96,7 @@ export function prelaunchConfirmationEmail(email: string): { subject: string; ht
             <p style="font-family:Arial,Helvetica,sans-serif; font-size:14px; color:#1E1854;
                        opacity:0.60; line-height:1.7; margin:0 !important;">
               Flow is a daily supplement designed around one idea: you are already capable.
-              Flow removes what gets in the way — the mental static, the afternoon fog,
+              Flow removes what gets in the way: the mental static, the afternoon fog,
               the sense that your mind isn't quite all there.
               13 ingredients. Zero compromises. Crafted for people who take their output seriously.
             </p>
@@ -125,7 +125,7 @@ export function prelaunchConfirmationEmail(email: string): { subject: string; ht
 </body>
 </html>`;
 
-  const text = `You're on the list — Flow
+  const text = `You're on the list: Flow
 
 We received your email (${email}) and you'll be the first to know the moment Flow is ready to ship.
 
@@ -134,7 +134,7 @@ Expect early access, the launch date, and a little something extra for those who
 ---
 
 What is Flow?
-Flow is a daily supplement designed around one idea: you are already capable. Flow removes what gets in the way — the mental static, the afternoon fog, the sense that your mind isn't quite all there. 13 ingredients. Zero compromises. Crafted for people who take their output seriously.
+Flow is a daily supplement designed around one idea: you are already capable. Flow removes what gets in the way: the mental static, the afternoon fog, the sense that your mind isn't quite all there. 13 ingredients. Zero compromises. Crafted for people who take their output seriously.
 
 ---
 

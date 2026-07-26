@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<title>Flow — QR Ritual Sequence</title>
+<title>Flow: QR Ritual Sequence</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -664,7 +664,7 @@ html, body {
     </div>
     <div class="onboard-hero">
       <h1>A quiet moment,<br>every morning.</h1>
-      <p>Each morning after mixing, scan the QR code in your box to unlock a thought built around what your body is doing right now. Scan ten days in a row and something arrives — but only consistency gets you there.</p>
+      <p>Each morning after mixing, scan the QR code in your box to unlock a thought built around what your body is doing right now. Scan ten days in a row and something arrives; but only consistency gets you there.</p>
     </div>
     <div class="panel panel-email">
       <p class="eyebrow">Get started</p>
@@ -692,7 +692,7 @@ html, body {
 
       <div class="otp-error-slot">
         <div class="otp-error-msg wrong" id="otp-err-wrong">
-          Incorrect code — <span id="otp-attempts-left">2 attempts left</span>. Double-check your email and try again.
+          Incorrect code: <span id="otp-attempts-left">2 attempts left</span>. Double-check your email and try again.
         </div>
         <div class="otp-error-msg lockout" id="otp-err-lockout">
           Too many wrong attempts. Please wait <strong id="otp-lockout-timer">15:00</strong> before trying again.
@@ -715,7 +715,7 @@ html, body {
         <!-- Normal state -->
         <button class="btn btn-primary" id="otp-confirm-btn" onclick="otpSimulateWrong()">Confirm</button>
         <!-- Locked out state — hidden by default -->
-        <button class="btn btn-primary" id="otp-locked-btn" style="display:none;opacity:0.45;cursor:default;">Code locked — wait 15 min</button>
+        <button class="btn btn-primary" id="otp-locked-btn" style="display:none;opacity:0.45;cursor:default;">Code locked, wait 15 min</button>
       </div>
     </div>
   </div>
@@ -740,7 +740,7 @@ html, body {
       <p class="heading">You're all set. Your ritual starts now.</p>
       <p class="body-text">Each morning, right after mixing and taking your supplements, scan the QR code printed inside your Flow box. That scan is your check-in for the day.</p>
       <div style="height:14px;"></div>
-      <p class="body-text">Scan ten mornings in a row and something is on its way to you — but consistency is what unlocks it.</p>
+      <p class="body-text">Scan ten mornings in a row and something is on its way to you; but consistency is what unlocks it.</p>
       <div class="spacer"></div>
       <div class="btn-stack">
         <button class="btn btn-primary" onclick="showCarousel()">See your first message</button>
@@ -872,7 +872,7 @@ html, body {
         <div class="story-popup-bar"></div>
 
         <p class="story-popup-eyebrow" style="color:#E8652A;">Day 10 complete</p>
-        <p class="story-popup-heading" style="font-size:24px;">Before your reward —<br>quick reflection</p>
+        <p class="story-popup-heading" style="font-size:24px;">Before your reward:<br>quick reflection</p>
         <p class="story-popup-body" style="font-size:13px; margin-bottom:20px !important; color:rgba(244,241,234,0.55);">30 seconds. Helps us improve the ritual for everyone.</p>
 
         <!-- Star rating -->
@@ -1160,7 +1160,7 @@ async function apiPost(path, body) {
       emailInput.placeholder = 'No Flow order found for this email';
     } else {
       emailInput.style.borderColor = '#C0392B';
-      emailInput.placeholder = 'Something went wrong — try again';
+      emailInput.placeholder = 'Something went wrong, try again';
     }
   }
 
@@ -1276,7 +1276,7 @@ async function apiPost(path, body) {
       // Nudge to resend
       const btn = document.getElementById('otp-resend-btn');
       btn.classList.remove('disabled');
-      btn.innerHTML = 'Code expired — resend';
+      btn.innerHTML = 'Code expired, resend';
     }
   };
 
@@ -1299,7 +1299,7 @@ async function apiPost(path, body) {
       otpStartResendCountdown();
     } else {
       btn.classList.remove('disabled');
-      btn.textContent = 'Resend failed — try again';
+      btn.textContent = 'Resend failed, try again';
     }
   };
 
@@ -1485,7 +1485,7 @@ async function hydrateDailyScreen(position) {
         currentEmail = pEmail;
         localStorage.setItem(DEVICE_TOKEN_KEY, data.device_token);
         phCapture('magic_link_verified', { state: data.state });
-        setLobbyStatus('Profile found — opening your ritual…');
+        setLobbyStatus('Profile found, opening your ritual…');
         if (data.state === 'first_time_success') {
           hideLobby(600);
           window.go(3);
@@ -1525,7 +1525,7 @@ async function hydrateDailyScreen(position) {
   const existing = localStorage.getItem(DEVICE_TOKEN_KEY);
   const token = getDeviceToken();
   if (existing) {
-    setLobbyStatus('Profile found — opening your ritual…');
+    setLobbyStatus('Profile found, opening your ritual…');
     try {
       await handleScan();
       hideLobby(400);
@@ -1672,7 +1672,7 @@ window.handleScan = handleScan;
           day_position: window._currentDay || 1,
         });
         const url = ok && data.share_url ? data.share_url : 'https://flowhealth.ch/ritual';
-        const text = 'Day ' + (window._currentDay || 1) + ' of my Flow Daily Ritual — here\'s what it felt like.';
+        const text = 'Day ' + (window._currentDay || 1) + ' of my Flow Daily Ritual: here\'s what it felt like.';
         if (navigator.share) {
           await navigator.share({ title: 'Flow Daily Ritual', text, url });
         } else {
