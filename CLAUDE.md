@@ -157,6 +157,28 @@ return <MyClient activeIngredients={meta.activeIngredients} />;
 
 ---
 
+## Tag-Driven PDP Content
+
+The PDP renders a swappable `productHero` headline and reordered `healthBenefit` list based on a `contentTag` resolved from the `?campaign=` URL parameter.
+
+**Pattern:**
+- `resolveTagId(slug)` — looks up a `contentTag` entry by slug (React `cache()`-wrapped, deduped per request)
+- `getEntriesForTag(contentType, tagSlug, fallback)` — generic, reused for every tag-aware content type. **Never add a new function per tag or a hardcoded `if (tag === 'x')` branch** — new personas/benefits are Contentful-only content changes, not code changes.
+- Both wrapped in `unstable_cache`, tagged per Contentful content type (`contentful:{contentType}`), invalidated via `/api/revalidate` reading `sys.contentType.sys.id` from the webhook payload.
+
+**Locked taxonomy** (dimension: `persona` | `benefit`):
+- Personas: `entrepreneurs`, `athletes`, `hyper-thinkers`, `wellness-enthusiasts`, `general` (fallback)
+- Benefits: reuses the 8 existing `healthBenefit` slugs as tag values — never duplicate as new tag text
+
+**Currently wired:** `productHero.headline`, `healthBenefit` (reorder via tag match).
+**Not yet wired** (do not assume tag-aware without confirming first): hero image, product description (Shopify-sourced, shared default by design), tab order (`ProductNavTabs.tsx`'s `TAB_GROUPS` — flattened via `.flatMap()` into one visual row, group labels unused at render, confirmed drop-in-swappable if this ever gets built), Timeline, Ingredients, How to Use, Testimonials, Product specs (all Contentful-connected but not tag-aware).
+
+**Content variant handoffs arrive in a standard format:** tag(s), headline, benefit-lead override. Standard checklist per variant: check for an existing entry matching the tag combination first (report back with a link rather than duplicating), create/tag if none exists, publish, verify live via Delivery API, live-test with the actual `?campaign=` value.
+
+**Tag governance:** `scripts/audit-content-tags.mjs` lists every `contentTag` entry and flags ones with zero references from `productHero` or `healthBenefit` ("orphaned" — exist in Contentful but link from nothing, so they have no visible effect). Read-only, never deletes anything. Run it quarterly; review any flagged tags with Adrien before deleting — no automatic deletion, ever. Note: `general` (the persona fallback) is expected to show as orphaned by design — it's the default, not meant to be referenced directly, not a real gap.
+
+---
+
 ## Analytics (Microsoft Clarity)
 
 Project ID: `w3zpn726v1`
