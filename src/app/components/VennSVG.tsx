@@ -1,8 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-
-const ease = [0.25, 0.1, 0.1, 1] as const;
+import { EASE } from '@/lib/animation';
 
 const circles = [
   { cx: 160, cy: 155, fill: 'rgba(255,255,255,0.05)' },
@@ -28,7 +27,7 @@ export default function VennSVG({ activeIngredients, inView }: { activeIngredien
           strokeWidth={1.5}
           initial={{ scale: 0, opacity: 0 }}
           animate={inView ? { scale: 1, opacity: 1 } : {}}
-          transition={{ duration: 0.9, ease }}
+          transition={{ duration: 0.9, ease: EASE.inOut }}
           style={{ transformBox: 'fill-box', transformOrigin: 'center' }}
         />
       ))}
