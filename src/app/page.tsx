@@ -12,6 +12,7 @@ import DayArcSection from '@/app/components/DayArcSection';
 import NeurotransmitterSection from '@/app/components/NeurotransmitterSection';
 import InnerVitalitySection from '@/app/components/InnerVitalitySection';
 import ValuesStandForSection from '@/app/components/ValuesStandForSection';
+import { StepCard } from '@/app/components/StepCard';
 import { FAQ } from '@/components/ui/faq-tabs';
 import { faqCategories as categories } from '@/lib/content-data';
 import {
@@ -157,17 +158,14 @@ export default async function HomePage() {
                   ]}
                 />
 
-                <div className="flex flex-col md:flex-row gap-2 md:items-stretch">
+                <div className="flex flex-col md:flex-row gap-3 md:items-stretch">
                   {[
                     { label: 'Short term', body: 'Clearer focus, steady energy, and reduced brain fog from the first days.' },
                     { label: 'Medium term', body: 'Better habits, improved mood stability and consistent daily rhythm.' },
                     { label: 'Long term', body: 'Sustained brain cell growth, deeper sleep, and reduced cortisol over time.' },
                   ].map(({ label, body }, i) => (
                     <ScrollReveal key={label} variant="fadeUp" delay={0.08 + i * 0.07} className="flex-1 flex">
-                      <div className="w-full rounded-xl border border-ink/[0.07] bg-ink/[3.9%] px-3 py-3 flex flex-col gap-1.5">
-                        <p className="text-sm font-semibold tracking-[-0.01em] text-ink m-0">{label}</p>
-                        <p className="text-sm leading-[1.5] m-0" style={{ color: 'rgba(30,24,84,0.55)' }}>{body}</p>
-                      </div>
+                      <StepCard number={i + 1} title={label} description={body} className="w-full" />
                     </ScrollReveal>
                   ))}
                 </div>
