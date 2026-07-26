@@ -83,7 +83,7 @@ export default function BrainSection() {
   };
 
   return (
-    <section ref={sectionRef} className="py-10 md:py-16 bg-[#F4F4F8] overflow-hidden md:rounded-2xl md:mx-8">
+    <section ref={sectionRef} className="py-10 md:py-16 bg-[#F4F4F8] overflow-visible md:overflow-hidden md:rounded-2xl md:mx-8">
       <style>{`
         @keyframes brain-fade-up {
           from { opacity: 0; transform: translateY(18px); }
@@ -146,7 +146,7 @@ export default function BrainSection() {
         <div
           ref={stripRef}
           onScroll={handleScroll}
-          className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-1 md:overflow-x-visible md:grid md:grid-cols-4 md:gap-4 md:snap-none"
+          className="flex gap-3 overflow-x-auto overflow-y-visible snap-x snap-mandatory py-5 -mx-[var(--space-gutter)] pl-0 pr-[var(--space-gutter)] md:mx-0 md:pl-0 md:pr-0 md:py-0 md:overflow-x-visible md:grid md:grid-cols-4 md:gap-4 md:snap-none"
           style={{ scrollbarWidth: 'none' }}
         >
           {ARTICLES.map((article, i) => (
