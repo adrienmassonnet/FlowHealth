@@ -25,12 +25,12 @@ export default async function OurProductPage() {
             {/* Top row: text + image */}
             <div className="flex flex-col md:flex-row md:items-stretch gap-10 md:gap-16">
               {/* Text */}
-              <div className="flex-1 space-y-6">
-                <p className="text-xs tracking-[0.16em] uppercase font-semibold bg-gradient-to-r from-brand to-ink bg-clip-text text-transparent">About Flow</p>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] leading-tight">
+              <div className="flex-1 space-y-2">
+                <p className="flow-label flow-label--gradient">About Flow</p>
+                <h1 className="flow-h1">
                   One formula.<br className="hidden sm:block" /> Nothing hidden.
                 </h1>
-                <p className="text-base text-[rgba(30,24,84,0.65)] leading-relaxed">
+                <p className="flow-body">
                   Flow is a complete daily cognitive supplement built around clinically dosed, peer-reviewed ingredients. Every milligram is on the label for a reason.
                 </p>
               </div>
