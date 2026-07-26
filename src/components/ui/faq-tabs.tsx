@@ -35,12 +35,12 @@ export const FAQ = ({
   );
 
   return (
-    <section className={cn('relative overflow-hidden px-4 py-12', className)}>
+    <section className={cn('relative overflow-hidden', className)}>
       {(title || subtitle) && <FAQHeader title={title} subtitle={subtitle} />}
 
       {/* Table: category topics on the left, questions on the right — same
           layout on every breakpoint, just tighter on mobile */}
-      <div className="relative z-10 max-w-5xl mx-auto grid grid-cols-[104px_1fr] sm:grid-cols-[150px_1fr] md:grid-cols-[1fr_2fr] border border-ink/[0.08] rounded-2xl overflow-hidden shadow-[0_4px_40px_rgba(30,24,84,0.07)]">
+      <div className="relative z-10 w-full grid grid-cols-[104px_1fr] sm:grid-cols-[150px_1fr] md:grid-cols-[1fr_2fr] border border-ink/[0.08] rounded-2xl overflow-hidden shadow-[0_4px_40px_rgba(30,24,84,0.07)]">
 
         {/* Category index — left */}
         <div className="bg-white border-r border-ink/[0.07] flex flex-col">
