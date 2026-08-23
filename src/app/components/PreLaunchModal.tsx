@@ -1,11 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { trackEvent } from '@/lib/clarity';
-import { ga4SignUp } from '@/lib/ga4';
 import { useSwipeToClose } from '@/lib/useSwipeToClose';
+import { useWaitlistSignup } from '@/lib/useWaitlistSignup';
 
 interface PreLaunchModalProps {
   open: boolean;
@@ -13,9 +12,11 @@ interface PreLaunchModalProps {
 }
 
 export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
-  const [email, setEmail] = useState('');
-  const [notifyPromos, setNotifyPromos] = useState(true);
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const { email, setEmail, notifyPromos, setNotifyPromos, status, handleSubmit } = useWaitlistSignup({
+    source: 'pdp_modal',
+    clarityEvent: 'product_page_prelaunch_signup',
+    clarityEventSuccess: 'product_page_prelaunch_signup_success',
+  });
   const { panelProps, handleProps } = useSwipeToClose(onClose);
 
   // Lock body scroll when open
@@ -35,26 +36,6 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
   }, [open, onClose]);
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!email) return;
-    setStatus('loading');
-    trackEvent('product_page_prelaunch_signup');
-    try {
-      const res = await fetch('/api/prelaunch', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, notifyPromos }),
-      });
-      if (!res.ok) throw new Error();
-      setStatus('success');
-      trackEvent('product_page_prelaunch_signup_success');
-      ga4SignUp('pre_launch_modal');
-    } catch {
-      setStatus('error');
-    }
-  }
 
   if (!open) return null;
 

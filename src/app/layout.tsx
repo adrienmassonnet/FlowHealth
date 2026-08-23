@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import Link from "next/link";
-import Script from "next/script";
 import "./globals.css";
 import Header from "@/app/components/Header";
 import ScrollManager from "@/app/components/ScrollManager";
@@ -79,21 +78,34 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-F1B6SHB752" strategy="afterInteractive" />
-        <Script id="gtag-init" strategy="afterInteractive">{`
+
+        {/* CookieYes — loaded first, unblocked, so the banner itself always renders */}
+        <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/ea8c3c243a2b93e0bda9002838583a0f/script.js" async />
+
+        {/*
+          Everything below is inert (type="text/plain") until CookieYes flips it to
+          text/javascript on consent, per category. This is CookieYes' documented
+          auto-blocking convention for manually-installed (non-Shopify-theme) sites.
+          Verify in CookieYes dashboard → Auto Cookie Blocking that scanning is on,
+          and QA with consent given/declined before trusting these categories.
+          GTM is filed under analytics for now since it currently only carries the
+          GA4 config call — revisit if/when ad tags get added inside the GTM container.
+        */}
+        <script type="text/plain" data-cookieyes="cookieyes-analytics" src="https://www.googletagmanager.com/gtag/js?id=G-F1B6SHB752" async />
+        <script type="text/plain" data-cookieyes="cookieyes-analytics" id="gtag-init">{`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', 'G-F1B6SHB752');
-        `}</Script>
-        <Script id="gtm-init" strategy="afterInteractive">{`
+        `}</script>
+        <script type="text/plain" data-cookieyes="cookieyes-analytics" id="gtm-init">{`
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
           j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','GTM-N3CRPDLV');
-        `}</Script>
-        <Script id="meta-pixel" strategy="afterInteractive">{`
+        `}</script>
+        <script type="text/plain" data-cookieyes="cookieyes-advertisement" id="meta-pixel">{`
           !function(f,b,e,v,n,t,s)
           {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
           n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -104,14 +116,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           'https://connect.facebook.net/en_US/fbevents.js');
           fbq('init', '1449181289756992');
           fbq('track', 'PageView');
-        `}</Script>
-        <Script id="clarity-init" strategy="afterInteractive">{`
+        `}</script>
+        <script type="text/plain" data-cookieyes="cookieyes-analytics" id="clarity-init">{`
           (function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
             t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
           })(window,document,"clarity","script","w3zpn726v1");
-        `}</Script>
+        `}</script>
       </head>
       <body className={`${outfit.className} antialiased`} suppressHydrationWarning>
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N3CRPDLV" height="0" width="0" style={{display:'none',visibility:'hidden'}}></iframe></noscript>

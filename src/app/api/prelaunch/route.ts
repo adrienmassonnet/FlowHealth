@@ -1,12 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { subscribeToKlaviyoList, trackKlaviyoEvent } from '@/lib/klaviyo';
+import { isRateLimited } from '@/lib/rate-limit';
+import { getOrCreateAnonymousId } from '@/lib/anonymous-id';
+import { captureServerEvent } from '@/lib/posthog-server';
 
 export async function POST(req: NextRequest) {
   try {
-    const { email, notifyPromos } = await req.json() as { email?: string; notifyPromos?: boolean };
+    const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+    if (await isRateLimited(`prelaunch:${ip}`, 5, 600)) {
+      return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
+    }
+
+    const { email, notifyPromos, source } = await req.json() as { email?: string; notifyPromos?: boolean; source?: string };
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return NextResponse.json({ error: 'Invalid email' }, { status: 400 });
     }
+
+    const fhAid = await getOrCreateAnonymousId();
+    await captureServerEvent(fhAid, 'prelaunch_waitlist_joined', {
+      source: source ?? 'pdp_modal',
+      notify_promos: notifyPromos ?? true,
+    });
 
     const klaviyoKey = process.env.KLAVIYO_PRIVATE_API_KEY;
     const klaviyoListId = process.env.KLAVIYO_PRELAUNCH_LIST_ID;
