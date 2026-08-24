@@ -16,10 +16,14 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid email' }, { status: 400 });
     }
 
+    // Default to no marketing consent when the client sends anything but an
+    // explicit true — never assume opt-in on ambiguous input.
+    const consented = notifyPromos === true;
+
     const fhAid = await getOrCreateAnonymousId();
     await captureServerEvent(fhAid, 'prelaunch_waitlist_joined', {
       source: source ?? 'pdp_modal',
-      notify_promos: notifyPromos ?? true,
+      notify_promos: consented,
     });
 
     const klaviyoKey = process.env.KLAVIYO_PRIVATE_API_KEY;
@@ -27,8 +31,8 @@ export async function POST(req: NextRequest) {
     if (klaviyoKey && klaviyoListId) {
       try {
         const [subRes, eventRes] = await Promise.all([
-          subscribeToKlaviyoList(email, klaviyoListId),
-          trackKlaviyoEvent(email, 'Pre-Launch Signup', { notifyPromos: notifyPromos ?? true }),
+          subscribeToKlaviyoList(email, klaviyoListId, consented),
+          trackKlaviyoEvent(email, 'Pre-Launch Signup', { notifyPromos: consented }),
         ]);
         if (!subRes.ok) console.error('[prelaunch] Klaviyo subscribe failed', subRes.status, await subRes.text());
         if (!eventRes.ok) console.error('[prelaunch] Klaviyo event failed', eventRes.status, await eventRes.text());

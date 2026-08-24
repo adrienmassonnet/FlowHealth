@@ -31,6 +31,7 @@ export async function trackKlaviyoEvent(
 export async function subscribeToKlaviyoList(
   email: string,
   listId: string,
+  notifyPromos: boolean,
 ): Promise<Response> {
   return fetch('https://a.klaviyo.com/api/profile-subscription-bulk-create-jobs/', {
     method: 'POST',
@@ -45,9 +46,12 @@ export async function subscribeToKlaviyoList(
               type: 'profile',
               attributes: {
                 email,
-                subscriptions: {
-                  email: { marketing: { consent: 'SUBSCRIBED' } },
-                },
+                properties: { notify_promos: notifyPromos },
+                // Only mark as marketing-consented if they ticked the box —
+                // omitting this block (rather than setting UNSUBSCRIBED) leaves
+                // Klaviyo's consent state untouched for a returning profile
+                // instead of overwriting a prior opt-in with a decline.
+                ...(notifyPromos ? { subscriptions: { email: { marketing: { consent: 'SUBSCRIBED' } } } } : {}),
               },
             }],
           },

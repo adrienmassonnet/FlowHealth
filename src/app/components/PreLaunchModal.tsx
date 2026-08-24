@@ -146,7 +146,7 @@ export default function PreLaunchModal({ open, onClose }: PreLaunchModalProps) {
                     onClick={() => setNotifyPromos(v => !v)}
                     className="text-xs text-ink/55 leading-relaxed select-none"
                   >
-                    Keep me posted on promotions, new product releases, and other updates from Flow
+                    Email me when Flow launches, plus occasional stories on the brand and cerebral health
                   </span>
                 </label>
 
