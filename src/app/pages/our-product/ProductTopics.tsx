@@ -57,38 +57,60 @@ export default function ProductTopics({ ingredients, activeIngredients }: { ingr
             <h2 className="flow-h2">Five systems. One formula.</h2>
             <p className="text-sm text-[rgba(30,24,84,0.78)] leading-relaxed">Most supplements target a single pathway. Flow is built around five interconnected cognitive systems, because memory, focus, stress, neuroplasticity, and recovery don't operate in isolation.</p>
           </div>
-          {/* One system at a time — five narrow columns forced 2-word line
-              wraps and buried the mechanism copy. */}
-          <div className="flex flex-wrap gap-2 mb-4">
-            {systems.map((s, i) => {
-              const isActive = i === activeSystem;
-              return (
-                <button
-                  key={s.domain}
-                  onClick={() => setActiveSystem(i)}
-                  aria-pressed={isActive}
-                  className={`min-h-[44px] px-4 py-2 rounded-full text-xs font-semibold tracking-[0.08em] uppercase transition-colors duration-200 border ${
-                    isActive
-                      ? `bg-gradient-to-r ${s.color} text-white border-transparent shadow-sm`
-                      : 'bg-white text-ink/70 border-ink/15 hover:border-ink/35 hover:text-ink'
-                  }`}
-                >
-                  {s.domain}
-                </button>
-              );
-            })}
+          {/* Mobile/tablet: one system at a time — five narrow columns forced
+              2-word line wraps and buried the mechanism copy. */}
+          <div className="md:hidden">
+            <div className="flex flex-wrap gap-2 mb-4">
+              {systems.map((s, i) => {
+                const isActive = i === activeSystem;
+                return (
+                  <button
+                    key={s.domain}
+                    onClick={() => setActiveSystem(i)}
+                    aria-pressed={isActive}
+                    className={`min-h-[44px] px-4 py-2 rounded-full text-xs font-semibold tracking-[0.08em] uppercase transition-colors duration-200 border ${
+                      isActive
+                        ? `bg-gradient-to-r ${s.color} text-white border-transparent shadow-sm`
+                        : 'bg-white text-ink/70 border-ink/15 hover:border-ink/35 hover:text-ink'
+                    }`}
+                  >
+                    {s.domain}
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="rounded-xl bg-white border border-ink/[0.07] shadow-sm shadow-ink/[0.03] p-5">
+              <p className="flow-h5 mb-3">{systems[activeSystem].mechanism}</p>
+              <div className="flex flex-wrap gap-x-6 gap-y-2 pt-4 border-t border-ink/[0.06]">
+                {systems[activeSystem].ingredients.map((ing) => (
+                  <div key={ing} className="flex items-center gap-2">
+                    <span className="shrink-0 w-1.5 h-1.5 rounded-full bg-brand" />
+                    <span className="text-sm text-ink font-medium">{ing}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
-          <div className="rounded-xl bg-white border border-ink/[0.07] shadow-sm shadow-ink/[0.03] p-5 md:p-6">
-            <p className="flow-h5 mb-3">{systems[activeSystem].mechanism}</p>
-            <div className="flex flex-wrap gap-x-6 gap-y-2 pt-4 border-t border-ink/[0.06]">
-              {systems[activeSystem].ingredients.map((ing) => (
-                <div key={ing} className="flex items-center gap-2">
-                  <span className="shrink-0 w-1.5 h-1.5 rounded-full bg-brand" />
-                  <span className="text-sm text-ink font-medium">{ing}</span>
+          {/* Desktop: all five systems shown at once, side by side. */}
+          <div className="hidden md:grid md:grid-cols-5 gap-4">
+            {systems.map((s) => (
+              <div key={s.domain} className="rounded-xl bg-white border border-ink/[0.07] shadow-sm shadow-ink/[0.03] p-5 flex flex-col">
+                <span className={`inline-flex self-start items-center px-3 py-1.5 rounded-full text-[11px] font-semibold tracking-[0.08em] uppercase text-white bg-gradient-to-r ${s.color} mb-3`}>
+                  {s.domain}
+                </span>
+                <p className="text-sm text-ink leading-relaxed mb-4">{s.mechanism}</p>
+                <div className="flex flex-col gap-2 pt-3 mt-auto border-t border-ink/[0.06]">
+                  {s.ingredients.map((ing) => (
+                    <div key={ing} className="flex items-start gap-2">
+                      <span className="shrink-0 w-1.5 h-1.5 rounded-full bg-brand mt-1.5" />
+                      <span className="text-xs text-ink font-medium leading-snug">{ing}</span>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
