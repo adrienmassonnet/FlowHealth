@@ -200,6 +200,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
           </div>
 
+          {/* Regulatory disclaimer — site-wide, covers structure-function claims on all pages */}
+          <div className="flow-container py-5 border-t border-white/10">
+            <p className="text-[11px] leading-relaxed text-white/40 max-w-3xl">
+              These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Flow is a food supplement, not a medicine, and has not been evaluated by Swissmedic or the EMA.
+            </p>
+          </div>
+
           {/* Bottom bar */}
           <div className="flow-container py-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-xs">Copyright © 2026 <Link href="/" className="hover:text-white transition-colors">Flow Health</Link></p>

@@ -1,12 +1,13 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import Image from 'next/image';
 import { AnimatePresence, motion, useInView } from 'framer-motion';
 import { EASE, DURATION } from '@/lib/animation';
 import { trackEvent } from '@/lib/clarity';
 import { ga4SelectContent } from '@/lib/ga4';
 import { useSwipeToClose } from '@/lib/useSwipeToClose';
+import { ChartCard, Bars, Line, Dumbbell, MethylationDiagram, Stat } from '@/app/components/charts/IngredientCharts';
 
 interface IngredientData {
   name: string;
@@ -38,27 +39,27 @@ const META: Record<string, IngredientMeta> = {
     dose: '50 mg',
     badge: 'Mood · Sleep · Focus',
     benefit: 'Balanced mood and clarity.',
-    title: 'Mood, sleep and focus: backed by three independent RCTs',
-    description: "Standardised to crocin and safranal, Saffr'Active® modulates serotonin, dopamine and GABA pathways. Three independent double-blind trials confirm: 6-week supplementation improves sleep quality, latency and duration; reduces depression and anxiety scores; and in children with ADHD, matches methylphenidate for hyperactivity while improving sleep onset. At 50 mg, this is the clinically validated dose.",
-    pills: ['Mood', 'Sleep Quality', 'Anxiety Relief', 'ADHD Support'],
-    stat: { value: '3 RCTs', label: 'sleep, mood & ADHD, all placebo-controlled' },
+    title: 'Mood and sleep: backed by placebo-controlled trials',
+    description: "Standardised to crocin and safranal, Saffr'Active® is a saffron extract that works on serotonin, dopamine and GABA signalling. In placebo-controlled trials, six weeks of daily saffron improved self-reported sleep quality, latency and duration and eased low mood and everyday tension. A separate clinical study in children looked at attention and activity levels. The branded trials used roughly 15 to 30 mg per day; Flow doses at 50 mg.",
+    pills: ['Mood', 'Sleep Quality', 'Emotional Balance', 'Calm Focus'],
+    stat: { value: '2 RCTs', label: 'sleep and mood, both placebo-controlled' },
   },
   'TMG': {
     dose: '500 mg',
     badge: 'Methylation',
-    benefit: 'Augmented brain and cellular energy.',
-    title: 'Methyl donor for brain chemistry and long-term cognitive health',
-    description: 'Trimethylglycine (TMG) donates methyl groups in the one-carbon cycle, the biochemical pathway responsible for converting homocysteine to methionine. Elevated homocysteine is strongly associated with cognitive decline and mood disruption. TMG keeps this conversion efficient, supporting healthy brain chemistry, neurotransmitter synthesis, and cellular energy production.',
-    pills: ['Methylation', 'Brain Chemistry', 'Energy', 'Cognitive Health'],
+    benefit: 'Foundational support for methylation.',
+    title: 'A methyl donor that helps keep your one-carbon cycle running',
+    description: 'TMG (trimethylglycine) donates a methyl group that keeps the one-carbon cycle running — the process that recycles homocysteine into methionine and produces SAMe, which cells draw on to build neurotransmitters. Most human research is on exercise or pairs TMG with B vitamins; direct focus and mood evidence is still limited. It is the quiet, structural part of the formula: groundwork, not a same-day effect.',
+    pills: ['Methylation', 'Homocysteine Metabolism', 'One-Carbon Cycle', 'Foundational'],
     stat: null,
   },
   "Lion's Mane": {
     dose: '250 mg',
-    badge: 'Neuroplasticity',
-    benefit: 'Neuroprotection and gut-brain support.',
-    title: 'The only known botanical to stimulate Nerve Growth Factor',
-    description: "Lion's Mane (Hericium erinaceus) contains hericenones and erinacines, two classes of compounds that cross the blood-brain barrier and directly stimulate the synthesis of Nerve Growth Factor (NGF). NGF is essential for the growth, maintenance, and survival of neurons, playing a central role in neuroplasticity, memory formation, and long-term cognitive resilience.",
-    pills: ['Memory', 'Neuroplasticity', 'Brain Health', 'NGF'],
+    badge: 'Mental speed · Stress',
+    benefit: 'Studied for mental speed and calm.',
+    title: 'A mushroom studied for mental speed and steadier stress',
+    description: "Lion's Mane (Hericium erinaceus) contains hericenones and erinacines — compounds that raise nerve growth factor (NGF) and BDNF in lab and animal studies, the proteins behind healthy neurons and new connections. Two separate trials found a single dose sped up mental-speed tasks in healthy adults within the hour, and over four weeks, stress scores in adults aged 18–45 trended lower than on placebo. The trials are small and used higher doses than Flow's, so it is here as a daily, long-term ingredient rather than a quick fix.",
+    pills: ['Mental Speed', 'Stress Support', 'NGF Research', 'Long-Term Use'],
     stat: null,
   },
 };
@@ -73,331 +74,172 @@ const FALLBACK_META: IngredientMeta = {
   stat: null,
 };
 
-interface ChartBar {
-  label: string;
-  active: number;
-  comparator: number;
-  unit: string;
-  activeLabel?: string;
-  comparatorLabel?: string;
-}
-
-interface ChartData {
-  id: string;
-  description: string;
-  source: string;
-  bars: ChartBar[];
-}
-
-const INGREDIENT_CHARTS: Record<string, ChartData[]> = {
+// Per-ingredient evidence charts. Each entry is one or more <ChartCard> panels;
+// the panel wrapper adds prev/next controls when there is more than one.
+// Numbers are drawn from the cited trials (or, for Zynamite/Saffr'Active, from
+// the brand's own research dossier). See charts/IngredientCharts.tsx for the kit.
+const INGREDIENT_CHARTS: Record<string, ReactNode[]> = {
   'Zynamite®': [
-    {
-      id: 'cognitive',
-      description: 'Single-dose improvements vs placebo across 4 cognitive domains. Double-blind, placebo-controlled RCT.',
-      source: 'Wightman et al., Nutrients 2020 · Castellote-Caballero et al., Pharmaceuticals 2025',
-      bars: [
-        { label: 'Reaction time', active: 4.7, comparator: -5.2, unit: '%' },
-        { label: 'Attention accuracy', active: 9.7, comparator: 0, unit: '%' },
-        { label: 'Processing speed', active: 11.5, comparator: 0, unit: '%' },
-        { label: 'Emotional balance', active: 34.3, comparator: 0, unit: '%' },
-      ],
-    },
-    {
-      id: 'bioavailability',
-      description: 'ZYN15 (our grade) is 4–5× more bioavailable than standard ZYN60 in the first hours after ingestion.',
-      source: 'Nektium Pharma pharmacokinetic study, 2024',
-      bars: [
-        { label: '0–1 h', active: 4.61, comparator: 1, unit: '×', activeLabel: 'ZYN15', comparatorLabel: 'Standard' },
-        { label: '0–2 h', active: 3.83, comparator: 1, unit: '×', activeLabel: 'ZYN15', comparatorLabel: 'Standard' },
-        { label: '0–4 h', active: 3.25, comparator: 1, unit: '×', activeLabel: 'ZYN15', comparatorLabel: 'Standard' },
-        { label: '0–6 h', active: 3.04, comparator: 1, unit: '×', activeLabel: 'ZYN15', comparatorLabel: 'Standard' },
-      ],
-    },
+    <ChartCard
+      key="cognition"
+      meta={{
+        description:
+          'How a single 300 mg dose changed four mental-performance tests, measured against placebo. Two double-blind trials in healthy adults.',
+        source: 'Wightman et al., Nutrients 2020 · Castellote-Caballero et al., Pharmaceuticals 2025',
+        legend: [
+          { label: 'Zynamite®', kind: 'brand' },
+          { label: 'Placebo', kind: 'muted' },
+        ],
+      }}
+    >
+      <Bars
+        rows={[
+          { label: 'Reaction time', value: 4.7, comparator: -5.2 },
+          { label: 'Attention accuracy', value: 9.7 },
+          { label: 'Processing speed', value: 11.5 },
+          { label: 'Emotional balance', value: 34.3 },
+        ]}
+      />
+    </ChartCard>,
+    <ChartCard
+      key="absorption"
+      meta={{
+        description:
+          'How much of the active compound reaches the blood over six hours — our ZYN15 grade against a standard mango leaf extract, set to 1×.',
+        source: 'Nektium Pharma pharmacokinetic study, 2024',
+        legend: [
+          { label: 'ZYN15 (our grade)', kind: 'brand' },
+          { label: 'Standard extract', kind: 'muted' },
+        ],
+      }}
+    >
+      <Line
+        unit="×"
+        xLabels={['0–1 h', '0–2 h', '0–4 h', '0–6 h']}
+        series={[
+          { label: 'ZYN15', kind: 'brand', points: [4.6, 3.8, 3.3, 3.0] },
+          { label: 'Standard', kind: 'muted', points: [1, 1, 1, 1] },
+        ]}
+      />
+    </ChartCard>,
   ],
   "Saffr'Active®": [
-    {
-      id: 'sleep',
-      description: '6-week supplementation improvements in sleep quality vs placebo. Randomized, double-blind, placebo-controlled trial (n=59).',
-      source: 'Pachikian et al., Nutrients 2021',
-      bars: [
-        { label: 'Sleep quality (PSQI)', active: 15.3, comparator: 4.2, unit: '%', activeLabel: "Saffr'Active", comparatorLabel: 'Placebo' },
-        { label: 'Sleep latency (PSQI)', active: 18.6, comparator: 7.9, unit: '%', activeLabel: "Saffr'Active", comparatorLabel: 'Placebo' },
-        { label: 'Sleep duration (PSQI)', active: 36.6, comparator: -8.8, unit: '%', activeLabel: "Saffr'Active", comparatorLabel: 'Placebo' },
-        { label: 'Time in bed (actigraphy)', active: 2.9, comparator: -1.8, unit: '%', activeLabel: "Saffr'Active", comparatorLabel: 'Placebo' },
-      ],
-    },
-    {
-      id: 'mood',
-      description: 'Depression and anxiety score improvements over 6 weeks vs placebo. Randomized, double-blind trial (n=180).',
-      source: 'Dormal et al., Nutrients 2025',
-      bars: [
-        { label: 'Depression (BDI)', active: 41.5, comparator: 36.7, unit: '%', activeLabel: "Saffr'Active", comparatorLabel: 'Placebo' },
-        { label: 'Anxiety (STAI-S)', active: 16.7, comparator: 11.3, unit: '%', activeLabel: "Saffr'Active", comparatorLabel: 'Placebo' },
-        { label: 'Positive affect (PANAS)', active: 14.0, comparator: 8.2, unit: '%', activeLabel: "Saffr'Active", comparatorLabel: 'Placebo' },
-        { label: 'Life satisfaction (SWLS)', active: 15.5, comparator: 14.7, unit: '%', activeLabel: "Saffr'Active", comparatorLabel: 'Placebo' },
-      ],
-    },
-    {
-      id: 'adhd',
-      description: 'Saffron vs methylphenidate in children with ADHD over 3 months. Both improved core symptoms comparably (n=63).',
-      source: 'Blasco-Fontecilla et al., Nutrients 2022',
-      bars: [
-        { label: 'ADHD symptoms (CPRS)', active: 15.3, comparator: 13.2, unit: '%', activeLabel: 'Saffron', comparatorLabel: 'Methylph.' },
-        { label: 'Executive function (BRIEF)', active: 13.8, comparator: 14.8, unit: '%', activeLabel: 'Saffron', comparatorLabel: 'Methylph.' },
-        { label: 'Time to fall asleep', active: 20.0, comparator: 0, unit: '%', activeLabel: 'Saffron', comparatorLabel: 'Methylph.' },
-      ],
-    },
+    <ChartCard
+      key="sleep"
+      meta={{
+        description:
+          'Each row is a sleep score after six weeks — saffron (blue) against placebo (grey). Further right is more improvement. Double-blind trial, 59 adults.',
+        source: 'Pachikian et al., Nutrients 2021',
+        legend: [
+          { label: 'Saffron', kind: 'brand' },
+          { label: 'Placebo', kind: 'muted' },
+        ],
+      }}
+    >
+      <Dumbbell
+        controlLabel="Placebo"
+        treatmentLabel="Saffron"
+        rows={[
+          { label: 'Sleep quality', control: 4.2, treatment: 15.3 },
+          { label: 'Sleep latency', control: 7.9, treatment: 18.6 },
+          { label: 'Sleep duration', control: -8.8, treatment: 36.6 },
+        ]}
+      />
+    </ChartCard>,
+    <ChartCard
+      key="mood"
+      meta={{
+        description:
+          'Each row is a mood or well-being score after six weeks — saffron (blue) against placebo (grey). Double-blind trial, 180 adults with low mood.',
+        source: 'Saffron mood RCT · Nutrients, 2025',
+        legend: [
+          { label: 'Saffron', kind: 'brand' },
+          { label: 'Placebo', kind: 'muted' },
+        ],
+      }}
+    >
+      <Dumbbell
+        controlLabel="Placebo"
+        treatmentLabel="Saffron"
+        rows={[
+          { label: 'Low mood score', control: 36.7, treatment: 41.5 },
+          { label: 'Everyday tension', control: 11.3, treatment: 16.7 },
+          { label: 'Positive affect', control: 8.2, treatment: 14.0 },
+        ]}
+      />
+    </ChartCard>,
+  ],
+  'TMG': [
+    <ChartCard
+      key="methylation"
+      meta={{
+        headline: 'TMG keeps the methylation cycle topped up with methyl groups.',
+        source: 'Mechanism of one-carbon metabolism (BHMT pathway) — not a measured outcome',
+      }}
+    >
+      <MethylationDiagram />
+    </ChartCard>,
+  ],
+  "Lion's Mane": [
+    <ChartCard
+      key="stress"
+      meta={{
+        headline: 'Over four weeks, stress scores trended lower on Lion’s Mane than on placebo.',
+        description: 'Healthy adults 18–45, 4 weeks. Small pilot (n=41); overall effect borderline (p = 0.05).',
+        source: 'Docherty et al., Nutrients 2023',
+      }}
+    >
+      <Bars
+        format="plain"
+        unit=""
+        note="Self-rated stress at 4 weeks · lower is better"
+        rows={[
+          { label: "Lion's Mane", value: 33 },
+          { label: 'Placebo', value: 42.5, kind: 'muted' },
+        ]}
+      />
+    </ChartCard>,
+    <ChartCard
+      key="acute-speed"
+      meta={{
+        headline: 'Two trials found a single dose sped up mental-speed tasks within the hour.',
+        description: 'Two small acute trials in healthy adults. Docherty 2023: 688 vs 738 ms on the Stroop task (p = 0.005). La Monica 2023: faster reaction times, separate tasks.',
+        source: 'Docherty et al., Nutrients 2023 · La Monica et al., Nutrients 2023',
+      }}
+    >
+      <Stat value="+7%" caption="faster on the Stroop task than placebo" />
+    </ChartCard>,
   ],
 };
 
-function MobileIngredientChart({ ingredientName }: { ingredientName: string }) {
-  const [activeChart, setActiveChart] = useState(0);
+function IngredientChartPanel({ ingredientName }: { ingredientName: string }) {
   const charts = INGREDIENT_CHARTS[ingredientName];
+  const [idx, setIdx] = useState(0);
   if (!charts) return null;
-
-  const chart = charts[activeChart];
-  const activeLabel = chart.bars[0]?.activeLabel ?? ingredientName.replace(/®/g, '');
-  const comparatorLabel = chart.bars[0]?.comparatorLabel ?? 'Placebo';
-
-  const svgW = 320;
-  const svgH = 150;
-  const padL = 26;
-  const padR = 8;
-  const padTop = 16;
-  const padBottom = 34;
-  const chartW = svgW - padL - padR;
-  const chartH = svgH - padTop - padBottom;
-  const n = chart.bars.length;
-  const groupW = chartW / n;
-  const barW = Math.min(groupW * 0.36, 20);
-  const gap = 3;
-
-  const allVals = chart.bars.flatMap((b) => [b.active, b.comparator]);
-  const maxVal = Math.max(...allVals) * 1.22;
-  const minVal = Math.min(0, ...allVals) * 1.1;
-  const range = maxVal - minVal;
-  const zeroY = padTop + chartH * (maxVal / range);
-  const toY = (v: number) => padTop + chartH * ((maxVal - v) / range);
-  const toH = (v: number) => Math.abs(toY(v) - zeroY);
-
-  const tickCount = 4;
-  const ticks = Array.from({ length: tickCount + 1 }, (_, i) => minVal + (range * i) / tickCount);
-
+  const id = ingredientName.replace(/[®'\s]/g, '').toLowerCase();
+  const clamped = Math.min(idx, charts.length - 1);
   return (
-    <div className="flex flex-col gap-2 rounded-xl border border-ink/[0.10] bg-[#F8F8FC] p-3">
-      <p className="text-micro text-ink/60 leading-snug line-clamp-4">{chart.description}</p>
-      <div className="flex items-center gap-4">
-        <div className="flex items-center gap-1.5">
-          <span className="w-3 h-2.5 rounded-sm bg-ink shrink-0" />
-          <span className="text-micro font-semibold text-ink/70">{activeLabel}</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <span className="w-3 h-2.5 rounded-sm bg-ink/22 shrink-0" />
-          <span className="text-micro font-semibold text-ink/40">{comparatorLabel}</span>
-        </div>
-      </div>
-      <svg width={svgW} height={svgH} className="overflow-visible w-full" viewBox={`0 0 ${svgW} ${svgH}`}>
-        {ticks.map((tv, ti) => {
-          const ty = toY(tv);
-          if (ty < padTop - 2 || ty > padTop + chartH + 2) return null;
-          return (
-            <g key={ti}>
-              <line x1={padL - 3} y1={ty} x2={padL + chartW} y2={ty}
-                stroke="rgba(30,24,84,0.08)" strokeWidth="1" strokeDasharray={tv === 0 ? 'none' : '2,3'} />
-              {tv === 0 && <line x1={padL - 3} y1={ty} x2={padL + chartW} y2={ty} stroke="rgba(30,24,84,0.2)" strokeWidth="1" />}
-              <text x={padL - 5} y={ty + 3} textAnchor="end" fontSize="7.5" fill="rgba(30,24,84,0.35)">
-                {Math.abs(tv) >= 1 ? (tv < 0 ? tv.toFixed(0) : tv.toFixed(tv % 1 === 0 ? 0 : 1)) : ''}
-              </text>
-            </g>
-          );
-        })}
-        {chart.bars.map((b, i) => {
-          const cx = padL + i * groupW + groupW / 2;
-          const aTop = b.active >= 0 ? toY(b.active) : zeroY;
-          const aH = toH(b.active);
-          const cTop = b.comparator >= 0 ? toY(b.comparator) : zeroY;
-          const cH = toH(b.comparator);
-          const aValY = b.active >= 0 ? aTop - 3 : aTop + aH + 9;
-          const cValY = b.comparator >= 0 ? cTop - 3 : cTop + cH + 9;
-          return (
-            <g key={b.label}>
-              <rect x={cx - barW - gap / 2} y={aTop} width={barW} height={Math.max(aH, 1)} rx="2" fill="rgba(30,24,84,0.82)" />
-              <rect x={cx + gap / 2} y={cTop} width={barW} height={Math.max(cH, 1)} rx="2" fill="rgba(30,24,84,0.18)" />
-              <text x={cx - barW / 2 - gap / 2} y={aValY} textAnchor="middle" fontSize="8" fontWeight="700" fill="rgba(30,24,84,0.75)">
-                {b.unit === '%' ? `${b.active > 0 ? '+' : ''}${b.active}%` : `${b.active}×`}
-              </text>
-              {b.comparator !== 0 && (
-                <text x={cx + barW / 2 + gap / 2} y={cValY} textAnchor="middle" fontSize="7.5" fill="rgba(30,24,84,0.35)">
-                  {b.unit === '%' ? `${b.comparator > 0 ? '+' : ''}${b.comparator}%` : `${b.comparator}×`}
-                </text>
-              )}
-              <text x={cx} y={svgH - 4} textAnchor="middle" fontSize="8" fill="rgba(30,24,84,0.45)">{b.label}</text>
-            </g>
-          );
-        })}
-      </svg>
-      <div className="flex items-center justify-between pt-2 border-t border-ink/[0.14]">
-        <p className="truncate flex-1 pr-3" style={{ fontSize: '9px', color: 'rgba(30,24,84,0.40)' }}>{chart.source}</p>
-        <div className="flex items-center gap-1.5 shrink-0">
-          <button onClick={() => { setActiveChart((p) => (p - 1 + charts.length) % charts.length); trackEvent('homepage_zynamite_chart_prev'); }}
-            className="w-7 h-7 flex items-center justify-center rounded-full bg-ink/10 text-ink/70">
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M6.5 2L3.5 5l3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-          </button>
-          <span className="text-[11px] font-semibold text-ink/55 tabular-nums">{activeChart + 1}/{charts.length}</span>
-          <button onClick={() => { setActiveChart((p) => (p + 1) % charts.length); trackEvent('homepage_zynamite_chart_next'); }}
-            className="w-7 h-7 flex items-center justify-center rounded-full bg-ink/10 text-ink/70">
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M3.5 2l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function IngredientChart({ ingredientName, className = '' }: { ingredientName: string; className?: string }) {
-  const [activeChart, setActiveChart] = useState(0);
-  const charts = INGREDIENT_CHARTS[ingredientName];
-  if (!charts) return null;
-
-  const chart = charts[activeChart];
-  const activeLabel = chart.bars[0]?.activeLabel ?? ingredientName.replace(/®/g, '');
-  const comparatorLabel = chart.bars[0]?.comparatorLabel ?? 'Placebo';
-
-  // SVG grouped bar chart
-  const svgW = 288;
-  const svgH = 140;
-  const padL = 24;
-  const padR = 8;
-  const padTop = 16;
-  const padBottom = 52;
-  const chartW = svgW - padL - padR;
-  const chartH = svgH - padTop - padBottom;
-  const n = chart.bars.length;
-  const groupW = chartW / n;
-  const barW = Math.min(groupW * 0.34, 18);
-  const gap = 3;
-
-  const allVals = chart.bars.flatMap((b) => [b.active, b.comparator]);
-  const maxVal = Math.max(...allVals) * 1.22;
-  const minVal = Math.min(0, ...allVals) * 1.1;
-  const range = maxVal - minVal;
-  const zeroY = padTop + chartH * (maxVal / range);
-  const toY = (v: number) => padTop + chartH * ((maxVal - v) / range);
-  const toH = (v: number) => Math.abs(toY(v) - zeroY);
-
-  // Y-axis tick values
-  const tickCount = 4;
-  const ticks = Array.from({ length: tickCount + 1 }, (_, i) => minVal + (range * i) / tickCount);
-
-  return (
-    <div className={`shrink-0 w-80 flex flex-col gap-2.5 rounded-xl border border-ink/[0.10] bg-[#F8F8FC] p-4 ${className}`}>
-
-      {/* Description */}
-      <p className="text-xs text-ink/60 leading-snug">{chart.description}</p>
-
-      {/* Legend */}
-      <div className="flex items-center gap-4">
-        <div className="flex items-center gap-1.5">
-          <span className="w-3 h-2.5 rounded-sm bg-ink shrink-0" />
-          <span className="text-micro font-semibold text-ink/70">{activeLabel}</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <span className="w-3 h-2.5 rounded-sm bg-ink/22 shrink-0" />
-          <span className="text-micro font-semibold text-ink/40">{comparatorLabel}</span>
-        </div>
-      </div>
-
-      {/* SVG */}
-      <div className="flex-1 min-h-0">
-      <svg width="100%" height="100%" viewBox={`0 0 ${svgW} ${svgH}`} preserveAspectRatio="xMidYMid meet" className="overflow-visible" style={{ minHeight: svgH }}>
-        {/* Y-axis ticks + grid */}
-        {ticks.map((tv, ti) => {
-          const ty = toY(tv);
-          if (ty < padTop - 2 || ty > padTop + chartH + 2) return null;
-          return (
-            <g key={ti}>
-              <line x1={padL - 3} y1={ty} x2={padL + chartW} y2={ty}
-                stroke="rgba(30,24,84,0.08)" strokeWidth="1" strokeDasharray={tv === 0 ? 'none' : '2,3'} />
-              {tv === 0
-                ? <line x1={padL - 3} y1={ty} x2={padL + chartW} y2={ty} stroke="rgba(30,24,84,0.2)" strokeWidth="1" />
-                : null}
-              <text x={padL - 5} y={ty + 3} textAnchor="end" fontSize="7.5" fill="rgba(30,24,84,0.35)">
-                {Math.abs(tv) >= 1 ? (tv < 0 ? tv.toFixed(0) : tv.toFixed(tv % 1 === 0 ? 0 : 1)) : ''}
-              </text>
-            </g>
-          );
-        })}
-
-        {/* Bars + labels */}
-        {chart.bars.map((b, i) => {
-          const cx = padL + i * groupW + groupW / 2;
-
-          const aTop = b.active >= 0 ? toY(b.active) : zeroY;
-          const aH = toH(b.active);
-          const cTop = b.comparator >= 0 ? toY(b.comparator) : zeroY;
-          const cH = toH(b.comparator);
-
-          const aValY = b.active >= 0 ? aTop - 3 : aTop + aH + 9;
-          const cValY = b.comparator >= 0 ? cTop - 3 : cTop + cH + 9;
-
-          return (
-            <g key={b.label}>
-              {/* Active bar */}
-              <rect x={cx - barW - gap / 2} y={aTop} width={barW} height={Math.max(aH, 1)} rx="2" fill="rgba(30,24,84,0.82)" />
-              {/* Comparator bar */}
-              <rect x={cx + gap / 2} y={cTop} width={barW} height={Math.max(cH, 1)} rx="2" fill="rgba(30,24,84,0.18)" />
-              {/* Active value label */}
-              <text x={cx - barW / 2 - gap / 2} y={aValY} textAnchor="middle" fontSize="8" fontWeight="700" fill="rgba(30,24,84,0.75)">
-                {b.unit === '%'
-                  ? `${b.active > 0 ? '+' : ''}${b.active}%`
-                  : `${b.active}×`}
-              </text>
-              {/* Comparator value label — only if non-zero */}
-              {b.comparator !== 0 && (
-                <text x={cx + barW / 2 + gap / 2} y={cValY} textAnchor="middle" fontSize="7.5" fill="rgba(30,24,84,0.35)">
-                  {b.unit === '%'
-                    ? `${b.comparator > 0 ? '+' : ''}${b.comparator}%`
-                    : `${b.comparator}×`}
-                </text>
-              )}
-              {/* X label — split on space into up to 2 lines */}
-              {(() => {
-                const words = b.label.split(' ');
-                const mid = Math.ceil(words.length / 2);
-                const line1 = words.slice(0, mid).join(' ');
-                const line2 = words.slice(mid).join(' ');
-                return (
-                  <text x={cx} y={svgH - (line2 ? 14 : 6)} textAnchor="middle" fontSize="8" fill="rgba(30,24,84,0.45)">
-                    <tspan x={cx} dy="0">{line1}</tspan>
-                    {line2 && <tspan x={cx} dy="10">{line2}</tspan>}
-                  </text>
-                );
-              })()}
-            </g>
-          );
-        })}
-      </svg>
-      </div>
-
-      {/* Footer */}
-      <div className="flex items-center justify-between pt-2.5 border-t border-ink/[0.14]">
-        <p className="truncate flex-1 pr-3" style={{ fontSize: '9px', color: 'rgba(30,24,84,0.40)' }}>{chart.source}</p>
-        <div className="flex items-center gap-1.5 shrink-0">
+    <div className="flex flex-col gap-2 w-full md:w-80 md:shrink-0">
+      {charts[clamped]}
+      {charts.length > 1 && (
+        <div className="flex items-center justify-end gap-1.5">
           <button
-            onClick={() => { setActiveChart((p) => (p - 1 + charts.length) % charts.length); trackEvent('homepage_zynamite_chart_prev'); }}
+            onClick={() => { setIdx((p) => (p - 1 + charts.length) % charts.length); trackEvent(`homepage_${id}_chart_prev`); }}
+            aria-label="Previous chart"
             className="w-7 h-7 flex items-center justify-center rounded-full bg-ink/10 text-ink/70 hover:bg-ink/20 hover:text-ink transition-colors duration-200"
           >
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M6.5 2L3.5 5l3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
-          <span className="text-[11px] font-semibold text-ink/55 tabular-nums">{activeChart + 1}/{charts.length}</span>
+          <span className="text-[11px] font-semibold text-ink/55 tabular-nums">{clamped + 1}/{charts.length}</span>
           <button
-            onClick={() => { setActiveChart((p) => (p + 1) % charts.length); trackEvent('homepage_zynamite_chart_next'); }}
+            onClick={() => { setIdx((p) => (p + 1) % charts.length); trackEvent(`homepage_${id}_chart_next`); }}
+            aria-label="Next chart"
             className="w-7 h-7 flex items-center justify-center rounded-full bg-ink/10 text-ink/70 hover:bg-ink/20 hover:text-ink transition-colors duration-200"
           >
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M3.5 2l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
         </div>
-      </div>
+      )}
     </div>
   );
 }
@@ -557,7 +399,7 @@ export default function HomepageIngredientsSection({ ingredients, sizes }: Props
               </div>
 
               {/* Right: chart panel — shown for ingredients with data */}
-              {INGREDIENT_CHARTS[step.name] && <IngredientChart ingredientName={step.name} className="self-stretch" />}
+              {INGREDIENT_CHARTS[step.name] && <IngredientChartPanel ingredientName={step.name} />}
             </div>
           </motion.div>
 
@@ -638,8 +480,8 @@ export default function HomepageIngredientsSection({ ingredients, sizes }: Props
                 </div>
                 {/* Chart */}
                 {INGREDIENT_CHARTS[modal.name] && (
-                  <div className="mb-4 -mx-1">
-                    <MobileIngredientChart ingredientName={modal.name} />
+                  <div className="mb-4">
+                    <IngredientChartPanel ingredientName={modal.name} />
                   </div>
                 )}
                 {!INGREDIENT_CHARTS[modal.name] && modal.stat && (
